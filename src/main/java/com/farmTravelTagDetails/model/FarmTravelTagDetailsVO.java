@@ -2,22 +2,22 @@ package com.farmTravelTagDetails.model;
 
 public class FarmTravelTagDetailsVO {
 
-    private Integer farm_travel_id;
-    private Integer tag_id;
+    private Integer farm_travel_ID;
+    private Integer tag_ID;
 
-    public Integer getFarm_travel_id() {
-        return farm_travel_id;
+    public Integer getFarm_travel_ID() {
+        return farm_travel_ID;
     }
 
-    public void setFarm_travel_id(Integer farm_travel_id) {
-        this.farm_travel_id = farm_travel_id;
+    public void setFarm_travel_ID(Integer farm_travel_ID) {
+        this.farm_travel_ID = farm_travel_ID;
     }
 
-    public Integer getTag_id() {
-        return tag_id;
+    public Integer getTag_ID() {
+        return tag_ID;
     }
 
-    public void setTag_id(Integer tag_id) {
-        this.tag_id = tag_id;
+    public void setTag_ID(Integer tag_ID) {
+        this.tag_ID = tag_ID;
     }
 }

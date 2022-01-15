@@ -4,36 +4,36 @@ import java.sql.Date;
 
 public class FarmTravelReportVO {
 
-    private Integer report_id;
-    private Integer mem_id;
-    private Integer farm_travel_id;
+    private Integer report_ID;
+    private Integer mem_ID;
+    private Integer farm_travel_ID;
     private String report_reason;
     private Date report_time;
     private Integer report_state;
     private String report_note;
 
-    public Integer getReport_id() {
-        return report_id;
+    public Integer getReport_ID() {
+        return report_ID;
     }
 
-    public void setReport_id(Integer report_id) {
-        this.report_id = report_id;
+    public void setReport_ID(Integer report_ID) {
+        this.report_ID = report_ID;
     }
 
-    public Integer getMem_id() {
-        return mem_id;
+    public Integer getMem_ID() {
+        return mem_ID;
     }
 
-    public void setMem_id(Integer mem_id) {
-        this.mem_id = mem_id;
+    public void setMem_ID(Integer mem_ID) {
+        this.mem_ID = mem_ID;
     }
 
-    public Integer getFarm_travel_id() {
-        return farm_travel_id;
+    public Integer getFarm_travel_ID() {
+        return farm_travel_ID;
     }
 
-    public void setFarm_travel_id(Integer farm_travel_id) {
-        this.farm_travel_id = farm_travel_id;
+    public void setFarm_travel_ID(Integer farm_travel_ID) {
+        this.farm_travel_ID = farm_travel_ID;
     }
 
     public String getReport_reason() {

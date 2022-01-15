@@ -2,16 +2,16 @@ package com.farmTravelTag.model;
 
 public class FarmTravelTagVO {
 
-    private Integer tag_id;
+    private Integer tag_ID;
     private String tag_name;
     private Integer tag_times;
 
-    public Integer getTag_id() {
-        return tag_id;
+    public Integer getTag_ID() {
+        return tag_ID;
     }
 
-    public void setTag_id(Integer tag_id) {
-        this.tag_id = tag_id;
+    public void setTag_ID(Integer tag_ID) {
+        this.tag_ID = tag_ID;
     }
 
     public String getTag_name() {
