@@ -15,10 +15,10 @@ public class FarmTravelVO {
     private Integer farm_travel_fee;
     private Date travel_apply_start;
     private Date travel_apply_end;
-    private int farm_travel_min;
-    private int farm_travel_max;
-    private int farm_travel_now;
-    private int farm_travel_state;
+    private Integer farm_travel_min;
+    private Integer farm_travel_max;
+    private Integer farm_travel_now;
+    private Integer farm_travel_state;
     
     public int getFarm_travel_ID() {
         return farm_travel_ID;
