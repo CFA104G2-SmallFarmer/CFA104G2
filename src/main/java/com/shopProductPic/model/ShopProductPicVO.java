@@ -1,6 +1,6 @@
 package com.shopProductPic.model;
 
-public class ShopProductPicVO {
+public class ShopProductPicVO  {
 	private Integer prod_pic_id;
 	private Integer prod_id;
 	private byte[] prod_pic;
