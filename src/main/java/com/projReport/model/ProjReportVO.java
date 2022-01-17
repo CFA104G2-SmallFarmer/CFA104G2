@@ -3,31 +3,31 @@ package com.projReport.model;
 import java.sql.Date;
 
 public class ProjReportVO {
-	private Integer proj_report_ID;
-	private Integer proj_ID;
-    private Integer mem_ID;
+	private Integer proj_report_id;
+	private Integer proj_id;
+    private Integer mem_id;
     private String report_reason;
     private Date report_time;
     private Integer report_state;
     private String report_note;
     
-	public Integer getProj_report_ID() {
-		return proj_report_ID;
+	public Integer getProj_report_id() {
+		return proj_report_id;
 	}
-	public void setProj_report_ID(Integer proj_report_ID) {
-		this.proj_report_ID = proj_report_ID;
+	public void setProj_report_id(Integer proj_report_id) {
+		this.proj_report_id = proj_report_id;
 	}
-	public Integer getProj_ID() {
-		return proj_ID;
+	public Integer getProj_id() {
+		return proj_id;
 	}
-	public void setProj_ID(Integer proj_ID) {
-		this.proj_ID = proj_ID;
+	public void setProj_id(Integer proj_id) {
+		this.proj_id = proj_id;
 	}
-	public Integer getMem_ID() {
-		return mem_ID;
+	public Integer getMem_id() {
+		return mem_id;
 	}
-	public void setMem_ID(Integer mem_ID) {
-		this.mem_ID = mem_ID;
+	public void setMem_id(Integer mem_id) {
+		this.mem_id = mem_id;
 	}
 	public String getReport_reason() {
 		return report_reason;

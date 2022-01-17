@@ -4,8 +4,8 @@ import java.sql.Date;
 
 public class ProjectVO {
 
-	    private Integer proj_ID;
-	    private Integer f_mem_ID;
+	    private Integer proj_id;
+	    private Integer f_mem_id;
 	    private String proj_name;
 	    private Integer proj_state;
 	    private byte[] proj_main_pic;
@@ -22,17 +22,17 @@ public class ProjectVO {
 	    private Integer mem_report_count;
 	    private Integer  proj_pay;
 	    
-		public Integer getProj_ID() {
-			return proj_ID;
+		public Integer getProj_id() {
+			return proj_id;
 		}
-		public void setProj_ID(Integer proj_ID) {
-			this.proj_ID = proj_ID;
+		public void setProj_id(Integer proj_id) {
+			this.proj_id = proj_id;
 		}
-		public Integer getF_mem_ID() {
-			return f_mem_ID;
+		public Integer getF_mem_id() {
+			return f_mem_id;
 		}
-		public void setF_mem_ID(Integer f_mem_ID) {
-			this.f_mem_ID = f_mem_ID;
+		public void setF_mem_id(Integer f_mem_id) {
+			this.f_mem_id = f_mem_id;
 		}
 		public String getProj_name() {
 			return proj_name;

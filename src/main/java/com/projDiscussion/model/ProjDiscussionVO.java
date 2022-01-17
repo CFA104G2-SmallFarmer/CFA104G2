@@ -3,43 +3,43 @@ package com.projDiscussion.model;
 import java.sql.Date;
 
 public class ProjDiscussionVO {
-		private Integer comment_ID;
-		private Integer proj_ID;
-	    private Integer discussion_ID;
-	    private Integer mem_ID;
-	    private Integer f_mem_ID;
+		private Integer comment_id;
+		private Integer proj_id;
+	    private Integer discussion_id;
+	    private Integer mem_id;
+	    private Integer f_mem_id;
 	    private Date comment_date;
 	    
 	    
-		public Integer getComment_ID() {
-			return comment_ID;
+		public Integer getComment_id() {
+			return comment_id;
 		}
-		public void setComment_ID(Integer comment_ID) {
-			this.comment_ID = comment_ID;
+		public void setComment_id(Integer comment_id) {
+			this.comment_id = comment_id;
 		}
-		public Integer getProj_ID() {
-			return proj_ID;
+		public Integer getProj_id() {
+			return proj_id;
 		}
-		public void setProj_ID(Integer proj_ID) {
-			this.proj_ID = proj_ID;
+		public void setProj_id(Integer proj_id) {
+			this.proj_id = proj_id;
 		}
-		public Integer getDiscussion_ID() {
-			return discussion_ID;
+		public Integer getDiscussion_id() {
+			return discussion_id;
 		}
-		public void setDiscussion_ID(Integer discussion_ID) {
-			this.discussion_ID = discussion_ID;
+		public void setDiscussion_id(Integer discussion_id) {
+			this.discussion_id = discussion_id;
 		}
-		public Integer getMem_ID() {
-			return mem_ID;
+		public Integer getMem_id() {
+			return mem_id;
 		}
-		public void setMem_ID(Integer mem_ID) {
-			this.mem_ID = mem_ID;
+		public void setMem_id(Integer mem_id) {
+			this.mem_id = mem_id;
 		}
-		public Integer getF_mem_ID() {
-			return f_mem_ID;
+		public Integer getF_mem_id() {
+			return f_mem_id;
 		}
-		public void setF_mem_ID(Integer f_mem_ID) {
-			this.f_mem_ID = f_mem_ID;
+		public void setF_mem_id(Integer f_mem_id) {
+			this.f_mem_id = f_mem_id;
 		}
 		public Date getComment_date() {
 			return comment_date;

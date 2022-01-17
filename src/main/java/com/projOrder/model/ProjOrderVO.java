@@ -4,31 +4,31 @@ import java.sql.Date;
 
 public class ProjOrderVO {
 	
-	private Integer order_ID;
-    private Integer mem_ID;
-    private Integer perk_ID;
+	private Integer order_id;
+    private Integer mem_id;
+    private Integer perk_id;
     private Date  order_time;
     private String order_addr;
     private Integer  order_state;
     private Date  order_cancel_time;
     
-	public Integer getOrder_ID() {
-		return order_ID;
+	public Integer getOrder_id() {
+		return order_id;
 	}
-	public void setOrder_ID(Integer order_ID) {
-		this.order_ID = order_ID;
+	public void setOrder_id(Integer order_id) {
+		this.order_id = order_id;
 	}
-	public Integer getMem_ID() {
-		return mem_ID;
+	public Integer getMem_id() {
+		return mem_id;
 	}
-	public void setMem_ID(Integer mem_ID) {
-		this.mem_ID = mem_ID;
+	public void setMem_id(Integer mem_id) {
+		this.mem_id = mem_id;
 	}
-	public Integer getPerk_ID() {
-		return perk_ID;
+	public Integer getPerk_id() {
+		return perk_id;
 	}
-	public void setPerk_ID(Integer perk_ID) {
-		this.perk_ID = perk_ID;
+	public void setPerk_id(Integer perk_id) {
+		this.perk_id = perk_id;
 	}
 	public Date getOrder_time() {
 		return order_time;
