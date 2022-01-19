@@ -64,7 +64,7 @@ public class FarmTravelTagDetailsJDBCDAO implements FarmTravelTagDetailsDAO {
     }
 
     @Override
-    public void delete(int farm_travel_ID, int tag_ID) {
+    public void delete(Integer farm_travel_ID, Integer tag_ID) {
         Connection con = null;
         PreparedStatement pstmt = null;
 
@@ -98,7 +98,7 @@ public class FarmTravelTagDetailsJDBCDAO implements FarmTravelTagDetailsDAO {
     }
 
     @Override
-    public List<FarmTravelTagDetailsVO> getTagByFarmTravelID(int farm_travel_ID) {
+    public List<FarmTravelTagDetailsVO> getTagByFarmTravelID(Integer farm_travel_ID) {
         List<FarmTravelTagDetailsVO> farm_travel_tag_details_list = new ArrayList<>();
         FarmTravelTagDetailsVO farm_travel_tag_details = null;
         Connection con = null;
@@ -147,7 +147,7 @@ public class FarmTravelTagDetailsJDBCDAO implements FarmTravelTagDetailsDAO {
     }
 
     @Override
-    public List<FarmTravelTagDetailsVO> getFarmTravelByTagID(int tag_ID) {
+    public List<FarmTravelTagDetailsVO> getFarmTravelByTagID(Integer tag_ID) {
         List<FarmTravelTagDetailsVO> farm_travel_tag_details_list = new ArrayList<>();
         FarmTravelTagDetailsVO farm_travel_tag_details = null;
         Connection con = null;

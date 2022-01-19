@@ -57,7 +57,7 @@ public class FarmTravelCollectionJDBCDAO implements FarmTravelCollectionDAO{
     }
 
     @Override
-    public void delete(int mem_ID, int farm_travel_ID) {
+    public void delete(Integer mem_ID, Integer farm_travel_ID) {
         Connection con = null;
         PreparedStatement pstmt = null;
 
@@ -91,7 +91,7 @@ public class FarmTravelCollectionJDBCDAO implements FarmTravelCollectionDAO{
     }
 
     @Override
-    public List<FarmTravelCollectionVO> getAll(int mem_ID) {
+    public List<FarmTravelCollectionVO> getAll(Integer mem_ID) {
         List<FarmTravelCollectionVO> farm_travel_collection_list = new ArrayList<>();
         FarmTravelCollectionVO farm_travel_collection = null;
         Connection con = null;
@@ -107,7 +107,7 @@ public class FarmTravelCollectionJDBCDAO implements FarmTravelCollectionDAO{
                 farm_travel_collection = new FarmTravelCollectionVO();
                 farm_travel_collection.setMem_ID(rs.getInt("MEM_ID"));
                 farm_travel_collection.setFarm_travel_ID(rs.getInt("FARM_TRAVEL_ID"));
-                farm_travel_collection.setCollection_time(rs.getDate("COLLECTION_TIME"));
+                farm_travel_collection.setCollection_time(rs.getTimestamp("COLLECTION_TIME"));
 
                 farm_travel_collection_list.add(farm_travel_collection);
             }

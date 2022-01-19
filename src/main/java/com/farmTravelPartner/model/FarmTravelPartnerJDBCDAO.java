@@ -76,7 +76,7 @@ public class FarmTravelPartnerJDBCDAO implements FarmTravelPartnerDAO{
             pstmt.setString(2, farm_travel_partner.getPartner_phone());
             pstmt.setString(3, farm_travel_partner.getGuardian_name());
             pstmt.setString(4, farm_travel_partner.getGuardian_phone());
-            pstmt.setInt(5, farm_travel_partner.getApply_mem_ID());
+            pstmt.setInt(5, farm_travel_partner.getPartner_ID());
 
             pstmt.executeUpdate();
 
@@ -101,7 +101,7 @@ public class FarmTravelPartnerJDBCDAO implements FarmTravelPartnerDAO{
     }
 
     @Override
-    public void delete(int partner_id) {
+    public void delete(Integer partner_id) {
         Connection con = null;
         PreparedStatement pstmt = null;
 
@@ -134,7 +134,7 @@ public class FarmTravelPartnerJDBCDAO implements FarmTravelPartnerDAO{
     }
 
     @Override
-    public FarmTravelPartnerVO findByPK(int partner_id) {
+    public FarmTravelPartnerVO findByPK(Integer partner_ID) {
         FarmTravelPartnerVO farm_travel_partner = null;
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -144,7 +144,7 @@ public class FarmTravelPartnerJDBCDAO implements FarmTravelPartnerDAO{
             con = DriverManager.getConnection(URL, USER, PASSWORD);
             pstmt = con.prepareStatement(GET_ONE_STMT);
 
-            pstmt.setInt(1, partner_id);
+            pstmt.setInt(1, partner_ID);
 
             rs = pstmt.executeQuery();
 
@@ -187,7 +187,7 @@ public class FarmTravelPartnerJDBCDAO implements FarmTravelPartnerDAO{
     }
 
     @Override
-    public List<FarmTravelPartnerVO> getAll(int order_ID) {
+    public List<FarmTravelPartnerVO> getAll(Integer order_ID) {
         List<FarmTravelPartnerVO> farm_travel_partner_list = new ArrayList<>();
         FarmTravelPartnerVO farm_travel_partner = null;
         Connection con = null;

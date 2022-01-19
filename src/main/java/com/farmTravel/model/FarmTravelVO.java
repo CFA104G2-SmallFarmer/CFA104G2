@@ -20,7 +20,7 @@ public class FarmTravelVO {
     private Integer farm_travel_now;
     private Integer farm_travel_state;
     
-    public int getFarm_travel_ID() {
+    public Integer getFarm_travel_ID() {
         return farm_travel_ID;
     }
 
@@ -28,7 +28,7 @@ public class FarmTravelVO {
         this.farm_travel_ID = farm_travel_ID;
     }
 
-    public int getMem_ID() {
+    public Integer getMem_ID() {
         return mem_ID;
     }
 
@@ -36,7 +36,7 @@ public class FarmTravelVO {
         this.mem_ID = mem_ID;
     }
 
-    public int getF_mem_ID() {
+    public Integer getF_mem_ID() {
         return f_mem_ID;
     }
 
@@ -84,7 +84,7 @@ public class FarmTravelVO {
         this.farm_travel_end = farm_travel_end;
     }
 
-    public int getFarm_travel_fee() {
+    public Integer getFarm_travel_fee() {
         return farm_travel_fee;
     }
 
@@ -108,7 +108,7 @@ public class FarmTravelVO {
         this.travel_apply_end = travel_apply_end;
     }
 
-    public int getFarm_travel_min() {
+    public Integer getFarm_travel_min() {
         return farm_travel_min;
     }
 
@@ -116,7 +116,7 @@ public class FarmTravelVO {
         this.farm_travel_min = farm_travel_min;
     }
 
-    public int getFarm_travel_max() {
+    public Integer getFarm_travel_max() {
         return farm_travel_max;
     }
 
@@ -124,7 +124,7 @@ public class FarmTravelVO {
         this.farm_travel_max = farm_travel_max;
     }
 
-    public int getFarm_travel_now() {
+    public Integer getFarm_travel_now() {
         return farm_travel_now;
     }
 
@@ -132,7 +132,7 @@ public class FarmTravelVO {
         this.farm_travel_now = farm_travel_now;
     }
 
-    public int getFarm_travel_state() {
+    public Integer getFarm_travel_state() {
         return farm_travel_state;
     }
 

@@ -96,7 +96,7 @@ public class FarmTravelReportJDBCDAO implements FarmTravelReportDAO{
     }
 
 //    @Override
-//    public void delete(int report_ID) {
+//    public void delete(Integer report_ID) {
 //        Connection con = null;
 //        PreparedStatement pstmt = null;
 //
@@ -129,7 +129,7 @@ public class FarmTravelReportJDBCDAO implements FarmTravelReportDAO{
 //    }
 
     @Override
-    public FarmTravelReportVO findByPK(int report_ID) {
+    public FarmTravelReportVO findByPK(Integer report_ID) {
         FarmTravelReportVO farm_travel_report = null;
         Connection con = null;
         PreparedStatement pstmt = null;

@@ -5,7 +5,7 @@ import java.util.List;
 public interface FarmTravelReportDAO {
     void add(FarmTravelReportVO farm_travel_report);
     void update(FarmTravelReportVO farm_travel_report);
-//    void delete(int report_ID);
-    FarmTravelReportVO findByPK(int report_ID);
+//    void delete(Integer report_ID);
+    FarmTravelReportVO findByPK(Integer report_ID);
     List<FarmTravelReportVO> getAll();
 }

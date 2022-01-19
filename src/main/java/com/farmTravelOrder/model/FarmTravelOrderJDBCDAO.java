@@ -105,7 +105,7 @@ public class FarmTravelOrderJDBCDAO implements FarmTravelOrderDAO{
     }
 
     @Override
-    public FarmTravelOrderVO findByPK(int order_ID) {
+    public FarmTravelOrderVO findByPK(Integer order_ID) {
         FarmTravelOrderVO farm_travel_order = null;
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -125,14 +125,14 @@ public class FarmTravelOrderJDBCDAO implements FarmTravelOrderDAO{
                 farm_travel_order.setMem_ID(rs.getInt("MEM_ID"));
                 farm_travel_order.setFarm_travel_ID(rs.getInt("FARM_TRAVEL_ID"));
                 farm_travel_order.setF_mem_ID(rs.getInt("F_MEM_ID"));
-                farm_travel_order.setOrder_time(rs.getDate("ORDER_TIME"));
+                farm_travel_order.setOrder_time(rs.getTimestamp("ORDER_TIME"));
                 farm_travel_order.setPeople_num(rs.getInt("PEOPLE_NUM"));
                 farm_travel_order.setOrder_fee(rs.getInt("ORDER_FEE"));
-                farm_travel_order.setFarm_travel_start(rs.getDate("FARM_TRAVEL_START"));
-                farm_travel_order.setFarm_travel_end(rs.getDate("FARM_TRAVEL_END"));
+                farm_travel_order.setFarm_travel_start(rs.getTimestamp("FARM_TRAVEL_START"));
+                farm_travel_order.setFarm_travel_end(rs.getTimestamp("FARM_TRAVEL_END"));
                 farm_travel_order.setOrder_state(rs.getInt("ORDER_STATE"));
                 farm_travel_order.setOrder_payment(rs.getInt("ORDER_PAYMENT"));
-                farm_travel_order.setRefund_time(rs.getDate("REFUND_TIME"));
+                farm_travel_order.setRefund_time(rs.getTimestamp("REFUND_TIME"));
                 farm_travel_order.setFarm_travel_stars(rs.getInt("FARM_TRAVEL_STARS"));
                 farm_travel_order.setMem_ID_stars(rs.getInt("MEM_ID_STARS"));
                 farm_travel_order.setOrder_memo(rs.getString("ORDER_MEMO"));
@@ -166,7 +166,7 @@ public class FarmTravelOrderJDBCDAO implements FarmTravelOrderDAO{
     }
 
     @Override
-    public List<FarmTravelOrderVO> getAll(int mem_ID) {
+    public List<FarmTravelOrderVO> getAll(Integer mem_ID) {
         List<FarmTravelOrderVO> farm_travel_order_list = new ArrayList<>();
         FarmTravelOrderVO farm_travel_order = null;
         Connection con = null;
@@ -184,14 +184,14 @@ public class FarmTravelOrderJDBCDAO implements FarmTravelOrderDAO{
                 farm_travel_order.setMem_ID(rs.getInt("MEM_ID"));
                 farm_travel_order.setFarm_travel_ID(rs.getInt("FARM_TRAVEL_ID"));
                 farm_travel_order.setF_mem_ID(rs.getInt("F_MEM_ID"));
-                farm_travel_order.setOrder_time(rs.getDate("ORDER_TIME"));
+                farm_travel_order.setOrder_time(rs.getTimestamp("ORDER_TIME"));
                 farm_travel_order.setPeople_num(rs.getInt("PEOPLE_NUM"));
                 farm_travel_order.setOrder_fee(rs.getInt("ORDER_FEE"));
-                farm_travel_order.setFarm_travel_start(rs.getDate("FARM_TRAVEL_START"));
-                farm_travel_order.setFarm_travel_end(rs.getDate("FARM_TRAVEL_END"));
+                farm_travel_order.setFarm_travel_start(rs.getTimestamp("FARM_TRAVEL_START"));
+                farm_travel_order.setFarm_travel_end(rs.getTimestamp("FARM_TRAVEL_END"));
                 farm_travel_order.setOrder_state(rs.getInt("ORDER_STATE"));
                 farm_travel_order.setOrder_payment(rs.getInt("ORDER_PAYMENT"));
-                farm_travel_order.setRefund_time(rs.getDate("REFUND_TIME"));
+                farm_travel_order.setRefund_time(rs.getTimestamp("REFUND_TIME"));
                 farm_travel_order.setFarm_travel_stars(rs.getInt("FARM_TRAVEL_STARS"));
                 farm_travel_order.setMem_ID_stars(rs.getInt("MEM_ID_STARS"));
                 farm_travel_order.setOrder_memo(rs.getString("ORDER_MEMO"));
