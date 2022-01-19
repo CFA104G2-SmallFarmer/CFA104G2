@@ -1,6 +1,6 @@
 package com.farmTravel.model;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class FarmTravelVO {
 
@@ -10,11 +10,11 @@ public class FarmTravelVO {
     private String farm_travel_title;
     private byte[] farm_travel_img;
     private String farm_travel_info;
-    private Date farm_travel_start;
-    private Date farm_travel_end;
+    private Timestamp farm_travel_start;
+    private Timestamp farm_travel_end;
     private Integer farm_travel_fee;
-    private Date travel_apply_start;
-    private Date travel_apply_end;
+    private Timestamp travel_apply_start;
+    private Timestamp travel_apply_end;
     private Integer farm_travel_min;
     private Integer farm_travel_max;
     private Integer farm_travel_now;
@@ -68,19 +68,19 @@ public class FarmTravelVO {
         this.farm_travel_info = farm_travel_info;
     }
 
-    public Date getFarm_travel_start() {
+    public Timestamp getFarm_travel_start() {
         return farm_travel_start;
     }
 
-    public void setFarm_travel_start(Date farm_travel_start) {
+    public void setFarm_travel_start(Timestamp farm_travel_start) {
         this.farm_travel_start = farm_travel_start;
     }
 
-    public Date getFarm_travel_end() {
+    public Timestamp getFarm_travel_end() {
         return farm_travel_end;
     }
 
-    public void setFarm_travel_end(Date farm_travel_end) {
+    public void setFarm_travel_end(Timestamp farm_travel_end) {
         this.farm_travel_end = farm_travel_end;
     }
 
@@ -92,19 +92,19 @@ public class FarmTravelVO {
         this.farm_travel_fee = farm_travel_fee;
     }
 
-    public Date getTravel_apply_start() {
+    public Timestamp getTravel_apply_start() {
         return travel_apply_start;
     }
 
-    public void setTravel_apply_start(Date travel_apply_start) {
+    public void setTravel_apply_start(Timestamp travel_apply_start) {
         this.travel_apply_start = travel_apply_start;
     }
 
-    public Date getTravel_apply_end() {
+    public Timestamp getTravel_apply_end() {
         return travel_apply_end;
     }
 
-    public void setTravel_apply_end(Date travel_apply_end) {
+    public void setTravel_apply_end(Timestamp travel_apply_end) {
         this.travel_apply_end = travel_apply_end;
     }
 

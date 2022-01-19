@@ -7,7 +7,7 @@ import java.util.List;
 public class FarmTravelPartnerJDBCDAO implements FarmTravelPartnerDAO{
 
     public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    public static final String URL = "jdbc:mysql://localhost:3306/JDBCSample?serverTimezone=Asia/Taipei";
+    public static final String URL = "jdbc:mysql://localhost:3306/CFA104G2?serverTimezone=Asia/Taipei";
     public static final String USER = "root";
     public static final String PASSWORD = "password";
 

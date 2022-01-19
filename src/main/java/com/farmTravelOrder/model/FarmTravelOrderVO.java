@@ -1,6 +1,6 @@
 package com.farmTravelOrder.model;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class FarmTravelOrderVO {
 
@@ -8,14 +8,14 @@ public class FarmTravelOrderVO {
     private Integer mem_ID;
     private Integer farm_travel_ID;
     private Integer f_mem_ID;
-    private Date order_time;
+    private Timestamp order_time;
     private Integer people_num;
     private Integer order_fee;
-    private Date farm_travel_start;
-    private Date farm_travel_end;
+    private Timestamp farm_travel_start;
+    private Timestamp farm_travel_end;
     private Integer order_state;
     private Integer order_payment;
-    private Date refund_time;;
+    private Timestamp refund_time;;
     private Integer farm_travel_stars;
     private Integer mem_ID_stars;
     private String order_memo;
@@ -52,11 +52,11 @@ public class FarmTravelOrderVO {
         this.f_mem_ID = f_mem_ID;
     }
 
-    public Date getOrder_time() {
+    public Timestamp getOrder_time() {
         return order_time;
     }
 
-    public void setOrder_time(Date order_time) {
+    public void setOrder_time(Timestamp order_time) {
         this.order_time = order_time;
     }
 
@@ -76,19 +76,19 @@ public class FarmTravelOrderVO {
         this.order_fee = order_fee;
     }
 
-    public Date getFarm_travel_start() {
+    public Timestamp getFarm_travel_start() {
         return farm_travel_start;
     }
 
-    public void setFarm_travel_start(Date farm_travel_start) {
+    public void setFarm_travel_start(Timestamp farm_travel_start) {
         this.farm_travel_start = farm_travel_start;
     }
 
-    public Date getFarm_travel_end() {
+    public Timestamp getFarm_travel_end() {
         return farm_travel_end;
     }
 
-    public void setFarm_travel_end(Date farm_travel_end) {
+    public void setFarm_travel_end(Timestamp farm_travel_end) {
         this.farm_travel_end = farm_travel_end;
     }
 
@@ -108,11 +108,11 @@ public class FarmTravelOrderVO {
         this.order_payment = order_payment;
     }
 
-    public Date getRefund_time() {
+    public Timestamp getRefund_time() {
         return refund_time;
     }
 
-    public void setRefund_time(Date refund_time) {
+    public void setRefund_time(Timestamp refund_time) {
         this.refund_time = refund_time;
     }
 

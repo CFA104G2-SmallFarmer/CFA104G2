@@ -6,7 +6,7 @@ public class FarmTravelCollectionVO {
 
     private Integer mem_ID;
     private Integer farm_travel_ID;
-    private Date collection_time;
+    private Timestamp collection_time;
 
     public Integer getMem_ID() {
         return mem_ID;
@@ -24,11 +24,11 @@ public class FarmTravelCollectionVO {
         this.farm_travel_ID = farm_travel_ID;
     }
 
-    public Date getCollection_time() {
+    public Timestamp getCollection_time() {
         return collection_time;
     }
 
-    public void setCollection_time(Date collection_time) {
+    public void setCollection_time(Timestamp collection_time) {
         this.collection_time = collection_time;
     }
 }

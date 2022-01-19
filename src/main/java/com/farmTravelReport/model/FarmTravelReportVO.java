@@ -1,6 +1,6 @@
 package com.farmTravelReport.model;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class FarmTravelReportVO {
 
@@ -8,7 +8,7 @@ public class FarmTravelReportVO {
     private Integer mem_ID;
     private Integer farm_travel_ID;
     private String report_reason;
-    private Date report_time;
+    private Timestamp report_time;
     private Integer report_state;
     private String report_note;
 
@@ -44,11 +44,11 @@ public class FarmTravelReportVO {
         this.report_reason = report_reason;
     }
 
-    public Date getReport_time() {
+    public Timestamp getReport_time() {
         return report_time;
     }
 
-    public void setReport_time(Date report_time) {
+    public void setReport_time(Timestamp report_time) {
         this.report_time = report_time;
     }
 

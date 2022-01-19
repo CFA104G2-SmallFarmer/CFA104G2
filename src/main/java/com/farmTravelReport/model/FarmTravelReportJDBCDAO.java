@@ -7,13 +7,13 @@ import java.util.List;
 public class FarmTravelReportJDBCDAO implements FarmTravelReportDAO{
 
     public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    public static final String URL = "jdbc:mysql://localhost:3306/JDBCSample?serverTimezone=Asia/Taipei";
+    public static final String URL = "jdbc:mysql://localhost:3306/CFA104G2?serverTimezone=Asia/Taipei";
     public static final String USER = "root";
     public static final String PASSWORD = "password";
 
     public static final String INSERT_STMT = "INSERT INTO FARM_TRAVEL_REPORT ( MEM_ID, FARM_TRAVEL_ID, REPORT_REASON, REPORT_TIME, REPORT_STATE ) VALUES ( ?, ?, ?, NOW(), '0' );";
     public static final String UPDATE_STMT = "UPDATE FARM_TRAVEL_REPORT SET REPORT_STATE = ?, REPORT_NOTE = ? WHERE REPORT_ID = ?;";
-    public static final String DELETE_STMT = "DELETE FROM FARM_TRAVEL_REPORT WHERE REPORT_ID = ?;";
+//    public static final String DELETE_STMT = "DELETE FROM FARM_TRAVEL_REPORT WHERE REPORT_ID = ?;";
     public static final String GET_ONE_STMT = "SELECT * FROM FARM_TRAVEL_REPORT WHERE REPORT_ID = ?;";
     public static final String GET_ALL_STMT = "SELECT * FROM FARM_TRAVEL_REPORT;";
 
@@ -149,7 +149,7 @@ public class FarmTravelReportJDBCDAO implements FarmTravelReportDAO{
                 farm_travel_report.setMem_ID(rs.getInt("MEM_ID"));
                 farm_travel_report.setFarm_travel_ID(rs.getInt("FARM_TRAVEL_ID"));
                 farm_travel_report.setReport_reason(rs.getString("REPORT_REASON"));
-                farm_travel_report.setReport_time(rs.getDate("REPORT_TIME"));
+                farm_travel_report.setReport_time(rs.getTimestamp("REPORT_TIME"));
                 farm_travel_report.setReport_state(rs.getInt("REPORT_STATE"));
                 farm_travel_report.setReport_note(rs.getString("REPORT_NOTE"));
             }
@@ -200,7 +200,7 @@ public class FarmTravelReportJDBCDAO implements FarmTravelReportDAO{
                 farm_travel_report.setMem_ID(rs.getInt("MEM_ID"));
                 farm_travel_report.setFarm_travel_ID(rs.getInt("FARM_TRAVEL_ID"));
                 farm_travel_report.setReport_reason(rs.getString("REPORT_REASON"));
-                farm_travel_report.setReport_time(rs.getDate("REPORT_TIME"));
+                farm_travel_report.setReport_time(rs.getTimestamp("REPORT_TIME"));
                 farm_travel_report.setReport_state(rs.getInt("REPORT_STATE"));
                 farm_travel_report.setReport_note(rs.getString("REPORT_NOTE"));
                 farm_travel_report_list.add(farm_travel_report);
