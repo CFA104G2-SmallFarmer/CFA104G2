@@ -67,6 +67,7 @@ public class ShopCartlistTest {
 			System.out.println("okok");
 		}
 	}
+//	}
 //	public static void main(String[] args) {
 //		ShopCartlistJDBCDAO jdbcdao = new ShopCartlistJDBCDAO();
 //
