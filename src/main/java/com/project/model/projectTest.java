@@ -21,8 +21,8 @@ public class projectTest {
 		project.setExcepted_end_date(java.sql.Date.valueOf("2022-01-03"));
 		project.setActual_end_date(java.sql.Date.valueOf("2022-01-03"));
 		project.setProj_total_fund(1000);
-		project.setProj_intro("¦b¤å¥¹¾ğ±¾¤W¥@¬É¦Wµe¡AÅı¤å¥¹§ó²¢§ó¦n¦Y");
-		project.setProj_risk("»ä­·¨Ó¤F«Ü¦MÀI¡Aµe¸ò¤å¥¹³£·|³Q§j¨«");
+		project.setProj_intro("åœ¨æ–‡æ—¦æ¨¹æ›ä¸Šä¸–ç•Œåç•«ï¼Œè®“æ–‡æ—¦æ›´ç”œæ›´å¥½åƒ");
+		project.setProj_risk("é¢±é¢¨ä¾†äº†å¾ˆå±éšªï¼Œç•«è·Ÿæ–‡æ—¦éƒ½æœƒè¢«å¹èµ°");
 		project.setProj_total_count(1);
 		project.setProj_video("https://www.youtube.com/watch?v=072tU1tamd0");
 		project.setMem_report_count(0);
@@ -45,8 +45,8 @@ public class projectTest {
 //		project.setExcepted_end_date(java.sql.Date.valueOf("2022-01-03"));
 //		project.setActual_end_date(java.sql.Date.valueOf("2022-01-03"));
 //		project.setProj_total_fund(1000);
-//		project.setProj_intro("¦b¤å¥¹¾ğ±¾¤W¥@¬É¦Wµe¡AÅı¤å¥¹§ó²¢§ó¦n¦Y");
-//		project.setProj_risk("»ä­·¨Ó¤F«Ü¦MÀI¡Aµe¸ò¤å¥¹³£·|³Q§j¨«");
+//		project.setProj_intro("åœ¨æ–‡æ—¦æ¨¹æ›ä¸Šä¸–ç•Œåç•«ï¼Œè®“æ–‡æ—¦æ›´ç”œæ›´å¥½åƒ");
+//		project.setProj_risk("é¢±é¢¨ä¾†äº†å¾ˆå±éšªï¼Œç•«è·Ÿæ–‡æ—¦éƒ½æœƒè¢«å¹èµ°");
 //		project.setProj_total_count(2);
 //		project.setProj_video("https://www.youtube.com/watch?v=072tU1tamd0");
 //		project.setMem_report_count(0);

@@ -9,8 +9,15 @@ public class ProjDiscussionVO {
 	    private Integer mem_id;
 	    private Integer f_mem_id;
 	    private Date comment_date;
+	    private String comment_content;
 	    
 	    
+		public String getComment_content() {
+			return comment_content;
+		}
+		public void setComment_content(String comment_content) {
+			this.comment_content = comment_content;
+		}
 		public Integer getComment_id() {
 			return comment_id;
 		}

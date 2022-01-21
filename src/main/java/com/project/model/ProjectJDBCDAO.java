@@ -190,7 +190,7 @@ public class ProjectJDBCDAO implements ProjectDAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVo 也稱為 Domain objects
+
 				projectVO = new ProjectVO();
 				projectVO.setProj_id(rs.getInt("proj_id"));
 				projectVO.setF_mem_id(rs.getInt("f_mem_id"));
@@ -261,7 +261,7 @@ public class ProjectJDBCDAO implements ProjectDAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVo 也稱為 Domain objects
+
 				projectVO = new ProjectVO();
 				projectVO.setProj_id(rs.getInt("proj_id"));
 				projectVO.setF_mem_id(rs.getInt("f_mem_id"));
