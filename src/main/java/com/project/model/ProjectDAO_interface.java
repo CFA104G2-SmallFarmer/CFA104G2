@@ -9,5 +9,4 @@ public interface ProjectDAO_interface {
     public ProjectVO findByPrimaryKey(Integer projectVO);
     public List<ProjectVO> getAll();
 
-//  public List<EmpVO> getAll(Map<String, String[]> map); 
 }

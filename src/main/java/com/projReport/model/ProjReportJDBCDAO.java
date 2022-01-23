@@ -14,7 +14,7 @@ public class ProjReportJDBCDAO implements ProjReportDAO_interface {
 			+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = "SELECT PROJ_REPORT_ID,PROJ_ID,MEM_ID,REPORT_REASON,REPORT_TIME,REPORT_STATE,REPORT_NOTE,START_DATE,EXCEPTED_END_DATE,ACTUAL_END_DATE,PROJ_TOTAL_FUND,PROJ_INTRO,PROJ_RISK,PROJ_TOTAL_COUNT,PROJ_VIDEO,MEM_REPORT_COUNT,PROJ_PAY FROM ProjReport ORDER BY PROJ_REPORT_ID";
 	private static final String GET_ONE_STMT = "SELECT PROJ_REPORT_ID,PROJ_ID,MEM_ID,REPORT_REASON,REPORT_TIME,REPORT_STATE,REPORT_NOTE,START_DATE,EXCEPTED_END_DATE,ACTUAL_END_DATE,PROJ_TOTAL_FUND,PROJ_INTRO,PROJ_RISK,PROJ_TOTAL_COUNT,PROJ_VIDEO,MEM_REPORT_COUNT,PROJ_PAY FROM ProjReport WHERE PROJ_REPORT_ID = ?";
-	private static final String DELETE = "DELETE FROM ProjReport WHERE PROJ_REPORT_ID = ?";
+//	private static final String DELETE = "DELETE FROM ProjReport WHERE PROJ_REPORT_ID = ?";
 	private static final String UPDATE = "UPDATE ProjReport SET PROJ_REPORT_ID=?,PROJ_ID=?,MEM_ID=?,REPORT_REASON=?,REPORT_TIME=?,REPORT_STATE=?,REPORT_NOTE=?,START_DATE=?,EXCEPTED_END_DATE=?,ACTUAL_END_DATE=?,PROJ_TOTAL_FUND=?,PROJ_INTRO=?,PROJ_RISK=?,PROJ_TOTAL_COUNT=?,PROJ_VIDEO=?,MEM_REPORT_COUNT=?,PROJ_PAY=? WHERE PROJ_REPORT_ID = ?";
 
 	@Override
@@ -111,46 +111,46 @@ public class ProjReportJDBCDAO implements ProjReportDAO_interface {
 
 	}
 
-	@Override
-	public void delete(Integer PROJ_REPORT_ID) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-
-		try {
-
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(DELETE);
-
-			pstmt.setInt(1, PROJ_REPORT_ID);
-
-			pstmt.executeUpdate();
-
-			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
-			// Handle any SQL errors
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
-			// Clean up JDBC resources
-		} finally {
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace(System.err);
-				}
-			}
-		}
-
-	}
+//	@Override
+//	public void delete(Integer PROJ_REPORT_ID) {
+//		Connection con = null;
+//		PreparedStatement pstmt = null;
+//
+//		try {
+//
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+//			pstmt = con.prepareStatement(DELETE);
+//
+//			pstmt.setInt(1, PROJ_REPORT_ID);
+//
+//			pstmt.executeUpdate();
+//
+//			// Handle any driver errors
+//		} catch (ClassNotFoundException e) {
+//			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
+//			// Handle any SQL errors
+//		} catch (SQLException se) {
+//			throw new RuntimeException("A database error occured. " + se.getMessage());
+//			// Clean up JDBC resources
+//		} finally {
+//			if (pstmt != null) {
+//				try {
+//					pstmt.close();
+//				} catch (SQLException se) {
+//					se.printStackTrace(System.err);
+//				}
+//			}
+//			if (con != null) {
+//				try {
+//					con.close();
+//				} catch (Exception e) {
+//					e.printStackTrace(System.err);
+//				}
+//			}
+//		}
+//
+//	}
 
 	@Override
 	public ProjReportVO findByPrimaryKey(Integer PROJ_REPORT_ID) {

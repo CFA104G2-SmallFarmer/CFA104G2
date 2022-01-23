@@ -1,6 +1,9 @@
 package com.project.model;
 
 import java.util.*;
+
+import com.projCollection.model.ProjCollectionJDBCDAO;
+
 import java.sql.*;
 
 public class ProjectJDBCDAO implements ProjectDAO_interface {
@@ -316,4 +319,44 @@ public class ProjectJDBCDAO implements ProjectDAO_interface {
 		return list;
 
 	}
+	
+	public static void main(String[] args) {
+
+		ProjCollectionJDBCDAO dao = new ProjCollectionJDBCDAO();
+		/*=====================================================*/
+//		// 新增
+//		ProjCollectionVO projCollectionVO2 = new ProjCollectionVO();
+//		projCollectionVO2.setProj_id(1002);
+//		projCollectionVO2.setMem_id(77001);
+//		dao.insert(projCollectionVO2);
+//		System.out.println("成功");
+		
+		/*=====================================================*/
+
+		// 刪除
+//		int x_setProj_id =1002;
+//		int y_setMem_id =77001;
+//		
+//		dao.delete(x_setProj_id,y_setMem_id);
+//		System.out.println("刪除Proj_id="+x_setProj_id+",Mem_id="+y_setMem_id+" 成功");
+
+		/*=====================================================*/
+
+		// 查詢getall
+		/*======呈現某會員的所有收藏======*/
+
+//		List<ProjCollectionVO> list = dao.getAll(77000);
+//		for (ProjCollectionVO projCollectionVO2 : list) {
+//		System.out.print(projCollectionVO2.getProj_id() + ",");
+//		System.out.print(projCollectionVO2.getMem_id() + ",");
+//		System.out.println();
+//		System.out.println("------------");
+//		}
+		
+		/*=====================================================*/
+		
+	}
+	
+	
+	
 }
