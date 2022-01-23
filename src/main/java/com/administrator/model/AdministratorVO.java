@@ -11,6 +11,7 @@ public class AdministratorVO {
 	private Integer admin_isdeleted;
 	private String admin_name;
 	private String admin_email;
+	private String admin_mobile;
 	private Integer admin_zipcode;
 	private String admin_city;
 	private String admin_dist;
@@ -60,6 +61,12 @@ public class AdministratorVO {
 	}
 	public void setAdmin_email(String admin_email) {
 		this.admin_email = admin_email;
+	}
+	public String getAdmin_mobile() {
+		return admin_mobile;
+	}
+	public void setAdmin_mobile(String admin_mobile) {
+		this.admin_mobile = admin_mobile;
 	}
 	public Integer getAdmin_zipcode() {
 		return admin_zipcode;
