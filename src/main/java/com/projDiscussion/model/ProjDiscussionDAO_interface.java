@@ -6,8 +6,9 @@ public interface ProjDiscussionDAO_interface {
 	public void insert(ProjDiscussionVO projDiscussionVO);
     public void update(ProjDiscussionVO projDiscussionVO);
     public void delete(Integer comments_id);
-    public ProjDiscussionVO findByPrimaryKey(Integer comments_id);
-    public List<ProjDiscussionVO> getAll();
+//  取出某專案下的所有留言
+    public List<ProjDiscussionVO> getAll(Integer proj_id);
 
+//  public ProjDiscussionVO findByPrimaryKey(Integer comments_id);
 //  public List<projDiscussionVO> getAll(Map<String, String[]> map); 
 }
