@@ -6,6 +6,7 @@ public class ShopProductCollectionVO {
 	private Integer mem_id;
 	private Integer prod_id;
 	private Date prod_fav_date;
+	
 	public Integer getMem_id() {
 		return mem_id;
 	}

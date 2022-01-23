@@ -4,6 +4,13 @@ public class ShopProductPicVO  {
 	private Integer prod_pic_id;
 	private Integer prod_id;
 	private byte[] prod_pic;
+	
+	public byte[] getProd_pic() {
+		return prod_pic;
+	}
+	public void setProd_pic(byte[] prod_pic) {
+		this.prod_pic = prod_pic;
+	}
 	public Integer getProd_pic_id() {
 		return prod_pic_id;
 	}
@@ -16,15 +23,5 @@ public class ShopProductPicVO  {
 	public void setProd_id(Integer prod_id) {
 		this.prod_id = prod_id;
 	}
-	public byte[] getProd_pic() {
-		return prod_pic;
-	}
-	public void setProd_pic(byte[] prod_pic) {
-		this.prod_pic = prod_pic;
-	}
-	
-	
-
-
 
 }

@@ -2,9 +2,9 @@ package com.shopProduct.model;
 
 import java.sql.Date;
 
-public class ShopProductVO {
+public class ShopProductVO implements java.io.Serializable{
+	private Integer prod_id;
 	private Integer prod_type_id;
-	private Integer type_id;
 	private String prod_name;
 	private Integer f_mem_id;
 	private Integer prod_status;
@@ -13,17 +13,17 @@ public class ShopProductVO {
 	private String prod_intro;
 	private Date prod_reg_date;
 	
-	public Integer getProd_type_id() {
+	public Integer getProd_id() {
+		return prod_id;
+	}
+	public void setProd_id(Integer prod_id) {
+		this.prod_id = prod_id;
+	}
+	public Integer getProd_Type_id() {
 		return prod_type_id;
 	}
-	public void setProd_type_id(Integer prod_type_id) {
+	public void setProd_Type_id(Integer prod_type_id) {
 		this.prod_type_id = prod_type_id;
-	}
-	public Integer getType_id() {
-		return type_id;
-	}
-	public void setType_id(Integer type_id) {
-		this.type_id = type_id;
 	}
 	public String getProd_name() {
 		return prod_name;

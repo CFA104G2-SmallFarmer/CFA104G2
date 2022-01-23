@@ -6,7 +6,7 @@ import com.shopProductPic.model.ShopProductPicVO;
 
 public interface ShopProductCollectionDAO_interface {
 	 public void insert(ShopProductCollectionVO shopProductCollectionVO);     
-     public void update(ShopProductCollectionVO shopProductCollectionVO);     
+ //    public void update(ShopProductCollectionVO shopProductCollectionVO);     
      public void delete(Integer  mem_id,Integer prod_id);
      
      public ShopProductCollectionVO findByPrimaryKey(Integer  mem_id,Integer prod_id);    

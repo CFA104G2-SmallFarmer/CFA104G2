@@ -8,6 +8,9 @@ public class ShopProductReportVO {
 	private Integer prod_id;
 	private String report_reason;
 	private Date report_time;
+	private Integer report_state;
+	private String report_note;
+	
 	public Integer getProd_report_no() {
 		return prod_report_no;
 	}
@@ -38,13 +41,18 @@ public class ShopProductReportVO {
 	public void setReport_time(Date report_time) {
 		this.report_time = report_time;
 	}
-	
-	
-
-
-
-
-
-	
+	public Integer getReport_state() {
+		return report_state;
+	}
+	public void setReport_state(Integer report_state) {
+		this.report_state = report_state;
+	}
+	public String getReport_note() {
+		return report_note;
+	}
+	public void setReport_note(String report_note) {
+		this.report_note = report_note;
+	}
+		
 
 }

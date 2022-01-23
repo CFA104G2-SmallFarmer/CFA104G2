@@ -3,6 +3,7 @@ package com.shopProductType.model;
 public class ShopProductTypeVO {
 	private Integer prod_type_id;
 	private String prod_type_name;
+	
 	public Integer getProd_type_id() {
 		return prod_type_id;
 	}
