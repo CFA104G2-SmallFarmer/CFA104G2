@@ -11,11 +11,12 @@ public class ProjDiscussionJDBCDAO implements ProjDiscussionDAO_interface {
 	String passwd = "password";
 	// COMMENT_ID是自增主鍵不用打
 	private static final String INSERT_STMT = "INSERT INTO PROJ_DISCUSSION (PROJ_ID,DISCUSSION_ID,MEM_ID,F_MEM_ID,COMMENT_DATE,COMMENT_CONTENT)"
-			+ "VALUES (?, ?, ?, ?, ?, ?)";
+			+ "VALUES (?, ?, ?, ?, NOW(), ?)";
 	private static final String GET_ALL_SAME_PROJ_STMT = "SELECT COMMENT_ID,PROJ_ID,DISCUSSION_ID,MEM_ID,F_MEM_ID,COMMENT_DATE,COMMENT_CONTENT FROM PROJ_DISCUSSION WHERE PROJ_ID = ? ORDER BY COMMENT_ID";
 //	private static final String GET_ONE_STMT = "SELECT COMMENT_ID,PROJ_ID,DISCUSSION_ID,MEM_ID,F_MEM_ID,COMMENT_DATE,COMMENT_CONTENT FROM PROJ_DISCUSSION WHERE PROJ_ID = ?";
 	private static final String DELETE = "DELETE FROM PROJ_DISCUSSION WHERE COMMENT_ID = ?";
-	private static final String UPDATE = "UPDATE PROJ_DISCUSSION SET PROJ_ID=?, DISCUSSION_ID=?, MEM_ID=?, F_MEM_ID=?, COMMENT_DATE=?, COMMENT_CONTENT=? WHERE COMMENT_ID = ?";
+//	只有留言內容有需要更新的機會，有空可以增加"已編輯"的狀態碼
+	private static final String UPDATE = "UPDATE PROJ_DISCUSSION SET COMMENT_CONTENT=? WHERE COMMENT_ID = ?";
 
 	@Override
 	public void insert(ProjDiscussionVO projDiscussionVO) {
@@ -38,8 +39,7 @@ public class ProjDiscussionJDBCDAO implements ProjDiscussionDAO_interface {
 			} else {
 				pstmt.setInt(4, projDiscussionVO.getF_mem_id());
 			}
-			pstmt.setDate(5, projDiscussionVO.getComment_date());
-			pstmt.setString(6, projDiscussionVO.getComment_content());
+			pstmt.setString(5, projDiscussionVO.getComment_content());
 
 			pstmt.executeUpdate();
 			// Handle any driver errors
@@ -78,17 +78,9 @@ public class ProjDiscussionJDBCDAO implements ProjDiscussionDAO_interface {
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(UPDATE);
 
-			pstmt.setInt(1, projDiscussionVO.getProj_id());
-			pstmt.setInt(2, projDiscussionVO.getDiscussion_id());
-			pstmt.setInt(3, projDiscussionVO.getMem_id());
-			if (projDiscussionVO.getF_mem_id() == null) {
-				pstmt.setNull(4, Types.NULL);
-			} else {
-				pstmt.setInt(4, projDiscussionVO.getF_mem_id());
-			}
-			pstmt.setDate(5, projDiscussionVO.getComment_date());
-			pstmt.setString(6, projDiscussionVO.getComment_content());
-			pstmt.setInt(7, projDiscussionVO.getComment_id());
+
+			pstmt.setString(1, projDiscussionVO.getComment_content());
+			pstmt.setInt(2, projDiscussionVO.getComment_id());
 
 			pstmt.executeUpdate();
 
@@ -235,7 +227,6 @@ public class ProjDiscussionJDBCDAO implements ProjDiscussionDAO_interface {
 //		projDiscussionVO2.setDiscussion_id(1);
 //		projDiscussionVO2.setMem_id(77000);
 //		projDiscussionVO2.setF_mem_id(null);
-//		projDiscussionVO2.setComment_date(java.sql.Date.valueOf("2022-05-01"));
 //		projDiscussionVO2.setComment_content("disgusting");
 //		
 //		dao.insert(projDiscussionVO2);
@@ -246,13 +237,8 @@ public class ProjDiscussionJDBCDAO implements ProjDiscussionDAO_interface {
 
 //		ProjDiscussionVO projDiscussionVO2 = new ProjDiscussionVO();
 //		
-//		projDiscussionVO2.setProj_id(1001);
-//		projDiscussionVO2.setDiscussion_id(1);
-//		projDiscussionVO2.setMem_id(77000);
-//		projDiscussionVO2.setF_mem_id(null);
-//		projDiscussionVO2.setComment_date(java.sql.Date.valueOf("2022-05-01"));
 //		projDiscussionVO2.setComment_content("bad");
-//		projDiscussionVO2.setComment_id(5);
+//		projDiscussionVO2.setComment_id(7);
 //		
 //		dao.update(projDiscussionVO2);
 //		System.out.println("更新成功");
