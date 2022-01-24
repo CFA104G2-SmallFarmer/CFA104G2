@@ -1,9 +1,6 @@
 package com.projPic.model;
 
 import java.util.*;
-
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.sql.*;
 
 public class ProjPicJDBCDAO implements ProjPicDAO_interface {
@@ -13,23 +10,20 @@ public class ProjPicJDBCDAO implements ProjPicDAO_interface {
 	String userid = "David";
 	String passwd = "password";
 
-//	PROJ_PIC_ID is AI
-	private static final String INSERT_STMT = "INSERT INTO PROJ_PIC (PROJ_ID,PROJ_PIC)" + "VALUES (?, ?)";
+	private static final String INSERT_STMT = "INSERT INTO PROJPIC (PROJ_PIC_ID,PROJ_ID,PROJ_PIC)"
+			+ "VALUES (?, ?, ?)";
 
-	private static final String DELETE = "DELETE FROM PROJ_PIC WHERE PROJ_PIC_ID = ? ";
+	private static final String DELETE = "DELETE FROM PROJPIC WHERE PROJ_PIC_ID = ? AND PROJ_ID = ?";
+	
+	private static final String UPDATE = "UPDATE PROJPIC SET PROJ_PIC=? WHERE PROJ_PIC_ID = ? AND PROJ_ID = ?";
 
-//	只會有某專案換圖的情況，不會有圖片在專案間互換的情況
-	private static final String UPDATE = "UPDATE PROJ_PIC SET PROJ_PIC=? WHERE PROJ_PIC_ID = ? ";
 
-//	呈現某圖
-	private static final String GET_ONE_STMT = "SELECT PROJ_PIC_ID,PROJ_ID,PROJ_PIC FROM PROJ_PIC WHERE PROJ_PIC_ID = ? ;";
-
-//	呈現某專案的所有圖片
-	private static final String GET_ALl_SAME_PROJ = "SELECT PROJ_PIC_ID,PROJ_ID,PROJ_PIC FROM PROJ_PIC WHERE PROJ_ID = ?;";
-
+	private static final String GET_ONE_STMT = "SELECT PROJ_PIC_ID,PROJ_ID,PROJ_PIC FROM PROJPIC WHERE PROJ_ID = ?;";
+	
 //	底下感覺不會用到
 //	private static final String GET_ALL_STMT = "SELECT PROJ_PIC_ID,PROJ_ID,PROJ_PIC FROM PROJPIC ORDER BY PROJ_ID";
-
+	
+	
 	@Override
 	public void insert(ProjPicVO ProjPicVO) {
 
@@ -42,9 +36,10 @@ public class ProjPicJDBCDAO implements ProjPicDAO_interface {
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(INSERT_STMT);
 
-			pstmt.setInt(1, ProjPicVO.getProj_id());
-			pstmt.setBytes(2, ProjPicVO.getProj_pic());
-
+			pstmt.setInt(1, ProjPicVO.getProj_pic_id());
+			pstmt.setInt(2, ProjPicVO.getProj_id());
+			pstmt.setBytes(3, ProjPicVO.getProj_pic());
+			
 			pstmt.executeUpdate();
 			// Handle any driver errors
 		} catch (ClassNotFoundException e) {
@@ -82,9 +77,10 @@ public class ProjPicJDBCDAO implements ProjPicDAO_interface {
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(UPDATE);
 
-			pstmt.setBytes(1, ProjPicVO.getProj_pic());
-			pstmt.setInt(2, ProjPicVO.getProj_pic_id());
-
+			pstmt.setInt(1, ProjPicVO.getProj_pic_id());
+			pstmt.setInt(2, ProjPicVO.getProj_id());
+			pstmt.setBytes(3, ProjPicVO.getProj_pic());
+			
 			pstmt.executeUpdate();
 
 			// Handle any driver errors
@@ -114,7 +110,7 @@ public class ProjPicJDBCDAO implements ProjPicDAO_interface {
 	}
 
 	@Override
-	public void delete(Integer proj_pic_id) {
+	public void delete(Integer proj_pic_id, Integer proj_id ) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -125,7 +121,8 @@ public class ProjPicJDBCDAO implements ProjPicDAO_interface {
 			pstmt = con.prepareStatement(DELETE);
 
 			pstmt.setInt(1, proj_pic_id);
-
+			pstmt.setInt(2, proj_id);
+			
 			pstmt.executeUpdate();
 
 			// Handle any driver errors
@@ -213,69 +210,7 @@ public class ProjPicJDBCDAO implements ProjPicDAO_interface {
 		}
 		return ProjPicVO;
 	}
-
-	@Override
-	public List<ProjPicVO> getAllSameProj(Integer proj_id) {
-		List<ProjPicVO> list = new ArrayList<ProjPicVO>();
-		ProjPicVO ProjPicVO = null;
-
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
-		try {
-
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(GET_ALl_SAME_PROJ);
-
-			pstmt.setInt(1, proj_id);
-
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-
-				ProjPicVO = new ProjPicVO();
-				ProjPicVO.setProj_pic_id(rs.getInt("proj_pic_id"));
-				ProjPicVO.setProj_id(rs.getInt("proj_id"));
-				ProjPicVO.setProj_pic(rs.getBytes("proj_pic"));
-				list.add(ProjPicVO);
-			}
-
-			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
-			// Handle any SQL errors
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
-			// Clean up JDBC resources
-		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace(System.err);
-				}
-			}
-		}
-		return list;
-
-	}
-
+//
 //	@Override
 //	public List<ProjPicVO> getAll() {
 //		List<ProjPicVO> list = new ArrayList<ProjPicVO>();
@@ -336,83 +271,6 @@ public class ProjPicJDBCDAO implements ProjPicDAO_interface {
 //			}
 //		}
 //		return list;
-//	}
-
-	public static void main(String[] args) {
-
-		ProjPicJDBCDAO dao = new ProjPicJDBCDAO();
-////		/*=====================================================*/
-//		// 新增
-//		ProjPicVO ProjPicVO2 = new ProjPicVO();
-//		ProjPicVO2.setProj_id(1002);
-//
-//		byte[] pic;
-//		try {
-//			pic = getPictureByteArray("ProjectPic//tomycat.png");// 回傳一個水管
-//			ProjPicVO2.setProj_pic(pic);
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		dao.insert(ProjPicVO2);
-//		System.out.println("成功");
-//
-//		/* ===================================================== */
-//		// 修改(換圖)
-//
-//		ProjPicVO ProjPicVO3 = new ProjPicVO();
-//
-//		ProjPicVO3.setProj_pic_id(1);
-//
-//		byte[] pic1;
-//		try {
-//			pic1 = getPictureByteArray("ProjectPic//tomycat.png");// 回傳一個水管
-//			ProjPicVO3.setProj_pic(pic1);
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-//		dao.update(ProjPicVO3);
-//		System.out.println("更新成功");
-//		/* ===================================================== */
-//
-////		 刪除
-//
-////		int y=1002;
-////		dao.delete(y);
-////		System.out.println("刪除成功");
-//
-//		/* ===================================================== */
-//
-//		// 查詢getone，呈現某圖
-//
-//		ProjPicVO ProjPicVO4 = dao.findByPrimaryKey(1);
-//		System.out.print(ProjPicVO4.getProj_pic_id() + ",");
-//		System.out.print(ProjPicVO4.getProj_id() + ",");
-//		System.out.print(ProjPicVO4.getProj_pic() + ",");
-//		System.out.println("---------------------");
-//
-//		/* ===================================================== */
-////		// 查詢getAllSameProj
-//		/* =====列出這個專案，所有的圖====== */
-//		List<ProjPicVO> list = dao.getAllSameProj(1001);
-//		for (ProjPicVO ProjPicVO5 : list) {
-//			System.out.print(ProjPicVO5.getProj_pic_id() + ",");
-//			System.out.print(ProjPicVO5.getProj_id() + ",");
-//			System.out.print(ProjPicVO5.getProj_pic() + ",");
-//			System.out.println();
-//			System.out.println("------------");
-//		}
 //
 //	}
-//
-//	// 使用byte[]方式
-//	public static byte[] getPictureByteArray(String path) throws IOException {
-//		FileInputStream fis = new FileInputStream(path);
-//		byte[] buffer = new byte[fis.available()];// 長度，資料流多少bytes
-//		fis.read(buffer);// 讀進byte陣列裡
-//		fis.close();
-//		return buffer; // 回傳byte[]
-	}
 }
