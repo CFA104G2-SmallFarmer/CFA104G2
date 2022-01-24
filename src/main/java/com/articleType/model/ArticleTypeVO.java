@@ -1,32 +1,32 @@
 package com.articleType.model;
 
 public class ArticleTypeVO {
-	private Integer ac_type_ID;
-	private byte[] ac_type_img;
-	private String ac_type_text;
+	private Integer article_type_ID;
+	private byte[] article_type_img;
+	private String article_type_text;
 
-	public Integer getAc_type_ID() {
-		return ac_type_ID;
+	public Integer getArticle_type_ID() {
+		return article_type_ID;
 	}
 
-	public void setAc_type_ID(Integer ac_type_ID) {
-		this.ac_type_ID = ac_type_ID;
+	public void setArticle_type_ID(Integer article_type_ID) {
+		this.article_type_ID = article_type_ID;
 	}
 
-	public byte[] getAc_type_img() {
-		return ac_type_img;
+	public byte[] getArticle_type_img() {
+		return article_type_img;
 	}
 
-	public void setAc_type_img(byte[] ac_type_img) {
-		this.ac_type_img = ac_type_img;
+	public void setArticle_type_img(byte[] article_type_img) {
+		this.article_type_img = article_type_img;
 	}
 
-	public String getAc_type_text() {
-		return ac_type_text;
+	public String getArticle_type_text() {
+		return article_type_text;
 	}
 
-	public void setAc_type_text(String ac_type_text) {
-		this.ac_type_text = ac_type_text;
+	public void setArticle_type_text(String article_type_text) {
+		this.article_type_text = article_type_text;
 	}
 
 }

@@ -4,10 +4,10 @@ import java.util.List;
 
 public interface ArticleCollectionDAO {
 	void add(ArticleCollectionVO articleCollectionVO);
-    void update(ArticleCollectionVO articleCollectionVO);
-    void delete(int article_ID, int mem_ID);
-    ArticleCollectionVO findByPK(int article_ID, int mem_ID);
-    List<ArticleCollectionVO> getAll();
+    //void update(ArticleCollectionVO articleCollectionVO);
+    void delete(Integer article_ID, Integer mem_ID);
+//    ArticleCollectionVO findByPK(Integer article_ID, Integer mem_ID);
+    List<ArticleCollectionVO> getAll(Integer mem_ID);
 
 
 }
