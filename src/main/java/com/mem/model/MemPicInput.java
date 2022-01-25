@@ -8,16 +8,15 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-
 // 不完整版,無法判斷讀到哪裡，僅用於新增會員用
 public class MemPicInput {
 	public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 	public static final String URL = "jdbc:mysql://localhost:3306/CFA104G2?serverTimezone=Asia/Taipei";
 	public static final String USERID = "root";
 	public static final String PASSWD = "password";
-	
+
 	private static final String SQL = "UPDATE mem set mem_pic = ? where mem_id = ?";
-	
+
 	public static void main(String[] args) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -26,12 +25,12 @@ public class MemPicInput {
 			con = DriverManager.getConnection(URL, USERID, PASSWD);
 			pstmt = con.prepareStatement(SQL);
 			int i = 0;
-			for(int j = 77000; j<=77007; j++) {
-			byte[] pic = getPictureByteArray("MemPicInput/mempic"+ ++i +".jpg");
-			pstmt.setBytes(1, pic);
-			pstmt.setInt(2, j);
-			pstmt.executeUpdate();
-			System.out.println("新增 "+ i +".jpg 成功");
+			for (int j = 77000; j <= 77007; j++) {
+				byte[] pic = getPictureByteArray("MemPicInput/mempic" + ++i + ".jpg");
+				pstmt.setBytes(1, pic);
+				pstmt.setInt(2, j);
+				pstmt.executeUpdate();
+				System.out.println("新增 " + i + ".jpg 成功");
 			}
 
 		} catch (ClassNotFoundException ce) {
@@ -69,8 +68,8 @@ public class MemPicInput {
 	// 使用byte[]方式
 	public static byte[] getPictureByteArray(String path) throws IOException {
 		FileInputStream fis = new FileInputStream(path);
-		byte[] buffer = new byte[fis.available()];		// available():資料流有多少bytes資料，算出有多少bytes
-		fis.read(buffer);	// 讀取多少bytes資料存入buffer
+		byte[] buffer = new byte[fis.available()]; // available():資料流有多少bytes資料，算出有多少bytes
+		fis.read(buffer); // 讀取多少bytes資料存入buffer
 		fis.close();
 		return buffer;
 	}

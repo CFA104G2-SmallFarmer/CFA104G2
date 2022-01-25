@@ -17,23 +17,23 @@ public class PrivateMessageJDBCDAO implements PrivateMessageDAO_interface {
 	String passwd = "password";
 	
 	private static final String INSERT_STMT = 
-		"INSERT INTO privatemessage ("
+		"INSERT INTO private_message ("
 		+ "	mem_id, f_mem_id, p_msg_direct, p_msg_time, p_msg_context, p_msg_img)"
 		+ " VALUES"
 		+ " (?, ?, ?, ?, ?, ?)";
 	
 	private static final String GET_ALL_STMT =
-		"SELECT mem_id, f_mem_id, p_msg_direct, p_msg_time, p_msg_context, p_msg_img"
-		+" FROM privatemessage ORDER BY p_msg_id";
+		"SELECT p_msg_id, mem_id, f_mem_id, p_msg_direct, p_msg_time, p_msg_context, p_msg_img"
+		+" FROM private_message ORDER BY p_msg_id";
 	
 	private static final String GET_ONE_STMT = 
-		"SELECT mem_id, f_mem_id, p_msg_direct, p_msg_time, p_msg_context, p_msg_img"
-		+" FROM privatemessage WHERE p_msg_id = ?";
+		"SELECT p_msg_id, mem_id, f_mem_id, p_msg_direct, p_msg_time, p_msg_context, p_msg_img"
+		+" FROM private_message WHERE p_msg_id = ?";
 	
-	private static final String DELETE = "DELETE FROM privatemessage WHERE  p_msg_id = ?";
+	private static final String DELETE = "DELETE FROM private_message WHERE  p_msg_id = ?";
 	
 	private static final String UPDATE = 
-			"UPDATE privatemessage set mem_id = ?, f_mem_id = ?, p_msg_direct = ?,"
+			"UPDATE private_message set mem_id = ?, f_mem_id = ?, p_msg_direct = ?,"
 			+" p_msg_time = ?, p_msg_context = ?, p_msg_img = ? WHERE p_msg_id = ?";
 
 
@@ -199,11 +199,12 @@ public class PrivateMessageJDBCDAO implements PrivateMessageDAO_interface {
 				// empVo 也稱為 Domain objects
 				// img尚未處理
 				privateMessageVO = new PrivateMessageVO();
+				privateMessageVO.setP_msg_id(rs.getInt("p_msg_id"));
 				privateMessageVO.setMem_id(rs.getInt("mem_id"));
 				privateMessageVO.setF_mem_id(rs.getInt("f_mem_id"));
 				privateMessageVO.setP_msg_direct(rs.getInt("p_msg_direct"));
 				privateMessageVO.setP_msg_time(rs.getTimestamp("p_msg_time"));
-				privateMessageVO.setP_msg_context(rs.getString(" p_msg_context"));
+				privateMessageVO.setP_msg_context(rs.getString("p_msg_context"));
 				privateMessageVO.setP_msg_img(rs.getBytes("p_msg_img"));
 			}	
 				
@@ -262,11 +263,12 @@ public class PrivateMessageJDBCDAO implements PrivateMessageDAO_interface {
 			while (rs.next()) {
 				// privateMessageVO 也稱為 Domain objects
 				privateMessageVO = new PrivateMessageVO();
+				privateMessageVO.setP_msg_id(rs.getInt("p_msg_id"));
 				privateMessageVO.setMem_id(rs.getInt("mem_id"));
 				privateMessageVO.setF_mem_id(rs.getInt("f_mem_id"));
 				privateMessageVO.setP_msg_direct(rs.getInt("p_msg_direct"));
 				privateMessageVO.setP_msg_time(rs.getTimestamp("p_msg_time"));
-				privateMessageVO.setP_msg_context(rs.getString(" p_msg_context"));
+				privateMessageVO.setP_msg_context(rs.getString("p_msg_context"));
 				privateMessageVO.setP_msg_img(rs.getBytes("p_msg_img"));
 				list.add(privateMessageVO); // Store the row in the list
 			}

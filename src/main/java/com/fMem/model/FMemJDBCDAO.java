@@ -326,7 +326,7 @@ public class FMemJDBCDAO implements FMemDAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// memVO ¤]ºÙ¬° Domain objects
+				// memVO ä¹Ÿç¨±ç‚º Domain objects
 				fMemVO = new FMemVO();
 				fMemVO = new FMemVO();
 				fMemVO.setF_mem_id(rs.getInt("f_mem_id"));

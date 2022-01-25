@@ -29,7 +29,7 @@ public class MemJDBCDAO implements MemDAO_interface {
 		+ " mem_mobile, mem_tel, mem_zipcode, mem_city, mem_dist, mem_addr,"
 		+ "	reg_date, mem_pic, rating_score_mk, rating_count_mk, rating_score_tr,"
 		+ " rating_count_tr, report_count, mem_id_state FROM mem ORDER BY mem_id";
-//	¦¹insert©|µL¹Ï¤ù
+//	æ­¤insertå°šç„¡åœ–ç‰‡
 	private static final String GET_ONE_STMT = 
 		"SELECT mem_id, mem_acc, mem_pwd, acc_state, mem_name, mem_nickname,"
 		+ " mem_mobile, mem_tel, mem_zipcode, mem_city, mem_dist, mem_addr,"
@@ -104,7 +104,7 @@ public class MemJDBCDAO implements MemDAO_interface {
 
 	}
 
-	// µLªk§PÂ_¬O§_¦³»İ­n­×§ïªº¸ê®Æ
+	// ç„¡æ³•åˆ¤æ–·æ˜¯å¦æœ‰éœ€è¦ä¿®æ”¹çš„è³‡æ–™
 	@Override
 	public void update(MemVO memVO) {
 
@@ -230,7 +230,7 @@ public class MemJDBCDAO implements MemDAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// img©|¥¼³B²z
+				// imgå°šæœªè™•ç†
 				memVO = new MemVO();
 				memVO.setMem_id(rs.getInt("mem_id"));
 				memVO.setMem_acc(rs.getString("mem_acc"));
@@ -245,7 +245,7 @@ public class MemJDBCDAO implements MemDAO_interface {
 				memVO.setMem_dist(rs.getString("mem_dist"));
 				memVO.setMem_addr(rs.getString("mem_addr"));
 				memVO.setReg_date(rs.getDate("reg_date"));
-//				«İÀË¬d
+//				å¾…æª¢æŸ¥
 				memVO.setMem_pic(rs.getBytes("mem_pic"));
 				memVO.setRating_score_mk(rs.getInt("rating_score_mk"));
 				memVO.setRating_count_mk(rs.getInt("rating_count_mk"));
@@ -309,7 +309,7 @@ public class MemJDBCDAO implements MemDAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// memVO ¤]ºÙ¬° Domain objects
+				// memVO ä¹Ÿç¨±ç‚º Domain objects
 				memVO = new MemVO();
 				memVO.setMem_id(rs.getInt("mem_id"));
 				memVO.setMem_acc(rs.getString("mem_acc"));
@@ -324,7 +324,7 @@ public class MemJDBCDAO implements MemDAO_interface {
 				memVO.setMem_dist(rs.getString("mem_dist"));
 				memVO.setMem_addr(rs.getString("mem_addr"));
 				memVO.setReg_date(rs.getDate("reg_date"));
-//				«İÀË¬d
+//				å¾…æª¢æŸ¥
 				memVO.setMem_pic(rs.getBytes("mem_pic"));
 				memVO.setRating_score_mk(rs.getInt("rating_score_mk"));
 				memVO.setRating_count_mk(rs.getInt("rating_count_mk"));
@@ -376,7 +376,7 @@ public class MemJDBCDAO implements MemDAO_interface {
 		return null;
 	}
 	
-////	 Handle with byte array data ¦¹°Ï©|¥¼¥Î¨ì¡A¥i¯à·|²¾°£
+////	 Handle with byte array data æ­¤å€å°šæœªç”¨åˆ°ï¼Œå¯èƒ½æœƒç§»é™¤
 //	public static void readPicture(byte[] bytes) throws IOException {
 //		FileOutputStream fos = new FileOutputStream("Output/2.png");
 //		fos.write(bytes);

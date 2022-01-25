@@ -14,19 +14,19 @@ public class MemTest {
 
 		MemJDBCDAO dao = new MemJDBCDAO();
 
-//		// ·s¼W
+//		// æ–°å¢
 //		MemVO memVO1 = new MemVO();
 //		memVO1.setMem_acc("sue1122334@gmail.com");
 //		memVO1.setMem_pwd("sue1122334");
 //		memVO1.setAcc_state(1);
-//		memVO1.setMem_name("ªF©Y¦×");
-//		memVO1.setMem_nickname("©N¤£¶©©N");
+//		memVO1.setMem_name("æ±å¡è‚‰");
+//		memVO1.setMem_nickname("å’šä¸éš†å’š");
 //		memVO1.setMem_mobile("0933345668");
 //		memVO1.setMem_tel("0223456799");
 //		memVO1.setMem_zipcode(100);
-//		memVO1.setMem_city("¥x«n¥«");
-//		memVO1.setMem_dist("¥Ã±d°Ï");
-//		memVO1.setMem_addr("¬Æ»ò¸ô°İ¸¹");
+//		memVO1.setMem_city("å°å—å¸‚");
+//		memVO1.setMem_dist("æ°¸åº·å€");
+//		memVO1.setMem_addr("ç”šéº¼è·¯å•è™Ÿ");
 //		memVO1.setReg_date(java.sql.Date.valueOf("2005-01-01"));
 //		
 //		byte[] pic;
@@ -37,7 +37,7 @@ public class MemTest {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-//		System.out.println("¹Ï¤ù·s¼W¦¨¥\");
+//		System.out.println("åœ–ç‰‡æ–°å¢æˆåŠŸ");
 //		
 //		memVO1.setRating_score_mk(0);
 //		memVO1.setRating_count_mk(0);
@@ -47,77 +47,77 @@ public class MemTest {
 //		memVO1.setMem_id_state(0);
 //		
 //		dao.insert(memVO1);
-//		System.out.println("·s¼W¸ê®Æ¦¨¥\");
+//		System.out.println("æ–°å¢è³‡æ–™æˆåŠŸ");
 //
-//		// ­×§ï
-		MemVO memVO2 = new MemVO();
-		memVO2.setMem_id(77006);
-		memVO2.setMem_acc("lue1122334@gmail.com");
-		memVO2.setMem_pwd("lue1122334");
-		memVO2.setAcc_state(1);
-		memVO2.setMem_name("«n©Y¦×");
-		memVO2.setMem_nickname("¶Ì¤£¶©©N");
-		memVO2.setMem_mobile("0933345668");
-		memVO2.setMem_tel("0223456799");
-		memVO2.setMem_zipcode(100);
-		memVO2.setMem_city("¥x¥_¥«");
-		memVO2.setMem_dist("¥Ã±d°Ï");
-		memVO2.setMem_addr("¬Æ»ò¸ô°İ¸¹");
-		memVO2.setReg_date(java.sql.Date.valueOf("2011-01-01"));
-		
-		byte[] pic;
-		try {
-			pic = getPictureByteArray("C:\\Users\\Tibame_T14\\Desktop\\S__25600013.jpg");
-			memVO2.setMem_pic(pic);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("¹Ï¤ù·s¼W¦¨¥\");
-		
-		memVO2.setRating_score_mk(0);
-		memVO2.setRating_count_mk(0);
-		memVO2.setRating_score_tr(0);
-		memVO2.setRating_count_tr(0);
-		memVO2.setReport_count(0);
-		memVO2.setMem_id_state(0);
-		
-		dao.update(memVO2);
-		System.out.println("¸ê®Æ­×§ï¦¨¥\");
+//		// ä¿®æ”¹
+//		MemVO memVO2 = new MemVO();
+//		memVO2.setMem_id(77006);
+//		memVO2.setMem_acc("lue1122334@gmail.com");
+//		memVO2.setMem_pwd("lue1122334");
+//		memVO2.setAcc_state(1);
+//		memVO2.setMem_name("å—å¡è‚‰");
+//		memVO2.setMem_nickname("å‚»ä¸éš†å’š");
+//		memVO2.setMem_mobile("0933345668");
+//		memVO2.setMem_tel("0223456799");
+//		memVO2.setMem_zipcode(100);
+//		memVO2.setMem_city("å°åŒ—å¸‚");
+//		memVO2.setMem_dist("æ°¸åº·å€");
+//		memVO2.setMem_addr("ç”šéº¼è·¯å•è™Ÿ");
+//		memVO2.setReg_date(java.sql.Date.valueOf("2011-01-01"));
+//		
+//		byte[] pic;
+//		try {
+//			pic = getPictureByteArray("C:\\Users\\Tibame_T14\\Desktop\\S__25600013.jpg");
+//			memVO2.setMem_pic(pic);
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		System.out.println("åœ–ç‰‡æ–°å¢æˆåŠŸ");
+//		
+//		memVO2.setRating_score_mk(0);
+//		memVO2.setRating_count_mk(0);
+//		memVO2.setRating_score_tr(0);
+//		memVO2.setRating_count_tr(0);
+//		memVO2.setReport_count(0);
+//		memVO2.setMem_id_state(0);
+//		
+//		dao.update(memVO2);
+//		System.out.println("è³‡æ–™ä¿®æ”¹æˆåŠŸ");
 //
-//		// §R°£
+//		// åˆªé™¤
 //		dao.delete(77008);
-//		System.out.println("§R°£¸ê®Æ¦¨¥\");
+//		System.out.println("åˆªé™¤è³‡æ–™æˆåŠŸ");
 
-//		// ¬d¸ß
-//		// img©|¥¼³B²z
-//		MemVO memVO3 = dao.findByPrimaryKey(77001);
-//		System.out.print(memVO3.getMem_id() + ",");
-//		System.out.print(memVO3.getMem_acc() + ",");
-//		System.out.print(memVO3.getMem_pwd() + ",");
-//		System.out.print(memVO3.getAcc_state() + ",");
-//		System.out.print(memVO3.getMem_name() + ",");
-//		System.out.print(memVO3.getMem_nickname() + ",");
-//		System.out.print(memVO3.getMem_mobile() + ",");
-//		System.out.print(memVO3.getMem_tel() + ",");
-//		System.out.print(memVO3.getMem_zipcode() + ",");
-//		System.out.print(memVO3.getMem_city() + ",");
-//		System.out.print(memVO3.getMem_dist() + ",");
-//		System.out.print(memVO3.getMem_addr() + ",");
-//		System.out.print(memVO3.getReg_date() + ",");
-//		// ¤èªk¤@¦L¥X¦p:Bric1937@superrito.com
-//		System.out.print(memVO3.getMem_pic() + ",");
-//		// ¤èªk¤G¦L¥X¦p:Bric1937@superrito.com
+		// æŸ¥è©¢
+		// imgå°šæœªè™•ç†(å·²è™•ç†)
+		MemVO memVO3 = dao.findByPrimaryKey(77001);
+		System.out.print(memVO3.getMem_id() + ",");
+		System.out.print(memVO3.getMem_acc() + ",");
+		System.out.print(memVO3.getMem_pwd() + ",");
+		System.out.print(memVO3.getAcc_state() + ",");
+		System.out.print(memVO3.getMem_name() + ",");
+		System.out.print(memVO3.getMem_nickname() + ",");
+		System.out.print(memVO3.getMem_mobile() + ",");
+		System.out.print(memVO3.getMem_tel() + ",");
+		System.out.print(memVO3.getMem_zipcode() + ",");
+		System.out.print(memVO3.getMem_city() + ",");
+		System.out.print(memVO3.getMem_dist() + ",");
+		System.out.print(memVO3.getMem_addr() + ",");
+		System.out.print(memVO3.getReg_date() + ",");
+		// æ–¹æ³•ä¸€å°å‡ºå¦‚:Bric1937@superrito.com
+		System.out.print(memVO3.getMem_pic() + ",");
+		// æ–¹æ³•äºŒå°å‡ºå¦‚:Bric1937@superrito.com
 //		System.out.println(Arrays.toString(memVO3.getMem_pic()));
-//		System.out.print(memVO3.getRating_score_mk() + ",");
-//		System.out.print(memVO3.getRating_count_mk() + ",");
-//		System.out.print(memVO3.getRating_score_tr() + ",");
-//		System.out.print(memVO3.getRating_score_mk() + ",");
-//		System.out.print(memVO3.getReport_count() + ",");
-//		System.out.print(memVO3.getMem_id_state());
+		System.out.print(memVO3.getRating_score_mk() + ",");
+		System.out.print(memVO3.getRating_count_mk() + ",");
+		System.out.print(memVO3.getRating_score_tr() + ",");
+		System.out.print(memVO3.getRating_count_tr() + ",");
+		System.out.print(memVO3.getReport_count() + ",");
+		System.out.print(memVO3.getMem_id_state());
 		
 		
-		// ¬d¸ß
+		// æŸ¥è©¢
 //		List<MemVO> list = dao.getAll();
 //
 //		for (MemVO aMem : list) {
@@ -134,7 +134,7 @@ public class MemTest {
 //			System.out.print(aMem.getMem_dist() + ",");
 //			System.out.print(aMem.getMem_addr() + ",");
 //			System.out.print(aMem.getReg_date() + ",");
-//			// pic¶È¥X²{¦ì§}¡A«İ¸Ñ¨M
+//			// picåƒ…å‡ºç¾ä½å€ï¼Œå¾…è§£æ±º
 //			System.out.print(aMem.getMem_pic() + ",");
 //			System.out.print(aMem.getRating_score_mk() + ",");
 //			System.out.print(aMem.getRating_count_mk() + ",");
@@ -146,11 +146,11 @@ public class MemTest {
 //		}
 	}
 	
-	// ¨Ï¥Îbyte[]¤è¦¡
+	// ä½¿ç”¨byte[]æ–¹å¼
 	public static byte[] getPictureByteArray(String path) throws IOException {
 		FileInputStream fis = new FileInputStream(path);
-		byte[] buffer = new byte[fis.available()];		// available():¸ê®Æ¬y¦³¦h¤Öbytes¸ê®Æ¡Aºâ¥X¦³¦h¤Öbytes
-		fis.read(buffer);	// Åª¨ú¦h¤Öbytes¸ê®Æ¦s¤Jbuffer
+		byte[] buffer = new byte[fis.available()];		// available():è³‡æ–™æµæœ‰å¤šå°‘bytesè³‡æ–™ï¼Œç®—å‡ºæœ‰å¤šå°‘bytes
+		fis.read(buffer);	// è®€å–å¤šå°‘bytesè³‡æ–™å­˜å…¥buffer
 		fis.close();
 		return buffer;
 	}
