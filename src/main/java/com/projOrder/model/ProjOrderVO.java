@@ -4,6 +4,14 @@ import java.sql.Date;
 
 public class ProjOrderVO {
 	
+//	TODO 新增欄位
+//	ORDER_ZIPCODE 
+//	ORDER_RECEIVER
+//	ORDER_TEL
+//	ORDER_PAY
+//	ORDER_SHIP_TIME
+//	ORDER_COMPLETION_TIME
+	
 	private Integer order_id;
     private Integer mem_id;
     private Integer perk_id;

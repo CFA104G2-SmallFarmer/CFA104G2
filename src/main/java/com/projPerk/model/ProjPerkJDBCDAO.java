@@ -16,10 +16,12 @@ import com.proDiary.model.ProDairyVO;
 
 public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
 
+//		TODO 新增欄位 not null ：perk_abbr_name 請於下方加入
+	
 	String driver = "com.mysql.cj.jdbc.Driver";
 	String url = "jdbc:mysql://localhost:3306/cfa104g2?serverTimezone=Asia/Taipei";
-	String userid = "root";
-	String passwd = "aaaa";
+	String userid = "David";
+	String passwd = "password";
 
 	private static final String INSERT_STMT = //7個問號//DIR_ID是自增主鍵不用打
 			                                          //不含PERK_TOTAL_COUNT
@@ -73,8 +75,9 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
 			+ "WHERE `PERK_ID` = ?;";
 			
 
-	private static final String GET_PERK_TOTAL_COUNT= //獲得目前回饋方案總人數
-			"SELECT COUNT(*) FROM PROJ_ORDER WHERE PERK_ID=? AND ORDER_STATE !=4;";
+//	private static final String GET_PERK_TOTAL_COUNT= //獲得目前回饋方案總人數
+//			"SELECT COUNT(*) FROM PROJ_ORDER WHERE PERK_ID=? AND ORDER_STATE !=4;";
+	
 	private static final String UPDATE_PERK_TOTAL_COUNT=//更新目前回饋方案總人數
 			"UPDATE PROJ_PERK SET PERK_TOTAL_COUNT =(SELECT COUNT(*) FROM PROJ_ORDER WHERE PERK_ID=? AND ORDER_STATE !=4) WHERE PERK_ID=?;";
 			
@@ -126,65 +129,65 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
 
 	}
 		
-@Override
-	public int getPerkTotalCount(Integer perk_id) {
-	Connection con = null;
-	PreparedStatement pstmt = null;
-	ResultSet rs = null;
-	int result;
-
-	try {
-
-		Class.forName(driver);
-		con = DriverManager.getConnection(url, userid, passwd);
-		pstmt = con.prepareStatement(GET_PERK_TOTAL_COUNT);
-
-		pstmt.setInt(1, perk_id);
-
-		rs = pstmt.executeQuery();
-
-		rs.next(); // 不可遺漏 rs.next(); 移動游標
-	
-		result = rs.getInt(1);//欄位索引值
-		
-		System.out.println("印出 perk_id:"+perk_id+"的perk_total_count = " + rs.getInt(1));
-			
-		// Handle any driver errors
-	} catch (ClassNotFoundException e) {
-		throw new RuntimeException("Couldn't load database driver. "
-				+ e.getMessage());
-		// Handle any SQL errors
-	} catch (SQLException se) {
-		throw new RuntimeException("A database error occured. "
-				+ se.getMessage());
-		// Clean up JDBC resources
-	} finally {
-		if (rs != null) {
-			try {
-				rs.close();
-			} catch (SQLException se) {
-				se.printStackTrace(System.err);
-			}
-		}
-		if (pstmt != null) {
-			try {
-				pstmt.close();
-			} catch (SQLException se) {
-				se.printStackTrace(System.err);
-			}
-		}
-		if (con != null) {
-			try {
-				con.close();
-			} catch (Exception e) {
-				e.printStackTrace(System.err);
-			}
-		}
-		
-	}
-	return result;
-	
-}
+//@Override
+//	public int getPerkTotalCount(Integer perk_id) {
+//	Connection con = null;
+//	PreparedStatement pstmt = null;
+//	ResultSet rs = null;
+//	int result;
+//
+//	try {
+//
+//		Class.forName(driver);
+//		con = DriverManager.getConnection(url, userid, passwd);
+//		pstmt = con.prepareStatement(GET_PERK_TOTAL_COUNT);
+//
+//		pstmt.setInt(1, perk_id);
+//
+//		rs = pstmt.executeQuery();
+//
+//		rs.next(); // 不可遺漏 rs.next(); 移動游標
+//	
+//		result = rs.getInt(1);//欄位索引值
+//		
+//		System.out.println("印出 perk_id:"+perk_id+"的perk_total_count = " + rs.getInt(1));
+//			
+//		// Handle any driver errors
+//	} catch (ClassNotFoundException e) {
+//		throw new RuntimeException("Couldn't load database driver. "
+//				+ e.getMessage());
+//		// Handle any SQL errors
+//	} catch (SQLException se) {
+//		throw new RuntimeException("A database error occured. "
+//				+ se.getMessage());
+//		// Clean up JDBC resources
+//	} finally {
+//		if (rs != null) {
+//			try {
+//				rs.close();
+//			} catch (SQLException se) {
+//				se.printStackTrace(System.err);
+//			}
+//		}
+//		if (pstmt != null) {
+//			try {
+//				pstmt.close();
+//			} catch (SQLException se) {
+//				se.printStackTrace(System.err);
+//			}
+//		}
+//		if (con != null) {
+//			try {
+//				con.close();
+//			} catch (Exception e) {
+//				e.printStackTrace(System.err);
+//			}
+//		}
+//		
+//	}
+//	return result;
+//	
+//}
 
 
 
@@ -491,17 +494,17 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
 	public static void main(String[] args) {
 
 		ProjPerkJDBCDAO dao = new ProjPerkJDBCDAO();
-		
-		/*=======//獲得目前回饋方案總人數==============================================*/
-//		int x =1;
-//		int result;
-//		result= dao.getPerkTotalCount(x); //x是perk_id
-//		System.out.println("成功獲得目前回饋方案perk_id="+x+"總人數perk_total_count="+result);
-		
+//		
+////		/*=======//獲得目前回饋方案總人數==============================================*/
+////		int x =1;
+////		int result;
+////		result= dao.getPerkTotalCount(x); //x是perk_id
+////		System.out.println("成功獲得目前回饋方案perk_id="+x+"總人數perk_total_count="+result);
+////		
 		/*=======//更新目前回饋方案總人數==============================================*/
-//		int x =1;
-//		dao.autoUpdatePerkTotalCount(x); //x是perk_id
-//		System.out.println("成功更新目前回饋方案perk_id="+x+"總人數perk_total_count");
+		int x1 =1;
+		dao.autoUpdatePerkTotalCount(x1); //x是perk_id
+		System.out.println("成功更新目前回饋方案perk_id="+x1+"總人數perk_total_count");
 		
 		/*=====================================================*/
 ////		// 新增
@@ -602,20 +605,20 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
 		/*=====列出這個專案的所有日誌======*/
 //		pstmt.setInt(1, proj_id);
 		/*=============================*/
-		List<ProjPerkVO> list = dao.getAll(1001);
-		for (ProjPerkVO projPerkVO2 : list) {
-		System.out.print(projPerkVO2.getPerk_id() + ",");
-		System.out.print(projPerkVO2.getProj_id() + ",");
-		System.out.print(projPerkVO2.getPerk_pic() + ",");
-		System.out.print(projPerkVO2.getPerk_intro() + ",");
-		System.out.print(projPerkVO2.getPerk_total_count() + ",");
-		System.out.print(projPerkVO2.getPerk_fund() + ",");
-		System.out.print(projPerkVO2.getPerk_limited() + ",");
-		System.out.print(projPerkVO2.getPerk_ship_date() + ",");
-		System.out.print(projPerkVO2.getPerk_ship_area() + ",");
-		System.out.println();
-		System.out.println("---------------------");
-	}
+//		List<ProjPerkVO> list = dao.getAll(1001);
+//		for (ProjPerkVO projPerkVO2 : list) {
+//		System.out.print(projPerkVO2.getPerk_id() + ",");
+//		System.out.print(projPerkVO2.getProj_id() + ",");
+//		System.out.print(projPerkVO2.getPerk_pic() + ",");
+//		System.out.print(projPerkVO2.getPerk_intro() + ",");
+//		System.out.print(projPerkVO2.getPerk_total_count() + ",");
+//		System.out.print(projPerkVO2.getPerk_fund() + ",");
+//		System.out.print(projPerkVO2.getPerk_limited() + ",");
+//		System.out.print(projPerkVO2.getPerk_ship_date() + ",");
+//		System.out.print(projPerkVO2.getPerk_ship_area() + ",");
+//		System.out.println();
+//		System.out.println("---------------------");
+//	}
 		/*=====================================================*/
 		
 	

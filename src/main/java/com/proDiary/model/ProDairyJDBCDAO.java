@@ -25,8 +25,8 @@ import javax.sql.DataSource;
 public class ProDairyJDBCDAO implements ProDairyDAO_interface {
 	String driver = "com.mysql.cj.jdbc.Driver";
 	String url = "jdbc:mysql://localhost:3306/cfa104g2?serverTimezone=Asia/Taipei";
-	String userid = "root";
-	String passwd = "aaaa";
+	String userid = "David";
+	String passwd = "password";
 
 	private static final String INSERT_STMT = //10個問號//DIR_ID是自增主鍵不用打
 			"INSERT INTO PROJ_DIARY (PROJ_ID,DIR_UPLOAD_DATE,DIR_PROCEDURE,DIR_PRODUCT,DIR_EQUIPMENT,DIR_MATERIAL,DIR_EMOJI,DIR_NOTES,DIR_UPLOAD_STATE,DIR_PIC) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; 
@@ -34,6 +34,8 @@ public class ProDairyJDBCDAO implements ProDairyDAO_interface {
 			"SELECT DIR_ID,PROJ_ID,DIR_UPLOAD_DATE,DIR_PROCEDURE,DIR_PRODUCT,DIR_EQUIPMENT,DIR_MATERIAL,DIR_EMOJI,DIR_NOTES,DIR_UPLOAD_STATE,DIR_PIC FROM PROJ_DIARY WHERE PROJ_ID=? and DIR_UPLOAD_DATE=?";
 	private static final String GET_ALL_STMT = //列出這個專案的所有日誌
 			"SELECT DIR_ID,PROJ_ID,DIR_UPLOAD_DATE,DIR_PROCEDURE,DIR_PRODUCT,DIR_EQUIPMENT,DIR_MATERIAL,DIR_EMOJI,DIR_NOTES,DIR_UPLOAD_STATE,DIR_PIC FROM PROJ_DIARY WHERE PROJ_ID=? ORDER BY DIR_UPLOAD_DATE";
+//	TODO
+//	GET_ALL_STMT要desc排列
 	private static final String GET_ONE_STMT = //找一個日誌
 			"SELECT DIR_ID,PROJ_ID,DIR_UPLOAD_DATE,DIR_PROCEDURE,DIR_PRODUCT,DIR_EQUIPMENT,DIR_MATERIAL,DIR_EMOJI,DIR_NOTES,DIR_UPLOAD_STATE,DIR_PIC FROM PROJ_DIARY WHERE DIR_ID=?";
 	private static final String DELETE = 

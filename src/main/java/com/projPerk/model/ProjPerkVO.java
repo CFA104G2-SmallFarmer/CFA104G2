@@ -13,7 +13,15 @@ public class ProjPerkVO implements java.io.Serializable{
 	private Integer perk_limited;
 	private Date perk_ship_date;
 	private String perk_ship_area;
+	private String perk_abbr_name;
+
 	
+	public String getPerk_abbr_name() {
+		return perk_abbr_name;
+	}
+	public void setPerk_abbr_name(String perk_abbr_name) {
+		this.perk_abbr_name = perk_abbr_name;
+	}
 	public Integer getPerk_id() {
 		return perk_id;
 	}

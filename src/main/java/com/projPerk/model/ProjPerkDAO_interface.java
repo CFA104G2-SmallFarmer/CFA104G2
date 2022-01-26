@@ -6,8 +6,14 @@ import java.util.List;
 public interface ProjPerkDAO_interface {
     public void insert(ProjPerkVO projPerkVO);
     public void update(ProjPerkVO projPerkVO);
-    public int getPerkTotalCount(Integer perk_id);
+    
+//    public int getPerkTotalCount(Integer perk_id);
+////    實際呼叫不需要這個方法
+    
     public void autoUpdatePerkTotalCount(Integer perk_id);
+//    實際更新用這條就好
+
+    
     public void delete(Integer perk_id);
     public ProjPerkVO findByPrimaryKey(Integer perk_id);
     
