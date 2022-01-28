@@ -8,24 +8,124 @@ public class ProjOrderJDBCDAO implements ProjOrderDAO_interface {
 
 	String driver = "com.mysql.cj.jdbc.Driver";
 	String url = "jdbc:mysql://localhost:3306/CFA104G2?serverTimezone=Asia/Taipei";
-	String userid = "David";
-	String passwd = "password";
-
+	String userid = "root";
+	String passwd = "aaaa";
+	
+//	TODO 新增欄位
+//	ORDER_ZIPCODE 
+//	ORDER_RECEIVER
+//	ORDER_TEL
+//	ORDER_PAY
+//	ORDER_SHIP_TIME
+//	ORDER_COMPLETION_TIME
+//ORDER_CANCEL_REASON
+	
+	
 //	ORDER_ID流水號，ORDER_TIME使用NOW()，新建單時不會有ORDER_CANCEL_TIME，ORDER_STATE預設為0
-	private static final String INSERT_STMT = "INSERT INTO PROJ_ORDER (MEM_ID,PERK_ID,ORDER_TIME,ORDER_ADDR,ORDER_STATE)"
-			+ "VALUES ( ?, ?, NOW(), ?, 0)";
+	private static final String INSERT_STMT = 
+//			"INSERT INTO PROJ_ORDER (MEM_ID,PERK_ID,ORDER_TIME,ORDER_ADDR,ORDER_STATE)"
+//			+ "VALUES ( ?, ?, NOW(), ?, 0)";
 	
-	private static final String GET_ALL_STMT = "SELECT ORDER_ID,MEM_ID,PERK_ID,ORDER_TIME,ORDER_ADDR,ORDER_STATE,ORDER_CANCEL_TIME FROM PROJ_ORDER ORDER BY ORDER_ID";
+	"INSERT INTO `PROJ_ORDER`"
+	+ "(`MEM_ID`,"
+	+ "`PERK_ID`,"
+	+ "`ORDER_TIME`,"
+	+ "`ORDER_ZIPCODE`,"
+	+ "`ORDER_ADDR`,"
+	+ "`ORDER_RECEIVER`,"
+	+ "`ORDER_TEL`,"
+	+ "`ORDER_PAY`,"
+	+ "`ORDER_STATE`)"
+	+ "VALUES"
+	+ "(?,?,NOW(),?,?,?,?,?,0)";
 	
-	private static final String GET_ONE_STMT = "SELECT ORDER_ID,MEM_ID,PERK_ID,ORDER_TIME,ORDER_ADDR,ORDER_STATE,ORDER_CANCEL_TIME FROM PROJ_ORDER WHERE ORDER_ID = ?";
+	private static final String GET_ALL_STMT = 
+//			"SELECT ORDER_ID,MEM_ID,PERK_ID,ORDER_TIME,ORDER_ADDR,ORDER_STATE,ORDER_CANCEL_TIME FROM PROJ_ORDER ORDER BY ORDER_ID";
+	
+	"SELECT `ORDER_ID`,"
+	+ "`MEM_ID`,"
+	+ "`PERK_ID`,"
+	+ "`ORDER_TIME`,"
+	+ "`ORDER_ZIPCODE`,"
+	+ "`ORDER_ADDR`,"
+	+ "`ORDER_RECEIVER`,"
+	+ "`ORDER_TEL`,"
+	+ "`ORDER_PAY`,"
+	+ "`ORDER_STATE`,"
+	+ "`ORDER_SHIP_TIME`,"
+	+ "`ORDER_COMPLETION_TIME`,"
+	+ "`ORDER_CANCEL_TIME`,"
+	+ "`ORDER_CANCEL_REASON`"
+	+ "FROM `PROJ_ORDER`";
+	
+	private static final String GET_ONE_STMT = 
+//			"SELECT ORDER_ID,MEM_ID,PERK_ID,ORDER_TIME,ORDER_ADDR,ORDER_STATE,ORDER_CANCEL_TIME FROM PROJ_ORDER WHERE ORDER_ID = ?";
+	"SELECT `ORDER_ID`,"
+	+ "`MEM_ID`,"
+	+ "`PERK_ID`,"
+	+ "`ORDER_TIME`,"
+	+ "`ORDER_ZIPCODE`,"
+	+ "`ORDER_ADDR`,"
+	+ "`ORDER_RECEIVER`,"
+	+ "`ORDER_TEL`,"
+	+ "`ORDER_PAY`,"
+	+ "`ORDER_STATE`,"
+	+ "`ORDER_SHIP_TIME`,"
+	+ "`ORDER_COMPLETION_TIME`,"
+	+ "`ORDER_CANCEL_TIME`,"
+	+ "`ORDER_CANCEL_REASON`"
+	+ "FROM `PROJ_ORDER` WHERE `ORDER_ID` = ?";
 	
 	private static final String DELETE = "DELETE FROM PROJ_ORDER WHERE ORDER_ID = ?";
 	
-//  只有訂單狀態改變或取消時，ORDER_STATE、ORDER_CANCEL_TIME可接受更改
-	private static final String UPDATE = "UPDATE PROJ_ORDER SET ORDER_STATE=?,ORDER_CANCEL_TIME=? WHERE ORDER_ID = ?";
-// 列出會員的所有訂單
-	private static final String GET_All_MEM_ORDER_STMT = "SELECT ORDER_ID,MEM_ID,PERK_ID,ORDER_TIME,ORDER_ADDR,ORDER_STATE,ORDER_CANCEL_TIME FROM PROJ_ORDER WHERE MEM_ID = ?";
-// 列出小農的所有訂單(因為訂單裡沒有小農編號，所以要JOIN兩次才抓得到)
+
+	private static final String UPDATE = 
+//			"UPDATE PROJ_ORDER SET ORDER_STATE=?,ORDER_CANCEL_TIME=? WHERE ORDER_ID = ?";
+	"UPDATE `PROJ_ORDER`"
+	+ "SET"
+	+ "`ORDER_ZIPCODE` = ?,"
+	+ "`ORDER_ADDR` = ?,"
+	+ "`ORDER_RECEIVER` = ?,"
+	+ "`ORDER_TEL` = ?,"
+	+ "`ORDER_STATE` = ?,"
+	+ "`ORDER_SHIP_TIME` = ?,"
+	+ "`ORDER_COMPLETION_TIME` = ?,"
+	+ "`ORDER_CANCEL_TIME` = ?,"
+	+ "`ORDER_CANCEL_REASON` = ? "
+	+ " WHERE `ORDER_ID` = ?";
+	
+	private static final String CHANGE_STATE =
+			"UPDATE `PROJ_ORDER`"
+					+ "SET"
+					+ "`ORDER_STATE` = ?,"
+					+ "`ORDER_SHIP_TIME` = ?,"
+					+ "`ORDER_COMPLETION_TIME` = ?,"
+					+ "`ORDER_CANCEL_TIME` = ?,"
+					+ "`ORDER_CANCEL_REASON` = ? "
+					+ " WHERE `ORDER_ID` = ?";
+	
+	// 列出會員的所有訂單
+	private static final String GET_All_MEM_ORDER_STMT = 
+//			"SELECT ORDER_ID,MEM_ID,PERK_ID,ORDER_TIME,ORDER_ADDR,ORDER_STATE,ORDER_CANCEL_TIME FROM PROJ_ORDER WHERE MEM_ID = ?";
+			
+			"SELECT `ORDER_ID`,"
+			+ "`MEM_ID`,"
+			+ "`PERK_ID`,"
+			+ "`ORDER_TIME`,"
+			+ "`ORDER_ZIPCODE`,"
+			+ "`ORDER_ADDR`,"
+			+ "`ORDER_RECEIVER`,"
+			+ "`ORDER_TEL`,"
+			+ "`ORDER_PAY`,"
+			+ "`ORDER_STATE`,"
+			+ "`ORDER_SHIP_TIME`,"
+			+ "`ORDER_COMPLETION_TIME`,"
+			+ "`ORDER_CANCEL_TIME`,"
+			+ "`ORDER_CANCEL_REASON`"
+			+ "FROM `PROJ_ORDER` WHERE `MEM_ID` = ?";
+	
+	
+	// 列出小農的所有訂單(因為訂單裡沒有小農編號，所以要JOIN兩次才抓得到)
 	private static final String GET_All_FMEM_ORDER_STMT = "SELECT A.* , B.PROJ_ID, C.F_MEM_ID "
 			+"FROM (PROJ_ORDER AS A LEFT JOIN PROJ_PERK AS B ON A.PERK_ID = B.PERK_ID) " 
 			+"LEFT JOIN PROJECT AS C ON B.PROJ_ID=C.PROJ_ID "
@@ -33,12 +133,12 @@ public class ProjOrderJDBCDAO implements ProjOrderDAO_interface {
 
 //	0 : 待付款
 //	1 : 待出貨
-//	2 : 待收貨
-//	3 : 訂單已完成
-//	4 : 訂單不成立
-	
+//	2 : 運送中
+//	3 : 已完成
+//	4 : 不成立(未處理)
+//  5 : 不成立(已解決)	
 	@Override
-	public void insert(ProjOrderVO ProjOrderVO) {
+	public void insert(ProjOrderVO projOrderVO) {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -48,10 +148,26 @@ public class ProjOrderJDBCDAO implements ProjOrderDAO_interface {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(INSERT_STMT);
-
-			pstmt.setInt(1, ProjOrderVO.getMem_id());
-			pstmt.setInt(2, ProjOrderVO.getPerk_id());
-			pstmt.setString(3, ProjOrderVO.getOrder_addr());
+			
+//			"INSERT INTO `PROJ_ORDER`"
+//			1+ "(`MEM_ID`,"
+//			2+ "`PERK_ID`,"
+//			+ "`ORDER_TIME`,"
+//			3+ "`ORDER_ZIPCODE`,"
+//			4+ "`ORDER_ADDR`,"
+//			5+ "`ORDER_RECEIVER`,"
+//			6+ "`ORDER_TEL`,"
+//			7+ "`ORDER_PAY`,"
+//			+ "`ORDER_STATE`)"
+//			+ "VALUES"
+//			+ "(?,?,NOW(),?,?,?,?,?,0)";
+			pstmt.setInt(1, projOrderVO.getMem_id());
+			pstmt.setInt(2, projOrderVO.getPerk_id());
+			pstmt.setInt(3, projOrderVO.getOrder_zipcode());
+			pstmt.setString(4, projOrderVO.getOrder_addr());
+			pstmt.setString(5, projOrderVO.getOrder_receiver());
+			pstmt.setString(6, projOrderVO.getOrder_tel());
+			pstmt.setInt(7, projOrderVO.getOrder_pay());
 			
 			pstmt.executeUpdate();
 			// Handle any driver errors
@@ -80,7 +196,7 @@ public class ProjOrderJDBCDAO implements ProjOrderDAO_interface {
 	}
 
 	@Override
-	public void update(ProjOrderVO ProjOrderVO) {
+	public void update(ProjOrderVO projOrderVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -89,10 +205,28 @@ public class ProjOrderJDBCDAO implements ProjOrderDAO_interface {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(UPDATE);
-
-			pstmt.setInt(1, ProjOrderVO.getOrder_state());
-			pstmt.setDate(2, ProjOrderVO.getOrder_cancel_time());
-			pstmt.setInt(3, ProjOrderVO.getOrder_id());
+//			"UPDATE `PROJ_ORDER`"
+//			+ "SET"
+//			1+ "`ORDER_ZIPCODE` = ?,"
+//			2+ "`ORDER_ADDR` = ?,"
+//			3+ "`ORDER_RECEIVER` = ?,"
+//			4+ "`ORDER_TEL` = ?,"
+//			5+ "`ORDER_STATE` = ?,"
+//			6+ "`ORDER_SHIP_TIME` = ?,"
+//			7+ "`ORDER_COMPLETION_TIME` = ?,"
+//			8+ "`ORDER_CANCEL_TIME` = ?,"
+//			9+ "`ORDER_CANCEL_REASON` = ?"
+//			10+ "WHERE `ORDER_ID` = ?";
+			pstmt.setInt(1, projOrderVO.getOrder_zipcode());
+			pstmt.setString(2, projOrderVO.getOrder_addr());
+			pstmt.setString(3, projOrderVO.getOrder_receiver());
+			pstmt.setString(4, projOrderVO.getOrder_tel());
+			pstmt.setInt(5, projOrderVO.getOrder_state());
+			pstmt.setDate(6, projOrderVO.getOrder_ship_time());
+			pstmt.setDate(7, projOrderVO.getOrder_completion_time());
+			pstmt.setDate(8, projOrderVO.getOrder_cancel_time());
+			pstmt.setInt(9, projOrderVO.getOrder_cancel_reason());
+			pstmt.setInt(10, projOrderVO.getOrder_id());
 			
 			pstmt.executeUpdate();
 
@@ -121,7 +255,7 @@ public class ProjOrderJDBCDAO implements ProjOrderDAO_interface {
 		}
 
 	}
-
+	
 	@Override
 	public void delete(Integer order_id) {
 		Connection con = null;
@@ -180,7 +314,21 @@ public class ProjOrderJDBCDAO implements ProjOrderDAO_interface {
 			pstmt.setInt(1, order_id);
 
 			rs = pstmt.executeQuery();
-
+//			"SELECT `ORDER_ID`,"
+//			+ "`MEM_ID`,"
+//			+ "`PERK_ID`,"
+//			+ "`ORDER_TIME`,"
+//			+ "`ORDER_ZIPCODE`,"
+//			+ "`ORDER_ADDR`,"
+//			+ "`ORDER_RECEIVER`,"
+//			+ "`ORDER_TEL`,"
+//			+ "`ORDER_PAY`,"
+//			+ "`ORDER_STATE`,"
+//			+ "`ORDER_SHIP_TIME`,"
+//			+ "`ORDER_COMPLETION_TIME`,"
+//			+ "`ORDER_CANCEL_TIME`,"
+//			+ "`ORDER_CANCEL_REASON`"
+//			+ "FROM `PROJ_ORDER` WHERE `ORDER_ID` = ?";
 			while (rs.next()) {
 
 				ProjOrderVO = new ProjOrderVO();
@@ -188,9 +336,16 @@ public class ProjOrderJDBCDAO implements ProjOrderDAO_interface {
 				ProjOrderVO.setMem_id(rs.getInt("mem_id"));
 				ProjOrderVO.setPerk_id(rs.getInt("perk_id"));
 				ProjOrderVO.setOrder_time(rs.getDate("order_time"));
+				ProjOrderVO.setOrder_zipcode(rs.getInt("order_zipcode"));
 				ProjOrderVO.setOrder_addr(rs.getString("order_addr"));
+				ProjOrderVO.setOrder_receiver(rs.getString("order_receiver"));
+				ProjOrderVO.setOrder_tel(rs.getString("order_tel"));
+				ProjOrderVO.setOrder_pay(rs.getInt("order_pay"));
 				ProjOrderVO.setOrder_state(rs.getInt("order_state"));
+				ProjOrderVO.setOrder_ship_time(rs.getDate("order_ship_time"));
+				ProjOrderVO.setOrder_completion_time(rs.getDate("order_completion_time"));
 				ProjOrderVO.setOrder_cancel_time(rs.getDate("order_cancel_time"));
+				ProjOrderVO.setOrder_cancel_reason(rs.getInt("order_cancel_reason"));
 			}
 
 			// Handle any driver errors
@@ -249,9 +404,16 @@ public class ProjOrderJDBCDAO implements ProjOrderDAO_interface {
 				ProjOrderVO.setMem_id(rs.getInt("mem_id"));
 				ProjOrderVO.setPerk_id(rs.getInt("perk_id"));
 				ProjOrderVO.setOrder_time(rs.getDate("order_time"));
+				ProjOrderVO.setOrder_zipcode(rs.getInt("order_zipcode"));
 				ProjOrderVO.setOrder_addr(rs.getString("order_addr"));
+				ProjOrderVO.setOrder_receiver(rs.getString("order_receiver"));
+				ProjOrderVO.setOrder_tel(rs.getString("order_tel"));
+				ProjOrderVO.setOrder_pay(rs.getInt("order_pay"));
 				ProjOrderVO.setOrder_state(rs.getInt("order_state"));
+				ProjOrderVO.setOrder_ship_time(rs.getDate("order_ship_time"));
+				ProjOrderVO.setOrder_completion_time(rs.getDate("order_completion_time"));
 				ProjOrderVO.setOrder_cancel_time(rs.getDate("order_cancel_time"));
+				ProjOrderVO.setOrder_cancel_reason(rs.getInt("order_cancel_reason"));
 				list.add(ProjOrderVO);
 			}
 
@@ -315,9 +477,16 @@ public class ProjOrderJDBCDAO implements ProjOrderDAO_interface {
 				ProjOrderVO.setMem_id(rs.getInt("mem_id"));
 				ProjOrderVO.setPerk_id(rs.getInt("perk_id"));
 				ProjOrderVO.setOrder_time(rs.getDate("order_time"));
+				ProjOrderVO.setOrder_zipcode(rs.getInt("order_zipcode"));
 				ProjOrderVO.setOrder_addr(rs.getString("order_addr"));
+				ProjOrderVO.setOrder_receiver(rs.getString("order_receiver"));
+				ProjOrderVO.setOrder_tel(rs.getString("order_tel"));
+				ProjOrderVO.setOrder_pay(rs.getInt("order_pay"));
 				ProjOrderVO.setOrder_state(rs.getInt("order_state"));
+				ProjOrderVO.setOrder_ship_time(rs.getDate("order_ship_time"));
+				ProjOrderVO.setOrder_completion_time(rs.getDate("order_completion_time"));
 				ProjOrderVO.setOrder_cancel_time(rs.getDate("order_cancel_time"));
+				ProjOrderVO.setOrder_cancel_reason(rs.getInt("order_cancel_reason"));
 				list.add(ProjOrderVO);
 			}
 
@@ -382,9 +551,16 @@ public class ProjOrderJDBCDAO implements ProjOrderDAO_interface {
 				ProjOrderVO.setMem_id(rs.getInt("mem_id"));
 				ProjOrderVO.setPerk_id(rs.getInt("perk_id"));
 				ProjOrderVO.setOrder_time(rs.getDate("order_time"));
+				ProjOrderVO.setOrder_zipcode(rs.getInt("order_zipcode"));
 				ProjOrderVO.setOrder_addr(rs.getString("order_addr"));
+				ProjOrderVO.setOrder_receiver(rs.getString("order_receiver"));
+				ProjOrderVO.setOrder_tel(rs.getString("order_tel"));
+				ProjOrderVO.setOrder_pay(rs.getInt("order_pay"));
 				ProjOrderVO.setOrder_state(rs.getInt("order_state"));
+				ProjOrderVO.setOrder_ship_time(rs.getDate("order_ship_time"));
+				ProjOrderVO.setOrder_completion_time(rs.getDate("order_completion_time"));
 				ProjOrderVO.setOrder_cancel_time(rs.getDate("order_cancel_time"));
+				ProjOrderVO.setOrder_cancel_reason(rs.getInt("order_cancel_reason"));
 				list.add(ProjOrderVO);
 			}
 
@@ -426,57 +602,67 @@ public class ProjOrderJDBCDAO implements ProjOrderDAO_interface {
 		ProjOrderJDBCDAO dao = new ProjOrderJDBCDAO();
 
 //		/*=====================================================*/
-//////		// 新增
+////		// 新增
 //
 //		ProjOrderVO projOrderVO2 = new ProjOrderVO();
+//		
 //		projOrderVO2.setMem_id(77000);
 //		projOrderVO2.setPerk_id(3);
+//		projOrderVO2.setOrder_zipcode(322);
 //		projOrderVO2.setOrder_addr("寶寶路2號");
+//		projOrderVO2.setOrder_receiver("唐老大");
+//		projOrderVO2.setOrder_tel("0912341111");
+//		projOrderVO2.setOrder_pay(1);
 //		dao.insert(projOrderVO2);
 //		System.out.println("成功新增");
-//		
+		
 //		/*=====================================================*/
-		// 修改(取消訂單)
-//
+		// 更新
+
+		
 //		ProjOrderVO projOrderVO2 = new ProjOrderVO();
-//		projOrderVO2.setOrder_state(4);
-//		projOrderVO2.setOrder_cancel_time(java.sql.Date.valueOf("2022-11-10"));
-//		projOrderVO2.setOrder_id(2);
+//		projOrderVO2.setOrder_zipcode(123);
+//		projOrderVO2.setOrder_addr("國王路3號");
+//		projOrderVO2.setOrder_receiver("King");
+//		projOrderVO2.setOrder_tel("0000000");
+//		projOrderVO2.setOrder_state(1);
+//		
+//		projOrderVO2.setOrder_ship_time(java.sql.Date.valueOf("2022-11-10"));
+//		projOrderVO2.setOrder_completion_time(java.sql.Date.valueOf("2022-10-10"));
+//		projOrderVO2.setOrder_cancel_time(java.sql.Date.valueOf("2022-11-22"));
+//		projOrderVO2.setOrder_cancel_reason(1);
+//		
+//		projOrderVO2.setOrder_id(220000001);
 //		dao.update(projOrderVO2);
 //		System.out.println("更新成功");
-//
+
 //		/*=====================================================*/
-		// 修改(更改狀態)
-		
-//		ProjOrderVO projOrderVO3 = new ProjOrderVO();
-//		projOrderVO3.setOrder_state(2);
-//		projOrderVO3.setOrder_cancel_time(null);
-//		projOrderVO3.setOrder_id(2);
-//		dao.update(projOrderVO3);
-//		System.out.println("更新成功");
-		
-//		/*=====================================================*/
+
 //		 //刪除
-//		int x =1;
-//		dao.delete(x);
+//		int x =220000002;
+//		dao.delete(220000002);
 //		System.out.println("刪除dir_id="+x+"成功");
 
 //		/*=====================================================*/
-
-		
-		
 //		// 查詢getAllSTMT
 		/* =====列出所有訂單====== */
 		/* ============================= */// 
 //		List<ProjOrderVO> list = dao.getAll();
 //		for (ProjOrderVO projOrder : list) {
-//			System.out.print(projOrder.getOrder_id() + ",");
-//			System.out.print(projOrder.getMem_id() + ",");
-//			System.out.print(projOrder.getPerk_id() + ",");
-//			System.out.print(projOrder.getOrder_time() + ",");
+//			System.out.print(projOrder.getOrder_id() + ",");//
+//			System.out.print(projOrder.getMem_id() + ",");//
+//			System.out.print(projOrder.getPerk_id() + ",");//
+//			System.out.print(projOrder.getOrder_time() + ",");//
+//			System.out.print(projOrder.getOrder_zipcode() + ",");
 //			System.out.print(projOrder.getOrder_addr() + ",");
-//			System.out.print(projOrder.getOrder_state() + ",");
-//			System.out.print(projOrder.getOrder_cancel_time() + ",");
+//			System.out.print(projOrder.getOrder_receiver() + ",");//
+//			System.out.print(projOrder.getOrder_tel() + ",");
+//			System.out.print(projOrder.getOrder_pay() + ",");
+//			System.out.print(projOrder.getOrder_state() + ",");//
+//			System.out.print(projOrder.getOrder_ship_time() + ",");
+//			System.out.print(projOrder.getOrder_completion_time() + ",");
+//			System.out.print(projOrder.getOrder_cancel_time() + ",");//
+//			System.out.print(projOrder.getOrder_cancel_reason() + ",");
 //			System.out.println();
 //			System.out.println("------------");
 //		}
@@ -485,15 +671,22 @@ public class ProjOrderJDBCDAO implements ProjOrderDAO_interface {
 //		// 查詢getOneOrder
 		/* =====列出一筆訂單====== */
 		/* ============================= */// 
-//		ProjOrderVO projOrderVO2= dao.findByPrimaryKey(2);
+//		ProjOrderVO projOrderVO2= dao.findByPrimaryKey(220000003);
 //		
-//		System.out.print(projOrderVO2.getOrder_id() + ",");
-//		System.out.print(projOrderVO2.getMem_id() + ",");
-//		System.out.print(projOrderVO2.getPerk_id() + ",");
-//		System.out.print(projOrderVO2.getOrder_time() + ",");
+//		System.out.print(projOrderVO2.getOrder_id() + ",");//
+//		System.out.print(projOrderVO2.getMem_id() + ",");//
+//		System.out.print(projOrderVO2.getPerk_id() + ",");//
+//		System.out.print(projOrderVO2.getOrder_time() + ",");//
+//		System.out.print(projOrderVO2.getOrder_zipcode() + ",");
 //		System.out.print(projOrderVO2.getOrder_addr() + ",");
-//		System.out.print(projOrderVO2.getOrder_state() + ",");
-//		System.out.print(projOrderVO2.getOrder_cancel_time() + ",");
+//		System.out.print(projOrderVO2.getOrder_receiver() + ",");//
+//		System.out.print(projOrderVO2.getOrder_tel() + ",");
+//		System.out.print(projOrderVO2.getOrder_pay() + ",");
+//		System.out.print(projOrderVO2.getOrder_state() + ",");//
+//		System.out.print(projOrderVO2.getOrder_ship_time() + ",");
+//		System.out.print(projOrderVO2.getOrder_completion_time() + ",");
+//		System.out.print(projOrderVO2.getOrder_cancel_time() + ",");//
+//		System.out.print(projOrderVO2.getOrder_cancel_reason() + ",");
 //		System.out.println();
 //		System.out.println("------------");
 		
@@ -502,14 +695,21 @@ public class ProjOrderJDBCDAO implements ProjOrderDAO_interface {
 //		/* =====列出某會員所有的訂單====== */
 //		/* ============================= */// 
 //		List<ProjOrderVO> list = dao.getAllMemOrder(77000);
-//		for (ProjOrderVO projOrder : list) {
-//			System.out.print(projOrder.getOrder_id() + ",");
-//			System.out.print(projOrder.getMem_id() + ",");
-//			System.out.print(projOrder.getPerk_id() + ",");
-//			System.out.print(projOrder.getOrder_time() + ",");
-//			System.out.print(projOrder.getOrder_addr() + ",");
-//			System.out.print(projOrder.getOrder_state() + ",");
-//			System.out.print(projOrder.getOrder_cancel_time() + ",");
+//		for (ProjOrderVO projOrderVO2 : list) {
+//			System.out.print(projOrderVO2.getOrder_id() + ",");//
+//			System.out.print(projOrderVO2.getMem_id() + ",");//
+//			System.out.print(projOrderVO2.getPerk_id() + ",");//
+//			System.out.print(projOrderVO2.getOrder_time() + ",");//
+//			System.out.print(projOrderVO2.getOrder_zipcode() + ",");
+//			System.out.print(projOrderVO2.getOrder_addr() + ",");
+//			System.out.print(projOrderVO2.getOrder_receiver() + ",");//
+//			System.out.print(projOrderVO2.getOrder_tel() + ",");
+//			System.out.print(projOrderVO2.getOrder_pay() + ",");
+//			System.out.print(projOrderVO2.getOrder_state() + ",");//
+//			System.out.print(projOrderVO2.getOrder_ship_time() + ",");
+//			System.out.print(projOrderVO2.getOrder_completion_time() + ",");
+//			System.out.print(projOrderVO2.getOrder_cancel_time() + ",");//
+//			System.out.print(projOrderVO2.getOrder_cancel_reason() + ",");
 //			System.out.println();
 //			System.out.println("------------");
 //		}
@@ -518,16 +718,23 @@ public class ProjOrderJDBCDAO implements ProjOrderDAO_interface {
 		/* =====列出某小農所有的訂單====== */
 		/* ============================= */// 
 //		List<ProjOrderVO> list = dao.getAllFmemOrder(70003);
-//		for (ProjOrderVO projOrder : list) {
-//			System.out.print(projOrder.getOrder_id() + ",");
-//			System.out.print(projOrder.getMem_id() + ",");
-//			System.out.print(projOrder.getPerk_id() + ",");
-//			System.out.print(projOrder.getOrder_time() + ",");
-//			System.out.print(projOrder.getOrder_addr() + ",");
-//			System.out.print(projOrder.getOrder_state() + ",");
-//			System.out.print(projOrder.getOrder_cancel_time() + ",");
-//			System.out.println();
-//			System.out.println("------------");
+//		for (ProjOrderVO projOrderVO2 : list) {
+//		System.out.print(projOrderVO2.getOrder_id() + ",");//
+//		System.out.print(projOrderVO2.getMem_id() + ",");//
+//		System.out.print(projOrderVO2.getPerk_id() + ",");//
+//		System.out.print(projOrderVO2.getOrder_time() + ",");//
+//		System.out.print(projOrderVO2.getOrder_zipcode() + ",");
+//		System.out.print(projOrderVO2.getOrder_addr() + ",");
+//		System.out.print(projOrderVO2.getOrder_receiver() + ",");//
+//		System.out.print(projOrderVO2.getOrder_tel() + ",");
+//		System.out.print(projOrderVO2.getOrder_pay() + ",");
+//		System.out.print(projOrderVO2.getOrder_state() + ",");//
+//		System.out.print(projOrderVO2.getOrder_ship_time() + ",");
+//		System.out.print(projOrderVO2.getOrder_completion_time() + ",");
+//		System.out.print(projOrderVO2.getOrder_cancel_time() + ",");//
+//		System.out.print(projOrderVO2.getOrder_cancel_reason() + ",");
+//		System.out.println();
+//		System.out.println("------------");
 //		}
 	
 	}

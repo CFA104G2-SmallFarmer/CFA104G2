@@ -11,6 +11,7 @@ public class ProjOrderVO {
 //	ORDER_PAY
 //	ORDER_SHIP_TIME
 //	ORDER_COMPLETION_TIME
+//ORDER_CANCEL_REASON
 	
 	private Integer order_id;
     private Integer mem_id;
@@ -19,6 +20,14 @@ public class ProjOrderVO {
     private String order_addr;
     private Integer  order_state;
     private Date  order_cancel_time;
+    /*0128增加7個欄位*/
+    private Integer order_zipcode;
+    private String order_receiver;
+    private String order_tel;
+    private Integer order_pay;
+    private Date order_ship_time;
+    private Date order_completion_time;
+    private Integer order_cancel_reason;
     
 	public Integer getOrder_id() {
 		return order_id;
@@ -62,5 +71,48 @@ public class ProjOrderVO {
 	public void setOrder_cancel_time(Date order_cancel_time) {
 		this.order_cancel_time = order_cancel_time;
 	}
+	public Integer getOrder_zipcode() {
+		return order_zipcode;
+	}
+	public void setOrder_zipcode(Integer order_zipcode) {
+		this.order_zipcode = order_zipcode;
+	}
+	public String getOrder_receiver() {
+		return order_receiver;
+	}
+	public void setOrder_receiver(String order_receiver) {
+		this.order_receiver = order_receiver;
+	}
+	public String getOrder_tel() {
+		return order_tel;
+	}
+	public void setOrder_tel(String order_tel) {
+		this.order_tel = order_tel;
+	}
+	public Integer getOrder_pay() {
+		return order_pay;
+	}
+	public void setOrder_pay(Integer order_pay) {
+		this.order_pay = order_pay;
+	}
+	public Date getOrder_ship_time() {
+		return order_ship_time;
+	}
+	public void setOrder_ship_time(Date order_ship_time) {
+		this.order_ship_time = order_ship_time;
+	}
+	public Date getOrder_completion_time() {
+		return order_completion_time;
+	}
+	public void setOrder_completion_time(Date order_completion_time) {
+		this.order_completion_time = order_completion_time;
+	}
+	public Integer getOrder_cancel_reason() {
+		return order_cancel_reason;
+	}
+	public void setOrder_cancel_reason(Integer order_cancel_reason) {
+		this.order_cancel_reason = order_cancel_reason;
+	}
+	
 
 }

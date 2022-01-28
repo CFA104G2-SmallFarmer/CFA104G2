@@ -20,8 +20,8 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
 	
 	String driver = "com.mysql.cj.jdbc.Driver";
 	String url = "jdbc:mysql://localhost:3306/cfa104g2?serverTimezone=Asia/Taipei";
-	String userid = "David";
-	String passwd = "password";
+	String userid = "root";
+	String passwd = "aaaa";
 
 	private static final String INSERT_STMT = //7個問號//DIR_ID是自增主鍵不用打
 			                                          //不含PERK_TOTAL_COUNT
@@ -32,9 +32,10 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
 			+ "PERK_FUND,"
 			+ "PERK_LIMITED,"
 			+ "PERK_SHIP_DATE,"
-			+ "PERK_SHIP_AREA)"
+			+ "PERK_SHIP_AREA,"
+			+ "PERK_ABBR_NAME) "
 			+ "VALUES"
-			+ "(?,?,?,?,?,?,?)"; 
+			+ "(?,?,?,?,?,?,?,?)"; 
 
 	private static final String GET_ALL_STMT = ////特定專案下的所有回饋方案
 			"SELECT `PERK_ID`,"
@@ -45,8 +46,9 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
 			+ "`PERK_FUND`,"
 			+ "`PERK_LIMITED`,"
 			+ "`PERK_SHIP_DATE`,"
-			+ "`PERK_SHIP_AREA`"
-			+ "FROM `PROJ_PERK`"
+			+ "`PERK_SHIP_AREA`,"
+			+ "`PERK_ABBR_NAME`"
+			+ "FROM `PROJ_PERK` "
 			+ "WHERE `PROJ_ID`=?;";
 			
 	private static final String GET_ONE_STMT = //找一回饋方案
@@ -58,8 +60,9 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
 		+ "`PERK_FUND`,"
 		+ "`PERK_LIMITED`,"
 		+ "`PERK_SHIP_DATE`,"
-		+ "`PERK_SHIP_AREA`"
-		+ "FROM `PROJ_PERK`"
+		+ "`PERK_SHIP_AREA`,"
+		+ "`PERK_ABBR_NAME`"
+		+ "FROM `PROJ_PERK` "
 		+ "WHERE `PERK_ID`=?;";
 	private static final String DELETE = 
 			"DELETE FROM PROJ_PERK WHERE PERK_ID=?";
@@ -71,7 +74,8 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
 			+ "`PERK_FUND` = ?,"
 			+ "`PERK_LIMITED` = ?,"
 			+ "`PERK_SHIP_DATE` =?,"
-			+ "`PERK_SHIP_AREA` =?"
+			+ "`PERK_SHIP_AREA` =?,"
+			+ "`PERK_ABBR_NAME` =? "
 			+ "WHERE `PERK_ID` = ?;";
 			
 
@@ -99,7 +103,7 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
 			pstmt.setInt(2, perk_id);
 
 			pstmt.executeUpdate();
-			System.out.println("已更新perk_id:"+perk_id+"的perk_total_count");
+//			System.out.println("已更新perk_id:"+perk_id+"的perk_total_count");
 
 			// Handle any driver errors
 		} catch (ClassNotFoundException e) {
@@ -210,6 +214,7 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
 		pstmt.setInt(5, projPerkVO.getPerk_limited());
 		pstmt.setDate(6, projPerkVO.getPerk_ship_date());
 		pstmt.setString(7, projPerkVO.getPerk_ship_area());
+		pstmt.setString(8, projPerkVO.getPerk_abbr_name());
 
 		pstmt.executeUpdate();
 
@@ -262,10 +267,11 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
 			pstmt.setInt(4, projPerkVO.getPerk_limited());
 			pstmt.setDate(5, projPerkVO.getPerk_ship_date());
 			pstmt.setString(6, projPerkVO.getPerk_ship_area());
-			pstmt.setInt(7, projPerkVO.getPerk_id());
+			pstmt.setString(7, projPerkVO.getPerk_abbr_name());
+			pstmt.setInt(8, projPerkVO.getPerk_id());
 
 			pstmt.executeUpdate();
-			System.out.println("成功更新");
+//			System.out.println("成功更新");
 
 			// Handle any driver errors
 		} catch (ClassNotFoundException e) {
@@ -376,6 +382,7 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
 				projPerkVO.setPerk_limited(rs.getInt("perk_limited"));
 				projPerkVO.setPerk_ship_date(rs.getDate("perk_ship_date"));
 				projPerkVO.setPerk_ship_area(rs.getString("perk_ship_area"));
+				projPerkVO.setPerk_abbr_name(rs.getString("perk_abbr_name"));
 			}
 
 			// Handle any driver errors
@@ -437,7 +444,7 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
 			/*=============================*/
 			
 			rs = pstmt.executeQuery();
-			System.out.println("成功");
+//			System.out.println("成功");
 
 			while (rs.next()) {
 				// projPerkVO 也稱為 Domain objects
@@ -451,6 +458,7 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
 				projPerkVO.setPerk_limited(rs.getInt("perk_limited"));
 				projPerkVO.setPerk_ship_date(rs.getDate("perk_ship_date"));
 				projPerkVO.setPerk_ship_area(rs.getString("perk_ship_area"));
+				projPerkVO.setPerk_abbr_name(rs.getString("perk_abbr_name"));
 				list.add(projPerkVO); 
 			}
 		
@@ -502,9 +510,9 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
 ////		System.out.println("成功獲得目前回饋方案perk_id="+x+"總人數perk_total_count="+result);
 ////		
 		/*=======//更新目前回饋方案總人數==============================================*/
-		int x1 =1;
-		dao.autoUpdatePerkTotalCount(x1); //x是perk_id
-		System.out.println("成功更新目前回饋方案perk_id="+x1+"總人數perk_total_count");
+//		int x1 =1;
+//		dao.autoUpdatePerkTotalCount(x1); //x是perk_id
+//		System.out.println("成功更新目前回饋方案perk_id="+x1+"總人數perk_total_count");
 		
 		/*=====================================================*/
 ////		// 新增
@@ -524,6 +532,7 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
 //		projPerkVO2.setPerk_limited(30);
 //		projPerkVO2.setPerk_ship_date(java.sql.Date.valueOf("2022-05-01"));
 //		projPerkVO2.setPerk_ship_area("Taiwan");
+//		projPerkVO2.setPerk_abbr_name("方案G");
 //
 //		dao.insert(projPerkVO2);
 //		System.out.println("成功新增");
@@ -545,6 +554,7 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
 //		projPerkVO2.setPerk_limited(66);
 //		projPerkVO2.setPerk_ship_date(java.sql.Date.valueOf("2022-05-01"));
 //		projPerkVO2.setPerk_ship_area("Taiwan");
+//		projPerkVO2.setPerk_abbr_name("方案H");
 //		projPerkVO2.setPerk_id(3);
 //		
 //		dao.update(projPerkVO2);
@@ -563,7 +573,7 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
 
 		// 查詢getone
 	
-//		ProjPerkVO projPerkVO2 = dao.findByPrimaryKey(5);
+//		ProjPerkVO projPerkVO2 = dao.findByPrimaryKey(2);
 //		System.out.print(projPerkVO2.getPerk_id() + ",");
 //		System.out.print(projPerkVO2.getProj_id() + ",");
 //		System.out.print(projPerkVO2.getPerk_pic() + ",");
@@ -573,41 +583,17 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
 //		System.out.print(projPerkVO2.getPerk_limited() + ",");
 //		System.out.print(projPerkVO2.getPerk_ship_date() + ",");
 //		System.out.print(projPerkVO2.getPerk_ship_area() + ",");
+//		System.out.print(projPerkVO2.getPerk_abbr_name() + ",");
 //		System.out.println("---------------------");
 
 		/*=====================================================*/
-//		// 查詢getAllSameDay
-		/*=====列出這個專案，某一天的所有日誌======*/
-//		pstmt.setInt(1, proj_id);
-//		pstmt.setDate(2, dir_upload_date);
-		/*=============================*///2022-01-01 00:00:00
-//		Date spec_date = java.sql.Date.valueOf("2022-01-01");
-//		List<ProDairyVO> list = dao.getAllSameDay(1001,spec_date);
-//		for (ProDairyVO proDairyVO2 : list) {
-//		System.out.print(proDairyVO2.getDir_id() + ",");
-//		System.out.print(proDairyVO2.getProj_id() + ",");
-//		System.out.print(proDairyVO2.getDir_upload_date() + ",");
-//		System.out.print(proDairyVO2.getDir_procedure() + ",");
-//		System.out.print(proDairyVO2.getDir_product() + ",");
-//		System.out.print(proDairyVO2.getDir_equipment() + ",");
-//		System.out.print(proDairyVO2.getDir_material() + ",");
-//		System.out.print(proDairyVO2.getDir_emoji() + ",");
-//		System.out.print(proDairyVO2.getDir_notes() + ",");
-//		System.out.print(proDairyVO2.getDir_upload_state() + ",");
-//		System.out.print(proDairyVO2.getDir_pic() + ",");
-//		System.out.println();
-//		System.out.println("------------");
-//	}
-		
-		
-		/*=====================================================*/
-		// 查詢getall
-		/*=====列出這個專案的所有日誌======*/
-//		pstmt.setInt(1, proj_id);
-		/*=============================*/
+
+//		// 查詢getAllSTMT
+		/* =====//特定專案下的所有回饋方案====== */
+		/* ============================= */// 
 //		List<ProjPerkVO> list = dao.getAll(1001);
 //		for (ProjPerkVO projPerkVO2 : list) {
-//		System.out.print(projPerkVO2.getPerk_id() + ",");
+//		//		System.out.print(projPerkVO2.getPerk_id() + ",");
 //		System.out.print(projPerkVO2.getProj_id() + ",");
 //		System.out.print(projPerkVO2.getPerk_pic() + ",");
 //		System.out.print(projPerkVO2.getPerk_intro() + ",");
@@ -616,9 +602,11 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
 //		System.out.print(projPerkVO2.getPerk_limited() + ",");
 //		System.out.print(projPerkVO2.getPerk_ship_date() + ",");
 //		System.out.print(projPerkVO2.getPerk_ship_area() + ",");
-//		System.out.println();
+//		System.out.print(projPerkVO2.getPerk_abbr_name() + ",");
 //		System.out.println("---------------------");
-//	}
+//		}
+
+
 		/*=====================================================*/
 		
 	

@@ -8,10 +8,11 @@ public interface ProjOrderDAO_interface {
     public void update(ProjOrderVO projOrderVO);
 //  只有訂單狀態改變或取消時，ORDER_STATE、ORDER_CANCEL_TIME可接受更改
     
-//  TODO 還可以改以下三參數
+//  TODO 還可以改以下4參數
 //  ORDER_ZIPCODE 
 //	ORDER_RECEIVER
 //	ORDER_TEL
+  //ORDER_CANCEL_REASON
     
     public void delete(Integer order_id);
 
@@ -27,6 +28,7 @@ public interface ProjOrderDAO_interface {
     
 // 列出小農的所有訂單
     public List<ProjOrderVO> getAllFmemOrder(Integer f_mem_id);
+    
     
 // 可能管理員需要列出資料庫的所有訂單，先留著
     public List<ProjOrderVO> getAll();
