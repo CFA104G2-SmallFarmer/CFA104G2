@@ -26,6 +26,12 @@ public class ProjectJDBCDAO implements ProjectDAO_interface {
 	private static final String GET_ALL_SAME_FMEM_STMT = // 列出某小農的所有專案
 			"SELECT PROJ_ID,F_MEM_ID,PROJ_NAME,PROJ_STATE,PROJ_MAIN_PIC,PROJ_ABSTRACT,PROJ_GOAL,START_DATE,EXCEPTED_END_DATE,ACTUAL_END_DATE,PROJ_TOTAL_FUND,PROJ_INTRO,PROJ_RISK,PROJ_TOTAL_COUNT,PROJ_VIDEO,MEM_REPORT_COUNT,PROJ_PAY FROM PROJECT WHERE F_MEM_ID=?";
 
+	private static final String UPDATE_PROJ_TOTAL_FUND = // 更新目前專案總募資金額
+			"UPDATE PROJECT " + "SET PROJ_TOTAL_FUND =" + "(SELECT SUM(PERK_FUND) " + "FROM "
+					+ "(select a.*, b.PROJ_ID,b.PERK_FUND " + "from CFA104G2.PROJ_ORDER as a "
+					+ "left join CFA104G2.PROJ_PERK as b " + "on a.PERK_ID=b.PERK_ID)" + "as total "
+					+ "where (PROJ_ID=?))where (PROJ_ID=?); ";
+
 	@Override
 	public void insert(ProjectVO projectVO) {
 
@@ -393,6 +399,48 @@ public class ProjectJDBCDAO implements ProjectDAO_interface {
 			}
 		}
 		return list;
+	}
+
+	@Override
+	public void autoUpdateProjTotalFund(Integer proj_id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(UPDATE_PROJ_TOTAL_FUND);
+
+			pstmt.setInt(1, proj_id);
+			pstmt.setInt(2, proj_id);
+
+			
+			pstmt.executeUpdate();
+
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
 
 	}
 
@@ -545,9 +593,16 @@ public class ProjectJDBCDAO implements ProjectDAO_interface {
 //			System.out.println(ProjectVO5.getProj_pay() + ",");
 //			System.out.println();
 //			System.out.println("------------");
-//		}
-//		;
-//	}
+//		};
+		
+		/*=======//更新目前專案總目資額==============================================*/
+		int x1 =1001;
+		dao.autoUpdateProjTotalFund(x1); //x是perk_id
+		System.out.println("成功更新目前專案proj_id="+x1+"總募資金額proj_total_fund");
+		
+		/*=====================================================*/
+
+	}
 //	/* ===================================================== */
 //
 //	// 使用byte[]方式
@@ -557,5 +612,5 @@ public class ProjectJDBCDAO implements ProjectDAO_interface {
 //		fis.read(buffer);// 讀進byte陣列裡
 //		fis.close();
 //		return buffer; // 回傳byte[]
-	};
+//	};
 }
