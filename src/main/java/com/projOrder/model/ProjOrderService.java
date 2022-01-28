@@ -57,7 +57,7 @@ public class ProjOrderService {
 		dao.delete(order_id);
 	}
 
-	public ProjOrderVO getOneEmp(Integer order_id) {
+	public ProjOrderVO getOneProjOrder(Integer order_id) {
 		return dao.findByPrimaryKey(order_id);
 	}
 	//這裡對嗎？
