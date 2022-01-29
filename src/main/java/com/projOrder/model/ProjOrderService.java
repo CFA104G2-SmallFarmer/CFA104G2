@@ -3,6 +3,9 @@ package com.projOrder.model;
 import java.sql.Date;
 import java.util.List;
 
+import com.projPerk.model.ProjPerkVO;
+import com.project.model.ProjectVO;
+
 
 public class ProjOrderService {
 	private ProjOrderDAO_interface dao; //為了將來與框架作結合
@@ -15,6 +18,7 @@ public class ProjOrderService {
 			String order_addr,String order_receiver,String order_tel, Integer order_pay) {
 
 		ProjOrderVO projOrderVO = new ProjOrderVO();
+		
 		
 		projOrderVO.setMem_id(mem_id);
 		projOrderVO.setPerk_id(perk_id);
@@ -58,8 +62,11 @@ public class ProjOrderService {
 	}
 
 	public ProjOrderVO getOneProjOrder(Integer order_id) {
+
 		return dao.findByPrimaryKey(order_id);
 	}
+	
+	
 	//這裡對嗎？
 	public List<ProjOrderVO> getAllMemOrder(Integer mem_id) {
 		return dao.getAllMemOrder(mem_id);
