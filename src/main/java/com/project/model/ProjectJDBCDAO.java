@@ -9,7 +9,7 @@ public class ProjectJDBCDAO implements ProjectDAO_interface {
 
 	String driver = "com.mysql.cj.jdbc.Driver";
 	String url = "jdbc:mysql://localhost:3306/CFA104G2?serverTimezone=Asia/Taipei";
-	String userid = "David";
+	String userid = "root";
 	String passwd = "password";
 
 //	PROJ_ID is AI, PROJ_STATE df=0, START_DATE is NOW(), 
@@ -26,11 +26,27 @@ public class ProjectJDBCDAO implements ProjectDAO_interface {
 	private static final String GET_ALL_SAME_FMEM_STMT = // 列出某小農的所有專案
 			"SELECT PROJ_ID,F_MEM_ID,PROJ_NAME,PROJ_STATE,PROJ_MAIN_PIC,PROJ_ABSTRACT,PROJ_GOAL,START_DATE,EXCEPTED_END_DATE,ACTUAL_END_DATE,PROJ_TOTAL_FUND,PROJ_INTRO,PROJ_RISK,PROJ_TOTAL_COUNT,PROJ_VIDEO,MEM_REPORT_COUNT,PROJ_PAY FROM PROJECT WHERE F_MEM_ID=?";
 
-	private static final String UPDATE_PROJ_TOTAL_FUND = // 更新目前專案總募資金額
-			"UPDATE PROJECT " + "SET PROJ_TOTAL_FUND =" + "(SELECT SUM(PERK_FUND) " + "FROM "
-					+ "(select a.*, b.PROJ_ID,b.PERK_FUND " + "from CFA104G2.PROJ_ORDER as a "
-					+ "left join CFA104G2.PROJ_PERK as b " + "on a.PERK_ID=b.PERK_ID)" + "as total "
-					+ "where (PROJ_ID=?))where (PROJ_ID=?); ";
+	private static final String UPDATE_PROJ_TOTAL_FUND_AND_COUNT = // 更新目前專案總募資金額及數量
+			"UPDATE PROJECT \r\n"
+			+ "SET PROJ_TOTAL_FUND =\r\n"
+			+ "(SELECT SUM(PERK_FUND) \r\n"
+			+ "FROM \r\n"
+			+ "(select a.*, b.PROJ_ID,b.PERK_FUND \r\n"
+			+ "from CFA104G2.PROJ_ORDER as a \r\n"
+			+ "left join CFA104G2.PROJ_PERK as b \r\n"
+			+ "on a.PERK_ID=b.PERK_ID)\r\n"
+			+ "as total \r\n"
+			+ "where (PROJ_ID=?)),\r\n"
+			+ "PROJ_TOTAL_FUND=\r\n"
+			+ "(SELECT count(*) \r\n"
+			+ "FROM \r\n"
+			+ "(select a.*, b.PROJ_ID,b.PERK_FUND \r\n"
+			+ "from CFA104G2.PROJ_ORDER as a \r\n"
+			+ "left join CFA104G2.PROJ_PERK as b \r\n"
+			+ "on a.PERK_ID=b.PERK_ID)\r\n"
+			+ "as total \r\n"
+			+ "where (PROJ_ID=?))\r\n"
+			+ " where (PROJ_ID=?) ;";
 
 	@Override
 	public void insert(ProjectVO projectVO) {
@@ -402,7 +418,7 @@ public class ProjectJDBCDAO implements ProjectDAO_interface {
 	}
 
 	@Override
-	public void autoUpdateProjTotalFund(Integer proj_id) {
+	public void autoUpdateProjTotalFundAndCount(Integer proj_id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -410,11 +426,11 @@ public class ProjectJDBCDAO implements ProjectDAO_interface {
 
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(UPDATE_PROJ_TOTAL_FUND);
+			pstmt = con.prepareStatement(UPDATE_PROJ_TOTAL_FUND_AND_COUNT);
 
 			pstmt.setInt(1, proj_id);
 			pstmt.setInt(2, proj_id);
-
+			pstmt.setInt(3, proj_id);
 			
 			pstmt.executeUpdate();
 
@@ -487,35 +503,35 @@ public class ProjectJDBCDAO implements ProjectDAO_interface {
 		/* ===================================================== */
 		// 修改
 
-//		ProjectVO ProjectVO3 = new ProjectVO();
-//
-//		ProjectVO3.setProj_id(1002);
-//		ProjectVO3.setProj_name("超現實文旦認養方案2");
-//		ProjectVO3.setProj_state(1);
-//		
-//		byte[] pic1;
-//		try {
-//			pic1 = getPictureByteArray("ProjectPic//tomycat.png");// 回傳一個水管
-//			ProjectVO3.setProj_main_pic(pic1);
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		ProjectVO3.setProj_abstract("來自達利的文旦");
-//		ProjectVO3.setProj_goal(100000);
-//		ProjectVO3.setExcepted_end_date(java.sql.Date.valueOf("2022-11-10"));
-//		ProjectVO3.setActual_end_date(java.sql.Date.valueOf("2023-11-10"));
-//		ProjectVO3.setProj_total_fund(10);
-//		ProjectVO3.setProj_intro("在文旦樹掛上知名藝術家達利的作畫，讓文旦更甜更好吃");
-//		ProjectVO3.setProj_risk("颱風來了很危險，畫跟文旦都會被吹走");
-//		ProjectVO3.setProj_total_count(10);
-//		ProjectVO3.setProj_video("https://www.youtube.com/watch?v=072tU1tamd0");
-//		ProjectVO3.setMem_report_count(0);
-//		ProjectVO3.setProj_pay(0);
-//
-//		dao.update(ProjectVO3);
-//		System.out.println("更新成功");
+		ProjectVO ProjectVO3 = new ProjectVO();
+
+		ProjectVO3.setProj_id(1001);
+		ProjectVO3.setProj_name("超現實文旦認養方案");
+		ProjectVO3.setProj_state(1);
+		
+		byte[] pic1;
+		try {
+			pic1 = getPictureByteArray("ProjectPic//tomycat.png");// 回傳一個水管
+			ProjectVO3.setProj_main_pic(pic1);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		ProjectVO3.setProj_abstract("來自達利的文旦");
+		ProjectVO3.setProj_goal(100000);
+		ProjectVO3.setExcepted_end_date(java.sql.Date.valueOf("2022-11-10"));
+		ProjectVO3.setActual_end_date(java.sql.Date.valueOf("2023-11-10"));
+		ProjectVO3.setProj_total_fund(10);
+		ProjectVO3.setProj_intro("在文旦樹掛上知名藝術家達利的作畫，讓文旦更甜更好吃");
+		ProjectVO3.setProj_risk("颱風來了很危險，畫跟文旦都會被吹走");
+		ProjectVO3.setProj_total_count(10);
+		ProjectVO3.setProj_video("https://www.youtube.com/watch?v=072tU1tamd0");
+		ProjectVO3.setMem_report_count(0);
+		ProjectVO3.setProj_pay(0);
+
+		dao.update(ProjectVO3);
+		System.out.println("更新成功");
 
 		/* ===================================================== */
 //		
@@ -595,22 +611,22 @@ public class ProjectJDBCDAO implements ProjectDAO_interface {
 //			System.out.println("------------");
 //		};
 		
-		/*=======//更新目前專案總目資額==============================================*/
+		/*=======//更新目前專案總募資額及數量==============================================*/
 		int x1 =1001;
-		dao.autoUpdateProjTotalFund(x1); //x是perk_id
-		System.out.println("成功更新目前專案proj_id="+x1+"總募資金額proj_total_fund");
+		dao.autoUpdateProjTotalFundAndCount(x1); //x是perk_id
+		System.out.println("成功更新目前專案proj_id="+x1+"總募資金額及數量");
 		
 		/*=====================================================*/
 
 	}
 //	/* ===================================================== */
 //
-//	// 使用byte[]方式
-//	public static byte[] getPictureByteArray(String path) throws IOException {
-//		FileInputStream fis = new FileInputStream(path);
-//		byte[] buffer = new byte[fis.available()];// 長度，資料流多少bytes
-//		fis.read(buffer);// 讀進byte陣列裡
-//		fis.close();
-//		return buffer; // 回傳byte[]
-//	};
+	// 使用byte[]方式
+	public static byte[] getPictureByteArray(String path) throws IOException {
+		FileInputStream fis = new FileInputStream(path);
+		byte[] buffer = new byte[fis.available()];// 長度，資料流多少bytes
+		fis.read(buffer);// 讀進byte陣列裡
+		fis.close();
+		return buffer; // 回傳byte[]
+	};
 }

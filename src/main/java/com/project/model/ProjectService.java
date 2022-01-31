@@ -66,7 +66,7 @@ public class ProjectService {
 
 //更新PROJ_TOTAL_FUND
 	public void UpdateOneProjTotalFund(Integer proj_id) {
-		dao.autoUpdateProjTotalFund(proj_id);
+		dao.autoUpdateProjTotalFundAndCount(proj_id);
 	};
 
 //更新PROJ_TOTAL_COUNT(當有人遞交order時，針對PROJ_TOTAL_COUNT+1)
