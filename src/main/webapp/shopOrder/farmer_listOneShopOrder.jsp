@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" 
+pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <%@ page import="com.shopOrder.model.*"%>
 <%@ page import="com.mem.model.*"%>
 <%@ page import="com.shopProduct.model.*"%>
@@ -26,7 +27,7 @@ ShopProductVO shopProductVO = (ShopProductVO) request.getAttribute("shoporderVO"
 
   <link href="./farmer_order_css/icon" rel="stylesheet">
 
-  <title>小農認養訂單管理</title>
+  <title>小農商城訂單管理</title>
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
@@ -134,7 +135,8 @@ ShopProductVO shopProductVO = (ShopProductVO) request.getAttribute("shoporderVO"
 
                         <div class="shopee-tabs__nav-tab" style="white-space: normal;">
                           <div data-v-ddf12cca="" class="tab-label">
-                            <span style="font-size: 30px;"><b>商城小農訂單管理</span>
+<!--                            連結到訂單主頁 -->
+                            <a href="./farmer_searchShopOrderPage.jsp" style="font-size: 30px ;color: #717d34 "><b>商城小農訂單管理</a>
                           </div>
                         </div>
 
@@ -146,11 +148,13 @@ ShopProductVO shopProductVO = (ShopProductVO) request.getAttribute("shoporderVO"
               </div>
             </div>
           </div>
+<!-- 搜尋開始 -->
           <div data-v-550e8c91="" data-v-6de0ecc3="" class="page fulfillment-order">
             <div data-v-550e8c91="" class="fulfillment-order-page-content">
               <div data-v-acb72a84="" data-v-550e8c91="" class="order-list">
                 <div data-v-acb72a84="" class="padding-wrap">
-                  <form METHOD="post" ACTION="emp.do">
+<!-- 查詢第二次就掛掉         action = shopOrder.do        -->
+                  <form METHOD="post" ACTION="shopOrder.do">
                     <div data-v-54562b84="" data-v-acb72a84=""
                       class="order-search-pannel order-search-panel order-search-pannel-inline order-search-improve">
                       <div data-v-4325ccd1="" data-v-54562b84="" class="order-search-container">
@@ -214,7 +218,7 @@ ShopProductVO shopProductVO = (ShopProductVO) request.getAttribute("shoporderVO"
                     <!---->
                     <%=shopOrderVO==null%>
                     <%=memVO==null%>
-                    <%=shopProductVO==null%>
+<%--                     <%=shopProductVO==null%> --%>
 
                   </div>
                 </div>
@@ -225,15 +229,15 @@ ShopProductVO shopProductVO = (ShopProductVO) request.getAttribute("shoporderVO"
                   <div data-v-dff31658="" data-v-a414b804="" class="shopee-fixed-top-card">
                     <div data-v-dff31658="" class="fixed-container" style="top: 112px; z-index: 999;">
                       <div data-v-a414b804="" data-v-dff31658="" class="order-list-header">
-                        <span data-v-a414b804="" data-v-dff31658="" class="item-product" min-width:80px;="">認養專案 /
-                          收件地址</span>
-                        <span data-v-a414b804="" data-v-dff31658="" class="item-total">金額</span>
-                        <span data-v-a414b804="" data-v-dff31658="" class="item-total">回饋方案</span>
-                        <span data-v-a414b804="" data-v-dff31658="" class="item-total">訂單狀態</span>
-                        <span data-v-a414b804="" data-v-dff31658="" class="item-total">訂單時間</span>
-                        <span data-v-a414b804="" data-v-dff31658="" class="item-action"
-                          style="padding-left:80px;">操作</span></div>
-                    </div>
+                        <span data-v-a414b804="" data-v-dff31658="" class="item-product" min-width:80px;>
+                          會員資料</span>
+                          <span data-v-a414b804="" data-v-dff31658="" class="item-total">金額</span>
+                          <span data-v-a414b804="" data-v-dff31658="" class="item-total">付款方式</span>
+                          <span data-v-a414b804="" data-v-dff31658="" class="item-total">運送方式</span>
+                          <span data-v-a414b804="" data-v-dff31658="" class="item-total">訂單時間</span>
+                          <span data-v-a414b804="" data-v-dff31658="" class="item-action"
+                            style="padding-left:80px;">功能</span></div>
+                      </div>
                   </div>
 
                   <div data-v-1eaa89e5="" data-v-a414b804="" class="order-list-body"><a data-v-1eaa89e5=""
@@ -248,127 +252,137 @@ ShopProductVO shopProductVO = (ShopProductVO) request.getAttribute("shoporderVO"
                             </div>
                             <div data-v-78a21620="" class="content">
                               <div data-v-78a21620="" class="text-overflow" style="">
-<%--                                 <%=projOrderVO.getMem_id()%> --%>
                                 <%=shopOrderVO.getMem_id()%>
-
                               </div>
                             </div>
                             <i class="material-icons" style="color: #aaba8b;display: inline;">sms</i>
                           </div>
                         </div>
-                        <div data-v-1eaa89e5="" class="id-btn"><span data-v-1eaa89e5=""
-                            class="orderid">訂單編號&nbsp;<%=shopOrderVO.getOrder_id()%></span>
+                        <div data-v-1eaa89e5="" class="id-btn">
+                        <span data-v-1eaa89e5="" class="orderid" style="color: red;font-size: 20px;">
+                        訂單狀態 : &nbsp;
+                        
+                        <% int num = shopOrderVO.getOrder_state(); %>
+                                  
+                        <%= ((String[])request.getAttribute("order_state"))[num] %>
+                            <%--${order_state_arr[x ]}這個方式會失敗，上面的會成功  --%>
+                            
+                            </span>
                         </div>
                       </div>
-                      <div data-v-1274329c="" data-v-1eaa89e5="" class="order-item-root-wrap">
-                        <div data-v-1274329c="" class="order-content">
-                          <div data-v-1274329c="" class="order-list-item">
-                            <div data-v-1274329c="" class="body">
-                              <div data-v-1274329c="" class="item-product">
-                                <div data-v-3eef092e="" data-v-1274329c=""
-                                  class="order-view-item order-view-item--small" highlight-return-item=""
-                                  order-pre-order-flag="">
-                                  <div data-v-3eef092e="" class="order-product-list">
-                                    <div data-v-3eef092e="" class="order-product-wrapper normal-wrapper">
-                                      <div data-v-3eef092e="" class="ct-item-product">
-                                        <div data-v-3eef092e="" class="ct-item-product-inner">
-                                          <div data-v-3eef092e="" class="ct-item-product-info">
-                                            <div style="color:#717d34;font-size: 16px;">
-                                            <%=shopOrderVO.getOrder_id()%></div><br>
-                                            <span>地址：<%=shopOrderVO.getOrder_add()%> </span>
-                                            <span>收件人：<%=memVO.getMem_name()%></span>
-                                            <span>收件人電話:<%=memVO.getMem_tel()%></span>
+<!-- 訂單明細 -->
+                        <div data-v-1274329c="" data-v-1eaa89e5="" class="order-item-root-wrap">
+                          <div data-v-1274329c="" class="order-content">
+                            <div data-v-1274329c="" class="order-list-item">
+                              <div data-v-1274329c="" class="body">
+                                <div data-v-1274329c="" class="item-product">
+                                  <div data-v-3eef092e="" data-v-1274329c="" class="order-view-item order-view-item--small"
+                                    highlight-return-item="" order-pre-order-flag="">
+                                    <div data-v-3eef092e="" class="order-product-list">
+                                      <div data-v-3eef092e="" class="order-product-wrapper normal-wrapper">
+                                        <div data-v-3eef092e="" class="ct-item-product">
+                                          <div data-v-3eef092e="" class="ct-item-product-inner">
+                                            <div data-v-3eef092e="" class="ct-item-product-info">
+                                              <div style="color:#717d34;font-size: 16px;">
+                                                <div onclick="location.href='https://www.google.com.tw';"
+                                                  style="cursor :pointer; color:#717d34;font-size: 16px;">
+                                                  訂單編號&nbsp; : 
+                                                  <%=shopOrderVO.getOrder_id()%></div>
+                                              	</div>
+                                              <span>
+                                              收貨地址：<%=shopOrderVO.getOrder_add()%>
+                                              </span>
+                                              <span>收件人：陳小明</span>
+                                              <span>收件人電話:0923123412</span>
+                                            </div>
                                           </div>
                                         </div>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
-                              </div>
-                              <div data-v-1274329c="" class=" item-total">
-                                <div data-v-1274329c="" class="price" style="font-size: 16px;padding-top: 4px;">
-                                  $<%=projPerkVO.getPerk_fund()%>
-                                </div>
-                                <div data-v-1274329c="" class="payment-method" style="font-size: 16px;">
-                                  <%=projOrderVO.getOrder_pay()%>
-                                </div>
-                              </div>
-                              <div data-v-1274329c="" class=" item-total">
-                                <div data-v-1274329c="" class="price">
-                                  <%=projPerkVO.getPerk_abbr_name()%>
-                                </div>
-                                <div data-v-1274329c="" class="payment-method">
 
-                                </div>
-                              </div>
-                              <div data-v-1274329c="" class="item-total">
-                                <div data-v-1274329c="" class="price">
-                             
-                                  <% int num = projOrderVO.getOrder_state(); %>
-                                  
-                                  <%= ((String[])request.getAttribute("order_state_arr"))[num] %>
-                                  
-<%--                                 ${order_state_arr[x ]}這個方式會失敗，上面的會成功  --%>
-
-                                </div>
-                                <div data-v-1274329c="" class="payment-method">
-                                </div>
-                              </div>
-                              <div data-v-1274329c="" class="item-channel">
-                                <div data-v-1274329c="" class="carrier-name">
-                                  <span>
-                                    訂單時間：<br>${shopOrderVO.order_date}
-                                  </span>
-                                  <br>
-                                  <span>
-                                    出貨時間：<br>${shopOrderVO.order_ship_date}
-                                  </span>
-                                  <br>
-<!--                                   <span> -->
-<%--                                     完成時間：<br>${projOrderVO.order_completion_time} --%>
-<!--                                   </span> -->
-<!--                                   <br> -->
-<!--                                   <span> -->
-<%--                                     取消時間：<br>${projOrderVO.order_cancel_time} --%>
-<!--                                   </span> -->
-<!--                                   <br>原因：<br> -->
-<%--                                   ${projOrderVO.order_cancel_reason} --%>
-                                  
-<%--                                   <% int y = projOrderVO.getOrder_cancel_reason(); %> --%>
-                                  
-<%--                                   <%= ((String[])request.getAttribute("cancel_reason_arr"))[y] %> --%>
-
-                          
-                                </div>
-                                <div data-v-1274329c="" class="tracking-number-wrapper">
-                                  <div data-v-1274329c="" class="lable">
+                                <div data-v-1274329c="" class=" item-total">
+                                  <div data-v-1274329c="" class="price" style="font-size: 16px;padding-top: 4px;">
+									<!--金額-->
+                                    $<%=shopOrderVO.getOrder_amount()%>
                                   </div>
                                 </div>
-                              </div>
-                              <div data-v-1274329c="" class="item-action">
-                                <!-- <button data-v-4325ccd1="" type="button"
-                                    class="shopee-button shopee-button--normal"><span>
-                                      確認收款
-                                    </span></button>
-                                  <button data-v-4325ccd1="" type="button"
-                                    class="shopee-button shopee-button--normal"><span>
-                                      已出貨
-                                    </span></button>
-                                  <button data-v-4325ccd1="" type="button"
-                                    class="shopee-button shopee-button--normal"><span>
-                                      完成訂單
-                                    </span></button>
-                                  <br>
-                                  <button data-v-4325ccd1="" type="button"
-                                    class="shopee-button shopee-button--normal"><span>
-                                      取消訂單
+                                
+                                <div data-v-1274329c="" class=" item-total">
+                                  <div data-v-1274329c="" class="price" style="font-size: 16px;padding-top: 4px;">
+<!--                                     信用卡 -->
+<!--                                     <br> -->
+<%--                                     <%=shopOrderVO.getOrder_payment()%> --%>
+                                    
+                                    <% int payment = shopOrderVO.getOrder_payment(); %>
+                                  
+                        			<%= ((String[])request.getAttribute("order_payment"))[payment] %>
+                                  </div>
+                                  <div data-v-1274329c="" class="payment-method">
+                                  </div>
+                                </div>
+
+                                <div data-v-1274329c="" class="item-total">
+                                  <div data-v-1274329c="" class="price" style="font-size: 16px;padding-top: 4px;">
+                                    小農宅配
+                                  </div>
+                                  <div data-v-1274329c="" class="payment-method">
+                                  </div>
+                                </div>
+
+                                <div data-v-1274329c="" class="item-channel">
+                                  <div data-v-1274329c="" class="carrier-name" style="font-size: 16px;padding-top: 4px;">
+                                    <span>
+                                      訂單時間：
+                                      <br>
+                                      <%=shopOrderVO.getOrder_date()%>
                                     </span>
-                                  </button> -->
-                              </div>
+                                    <br>
+                                    <span>
+                                      出貨時間：
+                                      <br>
+                                      <%=shopOrderVO.getOrder_ship_date()%>
+                                    </span>
+                                    <br>
+                                    <span>
+                                      完成時間：
+                                      <br>
+                                      <%=shopOrderVO.getOrder_finish_date()%>
+                                    </span>
+
+                                  </div>
+                                  <div data-v-1274329c="" class="tracking-number-wrapper">
+                                    <div data-v-1274329c="" class="lable">
+                                    </div>
+                                  </div>
+                                </div>
+                                  <!-- 功能按鈕 -->
+                            <div data-v-1274329c="" class="item-action">
+                              <button data-v-4325ccd1="" type="button"
+                                class="shopee-button shopee-button--normal"><span>
+                                  確認收款
+                                </span></button>
+                              <button data-v-4325ccd1="" type="button"
+                                class="shopee-button shopee-button--normal"><span>
+                                  已出貨
+                                </span></button>
+                              <button data-v-4325ccd1="" type="button"
+                                class="shopee-button shopee-button--normal"><span>
+                                  完成訂單
+                                </span></button>
+                              <br>
+                              <button data-v-4325ccd1="" type="button"
+                                class="shopee-button shopee-button--normal"><span>
+                                  取消訂單
+                                </span>
+                              </button>
+                              <!-- 功能按鈕end -->
                             </div>
                           </div>
                         </div>
                       </div>
+                    </div>
                       <!-- 這邊是結束 -->
 
                     </a></div><a data-v-1eaa89e5="" target="_blank" class="order-item">
