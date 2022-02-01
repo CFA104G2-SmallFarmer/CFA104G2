@@ -4,70 +4,47 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.project.model.*"%>
 <%@ page
-	import="java.time.LocalDate,java.sql.Timestamp,java.util.Vector"%>
-
-<%
+	import="java.time.LocalDate,java.sql.Timestamp,java.util.Vector"%><%
 ProjectService projSvc = new ProjectService();
 List<ProjectVO> list = projSvc.getAllProject();
 pageContext.setAttribute("list", list);
-%>
-<!DOCTYPE html>
-<html lang="en" class="js no-touch mdl-js">
-
-<head
+%><!-- 核心在471 --><!DOCTYPE html>
+<html lang="en" class="js no-touch mdl-js"><head
 	prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# flyingv: http://ogp.me/ns/fb/flyingv#">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<meta name="viewport"
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport"
 	content="width=device-width,
-    initial-scale=1.0">
-
-<title>瀏覽認養專案</title>
-
-<meta name="description"
-	content="flyingV is a Crowdfunding platform in Asia. flyingV 是一個群眾募資平台。我們正在打造一個環境，讓不限領域的創意，能更容易地實踐。">
-
-<meta property="fb:app_id" content="341297479252605">
-<meta property="og:site_name" content="flyingV">
-
-<meta property="og:locale" content="zh_TW">
-<meta property="og:locale:alternate" content="en_US">
-
-<meta property="og:title" content="探索 | flyingV">
+    initial-scale=1.0"><title>瀏覽認養專案</title><meta name="description"
+	content="flyingV is a Crowdfunding platform in Asia. flyingV 是一個群眾募資平台。我們正在打造一個環境，讓不限領域的創意，能更容易地實踐。"><meta property="fb:app_id" content="341297479252605">
+<meta property="og:site_name" content="flyingV"><meta property="og:locale" content="zh_TW">
+<meta property="og:locale:alternate" content="en_US"><meta property="og:title" content="探索 | flyingV">
 <meta property="og:description"
 	content="flyingV is a Crowdfunding platform in Asia. flyingV 是一個群眾募資平台。我們正在打造一個環境，讓不限領域的創意，能更容易地實踐。">
 <meta property="og:image"
 	content="https://www.flyingv.cc/images/fbshare.png">
 <meta property="og:url" content="https://www.flyingv.cc">
 <meta property="og:type" content="website">
-
-
-<link rel="shortcut icon" href="https://www.flyingv.cc/favicon.ico">
-
-<link rel="stylesheet" href="./projectoverview_files/css">
-<link rel="stylesheet" href="./projectoverview_files/css(1)">
-<link rel="stylesheet" href="./projectoverview_files/icon">
-<link rel="stylesheet" href="./projectoverview_files/notosanstc.css">
-<link rel="stylesheet" href="./projectoverview_files/css2">
+<link rel="shortcut icon" href="https://www.flyingv.cc/favicon.ico"><link rel="stylesheet" href="<%= request.getContextPath() %>/project/projectoverview_files/css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/project/projectoverview_files/css(1)">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/project/projectoverview_files/icon">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/project/projectoverview_files/notosanstc.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/project/projectoverview_files/css2">
 <link rel="stylesheet"
-	href="./projectoverview_files/font-awesome.min.css">
-<link rel="stylesheet" href="./projectoverview_files/all-19a228fd40.css">
-<link href="./projectoverview_files/owl.carousel.css" rel="stylesheet">
-<link href="./projectoverview_files/owl.theme.default.css"
+	href="<%= request.getContextPath() %>/project/projectoverview_files/font-awesome.min.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/project/projectoverview_files/all-19a228fd40.css">
+<link href="<%= request.getContextPath() %>/project/projectoverview_files/owl.carousel.css" rel="stylesheet">
+<link href="<%= request.getContextPath() %>/project/projectoverview_files/owl.theme.default.css"
 	rel="stylesheet">
 <style>
 ul.pagination {
 	display: none !important;
 }
 </style>
-<script async="" src="./projectoverview_files/gtm.js.下載"></script>
-<script src="./projectoverview_files/material.min.js.下載"></script>
+<script async="" src="<%= request.getContextPath() %>/project/projectoverview_files/gtm.js.下載"></script>
+<script src="<%= request.getContextPath() %>/project/projectoverview_files/material.min.js.下載"></script>
 <script>
 	window.default_locale = "zh_TW";
 	window.fallback_locale = "zh_TW";
-</script>
-
-<meta name="csrf-token"
+</script><meta name="csrf-token"
 	content="SosYwft0iG6yUmGI6gcAFUzoL7NAt6gx6DTG61k8">
 <meta name="csrf-param" content="_token">
 <style type="text/css">
@@ -75,9 +52,7 @@ ul.pagination {
 	margin-right: 17px;
 }
 </style>
-</head>
-
-<body>
+</head><body>
 	<noscript>
 		<iframe src="//www.googletagmanager.com/ns.html?id=GTM-NXHVTP"
 			height="0" width="0" style="display: none; visibility: hidden"></iframe>
@@ -149,9 +124,7 @@ ul.pagination {
 							</div>
 						</form>
 					</li>
-					<li><a href="https://www.flyingv.cc/about">關於</a></li>
-
-					<li><a href="https://www.flyingv.cc/projects/create">提案</a></li>
+					<li><a href="https://www.flyingv.cc/about">關於</a></li>					<li><a href="https://www.flyingv.cc/projects/create">提案</a></li>
 					<li><a href="https://www.flyingv.cc/projects">探索</a></li>
 				</ul>
 				<div id="mobileLanguageDropdown">
@@ -182,12 +155,10 @@ ul.pagination {
 						<li><a href="https://vstory.flyingv.cc/" target="_blank">VStory</a></li>
 						<li><a href="https://shopee.tw/flyingv" target="_blank">VCollection
 								x&nbsp;&nbsp;<span><img
-									src="./projectoverview_files/Shopee_icon.svg" alt="Shopee"
+									src="<%= request.getContextPath() %>/project/projectoverview_files/Shopee_icon.svg" alt="Shopee"
 									style="margin-bottom: -6px; margin-left: -6px;"></span>
 						</a></li>
-					</ul>
-
-					<a class="sidebar-fb" href="https://www.facebook.com/FlyingV.cc"
+					</ul>					<a class="sidebar-fb" href="https://www.facebook.com/FlyingV.cc"
 						target="_blank"><svg xmlns="http://www.w3.org/2000/svg"
 							width="48" height="48" viewBox="0 0 48 48">
                             <g fill="none" fill-rule="evenodd">
@@ -208,8 +179,6 @@ ul.pagination {
 				</div>
 			</div>
 		</div>
-
-
 		<header class="flyingHeader" style="color: #2f7b39">
 			<div class="header-container"">
 				<div class="header-left">
@@ -225,19 +194,16 @@ ul.pagination {
                                         d="M55.269 22.87c.382-.058.412-.034.421.351.002.068 0 .134 0 .2 0 6.334.025 12.668-.01 19-.014 2.573-.534 5.055-1.732 7.356-.704 1.354-1.657 2.481-2.982 3.26-1.044.613-2.178.9-3.375.954-1.189.053-2.353-.123-3.498-.43-.925-.247-1.824-.569-2.703-.948-.354-.152-.373-.175-.291-.54.294-1.303.596-2.607.896-3.91.018-.077.04-.155.107-.208.163.022.252.15.364.237.67.51 1.405.849 2.24.974 1.376.204 2.892-.517 3.59-1.728.385-.667.592-1.4.75-2.149.215-1.013.256-2.044.294-3.074.008-.24-.009-.477-.079-.758-.131.141-.132.29-.163.419-.16.685-.423 1.322-.823 1.902-.66.954-1.588 1.466-2.72 1.523-1.712.086-3.272-.43-4.67-1.42-.864-.614-1.417-1.47-1.776-2.463-.298-.823-.465-1.676-.549-2.544-.158-1.655-.195-3.313-.153-4.975.072-2.865.142-5.727.134-8.594 0-.226-.008-.454-.004-.682.009-.386.037-.429.414-.511 1.164-.26 2.33-.512 3.497-.765l2.022-.436c.48-.103.496-.086.51.397.062 2.088.04 4.177.081 6.264.04 2.022.089 4.042.164 6.062.043 1.123.084 2.248.224 3.364.106.84.74 1.363 1.566 1.29.436-.04.772-.264 1.046-.594.276-.335.45-.726.574-1.138.224-.748.323-1.52.328-2.299.01-1.217-.014-2.436-.013-3.655.002-2.65.011-5.3.018-7.952.002-.612.003-.616.592-.726l5.63-1.043.079-.012zm41.468.052c1.987-.36 3.481.364 4.485 2.116.104.184.198.373.313.59.14-.126.108-.239.108-.34.004-.268-.002-.535-.002-.803 0-.444.027-.486.44-.56 1.865-.337 3.73-.672 5.595-1.005.396-.07.446-.027.458.366.005.147.002.294.002.441-.002 5.769-.004 11.539-.004 17.307-.001 1.084.026 2.169-.085 3.25-.152 1.484-.426 2.936-.94 4.34-.682 1.858-1.883 3.229-3.633 4.127-1.21.62-2.471 1.015-3.831 1.104-1.945.127-3.759-.321-5.489-1.189-.059-.03-.116-.063-.173-.097-.308-.186-.336-.233-.242-.584.281-1.033.57-2.062.855-3.093.053-.194.098-.39.164-.579.065-.19.14-.21.287-.073.905.85 2.002.966 3.157.845.303-.03.603-.093.903-.14.835-.128 1.42-.616 1.858-1.316.388-.62.602-1.31.74-2.023.251-1.31.267-2.632.155-3.958-.006-.066-.011-.133-.088-.198-.127.054-.112.193-.139.294-.1.403-.214.8-.385 1.18-.656 1.46-1.826 2.133-3.365 2.225-.745.044-1.484-.044-2.21-.207-1.158-.26-2.09-.895-2.833-1.815-.759-.938-1.248-2.014-1.548-3.182-.057-.223-.075-.448-.077-.677-.027-2.743-.03-5.489.022-8.231.02-.976.009-1.954.127-2.928.05-.412.118-.82.219-1.223.277-1.102.897-1.958 1.831-2.581 1.018-.68 2.124-1.166 3.325-1.383zm-70.944-8.82h.1c.293.014.332.056.24.337-.186.573-.385 1.14-.576 1.71-.269.8-.532 1.6-.802 2.397-.134.397-.155.418-.567.413-1.023-.013-2.04.029-3.043.249-.429.094-.848.216-1.238.425-.513.275-.795.688-.791 1.288.005.71-.011 1.42-.003 2.13.005.447.068.507.517.508 1.59.005 3.18.002 4.771.003.682 0 .69.008.69.694v3.695c0 .08.001.16-.003.24-.019.333-.074.395-.407.4-.544.008-1.087.003-1.63.003H19.75c-.12 0-.238.006-.358.008-.174.005-.272.092-.28.27-.006.161-.01.322-.01.482v17.218c.004.569.025.59-.66.713l-5.323.95c-.365.065-.425.017-.435-.35-.01-.32-.004-.642-.004-.964V29.534c0-.724-.002-.718-.728-.77-.528-.04-1.055-.1-1.582-.155-.31-.033-.36-.08-.365-.403-.008-.656-.004-1.313-.004-1.968 0-.656-.003-1.312.002-1.968.003-.438.067-.498.511-.52l1.587-.092c.423-.024.485-.072.49-.5.012-1.032.064-2.06.183-3.085.108-.931.268-1.85.547-2.751.37-1.196 1.182-1.974 2.279-2.476.768-.352 1.594-.489 2.426-.582 1.399-.157 2.803-.166 4.208-.16 1.153.004 2.306 0 3.46 0 .065 0 .132-.005.198-.002zm8.347.085c.47-.091.483-.049.483.501v28.99c0 .503-.045.483-.695.605l-5.393 1.013c-.54.101-.554.087-.554-.48V15.978c.003-.552.01-.56.56-.671l5.498-1.1zm31.798 8.673c.163-.028.258.033.259.211 0 .133.004.267.004.4V43.47c-.003.603-.003.601-.596.72-1.833.365-3.665.732-5.498 1.096-.537.108-.55.1-.55-.472V24.715l.001-.1c.013-.368.036-.41.39-.487 1.088-.237 2.178-.467 3.267-.699l2.45-.518c.091-.02.182-.037.273-.051zm14.731-.099c1.622-.016 3.089.434 4.339 1.502 1.035.883 1.591 2.05 1.865 3.37.088.42.115.847.114 1.277v14.777c-.01.433-.035.473-.459.555-1.847.358-3.695.711-5.543 1.065-.079.016-.158.023-.238.028-.11.006-.18-.05-.187-.16-.01-.147-.014-.295-.014-.442-.001-4.699-.004-9.397.003-14.095.001-.656-.19-1.24-.527-1.781-.424-.681-1.044-.89-1.783-.61-.532.204-.966.553-1.359.96-.108.112-.148.25-.152.401-.005.175-.007.348-.007.522 0 4.431 0 8.862-.002 13.293 0 .758.031.723-.714.865-1.757.33-3.515.667-5.272 1.001-.04.008-.079.016-.118.021-.374.052-.413.02-.424-.363-.003-.093-.001-.187-.001-.281V24.95c0-.81-.029-.744.724-.91l5.164-1.135c.052-.012.104-.028.156-.035.258-.034.302 0 .325.263.06.68.057 1.365.07 2.046.002.14-.033.293.079.434.154-.087.182-.24.246-.364.303-.59.696-1.108 1.2-1.535.726-.614 1.561-.944 2.515-.953zm56.908-8.743c.139 0 .329-.072.405.073.072.14-.09.263-.164.383-3.742 6.084-7.486 12.167-11.231 18.25-2.477 4.024-4.958 8.047-7.428 12.077-.188.308-.392.445-.76.442-1.884-.018-3.766-.008-5.65-.008l-.079-.001c-.397-.01-.437-.047-.448-.433-.004-.134-.001-.267-.001-.402v-22.25c0-.162.002-.322-.002-.482-.011-.436-.054-.474-.464-.392-.43.086-.857.182-1.284.274-.078.017-.156.04-.234.046-.14.012-.233-.056-.251-.198-.016-.118-.019-.24-.019-.36l-.001-4.82c0-.053 0-.108.003-.16.015-.345.04-.388.376-.456.635-.13 1.275-.246 1.914-.364 1.98-.367 3.962-.731 5.942-1.1.687-.128.688-.133.688.575v8.395l.001 8.393c0 .208-.039.425.08.644.196-.102.258-.288.351-.439 1.38-2.222 2.756-4.45 4.132-6.673 2.17-3.51 4.346-7.014 6.505-10.53.223-.364.476-.5.897-.496 2.24.02 4.481.008 6.722.012zm-36.654 14.527c-.544-.709-1.498-.888-2.24-.388-.664.451-1.058 1.099-1.064 1.916-.015 2.636-.005 5.27-.005 7.904 0 .337.05.668.167.984.373 1.002 1.4 1.433 2.334.928.784-.421 1.268-1.08 1.269-2.023v-3.933c0-1.35-.004-2.7.002-4.052.003-.505-.161-.945-.463-1.336zM65.95 14.149c.148-.02.23.048.242.195.01.106.01.213.01.32v5.117l-.003.1c-.017.292-.045.338-.337.406-.542.125-1.087.237-1.632.352l-4.081.867c-.58.123-.59.118-.59-.464l-.001-3.852.001-1.325c.002-.417.03-.455.428-.535 1.922-.385 3.845-.765 5.768-1.147.065-.014.13-.026.195-.034z">
                                     </path> -->
                                     <img
-									src="./projectoverview_files/SmallFarmer_logo.png" alt=""
+									src="<%= request.getContextPath() %>/project/projectoverview_files/SmallFarmer_logo.png" alt=""
 									width="30%">
+									
                                 </g>
                             </svg>
 						</div>
 					</a>
 					<ul class="leftmenu hidden-xs hidden-sm">
-						<li><a href="https://www.flyingv.cc/about">關於</a></li>
-
-						<li><a href="https://www.flyingv.cc/projects/create">提案</a></li>
-						<li><a href="https://www.flyingv.cc/projects">探索</a></li>
-
-						<div class="searchfield">
+						<li><a href="https://www.flyingv.cc/about">關於</a></li>						<li><a href="https://www.flyingv.cc/projects/create">提案</a></li>
+						<li><a href="https://www.flyingv.cc/projects">探索</a></li>						<div class="searchfield">
 							<form method="GET"
 								action="https://www.flyingv.cc/projects/search"
 								accept-charset="UTF-8" id="liveSearch">
@@ -264,23 +230,15 @@ ul.pagination {
 									</div>
 								</div>
 							</form>
-							<img src="./projectoverview_files/srh_preload.svg" alt=""
-								id="srch_preload">
-
-							<div id="liveSearchMenu" class="dropTog" style="">
-								<div class="acInner"></div>
-
-								<p class="acitem seeall">查看全部結果</p>
-
-								<p class="acitem noresult">無任何結果</p>
+							<img src="<%= request.getContextPath() %>/project/projectoverview_files/srh_preload.svg" alt=""
+								id="srch_preload">							<div id="liveSearchMenu" class="dropTog" style="">
+								<div class="acInner"></div>								<p class="acitem seeall">查看全部結果</p>								<p class="acitem noresult">無任何結果</p>
 							</div>
 						</div>
 					</ul>
 				</div>
 				<div class="header-right">
-					<ul class="usermenu">
-
-						<li id="languageDropdown" class="hidden-xs hidden-sm"><a>中文
+					<ul class="usermenu">						<li id="languageDropdown" class="hidden-xs hidden-sm"><a>中文
 								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
 									viewBox="0 0 24 24" class="svg-dropdown">
                                     <g fill="none" fill-rule="evenodd">
@@ -302,10 +260,8 @@ ul.pagination {
 								<a href="https://www.flyingv.cc/projects?lang=en">English</a> <a
 									href="https://www.flyingv.cc/projects?lang=ja">日本語</a>
 							</div></li>
-
-
 						<li id="userDropdown"><a> <img class="userThumb"
-								src="./projectoverview_files/nonuser.svg"> <svg
+								src="<%= request.getContextPath() %>/project/projectoverview_files/nonuser.svg"> <svg
 									xmlns="http://www.w3.org/2000/svg" width="24" height="24"
 									viewBox="0 0 24 24" class="svg-dropdown">
                                     <g fill="none" fill-rule="evenodd">
@@ -331,9 +287,7 @@ ul.pagination {
 					</ul>
 				</div>
 			</div>
-		</header>
-
-		<section class="mainBlock" id="siteCategory">
+		</header>		<section class="mainBlock" id="siteCategory">
 			<div class="container">
 				<div id="categorySlider" class="category-wrapper category-filter">
 					<div class="category-item item" id="all">
@@ -348,18 +302,12 @@ ul.pagination {
 										d="M33.681,41.4c0-2.694-2.192-4.885-4.887-4.885c-2.693,0-4.885,2.191-4.885,4.885s2.191,4.886,4.885,4.886  C31.488,46.286,33.681,44.094,33.681,41.4z M25.409,41.4c0-1.867,1.519-3.385,3.385-3.385c1.868,0,3.387,1.519,3.387,3.385  s-1.519,3.386-3.387,3.386C26.928,44.786,25.409,43.267,25.409,41.4z M61.519,66.346c-2.229,0-4.043,1.813-4.043,4.043  s1.813,4.043,4.043,4.043s4.043-1.813,4.043-4.043S63.748,66.346,61.519,66.346z M61.519,72.932c-1.402,0-2.543-1.141-2.543-2.543  s1.141-2.543,2.543-2.543s2.543,1.141,2.543,2.543S62.921,72.932,61.519,72.932z M37.073,56.451c-1.525,0-2.767,1.24-2.767,2.766  s1.241,2.766,2.767,2.766c1.525,0,2.766-1.24,2.766-2.766S38.598,56.451,37.073,56.451z M37.073,60.482  c-0.698,0-1.267-0.567-1.267-1.266s0.568-1.266,1.267-1.266c0.698,0,1.266,0.567,1.266,1.266S37.771,60.482,37.073,60.482z   M59.63,36.216c-1.869,0-3.391,1.52-3.391,3.389s1.521,3.389,3.391,3.389c1.868,0,3.389-1.52,3.389-3.389  S61.498,36.216,59.63,36.216z M59.63,41.493c-1.043,0-1.891-0.847-1.891-1.889s0.848-1.889,1.891-1.889  c1.041,0,1.889,0.847,1.889,1.889S60.671,41.493,59.63,41.493z M49.585,42.202c-4.791,0-8.688,3.897-8.688,8.688  c0,4.79,3.897,8.687,8.688,8.687c4.791,0,8.689-3.896,8.689-8.687C58.274,46.099,54.376,42.202,49.585,42.202z M49.585,58.076  c-3.963,0-7.188-3.224-7.188-7.187c0-3.963,3.224-7.188,7.188-7.188c3.964,0,7.189,3.225,7.189,7.188  C56.774,54.853,53.549,58.076,49.585,58.076z M49.594,27.28c-6.543,0-12.853,2.752-17.311,7.551  c-0.282,0.303-0.265,0.778,0.039,1.06c0.303,0.281,0.777,0.265,1.06-0.039c4.175-4.494,10.084-7.071,16.212-7.071  c12.191,0,22.11,9.918,22.11,22.11c0,5.571-2.079,10.89-5.855,14.976c-0.281,0.304-0.263,0.778,0.042,1.06  c0.144,0.134,0.326,0.199,0.509,0.199c0.202,0,0.403-0.081,0.551-0.241c4.033-4.363,6.254-10.044,6.254-15.993  C73.204,37.872,62.612,27.28,49.594,27.28z M55.56,72.19C53.591,72.728,51.584,73,49.594,73c-12.192,0-22.111-9.918-22.111-22.109  c0-0.863,0.05-1.726,0.15-2.566c0.049-0.412-0.245-0.784-0.656-0.833c-0.417-0.056-0.785,0.245-0.833,0.656  c-0.106,0.899-0.161,1.822-0.161,2.743c0,13.019,10.592,23.609,23.611,23.609c2.124,0,4.264-0.29,6.36-0.862  c0.399-0.109,0.636-0.521,0.526-0.921C56.372,72.317,55.96,72.082,55.56,72.19z M49.589,66.762c8.757,0,15.881-7.12,15.881-15.871  c0-2.521-0.576-4.936-1.712-7.176c-0.186-0.368-0.638-0.519-1.008-0.33c-0.37,0.188-0.518,0.639-0.33,1.008  c1.028,2.028,1.55,4.213,1.55,6.497c0,7.924-6.451,14.371-14.381,14.371c-3.223,0-6.268-1.037-8.806-2.998  c-0.328-0.253-0.799-0.191-1.052,0.135c-0.253,0.328-0.193,0.799,0.135,1.053C42.669,65.617,46.031,66.762,49.589,66.762z   M54.915,35.924c-1.718-0.608-3.51-0.916-5.326-0.916c-8.755,0-15.878,7.125-15.878,15.883c0,1.422,0.185,2.819,0.549,4.152  c0.091,0.334,0.394,0.553,0.723,0.553c0.065,0,0.132-0.009,0.198-0.026c0.399-0.109,0.635-0.521,0.526-0.921  c-0.329-1.205-0.496-2.469-0.496-3.758c0-7.931,6.45-14.383,14.378-14.383c1.646,0,3.269,0.279,4.826,0.83  c0.394,0.139,0.819-0.065,0.957-0.457C55.51,36.491,55.306,36.062,54.915,35.924z M64.077,27.822c0.818,0,1.484-0.666,1.484-1.484  s-0.666-1.484-1.484-1.484s-1.484,0.666-1.484,1.484S63.259,27.822,64.077,27.822z M74.606,40.43c-0.818,0-1.484,0.666-1.484,1.484  s0.666,1.484,1.484,1.484s1.484-0.666,1.484-1.484S75.425,40.43,74.606,40.43z M70.313,68.098c-0.818,0-1.484,0.666-1.484,1.484  s0.666,1.484,1.484,1.484s1.484-0.666,1.484-1.484S71.132,68.098,70.313,68.098z M30.062,67.096c0-0.818-0.666-1.484-1.484-1.484  s-1.484,0.666-1.484,1.484s0.666,1.484,1.484,1.484S30.062,67.914,30.062,67.096z M73.835,37.792c1.244,0,2.256-1.012,2.256-2.256  c0-1.245-1.012-2.257-2.256-2.257c-1.245,0-2.258,1.012-2.258,2.257C71.577,36.78,72.59,37.792,73.835,37.792z M73.835,34.779  c0.417,0,0.756,0.339,0.756,0.757c0,0.417-0.339,0.756-0.756,0.756c-0.418,0-0.758-0.339-0.758-0.756  C73.077,35.119,73.417,34.779,73.835,34.779z M30.818,70.633c-1.245,0-2.257,1.013-2.257,2.258c0,1.244,1.012,2.256,2.257,2.256  c1.244,0,2.256-1.012,2.256-2.256C33.074,71.646,32.062,70.633,30.818,70.633z M30.818,73.646c-0.417,0-0.757-0.339-0.757-0.756  c0-0.418,0.339-0.758,0.757-0.758c0.417,0,0.756,0.34,0.756,0.758C31.574,73.308,31.235,73.646,30.818,73.646z M30.083,31.07  c1.244,0,2.256-1.012,2.256-2.256c0-1.245-1.012-2.257-2.256-2.257s-2.256,1.012-2.256,2.257  C27.827,30.058,28.839,31.07,30.083,31.07z M30.083,28.057c0.417,0,0.756,0.339,0.756,0.757c0,0.417-0.339,0.756-0.756,0.756  s-0.756-0.339-0.756-0.756C29.327,28.396,29.666,28.057,30.083,28.057z">
                                     </path>
                                 </svg>
-							</div>
-
-							<div class="category-title">全部分類</div>
-
-						</a>
+							</div>							<div class="category-title">全部分類</div>						</a>
 					</div>
 					<div class="category-item item" id="product">
 						<a data-cslug="product"
 							href="https://www.flyingv.cc/projects?category=product"
-							class="content ">
-
-							<div class="category-circle">
+							class="content ">							<div class="category-circle">
 								<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80"
 									viewBox="0 0 80 80">
                                     <g fill="none" fill-rule="evenodd">
@@ -368,18 +316,12 @@ ul.pagination {
                                         </path>
                                     </g>
                                 </svg>
-							</div>
-
-							<div class="category-title">科技設計</div>
-
-						</a>
+							</div>							<div class="category-title">科技設計</div>						</a>
 					</div>
 					<div class="category-item item" id="music">
 						<a data-cslug="music"
 							href="https://www.flyingv.cc/projects?category=music"
-							class="content ">
-
-							<div class="category-circle">
+							class="content ">							<div class="category-circle">
 								<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80"
 									viewBox="0 0 80 80">
                                     <g fill="none" fill-rule="evenodd">
@@ -388,19 +330,11 @@ ul.pagination {
                                         </path>
                                     </g>
                                 </svg>
-							</div>
-
-							<div class="category-title">音樂</div>
-
-						</a>
-					</div>
-
-					<div class="category-item item" id="life">
+							</div>							<div class="category-title">音樂</div>						</a>
+					</div>					<div class="category-item item" id="life">
 						<a data-cslug="life"
 							href="https://www.flyingv.cc/projects?category=life"
-							class="content ">
-
-							<div class="category-circle">
+							class="content ">							<div class="category-circle">
 								<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80"
 									viewBox="0 0 80 80">
                                     <g fill="none" fill-rule="evenodd">
@@ -409,18 +343,12 @@ ul.pagination {
                                         </path>
                                     </g>
                                 </svg>
-							</div>
-
-							<div class="category-title">生活</div>
-
-						</a>
+							</div>							<div class="category-title">生活</div>						</a>
 					</div>
 					<div class="category-item item" id="community">
 						<a data-cslug="community"
 							href="https://www.flyingv.cc/projects?category=community"
-							class="content ">
-
-							<div class="category-circle">
+							class="content ">							<div class="category-circle">
 								<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80"
 									viewBox="0 0 80 80">
                                     <g fill="none" fill-rule="evenodd">
@@ -429,18 +357,12 @@ ul.pagination {
                                         </path>
                                     </g>
                                 </svg>
-							</div>
-
-							<div class="category-title">公共在地</div>
-
-						</a>
+							</div>							<div class="category-title">公共在地</div>						</a>
 					</div>
 					<div class="category-item item" id="publishing">
 						<a data-cslug="publishing"
 							href="https://www.flyingv.cc/projects?category=publishing"
-							class="content ">
-
-							<div class="category-circle">
+							class="content ">							<div class="category-circle">
 								<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80"
 									viewBox="0 0 80 80">
                                     <g fill="none" fill-rule="evenodd">
@@ -449,11 +371,7 @@ ul.pagination {
                                         </path>
                                     </g>
                                 </svg>
-							</div>
-
-							<div class="category-title">遊戲出版</div>
-
-						</a>
+							</div>							<div class="category-title">遊戲出版</div>						</a>
 					</div>
 				</div>
 			</div>
@@ -472,16 +390,12 @@ ul.pagination {
 			<div class="container">
 				<div id="containWrapper">
 					<div id="projects">
-						<div class="row lists">
-
-							<!-- @TODO -->
+						<div class="row lists">							<!-- @TODO -->
 							<c:forEach var="projectVO" items="${list}" begin="<%=0%>"
 								end="<%=1%>">
 								<%-- 	原始		<c:forEach var="projectVO" items="${list}" --%>
 								<%-- 			begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>"> --%>
-								<!-- 			這邊的數字再依page1跟page2來改 -->
-
-								
+								<!-- 			這邊的數字再依page1跟page2來改 -->								
 								<!-- form表單的舊方法 -->
 								<!-- 	<FORM METHOD="get" ACTION="project.do" > -->
 								<!-- 	<b>選擇員工編號:</b> -->
@@ -493,65 +407,33 @@ ul.pagination {
 								<!-- 	</FORM> -->
 									  
 								<div class="col-md-4 col-sm-6">
-									<div class="projectCard">
-
-										<a href="${pageContext.request.contextPath}/project/project.do?proj_id=${projectVO.proj_id}&action=getOne_For_Display"
+									<div class="projectCard">										<a href="${pageContext.request.contextPath}/project/project.do?proj_id=${projectVO.proj_id}&action=getOne_For_Display"
 											class="projectUrl" data-id="${projectVO.proj_id}"
 											data-title="${projectVO.proj_name}" data-category="1"></a>
-
-
-										<div class="projectThumb">
-
-											<%@ taglib prefix="fmt"
-												uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-											<%-- 	<c:set var="a" value="./projectoverview_files/" /> --%>
-
-											<%-- 	<c:set var="imgName" value="${projectVO.proj_id}" /> --%>
-
-											<%-- 	<c:set var="b" value=".png" /> --%>
+										<div class="projectThumb">											<%@ taglib prefix="fmt"
+												uri="http://java.sun.com/jsp/jstl/fmt"%>											<%-- 	<c:set var="a" value="<%= request.getContextPath() %>/project/projectoverview_files/" /> --%>											<%-- 	<c:set var="imgName" value="${projectVO.proj_id}" /> --%>											<%-- 	<c:set var="b" value=".png" /> --%>
 											<%-- 	<c:set var="imgPath" value="${a}${imgName}${b}" /> --%>
-
-
-											<%-- 	<c:out value="${imgPath}"/>	 --%>
-
-											<!-- 	<img src="./projectoverview_files/1001.png" -->
+											<%-- 	<c:out value="${imgPath}"/>	 --%>											<!-- 	<img src="<%= request.getContextPath() %>/project/projectoverview_files/1001.png" -->
 											<%-- 	alt="${projectVO.proj_name}"  --%>
 											<!-- 	class="projectCoverImg img-responsive"> -->
-
-
 											<img src="${projectVO.proj_main_pic}"
 												alt="${projectVO.proj_name}"
-												class="projectCoverImg img-responsive">
-
-											<%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> --%>
-											<%-- <p>Length of String : ${fn:length(pic)}</p> --%>
-
-										</div>
-
-										<div class="pcontent">
+												class="projectCoverImg img-responsive">											<%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> --%>
+											<%-- <p>Length of String : ${fn:length(pic)}</p> --%>										</div>										<div class="pcontent">
 											<div>
-												<!-- <label class="tag">科技設計</label>  -->
-
-												<!-- 	破爛寫法 -->
+												<!-- <label class="tag">科技設計</label>  -->												<!-- 	破爛寫法 -->
 												<%-- 	<label class="tag red"> --%>
 												<%-- 	<c:if	test="${Math.round(projectVO.proj_total_fund/projectVO.proj_goal)*100>=100}" --%>
 												<%-- 			var="condition"> --%>
 												<%-- 		SUCCESS!</c:if> --%>
-												<!-- 		</label> -->
-
-												<label class="tag red">
+												<!-- 		</label> -->												<label class="tag red">
 													${Math.round((projectVO.proj_total_fund/projectVO.proj_goal)*100)>=100?"已達標":"未達標"}
-												</label>
-
-											</div>
+												</label>											</div>
 											<h2 class="title">${projectVO.proj_name}</h2>
 											<p class="creator">
 												<a href="https://www.flyingv.cc/users/535782">${projectVO.f_mem_id}</a>
 											</p>
-										</div>
-
-										<div class="downMeta">
+										</div>										<div class="downMeta">
 											<div class="progressbar  goal ">
 												<div class="bar" style="width: 100%;"></div>
 											</div>
@@ -559,9 +441,7 @@ ul.pagination {
 											<span class="hidden-md goalpercent goal"> <c:out
 													value="${Math.round(projectVO.proj_total_fund/projectVO.proj_goal*100)}" />
 												%
-											</span>
-
-											<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+											</span>											<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 											<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"
 												prefix="fmt"%>
 											<!-- 先取值 -->
@@ -574,9 +454,7 @@ ul.pagination {
 											<!-- 取當前時間	 -->
 											<jsp:useBean id="nowDate" class="java.util.Date" />
 											<!-- 取時間差(毫秒) -->
-											<c:set var="interval" value="${someDate.time - nowDate.time}" />
-
-											<fmt:formatNumber var="dayleft"
+											<c:set var="interval" value="${someDate.time - nowDate.time}" />											<fmt:formatNumber var="dayleft"
 												value="${interval/1000/60/60/24}" pattern="#0" />
 											<!-- 算完取條件判斷後呈現 -->
 											<span class="date pull-right"> 
@@ -596,9 +474,7 @@ ul.pagination {
 					</div>
 				</div>
 			</div>
-		</section>
-
-		<footer class="footer">
+		</section>		<footer class="footer">
 			<div class="container">
 				<div class="footer-wrapper">
 					<div class="row footer-left">
@@ -625,9 +501,7 @@ ul.pagination {
 								<li><a href="https://www.flyingv.cc/guide">使用手冊</a></li>
 								<li><a href="https://www.flyingv.cc/viki">提案百科</a></li>
 							</ul>
-						</div>
-
-						<div class="col-sm-3 hidden-xs">
+						</div>						<div class="col-sm-3 hidden-xs">
 							<h2>更多</h2>
 							<ul>
 								<li><a href="https://rolla.flyingv.cc/">Rolla</a></li>
@@ -670,11 +544,9 @@ ul.pagination {
 							</a>
 						</div>
 					</div>
-				</div>
-
-				<div class="row footer-logo">
+				</div>				<div class="row footer-logo">
 					<span class="hidden-xs"><img
-						src="./projectoverview_files/footerLogo.svg"></span> <span
+						src="<%= request.getContextPath() %>/project/projectoverview_files/footerLogo.svg"></span> <span
 						class="line hidden-xs"></span> <span>FLYINGV © 2012-2022.
 						ALL RIGHTS RESERVED.</span>
 				</div>
@@ -697,42 +569,30 @@ ul.pagination {
 				<div class="modal-content"></div>
 			</div>
 		</div>
-	</div>
-
-	<script src="./projectoverview_files/all-c2e193e63f.js.下載"></script>
-
-
+	</div>	<script src="<%= request.getContextPath() %>/project/projectoverview_files/all-c2e193e63f.js.下載"></script>
 	<script>
 		$(function() {
 			if ($.support.pjax) {
 				$(document).pjax('[data-pjax] a, a[data-pjax]',
 						'#containWrapper');
 			}
-		});
-
-		$(document)
+		});		$(document)
 				.on(
 						'pjax:complete ready',
 						function() {
 							$('.btn-more')
 									.on(
 											'click',
-											function() {
-
-												$('#projects')
+											function() {												$('#projects')
 														.jscroll(
 																{
 																	autoTrigger : true,
 																	nextSelector : '.pagination li.active + li a',
 																	contentSelector : 'div.lists',
 																	loadingHtml : '<div class="text-center"><i class="fa fa-spinner fa-spin"></i> Loading...</div>',
-																	callback : function() {
-
-																		var arr = $(this).context
+																	callback : function() {																		var arr = $(this).context
 																				.getElementsByClassName('projectUrl');
-																		var additionalProjects = [];
-
-																		for (var i = 0; i < arr.length; i++) {
+																		var additionalProjects = [];																		for (var i = 0; i < arr.length; i++) {
 																			additionalProjects[i] = {
 																				'name' : arr[i]
 																						.getAttribute('data-title'),
@@ -741,9 +601,7 @@ ul.pagination {
 																				'category' : arr[i]
 																						.getAttribute('data-category')
 																			}
-																		}
-
-																		window.dataLayer = window.dataLayer
+																		}																		window.dataLayer = window.dataLayer
 																				|| [];
 																		window.dataLayer
 																				.push({
@@ -753,16 +611,10 @@ ul.pagination {
 																					}
 																				});
 																	}
-																});
-
-												$(this).hide();
+																});												$(this).hide();
 											});
 						});
-	</script>
-
-	<script src="./projectoverview_files/owl.carousel.min.js.下載"></script>
-
-	<script>
+	</script>	<script src="<%= request.getContextPath() %>/project/projectoverview_files/owl.carousel.min.js.下載"></script>	<script>
 		function gotoSuccess() {
 			// go success
 			$('.gotoSuccess').on(
@@ -781,22 +633,16 @@ ul.pagination {
 							container : "#containWrapper",
 						});
 					});
-		}
-
-		// impressions
+		}		// impressions
 		$(document).on('pjax:complete ready', function() {
 			window.dataLayer = window.dataLayer || [];
-			var products = [];
-
-			$("#projects .projectCard .projectUrl").each(function(index) {
+			var products = [];			$("#projects .projectCard .projectUrl").each(function(index) {
 				products[index] = {
 					'name' : $(this).attr('data-title'),
 					'id' : $(this).attr('data-id'),
 					'category' : $(this).attr('data-category'),
 				};
-			});
-
-			if (products.length > 0) {
+			});			if (products.length > 0) {
 				window.dataLayer = window.dataLayer || [];
 				window.dataLayer.push({
 					'ecommerce' : {
@@ -804,12 +650,8 @@ ul.pagination {
 						'impressions' : products
 					}
 				});
-			}
-
-			gotoSuccess();
-		});
-
-		// product click
+			}			gotoSuccess();
+		});		// product click
 		$(".projectUrl").on('click', function(e) {
 			var productObj = {
 				'title' : $(this).attr('data-title'),
@@ -836,16 +678,12 @@ ul.pagination {
 					document.location = productObj.url
 				}
 			});
-		});
-
-		// dropdown
+		});		// dropdown
 		$('.fv-dropdown').on('click', function(e) {
 			e.stopPropagation();
 			$(this).find('.fv-dropdown-menu').fadeToggle('fast');
 			$(this).toggleClass('active');
-		});
-
-		// filter category
+		});		// filter category
 		$('.category-item .content').on(
 				'click',
 				function(e) {
@@ -860,9 +698,7 @@ ul.pagination {
 								+ $(this).attr('data-cslug'),
 						container : "#containWrapper",
 					});
-				});
-
-		// filter status
+				});		// filter status
 		$('#filterMenu > a').on(
 				'click',
 				function(e) {
@@ -879,9 +715,7 @@ ul.pagination {
 								+ "&category=" + category,
 						container : "#containWrapper",
 					});
-				});
-
-		// sort
+				});		// sort
 		$('#sortMenu > a').on(
 				'click',
 				function(e) {
@@ -898,42 +732,26 @@ ul.pagination {
 								+ "&category=" + category,
 						container : "#containWrapper",
 					});
-				});
-
-		gotoSuccess();
+				});		gotoSuccess();
 	</script>
 	<script>
 		var lastCheck = new Date();
 		var caffeineSendDrip = function() {
 			var ajax = window.XMLHttpRequest ? new XMLHttpRequest
-					: new ActiveXObject('Microsoft.XMLHTTP');
-
-			ajax.onreadystatechange = function() {
+					: new ActiveXObject('Microsoft.XMLHTTP');			ajax.onreadystatechange = function() {
 				if (ajax.readyState === 4 && ajax.status === 204) {
 					lastCheck = new Date();
 				}
-			};
-
-			ajax.open('GET', '/genealabs/laravel-caffeine/drip');
+			};			ajax.open('GET', '/genealabs/laravel-caffeine/drip');
 			ajax.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 			ajax.send();
-		};
-
-		setInterval(function() {
+		};		setInterval(function() {
 			caffeineSendDrip();
-		}, 300000);
-
-		if (2000 > 0) {
+		}, 300000);		if (2000 > 0) {
 			setInterval(function() {
 				if (new Date() - lastCheck >= 7082000) {
 					location.reload(true);
 				}
 			}, 2000);
 		}
-	</script>
-
-
-
-</body>
-
-</html>
+	</script></body></html>
