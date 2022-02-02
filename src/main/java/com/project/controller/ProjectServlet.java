@@ -36,7 +36,7 @@ public class ProjectServlet extends HttpServlet {
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("projectoverview.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("listAllProj.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -49,7 +49,7 @@ public class ProjectServlet extends HttpServlet {
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("projectoverview.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("listAllProj.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -62,7 +62,7 @@ public class ProjectServlet extends HttpServlet {
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("projectoverview.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("listAllProj.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -76,7 +76,7 @@ public class ProjectServlet extends HttpServlet {
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("projectoverview.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("listAllProj.jsp");
 			}
 		}
 
