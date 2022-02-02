@@ -8,8 +8,8 @@ public class ProjOrderJDBCDAO implements ProjOrderDAO_interface {
 
 	String driver = "com.mysql.cj.jdbc.Driver";
 	String url = "jdbc:mysql://localhost:3306/CFA104G2?serverTimezone=Asia/Taipei";
-	String userid = "David";
-	String passwd = "123456";
+	String userid = "root";
+	String passwd = "password";
 	
 //	TODO 新增欄位
 //	ORDER_ZIPCODE 
