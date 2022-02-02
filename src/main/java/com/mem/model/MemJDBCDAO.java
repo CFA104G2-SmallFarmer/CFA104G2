@@ -230,7 +230,6 @@ public class MemJDBCDAO implements MemDAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// img尚未處理
 				memVO = new MemVO();
 				memVO.setMem_id(rs.getInt("mem_id"));
 				memVO.setMem_acc(rs.getString("mem_acc"));
@@ -245,7 +244,6 @@ public class MemJDBCDAO implements MemDAO_interface {
 				memVO.setMem_dist(rs.getString("mem_dist"));
 				memVO.setMem_addr(rs.getString("mem_addr"));
 				memVO.setReg_date(rs.getDate("reg_date"));
-//				待檢查
 				memVO.setMem_pic(rs.getBytes("mem_pic"));
 				memVO.setRating_score_mk(rs.getInt("rating_score_mk"));
 				memVO.setRating_count_mk(rs.getInt("rating_count_mk"));
