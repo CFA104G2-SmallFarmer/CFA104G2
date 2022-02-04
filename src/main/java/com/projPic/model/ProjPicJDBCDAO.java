@@ -10,7 +10,7 @@ public class ProjPicJDBCDAO implements ProjPicDAO_interface {
 
 	String driver = "com.mysql.cj.jdbc.Driver";
 	String url = "jdbc:mysql://localhost:3306/CFA104G2?serverTimezone=Asia/Taipei";
-	String userid = "David";
+	String userid = "root";
 	String passwd = "password";
 
 //	PROJ_PIC_ID is AI
@@ -179,6 +179,15 @@ public class ProjPicJDBCDAO implements ProjPicDAO_interface {
 				ProjPicVO.setProj_id(rs.getInt("proj_id"));
 				ProjPicVO.setProj_pic(rs.getBytes("proj_pic"));
 
+				byte[] buffer = ProjPicVO.getProj_pic();
+				String base64Image = "";
+				if (buffer==null) {
+					base64Image = "NO_IMAGE_HAS_BEEN_UPLOADED";
+				} else {
+					base64Image = Base64.getEncoder().encodeToString(buffer);
+				}
+                ProjPicVO.setBase64Image(base64Image);	
+				
 			}
 
 			// Handle any driver errors
@@ -239,6 +248,16 @@ public class ProjPicJDBCDAO implements ProjPicDAO_interface {
 				ProjPicVO.setProj_pic_id(rs.getInt("proj_pic_id"));
 				ProjPicVO.setProj_id(rs.getInt("proj_id"));
 				ProjPicVO.setProj_pic(rs.getBytes("proj_pic"));
+				
+				byte[] buffer = ProjPicVO.getProj_pic();
+				String base64Image = "";
+				if (buffer==null) {
+					base64Image = "NO_IMAGE_HAS_BEEN_UPLOADED";
+				} else {
+					base64Image = Base64.getEncoder().encodeToString(buffer);
+				}
+                ProjPicVO.setBase64Image(base64Image);	
+				
 				list.add(ProjPicVO);
 			}
 

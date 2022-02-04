@@ -14,8 +14,14 @@ public class ProjPerkVO implements java.io.Serializable{
 	private Date perk_ship_date;
 	private String perk_ship_area;
 	private String perk_abbr_name;
-
+    private String base64Image;
 	
+	public String getBase64Image() {
+		return base64Image;
+	}
+	public void setBase64Image(String base64Image) {
+		this.base64Image = base64Image;
+	}
 	public String getPerk_abbr_name() {
 		return perk_abbr_name;
 	}

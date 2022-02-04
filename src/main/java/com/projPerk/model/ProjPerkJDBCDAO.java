@@ -9,96 +9,59 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import com.proDiary.model.ProDairyJDBCDAO;
 import com.proDiary.model.ProDairyVO;
 
-public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
+public class ProjPerkJDBCDAO implements ProjPerkDAO_interface {
 
 //		TODO 新增欄位 not null ：perk_abbr_name 請於下方加入
-	
+
 	String driver = "com.mysql.cj.jdbc.Driver";
 	String url = "jdbc:mysql://localhost:3306/cfa104g2?serverTimezone=Asia/Taipei";
 	String userid = "root";
 	String passwd = "password";
 
-	private static final String INSERT_STMT = //7個問號//DIR_ID是自增主鍵不用打
-			                                          //不含PERK_TOTAL_COUNT
-			"INSERT INTO PROJ_PERK "
-			+ "(PROJ_ID,"
-			+ "PERK_PIC,"
-			+ "PERK_INTRO,"
-			+ "PERK_FUND,"
-			+ "PERK_LIMITED,"
-			+ "PERK_SHIP_DATE,"
-			+ "PERK_SHIP_AREA,"
-			+ "PERK_ABBR_NAME) "
-			+ "VALUES"
-			+ "(?,?,?,?,?,?,?,?)"; 
+	private static final String INSERT_STMT = // 7個問號//DIR_ID是自增主鍵不用打
+												// 不含PERK_TOTAL_COUNT
+			"INSERT INTO PROJ_PERK " + "(PROJ_ID," + "PERK_PIC," + "PERK_INTRO," + "PERK_FUND," + "PERK_LIMITED,"
+					+ "PERK_SHIP_DATE," + "PERK_SHIP_AREA," + "PERK_ABBR_NAME) " + "VALUES" + "(?,?,?,?,?,?,?,?)";
 
-	private static final String GET_ALL_STMT = ////特定專案下的所有回饋方案
-			"SELECT `PERK_ID`,"
-			+ "`PROJ_ID`,"
-			+ "`PERK_PIC`,"
-			+ "`PERK_INTRO`,"
-			+ "`PERK_TOTAL_COUNT`,"
-			+ "`PERK_FUND`,"
-			+ "`PERK_LIMITED`,"
-			+ "`PERK_SHIP_DATE`,"
-			+ "`PERK_SHIP_AREA`,"
-			+ "`PERK_ABBR_NAME`"
-			+ "FROM `PROJ_PERK` "
-			+ "WHERE `PROJ_ID`=?;";
-			
-	private static final String GET_ONE_STMT = //找一回饋方案
-		"SELECT `PERK_ID`,"
-		+ "`PROJ_ID`,"
-		+ "`PERK_PIC`,"
-		+ "`PERK_INTRO`,"
-		+ "`PERK_TOTAL_COUNT`,"
-		+ "`PERK_FUND`,"
-		+ "`PERK_LIMITED`,"
-		+ "`PERK_SHIP_DATE`,"
-		+ "`PERK_SHIP_AREA`,"
-		+ "`PERK_ABBR_NAME`"
-		+ "FROM `PROJ_PERK` "
-		+ "WHERE `PERK_ID`=?;";
-	private static final String DELETE = 
-			"DELETE FROM PROJ_PERK WHERE PERK_ID=?";
-	private static final String UPDATE = //更新特定項目//7個問號//不含PERK_TOTAL_COUNT
-			"UPDATE `PROJ_PERK`"
-			+ "SET"
-			+ "`PERK_PIC` = ?,"
-			+ "`PERK_INTRO` = ?,"
-			+ "`PERK_FUND` = ?,"
-			+ "`PERK_LIMITED` = ?,"
-			+ "`PERK_SHIP_DATE` =?,"
-			+ "`PERK_SHIP_AREA` =?,"
-			+ "`PERK_ABBR_NAME` =? "
-			+ "WHERE `PERK_ID` = ?;";
-			
+	private static final String GET_ALL_STMT = //// 特定專案下的所有回饋方案
+			"SELECT `PERK_ID`," + "`PROJ_ID`," + "`PERK_PIC`," + "`PERK_INTRO`," + "`PERK_TOTAL_COUNT`,"
+					+ "`PERK_FUND`," + "`PERK_LIMITED`," + "`PERK_SHIP_DATE`," + "`PERK_SHIP_AREA`,"
+					+ "`PERK_ABBR_NAME`" + "FROM `PROJ_PERK` " + "WHERE `PROJ_ID`=?;";
+
+	private static final String GET_ONE_STMT = // 找一回饋方案
+			"SELECT `PERK_ID`," + "`PROJ_ID`," + "`PERK_PIC`," + "`PERK_INTRO`," + "`PERK_TOTAL_COUNT`,"
+					+ "`PERK_FUND`," + "`PERK_LIMITED`," + "`PERK_SHIP_DATE`," + "`PERK_SHIP_AREA`,"
+					+ "`PERK_ABBR_NAME`" + "FROM `PROJ_PERK` " + "WHERE `PERK_ID`=?;";
+	private static final String DELETE = "DELETE FROM PROJ_PERK WHERE PERK_ID=?";
+	private static final String UPDATE = // 更新特定項目//7個問號//不含PERK_TOTAL_COUNT
+			"UPDATE `PROJ_PERK`" + "SET" + "`PERK_PIC` = ?," + "`PERK_INTRO` = ?," + "`PERK_FUND` = ?,"
+					+ "`PERK_LIMITED` = ?," + "`PERK_SHIP_DATE` =?," + "`PERK_SHIP_AREA` =?," + "`PERK_ABBR_NAME` =? "
+					+ "WHERE `PERK_ID` = ?;";
 
 //	private static final String GET_PERK_TOTAL_COUNT= //獲得目前回饋方案總人數
 //			"SELECT COUNT(*) FROM PROJ_ORDER WHERE PERK_ID=? AND ORDER_STATE !=4;";
-	
-	private static final String UPDATE_PERK_TOTAL_COUNT=//更新目前回饋方案總人數
+
+	private static final String UPDATE_PERK_TOTAL_COUNT = // 更新目前回饋方案總人數
 			"UPDATE PROJ_PERK SET PERK_TOTAL_COUNT =(SELECT COUNT(*) FROM PROJ_ORDER WHERE PERK_ID=? AND ORDER_STATE !=4) WHERE PERK_ID=?;";
-			
-	
-	
+
 	@Override
 	public void autoUpdatePerkTotalCount(Integer perk_id) {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
-	
+
 		try {
 
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(UPDATE_PERK_TOTAL_COUNT);
-			
+
 			pstmt.setInt(1, perk_id);
 			pstmt.setInt(2, perk_id);
 
@@ -107,12 +70,10 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
 
 			// Handle any driver errors
 		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
+			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 			// Handle any SQL errors
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
+			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
 		} finally {
 			if (pstmt != null) {
@@ -132,7 +93,7 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
 		}
 
 	}
-		
+
 //@Override
 //	public int getPerkTotalCount(Integer perk_id) {
 //	Connection con = null;
@@ -193,62 +154,52 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
 //	
 //}
 
-
-
-
-
-@Override
+	@Override
 	public void insert(ProjPerkVO projPerkVO) {
-	Connection con = null;
-	PreparedStatement pstmt = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
 
-	try {
-		Class.forName(driver);
-		con = DriverManager.getConnection(url, userid, passwd);
-		pstmt = con.prepareStatement(INSERT_STMT);
-		
-		pstmt.setInt(1, projPerkVO.getProj_id());
-		pstmt.setBytes(2, projPerkVO.getPerk_pic());
-		pstmt.setString(3, projPerkVO.getPerk_intro());
-		pstmt.setInt(4, projPerkVO.getPerk_fund());
-		pstmt.setInt(5, projPerkVO.getPerk_limited());
-		pstmt.setDate(6, projPerkVO.getPerk_ship_date());
-		pstmt.setString(7, projPerkVO.getPerk_ship_area());
-		pstmt.setString(8, projPerkVO.getPerk_abbr_name());
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(INSERT_STMT);
 
-		pstmt.executeUpdate();
+			pstmt.setInt(1, projPerkVO.getProj_id());
+			pstmt.setBytes(2, projPerkVO.getPerk_pic());
+			pstmt.setString(3, projPerkVO.getPerk_intro());
+			pstmt.setInt(4, projPerkVO.getPerk_fund());
+			pstmt.setInt(5, projPerkVO.getPerk_limited());
+			pstmt.setDate(6, projPerkVO.getPerk_ship_date());
+			pstmt.setString(7, projPerkVO.getPerk_ship_area());
+			pstmt.setString(8, projPerkVO.getPerk_abbr_name());
 
-		// Handle any driver errors
-	} catch (ClassNotFoundException e) {
-		throw new RuntimeException("Couldn't load database driver. "
-				+ e.getMessage());
-		// Handle any SQL errors
-	} catch (SQLException se) {
-		throw new RuntimeException("A database error occured. "
-				+ se.getMessage());
-		// Clean up JDBC resources
-	} finally {
-		if (pstmt != null) {
-			try {
-				pstmt.close();
-			} catch (SQLException se) {
-				se.printStackTrace(System.err);
+			pstmt.executeUpdate();
+
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
 			}
 		}
-		if (con != null) {
-			try {
-				con.close();
-			} catch (Exception e) {
-				e.printStackTrace(System.err);
-			}
-		}
+
 	}
-
-}
-
-
-
-
 
 	@Override
 	public void update(ProjPerkVO projPerkVO) {
@@ -275,12 +226,10 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
 
 			// Handle any driver errors
 		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
+			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 			// Handle any SQL errors
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
+			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
 		} finally {
 			if (pstmt != null) {
@@ -300,10 +249,6 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
 		}
 
 	}
-
-
-
-
 
 	@Override
 	public void delete(Integer perk_id) {
@@ -322,12 +267,10 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
 
 			// Handle any driver errors
 		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
+			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 			// Handle any SQL errors
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
+			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
 		} finally {
 			if (pstmt != null) {
@@ -347,11 +290,6 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
 		}
 
 	}
-
-
-
-
-
 
 	@Override
 	public ProjPerkVO findByPrimaryKey(Integer perk_id) {
@@ -383,16 +321,24 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
 				projPerkVO.setPerk_ship_date(rs.getDate("perk_ship_date"));
 				projPerkVO.setPerk_ship_area(rs.getString("perk_ship_area"));
 				projPerkVO.setPerk_abbr_name(rs.getString("perk_abbr_name"));
+
+				byte[] buffer = projPerkVO.getPerk_pic();
+				String base64Image = "";
+				if (buffer==null) {
+					base64Image = "NO_IMAGE_HAS_BEEN_UPLOADED";
+				} else {
+					base64Image = Base64.getEncoder().encodeToString(buffer);
+				}
+				projPerkVO.setBase64Image(base64Image);
+
 			}
 
 			// Handle any driver errors
 		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
+			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 			// Handle any SQL errors
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
+			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
 		} finally {
 			if (rs != null) {
@@ -420,11 +366,6 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
 		return projPerkVO;
 	}
 
-
-
-
-
-
 	@Override
 	public List<ProjPerkVO> getAll(Integer proj_id) {
 		List<ProjPerkVO> list = new ArrayList<ProjPerkVO>();
@@ -434,15 +375,14 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
 		ResultSet rs = null;
 
 		try {
-		
 
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(GET_ALL_STMT);
-			/*=====列出這個專案的所有回饋方案======*/
+			/* =====列出這個專案的所有回饋方案====== */
 			pstmt.setInt(1, proj_id);
-			/*=============================*/
-			
+			/* ============================= */
+
 			rs = pstmt.executeQuery();
 //			System.out.println("成功");
 
@@ -459,18 +399,25 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
 				projPerkVO.setPerk_ship_date(rs.getDate("perk_ship_date"));
 				projPerkVO.setPerk_ship_area(rs.getString("perk_ship_area"));
 				projPerkVO.setPerk_abbr_name(rs.getString("perk_abbr_name"));
-				list.add(projPerkVO); 
+
+				byte[] buffer = projPerkVO.getPerk_pic();
+				String base64Image = "";
+				if (buffer==null) {
+					base64Image = "NO_IMAGE_HAS_BEEN_UPLOADED";
+				} else {
+					base64Image = Base64.getEncoder().encodeToString(buffer);
+				}
+				projPerkVO.setBase64Image(base64Image);
+
+				list.add(projPerkVO);
 			}
-		
 
 			// Handle any driver errors
 		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
+			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 			// Handle any SQL errors
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
+			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
 		} finally {
 			if (rs != null) {
@@ -497,8 +444,7 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
 		}
 		return list;
 	}
-	
-	
+
 	public static void main(String[] args) {
 
 		ProjPerkJDBCDAO dao = new ProjPerkJDBCDAO();
@@ -509,12 +455,12 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
 ////		result= dao.getPerkTotalCount(x); //x是perk_id
 ////		System.out.println("成功獲得目前回饋方案perk_id="+x+"總人數perk_total_count="+result);
 ////		
-		/*=======//更新目前回饋方案總人數==============================================*/
+		/* =======//更新目前回饋方案總人數============================================== */
 //		int x1 =1;
 //		dao.autoUpdatePerkTotalCount(x1); //x是perk_id
 //		System.out.println("成功更新目前回饋方案perk_id="+x1+"總人數perk_total_count");
-		
-		/*=====================================================*/
+
+		/* ===================================================== */
 ////		// 新增
 
 //		ProjPerkVO projPerkVO2 = new ProjPerkVO();
@@ -536,10 +482,10 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
 //
 //		dao.insert(projPerkVO2);
 //		System.out.println("成功新增");
-		
-		/*=====================================================*/
+
+		/* ===================================================== */
 		// 修改
-	
+
 //		ProjPerkVO projPerkVO2 = new ProjPerkVO();
 //		
 //		byte[] pic;
@@ -559,20 +505,18 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
 //		
 //		dao.update(projPerkVO2);
 //		System.out.println("更新成功");
-		
 
+		/* ===================================================== */
 
-		/*=====================================================*/
-
-		 //刪除
+		// 刪除
 //		int x =4;
 //		dao.delete(x);
 //		System.out.println("刪除dir_id="+x+"成功");
-		
-		/*=====================================================*/
+
+		/* ===================================================== */
 
 		// 查詢getone
-	
+
 //		ProjPerkVO projPerkVO2 = dao.findByPrimaryKey(2);
 //		System.out.print(projPerkVO2.getPerk_id() + ",");
 //		System.out.print(projPerkVO2.getProj_id() + ",");
@@ -586,11 +530,11 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
 //		System.out.print(projPerkVO2.getPerk_abbr_name() + ",");
 //		System.out.println("---------------------");
 
-		/*=====================================================*/
+		/* ===================================================== */
 
 //		// 查詢getAllSTMT
 		/* =====//特定專案下的所有回饋方案====== */
-		/* ============================= */// 
+		/* ============================= *///
 //		List<ProjPerkVO> list = dao.getAll(1001);
 //		for (ProjPerkVO projPerkVO2 : list) {
 //		//		System.out.print(projPerkVO2.getPerk_id() + ",");
@@ -606,24 +550,16 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface{
 //		System.out.println("---------------------");
 //		}
 
+		/* ===================================================== */
 
-		/*=====================================================*/
-		
-	
-}
-
-
+	}
 
 	// 使用byte[]方式
 	public static byte[] getPictureByteArray(String path) throws IOException {
 		FileInputStream fis = new FileInputStream(path);
-		byte[] buffer = new byte[fis.available()];//長度，資料流多少bytes
-		fis.read(buffer);//讀進byte陣列裡
+		byte[] buffer = new byte[fis.available()];// 長度，資料流多少bytes
+		fis.read(buffer);// 讀進byte陣列裡
 		fis.close();
-		return buffer; //回傳byte[]
+		return buffer; // 回傳byte[]
 	}
 }
-
-	
-	
-

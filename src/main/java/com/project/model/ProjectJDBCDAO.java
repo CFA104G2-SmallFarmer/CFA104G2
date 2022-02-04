@@ -73,7 +73,7 @@ public class ProjectJDBCDAO implements ProjectDAO_interface {
 			pstmt.setString(8, projectVO.getProj_risk());
 			pstmt.setString(9, projectVO.getProj_video());
 			pstmt.setInt(10, projectVO.getProj_pay());
-
+			
 			pstmt.executeUpdate();
 			// Handle any driver errors
 		} catch (ClassNotFoundException e) {
@@ -235,6 +235,15 @@ public class ProjectJDBCDAO implements ProjectDAO_interface {
 				projectVO.setProj_video(rs.getString("proj_video"));
 				projectVO.setMem_report_count(rs.getInt("mem_report_count"));
 				projectVO.setProj_pay(rs.getInt("proj_pay"));
+				
+				byte[] buffer = projectVO.getProj_main_pic();
+				String base64Image = "";
+				if (buffer==null) {
+					base64Image = "NO_IMAGE_HAS_BEEN_UPLOADED";
+				} else {
+					base64Image = Base64.getEncoder().encodeToString(buffer);
+				}
+                projectVO.setBase64Image(base64Image);		
 			}
 
 			// Handle any driver errors
@@ -309,6 +318,16 @@ public class ProjectJDBCDAO implements ProjectDAO_interface {
 				projectVO.setProj_video(rs.getString("proj_video"));
 				projectVO.setMem_report_count(rs.getInt("mem_report_count"));
 				projectVO.setProj_pay(rs.getInt("proj_pay"));
+				
+				byte[] buffer = projectVO.getProj_main_pic();
+				String base64Image = "";
+				if (buffer==null) {
+					base64Image = "NO_IMAGE_HAS_BEEN_UPLOADED";
+				} else {
+					base64Image = Base64.getEncoder().encodeToString(buffer);
+				}
+                projectVO.setBase64Image(base64Image);				
+				
 				list.add(projectVO);
 			}
 
@@ -381,6 +400,16 @@ public class ProjectJDBCDAO implements ProjectDAO_interface {
 				projectVO.setProj_video(rs.getString("proj_video"));
 				projectVO.setMem_report_count(rs.getInt("mem_report_count"));
 				projectVO.setProj_pay(rs.getInt("proj_pay"));
+				
+				byte[] buffer = projectVO.getProj_main_pic();
+				String base64Image = "";
+				if (buffer==null) {
+					base64Image = "NO_IMAGE_HAS_BEEN_UPLOADED";
+				} else {
+					base64Image = Base64.getEncoder().encodeToString(buffer);
+				}
+                projectVO.setBase64Image(base64Image);	
+				
 				list.add(projectVO);
 			}
 

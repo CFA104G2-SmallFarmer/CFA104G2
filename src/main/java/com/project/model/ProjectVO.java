@@ -21,7 +21,15 @@ public class ProjectVO {
 	    private String  proj_video;
 	    private Integer mem_report_count;
 	    private Integer  proj_pay;
+	    private String base64Image;
 	    
+	    
+		public String getBase64Image() {
+			return base64Image;
+		}
+		public void setBase64Image(String base64Image) {
+			this.base64Image = base64Image;
+		}
 		public Integer getProj_id() {
 			return proj_id;
 		}
