@@ -274,9 +274,9 @@ public class ProjectServlet extends HttpServlet {
 				Part filePart = req.getPart("proj_main_pic");
 				if (filePart != null) {
 					// prints out some information for debugging
-					System.out.println(filePart.getName());
-					System.out.println(filePart.getSize());
-					System.out.println(filePart.getContentType());
+//					System.out.println(filePart.getName());
+//					System.out.println(filePart.getSize());
+//					System.out.println(filePart.getContentType());
 					// obtains input stream of the upload file
 					inputStream = filePart.getInputStream();
 					proj_main_pic = new byte[inputStream.available()];// 長度，資料流多少bytes
@@ -316,7 +316,7 @@ public class ProjectServlet extends HttpServlet {
 
 				ProjectVO projectVO = new ProjectVO();			
 				
-				projectVO.setProj_id(f_mem_id);
+				projectVO.setF_mem_id(f_mem_id);
 				projectVO.setProj_name(proj_name);
 				projectVO.setProj_main_pic(proj_main_pic);
 				projectVO.setProj_abstract(proj_abstract);
@@ -344,6 +344,8 @@ public class ProjectServlet extends HttpServlet {
 						proj_main_pic,proj_abstract,
 						proj_goal,expected_end_date, proj_intro,
 						proj_risk,proj_video, proj_pay);
+				
+				//	System.out.println(projectVO.getProj_id());
 				
 				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("projectVO", projectVO); // 資料庫update成功後,正確的的projectVO物件,存入req
