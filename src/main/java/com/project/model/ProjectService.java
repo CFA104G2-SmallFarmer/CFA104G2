@@ -1,6 +1,7 @@
 package com.project.model;
 
 import java.sql.Date;
+import java.util.Base64;
 import java.util.List;
 
 public class ProjectService {
@@ -30,7 +31,24 @@ public class ProjectService {
 		
 		dao.insert(projectVO);
 
-		return projectVO;
+//		String proj_name1 = "11111113";	
+//		projectVO.setProj_name(proj_name1);	
+//		dao.insert(projectVO);
+		
+		getAllSameFmemProject(f_mem_id);
+
+		int j= 0;
+		
+		for (int i=0; i<getAllSameFmemProject(f_mem_id).size(); i++) {
+			if (getAllSameFmemProject(f_mem_id).get(i).getProj_name().equals(proj_name)) {
+				j= i;
+//				System.out.println(getAllSameFmemProject(f_mem_id).get(i).getProj_name());
+			}
+//			System.out.println(i);
+		}
+//		System.out.println(j);
+//		System.out.println(getAllSameFmemProject(f_mem_id).get(j).getProj_name());
+		return getOneProject(getAllSameFmemProject(f_mem_id).get(j).getProj_id());
 	}
 
 	public ProjectVO updateProjectDetail( String proj_name,
