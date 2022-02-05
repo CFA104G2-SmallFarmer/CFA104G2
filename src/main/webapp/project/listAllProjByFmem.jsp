@@ -8,7 +8,9 @@
 	
 	
 <%	ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");%>
-<%	Integer f_mem_id  = projectVO.getF_mem_id();
+<%	
+//     Integer f_mem_id  = projectVO.getF_mem_id();
+	Integer f_mem_id  = 70000; // 登入功能完成後再改回來
 	ProjectService projSvc = new ProjectService();
 	List<ProjectVO> list = projSvc.getAllSameFmemProject(f_mem_id);
 	pageContext.setAttribute("list", list);
@@ -543,6 +545,29 @@ ul.pagination {
 									</div>
 								</div>
 							</c:forEach>
+								
+							<!-- 新增專案按鈕 -->
+								<div class="col-md-4 col-sm-6">
+									<div class="projectCard">
+										<a
+											href="${pageContext.request.contextPath}/project/addProj.jsp?f_mem_id=70000"
+											class="projectUrl" 
+											 data-category="1"></a>
+										<div class="projectThumb projectThumbNew" style="border-radius:1em">
+											<img src="<%= request.getContextPath() %>/project/projectoverview_files/SmallFarmer_logo.png"
+												class="projectCoverImg img-responsive">			
+										</div>				
+										<div class="downMeta">
+											<div class="progressbar  goal ">
+												<div class="bar" style="width: 100%;"></div>
+											</div>
+												<label class="tag red" style="text-align: center; top:50%;display: block;position: relative;; ">
+													<strong>新增專案</strong>
+												</label>
+										</div>
+									</div>
+								</div>
+							<!-- 新增專案按鈕結束 -->
 						</div>
 					</div>
 				</div>
