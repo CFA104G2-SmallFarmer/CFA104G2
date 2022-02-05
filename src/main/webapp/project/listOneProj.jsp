@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.project.model.*"%>
 <%@ page import="com.projPerk.model.*"%>
+<%@ page import="com.projPic.model.*"%>
 <%@ page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -12,11 +13,8 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 <!-- 待辦 -->
 <!-- 登入確認 -->
 <!-- 留言筆數 -->
-<!-- 主圖抽換 -->
-<!-- 專案圖片抽換 -->
-<!-- 2018行超連結 -->
 <!-- 917 perk迭代 -->
-<!-- 860主圖文案待抽換 -->
+
 
 <!DOCTYPE html>
 <!-- saved from url=(0060)https://www.zeczec.com/projects/paradisepet2022zeczecnewyear -->
@@ -26,7 +24,8 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="csrf-param" content="authenticity_token">
 <meta name="csrf-token"
-	content="5+gyP059yldfSDrM1IhtsJpYSE663M3nCcO9K2QrgPoAHFunOIF+oaikpmNPaJ1IPFP0ZvFZM2oJr74gGvDGyQ=="><script
+	content="5+gyP059yldfSDrM1IhtsJpYSE663M3nCcO9K2QrgPoAHFunOIF+oaikpmNPaJ1IPFP0ZvFZM2oJr74gGvDGyQ==">
+<script
 	src="<%=request.getContextPath()%>/project/listOneProj_files/sdk.js.下載"
 	async="" crossorigin="anonymous"></script>
 <script
@@ -100,12 +99,18 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 	position: absolute;
 	top: -10000px;
 	z-index: 10001
-}.fb_reposition {
+}
+
+.fb_reposition {
 	overflow: hidden;
 	position: relative
-}.fb_invisible {
+}
+
+.fb_invisible {
 	display: none
-}.fb_reset {
+}
+
+.fb_reset {
 	background: none;
 	border: 0;
 	border-spacing: 0;
@@ -130,30 +135,46 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 	visibility: visible;
 	white-space: normal;
 	word-spacing: normal
-}.fb_reset>div {
+}
+
+.fb_reset>div {
 	overflow: hidden
-}@
+}
+
+@
 keyframes fb_transform {
 	from {opacity: 0;
 	transform: scale(.95)
-}to {
+}
+
+to {
 	opacity: 1;
 	transform: scale(1)
-}}
+}
+
+}
 .fb_animate {
 	animation: fb_transform .3s forwards
-}.fb_dialog {
+}
+
+.fb_dialog {
 	background: rgba(82, 82, 82, .7);
 	position: absolute;
 	top: -10000px;
 	z-index: 10001
-}.fb_dialog_advanced {
+}
+
+.fb_dialog_advanced {
 	border-radius: 8px;
 	padding: 10px
-}.fb_dialog_content {
+}
+
+.fb_dialog_content {
 	background: #fff;
 	color: #373737
-}.fb_dialog_close_icon {
+}
+
+.fb_dialog_close_icon {
 	background:
 		url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png)
 		no-repeat scroll 0 0 transparent;
@@ -164,39 +185,55 @@ keyframes fb_transform {
 	right: 18px;
 	top: 17px;
 	width: 15px
-}.fb_dialog_mobile .fb_dialog_close_icon {
+}
+
+.fb_dialog_mobile .fb_dialog_close_icon {
 	left: 5px;
 	right: auto;
 	top: 5px
-}.fb_dialog_padding {
+}
+
+.fb_dialog_padding {
 	background-color: transparent;
 	position: absolute;
 	width: 1px;
 	z-index: -1
-}.fb_dialog_close_icon:hover {
+}
+
+.fb_dialog_close_icon:hover {
 	background:
 		url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png)
 		no-repeat scroll 0 -15px transparent
-}.fb_dialog_close_icon:active {
+}
+
+.fb_dialog_close_icon:active {
 	background:
 		url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png)
 		no-repeat scroll 0 -30px transparent
-}.fb_dialog_iframe {
+}
+
+.fb_dialog_iframe {
 	line-height: 0
-}.fb_dialog_content .dialog_title {
+}
+
+.fb_dialog_content .dialog_title {
 	background: #6d84b4;
 	border: 1px solid #365899;
 	color: #fff;
 	font-size: 15px;
 	font-weight: bold;
 	margin: 0
-}.fb_dialog_content .dialog_title>span {
+}
+
+.fb_dialog_content .dialog_title>span {
 	background:
 		url(https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/Cou7n-nqK52.gif)
 		no-repeat 5px 50%;
 	float: left;
 	padding: 5px 0 7px 26px
-}body.fb_hidden {
+}
+
+body.fb_hidden {
 	height: 100%;
 	left: 0;
 	margin: 0;
@@ -205,7 +242,9 @@ keyframes fb_transform {
 	top: -10000px;
 	transform: none;
 	width: 100%
-}.fb_dialog.fb_dialog_mobile.loading {
+}
+
+.fb_dialog.fb_dialog_mobile.loading {
 	background:
 		url(https://static.xx.fbcdn.net/rsrc.php/v3/ya/r/3rhSv5V8j3o.gif)
 		white no-repeat 50% 50%;
@@ -215,23 +254,33 @@ keyframes fb_transform {
 	position: absolute;
 	top: 0;
 	z-index: 10001
-}.fb_dialog.fb_dialog_mobile.loading.centered {
+}
+
+.fb_dialog.fb_dialog_mobile.loading.centered {
 	background: none;
 	height: auto;
 	min-height: initial;
 	min-width: initial;
 	width: auto
-}.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner {
+}
+
+.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner {
 	width: 100%
-}.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content {
+}
+
+.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content {
 	background: none
-}.loading.centered #fb_dialog_loader_close {
+}
+
+.loading.centered #fb_dialog_loader_close {
 	clear: both;
 	color: #fff;
 	display: block;
 	font-size: 19px;
 	padding-top: 20px
-}#fb-root #fb_dialog_ipad_overlay {
+}
+
+#fb-root #fb_dialog_ipad_overlay {
 	background: rgba(0, 0, 0, .4);
 	bottom: 0;
 	left: 0;
@@ -241,14 +290,22 @@ keyframes fb_transform {
 	top: 0;
 	width: 100%;
 	z-index: 10000
-}#fb-root #fb_dialog_ipad_overlay.hidden {
+}
+
+#fb-root #fb_dialog_ipad_overlay.hidden {
 	display: none
-}.fb_dialog.fb_dialog_mobile.loading iframe {
+}
+
+.fb_dialog.fb_dialog_mobile.loading iframe {
 	visibility: hidden
-}.fb_dialog_mobile .fb_dialog_iframe {
+}
+
+.fb_dialog_mobile .fb_dialog_iframe {
 	position: sticky;
 	top: 0
-}.fb_dialog_content .dialog_header {
+}
+
+.fb_dialog_content .dialog_header {
 	background: linear-gradient(from(#738aba), to(#2c4987));
 	border-bottom: 1px solid;
 	border-color: #043b87;
@@ -259,20 +316,28 @@ keyframes fb_transform {
 	text-shadow: rgba(0, 30, 84, .296875) 0 -1px 0;
 	vertical-align: middle;
 	white-space: nowrap
-}.fb_dialog_content .dialog_header table {
+}
+
+.fb_dialog_content .dialog_header table {
 	height: 43px;
 	width: 100%
-}.fb_dialog_content .dialog_header td.header_left {
+}
+
+.fb_dialog_content .dialog_header td.header_left {
 	font-size: 13px;
 	padding-left: 5px;
 	vertical-align: middle;
 	width: 60px
-}.fb_dialog_content .dialog_header td.header_right {
+}
+
+.fb_dialog_content .dialog_header td.header_right {
 	font-size: 13px;
 	padding-right: 5px;
 	vertical-align: middle;
 	width: 60px
-}.fb_dialog_content .touchable_button {
+}
+
+.fb_dialog_content .touchable_button {
 	background: linear-gradient(from(#4267B2), to(#2a4887));
 	background-clip: padding-box;
 	border: 1px solid #29487d;
@@ -283,7 +348,9 @@ keyframes fb_transform {
 	max-width: 85px;
 	padding: 4px 12px;
 	position: relative
-}.fb_dialog_content .dialog_header .touchable_button input {
+}
+
+.fb_dialog_content .dialog_header .touchable_button input {
 	background: none;
 	border: none;
 	color: #fff;
@@ -291,14 +358,18 @@ keyframes fb_transform {
 	margin: 2px -12px;
 	padding: 2px 6px 3px 6px;
 	text-shadow: rgba(0, 30, 84, .296875) 0 -1px 0
-}.fb_dialog_content .dialog_header .header_center {
+}
+
+.fb_dialog_content .dialog_header .header_center {
 	color: #fff;
 	font-size: 17px;
 	font-weight: bold;
 	line-height: 18px;
 	text-align: center;
 	vertical-align: middle
-}.fb_dialog_content .dialog_content {
+}
+
+.fb_dialog_content .dialog_content {
 	background:
 		url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif)
 		no-repeat 50% 50%;
@@ -306,16 +377,24 @@ keyframes fb_transform {
 	border-bottom: 0;
 	border-top: 0;
 	height: 150px
-}.fb_dialog_content .dialog_footer {
+}
+
+.fb_dialog_content .dialog_footer {
 	background: #f5f6f7;
 	border: 1px solid #4a4a4a;
 	border-top-color: #ccc;
 	height: 40px
-}#fb_dialog_loader_close {
+}
+
+#fb_dialog_loader_close {
 	float: left
-}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon {
+}
+
+.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon {
 	visibility: hidden
-}#fb_dialog_loader_spinner {
+}
+
+#fb_dialog_loader_spinner {
 	animation: rotateSpinner 1.2s linear infinite;
 	background-color: transparent;
 	background-image:
@@ -324,194 +403,384 @@ keyframes fb_transform {
 	background-repeat: no-repeat;
 	height: 24px;
 	width: 24px
-}@
+}
+
+@
 keyframes rotateSpinner { 0%{
 	transform: rotate(0deg)
-}100
+}
+
+100
+
+
 %
 {
 transform
+
+
 :
-rotate(
+
+
+rotate
+(
+
+
 360deg
+
+
 )
+
+
 }
 }
 .fb_iframe_widget {
 	display: inline-block;
 	position: relative
-}.fb_iframe_widget span {
+}
+
+.fb_iframe_widget span {
 	display: inline-block;
 	position: relative;
 	text-align: justify
-}.fb_iframe_widget iframe {
+}
+
+.fb_iframe_widget iframe {
 	position: absolute
-}.fb_iframe_widget_fluid_desktop, .fb_iframe_widget_fluid_desktop span,
+}
+
+.fb_iframe_widget_fluid_desktop, .fb_iframe_widget_fluid_desktop span,
 	.fb_iframe_widget_fluid_desktop iframe {
 	max-width: 100%
-}.fb_iframe_widget_fluid_desktop iframe {
+}
+
+.fb_iframe_widget_fluid_desktop iframe {
 	min-width: 220px;
 	position: relative
-}.fb_iframe_widget_lift {
+}
+
+.fb_iframe_widget_lift {
 	z-index: 1
-}.fb_iframe_widget_fluid {
+}
+
+.fb_iframe_widget_fluid {
 	display: inline
-}.fb_iframe_widget_fluid span {
+}
+
+.fb_iframe_widget_fluid span {
 	width: 100%
-}.fb_mpn_mobile_landing_page_slide_out {
+}
+
+.fb_mpn_mobile_landing_page_slide_out {
 	animation-duration: 200ms;
 	animation-name: fb_mpn_landing_page_slide_out;
 	transition-timing-function: ease-in
-}.fb_mpn_mobile_landing_page_slide_out_from_left {
+}
+
+.fb_mpn_mobile_landing_page_slide_out_from_left {
 	animation-duration: 200ms;
 	animation-name: fb_mpn_landing_page_slide_out_from_left;
 	transition-timing-function: ease-in
-}.fb_mpn_mobile_landing_page_slide_up {
+}
+
+.fb_mpn_mobile_landing_page_slide_up {
 	animation-duration: 500ms;
 	animation-name: fb_mpn_landing_page_slide_up;
 	transition-timing-function: ease-in
-}.fb_mpn_mobile_bounce_in {
+}
+
+.fb_mpn_mobile_bounce_in {
 	animation-duration: 300ms;
 	animation-name: fb_mpn_bounce_in;
 	transition-timing-function: ease-in
-}.fb_mpn_mobile_bounce_out {
+}
+
+.fb_mpn_mobile_bounce_out {
 	animation-duration: 300ms;
 	animation-name: fb_mpn_bounce_out;
 	transition-timing-function: ease-in
-}.fb_mpn_mobile_bounce_out_v2 {
+}
+
+.fb_mpn_mobile_bounce_out_v2 {
 	animation-duration: 300ms;
 	animation-name: fb_mpn_fade_out;
 	transition-timing-function: ease-in
-}.fb_customer_chat_bounce_in_v2 {
+}
+
+.fb_customer_chat_bounce_in_v2 {
 	animation-duration: 300ms;
 	animation-name: fb_bounce_in_v2;
 	transition-timing-function: ease-in
-}.fb_customer_chat_bounce_in_from_left {
+}
+
+.fb_customer_chat_bounce_in_from_left {
 	animation-duration: 300ms;
 	animation-name: fb_bounce_in_from_left;
 	transition-timing-function: ease-in
-}.fb_customer_chat_bounce_out_v2 {
+}
+
+.fb_customer_chat_bounce_out_v2 {
 	animation-duration: 300ms;
 	animation-name: fb_bounce_out_v2;
 	transition-timing-function: ease-in
-}.fb_customer_chat_bounce_out_from_left {
+}
+
+.fb_customer_chat_bounce_out_from_left {
 	animation-duration: 300ms;
 	animation-name: fb_bounce_out_from_left;
 	transition-timing-function: ease-in
-}.fb_invisible_flow {
+}
+
+.fb_invisible_flow {
 	display: inherit;
 	height: 0;
 	overflow-x: hidden;
 	width: 0
-}@
+}
+
+@
 keyframes fb_mpn_landing_page_slide_out { 0%{
 	margin: 0 12px;
 	width: 100%- 24px
-}60
+}
+
+60
+
+
 %
 {
 border-radius
+
+
 :
+
+
 18px
+
+
 }
 100
+
+
 %
 {
 border-radius
+
+
 :
-50%;
+
+
+50
+%;
+
+
 margin
+
+
 :
+
+
 0
-24px;
+
+
+24px
+;
+
+
 width
+
+
 :
+
+
 60px
+
+
 }
 }
 @
 keyframes fb_mpn_landing_page_slide_out_from_left { 0%{
 	left: 12px;
 	width: 100%- 24px
-}60
+}
+
+60
+
+
 %
 {
 border-radius
+
+
 :
+
+
 18px
+
+
 }
 100
+
+
 %
 {
 border-radius
+
+
 :
-50%;
+
+
+50
+%;
+
+
 left
+
+
 :
-12px;
+
+
+12px
+;
+
+
 width
+
+
 :
+
+
 60px
+
+
 }
 }
 @
 keyframes fb_mpn_landing_page_slide_up { 0%{
 	bottom: 0;
 	opacity: 0
-}100
+}
+
+100
+
+
 %
 {
 bottom
+
+
 :
-24px;
+
+
+24px
+;
+
+
 opacity
+
+
 :
+
+
 1
+
+
 }
 }
 @
 keyframes fb_mpn_bounce_in { 0%{
 	opacity: .5;
 	top: 100%
-}100
+}
+
+100
+
+
 %
 {
 opacity
+
+
 :
-1;
+
+
+1
+;
+
+
 top
+
+
 :
+
+
 0
+
+
 }
 }
 @
 keyframes fb_mpn_fade_out { 0%{
 	bottom: 30px;
 	opacity: 1
-}100
+}
+
+100
+
+
 %
 {
 bottom
+
+
 :
-0;
-opacity
-:
+
+
 0
+;
+
+
+opacity
+
+
+:
+
+
+0
+
+
 }
 }
 @
 keyframes fb_mpn_bounce_out { 0%{
 	opacity: 1;
 	top: 0
-}100
+}
+
+100
+
+
 %
 {
 opacity
+
+
 :
-.5;
+
+
+.5
+;
+
+
 top
+
+
 :
-100%
+
+
+100
+%
+
+
 }
 }
 @
@@ -519,38 +788,93 @@ keyframes fb_bounce_in_v2 { 0%{
 	opacity: 0;
 	transform: scale(0, 0);
 	transform-origin: bottom right
-}50
+}
+
+50
+
+
 %
 {
 transform
+
+
 :
-scale(
-1.03
+
+
+scale
+(
+
+
+1
+.03
 ,
-1.03
-);
+1
+.03
+
+
+)
+;
+
+
 transform-origin
+
+
 :
+
+
 bottom
+
+
 right
+
+
 }
 100
+
+
 %
 {
 opacity
+
+
 :
-1;
+
+
+1
+;
+
+
 transform
+
+
 :
-scale(
+
+
+scale
+(
+
+
 1
 ,
 1
-);
+
+
+)
+;
+
+
 transform-origin
+
+
 :
+
+
 bottom
+
+
 right
+
+
 }
 }
 @
@@ -558,38 +882,93 @@ keyframes fb_bounce_in_from_left { 0%{
 	opacity: 0;
 	transform: scale(0, 0);
 	transform-origin: bottom left
-}50
+}
+
+50
+
+
 %
 {
 transform
+
+
 :
-scale(
-1.03
+
+
+scale
+(
+
+
+1
+.03
 ,
-1.03
-);
+1
+.03
+
+
+)
+;
+
+
 transform-origin
+
+
 :
+
+
 bottom
+
+
 left
+
+
 }
 100
+
+
 %
 {
 opacity
+
+
 :
-1;
+
+
+1
+;
+
+
 transform
+
+
 :
-scale(
+
+
+scale
+(
+
+
 1
 ,
 1
-);
+
+
+)
+;
+
+
 transform-origin
+
+
 :
+
+
 bottom
+
+
 left
+
+
 }
 }
 @
@@ -597,23 +976,54 @@ keyframes fb_bounce_out_v2 { 0%{
 	opacity: 1;
 	transform: scale(1, 1);
 	transform-origin: bottom right
-}100
+}
+
+100
+
+
 %
 {
 opacity
+
+
 :
-0;
+
+
+0
+;
+
+
 transform
+
+
 :
-scale(
+
+
+scale
+(
+
+
 0
 ,
 0
-);
+
+
+)
+;
+
+
 transform-origin
+
+
 :
+
+
 bottom
+
+
 right
+
+
 }
 }
 @
@@ -621,40 +1031,93 @@ keyframes fb_bounce_out_from_left { 0%{
 	opacity: 1;
 	transform: scale(1, 1);
 	transform-origin: bottom left
-}100
+}
+
+100
+
+
 %
 {
 opacity
+
+
 :
-0;
+
+
+0
+;
+
+
 transform
+
+
 :
-scale(
+
+
+scale
+(
+
+
 0
 ,
 0
-);
+
+
+)
+;
+
+
 transform-origin
+
+
 :
+
+
 bottom
+
+
 left
+
+
 }
 }
 @
 keyframes slideInFromBottom { 0%{
 	opacity: .1;
 	transform: translateY(100%)
-}100
+}
+
+100
+
+
 %
 {
 opacity
+
+
 :
-1;
+
+
+1
+;
+
+
 transform
+
+
 :
-translateY(
+
+
+translateY
+(
+
+
 0
+
+
 )
+
+
 }
 }
 @
@@ -663,37 +1126,80 @@ keyframes slideInFromBottomDelay { 0%{
 	transform: translateY(100%)
 }
 97
+
+
 %
 {
 opacity
+
+
 :
-0;
+
+
+0
+;
+
+
 transform
+
+
 :
-translateY(
-100%
-)
-}
+
+
+translateY
+(
+
+
 100
 %
+
+
+)
+
+
+}
+100
+
+
+%
 {
 opacity
+
+
 :
-1;
+
+
+1
+;
+
+
 transform
+
+
 :
-translateY(
+
+
+translateY
+(
+
+
 0
+
+
 )
+
+
 }
 }
 </style>
-</head><!-- 旋轉logo在這裡logo-safari-fix -->
+</head>
+<!-- 旋轉logo在這裡logo-safari-fix -->
 <style>
 footer:hover .logo-safari-fix {
 	animation: rotate 1s infinite linear, rainbow-fill 1s infinite alternate
 }
-</style><body class="intent-mouse">
+</style>
+<body class="intent-mouse">
 	<header class="relative z-2 bb pv2 ph3 ph0-l b--near-white">
 		<div class="cf container">
 			<div class="f6 mv2 flex items-center justify-between">
@@ -739,7 +1245,8 @@ footer:hover .logo-safari-fix {
 				</div>
 			</div>
 		</div>
-	</header>	<!-- 	核心 -->
+	</header>
+	<!-- 	核心 -->
 	<div class="container"></div>
 	<div class="container mv4-l mt3-l">
 		<div class="gutter3-l flex">
@@ -747,7 +1254,7 @@ footer:hover .logo-safari-fix {
 				<div class="relative right-0 w-100 bottom-0 mw7">
 					<div
 						class="overflow-hidden aspect-ratio-project-cover bg-near-white br2-l"
-						style="background-image: url(&#39;<%=request.getContextPath()%>/project/listOneProj_files/ori.png#39;)">
+						style="background-image: url('data:image/jpg;base64,${projectVO.base64Image}')">
 					</div>
 				</div>
 			</div>
@@ -765,8 +1272,10 @@ footer:hover .logo-safari-fix {
 					href="https://www.zeczec.com/projects/paradisepet2022zeczecnewyear"><h2
 						class="f4 mt2 mb1">${projectVO.proj_name}</h2> </a><span
 					class="f6 mr1">提案人</span><a class="b f6"
-					href="https://www.zeczec.com/users/Pet-Paradise0507">${projectVO.f_mem_id}</a>				<p class="f6 gray mv3">${projectVO.proj_abstract}</p>
-				<div class="mv3 relative flex items-center flex-nowrap">					<svg class="progress mr3 succeeded sprint">
+					href="https://www.zeczec.com/users/Pet-Paradise0507">${projectVO.f_mem_id}</a>
+				<p class="f6 gray mv3">${projectVO.proj_abstract}</p>
+				<div class="mv3 relative flex items-center flex-nowrap">
+					<svg class="progress mr3 succeeded sprint">
 					<circle class="progress-run js-percentage-circle" cx="32" cy="32"
 							r="32" style="stroke-dasharray: 201 200"></circle>
 					<text class="stroke js-percentage-raised" text-anchor="middle"
@@ -788,7 +1297,8 @@ footer:hover .logo-safari-fix {
 				</div>
 				<div class="mb1 f7">
 					<span class="mr2 b">贊助人數</span> <span class="js-backers-count">${projectVO.proj_total_count}</span>
-				</div>				<!-- 先取值 -->
+				</div>
+				<!-- 先取值 -->
 				<fmt:formatDate var="mydate" value="${projectVO.excepted_end_date}"
 					pattern="yyyy-MM-dd HH:mm:ss" />
 				<!-- parsing -->
@@ -799,17 +1309,21 @@ footer:hover .logo-safari-fix {
 				<!-- 取時間差(毫秒) -->
 				<c:set var="interval" value="${someDate.time - nowDate.time}" />
 				<fmt:formatNumber var="dayleft" value="${interval/1000/60/60/24}"
-					pattern="#0" />				<div class="mb1 f7" id="dayleft">
+					pattern="#0" />
+				<div class="mb1 f7" id="dayleft">
 					<!-- 算完取條件判斷後呈現 -->
 					<span class="mr2 b"> <c:set var="prefix" value="剩餘時間" /> <c:set
 							var="suffix" value="天" /> <c:choose>
 							<c:when test="${interval<=0}">已結案</c:when>
 							<c:otherwise>${prefix}${dayleft}${suffix}</c:otherwise>
-						</c:choose>					</span>
-				</div>				<script type="text/javascript">
+						</c:choose>
+					</span>
+				</div>
+				<script type="text/javascript">
 					let e=document.getElementById("dayleft")
 					if (${interval}<=0){e.setAttribute("style","display:none;")}
-     			</script>				<div class="mb2 f7">
+     			</script>
+				<div class="mb2 f7">
 					<span class="mr2 b">時程</span> ${projectVO.start_date} –
 					${projectVO.excepted_end_date}
 				</div>
@@ -817,9 +1331,11 @@ footer:hover .logo-safari-fix {
 		</div>
 	</div>
 	<div class="bt bb light-gray ph3 ph0-l mt0-l mt3 top-0 bg-white sticky">
-		<div class="container cf f6 relative">			<div class="gutter3 flex">
+		<div class="container cf f6 relative">
+			<div class="gutter3 flex">
 				<div
-					class="mh3 mh0-ns ph0 ph3-ns w-70-l overflow-auto nowrap flex flex-nowrap">					<a
+					class="mh3 mh0-ns ph0 ph3-ns w-70-l overflow-auto nowrap flex flex-nowrap">
+					<a
 						class="near-black dib pv3 mr4 mt1 hover-b--dark-gray bb-l b--drak-gray b"
 						href="https://www.zeczec.com/projects/paradisepet2022zeczecnewyear">
 						<div class="dib pv1">專案內容</div>
@@ -828,7 +1344,8 @@ footer:hover .logo-safari-fix {
 						href="https://www.zeczec.com/projects/paradisepet2022zeczecnewyear/comments">
 						<div class="dib pv1">留言</div> <span class="f7 b ml3 gray">0</span>
 					</a>
-				</div>				<c:choose>
+				</div>
+				<c:choose>
 					<c:when test="${interval<=0}">
 						<div class="w-30-l pv3 ph3 tc w-100">
 							<div class="nt3 dn-l"></div>
@@ -840,9 +1357,12 @@ footer:hover .logo-safari-fix {
 							<div class="nt3 dn-l"></div>
 							<a class="bg-white button w-100 green hover-green focus grow"
 								href="${pageContext.request.contextPath}/projPerk/projPerk.do?proj_id=${projectVO.proj_id}&action=getAllPerk_For_Display">
-								贊助專案</a>						</div>
+								贊助專案</a>
+						</div>
 					</c:otherwise>
-				</c:choose>			</div>		</div>
+				</c:choose>
+			</div>
+		</div>
 	</div>
 	<div class="container mv4">
 		<div class="gutter3-l flex">
@@ -863,30 +1383,40 @@ footer:hover .logo-safari-fix {
 											<p>
 												<b><br></b>
 											</p>
+											<!-- 		路徑寫法 -->
+											<!-- 		<p> -->
+											<!-- 		<b><img alt="" -->
+											<%-- 		src="<%=request.getContextPath()%>/project/listOneProj_files/asset_422509_image_big.jpg"><span --%>
+											<!-- 		class="wysiwyg-color-red"><br></span></b> -->
+											<!-- 		</p> -->
+											<!-- 		Base64寫法 -->
+											
+										<!-- @TODO -->	
+										<!-- // 	setAttribute(String name, Object value, int scope) -->
+											<%
+												Integer proj_id1 = projectVO.getProj_id();
+												ProjPicService projPicSvc = new ProjPicService();
+												List<ProjPicVO> list1 = projPicSvc.getAllSameProjPic(proj_id1);
+												pageContext.setAttribute("list1", list1);
+											%>
+
+																								
+										<!-- pic迭代區 -->
 											<p>
-												<b><img alt=""
-													src="<%=request.getContextPath()%>/project/listOneProj_files/asset_422509_image_big.jpg"><span
-													class="wysiwyg-color-red"><br></span></b>
+												<c:forEach var="projPicVO" items="${list1}">
+													<b>
+														<img alt=""
+														src="data:image/jpg;base64,${projPicVO.base64Image}">
+														<span class="wysiwyg-color-red"><br></span>
+													</b>
+												</c:forEach>
 											</p>
-											<h3 class="hide-child">
-												<a
-													name="h-%EF%BD%9C%E6%AF%9B%E5%AD%A9%E6%98%A5%E8%81%AF%E5%A5%97%E7%B5%84%EF%BC%8C%E9%99%AA%E4%BD%A0%E5%96%B5%E8%A8%80%E6%B1%AA%E8%AA%9E%E8%B3%80%E6%96%B0%E5%B9%B4%EF%BC%81%EF%BD%9C"
-													class="nt6 absolute"></a><b><span
-													class="wysiwyg-color-red">｜小農春聯套組，陪你喵言汪語賀新年！｜<a
-														href="https://www.zeczec.com/projects/paradisepet2022zeczecnewyear#h-%EF%BD%9C%E6%AF%9B%E5%AD%A9%E6%98%A5%E8%81%AF%E5%A5%97%E7%B5%84%EF%BC%8C%E9%99%AA%E4%BD%A0%E5%96%B5%E8%A8%80%E6%B1%AA%E8%AA%9E%E8%B3%80%E6%96%B0%E5%B9%B4%EF%BC%81%EF%BD%9C"
-														class="gray child f6 v-mid absolute left-0-ns nl3-ns">#</a></span></b>
-											</h3>
-											<p class="wysiwyg-text-align-center">套組內含：小農門神、小農門聯、小農春聯與小農燙金紅包袋！</p>
-											<p class="wysiwyg-text-align-center">新春將至，小農春聯套組送禮自用兩相宜！</p>
-											<p class="wysiwyg-text-align-center">&nbsp;</p>
-											<p class="wysiwyg-text-align-center">
-												<br>
-											</p>										
+
 										</div>
-											
-											
-											
-											
+
+
+
+
 										<div class="wysiwyg-text-align-center"></div>
 										<div class="nt6">
 											<div class="pt6" id="project_risk"></div>
@@ -921,38 +1451,43 @@ footer:hover .logo-safari-fix {
 				</div>
 			</div>
 			<div class="w-30-l ph3-l ph0 flex-ns flex-wrap flex-column-l w-100">
-				
-		<%						
-			Integer proj_id  = projectVO.getProj_id();
-			ProjPerkService projSvc = new ProjPerkService();
- 			List<ProjPerkVO> list = projSvc.getAll(proj_id);
- 			pageContext.setAttribute("list", list);
-		%>						
-					<!-- @TODO -->
-					<!-- perk迭代區 -->
-				<c:forEach var="projPerkVO" items="${list}" begin="<%=0%>" end="<%=10%>">
-				<div class="w-100-l w-50-ns ph3 ph0-l flex-none self-start">
-					<a
-						class="pa3 ba bw1 b--inherit round-s light-gray mb4 db border-rainbow "
-						href="https://www.zeczec.com/users/sign_in?return_to=%2Fprojects%2Fparadisepet2022zeczecnewyear%2Forders%2Fback_project%3Fselected_reward%3D72345%23details"><img
-						width="100%" class="mb2 round-s"
-						src="<%=request.getContextPath()%>/project/listOneProj_files/72345_banner.jpg"
-						alt="72345 banner">
-						<div class="black b f4">NT$${projPerkVO.perk_fund}</div>
-						<div class="f7 mv2">
-							<span class="f7 white ph2 bg-red b dib"> 剩餘 ${projPerkVO.perk_limited - projPerkVO.perk_total_count} 份 </span><span
-								class="black ph2 bg-near-white dib"> 已被贊助 <span class="b">${projPerkVO.perk_total_count}</span>
-								/ ${projPerkVO.perk_limited} 次
-							</span>
-						</div>
-						<div class="black f6 mv-child-0 maxh5 maxh-none-ns overflow-auto">
-							<br>【${projPerkVO.perk_abbr_name}】							
-							<p>
-								${projPerkVO.perk_intro}  <br>特惠價 ${projPerkVO.perk_fund}（限量${projPerkVO.perk_limited}組）
-							</p>
-						</div>
-						<div class="mt3 gray tc ph2 f7 ba">預計於${projPerkVO.perk_ship_date}實現</div> </a>
-				</div>
+
+				<%
+				Integer proj_id = projectVO.getProj_id();
+				ProjPerkService projSvc = new ProjPerkService();
+				List<ProjPerkVO> list = projSvc.getAll(proj_id);
+				pageContext.setAttribute("list", list);
+				%>
+				<!-- @TODO -->
+				<!-- perk迭代區 -->
+				<c:forEach var="projPerkVO" items="${list}" begin="<%=0%>"
+					end="<%=10%>">
+					<div class="w-100-l w-50-ns ph3 ph0-l flex-none self-start">
+						<a
+							class="pa3 ba bw1 b--inherit round-s light-gray mb4 db border-rainbow "
+							href="https://www.zeczec.com/users/sign_in?return_to=%2Fprojects%2Fparadisepet2022zeczecnewyear%2Forders%2Fback_project%3Fselected_reward%3D72345%23details"><img
+							width="100%" class="mb2 round-s"
+							src="data:image/jpg;base64,${projPerkVO.base64Image}"
+							alt="72345 banner">
+							<div class="black b f4">NT$${projPerkVO.perk_fund}</div>
+							<div class="f7 mv2">
+								<span class="f7 white ph2 bg-red b dib"> 剩餘
+									${projPerkVO.perk_limited - projPerkVO.perk_total_count} 份 </span><span
+									class="black ph2 bg-near-white dib"> 已被贊助 <span
+									class="b">${projPerkVO.perk_total_count}</span> /
+									${projPerkVO.perk_limited} 次
+								</span>
+							</div>
+							<div class="black f6 mv-child-0 maxh5 maxh-none-ns overflow-auto">
+								<br>【${projPerkVO.perk_abbr_name}】
+								<p>
+									${projPerkVO.perk_intro} <br>特惠價
+									${projPerkVO.perk_fund}（限量${projPerkVO.perk_limited}組）
+								</p>
+							</div>
+							<div class="mt3 gray tc ph2 f7 ba">預計於${projPerkVO.perk_ship_date}實現</div>
+						</a>
+					</div>
 				</c:forEach>
 			</div>
 		</div>
@@ -978,7 +1513,8 @@ footer:hover .logo-safari-fix {
 					<h3>關於</h3>
 					<a class="db" href="https://www.zeczec.com/about">關於我們</a> <a
 						class="db" href="https://www.zeczec.com/brand">商標資源</a>
-					<div class="f7 mt3">© 我家門前有塊地</div>					<!-- 旋轉logo在這裡logo-safari-fix -->
+					<div class="f7 mt3">© 我家門前有塊地</div>
+					<!-- 旋轉logo在這裡logo-safari-fix -->
 					<a
 						class="absolute-l top-0 right-0 mt3 dib relative logo-safari-fix"
 						href="https://www.zeczec.com/"><img class="logo mr2 middle"
@@ -1029,7 +1565,8 @@ footer:hover .logo-safari-fix {
 		src="<%=request.getContextPath()%>/project/listOneProj_files/v652eace1692a40cfa3763df669d7439c1639079717194"
 		integrity="sha512-Gi7xpJR8tSkrpF7aordPZQlW2DLtzUlZcumS8dMQjwDHEnw9I7ZLyiOj/6tZStRBGtGgN6ceN6cMH8z7etPGlw=="
 		data-cf-beacon="{&quot;rayId&quot;:&quot;6cf01cc79d7756f4&quot;,&quot;token&quot;:&quot;e0311a1880d54b88ab9f48eac7540091&quot;,&quot;version&quot;:&quot;2021.12.0&quot;,&quot;si&quot;:100}"
-		crossorigin="anonymous"></script>	<div id="draggable-live-region" aria-relevant="additions"
+		crossorigin="anonymous"></script>
+	<div id="draggable-live-region" aria-relevant="additions"
 		aria-atomic="true" aria-live="assertive" role="log"
-		style="position: fixed; width: 1px; height: 1px; top: -1px; overflow: hidden;"></div>	
+		style="position: fixed; width: 1px; height: 1px; top: -1px; overflow: hidden;"></div>
 </html>

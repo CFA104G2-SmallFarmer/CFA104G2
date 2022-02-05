@@ -5,10 +5,13 @@
 <%@ page import="com.project.model.*"%>
 <%@ page
 	import="java.time.LocalDate,java.sql.Timestamp,java.util.Vector"%>
-<%
-ProjectService projSvc = new ProjectService();
-List<ProjectVO> list = projSvc.getAllProject();
-pageContext.setAttribute("list", list);
+	
+	
+<%	ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");%>
+<%	Integer f_mem_id  = projectVO.getF_mem_id();
+	ProjectService projSvc = new ProjectService();
+	List<ProjectVO> list = projSvc.getAllSameFmemProject(f_mem_id);
+	pageContext.setAttribute("list", list);
 %>
 
 
