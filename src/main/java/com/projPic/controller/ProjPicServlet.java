@@ -11,6 +11,8 @@ import org.apache.tomcat.util.http.fileupload.IOUtils;
 
 import com.projPic.model.ProjPicService;
 import com.projPic.model.ProjPicVO;
+import com.project.model.ProjectService;
+import com.project.model.ProjectVO;
 
 public class ProjPicServlet extends HttpServlet {
 
@@ -20,8 +22,15 @@ public class ProjPicServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
+		System.out.println("pic enter");
+
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action"); // 表單有用hidden name="action" value="getOne_For_Display"
+
+		System.out.println("pic enter action get");
+
+		System.out.println(req);
+		System.out.println(action);
 
 		// 來自select_page.jsp的請求
 		if ("getOne_For_Display".equals(action)) {
@@ -69,13 +78,13 @@ public class ProjPicServlet extends HttpServlet {
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
-				
-                for (int i=0;i<projPicVO.size();i++) {
-                	byte[] buffer = projPicVO.get(i).getProj_pic();
-                	String base64Image = Base64.getEncoder().encodeToString(buffer);
-                	projPicVO.get(i).setBase64Image(base64Image);
-                	System.out.println("圖片轉換成功");
-                }
+
+				for (int i = 0; i < projPicVO.size(); i++) {
+					byte[] buffer = projPicVO.get(i).getProj_pic();
+					String base64Image = Base64.getEncoder().encodeToString(buffer);
+					projPicVO.get(i).setBase64Image(base64Image);
+					System.out.println("圖片轉換成功");
+				}
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("projPicVO", projPicVO); // 資料庫取出的projPicVO物件,存入req
 				String url = "listOneProj.jsp";
@@ -256,87 +265,75 @@ public class ProjPicServlet extends HttpServlet {
 //		}
 //
 		if ("insert".equals(action)) { // 來自addEmp.jsp的請求
-
+			System.out.println("pic insert enter");
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
-
+			System.out.println("pic1");
 			try {
 				/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
 				Integer proj_id = new Integer(req.getParameter("proj_id").trim());
 
-				
-				String ename = req.getParameter("ename");
-				String enameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
-				if (ename == null || ename.trim().length() == 0) {
-					errorMsgs.add("員工姓名: 請勿空白");
-				} else if (!ename.trim().matches(enameReg)) { // 以下練習正則(規)表示式(regular-expression)
-					errorMsgs.add("員工姓名: 只能是中、英文字母、數字和_ , 且長度必需在2到10之間");
+				String[] picList = { "proj_pic1", "proj_pic2", "proj_pic3", "proj_pic4", "proj_pic5", "proj_pic6",
+						"proj_pic7", "proj_pic8" };
+
+				System.out.println("pic2");
+				for (int i = 0; i < picList.length; i++) {
+//				------------------處理圖片--------------------
+					InputStream inputStream = null; // input stream of the upload file
+					byte[] proj_pic = null;
+					// obtains the upload file part in this multipart request
+					Part filePart = req.getPart(picList[i]);
+					if (filePart != null) {
+						// prints out some information for debugging
+//					System.out.println(filePart.getName());
+//					System.out.println(filePart.getSize());
+//					System.out.println(filePart.getContentType());
+						// obtains input stream of the upload file
+						inputStream = filePart.getInputStream();
+						proj_pic = new byte[inputStream.available()];// 長度，資料流多少bytes
+						inputStream.read(proj_pic);
+						inputStream.close();
+					}
+//				------------------處理圖片--------------------			
+
+					ProjPicVO projPicVO = new ProjPicVO();
+					projPicVO.setProj_id(proj_id);
+					projPicVO.setProj_pic(proj_pic);
+
+					// Send the use back to the form, if there were errors
+					if (!errorMsgs.isEmpty()) {
+
+						req.setAttribute("projPicVO", projPicVO); // 含有輸入格式錯誤的projPicVO物件,也存入req
+						RequestDispatcher failureView = req.getRequestDispatcher("listAllProj.jsp");
+						failureView.forward(req, res);
+						return;
+					}
+
+					/*************************** 2.開始新增資料 ***************************************/
+					ProjPicService projSvc = new ProjPicService();
+					// 控制器驗證完拿到的碎片，new領班，交給領班去組合。
+					// 領班用自己的方法去組合將碎片放入一個ProjPicVO物件，物件再交給工人去施工新增的動作，然後領班會再回傳一個projPicVO物件回來
+					projPicVO = projSvc.addProjPic(proj_id, proj_pic);
+
 				}
 
-				String job = req.getParameter("job").trim();
-				if (job == null || job.trim().length() == 0) {
-					errorMsgs.add("職位請勿空白");
-				}
-
-				java.sql.Date hiredate = null;
-				try {
-					hiredate = java.sql.Date.valueOf(req.getParameter("hiredate").trim());
-				} catch (IllegalArgumentException e) {
-					hiredate = new java.sql.Date(System.currentTimeMillis());
-					errorMsgs.add("請輸入日期!");
-				}
-
-				Double sal = null;
-				try {
-					sal = new Double(req.getParameter("sal").trim());
-				} catch (NumberFormatException e) {
-					sal = 0.0;
-					errorMsgs.add("薪水請填數字.");
-				}
-
-				Double comm = null;
-				try {
-					comm = new Double(req.getParameter("comm").trim());
-				} catch (NumberFormatException e) {
-					comm = 0.0;
-					errorMsgs.add("獎金請填數字.");
-				}
-
-				Integer deptno = new Integer(req.getParameter("deptno").trim());
-
-				ProjPicVO projPicVO = new ProjPicVO();
-				projPicVO.setEname(ename);
-				projPicVO.setJob(job);
-				projPicVO.setHiredate(hiredate);
-				projPicVO.setSal(sal);
-				projPicVO.setComm(comm);
-				projPicVO.setDeptno(deptno);
-
-				// Send the use back to the form, if there were errors
-				if (!errorMsgs.isEmpty()) {
-					req.setAttribute("projPicVO", projPicVO); // 含有輸入格式錯誤的projPicVO物件,也存入req
-					RequestDispatcher failureView = req.getRequestDispatcher("/emp/addEmp.jsp");
-					failureView.forward(req, res);
-					return;
-				}
-
-				/*************************** 2.開始新增資料 ***************************************/
-				ProjPicService projSvc = new ProjPicService();
-				// 控制器驗證完拿到的碎片，new領班，交給領班去組合。
-				// 領班用自己的方法去組合將碎片放入一個ProjPicVO物件，物件再交給工人去施工新增的動作，然後領班會再回傳一個projPicVO物件回來
-				projPicVO = projSvc.addEmp(ename, job, hiredate, sal, comm, deptno);
-
+				System.out.println("pic3");
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-				String url = "/emp/listAllEmp.jsp";
+				ProjectService projectSvc = new ProjectService();
+				ProjectVO projectVO = projectSvc.getOneProject(proj_id);
+				req.setAttribute("projectVO", projectVO);
+				String url = "/project/listOneProj.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
-
+				System.out.println("good in pic");
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
+				System.out.println("error4 in pic");
+				e.printStackTrace();
 				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/emp/addEmp.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("listAllProj.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -369,6 +366,5 @@ public class ProjPicServlet extends HttpServlet {
 //			}
 //		}
 	}
-
 
 }
