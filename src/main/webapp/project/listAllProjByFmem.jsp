@@ -468,11 +468,21 @@ ul.pagination {
 
 								<div class="col-md-4 col-sm-6">
 									<div class="projectCard">
-										<a
-											href="${pageContext.request.contextPath}/project/project.do?proj_id=${projectVO.proj_id}&action=getOne_For_Display"
+									
+										
+										<div class="projectThumb" style="position:relative;" >
+										
+										<div style="position:absolute;right:0;top:0;">
+										<a href="${pageContext.request.contextPath}/project/addProj.jsp"  >
+										<img src="<%= request.getContextPath() %>/project/projectoverview_files/Edit_icon.png"
+												class="projectCoverImg img-responsive"
+												style="left:70%;transition:opacity 350ms;width: 30%;height: 30%;
+												z-index:999;position:relative;">		
+												</a></div>
+																			
+										<a href="${pageContext.request.contextPath}/project/project.do?proj_id=${projectVO.proj_id}&action=getOne_For_Display"
 											class="projectUrl" data-id="${projectVO.proj_id}"
 											data-title="${projectVO.proj_name}" data-category="1"></a>
-										<div class="projectThumb">
 											<%@ taglib prefix="fmt"
 												uri="http://java.sun.com/jsp/jstl/fmt"%>
 											<%-- 	<c:set var="a" value="<%= request.getContextPath() %>/project/projectoverview_files/" /> --%>
@@ -485,7 +495,7 @@ ul.pagination {
 											<!-- 	class="projectCoverImg img-responsive"> -->
 											<img src="data:image/jpg;base64,${projectVO.base64Image}"
 												alt="${projectVO.proj_name}"
-												class="projectCoverImg img-responsive">
+												class="projectCoverImg img-responsive" >
 											<%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> --%>
 											<%-- <p>Length of String : ${fn:length(pic)}</p> --%>
 										</div>
@@ -549,11 +559,13 @@ ul.pagination {
 							<!-- 新增專案按鈕 -->
 								<div class="col-md-4 col-sm-6">
 									<div class="projectCard">
-										<a
+										
+
+										<div class="projectThumb " style="border-radius:1em">
+											<a
 											href="${pageContext.request.contextPath}/project/addProj.jsp?f_mem_id=70000"
 											class="projectUrl" 
 											 data-category="1"></a>
-										<div class="projectThumb projectThumbNew" style="border-radius:1em">
 											<img src="<%= request.getContextPath() %>/project/projectoverview_files/SmallFarmer_logo.png"
 												class="projectCoverImg img-responsive">			
 										</div>				

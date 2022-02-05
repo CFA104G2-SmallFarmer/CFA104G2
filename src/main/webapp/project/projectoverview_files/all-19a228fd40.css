@@ -21997,21 +21997,13 @@ h2.bluequote:before {
 }
 
 .projectCard .projectThumb {
-    clear: both;
+    /* clear: both; */
     overflow: hidden;
     min-height: 150px;
     background: #d7d7d7
 }
 
-.projectThumbNew {
-    clear: both;
-    overflow: hidden;
-    min-height: 150px;
-    background: #d7d7d7;
-    width: 85px;
-    height: 64px;
-    margin-right: 16px
-}
+
 
 .projectCard .leftBlock {
     position: relative
