@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.util.*;
 
 import javax.servlet.*;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.*;
 
 import org.apache.tomcat.util.http.fileupload.IOUtils;
@@ -14,6 +15,7 @@ import com.projPic.model.ProjPicVO;
 import com.project.model.ProjectService;
 import com.project.model.ProjectVO;
 
+@MultipartConfig
 public class ProjPicServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -298,25 +300,27 @@ public class ProjPicServlet extends HttpServlet {
 					}
 //				------------------處理圖片--------------------			
 
-					ProjPicVO projPicVO = new ProjPicVO();
-					projPicVO.setProj_id(proj_id);
-					projPicVO.setProj_pic(proj_pic);
+					if (proj_pic.length > 0) {
 
-					// Send the use back to the form, if there were errors
-					if (!errorMsgs.isEmpty()) {
+						ProjPicVO projPicVO = new ProjPicVO();
+						projPicVO.setProj_id(proj_id);
+						projPicVO.setProj_pic(proj_pic);
 
-						req.setAttribute("projPicVO", projPicVO); // 含有輸入格式錯誤的projPicVO物件,也存入req
-						RequestDispatcher failureView = req.getRequestDispatcher("listAllProj.jsp");
-						failureView.forward(req, res);
-						return;
+						// Send the use back to the form, if there were errors
+						if (!errorMsgs.isEmpty()) {
+
+							req.setAttribute("projPicVO", projPicVO); // 含有輸入格式錯誤的projPicVO物件,也存入req
+							RequestDispatcher failureView = req.getRequestDispatcher("listAllProj.jsp");
+							failureView.forward(req, res);
+							return;
+						}
+
+						/*************************** 2.開始新增資料 ***************************************/
+						ProjPicService projSvc = new ProjPicService();
+						// 控制器驗證完拿到的碎片，new領班，交給領班去組合。
+						// 領班用自己的方法去組合將碎片放入一個ProjPicVO物件，物件再交給工人去施工新增的動作，然後領班會再回傳一個projPicVO物件回來
+						projPicVO = projSvc.addProjPic(proj_id, proj_pic);
 					}
-
-					/*************************** 2.開始新增資料 ***************************************/
-					ProjPicService projSvc = new ProjPicService();
-					// 控制器驗證完拿到的碎片，new領班，交給領班去組合。
-					// 領班用自己的方法去組合將碎片放入一個ProjPicVO物件，物件再交給工人去施工新增的動作，然後領班會再回傳一個projPicVO物件回來
-					projPicVO = projSvc.addProjPic(proj_id, proj_pic);
-
 				}
 
 				System.out.println("pic3");
