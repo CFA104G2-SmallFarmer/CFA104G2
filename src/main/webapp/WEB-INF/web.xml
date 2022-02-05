@@ -9,4 +9,53 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+    <servlet>
+    <servlet-name>ProjectServlet</servlet-name>
+    <servlet-class>com.project.controller.ProjectServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProjectServlet</servlet-name>
+    <url-pattern>/project/project.do</url-pattern>
+  </servlet-mapping>
+  
+      <servlet>
+    <servlet-name>ProjOrderServlet</servlet-name>
+    <servlet-class>com.projOrder.controller.ProjOrderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProjOrderServlet</servlet-name>
+    <url-pattern>/projOrder/projOrder.do</url-pattern>
+  </servlet-mapping>
+  
+  
+        <servlet>
+    <servlet-name>ProjPerkServlet</servlet-name>
+    <servlet-class>com.projPerk.controller.ProjPerkServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProjPerkServlet</servlet-name>
+    <url-pattern>/projPerk/projPerk.do</url-pattern>
+  </servlet-mapping>
+  
+  
+          <servlet>
+    <servlet-name>ProjPicServlet</servlet-name>
+    <servlet-class>com.projPic.controller.ProjPicServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProjPicServlet</servlet-name>
+    <url-pattern>/projPic/projPic.do</url-pattern>
+  </servlet-mapping>
+  
+
+            <servlet>
+    <servlet-name>ProjPicServletInsert</servlet-name>
+    <servlet-class>com.projPic.controller.ProjPicServletInsert</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProjPicServletInsert</servlet-name>
+    <url-pattern>/projPic/projPicInsert.do</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
