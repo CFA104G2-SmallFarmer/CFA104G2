@@ -15,7 +15,10 @@
     pageContext.setAttribute("list",list);
 %>
 
-
+<%
+    String mem_id = request.getParameter("mem_id");
+	String membership= "buyer";
+%>
 
 <!-- memVO -->
 
@@ -112,7 +115,6 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
   </style>
   
 </head>
-
 <!-- <body class=" route-index route-portal-sale route-portal-sale-order route-portal-sale-order"> -->
 <%--                     <%=projOrderVO==null%> --%>
 <%--                     <%=projPerkVO==null%> --%>
@@ -440,6 +442,10 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
 			    				<input type="hidden" name="order_cancel_reason"  value="${projOrderVO.order_cancel_reason}">	
 			     				<input type="hidden" name="action" value="update_state_to_1_and_then_show_All">
     							
+    							<input type="hidden" name="mem_id" value="${param.mem_id}">
+    							<input type="hidden" name="membership" value="buyer">
+    							
+    							
     							<button data-v-4325ccd1=""
                                     class="shopee-button shopee-button--normal" type="submit"><span>
                                       確認收款
@@ -458,6 +464,9 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
     							<input type="hidden" name="order_cancel_time"  value="${projOrderVO.order_cancel_time}">		 			  
 			    				<input type="hidden" name="order_cancel_reason"  value="${projOrderVO.order_cancel_reason}">	
 			     				<input type="hidden" name="action" value="update_state_to_4_and_then_show_All">	 			  
+			
+			    				<input type="hidden" name="mem_id" value="${param.mem_id}">
+    							<input type="hidden" name="membership" value="buyer">
 			
                                   <button data-v-4325ccd1="" 
                                     class="shopee-button shopee-button--normal" type="submit"><span>
@@ -479,6 +488,10 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
     							<input type="hidden" name="order_cancel_time"  value="${projOrderVO.order_cancel_time}">		 			  
 			    				<input type="hidden" name="order_cancel_reason"  value="${projOrderVO.order_cancel_reason}">	
 			     				<input type="hidden" name="action" value="update_state_to_3_and_then_show_All">	 			  
+			
+						    	<input type="hidden" name="mem_id" value="${param.mem_id}">
+    							<input type="hidden" name="membership" value="buyer">
+			
 			
                                   <button data-v-4325ccd1="" 
                                     class="shopee-button shopee-button--normal" type="submit"><span>
@@ -502,6 +515,11 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
 			    				<input type="hidden" name="order_cancel_reason"  value="${projOrderVO.order_cancel_reason}">	
 			     				<input type="hidden" name="action" value="update_state_to_4_and_then_show_All">	 			  
 			
+								<input type="hidden" name="mem_id" value="${param.mem_id}">
+    							<input type="hidden" name="membership" value="buyer">
+			
+			
+			
                                   <button data-v-4325ccd1="" 
                                     class="shopee-button shopee-button--normal" type="submit"><span>
                                       取消訂單
@@ -522,6 +540,10 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
     							<input type="hidden" name="order_cancel_time"  value="${projOrderVO.order_cancel_time}">		 			  
 			    				<input type="hidden" name="order_cancel_reason"  value="${projOrderVO.order_cancel_reason}">	
 			     				<input type="hidden" name="action" value="update_state_to_3_and_then_show_All">	 			  
+			
+								<input type="hidden" name="mem_id" value="${param.mem_id}">
+    							<input type="hidden" name="membership" value="buyer">
+			
 			
                                   <button data-v-4325ccd1="" 
                                     class="shopee-button shopee-button--normal" type="submit"><span>
@@ -546,6 +568,11 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
     							<input type="hidden" name="order_cancel_time"  value="${projOrderVO.order_cancel_time}">		 			  
 			    				<input type="hidden" name="order_cancel_reason"  value="${projOrderVO.order_cancel_reason}">	
 			     				<input type="hidden" name="action" value="update_state_to_5_and_then_show_All">	 			  
+			
+								<input type="hidden" name="mem_id" value="${param.mem_id}">
+    							<input type="hidden" name="membership" value="buyer">
+			
+			
 			
                                   <button data-v-4325ccd1="" 
                                     class="shopee-button shopee-button--normal" type="submit"><span>
