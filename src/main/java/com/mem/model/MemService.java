@@ -76,6 +76,15 @@ public class MemService {
 
 		return memVO;
 	}
+	// 專門修改帳號狀態 待確認
+	public MemVO updateMemAccState(Integer mem_id, Integer acc_state) {
+
+		MemVO memVO = new MemVO();
+		memVO.setMem_id(mem_id);
+		memVO.setAcc_state(acc_state);
+		dao.updateAccState(memVO);
+		return memVO;
+	}
 
 	public void deleteMem(Integer mem_id) {
 		dao.delete(mem_id);

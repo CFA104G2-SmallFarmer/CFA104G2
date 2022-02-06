@@ -29,9 +29,7 @@ public class MemGifReader extends HttpServlet{
 
 		try {
 			Statement stmt = con.createStatement();
-			HttpSession session = req.getSession();
-//			String mem_id = req.getParameter("mem_id");
-			String mem_id = (String)session.getAttribute("mem_id");
+			String mem_id = req.getParameter("mem_id");
 			ResultSet rs = stmt.executeQuery(
 				"SELECT mem_pic FROM cfa104g2.mem WHERE mem_id="+ mem_id);
 
