@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
 
+
+
+
 public class ProjPerkService {
 	private ProjPerkDAO_interface dao; //為了將來與框架作結合
 
@@ -18,13 +21,8 @@ public class ProjPerkService {
 
 		ProjPerkVO projPerkVO2 = new ProjPerkVO();
 		projPerkVO2.setProj_id(proj_id);
-		byte[] pic;
-		try {
-			pic= getPictureByteArray("ProjectPic/strawberry1.jpg");//回傳一個水管
-			projPerkVO2.setPerk_pic(perk_pic);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
+		projPerkVO2.setPerk_pic(perk_pic);
 		
 		projPerkVO2.setPerk_intro(perk_intro);
 		projPerkVO2.setPerk_fund(perk_fund);
@@ -40,24 +38,19 @@ public class ProjPerkService {
 
 	public ProjPerkVO updateProjPerk(byte[] perk_pic,
 			String perk_intro,Integer perk_fund,Integer perk_limited,Date perk_ship_date, 
-			String perk_ship_area,String perk_abbr_name,Integer proj_id) {
+			String perk_ship_area,String perk_abbr_name,Integer perk_id) {
 		
 		ProjPerkVO projPerkVO2 = new ProjPerkVO();
+		projPerkVO2.setPerk_pic(perk_pic);
 		
-		byte[] pic;
-		try {
-			pic= getPictureByteArray("ProjectPic/strawberry1.jpg");//回傳一個水管
-			projPerkVO2.setPerk_pic(perk_pic);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		projPerkVO2.setPerk_intro(perk_intro);
 		projPerkVO2.setPerk_fund(perk_fund);
 		projPerkVO2.setPerk_limited(perk_limited);
+		System.out.println("service這邊"+perk_abbr_name);
 		projPerkVO2.setPerk_ship_date(perk_ship_date);
 		projPerkVO2.setPerk_ship_area(perk_ship_area);
 		projPerkVO2.setPerk_abbr_name(perk_abbr_name);
-		projPerkVO2.setPerk_id(proj_id);
+		projPerkVO2.setPerk_id(perk_id);
 		
 		dao.update(projPerkVO2);
 		

@@ -215,14 +215,20 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface {
 			pstmt.setBytes(1, projPerkVO.getPerk_pic());
 			pstmt.setString(2, projPerkVO.getPerk_intro());
 			pstmt.setInt(3, projPerkVO.getPerk_fund());
+			System.out.println("xxxxx"+projPerkVO.getPerk_fund());
 			pstmt.setInt(4, projPerkVO.getPerk_limited());
 			pstmt.setDate(5, projPerkVO.getPerk_ship_date());
 			pstmt.setString(6, projPerkVO.getPerk_ship_area());
 			pstmt.setString(7, projPerkVO.getPerk_abbr_name());
+			
+			System.out.println("xxxxx"+projPerkVO.getPerk_abbr_name());
+			
 			pstmt.setInt(8, projPerkVO.getPerk_id());
+			
+			System.out.println("xxxxx"+projPerkVO.getPerk_id());
 
 			pstmt.executeUpdate();
-//			System.out.println("成功更新");
+			System.out.println("JDBCDAO這邊成功更新");
 
 			// Handle any driver errors
 		} catch (ClassNotFoundException e) {
@@ -486,29 +492,29 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface {
 		/* ===================================================== */
 		// 修改
 
-//		ProjPerkVO projPerkVO2 = new ProjPerkVO();
-//		
-//		byte[] pic;
-//		try {
-//			pic= getPictureByteArray("ProjectPic/strawberry1.jpg");//回傳一個水管
-//			projPerkVO2.setPerk_pic(pic);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		projPerkVO2.setPerk_intro("666發財米");
-//		projPerkVO2.setPerk_fund(6666);
-//		projPerkVO2.setPerk_limited(66);
-//		projPerkVO2.setPerk_ship_date(java.sql.Date.valueOf("2022-05-01"));
-//		projPerkVO2.setPerk_ship_area("Taiwan");
-//		projPerkVO2.setPerk_abbr_name("方案H");
-//		projPerkVO2.setPerk_id(3);
-//		
-//		dao.update(projPerkVO2);
-//		System.out.println("更新成功");
+		ProjPerkVO projPerkVO2 = new ProjPerkVO();
+		
+		byte[] pic;
+		try {
+			pic= getPictureByteArray("ProjectPic/strawberry1.jpg");//回傳一個水管
+			projPerkVO2.setPerk_pic(pic);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		projPerkVO2.setPerk_intro("666發財米");
+		projPerkVO2.setPerk_fund(6666);
+		projPerkVO2.setPerk_limited(66);
+		projPerkVO2.setPerk_ship_date(java.sql.Date.valueOf("2022-05-01"));
+		projPerkVO2.setPerk_ship_area("Taiwan");
+		projPerkVO2.setPerk_abbr_name("HHH");
+		projPerkVO2.setPerk_id(11);
+		
+		dao.update(projPerkVO2);
+		System.out.println("更新成功");
 
 		/* ===================================================== */
 
-		// 刪除
+//		 刪除
 //		int x =4;
 //		dao.delete(x);
 //		System.out.println("刪除dir_id="+x+"成功");
@@ -516,8 +522,8 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface {
 		/* ===================================================== */
 
 		// 查詢getone
-
-//		ProjPerkVO projPerkVO2 = dao.findByPrimaryKey(2);
+//
+//		ProjPerkVO projPerkVO2 = dao.findByPrimaryKey(13);
 //		System.out.print(projPerkVO2.getPerk_id() + ",");
 //		System.out.print(projPerkVO2.getProj_id() + ",");
 //		System.out.print(projPerkVO2.getPerk_pic() + ",");
