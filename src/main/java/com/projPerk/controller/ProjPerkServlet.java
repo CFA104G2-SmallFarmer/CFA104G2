@@ -119,9 +119,11 @@ public class ProjPerkServlet extends HttpServlet {
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
+			System.out.println("update in");
 
-//			try {
+			try {
 				/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
+				Integer proj_id = new Integer(req.getParameter("proj_id").trim());
 				Integer perk_id = new Integer(req.getParameter("perk_id").trim());
 				
 				String perk_abbr_name = req.getParameter("perk_abbr_name").trim();
@@ -129,19 +131,21 @@ public class ProjPerkServlet extends HttpServlet {
 					errorMsgs.add("方案簡稱請勿空白");
 				}
 				
-
-				String perk_pic = req.getParameter("perk_pic").trim(); 
+				String pic_name=req.getParameter("perk_pic");
+				System.out.println(pic_name);
 				
-//				InputStream in = req.getPart("perk_pic").getInputStream();
-//				byte[] perk_pic = null;
-//				if(in.available()!=0) {
-//					perk_pic = new byte[in.available()];
-//					in.read(perk_pic);
-//					in.close();
-//					}else {
-//				
-//						errorMsgs.add("請上傳圖片");
-//					}
+//				String perk_pic = req.getParameter("perk_pic").trim(); 
+				
+				InputStream in = req.getPart("perk_pic").getInputStream();
+				byte[] perk_pic = null;
+				if(in.available()!=0) {
+					perk_pic = new byte[in.available()];
+					in.read(perk_pic);
+					in.close();
+					}else {
+				
+						errorMsgs.add("請上傳圖片");
+					}
 				
 				String perk_intro = req.getParameter("perk_intro").trim();
 				if (perk_intro == null || perk_intro.trim().length() == 0) {
@@ -205,32 +209,45 @@ public class ProjPerkServlet extends HttpServlet {
 
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					req.setAttribute("projPerkVO", projPerkVO); // 含有輸入格式錯誤的projPerkVO物件,也存入req
+					ProjPerkService projPerkSvc = new ProjPerkService();
+					ProjPerkVO projPerkVO1 = projPerkSvc.getOneProjPerk(perk_id);
+					projPerkVO1.setProj_id(perk_id);
+					projPerkVO1.setPerk_intro(perk_intro);
+					projPerkVO1.setPerk_fund(perk_fund);
+					projPerkVO1.setPerk_limited(perk_limited);
+					projPerkVO1.setPerk_ship_date(perk_ship_date);
+					projPerkVO1.setPerk_ship_area(perk_ship_area);
+					projPerkVO1.setPerk_abbr_name(perk_abbr_name);
+					
+					
+					req.setAttribute("projPerkVO", projPerkVO1); // 含有輸入格式錯誤的projPerkVO物件,也存入req
 					RequestDispatcher failureView = req.getRequestDispatcher("/projPerk/update_perk_input.jsp");
 					failureView.forward(req, res);
 					return;
 				}
-				System.out.println("123");
+				System.out.println("fail");
 				/*************************** 2.開始修改資料 *****************************************/
 				ProjPerkService projPerkSvc = new ProjPerkService();
 				// 控制起驗證完拿到的碎片，new領班，交給領班去組合。
 				// 領班用自己的方法去組合將碎片放入一個ProjPerkVO物件，物件再交給工人去施工更新 的動作，然後領班會再回傳一個projPerkVO物件回來
 				projPerkVO = projPerkSvc.updateProjPerk( perk_pic, perk_intro, perk_fund, perk_limited, perk_ship_date,perk_ship_area,perk_abbr_name,perk_id);
-				System.out.println("456");
-				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
-				req.setAttribute("projPerkVO", projPerkVO); // 資料庫update成功後,正確的的projPerkVO物件,存入req
+				
+				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/		
+				ProjectService projectSvc = new ProjectService();
+				ProjectVO projectVO = projectSvc.getOneProject(proj_id);
+				req.setAttribute("projectVO", projectVO);
 				String url = "/projPerk/listAllPerkByFMem.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 //				res.sendRedirect("listAllPerkByFMem.jsp");
-				System.out.println("789");
+				System.out.println("update out");
 				/*************************** 其他可能的錯誤處理 *************************************/
-//			} catch (Exception e) {
-//				errorMsgs.add("修改資料失敗:" + e.getMessage());
-//				RequestDispatcher failureView = req.getRequestDispatcher("/projPerk/listAllPerkByFMem.jsp");
-//				failureView.forward(req, res);
-//				System.out.println("101112");
-//			}
+			} catch (Exception e) {
+				errorMsgs.add("修改資料失敗:" + e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/projPerk/listAllPerkByFMem.jsp");
+				failureView.forward(req, res);
+				System.out.println("101112");
+			}
 		}
 		
 		
@@ -242,9 +259,10 @@ public class ProjPerkServlet extends HttpServlet {
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
-			
+			System.out.println("getOnePerk_For_Update in");
 			try {
 				/***************************1.接收請求參數****************************************/
+				Integer proj_id = new Integer(req.getParameter("proj_id").trim());
 				Integer perk_id = new Integer(req.getParameter("perk_id"));
 				
 				/***************************2.開始查詢資料****************************************/
@@ -252,6 +270,9 @@ public class ProjPerkServlet extends HttpServlet {
 				ProjPerkVO projPerkVO = projPerkSvc.getOneProjPerk(perk_id);
 								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
+				ProjectService projectSvc = new ProjectService();
+				ProjectVO projectVO = projectSvc.getOneProject(proj_id);
+				req.setAttribute("projectVO", projectVO);
 				req.setAttribute("projPerkVO", projPerkVO);         // 資料庫取出的empVO物件,存入req
 				String url ="update_perk_input.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
@@ -259,6 +280,7 @@ public class ProjPerkServlet extends HttpServlet {
 
 				/***************************其他可能的錯誤處理**********************************/
 			} catch (Exception e) {
+				System.out.println("getOnePerk_For_Update error occured");
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("listAllPerkByFMem.jsp");
@@ -370,6 +392,10 @@ public class ProjPerkServlet extends HttpServlet {
 				projPerkVO = projSvc.addProjPerk(proj_id, perk_pic, perk_intro, perk_fund, perk_limited, perk_ship_date,perk_ship_area,perk_abbr_name);
 
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
+				ProjectService projectSvc = new ProjectService();
+				ProjectVO projectVO = projectSvc.getOneProject(proj_id);
+				req.setAttribute("projectVO", projectVO);
+				
 				String url = "/projPerk/listAllPerkByFMem.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
@@ -381,6 +407,22 @@ public class ProjPerkServlet extends HttpServlet {
 				failureView.forward(req, res);
 			}
 		}
+		
+		if ("insert_from_listAllPerkByFMem".equals(action)) {
+
+			Integer proj_id = new Integer(req.getParameter("proj_id").trim());
+			System.out.println(proj_id);
+			ProjectService projectSvc = new ProjectService();
+			ProjectVO projectVO = projectSvc.getOneProject(proj_id);
+			req.setAttribute("projectVO", projectVO);
+
+			String url = "/projPerk/addPerk.jsp";
+			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+			successView.forward(req, res);
+			System.out.println("insert_from_listAllPerkByFMem done");
+
+		}
+		
 		
 		
 
