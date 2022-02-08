@@ -7,6 +7,9 @@
 <%
 ProjPerkVO projPerkVO = (ProjPerkVO) request.getAttribute("projPerkVO"); //EmpServlet.java(Concroller), 存入req的empVO物件 
 %>
+<%
+	ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
+%>
 <!-- /* ProjectService projectSvc = new ProjectService(); -->
 <!-- ProjectVO projectVO = projectSvc.getOneProject(1001); */ -->
 <%-- <%
@@ -150,7 +153,7 @@ ProjPerkVO projPerkVO = projPerkSvc.getOneProjPerk(9);
       <div class="w-100 ph3 mb4 mb0">
       <!-- form開始 -->
         <FORM METHOD="post" ACTION="projPerk.do" name="form1" enctype="multipart/form-data">
-          
+           <input type="hidden" name="proj_id" value="${projectVO.proj_id}"> 
           <div class="flex mb5 f6 gutter3">
             <div class="w-30-ns w-100 fl ph3">
               <!-- <div class="cf">
@@ -173,7 +176,7 @@ ProjPerkVO projPerkVO = projPerkSvc.getOneProjPerk(9);
                 <%=projPerkVO.getPerk_pic()%>
                 ${projPerkVO.perk_pic}
                 
-                <input id="upPic" class="w-100 border-box mv3" accept="image/*" type="file" name="perk_pic" value="${projPerkVO.perk_pic}">
+                <input id="upPic" class="w-100 border-box mv3" accept="image/*" type="file" name="perk_pic" >
                 <script>
                   $("#upPic").change(function () {
                     //當檔案改變後，做一些事 

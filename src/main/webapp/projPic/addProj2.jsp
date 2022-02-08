@@ -21,13 +21,12 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 <%--   <script id="facebook-jssdk" src="<%=request.getContextPath()%>/projPic/addProj2_files/sdk(1).js"></script> --%>
 <%--   <script async="" src="<%=request.getContextPath()%>/projPic/addProj2_files/analytics.js"></script> --%>
 <!--   <!-- 這段jQuery一定要有 -->
--->
+
 <%--   <script src="<%=request.getContextPath()%>/projPic/addProj2_files/jquery-3.6.0.min.js"></script> --%>
 <!--   <!-- 這段jQuery一定要有 -->
--->
 
-<!--   <link rel="stylesheet" media="all" -->
-<%--     href="<%=request.getContextPath()%>/projPic/addProj2_files/zeczec-e9e0ba9825d4b970fff398209948a791b4d18185e43b929ef4ffa0e7e5346248.css"> --%>
+<link rel="stylesheet" media="all"
+   href="<%=request.getContextPath()%>/projPic/addProj2_files/zeczec-e9e0ba9825d4b970fff398209948a791b4d18185e43b929ef4ffa0e7e5346248.css"> 
 
 <!--   <script src="chrome-extension://jhffgcfmcckgmioipfnmbannkpncfipo/util.js"></script> -->
 <!--   <script src="chrome-extension://jhffgcfmcckgmioipfnmbannkpncfipo/pagejs.js"></script> -->
@@ -166,7 +165,7 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 	</div>
 	<div class="container"></div>
 
-	<form action="<%=request.getContextPath()%>/projPic/projPicInsert.do"
+	<form action="<%=request.getContextPath()%>/projPic/projPic.do"
 		enctype="multipart/form-data" method="post" name="form2">
 
 		<!--   <input type="hidden" name="action" value="insert">  -->
@@ -517,54 +516,58 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 		}
 	</script>
 
-	<!--   <script type="text/javascript"> -->
-	// //
-	<![CDATA[  <-- For SVG support
-//     if ('WebSocket' in window) {
-//       (function () {
-//         function refreshCSS() {
-//           var sheets = [].slice.call(document.getElementsByTagName("link"));
-//           var head = document.getElementsByTagName("head")[0];
-//           for (var i = 0; i < sheets.length; ++i) {
-//             var elem = sheets[i];
-//             var parent = elem.parentElement || head;
-//             parent.removeChild(elem);
-//             var rel = elem.rel;
-//             if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-//               var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-//               elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-//             }
-//             parent.appendChild(elem);
-//           }
-//         }
-//         var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-//         var address = protocol + window.location.host + window.location.pathname + '/ws';
-//         var socket = new WebSocket(address);
-//         socket.onmessage = function (msg) {
-//           if (msg.data == 'reload') window.location.reload();
-//           else if (msg.data == 'refreshcss') refreshCSS();
-//         };
-//         if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-//           console.log('Live reload enabled.');
-//           sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-//         }
-//       })();
-//     } else {
-//       console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-//     }
-//     // ]]>
-	<!--   </script> -->
-
-	<!--   <div id="draggable-live-region" aria-relevant="additions" aria-atomic="true" aria-live="assertive" role="log" -->
-	<!--     style="position: fixed; width: 1px; height: 1px; top: -1px; overflow: hidden;"></div> -->
-	<!--   <script type="text/javascript"> -->
-	// document.oncontextmenu = null; // document.onselectstart = null; //
-	document.ondragstart = null; // document.onmousedown = null; //
-	document.body.oncontextmenu = null; // document.body.onselectstart =
-	null; // document.body.ondragstart = null; // document.body.onmousedown
-	= null; // document.body.oncut = null; // document.body.oncopy = null;
-	// document.body.onpaste = null;
-	</script>
+  <script type="text/javascript">
+    // <![CDATA[  <-- For SVG support
+    if ('WebSocket' in window) {
+      (function () {
+        function refreshCSS() {
+          var sheets = [].slice.call(document.getElementsByTagName("link"));
+          var head = document.getElementsByTagName("head")[0];
+          for (var i = 0; i < sheets.length; ++i) {
+            var elem = sheets[i];
+            var parent = elem.parentElement || head;
+            parent.removeChild(elem);
+            var rel = elem.rel;
+            if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+              var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+              elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+            }
+            parent.appendChild(elem);
+          }
+        }
+        var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+        var address = protocol + window.location.host + window.location.pathname + '/ws';
+        var socket = new WebSocket(address);
+        socket.onmessage = function (msg) {
+          if (msg.data == 'reload') window.location.reload();
+          else if (msg.data == 'refreshcss') refreshCSS();
+        };
+        if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+          console.log('Live reload enabled.');
+          sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+        }
+      })();
+    } else {
+      console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+    }
+    // ]]>
+  </script>
+  </div>
+  <div id="draggable-live-region" aria-relevant="additions" aria-atomic="true" aria-live="assertive" role="log"
+    style="position: fixed; width: 1px; height: 1px; top: -1px; overflow: hidden;"></div>
+  <script type="text/javascript">
+    document.oncontextmenu = null;
+    document.onselectstart = null;
+    document.ondragstart = null;
+    document.onmousedown = null;
+    document.body.oncontextmenu = null;
+    document.body.onselectstart = null;
+    document.body.ondragstart = null;
+    document.body.onmousedown = null;
+    document.body.oncut = null;
+    document.body.oncopy = null;
+    document.body.onpaste = null;
+  </script>
 </body>
 
 </html>

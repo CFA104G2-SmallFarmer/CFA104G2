@@ -3,10 +3,7 @@
 <%@ page import="com.project.model.*"%>
 
 <%
-
-ProjectService projectSvc = new ProjectService();
-ProjectVO projectVO = projectSvc.getOneProject(1001);
-/* ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO"); //EmpServlet.java(Concroller), 存入req的empVO物件 */
+ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 %>
 
 <!DOCTYPE html>
@@ -21,11 +18,11 @@ ProjectVO projectVO = projectSvc.getOneProject(1001);
   <script id="facebook-jssdk" src="./上傳多張圖片頁面_files/sdk(1).js"></script>
   <script async="" src="./上傳多張圖片頁面_files/analytics.js"></script> -->
   <!-- 這段jQuery一定要有 -->
-  <script src="./addProjPic_css/jquery-3.6.0.min.js"></script>
+  <script src="<%=request.getContextPath()%>/projPic/addProjPic_css/jquery-3.6.0.min.js"></script>
   <!-- 這段jQuery一定要有 -->
 
   <link rel="stylesheet" media="all"
-    href="./addProjPic_css/zeczec-e9e0ba9825d4b970fff398209948a791b4d18185e43b929ef4ffa0e7e5346248.css">
+    href="<%=request.getContextPath()%>/projPic/addProjPic_css/zeczec-e9e0ba9825d4b970fff398209948a791b4d18185e43b929ef4ffa0e7e5346248.css">
 
 </head>
 
@@ -119,12 +116,12 @@ ProjectVO projectVO = projectSvc.getOneProject(1001);
 
 <!--   FORM 在這裡 -->
 
-    <FORM METHOD="post" ACTION="projPic.do" name="form1" enctype="multipart/form-data">
+    <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/projPic/projPic.do" name="form1" enctype="multipart/form-data">
       <div class="container ph3 ph0-l pv3 cf">
         <h2 style="display: inline-block;" class="flex mt0">上傳認養專案內容圖片</h2>
 
 
-<input type="hidden" name="proj_id"  value="<%=projectVO.getProj_id()%>">	
+		<input type="hidden" name="proj_id"  value="<%=projectVO.getProj_id()%>">	
         <input type="hidden" name="action" value="insert">
         <input style="float: right;display: inline;" type="submit" value="上傳" class="button green b--green b mb3">
 
@@ -137,7 +134,7 @@ ProjectVO projectVO = projectSvc.getOneProject(1001);
           <div class="w-25-l ph3 pv3 w-50-ns w-100">
             <div class="cf">
               <div class="for_all_img">
-                <img id="img1" class="w-100 mb3" src="./addProjPic_css/farmforUploadPic.png" alt="">
+                <img id="img1" class="w-100 mb3" src="<%=request.getContextPath()%>/projPic/addProjPic_css/farmforUploadPic.png" alt="">
               </div>
               <label class="b">顯示圖片</label>
               <input id="upPic1" onchange="pic1_change()" class="w-100 border-box mv3" accept="image/*" type="file"
@@ -172,7 +169,7 @@ ProjectVO projectVO = projectSvc.getOneProject(1001);
           <div class="w-25-l ph3 pv3 w-50-ns w-100">
             <div class="cf">
               <div class="for_all_img">
-                <img id="img2" class="w-100 mb3" src="./addProjPic_css/farmforUploadPic.png" alt="">
+                <img id="img2" class="w-100 mb3" src="<%=request.getContextPath()%>/projPic/addProjPic_css/farmforUploadPic.png" alt="">
               </div>
               <label class="b" for="2">顯示圖片</label>
               <input id="upPic2" onchange="pic2_change()" class="w-100 border-box mv3" accept="image/*" type="file"
@@ -207,7 +204,7 @@ ProjectVO projectVO = projectSvc.getOneProject(1001);
           <div class="w-25-l ph3 pv3 w-50-ns w-100">
             <div class="cf">
               <div class="for_all_img">
-                <img id="img3" class="w-100 mb3" src="./addProjPic_css/farmforUploadPic.png" alt="">
+                <img id="img3" class="w-100 mb3" src="<%=request.getContextPath()%>/projPic/addProjPic_css/farmforUploadPic.png" alt="">
               </div>
               <label class="b" for="2">顯示圖片</label>
               <input id="upPic3" onchange="pic3_change()" class="w-100 border-box mv3" accept="image/*" type="file"
@@ -242,7 +239,7 @@ ProjectVO projectVO = projectSvc.getOneProject(1001);
           <div class="w-25-l ph3 pv3 w-50-ns w-100">
             <div class="cf">
               <div class="for_all_img">
-                <img id="img4" class="w-100 mb3" src="./addProjPic_css/farmforUploadPic.png" alt="">
+                <img id="img4" class="w-100 mb3" src="<%=request.getContextPath()%>/projPic/addProjPic_css/farmforUploadPic.png" alt="">
               </div>
               <label class="b" for="2">顯示圖片</label>
               <input id="upPic4" onchange="pic4_change()" class="w-100 border-box mv3" accept="image/*" type="file"
@@ -279,7 +276,7 @@ ProjectVO projectVO = projectSvc.getOneProject(1001);
 
 
 
-        <input  onclick='$("#div_id").show()' value="繼續增加">
+        <button  onclick='$("#div_id").show()'  type="button">繼續增加</button>
   
 
         <div id="div_id" class="flex gutter3-l add">
@@ -288,7 +285,7 @@ ProjectVO projectVO = projectSvc.getOneProject(1001);
           <div class="w-25-l ph3 pv3 w-50-ns w-100">
             <div class="cf">
               <div class="for_all_img">
-                <img id="img5" class="w-100 mb3" src="./addProjPic_css/farmforUploadPic.png" alt="">
+                <img id="img5" class="w-100 mb3" src="<%=request.getContextPath()%>/projPic/addProjPic_css/farmforUploadPic.png" alt="">
               </div>
               <label class="b" for="2">顯示圖片</label>
               <input id="upPic5" onchange="pic5_change()" class="w-100 border-box mv3" accept="image/*" type="file"
@@ -323,7 +320,7 @@ ProjectVO projectVO = projectSvc.getOneProject(1001);
           <div class="w-25-l ph3 pv3 w-50-ns w-100">
             <div class="cf">
               <div class="for_all_img">
-                <img id="img6" class="w-100 mb3" src="./addProjPic_css/farmforUploadPic.png" alt="">
+                <img id="img6" class="w-100 mb3" src="<%=request.getContextPath()%>/projPic/addProjPic_css/farmforUploadPic.png" alt="">
               </div>
               <label class="b" for="2">顯示圖片</label>
               <input id="upPic6" onchange="pic6_change()" class="w-100 border-box mv3" accept="image/*" type="file"
@@ -358,7 +355,7 @@ ProjectVO projectVO = projectSvc.getOneProject(1001);
           <div class="w-25-l ph3 pv3 w-50-ns w-100">
             <div class="cf">
               <div class="for_all_img">
-                <img id="img7" class="w-100 mb3" src="./addProjPic_css/farmforUploadPic.png" alt="">
+                <img id="img7" class="w-100 mb3" src="<%=request.getContextPath()%>/projPic/addProjPic_css/farmforUploadPic.png" alt="">
               </div>
               <label class="b" for="2">顯示圖片</label>
               <input id="upPic7" onchange="pic7_change()" class="w-100 border-box mv3" accept="image/*" type="file"
@@ -393,7 +390,7 @@ ProjectVO projectVO = projectSvc.getOneProject(1001);
           <div class="w-25-l ph3 pv3 w-50-ns w-100">
             <div class="cf">
               <div class="for_all_img">
-                <img id="img8" class="w-100 mb3" src="./addProjPic_css/farmforUploadPic.png" alt="">
+                <img id="img8" class="w-100 mb3" src="<%=request.getContextPath()%>/projPic/addProjPic_css/farmforUploadPic.png" alt="">
               </div>
               <label class="b" for="2">顯示圖片</label>
               <input id="upPic8" onchange="pic8_change()" class="w-100 border-box mv3" accept="image/*" type="file"

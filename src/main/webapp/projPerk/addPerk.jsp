@@ -8,17 +8,15 @@
 
 <%
 ProjPerkVO projPerkVO = (ProjPerkVO) request.getAttribute("projPerkVO"); //EmpServlet.java(Concroller), 存入req的empVO物件 
-
-ProjectService projectSvc = new ProjectService();
-ProjectVO projectVO = projectSvc.getOneProject(1001);
+ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 %>
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
 
 <head>
   <!-- datepicker加入這段 -->
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="https:/resources/demos/style.css">
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
   
@@ -59,9 +57,9 @@ ProjectVO projectVO = projectSvc.getOneProject(1001);
 
   <link href="https://www.zeczec.com/assets/fav-69601a279a66f2e6e31e508900d4f057559d3affcae42730d045b17d281107a6.png"
     rel="shortcut icon" type="image/x-icon">
-  <link href="./addPerk_css/css" rel="stylesheet" type="text/css">
+  <link href="<%=request.getContextPath()%>/projPerk/addPerk_css/css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" media="all"
-    href="./addPerk_css/zeczec-e9e0ba9825d4b970fff398209948a791b4d18185e43b929ef4ffa0e7e5346248.css">
+    href="<%=request.getContextPath()%>/projPerk/addPerk_css/zeczec-e9e0ba9825d4b970fff398209948a791b4d18185e43b929ef4ffa0e7e5346248.css">
 </head>
 
 <body class="intent-mouse">
@@ -148,7 +146,7 @@ ProjectVO projectVO = projectSvc.getOneProject(1001);
     <div class="gutter3-l flex">
       <div class="w-100 ph3 mb4 mb0">
       <!-- form開始 -->
-        <FORM METHOD="post" ACTION="projPerk.do" name="form1" enctype="multipart/form-data">
+        <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/projPerk/projPerk.do" name="form1" enctype="multipart/form-data">
           
           <div class="flex mb5 f6 gutter3">
             <div class="w-30-ns w-100 fl ph3">
@@ -165,7 +163,7 @@ ProjectVO projectVO = projectSvc.getOneProject(1001);
 
               <div class="cf">
                 <div class="for_img1">
-                  <img id="img1" class="w-100 mb3" src="./addPerk_css/farmforUploadPic/farmforUploadPic.png" alt="">
+                  <img id="img1" class="w-100 mb3" src="<%=request.getContextPath()%>/projPerk/addPerk_css/farmforUploadPic/farmforUploadPic.png" alt="">
                 </div>
                 
                 <label class="b" for="user_avatar">顯示圖片</label>

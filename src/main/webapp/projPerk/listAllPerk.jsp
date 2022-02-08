@@ -740,7 +740,7 @@ translateY
 						%>
 						
 					<!-- @TODO -->
-					<c:forEach var="projPerkVO" items="${list}" begin="<%=0%>" end="<%=10%>">
+					<c:forEach var="projPerkVO" items="${list}" >
 						<div
 							class="w-100 w-50-ns flex-none-ns ws-normal mr3-ns pt3-ns w-30-l">
 							<a
