@@ -197,7 +197,7 @@ public class ProjPerkServlet extends HttpServlet {
 
 
 				ProjPerkVO projPerkVO = new ProjPerkVO();
-				projPerkVO.setProj_id(perk_id);
+				projPerkVO.setProj_id(proj_id);
 				projPerkVO.setPerk_pic(perk_pic);
 				projPerkVO.setPerk_intro(perk_intro);
 				projPerkVO.setPerk_fund(perk_fund);
@@ -205,22 +205,25 @@ public class ProjPerkServlet extends HttpServlet {
 				projPerkVO.setPerk_ship_date(perk_ship_date);
 				projPerkVO.setPerk_ship_area(perk_ship_area);
 				projPerkVO.setPerk_abbr_name(perk_abbr_name);
-			
+				
 
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					ProjPerkService projPerkSvc = new ProjPerkService();
 					ProjPerkVO projPerkVO1 = projPerkSvc.getOneProjPerk(perk_id);
-					projPerkVO1.setProj_id(perk_id);
+					projPerkVO1.setProj_id(proj_id);
 					projPerkVO1.setPerk_intro(perk_intro);
 					projPerkVO1.setPerk_fund(perk_fund);
 					projPerkVO1.setPerk_limited(perk_limited);
 					projPerkVO1.setPerk_ship_date(perk_ship_date);
 					projPerkVO1.setPerk_ship_area(perk_ship_area);
 					projPerkVO1.setPerk_abbr_name(perk_abbr_name);
-					
-					
 					req.setAttribute("projPerkVO", projPerkVO1); // 含有輸入格式錯誤的projPerkVO物件,也存入req
+					
+					ProjectService projectSvc = new ProjectService();
+					ProjectVO projectVO = projectSvc.getOneProject(proj_id);
+					req.setAttribute("projectVO", projectVO);
+					
 					RequestDispatcher failureView = req.getRequestDispatcher("/projPerk/update_perk_input.jsp");
 					failureView.forward(req, res);
 					return;
