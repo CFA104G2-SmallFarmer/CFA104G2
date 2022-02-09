@@ -748,7 +748,8 @@ translateY
 								href="https://www.zeczec.com/projects/ICHR/orders/back_project?selected_reward=72641#details"><img
 								width="100%" class="mb2 round-s"
 								src="${projPerkVO.perk_pic}" alt="${projPerkVO.perk_intro}">
-								<div class="black b f4">${projPerkVO.perk_intro}</div>
+							<div class="black b f4">NT$${projPerkVO.perk_fund}</div>
+<%-- 								<div class="black b f4">${projPerkVO.perk_intro}</div> --%>
 								<div class="f7 mv2">
 									<span class="f7 white ph2 bg-red b dib"> 剩餘 ${projPerkVO.perk_limited - projPerkVO.perk_total_count} 份 </span><span
 										class="black ph2 bg-near-white dib"> 已被贊助 <span
@@ -756,15 +757,17 @@ translateY
 									</span>
 								</div>
 								<div
-									class="black f6 mv-child-0 maxh5 maxh-none-ns overflow-auto">
+								class="black f6 mv-child-0 maxh5 maxh-none-ns overflow-auto">
 									<p>
-										【${projPerkVO.perk_abbr_name}】 <br>NT$${projPerkVO.perk_fund}
+										【${projPerkVO.perk_abbr_name}】 <br>${projPerkVO.perk_intro}
+										<%-- 【${projPerkVO.perk_abbr_name}】 <br>NT$${projPerkVO.perk_fund} --%>
 									</p>
 									<p>
 										
 									</p>
 								</div>
-								<div class="mt3 gray tc ph2 f7 ba">預計於${projPerkVO.perk_ship_date}實現</div> </a>
+								<div class="mt3 gray tc ph2 f7 ba">預計於${projPerkVO.perk_ship_date}實現</div> 
+								 </a>
 						</div>
 					</c:forEach>
 				</div>
