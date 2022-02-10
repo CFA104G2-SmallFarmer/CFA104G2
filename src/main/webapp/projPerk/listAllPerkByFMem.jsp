@@ -9,12 +9,21 @@
 
 
 <%
-	ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
-	Integer proj_id  = projectVO.getProj_id();
-	ProjPerkService projPerkSvc = new ProjPerkService();
-	List<ProjPerkVO> list = projPerkSvc.getAll(proj_id);
-    pageContext.setAttribute("list",list);
+ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
+ 	Integer proj_id  = projectVO.getProj_id();
+  	ProjPerkService projPerkSvc = new ProjPerkService();
+ 	List<ProjPerkVO> list = projPerkSvc.getAll(proj_id);
+     pageContext.setAttribute("list",list);
 %>
+
+<%-- <% --%>
+<!-- // ProjectService projectSvc = new ProjectService();  -->
+<!-- // ProjectVO projectVO=projectSvc.getOneProject(1001);   -->
+<!-- // /* 	Integer proj_id  = projectVO.getProj_id(); */ 	 -->
+<!-- //   ProjPerkService projPerkSvc = new ProjPerkService();   -->
+<!-- //  	List<ProjPerkVO> list = projPerkSvc.getAll(1001);   -->
+<!-- //     pageContext.setAttribute("list",list);  -->
+<%-- %> --%>
 
 <!-- 核心在1173 -->
 <!-- 704有圖要抽換 -->
@@ -52,8 +61,7 @@
 <link
 	href="https://www.zeczec.com/assets/fav-69601a279a66f2e6e31e508900d4f057559d3affcae42730d045b17d281107a6.png"
 	rel="shortcut icon" type="image/x-icon">
-<title>嘖嘖 | 𝗠𝗢𝗭𝗧𝗘𝗖𝗛® 冰光淨膚儀 | 能夠在家除毛！何必去美容？ | DIY居家除毛 |
-	冰感舒緩痛感</title>
+<title>我家門前有塊地 | ${projectVO.proj_name} |</title>
 <link href="<%=request.getContextPath()%>/projPerk/perkoverview_files/css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" media="all"
 	href="<%=request.getContextPath()%>/projPerk/perkoverview_files/zeczec-e9e0ba9825d4b970fff398209948a791b4d18185e43b929ef4ffa0e7e5346248.css">
@@ -66,21 +74,22 @@
     <div class="cf container">
       <div class="f6 mv2 flex items-center justify-between">
         <!-- <a clsas="dib order-0" href="https://www.zeczec.com/"> -->
-        <h1 class="gray text-mono hover-logo ma0">
-          <div class="dib logo-safari-fix"><svg class="logo v-mid" style="height: 28px; width: 28px; "
-              viewBox="0 0 138 138" xmlns="http://www.w3.org/2000/svg">
-              <title>zeczec</title>
-              <path
-                d="M69 0a69 69 0 1 0 69 69A69 69 0 0 0 69 0zm38.7 75.53l-1.55 7.18c-.23 1.18-.81 1.54-1.82 1.49l-40.48-1.9a1.72 1.72 0 0 1-1.43-2.2l2.3-11.94a2.05 2.05 0 0 0-1.87-2.23l-31-2.09c-1 0-1.57-.66-1.57-1.82l1.16-6.81c.22-1.15.8-1.43 1.84-1.37l41.94 2.32a1.94 1.94 0 0 1 1.72 2.13l-2.19 12.13a1.88 1.88 0 0 0 1.87 2.1l30.06 1.39c.93 0 1.24.53 1.03 1.62z">
-              </path>
-            </svg>
-          </div>
-        </h1>
+        
+        <img  style="width:160px" src="addPerk_css/farmer_management/farmer_management.png" alt="HTML tutorial" style="width:42px;height:42px;">
+<!--           <div class="dib logo-safari-fix"><svg class="logo v-mid" style="height: 28px; width: 28px; " -->
+<!--               viewBox="0 0 138 138" xmlns="http://www.w3.org/2000/svg"> -->
+<!--               <title>zeczec</title> -->
+<!--               <path -->
+<!--                 d="M69 0a69 69 0 1 0 69 69A69 69 0 0 0 69 0zm38.7 75.53l-1.55 7.18c-.23 1.18-.81 1.54-1.82 1.49l-40.48-1.9a1.72 1.72 0 0 1-1.43-2.2l2.3-11.94a2.05 2.05 0 0 0-1.87-2.23l-31-2.09c-1 0-1.57-.66-1.57-1.82l1.16-6.81c.22-1.15.8-1.43 1.84-1.37l41.94 2.32a1.94 1.94 0 0 1 1.72 2.13l-2.19 12.13a1.88 1.88 0 0 0 1.87 2.1l30.06 1.39c.93 0 1.24.53 1.03 1.62z"> -->
+<!--               </path> -->
+<!--             </svg> -->
+<!--           </div> -->
+        
 
         <div
           class="mt0-ns mt3 pt2 ph2 nb1 nl3 nr3 tc tl-ns pa0-ns mh0-ns items-center db-ns bt bn-ns b--near-white flex-auto order-last order-1-ns w-100 w-auto-ns inline-flex">
-          <span style="color: #717d34;font-size: 20px;font-weight: 300;"
-            class="mr3-ns hover-fg-blue dark-gray flex-auto flex-none-ns" href="">&nbsp;&nbsp;小農認養管理專區</span>
+<!--           <span style="color: #717d34;font-size: 20px;font-weight: 300;" -->
+<!--             class="mr3-ns hover-fg-blue dark-gray flex-auto flex-none-ns" href="">&nbsp;&nbsp;小農認養管理專區</span> -->
           <div class="divider dib-ns dn">&nbsp;</div>
           <a style="color: #717d34;font-size: 19px;" class="mr3-ns hover-fg-blue dark-gray flex-auto flex-none-ns"
             href="https://www.zeczec.com/categories">認養專案管理</a>
@@ -96,8 +105,8 @@
         </div>
         <div class="tr order-2">
           <a aria-label="站內訊息" class="near-black dib gray pa2 mr3 v-mid tooltip tooltip-b"
-            href="https://www.zeczec.com/inbox">
-            <i class="material-icons f5 v-mid">
+            href="#">
+            <i style="font-size: 24px"class="material-icons f5 v-mid">
               mail
             </i>
           </a>
@@ -165,35 +174,39 @@
 	
 	
 <!-- 	<div class="container"></div> -->
-<!--   <div class="container ph3 ph0-l pv3 cf"> -->
+<div class="container cf" style="height:27px">
 <!--     <h2 style="display: inline-block;" class="flex mt0">查看回饋方案</h2> -->
     
-    <FORM  METHOD="post" ACTION="<%=request.getContextPath()%>/projPerk/projPerk.do" name="form9">
-    <input style="float: right;display: inline;" type="submit" name="commit" value="新增"
+    
+          <FORM  METHOD="post" ACTION="<%=request.getContextPath()%>/projPerk/projPerk.do" name="form9">
+    <input style="margin-right:10px;float: right;display: inline;font-size: 16px;" type="submit" name="commit" value="回到編輯專案詳情"
+      class="button green b--green b mb3">
+      <input type="hidden" name="action" value="go_back_to_listOneProjByFMem">
+      <input type="hidden" name="proj_id" value="<%=projectVO.getProj_id()%>"> 
+     
+      </FORM>
+      <FORM  METHOD="post" ACTION="<%=request.getContextPath()%>/projPerk/projPerk.do" name="form9">
+    <input style="margin-right:10px;float: right;display: inline;font-size: 16px;" type="submit" name="commit" value="新增回饋方案"
       class="button green b--green b mb3">
       <input type="hidden" name="action" value="insert_from_listAllPerkByFMem">
-      <input type="hidden" name="proj_id" value="${projectVO.proj_id}"> 
+      <input type="hidden" name="proj_id" value="<%=projectVO.getProj_id()%>"> 
+     
       </FORM>
 
-<!--   </div> -->
+ </div> 
 	
-	<div class="container"></div>
+
 	<div class="container mv4">
 		<div class="gutter3-l flex">
 			<div class="w-100 ph3 mb4 mb0">
-				<div class="tc f7 br2 bg-near-white pa2 b tracked dn db-ns">
-					<i class="material-icons f6 v-mid">arrow_back</i> 左右捲動看看更多選項 <i
+			
+				<div style="background-color:#eff8ec;" class="tc f7 br2 bg-near-white pa2 b tracked dn db-ns">
+					<i class="material-icons f6 v-mid">arrow_back</i> 左右捲動٩(●˙▿˙●)۶ฺ <i
 						class="material-icons f6 v-mid">arrow_forward</i>
 				</div>
 				<div
 					class="flex flex-wrap-ns flex-wrap-reverse flex-nowrap-ns nowrap-ns overflow-auto-ns scrollbar-top">						
-<%-- 						<% --%>
-						
-<!-- // 						Integer proj_id  = projectVO.getProj_id(); -->
-<!-- // 						ProjPerkService projSvc = new ProjPerkService(); -->
-<!-- //  						List<ProjPerkVO> list = projSvc.getAll(proj_id); -->
-<!-- //  						pageContext.setAttribute("list", list); -->
-<%-- 						%> --%>
+
 						
 					<!-- @TODO -->
 					<c:forEach var="projPerkVO" items="${list}">
@@ -250,6 +263,7 @@
 						</div>
 					</c:forEach>
 				</div>
+				
 			</div>
 		</div>
 	</div>
@@ -290,29 +304,29 @@
             </script>
 	
 	
-	<script type="text/javascript">
-  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-  document,'script','//connect.facebook.net/en_US/fbevents.js');
+<!-- 	<script type="text/javascript"> -->
+<!-- //   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod? -->
+<!-- //   n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n; -->
+<!-- //   n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0; -->
+<!-- //   t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, -->
+<!-- //   document,'script','//connect.facebook.net/en_US/fbevents.js'); -->
+<!-- </script> -->
+<!-- 	<script type="text/javascript"> -->
+<!-- //   fbq('init', '465239610292033'); -->
+<!-- //   fbq('track', 'PageView'); -->
 </script>
-	<script type="text/javascript">
-  fbq('init', '465239610292033');
-  fbq('track', 'PageView');
-</script>
-	<noscript>
-		<img height='1' width='1' alt='' class='pixel'
-			style='visibility: hidden'
-			src='https://www.facebook.com/tr?id=465239610292033&amp;ev=PageView&amp;noscript=1&amp;cd[value]=0&amp;cd[currency]=TWD' />
-	</noscript>
-	<script defer=""
-		src="<%=request.getContextPath()%>/projPerk/perkoverview_files/v652eace1692a40cfa3763df669d7439c1639079717194"
-		integrity="sha512-Gi7xpJR8tSkrpF7aordPZQlW2DLtzUlZcumS8dMQjwDHEnw9I7ZLyiOj/6tZStRBGtGgN6ceN6cMH8z7etPGlw=="
-		data-cf-beacon="{&quot;rayId&quot;:&quot;6d631de9aa976a96&quot;,&quot;token&quot;:&quot;e0311a1880d54b88ab9f48eac7540091&quot;,&quot;version&quot;:&quot;2021.12.0&quot;,&quot;si&quot;:100}"
-		crossorigin="anonymous"></script>
-	<div id="draggable-live-region" aria-relevant="additions"
-		aria-atomic="true" aria-live="assertive" role="log"
-		style="position: fixed; width: 1px; height: 1px; top: -1px; overflow: hidden;"></div>
+<!-- 	<noscript> -->
+<!-- 		<img height='1' width='1' alt='' class='pixel' -->
+<!-- 			style='visibility: hidden' -->
+<!-- 			src='https://www.facebook.com/tr?id=465239610292033&amp;ev=PageView&amp;noscript=1&amp;cd[value]=0&amp;cd[currency]=TWD' /> -->
+<!-- 	</noscript> -->
+<!-- 	<script defer="" -->
+<%-- 		src="<%=request.getContextPath()%>/projPerk/perkoverview_files/v652eace1692a40cfa3763df669d7439c1639079717194" --%>
+<!-- 		integrity="sha512-Gi7xpJR8tSkrpF7aordPZQlW2DLtzUlZcumS8dMQjwDHEnw9I7ZLyiOj/6tZStRBGtGgN6ceN6cMH8z7etPGlw==" -->
+<!-- 		data-cf-beacon="{&quot;rayId&quot;:&quot;6d631de9aa976a96&quot;,&quot;token&quot;:&quot;e0311a1880d54b88ab9f48eac7540091&quot;,&quot;version&quot;:&quot;2021.12.0&quot;,&quot;si&quot;:100}" -->
+<!-- 		crossorigin="anonymous"></script> -->
+<!-- 	<div id="draggable-live-region" aria-relevant="additions" -->
+<!-- 		aria-atomic="true" aria-live="assertive" role="log" -->
+<!-- 		style="position: fixed; width: 1px; height: 1px; top: -1px; overflow: hidden;"></div> -->
 </body>
 </html>

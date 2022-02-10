@@ -121,6 +121,8 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
           <span class="order-0 flex-auto black w-100 w-auto-l" href="https://www.zeczec.com/account/cancelled">
             <i class="material-icons v-mid dark-gray f3">error</i>
             新增回饋方案
+             <span style="font-size:18px;color:gray;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;認養專案：<%=projectVO.getProj_name()%></span>
+          </span> 
           </span>
           <p><%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -196,7 +198,8 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
               
 
               <label class="b" for="perk_abbr_name">方案簡稱
-                <span style="color: rgb(98, 134, 113);">&nbsp;&nbsp;(客人看不到，只有小農自己知道，方便訂單管理)</span></label>
+<!--                 <span style="color: rgb(98, 134, 113);">&nbsp;&nbsp;(客人看不到，只有小農自己知道，方便訂單管理)</span> -->
+                </label>
               <input maxlength="5" class="w-100" placeholder="長度不得超過5個字" type="text" value="<%=(projPerkVO==null)? "" :projPerkVO.getPerk_abbr_name()%>"
                 name="perk_abbr_name" id="perk_abbr_name">
               <label class="b" for="perk_fund">方案金額</label>
