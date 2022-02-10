@@ -142,7 +142,8 @@ public class ProjPerkServlet extends HttpServlet {
 					perk_pic = new byte[in.available()];
 					in.read(perk_pic);
 					in.close();
-					}else {
+					}
+				else {
 				
 						errorMsgs.add("請上傳圖片");
 					}
@@ -427,6 +428,21 @@ public class ProjPerkServlet extends HttpServlet {
 			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 			successView.forward(req, res);
 			System.out.println("insert_from_listAllPerkByFMem done");
+
+		}
+		/*0210新增*/
+		if ("go_back_to_listOneProjByFMem".equals(action)) {
+
+			Integer proj_id = new Integer(req.getParameter("proj_id").trim());
+			System.out.println(proj_id);
+			ProjectService projectSvc = new ProjectService();
+			ProjectVO projectVO = projectSvc.getOneProject(proj_id);
+			req.setAttribute("projectVO", projectVO);
+
+			String url = "/project/listOneProjByFMem.jsp";
+			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+			successView.forward(req, res);
+			System.out.println("go_back_to_listOneProjByFMem done");
 
 		}
 		
