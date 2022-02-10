@@ -22,6 +22,25 @@
     pageContext.setAttribute("list",list);
 %>
 
+<!-- 領班 -->
+<jsp:useBean id="projectSvc" scope="page" class="com.project.model.ProjectService" />
+<jsp:useBean id="projPerkSvc" scope="page" class="com.projPerk.model.ProjPerkService" />
+<jsp:useBean id="memSvc" scope="page" class="com.mem.model.MemService" />
+
+<!-- 我的筆記 join -->
+<!-- project物件：(projectSvc.getOneProject(projPerkSvc.getOneProjPerk(projOrderVO.perk_id).proj_id)) -->
+
+<%--專案名稱： ${projectSvc.getOneProject(projPerkSvc.getOneProjPerk(projOrderVO.perk_id).proj_id).proj_name} --%>
+
+<%-- ${projPerkSvc.getOneProjPerk(projOrderVO.perk_id).proj_id} --%>
+
+<%-- 方案金額：${projPerkSvc.getOneProjPerk(projOrderVO.perk_id).perk_fund} --%>
+<%-- 方案簡稱：${projPerkSvc.getOneProjPerk(projOrderVO.perk_id).perk_abbr_name} --%>
+
+<%-- 會員姓名：${memSvc.getOneMem(projOrderVO.mem_id).mem_name} --%>
+
+
+
 
 
 <%-- <% --%>
@@ -304,8 +323,8 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
                             </div>
                             <div data-v-78a21620="" class="content">
                               <div data-v-78a21620="" class="text-overflow" style="">
-                                ${projOrderVO.mem_id}
-<%--                                 <%=projOrderVO.getMem_id()%> --%>
+                              ${memSvc.getOneMem(projOrderVO.mem_id).mem_name}
+
 
                               </div>
                             </div>
@@ -332,10 +351,10 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
                                         <div data-v-3eef092e="" class="ct-item-product-inner">
                                           <div data-v-3eef092e="" class="ct-item-product-info">
                                             <div style="color:#717d34;font-size: 16px;">
-                                            ${projectVO.proj_name}
-<%--                                             <%=projectVO.getProj_name()%> --%>
+                                            ${projectSvc.getOneProject(projPerkSvc.getOneProjPerk(projOrderVO.perk_id).proj_id).proj_name}
+
                                             </div><br>
-<%--                                              <span>地址：<%=projOrderVO.getOrder_zipcode()%> <%=projOrderVO.getOrder_addr()%></span> --%>
+
                                             <span>地址：${projOrderVO.order_zipcode} ${projOrderVO.order_addr}</span>
                                             <span>收件人：${projOrderVO.order_receiver}</span>
                                             <span>收件人電話:${projOrderVO.order_tel}</span>
@@ -348,7 +367,8 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
                               </div>
                               <div data-v-1274329c="" class=" item-total">
                                 <div data-v-1274329c="" class="price" style="font-size: 16px;padding-top: 4px;">
-<%--                                   $<%=projPerkVO.getPerk_fund()%> --%>
+										${projPerkSvc.getOneProjPerk(projOrderVO.perk_id).perk_fund}
+
                                 </div>
                                 <div data-v-1274329c="" class="payment-method" style="font-size: 16px;">
                                 
@@ -361,6 +381,7 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
                               </div>
                               <div data-v-1274329c="" class=" item-total">
                                 <div data-v-1274329c="" class="price">
+                                ${projPerkSvc.getOneProjPerk(projOrderVO.perk_id).perk_abbr_name}
 <%--                                   <%=projPerkVO.getPerk_abbr_name()%> --%>
                                 </div>
                                 <div data-v-1274329c="" class="payment-method">
@@ -400,13 +421,14 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
                                     取消時間：<br>${projOrderVO.order_cancel_time}
                                   </span>
                                   <br>原因：<br>
-                                  ${projOrderVO.order_cancel_reason}
+<%--                                   ${projOrderVO.order_cancel_reason} --%>
                                   
                                     <c:set var="y" scope="request" value="${projOrderVO.order_cancel_reason}"/>
                                                            
                                 ${cancel_reason_arr[y]}
-                                <script>console.log(${y})</script>
-                                <script>console.log(typeof(${y}))</script>
+                                
+<!--                                 <script>console.log(${y})</script> -->
+<!--                                 <script>console.log(typeof(${y}))</script> -->
                                 
 <%--                                    ${projOrderVO.order_cancel_reason}  --%>
                                   
