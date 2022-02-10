@@ -8,27 +8,20 @@
 
 
 <!-- 迭代在282 -->
-
+<%
+    String mem_id = request.getParameter("mem_id");
+	String membership= "buyer";
+%>
 <!-- 用傳list<某物件>的方式寫，讓servlet那邊先做完projOrderSvc.getAllMemOrder(mem_id) -->
 <%
 	List<ProjOrderVO> list = (List<ProjOrderVO>) request.getAttribute("projOrderVO");
     pageContext.setAttribute("list",list);
 %>
 
-<%
-    String mem_id = request.getParameter("mem_id");
-	String membership= "buyer";
-%>
-
-<!-- memVO -->
-
-<
-<%-- <% --%>
-<!-- //  ProjPerkService projPerkSvc = new ProjPerkService(); -->
-<!-- //     List<ProjPerkVO> list1 = projPerkSvc.getAll(projOrderVO.getPerk_id()); -->
-<!-- //   pageContext.setAttribute("list",list1);	 -->
-<%-- %> --%>
-
+<!-- 領班 -->
+<jsp:useBean id="projectSvc" scope="page" class="com.project.model.ProjectService" />
+<jsp:useBean id="projPerkSvc" scope="page" class="com.projPerk.model.ProjPerkService" />
+<jsp:useBean id="fMemSvc" scope="page" class="com.fMem.model.FMemService" />
 
 <%
 request.setAttribute("order_state_arr", new String[]{"待付款","待出貨","運送中","已完成","不成立<br>(未處理)","不成立<br>(已解決)"});
@@ -36,17 +29,17 @@ request.setAttribute("proj_pay_arr", new String[]{"信用卡","銀行轉帳"});
 request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買家取消","小農取消","專案募資失敗"});
 %>
 
+<!-- 我的筆記 join -->
+<!-- project物件：(projectSvc.getOneProject(projPerkSvc.getOneProjPerk(projOrderVO.perk_id).proj_id)) -->
 
-<%-- <% --%>
-<!-- // ProjOrderVO projOrderVO = (ProjOrderVO) request.getAttribute("projOrderVO"); //EmpServlet.java(Concroller), 存入req的empVO物件 -->
-<%-- %> --%>
-<%-- <% --%>
-<!-- // ProjPerkVO projPerkVO = (ProjPerkVO) request.getAttribute("projPerkVO"); //EmpServlet.java(Concroller), 存入req的empVO物件 -->
-<%-- %> --%>
+<%--專案名稱： ${projectSvc.getOneProject(projPerkSvc.getOneProjPerk(projOrderVO.perk_id).proj_id).proj_name} --%>
 
-<%-- <% --%>
-<!-- // ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO"); //EmpServlet.java(Concroller), 存入req的empVO物件 -->
-<%-- %> --%>
+<%-- ${projPerkSvc.getOneProjPerk(projOrderVO.perk_id).proj_id} --%>
+
+<%-- 方案金額：${projPerkSvc.getOneProjPerk(projOrderVO.perk_id).perk_fund} --%>
+<%-- 方案簡稱：${projPerkSvc.getOneProjPerk(projOrderVO.perk_id).perk_abbr_name} --%>
+<%--   農場名稱：${fMemSvc.getOnefMem(projectSvc.getOneProject(projPerkSvc.getOneProjPerk(projOrderVO.perk_id).proj_id).f_mem_id).f_mem_fname} --%>
+
 
 
 <!DOCTYPE html>
@@ -123,6 +116,8 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
 <%--                     <%=projOrderVO.getOrder_id()%> --%>
 <%--                        <%=projPerkVO.getPerk_abbr_name()%> --%>
 <%--                     <%=projectVO.getProj_name()%> --%>
+
+  
   <div class="app-container">
     <div class="page-content-wrapper">
       <div data-v-6de0ecc3="" class="portal-sale-root">
@@ -298,11 +293,11 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
                           <div data-v-78a21620="" data-v-1eaa89e5="" class="user-header user-view-item simple-nofollow">
                             <div data-v-78a21620="" class="">
                               <i class="material-icons" style="color: #aaba8b;">person</i>
-
+ 							${fMemSvc.getOnefMem(projectSvc.getOneProject(projPerkSvc.getOneProjPerk(projOrderVO.perk_id).proj_id).f_mem_id).f_mem_fname}
                             </div>
                             <div data-v-78a21620="" class="content">
                               <div data-v-78a21620="" class="text-overflow" style="">
-                                ${projOrderVO.mem_id}
+<%--                                ${fMemSvc.getOnefMem(projOrderVO.f_mem_id).f_mem_fname} --%>
 <%--                                 <%=projOrderVO.getMem_id()%> --%>
 
                               </div>
@@ -386,20 +381,41 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
                                     訂單時間：<br>${projOrderVO.order_time}
                                   </span>
                                   <br>
+                                  
+                                <c:choose>
+							    <c:when test="${empty projOrderVO.order_ship_time}">
+							    </c:when>
+							    <c:otherwise>
                                   <span>
                                     出貨時間：<br>${projOrderVO.order_ship_time}
                                   </span>
                                   <br>
-                                  <span>
+							    </c:otherwise>
+								</c:choose>   
+
+                                <c:choose>
+							    <c:when test="${empty projOrderVO.order_completion_time}">
+							    </c:when>
+							    <c:otherwise>
+							      <span>
                                     完成時間：<br>${projOrderVO.order_completion_time}
                                   </span>
                                   <br>
-                                  <span>
+							    </c:otherwise>
+								</c:choose>   
+                                                               
+							    <c:choose>
+							    <c:when test="${projOrderVO.order_cancel_reason ==0}">
+							    </c:when>
+							    <c:otherwise>
+							       <span>
                                     取消時間：<br>${projOrderVO.order_cancel_time}
                                   </span>
                                   <br>原因：<br>
-                                  ${projOrderVO.order_cancel_reason}
-                                  
+							       ${projOrderVO.order_cancel_reason}
+							    </c:otherwise>
+								</c:choose>
+                                                                   
                                     <c:set var="y" scope="request" value="${projOrderVO.order_cancel_reason}"/>
                                                            
                                 ${cancel_reason_arr[y]}
@@ -428,6 +444,9 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
                             
                               <c:choose>
     							<c:when test="${projOrderVO.order_state ==0}">
+    							<%--   會員不需確認收款按鈕 	--%>
+   							 <%-- 
+    							
     							<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/projOrder/projOrder.do">	
     							<input type="hidden" name="order_id"  value="${projOrderVO.order_id}">	
     							<input type="hidden" name="order_zipcode"  value="${projOrderVO.order_zipcode}">	
@@ -452,6 +471,8 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
                                     </span></button>
                                  </FORM>
                                      <br>
+                                 --%>
+                                     
                                 <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/projOrder/projOrder.do">	
                              <input type="hidden" name="order_id"  value="${projOrderVO.order_id}">	
     							<input type="hidden" name="order_zipcode"  value="${projOrderVO.order_zipcode}">	
@@ -475,7 +496,11 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
                                   </button> 
                                   </FORM>
    							 </c:when>
-   							 	<c:when test="${projOrderVO.order_state ==1}">
+   							 
+   							 
+   							 <c:when test="${projOrderVO.order_state ==1}">
+   							 <%--   會員不需已出貨按鈕 	--%>
+   							 <%--   
    							  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/projOrder/projOrder.do">	
                               <input type="hidden" name="order_id"  value="${projOrderVO.order_id}">	
     							<input type="hidden" name="order_zipcode"  value="${projOrderVO.order_zipcode}">	
@@ -499,8 +524,10 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
                                     </span>
                                   </button> 
                                   </FORM>
+                                  <br>
+                                  --%>
                                     
-                                    <br>
+                                    
                                     
                                     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/projOrder/projOrder.do">	
                                <input type="hidden" name="order_id"  value="${projOrderVO.order_id}">	
@@ -528,6 +555,7 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
                                   </FORM>
    							 </c:when>
     							<c:when test="${projOrderVO.order_state ==2}">
+    							<%-- 
     							    <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/projOrder/projOrder.do">	
                               <input type="hidden" name="order_id"  value="${projOrderVO.order_id}">	
     							<input type="hidden" name="order_zipcode"  value="${projOrderVO.order_zipcode}">	
@@ -543,19 +571,23 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
 			
 								<input type="hidden" name="mem_id" value="${param.mem_id}">
     							<input type="hidden" name="membership" value="buyer">
-			
+								--%>
 			
                                   <button data-v-4325ccd1="" 
-                                    class="shopee-button shopee-button--normal" type="submit"><span>
-                                      完成訂單
+                                    class="shopee-button shopee-button--normal" disabled><span>
+                                      物流運送中
                                     </span>
                                   </button> 
                                   </FORM>
    							 </c:when>
+   							 
    							   	<c:when test="${projOrderVO.order_state ==3}">
-    							
+    							<%--   已完成訂單不需按鈕 --%>	
    							 </c:when>
-   							  	<c:when test="${projOrderVO.order_state ==4}">
+
+		  	
+							<c:when test="${projOrderVO.order_state ==4}">
+    						<%-- 
     								  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/projOrder/projOrder.do">	
                             <input type="hidden" name="order_id"  value="${projOrderVO.order_id}">	
     							<input type="hidden" name="order_zipcode"  value="${projOrderVO.order_zipcode}">	
@@ -571,17 +603,16 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
 			
 								<input type="hidden" name="mem_id" value="${param.mem_id}">
     							<input type="hidden" name="membership" value="buyer">
-			
-			
-			
+							--%>
                                   <button data-v-4325ccd1="" 
-                                    class="shopee-button shopee-button--normal" type="submit"><span>
-                                      確認退款
+                                    class="shopee-button shopee-button--normal" disabled><span>
+                                      退款處理中
                                     </span>
                                   </button> 
                                   </FORM>
    							 </c:when>
-   						
+   						 							 
+   						 											
   						  	  <c:otherwise>
   						  
   						  

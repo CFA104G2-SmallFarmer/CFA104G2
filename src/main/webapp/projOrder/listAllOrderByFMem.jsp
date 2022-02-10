@@ -409,19 +409,41 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
                                     訂單時間：<br>${projOrderVO.order_time}
                                   </span>
                                   <br>
+                                  
+                                  
+                                <c:choose>
+							    <c:when test="${empty projOrderVO.order_ship_time}">
+							    </c:when>
+							    <c:otherwise>
                                   <span>
                                     出貨時間：<br>${projOrderVO.order_ship_time}
                                   </span>
                                   <br>
-                                  <span>
+							    </c:otherwise>
+								</c:choose>   
+
+                                <c:choose>
+							    <c:when test="${empty projOrderVO.order_completion_time}">
+							    </c:when>
+							    <c:otherwise>
+							      <span>
                                     完成時間：<br>${projOrderVO.order_completion_time}
                                   </span>
                                   <br>
-                                  <span>
+							    </c:otherwise>
+								</c:choose>   
+                                                               
+							    <c:choose>
+							    <c:when test="${projOrderVO.order_cancel_reason ==0}">
+							    </c:when>
+							    <c:otherwise>
+							       <span>
                                     取消時間：<br>${projOrderVO.order_cancel_time}
                                   </span>
                                   <br>原因：<br>
-<%--                                   ${projOrderVO.order_cancel_reason} --%>
+							       ${projOrderVO.order_cancel_reason}
+							    </c:otherwise>
+								</c:choose>
                                   
                                     <c:set var="y" scope="request" value="${projOrderVO.order_cancel_reason}"/>
                                                            
