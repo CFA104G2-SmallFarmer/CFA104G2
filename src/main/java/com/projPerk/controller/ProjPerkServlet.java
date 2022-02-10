@@ -450,7 +450,7 @@ public class ProjPerkServlet extends HttpServlet {
 		
 
 		if ("delete".equals(action)) { // 來自listAllEmp.jsp
-
+				System.out.println("delete in");
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
@@ -459,19 +459,26 @@ public class ProjPerkServlet extends HttpServlet {
 			try {
 				/*************************** 1.接收請求參數 ***************************************/
 				Integer perk_id = new Integer(req.getParameter("perk_id"));
+				System.out.println(perk_id);
+				Integer proj_id = new Integer(req.getParameter("proj_id").trim());
+				System.out.println(proj_id);
 				
 				
 				/*************************** 2.開始刪除資料 ***************************************/
 				ProjPerkService projPerkSvc = new ProjPerkService();
 				projPerkSvc.deleteProjPerk(perk_id);
+				ProjectService projectSvc = new ProjectService();
+				ProjectVO projectVO = projectSvc.getOneProject(proj_id);
+				req.setAttribute("projectVO", projectVO);
 
 				/*************************** 3.刪除完成,準備轉交(Send the Success view) ***********/
 				String url = "listAllPerkByFMem.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 				successView.forward(req, res);
-
+				System.out.println("delete out");
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
+				System.out.println("delete error");
 				errorMsgs.add("刪除資料失敗:" + e.getMessage());
 				RequestDispatcher failureView = req.getRequestDispatcher("listAllPerkByFMem.jsp");
 				failureView.forward(req, res);
