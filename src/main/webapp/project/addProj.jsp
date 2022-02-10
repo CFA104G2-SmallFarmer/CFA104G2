@@ -6,6 +6,11 @@
 ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 %>
 
+<jsp:useBean id="memSvc" scope="page" class="com.mem.model.MemService" />
+<jsp:useBean id="fMemSvc" scope="page" class="com.fMem.model.FMemService" />
+<%--   小農暱稱：${memSvc.getOneMem(fMemSvc.getOnefMem.mem_id).mem_nickname} --%>
+
+
 <!-- form185開始 -->
 
 <!DOCTYPE html>
@@ -230,7 +235,7 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
                 
                 <!-- 			Integer f_mem_id, -->
               <input type="hidden"  class="w-100" placeholder="小農編號" type="text" value="70000"
-                name="f_mem_id" id="f_mem_id" value="hiddenValue">小農編號70000，您好
+                name="f_mem_id" id="f_mem_id" value="hiddenValue">${memSvc.getOneMem(fMemSvc.getOnefMem(70000).mem_id).mem_nickname}，您好
                 
 				<!-- 			String proj_name, -->
               <label class="b" for="proj_name">認養專案名稱
@@ -258,7 +263,7 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 				
 				<!-- 			String proj_risk, --> 
               <label class="b" for="proj_risk">風險與變數</label>
-              <textarea placeholder="長度不得超過300個字" maxlength="300" class="w-100" name="proj_risk" id="proj_risk"
+              <textarea placeholder="長度不得超過300個字" maxlength="3000" class="w-100" name="proj_risk" id="proj_risk"
                 style="width: 250px; height: 250px;"></textarea>
                                 
                 <!-- 			String proj_video感覺不需要 -->
