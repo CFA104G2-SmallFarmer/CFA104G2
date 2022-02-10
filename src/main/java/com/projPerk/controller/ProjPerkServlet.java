@@ -304,7 +304,7 @@ public class ProjPerkServlet extends HttpServlet {
 			try {
 				/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
 				Integer proj_id = new Integer(req.getParameter("proj_id").trim());
-				
+				System.out.println("12111111");
 				String perk_abbr_name = req.getParameter("perk_abbr_name").trim();
 				if (perk_abbr_name == null || perk_abbr_name.trim().length() == 0) {
 					errorMsgs.add("方案簡稱請勿空白");
@@ -379,10 +379,15 @@ public class ProjPerkServlet extends HttpServlet {
 				projPerkVO.setPerk_ship_area(perk_ship_area);
 				projPerkVO.setPerk_abbr_name(perk_abbr_name);
 			
-
+				ProjectService projectSvc = new ProjectService();
+				ProjectVO projectVO1 = projectSvc.getOneProject(proj_id);
+				
+				
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("projPerkVO", projPerkVO); // 含有輸入格式錯誤的projPerkVO物件,也存入req
+					req.setAttribute("projectVO", projectVO1);// 含有輸入格式錯誤的projectVO物件,也存入req
+					
 					RequestDispatcher failureView = req.getRequestDispatcher("/projPerk/addPerk.jsp");
 					failureView.forward(req, res);
 					return;
@@ -395,9 +400,8 @@ public class ProjPerkServlet extends HttpServlet {
 				projPerkVO = projSvc.addProjPerk(proj_id, perk_pic, perk_intro, perk_fund, perk_limited, perk_ship_date,perk_ship_area,perk_abbr_name);
 
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-				ProjectService projectSvc = new ProjectService();
-				ProjectVO projectVO = projectSvc.getOneProject(proj_id);
-				req.setAttribute("projectVO", projectVO);
+				req.setAttribute("proPerkVO", projPerkVO);
+				req.setAttribute("projectVO", projectVO1);
 				
 				String url = "/projPerk/listAllPerkByFMem.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
