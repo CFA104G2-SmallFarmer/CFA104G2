@@ -43,7 +43,7 @@ public class MemServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/mem/listAllMem.jsp");
+							.getRequestDispatcher("/back-end/mem/listAllMem.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -57,7 +57,7 @@ public class MemServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/mem/listAllMem.jsp");
+							.getRequestDispatcher("/back-end/mem/listAllMem.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -71,14 +71,14 @@ public class MemServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/mem/listAllMem.jsp");
+							.getRequestDispatcher("/back-end/mem/listAllMem.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
 				
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("memVO", memVO); // 資料庫取出的memVO物件,存入req
-				String url = "/mem/listOneMem.jsp";
+				String url = "/back-end/mem/listOneMem.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneMem.jsp
 				successView.forward(req, res);
 
@@ -86,89 +86,89 @@ public class MemServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/mem/listAllMem.jsp");
+						.getRequestDispatcher("/back-end/mem/listAllMem.jsp");
 				failureView.forward(req, res);
 			}
 		}
 		
-		// 尚未使用到
-		if ("getOne_For_Update".equals(action)) { // 來自listAllEmp.jsp的請求
-
-			List<String> errorMsgs = new LinkedList<String>();
-			// Store this set in the request scope, in case we need to
-			// send the ErrorPage view.
-			req.setAttribute("errorMsgs", errorMsgs);
-			
-			try {
-				/***************************1.接收請求參數****************************************/
-				Integer mem_id = new Integer(req.getParameter("mem_id"));
-				
-				/***************************2.開始查詢資料****************************************/
-				MemService memSvc = new MemService();
-				MemVO memVO = memSvc.getOneMem(mem_id);
-								
-				/***************************3.查詢完成,準備轉交(Send the Success view)************/
-				req.setAttribute("memVO", memVO);         // 資料庫取出的memVO物件,存入req
-				String url = "/mem/update_mem_input.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_mem_input.jsp
-				successView.forward(req, res);
-
-				/***************************其他可能的錯誤處理**********************************/
-			} catch (Exception e) {
-				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
-				RequestDispatcher failureView = req
-						.getRequestDispatcher("/mem/listAllMem.jsp");
-				failureView.forward(req, res);
-			}
-		}
-		
-		
-		if ("updateAccState".equals(action)) { // 來自listAllMem.jsp的請求
-			
-			List<String> errorMsgs = new LinkedList<String>();
-			// Store this set in the request scope, in case we need to
-			// send the ErrorPage view.
-			req.setAttribute("errorMsgs", errorMsgs);
-		
-			try {
-				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/	
-				Integer mem_id = new Integer(req.getParameter("mem_id").trim());
-				
-				Integer acc_state = new Integer(req.getParameter("acc_state"));
-
-				
-				MemVO memVO = new MemVO();
-				memVO.setMem_id(mem_id);
-				memVO.setAcc_state(acc_state);
-
-				// Send the use back to the form, if there were errors
-				if (!errorMsgs.isEmpty()) {
-req.setAttribute("memVO", memVO); // 含有輸入格式錯誤的memVO物件,也存入req
-					RequestDispatcher failureView = req
-							.getRequestDispatcher("/mem/listAllMem.jsp");
-					failureView.forward(req, res);
-					return; //程式中斷
-				}
-				
-				/***************************2.開始修改資料*****************************************/
-				MemService memSvc = new MemService();
-				memVO = memSvc.updateMemAccState(mem_id, acc_state);
-				
-				/***************************3.修改完成,準備轉交(Send the Success view)*************/
-				req.setAttribute("memVO", memVO); // 資料庫update成功後,正確的的memVO物件,存入req
-				String url = "/mem/listAllMem.jsp";
-				//印出成功視窗尚未完成，導向位置尚未決定
-				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listAllMem.jsp
-				successView.forward(req, res);
-
-				/***************************其他可能的錯誤處理*************************************/
-			} catch (Exception e) {
-				errorMsgs.add("修改資料失敗:"+e.getMessage());
-				RequestDispatcher failureView = req
-						.getRequestDispatcher("/mem/listAllMem.jsp");
-				failureView.forward(req, res);
-			}
-		}
+//		// 尚未使用到
+//		if ("getOne_For_Update".equals(action)) { // 來自listAllEmp.jsp的請求
+//
+//			List<String> errorMsgs = new LinkedList<String>();
+//			// Store this set in the request scope, in case we need to
+//			// send the ErrorPage view.
+//			req.setAttribute("errorMsgs", errorMsgs);
+//			
+//			try {
+//				/***************************1.接收請求參數****************************************/
+//				Integer mem_id = new Integer(req.getParameter("mem_id"));
+//				
+//				/***************************2.開始查詢資料****************************************/
+//				MemService memSvc = new MemService();
+//				MemVO memVO = memSvc.getOneMem(mem_id);
+//								
+//				/***************************3.查詢完成,準備轉交(Send the Success view)************/
+//				req.setAttribute("memVO", memVO);         // 資料庫取出的memVO物件,存入req
+//				String url = "/mem/update_mem_input.jsp";
+//				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_mem_input.jsp
+//				successView.forward(req, res);
+//
+//				/***************************其他可能的錯誤處理**********************************/
+//			} catch (Exception e) {
+//				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
+//				RequestDispatcher failureView = req
+//						.getRequestDispatcher("/mem/listAllMem.jsp");
+//				failureView.forward(req, res);
+//			}
+//		}
+//		
+//		
+//		if ("updateAccState".equals(action)) { // 來自listAllMem.jsp的請求
+//			
+//			List<String> errorMsgs = new LinkedList<String>();
+//			// Store this set in the request scope, in case we need to
+//			// send the ErrorPage view.
+//			req.setAttribute("errorMsgs", errorMsgs);
+//		
+//			try {
+//				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/	
+//				Integer mem_id = new Integer(req.getParameter("mem_id").trim());
+//				
+//				Integer acc_state = new Integer(req.getParameter("acc_state"));
+//
+//				
+//				MemVO memVO = new MemVO();
+//				memVO.setMem_id(mem_id);
+//				memVO.setAcc_state(acc_state);
+//
+//				// Send the use back to the form, if there were errors
+//				if (!errorMsgs.isEmpty()) {
+//req.setAttribute("memVO", memVO); // 含有輸入格式錯誤的memVO物件,也存入req
+//					RequestDispatcher failureView = req
+//							.getRequestDispatcher("/mem/listAllMem.jsp");
+//					failureView.forward(req, res);
+//					return; //程式中斷
+//				}
+//				
+//				/***************************2.開始修改資料*****************************************/
+//				MemService memSvc = new MemService();
+//				memVO = memSvc.updateMemAccState(mem_id, acc_state);
+//				
+//				/***************************3.修改完成,準備轉交(Send the Success view)*************/
+//				req.setAttribute("memVO", memVO); // 資料庫update成功後,正確的的memVO物件,存入req
+//				String url = "/mem/listAllMem.jsp";
+//				//印出成功視窗尚未完成，導向位置尚未決定
+//				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listAllMem.jsp
+//				successView.forward(req, res);
+//
+//				/***************************其他可能的錯誤處理*************************************/
+//			} catch (Exception e) {
+//				errorMsgs.add("修改資料失敗:"+e.getMessage());
+//				RequestDispatcher failureView = req
+//						.getRequestDispatcher("/mem/listAllMem.jsp");
+//				failureView.forward(req, res);
+//			}
+//		}
 //
 //        if ("insert".equals(action)) { // 來自addEmp.jsp的請求  
 //			
