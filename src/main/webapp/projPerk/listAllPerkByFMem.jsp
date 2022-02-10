@@ -15,6 +15,11 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
  	List<ProjPerkVO> list = projPerkSvc.getAll(proj_id);
      pageContext.setAttribute("list",list);
 %>
+<jsp:useBean id="projectSvc" scope="page" class="com.project.model.ProjectService" />
+<jsp:useBean id="projPerkSvc1" scope="page" class="com.projPerk.model.ProjPerkService" />
+<jsp:useBean id="fMemSvc" scope="page" class="com.fMem.model.FMemService" />
+
+
 
 <%-- <% --%>
 <!-- // ProjectService projectSvc = new ProjectService();  -->
@@ -29,7 +34,7 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 <!-- 704有圖要抽換 -->
 
 <!DOCTYPE html>
-<!-- saved from url=(0056)https://www.zeczec.com/projects/ICHR/orders/back_project -->
+
 <html lang="zh-Hant-TW">
 <head
 	prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# zeczec-com: http://ogp.me/ns/fb/zeczec-com#">
@@ -74,8 +79,8 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
     <div class="cf container">
       <div class="f6 mv2 flex items-center justify-between">
         <!-- <a clsas="dib order-0" href="https://www.zeczec.com/"> -->
-        
-        <img  style="width:160px" src="addPerk_css/farmer_management/farmer_management.png" alt="HTML tutorial" style="width:42px;height:42px;">
+  
+        <img  style="width:160px" src="<%=request.getContextPath()%>/projPerk/addPerk_css/farmer_management/farmer_management.png" alt="HTML tutorial" style="width:42px;height:42px;">
 <!--           <div class="dib logo-safari-fix"><svg class="logo v-mid" style="height: 28px; width: 28px; " -->
 <!--               viewBox="0 0 138 138" xmlns="http://www.w3.org/2000/svg"> -->
 <!--               <title>zeczec</title> -->
@@ -146,16 +151,16 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 			<div class="w-100">
 				<div class="w5-l dib fl-l mr3-l w-100">
 					<div class="aspect-ratio-project-cover bg-near-white"
-						style="background-image: url(&#39;https://s3-ap-northeast-1.amazonaws.com/zeczec-prod/asset_431251_image_big.jpg?1643016084&#39;)"></div>
+						style="background-image: url(&#39;data:image/jpg;base64,${projectVO.base64Image}&#39;)"></div>
 				<!-- 圖片待抽換 -->
 				</div>
 				<div class="pv2 ph0-l ph3">					<a href="https://www.zeczec.com/projects/ICHR">
 						<h2 class="f5 mb0 dib mt1 f5 b">${projectVO.proj_name}</h2>
 					</a>
 					<div class="gray f7 mb3">
-						<span>提案人</span> <a class="b"
-							href="https://www.zeczec.com/users/MOZTECH">${projectVO.f_mem_id} </a><span
-							class="mh2">|</span>
+						<span>由</span> <a class="b"
+							href="https://www.zeczec.com/users/MOZTECH">${fMemSvc.getOnefMem(projectSvc.getOneProject(projectVO.proj_id).f_mem_id).f_mem_fname}</a><span
+							class="mh2">發起</span>
 					</div>
 					<span class="b">NT$${projectVO.proj_total_fund}</span> <span class="f7 dark-gray">
 						/ 目標 NT$${projectVO.proj_goal} </span>				</div>
