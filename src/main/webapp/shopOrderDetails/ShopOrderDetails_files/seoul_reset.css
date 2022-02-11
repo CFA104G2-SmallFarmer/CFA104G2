@@ -1,0 +1,109 @@
+
+/* html5 */
+*{ word-break: break-word; word-wrap: break-word;}
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+article, aside, canvas, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+table, caption, tbody, tfoot, thead, tr, th, td {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+}
+
+body {line-height:1;}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {   display:block;}
+nav ul {list-style:none;}
+blockquote, q { quotes:none;}
+blockquote:before, blockquote:after,
+q:before, q:after {content:'';content:none;}
+a { margin:0;padding:0;font-size:100%; vertical-align:baseline;background:transparent;}
+del {text-decoration: line-through;}
+abbr[title], dfn[title] { border-bottom:1px dotted; cursor:help;}
+table { border-collapse:collapse; border-spacing:0;}
+
+/*==【HTML5基本設定】==*/
+article,aside,details,figcaption,figure,footer,header,hgroup,nav,section{display:block;}
+audio,canvas,video{display:inline-block;*display:inline;*zoom:1;}
+audio:not([controls]){display:none;}[hidden]{display:none;}
+
+/*==【印刷樣式】==*/
+abbr[title]{border-bottom:1px dotted;}
+b,strong{ font-weight:normal;}
+blockquote{margin:1em 40px;}
+dfn{font-style:italic;}
+hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0;}
+ins{background:#ff9;color:#000;text-decoration:none;}
+mark{background:#ff9;color:#000;font-style:italic;font-weight:bold;}
+
+/*==【重新宣告固定寬度字體系列】==*/
+pre,code,kbd,samp{font-family:monospace,monospace;_font-family:'courier new',monospace;font-size:1em;}
+
+/*==【改善所有瀏覽器中預先格式化之文字的可讀性】==*/
+pre{white-space:pre;white-space:pre-wrap;word-wrap:break-word;}
+q{quotes:none;}
+q:before,q:after{content:"";content:none;}
+small{font-size:85%;}
+
+/*  reset */
+table {border-collapse: collapse;border-spacing: 0;}
+fieldset, img {border: 0;}
+address, caption, cite, code, dfn, em, strong, th, var { font-style: normal; font-weight: normal;}
+ol, ul {list-style: none;}
+caption {text-align: left;}
+h1, h2, h3, h4, h5, h6 {font-size: 100%;font-weight: normal;}
+/*h2 { font-family: Meiryo,"微軟正黑體","蘋果儷中黑","新細明體",Arial;}*/
+q:before, q:after {content: '';}
+abbr, acronym {border: 0;}
+pre {font-size: 1em;}
+a {outline: 0;  *blr: expression(this.onFocus=this.blur());}
+input, select {vertical-align:middle;}
+input, textarea, select {font-family: inherit;border: #ccc 1px solid;box-sizing:border-box;}
+.clearfix:after{content:"";display:table;clear:both;}
+.clearfix{*zoom:1;}
+section, article, aside, footer, header, nav {display:block;}
+
+/*==【修正 IE9 中未隱藏的溢位】==*/
+svg:not(:root){overflow:hidden;}
+
+/*==【移除 IE6/7/8/9 中的預設垂直捲軸、僅允許垂直調整大小】==*/
+textarea{overflow:auto;resize:vertical;}
+
+/*==【一致的方塊大小和外觀】==*/
+input[type="checkbox"],input[type="radio"]{box-sizing:border-box;margin: 0 2px;}
+input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;}
+input[type="search"]::-webkit-search-decoration{-webkit-appearance:none;}
+
+
+@media print{
+	*{background:transparent !important;color:black !important;text-shadow:none !important;filter:none !important;-ms-filter:none !important;} /* 黑色的列印速度更快:h5bp.com/s */
+	a,a:visited{text-decoration:underline;}
+	a[href]:after{content:" (" attr(href) ")";}
+	abbr[title]:after{content:" (" attr(title) ")";}
+	.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:"";}  /* 不要顯示影像的連結或 javascript/內部連結 */
+	pre,blockquote{border:1px solid #999;page-break-inside:avoid;}
+	thead{display:table-header-group;}
+	tr,img{page-break-inside:avoid;}
+	img{max-width:100% !important;}
+	@page{margin:0.5cm;}
+	p,h2,h3{orphans:3;widows:3;}
+	h2,h3{page-break-after:avoid;}
+}
