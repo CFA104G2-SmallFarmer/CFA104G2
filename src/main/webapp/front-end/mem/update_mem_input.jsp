@@ -654,6 +654,8 @@
     <div class="shopee__fo0dKsgoukkfcaik">
         <div class="shopee-modal-xbcA3dFx0Ck"></div>
     </div>
+	<jsp:include page="/footer/footer.jsp" flush="true"/>
+	<jsp:include page="/header/header.jsp" flush="true"/>
 
 
 
