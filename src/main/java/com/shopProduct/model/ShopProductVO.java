@@ -4,14 +4,16 @@ import java.sql.Date;
 
 public class ShopProductVO implements java.io.Serializable{
 	private Integer prod_id;
-	private Integer prod_type_id;
-	private String prod_name;
 	private Integer f_mem_id;
+	private String prod_name;
+	private Integer prod_type_id;
 	private Integer prod_status;
 	private Integer prod_price;
+	private String prod_unit;
 	private Integer prod_qty;
 	private String prod_intro;
 	private Date prod_reg_date;
+
 	
 	public Integer getProd_id() {
 		return prod_id;
@@ -19,12 +21,7 @@ public class ShopProductVO implements java.io.Serializable{
 	public void setProd_id(Integer prod_id) {
 		this.prod_id = prod_id;
 	}
-	public Integer getProd_Type_id() {
-		return prod_type_id;
-	}
-	public void setProd_Type_id(Integer prod_type_id) {
-		this.prod_type_id = prod_type_id;
-	}
+	
 	public String getProd_name() {
 		return prod_name;
 	}
@@ -66,6 +63,18 @@ public class ShopProductVO implements java.io.Serializable{
 	}
 	public void setProd_reg_date(Date prod_reg_date) {
 		this.prod_reg_date = prod_reg_date;
+	}
+	public String getProd_unit() {
+		return prod_unit;
+	}
+	public void setProd_unit(String prod_unit) {
+		this.prod_unit = prod_unit;
+	}
+	public Integer getProd_type_id() {
+		return prod_type_id;
+	}
+	public void setProd_type_id(Integer prod_type_id) {
+		this.prod_type_id = prod_type_id;
 	}
 
 }

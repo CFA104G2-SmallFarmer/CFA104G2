@@ -7,18 +7,18 @@ public class ShopProductJDBCDAO implements ShopProductDAO_interface {
 	String driver = "com.mysql.cj.jdbc.Driver";
 	String url = "jdbc:mysql://localhost:3306/CFA104G2?serverTimezone=Asia/Taipei";
 	String userid = "root";
-	String passwd = "1234";
+	String passwd = "password";
 
 	private static final String INSERT_STMT = 
-		"INSERT INTO  shop_product(prod_type_id,prod_name,f_mem_id,prod_status, prod_price,prod_qty,prod_intro,prod_reg_date) VALUES ( ?, ?, ?, ?, ?,?,?,?)";
+		"INSERT INTO  shop_product(prod_type_id,prod_name,f_mem_id,prod_status, prod_price,prod_qty,prod_intro,prod_reg_date,prod_unit) VALUES ( ?, ?, ?, ?, ?,?,?,?,?)";
 	private static final String GET_ALL_STMT = 
 		"SELECT * FROM shop_product ";
 	private static final String GET_ONE_STMT = 
-		"SELECT * FROM shop_product WHERE prod_id  = ?";
+		"SELECT * FROM shop_product WHERE prod_id = ?";
 	private static final String DELETE = 
 		"DELETE FROM shop_product WHERE prod_id = ?";
 	private static final String UPDATE = 
-		"UPDATE shop_product SET prod_type_id =? prod_name =?,f_mem_id =?,prod_status =?, prod_price =?,prod_qty =?,prod_intro =?,prod_reg_date =? WHERE prod_id=?";
+		"UPDATE shop_product SET prod_type_id = ? ,prod_name =?,f_mem_id =?,prod_status =?, prod_price =?,prod_unit =?,prod_qty =?,prod_reg_date =?,prod_intro =? WHERE prod_id=?";
 
 	
 
@@ -32,7 +32,7 @@ public class ShopProductJDBCDAO implements ShopProductDAO_interface {
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(INSERT_STMT);
 			
-			pstmt.setInt(1,shopProductVO.getProd_Type_id());
+			pstmt.setInt(1,shopProductVO.getProd_type_id());
 			pstmt.setString(2,shopProductVO.getProd_name());
 			pstmt.setInt(3,shopProductVO.getF_mem_id());
 			pstmt.setInt(4,shopProductVO.getProd_status());
@@ -40,7 +40,7 @@ public class ShopProductJDBCDAO implements ShopProductDAO_interface {
 			pstmt.setInt(6,shopProductVO.getProd_qty());
 			pstmt.setString(7,shopProductVO.getProd_intro());
 			pstmt.setDate(8,shopProductVO.getProd_reg_date());
-			
+			pstmt.setString(9,shopProductVO.getProd_unit());
 
 			pstmt.executeUpdate();
 		} catch (ClassNotFoundException e) {
@@ -80,15 +80,17 @@ public class ShopProductJDBCDAO implements ShopProductDAO_interface {
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(UPDATE);
 
-			pstmt.setInt(1,shopProductVO.getProd_Type_id());
+			pstmt.setInt(1,shopProductVO.getProd_type_id());
 			pstmt.setString(2,shopProductVO.getProd_name());
 			pstmt.setInt(3,shopProductVO.getF_mem_id());
 			pstmt.setInt(4,shopProductVO.getProd_status());
 			pstmt.setInt(5,shopProductVO.getProd_price());
-			pstmt.setInt(6,shopProductVO.getProd_qty());
-			pstmt.setString(7,shopProductVO.getProd_intro());
+			pstmt.setString(6,shopProductVO.getProd_unit());
+			pstmt.setInt(7,shopProductVO.getProd_qty());
 			pstmt.setDate(8,shopProductVO.getProd_reg_date());
-			pstmt.setInt(9,shopProductVO.getProd_id());
+			pstmt.setString(9,shopProductVO.getProd_intro());		
+			pstmt.setInt(10,shopProductVO.getProd_id());
+			
 			
 
 			pstmt.executeUpdate();
@@ -180,7 +182,7 @@ public class ShopProductJDBCDAO implements ShopProductDAO_interface {
 			while(rs.next()) {
 				shopProductVO = new ShopProductVO();
 				shopProductVO.setProd_id(rs.getInt("prod_id"));
-				shopProductVO.setProd_Type_id(rs.getInt("prod_type_id"));
+				shopProductVO.setProd_type_id(rs.getInt("prod_type_id"));
 				shopProductVO.setProd_name(rs.getString("prod_name"));
 				shopProductVO.setF_mem_id(rs.getInt("f_mem_id"));
 				shopProductVO.setProd_status(rs.getInt("prod_status"));
@@ -188,6 +190,7 @@ public class ShopProductJDBCDAO implements ShopProductDAO_interface {
 				shopProductVO.setProd_qty(rs.getInt("prod_qty"));
 				shopProductVO.setProd_intro(rs.getString("prod_intro"));
 				shopProductVO.setProd_reg_date(rs.getDate("prod_reg_date"));
+				shopProductVO.setProd_unit(rs.getString("prod_unit"));
 			}
 			
 		} catch (ClassNotFoundException e) {
@@ -245,7 +248,7 @@ public class ShopProductJDBCDAO implements ShopProductDAO_interface {
 			while(rs.next()) {
 				shopProductVO = new ShopProductVO();
 				shopProductVO.setProd_id(rs.getInt("prod_id"));
-				shopProductVO.setProd_Type_id(rs.getInt("prod_type_id"));
+				shopProductVO.setProd_type_id(rs.getInt("prod_type_id"));
 				shopProductVO.setProd_name(rs.getString("prod_name"));
 				shopProductVO.setF_mem_id(rs.getInt("f_mem_id"));
 				shopProductVO.setProd_status(rs.getInt("prod_status"));
@@ -253,6 +256,7 @@ public class ShopProductJDBCDAO implements ShopProductDAO_interface {
 				shopProductVO.setProd_qty(rs.getInt("prod_qty"));
 				shopProductVO.setProd_intro(rs.getString("prod_intro"));
 				shopProductVO.setProd_reg_date(rs.getDate("prod_reg_date"));
+				shopProductVO.setProd_unit(rs.getString("prod_unit"));
 				
 				list.add(shopProductVO);
 			}

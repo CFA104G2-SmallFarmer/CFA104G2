@@ -38,7 +38,7 @@ public class ShopProduct_test {
 		// 修改
 		ShopProductVO provo2 = new ShopProductVO();
 	
-		provo2.setProd_Type_id(1);
+		provo2.setProd_type_id(1);
 		provo2.setProd_name("柿子");
 		provo2.setF_mem_id(70003);
 		provo2.setProd_status(1);
@@ -72,7 +72,7 @@ public class ShopProduct_test {
 		List<ShopProductVO> list = prodao.getAll();
 		for (ShopProductVO type : list) {
 			System.out.print(type.getProd_id() + ",");
-			System.out.print(type.getProd_Type_id() + ",");
+			System.out.print(type.getProd_type_id() + ",");
 			System.out.print(type.getProd_name() + ",");
 			System.out.print(type.getF_mem_id() + ",");
 			System.out.print(type.getProd_status() + ",");
