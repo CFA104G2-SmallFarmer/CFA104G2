@@ -115,7 +115,7 @@ public class ProjOrderServlet extends HttpServlet{
 		
 		
 		/***<<給小農用的>>**/
-		if ("getOneByFMem".equals(action)) { // 來自select_page.jsp的請求
+		if ("getOneByFmem".equals(action)) { // 來自select_page.jsp的請求
 
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
@@ -131,7 +131,7 @@ public class ProjOrderServlet extends HttpServlet{
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("searchOrderByFMem.jsp");///***我還沒改
+							.getRequestDispatcher("searchOrderByFmem.jsp");///***我還沒改
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -145,7 +145,7 @@ public class ProjOrderServlet extends HttpServlet{
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("searchOrderByFMem.jsp");///***我還沒改
+							.getRequestDispatcher("searchOrderByFmem.jsp");///***我還沒改
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -160,7 +160,7 @@ public class ProjOrderServlet extends HttpServlet{
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("searchOrderByFMem.jsp");///***我還沒改
+							.getRequestDispatcher("searchOrderByFmem.jsp");///***我還沒改
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -182,7 +182,7 @@ public class ProjOrderServlet extends HttpServlet{
 				req.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買家取消","小農取消","專案募資失敗"});
 				/*****我增加的部分end******/
 				
-				String url = "listOneOrderByFMem.jsp";///***我還沒改
+				String url = "listOneOrderByFmem.jsp";///***我還沒改
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
 
@@ -190,7 +190,7 @@ public class ProjOrderServlet extends HttpServlet{
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("searchOrderByFMem.jsp");///***我還沒改
+						.getRequestDispatcher("searchOrderByFmem.jsp");///***我還沒改
 				failureView.forward(req, res);
 			}
 		}
@@ -281,7 +281,7 @@ public class ProjOrderServlet extends HttpServlet{
 		
 		
 		/***<<給小農用的>>**/
-		if ("getAllByFMem".equals(action)) {
+		if ("getAllByFmem".equals(action)) {
 //			System.out.println("2");/////////////////
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
@@ -299,7 +299,7 @@ public class ProjOrderServlet extends HttpServlet{
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("listAllOrderByFMem.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("listAllOrderByFmem.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -312,7 +312,7 @@ public class ProjOrderServlet extends HttpServlet{
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("listAllOrderByFMem.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("listAllOrderByFmem.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -332,7 +332,7 @@ public class ProjOrderServlet extends HttpServlet{
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("listAllOrderByFMem.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("listAllOrderByFmem.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -340,16 +340,16 @@ public class ProjOrderServlet extends HttpServlet{
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("projOrderVO", projOrderVO); // 資料庫取出的projPerkVO物件,存入req
 			
-				String url = "listAllOrderByFMem.jsp";
+				String url = "listAllOrderByFmem.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 perkoverview.jsp
 				successView.forward(req, res);
-				System.out.println("成功getAllByFMem");
+				System.out.println("成功getAllByFmem");
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 //				System.out.println("error in final");
 				errorMsgs.add("無法取得資料:" + e.getMessage());
 
-				RequestDispatcher failureView = req.getRequestDispatcher("listAllOrderByFMem.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("listAllOrderByFmem.jsp");
 				failureView.forward(req, res);
 				
 //				System.out.println("error in final");
@@ -472,7 +472,7 @@ public class ProjOrderServlet extends HttpServlet{
 				req.setAttribute("projOrderVO", projOrderVO2); // 資料庫update成功後,正確的的empVO物件,存入req	
 				
 				
-//0204測試按按鈕完，再回到listOne頁面，依舊拿不到物件，決定轉跳回searchOrderByFMem.jsp頁面
+//0204測試按按鈕完，再回到listOne頁面，依舊拿不到物件，決定轉跳回searchOrderByFmem.jsp頁面
 //				/*****我增加的部分start*****為了拿到專案名稱*/
 //				ProjPerkService projPerkSvc = new ProjPerkService();
 //				ProjPerkVO projPerkVO = projPerkSvc.getOneProjPerk(projOrderVO2.getPerk_id());
@@ -489,14 +489,14 @@ public class ProjOrderServlet extends HttpServlet{
 				
 			
 				
-				String url = "searchOrderByFMem.jsp";
+				String url = "searchOrderByFmem.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 				/***************************其他可能的錯誤處理*************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("searchOrderByFMem.jsp");
+						.getRequestDispatcher("searchOrderByFmem.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -576,14 +576,14 @@ public class ProjOrderServlet extends HttpServlet{
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("projOrderVO", projOrderVO2); // 資料庫update成功後,正確的的empVO物件,存入req	
 				
-				String url = "searchOrderByFMem.jsp";
+				String url = "searchOrderByFmem.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 				/***************************其他可能的錯誤處理*************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("searchOrderByFMem.jsp");
+						.getRequestDispatcher("searchOrderByFmem.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -662,14 +662,14 @@ public class ProjOrderServlet extends HttpServlet{
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("projOrderVO", projOrderVO2); // 資料庫update成功後,正確的的empVO物件,存入req	
 				
-				String url = "searchOrderByFMem.jsp";
+				String url = "searchOrderByFmem.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 				/***************************其他可能的錯誤處理*************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("searchOrderByFMem.jsp");
+						.getRequestDispatcher("searchOrderByFmem.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -748,14 +748,14 @@ public class ProjOrderServlet extends HttpServlet{
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("projOrderVO", projOrderVO2); // 資料庫update成功後,正確的的empVO物件,存入req	
 				
-				String url = "searchOrderByFMem.jsp";
+				String url = "searchOrderByFmem.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 				/***************************其他可能的錯誤處理*************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("searchOrderByFMem.jsp");
+						.getRequestDispatcher("searchOrderByFmem.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -838,19 +838,19 @@ public class ProjOrderServlet extends HttpServlet{
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("projOrderVO", projOrderVO2); // 資料庫update成功後,正確的的empVO物件,存入req	
 				
-				String url = "searchOrderByFMem.jsp";
+				String url = "searchOrderByFmem.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 				/***************************其他可能的錯誤處理*************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("searchOrderByFMem.jsp");
+						.getRequestDispatcher("searchOrderByFmem.jsp");
 				failureView.forward(req, res);
 			}
 		}
 		/*************我增加的部分，按按鈕改變訂單狀態變成5：不成立(已解決)，END  *****************/
-/*=== Fmem ================ＥＮＤ=====查詢區專用按紐==，按完會回到searchOrderByFMem.jsp查詢頁面=============================*/
+/*=== Fmem ================ＥＮＤ=====查詢區專用按紐==，按完會回到searchOrderByFmem.jsp查詢頁面=============================*/
 		
 		
 		
@@ -967,7 +967,7 @@ public class ProjOrderServlet extends HttpServlet{
 				
 				if (membership.equals("seller")) {
 					req.setAttribute("f_mem_id", f_mem_id);
-					url = "listAllOrderByFMem.jsp";	
+					url = "listAllOrderByFmem.jsp";	
 					System.out.println(f_mem_id);
 				}else if(membership.equals("buyer")) {
 					req.setAttribute("mem_id", mem_id);
@@ -977,7 +977,7 @@ public class ProjOrderServlet extends HttpServlet{
 				req.setAttribute("membership", membership);
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
-//				res.sendRedirect("listAllOrderByFMem.jsp");
+//				res.sendRedirect("listAllOrderByFmem.jsp");
 				/***************************其他可能的錯誤處理*************************************/
 			} catch (Exception e) {
 				System.out.println("error4");
@@ -1093,7 +1093,7 @@ public class ProjOrderServlet extends HttpServlet{
 				
 				if (membership.equals("seller")) {
 					req.setAttribute("f_mem_id", f_mem_id);
-					url = "listAllOrderByFMem.jsp";	
+					url = "listAllOrderByFmem.jsp";	
 					System.out.println(f_mem_id);
 				}else if(membership.equals("buyer")) {
 					req.setAttribute("mem_id", mem_id);
@@ -1103,13 +1103,13 @@ public class ProjOrderServlet extends HttpServlet{
 				req.setAttribute("membership", membership);
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
-//				res.sendRedirect("listAllOrderByFMem.jsp");
+//				res.sendRedirect("listAllOrderByFmem.jsp");
 				/***************************其他可能的錯誤處理*************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:"+e.getMessage());
 				e.printStackTrace();
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("listAllOrderByFMem.jsp");
+						.getRequestDispatcher("listAllOrderByFmem.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -1217,7 +1217,7 @@ public class ProjOrderServlet extends HttpServlet{
 				
 				if (membership.equals("seller")) {
 					req.setAttribute("f_mem_id", f_mem_id);
-					url = "listAllOrderByFMem.jsp";	
+					url = "listAllOrderByFmem.jsp";	
 					System.out.println(f_mem_id);
 				}else if(membership.equals("buyer")) {
 					req.setAttribute("mem_id", mem_id);
@@ -1227,13 +1227,13 @@ public class ProjOrderServlet extends HttpServlet{
 				req.setAttribute("membership", membership);
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
-//				res.sendRedirect("listAllOrderByFMem.jsp");
+//				res.sendRedirect("listAllOrderByFmem.jsp");
 				/***************************其他可能的錯誤處理*************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:"+e.getMessage());
 				e.printStackTrace();
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("listAllOrderByFMem.jsp");
+						.getRequestDispatcher("listAllOrderByFmem.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -1341,7 +1341,7 @@ public class ProjOrderServlet extends HttpServlet{
 				
 				if (membership.equals("seller")) {
 					req.setAttribute("f_mem_id", f_mem_id);
-					url = "listAllOrderByFMem.jsp";	
+					url = "listAllOrderByFmem.jsp";	
 					System.out.println(f_mem_id);
 				}else if(membership.equals("buyer")) {
 					req.setAttribute("mem_id", mem_id);
@@ -1351,13 +1351,13 @@ public class ProjOrderServlet extends HttpServlet{
 				req.setAttribute("membership", membership);
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
-//				res.sendRedirect("listAllOrderByFMem.jsp");
+//				res.sendRedirect("listAllOrderByFmem.jsp");
 				/***************************其他可能的錯誤處理*************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:"+e.getMessage());
 				e.printStackTrace();
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("listAllOrderByFMem.jsp");
+						.getRequestDispatcher("listAllOrderByFmem.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -1469,7 +1469,7 @@ public class ProjOrderServlet extends HttpServlet{
 				
 				if (membership.equals("seller")) {
 					req.setAttribute("f_mem_id", f_mem_id);
-					url = "listAllOrderByFMem.jsp";	
+					url = "listAllOrderByFmem.jsp";	
 					System.out.println(f_mem_id);
 				}else if(membership.equals("buyer")) {
 					req.setAttribute("mem_id", mem_id);
@@ -1479,13 +1479,13 @@ public class ProjOrderServlet extends HttpServlet{
 				req.setAttribute("membership", membership);
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
-//				res.sendRedirect("listAllOrderByFMem.jsp");
+//				res.sendRedirect("listAllOrderByFmem.jsp");
 				/***************************其他可能的錯誤處理*************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:"+e.getMessage());
 				e.printStackTrace();
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("listAllOrderByFMem.jsp");
+						.getRequestDispatcher("listAllOrderByFmem.jsp");
 				failureView.forward(req, res);
 			}
 		}
