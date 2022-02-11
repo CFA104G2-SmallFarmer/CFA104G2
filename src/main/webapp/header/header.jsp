@@ -1,11 +1,12 @@
+<%@page import="javax.naming.Context"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <!-- saved from url=(0064)http://127.0.0.1:5500/%E5%89%8D%E5%8F%B0%E9%A6%96%E9%A0%812.html -->
 <html lang="zh-tw" class="no-js fontawesome-i2svg-active fontawesome-i2svg-complete arwf-inactive"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <script async="" src="./css/8frlty15ix"></script><script async="" src="./js/clarity.js"></script><script async="" src="./css/8frlty15ix"></script><script async="" src="./js/gtm.js"></script><script async="" src="./js/analytics.js"></script><script defer="" src="./js/all.js"></script>
-  
+  <script async="" src="<%=request.getContextPath()%>/header/header_files/8frlty15ix"></script><script async="" src="<%=request.getContextPath()%>/header/header_files/clarity.js"></script><script async="" src="<%=request.getContextPath()%>/header/header_files/8frlty15ix"></script><script async="" src="<%=request.getContextPath()%>/header/header_files/gtm.js"></script><script async="" src="<%=request.getContextPath()%>/header/header_files/analytics.js"></script><script defer="" src="<%=request.getContextPath()%>/header/header_files/all.js"></script>
+  <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script> 
   <meta name="google-site-verification" content="jTLy2uztFyeCd-TzuYYqOIOkRNTOdiikG5fC8Eacm6I">
   <meta name="google-site-verification" content="B2cWaUCcewU8njTlgb7JZb0nC4RHQBPnV4f5opNFJh4">
 
@@ -40,27 +41,22 @@
 
 
 
-
   <link rel="icon" href="favicon.ico">
   <link rel="stylesheet"
     href=" https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css ">
   <link rel="stylesheet"
     href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
 
-  <link rel="stylesheet" href="./css/style.css">
-  <link rel="stylesheet" href="./css/header.css">
+  <link rel="stylesheet" href="<%=request.getContextPath()%>/header/header_files/style.css">
+  <link rel="stylesheet" href="<%=request.getContextPath()%>/header/header_files/header.css">
 
 
 
 
 
-  <link rel="stylesheet" href="./css/index.css">
+  <link rel="stylesheet" href="<%=request.getContextPath()%>/header/header_files/index.css">
 
-  <script async="" src="./js/clarity(1).js"></script>
-  <script async="" src="./css/8frlty15ix(1)"></script>
-  <script async="" src="./js/gtm(1).js"></script>
-  <script async="" src="./js/analytics(1).js"></script>
-  <script type="text/javascript" src="./js/1473064767308.JS"></script>
+  <script type="text/javascript" src="<%=request.getContextPath()%>/header/header_files/1473064767308.JS"></script>
 
 
   <script>
@@ -100,6 +96,82 @@
       f.parentNode.insertBefore(j, f);
     })(window, document, 'script', 'dataLayer', 'GTM-P3M896W');
   </script>
+  
+<!-- 我新增的 -->
+	<script>
+		$(document).ready(function() {
+			$("div.flip1").click(function() {
+				$("div.toggle1").slideToggle("slow");
+			});
+		});
+		
+		$(document).ready(function() {
+			$("div.flip2").click(function() {
+				$("div.toggle2").slideToggle("slow");
+			});
+		});
+		
+		$(document).ready(function() {
+			$("div.flip3").click(function() {
+				$("div.toggle3").slideToggle("slow");
+			});
+		});
+		
+		$(document).ready(function() {
+			$("div.flip4").click(function() {
+				$("div.toggle4").slideToggle("slow");
+			});
+		});
+		
+		$(document).ready(function() {
+			$("div.toggle1").mouseleave(function() {
+				$("div.toggle1").slideToggle(10);
+			});
+		});
+		
+		$(document).ready(function() {
+			$("div.toggle2").mouseleave(function() {
+				$("div.toggle2").slideToggle(10);
+			});
+		});
+		
+		$(document).ready(function() {
+			$("div.toggle3").mouseleave(function() {
+				$("div.toggle3").slideToggle(10);
+			});
+		});
+		
+		$(document).ready(function() {
+			$("div.toggle4").mouseleave(function() {
+				$("div.toggle4").slideToggle(10);
+			});
+		});
+		
+		$(document).ready(function() {
+			$(".flip2,.flip3,.flip4").mouseenter(function() {
+				$("div.toggle1").hide(10);
+			});
+		});
+		
+		$(document).ready(function() {
+			$(".flip1,.flip3,.flip4").mouseenter(function() {
+				$("div.toggle2").hide(10);
+			});
+		});
+		
+		$(document).ready(function() {
+			$(".flip1,.flip2,.flip4").mouseenter(function() {
+				$("div.toggle3").hide(10);
+			});
+		});
+		
+		$(document).ready(function() {
+			$(".flip1,.flip2,.flip3").mouseenter(function() {
+				$("div.toggle4").hide(10);
+			});
+		});
+
+		</script>
 
   <script src="chrome-extension://jhffgcfmcckgmioipfnmbannkpncfipo/util.js"></script>
   <script src="chrome-extension://jhffgcfmcckgmioipfnmbannkpncfipo/pagejs.js"></script>
@@ -126,7 +198,7 @@
       </section>
 
 
-      <div class="logo"><a href="https://www.buydirectlyfromfarmers.tw/"><img src="./images/透明LOGO有字有框.png"></a></div>
+      <div class="logo"><a href="https://www.buydirectlyfromfarmers.tw/"><img src="<%=request.getContextPath()%>/header/header_files/透明LOGO有字有框.png"></a></div>
 
 
 
@@ -138,7 +210,7 @@
           <ul>
 
 
-            <li class="m-logo"><a href="https://www.buydirectlyfromfarmers.tw/"><img src="./images/透明LOGO有字有框.png"></a>
+            <li class="m-logo"><a href="https://www.buydirectlyfromfarmers.tw/"><img src="<%=request.getContextPath()%>/header/images/透明LOGO有字有框.png"></a>
             </li>
 
             <!--desktop only-->
@@ -209,7 +281,7 @@
 
         <!--mobile dropdown menu-list-->
         <nav class="m-menu-list WStdsong-B">
-          <ul>
+          <ul id="nav-menu">
 
 
             <li>
@@ -245,88 +317,65 @@
         <div class="m-header-scroll">
           <!--desktop menu -->
           <input type="hidden" name="show_sublogo" id="show_sublogo" value="False">
-          <nav class="menu-bottom sec-menu-bottom WStdsong-B">
-            <ul>
+          <nav class="menu-bottom sec-menu-bottom WStdsong-B" style="float:right; left: 2%; position: relative;">
+           	<ul>
 
               <li style="padding: 0;">
-
-                <a href="javascript:void(0)" style="color:#000;">
-
-                  <span class="hover" style="color:#000;">
-                    <li class="nav-item dropdown"  style="padding: 0;">
-                      <a class="nav-link dropdown-toggle" href="#" id="dropdown03"
-                        data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false" style="padding:3px 16px 0px 16px;">最新消息</a>
-                      <div class="dropdown-menu" aria-labelledby="dropdown03" style=" margin-top: 10px;">
-                        <a class="dropdown-item" href="#" >Action</a>
+					<div class="flip1">
+                      <a href="#" style="padding:3px 16px 0px 16px;">最新消息</a>
+                      
+                      <div class="dropdown-menu toggle1" style="position:absolute; top:30px;">
+                        <a class="dropdown-item" href="https://www.facebook.com/BuyDirectlyFromFarmers" >Action</a>
                         <a class="dropdown-item" href="#" >Another</a>
                         <a class="dropdown-item" href="#" >Something</a>
                       </div>
-                    </li>
-                  </span>
-                </a>
+                    </div>
               </li>
-              <li style="padding: 0;">
-
-                <a href="javascript:void(0)" style="color:#000;">
-
-                  <span class="hover" style="color:#000;">
-                    <li class="nav-item dropdown"  style="padding: 0;">
-                      <a class="nav-link dropdown-toggle" href="#" id="dropdown03"
-                        data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false" style="padding:3px 16px 0px 16px;">小農商城</a>
-                      <div class="dropdown-menu" aria-labelledby="dropdown03" style=" margin-top: 10px;">
-                        <a class="dropdown-item" href="#" >Action</a>
+			  <li style="padding: 0;">
+					<div class="flip2">
+                      <a href="#" style="padding:3px 16px 0px 16px;">小農商城</a>
+                    </div>  
+                      <div class="dropdown-menu toggle2" style="position:absolute; top:30px;">
+                        <a class="dropdown-item" href="https://www.facebook.com/BuyDirectlyFromFarmers" >Action</a>
                         <a class="dropdown-item" href="#" >Another</a>
                         <a class="dropdown-item" href="#" >Something</a>
                       </div>
-                    </li>
-                  </span>
-                </a>
-              </li>
-              
+              </li>              
               <li style="padding: 0;">
-
-                <a href="javascript:void(0)" style="color:#000;">
-
-                  <span class="hover" style="color:#000;">
-                    <li class="nav-item dropdown"  style="padding: 0;">
-                      <a class="nav-link dropdown-toggle" href="#" id="dropdown03"
-                        data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false" style="padding:3px 16px 0px 16px;">農場旅遊</a>
-                      <div class="dropdown-menu" aria-labelledby="dropdown03" style=" margin-top: 10px;">
-                        <a class="dropdown-item" href="#" >Action</a>
+					<div class="flip3">
+                      <a href="#" style="padding:3px 16px 0px 16px;">農場旅遊</a>
+                      
+                      <div class="dropdown-menu toggle3" style="position:absolute; top:30px;">
+                        <a class="dropdown-item" href="https://www.facebook.com/BuyDirectlyFromFarmers" >Action</a>
                         <a class="dropdown-item" href="#" >Another</a>
                         <a class="dropdown-item" href="#" >Something</a>
                       </div>
-                    </li>
-                  </span>
-                </a>
+                    </div>
               </li>
 
               <li style="padding: 0;">
-
-                <a href="javascript:void(0)" style="color:#000;">
-
-                  <span class="hover" style="color:#000;">
-                    <li class="nav-item dropdown"  style="padding: 0;">
-                      <a class="nav-link dropdown-toggle" href="#" id="dropdown03"
-                        data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false" style="padding:3px 16px 0px 16px;">農產認養</a>
-                      <div class="dropdown-menu" aria-labelledby="dropdown03" style=" margin-top: 10px;">
-                        <a class="dropdown-item" href="#" >Action</a>
+					<div class="flip4">
+                      <a href="#" style="padding:3px 16px 0px 16px;">農產認養</a>
+                      
+                      <div class="dropdown-menu toggle4" style="position:absolute; top:30px;">
+                        <a class="dropdown-item" href="https://www.facebook.com/BuyDirectlyFromFarmers" >Action</a>
                         <a class="dropdown-item" href="#" >Another</a>
                         <a class="dropdown-item" href="#" >Something</a>
                       </div>
-                    </li>
-                  </span>
-                </a>
+                    </div>
               </li>
 
                 <a href="javascript:void(0)" style="color:#000;">
 
                   <span class="hover" style="color:#000;">
-                    <svg class="svg-inline--fa fa-user fa-w-16" style="color: #aaba8b;font-size: 20px;" aria-hidden="true" data-fa-processed="" data-prefix="fas" data-icon="user" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M96 160C96 71.634 167.635 0 256 0s160 71.634 160 160-71.635 160-160 160S96 248.366 96 160zm304 192h-28.556c-71.006 42.713-159.912 42.695-230.888 0H112C50.144 352 0 402.144 0 464v24c0 13.255 10.745 24 24 24h464c13.255 0 24-10.745 24-24v-24c0-61.856-50.144-112-112-112z"></path></svg><!-- <i class="fas fa-user" style="color:#aaba8b;font-size: 20px;"></i> --> 會員專區
+                    <svg class="svg-inline--fa fa-user fa-w-16" style="color: #aaba8b;font-size: 20px;" 
+                    aria-hidden="true" data-fa-processed="" data-prefix="fas" data-icon="user" role="img" 
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" 
+                    d="M96 160C96 71.634 167.635 0 256 0s160 71.634 160 160-71.635 160-160 160S96 248.366 96 160zm304 192h-28.556c-71.006 42.713-159.912
+                     42.695-230.888 0H112C50.144 352 0 402.144 0 464v24c0 13.255 10.745 24 24 24h464c13.255 0 24-10.745 24-24v-24c0-61.856-50.144-112-112-112z">
+                     </path>
+                     </svg> 
+                     會員專區
                   </span>
                 </a>
               </li>
@@ -352,7 +401,7 @@
 
 
       <!-- jQuery -->
-      <script src="./js/jquery.js"></script>
+      <script src="<%=request.getContextPath()%>/header/header_files/jquery.js"></script>
       <script>
         window.jQuery || document.write('<script src="/static/oscar/js/jquery/jquery-1.9.1.min.js"><\/script>')
       </script>
@@ -367,17 +416,17 @@
       <!-- <script type="text/javascript" src="/static/scripts/bdff.js"></script> -->
       <!-- <script src="/static/scripts/bdff_ui.js" type="text/javascript" charset="utf-8"></script>  -->
     
-      <script src="./js/bdff_bremen.js" type="text/javascript" charset="utf-8"></script>
-      <script src="./js/jquery-2.2.1.min.js"></script>
-      <script src="./js/plugins.js"></script>
-      <script src="./js/menu.js"></script>
+      <script src="<%=request.getContextPath()%>/header/header_files/bdff_bremen.js" type="text/javascript" charset="utf-8"></script>
+      <script src="<%=request.getContextPath()%>/header/header_files/jquery-2.2.1.min.js"></script>
+      <script src="<%=request.getContextPath()%>/header/header_files/plugins.js"></script>
+      <script src="<%=request.getContextPath()%>/header/header_files/menu.js"></script>
     
       <!-- bdff -->
     
     
-      <script src="./js/index.js"></script>
-      <script src="./js/jquery.dotdotdot.js"></script>
-      <script src="./js/dotdotdot-desc.js"></script>
+      <script src="<%=request.getContextPath()%>/header/header_files/index.js"></script>
+      <script src="<%=request.getContextPath()%>/header/header_files/jquery.dotdotdot.js"></script>
+      <script src="<%=request.getContextPath()%>/header/header_files/dotdotdot-desc.js"></script>
       <script>
         const elems = document.getElementsByClassName('producer');
         console.log(elems)
@@ -392,7 +441,7 @@
       </script>
     
       <!-- bdff -->
-      <script src="./js/jquery.cookie.js"></script>
+      <script src="<%=request.getContextPath()%>/header/header_files/jquery.cookie.js"></script>
       <script>
         var django = (function ($) {
           var _urls = {}
