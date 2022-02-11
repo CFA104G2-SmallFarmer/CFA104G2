@@ -10,7 +10,7 @@ public class ShopProductCollectionJDBCDAO implements ShopProductCollectionDAO_in
 		String driver = "com.mysql.cj.jdbc.Driver";
 		String url = "jdbc:mysql://localhost:3306/CFA104G2?serverTimezone=Asia/Taipei";
 		String userid = "root";
-		String passwd = "1234";
+		String passwd = "password";
 
 		private static final String INSERT_STMT = 
 			"INSERT INTO  shop_product_collection(mem_id,prod_id,prod_fav_date) VALUES (?, ?, ?)";
