@@ -7,37 +7,45 @@ public class ShopOrderVO implements java.io.Serializable{
 	
 	private Integer order_id;
 	private Integer mem_id;
-	private Date order_date;
-	private Integer order_ship_fee;
+	private Integer f_mem_id;
 	private String order_add;
+	private String order_receiver;
+	private String order_tel;
 	private Integer order_amount;
 	private String order_memo;
-	private Date order_ship_date;
 	private Integer order_payment;
 	private Integer order_state;
+	private Date order_date;
+	private Date order_ship_date;
+	private Date order_finish_date;
+	private Date order_cancel_date;
 	
-
 	public ShopOrderVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public ShopOrderVO(Integer order_id, Integer mem_id, Date order_date, Integer order_ship_fee, String order_add,
-			Integer order_amount, String order_memo, Date order_ship_date, Integer order_payment, Integer order_state) {
+	public ShopOrderVO(Integer order_id, Integer mem_id, Integer f_mem_id, String order_add,
+			String order_receiver, String order_tel, Integer order_amount, String order_memo, Integer order_payment,
+			Integer order_state, Date order_date, Date order_ship_date, Date order_finish_date,
+			Date order_cancel_date) {
 		super();
 		this.order_id = order_id;
 		this.mem_id = mem_id;
-		this.order_date = order_date;
-		this.order_ship_fee = order_ship_fee;
+		this.f_mem_id = f_mem_id;
 		this.order_add = order_add;
+		this.order_receiver = order_receiver;
+		this.order_tel = order_tel;
 		this.order_amount = order_amount;
 		this.order_memo = order_memo;
-		this.order_ship_date = order_ship_date;
 		this.order_payment = order_payment;
 		this.order_state = order_state;
+		this.order_date = order_date;
+		this.order_ship_date = order_ship_date;
+		this.order_finish_date = order_finish_date;
+		this.order_cancel_date = order_cancel_date;
 	}
-	
-//get&set
+
 	public Integer getOrder_id() {
 		return order_id;
 	}
@@ -54,20 +62,12 @@ public class ShopOrderVO implements java.io.Serializable{
 		this.mem_id = mem_id;
 	}
 
-	public Date getOrder_date() {
-		return order_date;
+	public Integer getF_mem_id() {
+		return f_mem_id;
 	}
 
-	public void setOrder_date(Date order_date) {
-		this.order_date = order_date;
-	}
-
-	public Integer getOrder_ship_fee() {
-		return order_ship_fee;
-	}
-
-	public void setOrder_ship_fee(Integer order_ship_fee) {
-		this.order_ship_fee = order_ship_fee;
+	public void setF_mem_id(Integer f_mem_id) {
+		this.f_mem_id = f_mem_id;
 	}
 
 	public String getOrder_add() {
@@ -76,6 +76,22 @@ public class ShopOrderVO implements java.io.Serializable{
 
 	public void setOrder_add(String order_add) {
 		this.order_add = order_add;
+	}
+
+	public String getOrder_receiver() {
+		return order_receiver;
+	}
+
+	public void setOrder_receiver(String order_receiver) {
+		this.order_receiver = order_receiver;
+	}
+
+	public String getOrder_tel() {
+		return order_tel;
+	}
+
+	public void setOrder_tel(String order_tel) {
+		this.order_tel = order_tel;
 	}
 
 	public Integer getOrder_amount() {
@@ -94,14 +110,6 @@ public class ShopOrderVO implements java.io.Serializable{
 		this.order_memo = order_memo;
 	}
 
-	public Date getOrder_ship_date() {
-		return order_ship_date;
-	}
-
-	public void setOrder_ship_date(Date order_ship_date) {
-		this.order_ship_date = order_ship_date;
-	}
-
 	public Integer getOrder_payment() {
 		return order_payment;
 	}
@@ -118,14 +126,47 @@ public class ShopOrderVO implements java.io.Serializable{
 		this.order_state = order_state;
 	}
 
+	public Date getOrder_date() {
+		return order_date;
+	}
+
+	public void setOrder_date(Date order_date) {
+		this.order_date = order_date;
+	}
+
+	public Date getOrder_ship_date() {
+		return order_ship_date;
+	}
+
+	public void setOrder_ship_date(Date order_ship_date) {
+		this.order_ship_date = order_ship_date;
+	}
+
+	public Date getOrder_finish_date() {
+		return order_finish_date;
+	}
+
+	public void setOrder_finish_date(Date order_finish_date) {
+		this.order_finish_date = order_finish_date;
+	}
+
+	public Date getOrder_cancel_date() {
+		return order_cancel_date;
+	}
+
+	public void setOrder_cancel_date(Date order_cancel_date) {
+		this.order_cancel_date = order_cancel_date;
+	}
+
 	@Override
 	public String toString() {
-		return "ShopOrderVO [order_id=" + order_id + ", mem_id=" + mem_id + ", order_date=" + order_date
-				+ ", order_ship_fee=" + order_ship_fee + ", order_add=" + order_add + ", order_amount=" + order_amount
-				+ ", order_memo=" + order_memo + ", order_ship_date=" + order_ship_date + ", order_payment="
-				+ order_payment + ", order_state=" + order_state + "]";
+		return "ShopOrderVO [order_id=" + order_id + ", mem_id=" + mem_id + ", f_mem_id=" + f_mem_id + ", order_add="
+				+ order_add + ", order_receiver=" + order_receiver + ", order_tel=" + order_tel + ", order_amount="
+				+ order_amount + ", order_memo=" + order_memo + ", order_payment=" + order_payment + ", order_state="
+				+ order_state + ", order_date=" + order_date + ", order_ship_date=" + order_ship_date
+				+ ", order_finish_date=" + order_finish_date + ", order_cancel_date=" + order_cancel_date + "]";
 	}
 	
-
+	
 	
 }
