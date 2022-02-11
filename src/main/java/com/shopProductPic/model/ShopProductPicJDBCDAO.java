@@ -7,7 +7,7 @@ public class ShopProductPicJDBCDAO implements ShopProductPicDAO_interface{
 	String driver = "com.mysql.cj.jdbc.Driver";
 	String url = "jdbc:mysql://localhost:3306/CFA104G2?serverTimezone=Asia/Taipei";
 	String userid = "root";
-	String passwd = "1234";
+	String passwd = "password";
 
 	private static final String INSERT_STMT = 
 		"INSERT INTO  shop_product_pic(prod_id,prod_pic) VALUES ( ?, ?)";
