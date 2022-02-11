@@ -1,26 +1,8 @@
-<%@page import="com.shopOrder.model.ShopOrderService"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="java.util.*"%>
-<%@ page import="com.shopOrder.model.*"%>
-<%-- 此頁練習採用 EL 的寫法取值 --%>
-
-<%
-    ShopOrderService shoporderSvc = new ShopOrderService();
-    List<ShopOrderVO> list = shoporderSvc.getAll();
-    pageContext.setAttribute("list",list);
-%> 
-
-<%
-ShopOrderVO shopOrderVO = (ShopOrderVO) request.getAttribute("shopOrderVO"); //EmpServlet.java(Concroller), 存入req的empVO物件
-%>
-<%
-request.setAttribute("order_state", new String[]{"待付款","待出貨","已出貨","已完成","已取消"});
-request.setAttribute("order_payment", new String[]{"信用卡","銀行轉帳"});
-%>
 <!DOCTYPE html>
 <html class="TW" style="overflow: scroll;">
+
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -29,7 +11,7 @@ request.setAttribute("order_payment", new String[]{"信用卡","銀行轉帳"});
 
   <link href="./farmer_order_css/icon" rel="stylesheet">
 
-  <title>小農商城訂單管理</title>
+  <title>小農認養訂單管理</title>
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
@@ -40,10 +22,13 @@ request.setAttribute("order_payment", new String[]{"信用卡","銀行轉帳"});
       font-family: sans-serif;
       color: #7b7b7b;
       font-size: 15px;
+
     }
+
     .material-icons {
       padding: 3px;
     }
+
     .shopee-button {
       margin: 1px;
     }
@@ -80,6 +65,7 @@ request.setAttribute("order_payment", new String[]{"信用卡","銀行轉帳"});
       <br>
     }
   </style>
+  
 </head>
 
 <body class=" route-index route-portal-sale route-portal-sale-order route-portal-sale-order">
@@ -94,10 +80,36 @@ request.setAttribute("order_payment", new String[]{"信用卡","銀行轉帳"});
                   <div class="shopee-tabs__nav">
                     <div class="shopee-tabs__nav-warp">
                       <div class="shopee-tabs__nav-tabs" style="transform: translateX(0px);">
-
+                        <div class="shopee-tabs__nav-tab active" style="white-space: normal;">
+                          <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">查詢</span>
+                          </div>
+                        </div>
                         <div class="shopee-tabs__nav-tab" style="white-space: normal;">
-                          <div data-v-ddf12cca="" class="tab-label">
-                            <a href="./farmer_searchShopOrderPage.jsp" style="font-size: 30px ;color: #717d34 "><b>商城小農訂單管理</a>
+                          <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">全部</span>
+                          </div>
+                        </div>
+                        <div class="shopee-tabs__nav-tab" style="white-space: normal;">
+                          <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">尚未付款</span>
+                          </div>
+                        </div>
+                        <div class="shopee-tabs__nav-tab" style="white-space: normal;">
+                          <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">待出貨</span>
+                          </div>
+                        </div>
+                        <div class="shopee-tabs__nav-tab" style="white-space: normal;">
+                          <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">運送中</span>
+                          </div>
+                        </div>
+                        <div class="shopee-tabs__nav-tab" style="white-space: normal;">
+                          <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">已完成</span>
+                          </div>
+                        </div>
+                        <div class="shopee-tabs__nav-tab" style="white-space: normal;">
+                          <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">不成立(未處理)</span>
+                          </div>
+                        </div>
+                        <div class="shopee-tabs__nav-tab" style="white-space: normal;">
+                          <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">不成立(已解決)</span>
                           </div>
                         </div>
 
@@ -114,9 +126,7 @@ request.setAttribute("order_payment", new String[]{"信用卡","銀行轉帳"});
               <div data-v-acb72a84="" data-v-550e8c91="" class="order-list">
                 <div data-v-acb72a84="" class="padding-wrap">
                <!--  form開始 -->
-										<!-- 連結到web.xml檔-->
-                  <form method="post" action="shopOrder.do">
-               
+                  <form method="post" action="projOrder.do">
                     <div data-v-54562b84="" data-v-acb72a84=""
                       class="order-search-pannel order-search-panel order-search-pannel-inline order-search-improve">
                       <div data-v-4325ccd1="" data-v-54562b84="" class="order-search-container">
@@ -147,7 +157,7 @@ request.setAttribute("order_payment", new String[]{"信用卡","銀行轉帳"});
                                   <input type="text" placeholder="請輸入訂單編號" clearable="true" resize="vertical" rows="2"
                                     minrows="2" maxlength="50" restrictiontype="input" max="Infinity" min="-Infinity"
                                     class="shopee-input__input" name="order_id" >
-                                    <input type="hidden" name="action" value="getOne_For_Display">
+                                    <input type="hidden" name="action" value="getOneByFMem">
                       <!-- name在這裡 -->
                                   <div class="shopee-input__suffix">
                                   </div>
@@ -180,7 +190,7 @@ request.setAttribute("order_payment", new String[]{"信用卡","銀行轉帳"});
 
                     </div>
                     <div data-v-acb72a84="" class="more-action">
-<%-- 錯誤表列start --%>
+                     <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
 	<font style="color:red">請修正以下錯誤:</font>
 	<ul>
@@ -189,26 +199,69 @@ request.setAttribute("order_payment", new String[]{"信用卡","銀行轉帳"});
 		</c:forEach>
 	</ul>
 </c:if>
-<%-- 錯誤表列End --%>
 
                     </div>
                   </div>
                 </div>
+                <!---->
+                <div data-v-a414b804="" data-v-acb72a84="" class="order-list-pannel">
+                  <div data-v-a414b804="" class="order-list-section">
+                    <div data-v-dff31658="" data-v-a414b804="" class="shopee-fixed-top-card">
+                      <div data-v-dff31658="" class="fixed-container" style="top: 112px; z-index: 999;">
+                        <div data-v-a414b804="" data-v-dff31658="" class="order-list-header">
+                          <span data-v-a414b804="" data-v-dff31658="" class="item-product" min-width:80px;="">認養專案 /
+                            收件地址</span>
+                          <span data-v-a414b804="" data-v-dff31658="" class="item-total">金額</span>
+                          <span data-v-a414b804="" data-v-dff31658="" class="item-total">回饋方案</span>
+                          <span data-v-a414b804="" data-v-dff31658="" class="item-total">訂單狀態</span>
+                          <span data-v-a414b804="" data-v-dff31658="" class="item-total">訂單時間</span>
+                          <span data-v-a414b804="" data-v-dff31658="" class="item-action"
+                            style="padding-left:80px;">操作</span></div>
+                      </div>
+                    </div>
+
+                    <div data-v-1eaa89e5="" data-v-a414b804="" class="order-list-body"><a data-v-1eaa89e5=""
+                        target="_blank" class="order-item">
 
 
-
+                      </a></div><a data-v-1eaa89e5="" target="_blank" class="order-item">
+                    </a>
+                  </div><a data-v-1eaa89e5="" target="_blank" class="order-item">
+                  </a>
+                </div><a data-v-1eaa89e5="" target="_blank" class="order-item">
+                </a>
+              </div><a data-v-1eaa89e5="" target="_blank" class="order-item">
+              </a>
+            </div><a data-v-1eaa89e5="" target="_blank" class="order-item">
+            </a>
+          </div><a data-v-1eaa89e5="" target="_blank" class="order-item">
+          </a>
+        </div><a data-v-1eaa89e5="" target="_blank" class="order-item">
+        </a>
+      </div><a data-v-1eaa89e5="" target="_blank" class="order-item">
         <!-- Code injected by live-server -->
-        <!-- 訂單清單start -->
 
 
+      </a>
     </div>
   </div>
 
   <!-- Code injected by live-server -->
-<jsp:include page="farmer_listAllShopOrder.jsp"/> 
-<%-- <%@include file="/farmer_listAllShopOrder.jsp" %> --%>
 
 
+  <script type="text/javascript">
+    document.oncontextmenu = null;
+    document.onselectstart = null;
+    document.ondragstart = null;
+    document.onmousedown = null;
+    document.body.oncontextmenu = null;
+    document.body.onselectstart = null;
+    document.body.ondragstart = null;
+    document.body.onmousedown = null;
+    document.body.oncut = null;
+    document.body.oncopy = null;
+    document.body.onpaste = null;
+  </script>
 </body>
 
 </html>
