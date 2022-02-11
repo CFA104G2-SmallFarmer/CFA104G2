@@ -7,7 +7,7 @@ public class ShopProductReportJDBCDAO implements ShopProductReportDAO_interface 
 	String driver = "com.mysql.cj.jdbc.Driver";
 	String url = "jdbc:mysql://localhost:3306/CFA104G2?serverTimezone=Asia/Taipei";
 	String userid = "root";
-	String passwd = "1234";
+	String passwd = "password";
 
 	private static final String INSERT_STMT = 
 		"INSERT INTO  shop_product_report(prod_report_no,mem_id,prod_id,report_reason,report_time, report_state,report_note) VALUES ( ?, ?, ?, ?,?,?,?)";
