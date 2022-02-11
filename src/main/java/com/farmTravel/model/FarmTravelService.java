@@ -45,9 +45,9 @@ public class FarmTravelService {
         farm_travel.setTravel_apply_end(travel_apply_end);
         farm_travel.setFarm_travel_min(farm_travel_min);
         farm_travel.setFarm_travel_max(farm_travel_max);
-        farm_travel.setFarm_travel_max(farm_travel_now);
-        farm_travel.setFarm_travel_max(farm_travel_state);
-        farm_travel.setFarm_travel_max(farm_travel_ID);
+        farm_travel.setFarm_travel_now(farm_travel_now);
+        farm_travel.setFarm_travel_state(farm_travel_state);
+        farm_travel.setFarm_travel_ID(farm_travel_ID);
         dao.update(farm_travel);
 
         return farm_travel;

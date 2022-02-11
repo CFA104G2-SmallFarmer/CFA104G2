@@ -11,6 +11,7 @@ public class FarmTravelReportVO {
     private Timestamp report_time;
     private Integer report_state;
     private String report_note;
+    private Timestamp review_time;
 
     public Integer getReport_ID() {
         return report_ID;
@@ -66,5 +67,13 @@ public class FarmTravelReportVO {
 
     public void setReport_note(String report_note) {
         this.report_note = report_note;
+    }
+
+    public Timestamp getReview_time() {
+        return review_time;
+    }
+
+    public void setReview_time(Timestamp review_time) {
+        this.review_time = review_time;
     }
 }

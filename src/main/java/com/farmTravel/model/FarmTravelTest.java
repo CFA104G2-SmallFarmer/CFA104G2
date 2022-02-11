@@ -1,6 +1,6 @@
 package com.farmTravel.model;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,13 +12,13 @@ public class FarmTravelTest {
 //        farmTravelVO.setF_mem_ID(10);
 //        farmTravelVO.setFarm_travel_title("Test title2");
 //        farmTravelVO.setFarm_travel_info("test info2");
-//        farmTravelVO.setFarm_travel_start(java.sql.Date.valueOf("1988-12-25"));
-//        farmTravelVO.setFarm_travel_end(java.sql.Date.valueOf("1988-12-25"));
+//        farmTravelVO.setFarm_travel_start(java.sql.Timestamp.valueOf("1988-12-25"));
+//        farmTravelVO.setFarm_travel_end(java.sql.Timestamp.valueOf("1988-12-25"));
 //        farmTravelVO.setFarm_travel_fee(30000);
 //        farmTravelVO.setFarm_travel_min(10);
 //        farmTravelVO.setFarm_travel_max(300);
-//        farmTravelVO.setTravel_apply_start(java.sql.Date.valueOf("1988-12-25"));
-//        farmTravelVO.setTravel_apply_end(java.sql.Date.valueOf("1988-12-25"));
+//        farmTravelVO.setTravel_apply_start(java.sql.Timestamp.valueOf("1988-12-25"));
+//        farmTravelVO.setTravel_apply_end(java.sql.Timestamp.valueOf("1988-12-25"));
 //        dao.add(farmTravelVO);
 
         FarmTravelDAO dao = new FarmTravelJDBCDAO();

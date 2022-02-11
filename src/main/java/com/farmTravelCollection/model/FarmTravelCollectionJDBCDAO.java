@@ -13,6 +13,7 @@ public class FarmTravelCollectionJDBCDAO implements FarmTravelCollectionDAO{
 
     public static final String INSERT_STMT = "INSERT INTO FARM_TRAVEL_COLLECTION ( MEM_ID, FARM_TRAVEL_ID, COLLECTION_TIME ) VALUES ( ?, ?, NOW() );";
     public static final String DELETE_STMT = "DELETE FROM FARM_TRAVEL_COLLECTION WHERE MEM_ID = ? AND FARM_TRAVEL_ID = ?;";
+    public static final String GET_ONE_STMT = "SELECT * FROM FARM_TRAVEL_COLLECTION WHERE MEM_ID = ? AND FARM_TRAVEL_ID = ?;";
     public static final String GET_ALL_STMT = "SELECT * FROM FARM_TRAVEL_COLLECTION WHERE MEM_ID = ?;";
 
     static {
@@ -88,6 +89,51 @@ public class FarmTravelCollectionJDBCDAO implements FarmTravelCollectionDAO{
                 }
             }
         }
+    }
+    @Override
+    public boolean findByPK(Integer mem_ID, Integer farm_travel_ID) {
+        FarmTravelCollectionVO farm_travel_collection = null;
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            con = DriverManager.getConnection(URL, USER, PASSWORD);
+            pstmt = con.prepareStatement(GET_ONE_STMT);
+
+            pstmt.setInt(1, mem_ID);
+            pstmt.setInt(2, farm_travel_ID);
+
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return true;
+            }
+        } catch (SQLException se) {
+            se.printStackTrace();
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (Exception e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+        }
+        return false;
     }
 
     @Override

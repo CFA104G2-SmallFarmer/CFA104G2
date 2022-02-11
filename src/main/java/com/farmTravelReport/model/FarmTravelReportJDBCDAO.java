@@ -12,7 +12,7 @@ public class FarmTravelReportJDBCDAO implements FarmTravelReportDAO{
     public static final String PASSWORD = "password";
 
     public static final String INSERT_STMT = "INSERT INTO FARM_TRAVEL_REPORT ( MEM_ID, FARM_TRAVEL_ID, REPORT_REASON, REPORT_TIME, REPORT_STATE ) VALUES ( ?, ?, ?, NOW(), '0' );";
-    public static final String UPDATE_STMT = "UPDATE FARM_TRAVEL_REPORT SET REPORT_STATE = ?, REPORT_NOTE = ? WHERE REPORT_ID = ?;";
+    public static final String UPDATE_STMT = "UPDATE FARM_TRAVEL_REPORT SET REPORT_STATE = ?, REPORT_NOTE = ? , REVIEW_TIME = NOW() WHERE REPORT_ID = ?;";
 //    public static final String DELETE_STMT = "DELETE FROM FARM_TRAVEL_REPORT WHERE REPORT_ID = ?;";
     public static final String GET_ONE_STMT = "SELECT * FROM FARM_TRAVEL_REPORT WHERE REPORT_ID = ?;";
     public static final String GET_ALL_STMT = "SELECT * FROM FARM_TRAVEL_REPORT;";
@@ -152,6 +152,7 @@ public class FarmTravelReportJDBCDAO implements FarmTravelReportDAO{
                 farm_travel_report.setReport_time(rs.getTimestamp("REPORT_TIME"));
                 farm_travel_report.setReport_state(rs.getInt("REPORT_STATE"));
                 farm_travel_report.setReport_note(rs.getString("REPORT_NOTE"));
+                farm_travel_report.setReview_time(rs.getTimestamp("REVIEW_TIME"));
             }
         } catch (SQLException se) {
             se.printStackTrace();
@@ -203,6 +204,7 @@ public class FarmTravelReportJDBCDAO implements FarmTravelReportDAO{
                 farm_travel_report.setReport_time(rs.getTimestamp("REPORT_TIME"));
                 farm_travel_report.setReport_state(rs.getInt("REPORT_STATE"));
                 farm_travel_report.setReport_note(rs.getString("REPORT_NOTE"));
+                farm_travel_report.setReview_time(rs.getTimestamp("REVIEW_TIME"));
                 farm_travel_report_list.add(farm_travel_report);
             }
         } catch (SQLException se) {

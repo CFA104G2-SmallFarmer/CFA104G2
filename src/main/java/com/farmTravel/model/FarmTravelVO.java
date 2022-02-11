@@ -24,7 +24,7 @@ public class FarmTravelVO {
         return farm_travel_ID;
     }
 
-    public void setFarm_travel_ID(int farm_travel_ID) {
+    public void setFarm_travel_ID(Integer farm_travel_ID) {
         this.farm_travel_ID = farm_travel_ID;
     }
 
@@ -32,7 +32,7 @@ public class FarmTravelVO {
         return mem_ID;
     }
 
-    public void setMem_ID(int mem_ID) {
+    public void setMem_ID(Integer mem_ID) {
         this.mem_ID = mem_ID;
     }
 
@@ -40,7 +40,7 @@ public class FarmTravelVO {
         return f_mem_ID;
     }
 
-    public void setF_mem_ID(int f_mem_ID) {
+    public void setF_mem_ID(Integer f_mem_ID) {
         this.f_mem_ID = f_mem_ID;
     }
 
@@ -88,7 +88,7 @@ public class FarmTravelVO {
         return farm_travel_fee;
     }
 
-    public void setFarm_travel_fee(int farm_travel_fee) {
+    public void setFarm_travel_fee(Integer farm_travel_fee) {
         this.farm_travel_fee = farm_travel_fee;
     }
 
@@ -112,7 +112,7 @@ public class FarmTravelVO {
         return farm_travel_min;
     }
 
-    public void setFarm_travel_min(int farm_travel_min) {
+    public void setFarm_travel_min(Integer farm_travel_min) {
         this.farm_travel_min = farm_travel_min;
     }
 
@@ -120,7 +120,7 @@ public class FarmTravelVO {
         return farm_travel_max;
     }
 
-    public void setFarm_travel_max(int farm_travel_max) {
+    public void setFarm_travel_max(Integer farm_travel_max) {
         this.farm_travel_max = farm_travel_max;
     }
 
@@ -128,7 +128,7 @@ public class FarmTravelVO {
         return farm_travel_now;
     }
 
-    public void setFarm_travel_now(int farm_travel_now) {
+    public void setFarm_travel_now(Integer farm_travel_now) {
         this.farm_travel_now = farm_travel_now;
     }
 
@@ -136,7 +136,7 @@ public class FarmTravelVO {
         return farm_travel_state;
     }
 
-    public void setFarm_travel_state(int farm_travel_state) {
+    public void setFarm_travel_state(Integer farm_travel_state) {
         this.farm_travel_state = farm_travel_state;
     }
 }
