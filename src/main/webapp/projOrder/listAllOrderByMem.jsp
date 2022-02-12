@@ -14,14 +14,16 @@
 %>
 <!-- 用傳list<某物件>的方式寫，讓servlet那邊先做完projOrderSvc.getAllMemOrder(mem_id) -->
 <%
-	List<ProjOrderVO> list = (List<ProjOrderVO>) request.getAttribute("projOrderVO");
+	List<ProjOrderVO> list = (List<ProjOrderVO>)request.getAttribute("projOrderVO");
     pageContext.setAttribute("list",list);
 %>
 
 <!-- 領班 -->
 <jsp:useBean id="projectSvc" scope="page" class="com.project.model.ProjectService" />
 <jsp:useBean id="projPerkSvc" scope="page" class="com.projPerk.model.ProjPerkService" />
-<jsp:useBean id="fMemSvc" scope="page" class="com.fMem.model.FMemService" />
+
+<!-- 衧霈有改 -->
+<jsp:useBean id="fmemSvc" scope="page" class="com.fMem.model.FMemService" />
 
 <%
 request.setAttribute("order_state_arr", new String[]{"待付款","待出貨","運送中","已完成","不成立<br>(未處理)","不成立<br>(已解決)"});
@@ -129,15 +131,15 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
                   <div class="shopee-tabs__nav">
                     <div class="shopee-tabs__nav-warp">
                       <div class="shopee-tabs__nav-tabs" style="transform: translateX(0px);">
-                        <div class="shopee-tabs__nav-tab active" style="white-space: normal;">
+                        <div class="shopee-tabs__nav-tab " style="white-space: normal;">
                           <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">查詢</span>
                           </div>
                         </div>
-                        <div class="shopee-tabs__nav-tab" style="white-space: normal;">
+                        <div class="shopee-tabs__nav-tab active" style="white-space: normal;">
                           <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">全部</span>
                           </div>
                         </div>
-                        <div class="shopee-tabs__nav-tab" style="white-space: normal;">
+                        <!-- <div class="shopee-tabs__nav-tab" style="white-space: normal;">
                           <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">尚未付款</span>
                           </div>
                         </div>
@@ -160,7 +162,7 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
                         <div class="shopee-tabs__nav-tab" style="white-space: normal;">
                           <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">不成立(已解決)</span>
                           </div>
-                        </div>
+                        </div> -->
 
                       </div>
                       <div class="shopee-tabs__ink-bar" style="width: 60px; transform: translateX(0px);"></div>
@@ -293,11 +295,11 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
                           <div data-v-78a21620="" data-v-1eaa89e5="" class="user-header user-view-item simple-nofollow">
                             <div data-v-78a21620="" class="">
                               <i class="material-icons" style="color: #aaba8b;">person</i>
- 							${fMemSvc.getOnefMem(projectSvc.getOneProject(projPerkSvc.getOneProjPerk(projOrderVO.perk_id).proj_id).f_mem_id).f_mem_fname}
+ 							${fMemSvc.getOneFMem(projectSvc.getOneProject(projPerkSvc.getOneProjPerk(projOrderVO.perk_id).proj_id).f_mem_id).f_mem_fname}
                             </div>
                             <div data-v-78a21620="" class="content">
                               <div data-v-78a21620="" class="text-overflow" style="">
-<%--                                ${fMemSvc.getOnefMem(projOrderVO.f_mem_id).f_mem_fname} --%>
+                            ${fMemSvc.getOneFMem(projOrderVO.f_mem_id).f_mem_fname} 
 <%--                                 <%=projOrderVO.getMem_id()%> --%>
 
                               </div>
