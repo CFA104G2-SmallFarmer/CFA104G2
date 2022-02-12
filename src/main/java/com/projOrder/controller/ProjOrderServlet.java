@@ -6,6 +6,8 @@ import java.util.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+import com.mem.model.MemService;
+import com.mem.model.MemVO;
 import com.projOrder.model.ProjOrderService;
 import com.projOrder.model.ProjOrderVO;
 import com.projPerk.model.ProjPerkService;
@@ -358,37 +360,204 @@ public class ProjOrderServlet extends HttpServlet{
 		
 		
 		
-//		if ("getOne_For_Update".equals(action)) { // 來自listAllEmp.jsp的請求
-//
-//			List<String> errorMsgs = new LinkedList<String>();
-//			// Store this set in the request scope, in case we need to
-//			// send the ErrorPage view.
-//			req.setAttribute("errorMsgs", errorMsgs);
-//			
-//			try {
-//				/***************************1.接收請求參數****************************************/
-//				Integer order_id = new Integer(req.getParameter("order_id"));
-//				
-//				/***************************2.開始查詢資料****************************************/
-//				ProjOrderService projOrderSvc = new ProjOrderService();
-//				ProjOrderVO projOrderVO = projOrderSvc.getOneProjOrder(order_id);
-//								
-//				/***************************3.查詢完成,準備轉交(Send the Success view)************/
-//				req.setAttribute("projOrderVO", projOrderVO);         // 資料庫取出的empVO物件,存入req
-//				String url = "/emp/update_emp_input.jsp";///***我還沒改
-//				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
-//				successView.forward(req, res);
-//
-//				/***************************其他可能的錯誤處理**********************************/
-//			} catch (Exception e) {
-//				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
-//				RequestDispatcher failureView = req
-//						.getRequestDispatcher("/emp/listAllEmp.jsp");///***我還沒改
-//				failureView.forward(req, res);
-//			}
-//		}
-//		
-//
+		
+		/*給會員用的*/
+		if ("getOne_For_Update_ByMem".equals(action)) { // 來自listAllEmp.jsp的請求
+
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+			
+			try {
+				/***************************1.接收請求參數****************************************/
+				
+				Integer mem_id = new Integer(req.getParameter("mem_id").trim());
+				System.out.println(mem_id);
+
+				Integer order_id = new Integer(req.getParameter("order_id").trim());
+				System.out.println(order_id);
+				/***************************2.開始查詢資料****************************************/ 
+				MemService memSvc3 = new MemService();  
+				MemVO memVO3 = memSvc3.getOneMem(mem_id);  
+			
+
+				ProjOrderService projOrderSvc = new ProjOrderService();
+				ProjOrderVO projOrderVO = projOrderSvc.getOneProjOrder(order_id);
+				
+				ProjPerkService projPerkSvc = new ProjPerkService();  
+				ProjPerkVO projPerkVO = projPerkSvc.getOneProjPerk(projOrderVO.getPerk_id()); 
+							
+				ProjectService projectSvc = new ProjectService();
+				ProjectVO projectVO = projectSvc.getOneProject(projPerkVO.getProj_id());
+				/***************************3.查詢完成,準備轉交(Send the Success view)************/
+				req.setAttribute("projectVO", projectVO);
+				req.setAttribute("projPerkVO",projPerkVO); 
+				req.setAttribute("memVO",memVO3); 
+				req.setAttribute("projOrderVO", projOrderVO);    // 資料庫取出的empVO物件,存入req
+				
+				String url = "/projOrder/update_order_input_ByMem.jsp";///***我還沒改
+				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
+				successView.forward(req, res);
+
+				/***************************其他可能的錯誤處理**********************************/
+			} catch (Exception e) {
+				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/emp/listAllEmp.jsp");///***我還沒改
+				failureView.forward(req, res);
+			}
+		}
+		
+	      if ("update_ByMem".equals(action)) { // 來自addEmp.jsp的請求  
+				
+				List<String> errorMsgs = new LinkedList<String>();
+				// Store this set in the request scope, in case we need to
+				// send the ErrorPage view.
+				req.setAttribute("errorMsgs", errorMsgs);
+
+				try {
+					Integer order_id = new Integer(req.getParameter("order_id").trim());
+					Integer mem_id = new Integer(req.getParameter("mem_id").trim());
+					
+					// ---------------order_zipcode驗證----------------//
+					String order_addr = (req.getParameter("order_addr").trim());
+					String order_addrReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,40}$";
+					if (order_addr == null || order_addr.trim().length() == 0) {
+						errorMsgs.add("地址: 請勿空白");
+					} else if(!order_addr.trim().matches(order_addrReg)) { //以下練習正則(規)表示式(regular-expression)
+						errorMsgs.add("地址: 只能是中、英文字母、數字和_ , 且長度必需在40字以內");
+		            }
+					
+					
+					String order_zipcode_str = (req.getParameter("order_zipcode").trim());
+					String order_zipcodeReg = "^.{3}$";
+
+					if (order_zipcode_str == null || order_zipcode_str.trim().length() == 0) {
+						errorMsgs.add("郵遞區號: 請勿空白");
+					} else if(!order_zipcode_str.trim().matches(order_zipcodeReg)) { //以下練習正則(規)表示式(regular-expression)
+						errorMsgs.add("郵遞區號: 只能是數字，且長度必需在3字以內");
+		            }
+									
+					Integer order_zipcode = null;
+					try {
+						order_zipcode = new Integer(req.getParameter("order_zipcode").trim());
+					} catch (NumberFormatException e) {
+						order_zipcode=null;
+						errorMsgs.add("郵遞區號請填數字.");
+					}
+
+					String order_receiver =(req.getParameter("order_receiver").trim());
+					String order_receiverReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,25}$";
+					if (order_receiver == null || order_receiver.trim().length() == 0) {
+						errorMsgs.add("收件人姓名: 請勿空白");
+					} else if(!order_receiver.trim().matches(order_receiverReg)) { //以下練習正則(規)表示式(regular-expression)
+						errorMsgs.add("收件人姓名: 只能是中、英文字母、數字和_ , 且長度必需在2到25之間");
+		            }
+					
+					
+//					String order_tel =(req.getParameter("order_tel").trim());
+					String order_tel = (req.getParameter("order_tel").trim());
+					String order_telReg = "^{0,1}[0-9]*$";
+					if (order_tel == null || order_tel.trim().length() == 0) {
+						errorMsgs.add("聯絡電話: 請勿空白");
+					} else if(!order_tel.trim().matches(order_telReg)) { //以下練習正則(規)表示式(regular-expression)
+						errorMsgs.add("聯絡電話: 只能是數字");
+		            }
+					
+					/*----這裡是沒有讓客人修改的---*/
+					ProjOrderService projOrderSvc = new ProjOrderService();
+					ProjOrderVO projOrderVO3=projOrderSvc.getOneProjOrder(order_id);
+					
+					Integer perk_id = projOrderVO3.getPerk_id();
+					Integer order_pay = projOrderVO3.getOrder_pay();
+										
+					//日期用try catch才能設收到null值，再設成null回去
+					java.sql.Date order_ship_time = null;  //宣告
+					try {
+						order_ship_time =projOrderVO3.getOrder_ship_time();
+					}catch (Exception e) {
+						// TODO: handle exception
+						order_ship_time=null;
+					}
+					
+					java.sql.Date order_completion_time = null;  //宣告
+					try {
+						order_completion_time =projOrderVO3.getOrder_ship_time();
+					}catch (Exception e) {
+						// TODO: handle exception
+						order_completion_time=null;
+					}
+					
+					java.sql.Date order_cancel_time = null;  //宣告
+					try {
+						order_cancel_time =projOrderVO3.getOrder_ship_time();
+					}catch (Exception e) {
+						// TODO: handle exception
+						order_cancel_time=null;
+					}
+					
+					
+					Integer order_state =projOrderVO3.getOrder_state();
+					Integer order_cancel_reason =projOrderVO3.getOrder_cancel_reason();
+					/*----------------------------*/
+					
+						ProjOrderVO projOrderVO = new ProjOrderVO();
+						projOrderVO.setOrder_zipcode(order_zipcode);
+						projOrderVO.setOrder_addr(order_addr);
+						projOrderVO.setOrder_receiver(order_receiver);
+						projOrderVO.setOrder_tel(order_tel);
+						projOrderVO.setOrder_pay(order_pay);
+						projOrderVO.setOrder_id(order_id);
+
+						
+						// Send the use back to the form, if there were errors
+						ProjPerkService projPerkSvc3 = new ProjPerkService(); 
+						ProjPerkVO projPerkVO3 = projPerkSvc3.getOneProjPerk(perk_id);   
+						
+						ProjectService projectSvc3 = new ProjectService();
+						ProjectVO projectVO3 = projectSvc3.getOneProject(projPerkVO3.getProj_id());
+						
+						MemService memSvc3 = new MemService();  
+						MemVO memVO3 = memSvc3.getOneMem(mem_id); 
+						
+						if (!errorMsgs.isEmpty()) { //錯誤回去
+	/**備註：為了測試，MemVO暫時用req帶過去*******/
+							req.setAttribute("projOrderVO", projOrderVO);
+							req.setAttribute("projectVO", projectVO3);
+							req.setAttribute("projPerkVO",projPerkVO3);
+							req.setAttribute("memVO",memVO3);
+//		req.setAttribute("projOrderVO", projOrderVO); // 含有輸入格式錯誤的empVO物件,也存入req
+							RequestDispatcher failureView = req
+									.getRequestDispatcher("/projOrder/update_order_input_ByMem.jsp");
+							failureView.forward(req, res);
+							return; //程式中斷
+						}
+						
+						/***************************2.開始修改資料*****************************************/
+						ProjOrderService projOrderSvc4 = new ProjOrderService();
+						//控制起驗證完拿到的碎片，new領班，交給領班去組合。
+						//領班用自己的方法去組合將碎片放入一個EmpVO物件，物件再交給工人去施工更新   的動作，然後領班會再回傳一個empVO物件回來
+						ProjOrderVO projOrderVO2 = projOrderSvc4.updateProjOrder(order_zipcode, order_addr, order_receiver, order_tel, order_state,order_ship_time, order_completion_time,order_cancel_time,order_cancel_reason,order_id);
+					
+					/***************************3.新增完成,準備轉交(Send the Success view)***********/
+	/**備註：為了測試，MemVO暫時用req帶過去*******/
+						List<ProjOrderVO> projOrderVO5=projOrderSvc4.getAllMemOrder(mem_id);
+					req.setAttribute("memVO",memVO3);
+					req.setAttribute("projOrderVO", projOrderVO5);
+					String url = "/projOrder/listAllOrderByMem.jsp";
+					RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+					successView.forward(req, res);				
+					
+					/***************************其他可能的錯誤處理**********************************/
+				} catch (Exception e) {
+					errorMsgs.add(e.getMessage());
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/projOrder/update_order_input_ByMem.jsp");
+					failureView.forward(req, res);
+				}
+			}
+
 		
 
 		
@@ -1496,90 +1665,122 @@ public class ProjOrderServlet extends HttpServlet{
 		
 		
 		
-//        if ("insert".equals(action)) { // 來自addEmp.jsp的請求  
-//			
-//			List<String> errorMsgs = new LinkedList<String>();
-//			// Store this set in the request scope, in case we need to
-//			// send the ErrorPage view.
-//			req.setAttribute("errorMsgs", errorMsgs);
-//
-//			try {
-//				/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
-//String ename = req.getParameter("ename");
-//				String enameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
-//				if (ename == null || ename.trim().length() == 0) {
-//					errorMsgs.add("員工姓名: 請勿空白");
-//				} else if(!ename.trim().matches(enameReg)) { //以下練習正則(規)表示式(regular-expression)
-//					errorMsgs.add("員工姓名: 只能是中、英文字母、數字和_ , 且長度必需在2到10之間");
-//	            }
-//				
-//String job = req.getParameter("job").trim();
-//				if (job == null || job.trim().length() == 0) {
-//					errorMsgs.add("職位請勿空白");
-//				}
-//				
-//				java.sql.Date hiredate = null;
-//				try {
-//hiredate = java.sql.Date.valueOf(req.getParameter("hiredate").trim());
-//				} catch (IllegalArgumentException e) {
-//					hiredate=new java.sql.Date(System.currentTimeMillis());
-//					errorMsgs.add("請輸入日期!");
-//				}
-//				
-//				Double sal = null;
-//				try {
-//sal = new Double(req.getParameter("sal").trim());
-//				} catch (NumberFormatException e) {
-//					sal = 0.0;
-//					errorMsgs.add("薪水請填數字.");
-//				}
-//				
-//				Double comm = null;
-//				try {
-//comm = new Double(req.getParameter("comm").trim());
-//				} catch (NumberFormatException e) {
-//					comm = 0.0;
-//					errorMsgs.add("獎金請填數字.");
-//				}
-//				
-//Integer deptno = new Integer(req.getParameter("deptno").trim());
-//
-//				EmpVO empVO = new EmpVO();
-//				empVO.setEname(ename);
-//				empVO.setJob(job);
-//				empVO.setHiredate(hiredate);
-//				empVO.setSal(sal);
-//				empVO.setComm(comm);
-//				empVO.setDeptno(deptno);
-//
-//				// Send the use back to the form, if there were errors
-//				if (!errorMsgs.isEmpty()) {
-//req.setAttribute("empVO", empVO); // 含有輸入格式錯誤的empVO物件,也存入req
-//					RequestDispatcher failureView = req
-//							.getRequestDispatcher("/emp/addEmp.jsp");
-//					failureView.forward(req, res);
-//					return;
-//				}
-//				
-//				/***************************2.開始新增資料***************************************/
-//				EmpService empSvc = new EmpService();
-//				//控制器驗證完拿到的碎片，new領班，交給領班去組合。
-//				//領班用自己的方法去組合將碎片放入一個EmpVO物件，物件再交給工人去施工新增的動作，然後領班會再回傳一個empVO物件回來
-//				empVO = empSvc.addEmp(ename, job, hiredate, sal, comm, deptno);
-//				
-//				/***************************3.新增完成,準備轉交(Send the Success view)***********/
-//				String url = "/emp/listAllEmp.jsp";
-//				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
-//				successView.forward(req, res);				
-//				
-//				/***************************其他可能的錯誤處理**********************************/
-//			} catch (Exception e) {
-//				errorMsgs.add(e.getMessage());
-//				RequestDispatcher failureView = req
-//						.getRequestDispatcher("/emp/addEmp.jsp");
-//				failureView.forward(req, res);
-//			}
-//		}
+        if ("insert".equals(action)) { // 來自addEmp.jsp的請求  
+			
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+
+			try {
+				Integer mem_id = new Integer(req.getParameter("mem_id").trim());
+				Integer perk_id = new Integer(req.getParameter("perk_id").trim());
+				
+				// ---------------order_zipcode驗證----------------//
+				String order_addr = (req.getParameter("order_addr").trim());
+				String order_addrReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,40}$";
+				if (order_addr == null || order_addr.trim().length() == 0) {
+					errorMsgs.add("地址: 請勿空白");
+				} else if(!order_addr.trim().matches(order_addrReg)) { //以下練習正則(規)表示式(regular-expression)
+					errorMsgs.add("地址: 只能是中、英文字母、數字和_ , 且長度必需在40字以內");
+	            }
+				
+				
+				String order_zipcode_str = (req.getParameter("order_zipcode").trim());
+				String order_zipcodeReg = "^.{3}$";
+
+				if (order_zipcode_str == null || order_zipcode_str.trim().length() == 0) {
+					errorMsgs.add("郵遞區號: 請勿空白");
+				} else if(!order_zipcode_str.trim().matches(order_zipcodeReg)) { //以下練習正則(規)表示式(regular-expression)
+					errorMsgs.add("郵遞區號: 只能是數字，且長度必需在3字以內");
+	            }
+								
+				Integer order_zipcode = null;
+				try {
+					order_zipcode = new Integer(req.getParameter("order_zipcode").trim());
+				} catch (NumberFormatException e) {
+					order_zipcode=null;
+					errorMsgs.add("郵遞區號請填數字.");
+				}
+
+				String order_receiver =(req.getParameter("order_receiver").trim());
+				String order_receiverReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,25}$";
+				if (order_receiver == null || order_receiver.trim().length() == 0) {
+					errorMsgs.add("收件人姓名: 請勿空白");
+				} else if(!order_receiver.trim().matches(order_receiverReg)) { //以下練習正則(規)表示式(regular-expression)
+					errorMsgs.add("收件人姓名: 只能是中、英文字母、數字和_ , 且長度必需在2到25之間");
+	            }
+				
+				
+//				String order_tel =(req.getParameter("order_tel").trim());
+				String order_tel = (req.getParameter("order_tel").trim());
+				String order_telReg = "^{0,1}[0-9]*$";
+				if (order_tel == null || order_tel.trim().length() == 0) {
+					errorMsgs.add("聯絡電話: 請勿空白");
+				} else if(!order_tel.trim().matches(order_telReg)) { //以下練習正則(規)表示式(regular-expression)
+					errorMsgs.add("聯絡電話: 只能是數字");
+	            }
+				
+				String order_pay_str =(req.getParameter("order_pay").trim());
+				
+				Integer order_pay = Integer.parseInt(order_pay_str);
+
+					ProjOrderVO projOrderVO = new ProjOrderVO();
+				
+					projOrderVO.setMem_id(mem_id);
+					projOrderVO.setPerk_id(perk_id);
+					projOrderVO.setOrder_zipcode(order_zipcode);
+					projOrderVO.setOrder_addr(order_addr);
+					projOrderVO.setOrder_receiver(order_receiver);
+					projOrderVO.setOrder_tel(order_tel);
+					projOrderVO.setOrder_pay(order_pay);
+
+					
+					// Send the use back to the form, if there were errors
+					ProjPerkService projPerkSvc3 = new ProjPerkService(); 
+					ProjPerkVO projPerkVO3 = projPerkSvc3.getOneProjPerk(perk_id);   
+					
+					ProjectService projectSvc3 = new ProjectService();
+					ProjectVO projectVO3 = projectSvc3.getOneProject(projPerkVO3.getProj_id());
+					
+					MemService memSvc3 = new MemService();  
+					MemVO memVO3 = memSvc3.getOneMem(mem_id); 
+					
+					if (!errorMsgs.isEmpty()) { //錯誤回去
+/**備註：為了測試，MemVO暫時用req帶過去*******/
+						req.setAttribute("projOrderVO", projOrderVO);
+						req.setAttribute("projectVO", projectVO3);
+						req.setAttribute("projPerkVO",projPerkVO3);
+						req.setAttribute("memVO",memVO3);
+//	req.setAttribute("projOrderVO", projOrderVO); // 含有輸入格式錯誤的empVO物件,也存入req
+						RequestDispatcher failureView = req
+								.getRequestDispatcher("/projOrder/addOrderByMem.jsp");
+						failureView.forward(req, res);
+						return; //程式中斷
+					}
+					
+					/***************************2.開始修改資料*****************************************/
+					ProjOrderService projOrderSvc = new ProjOrderService();
+					//控制起驗證完拿到的碎片，new領班，交給領班去組合。
+					//領班用自己的方法去組合將碎片放入一個EmpVO物件，物件再交給工人去施工更新   的動作，然後領班會再回傳一個empVO物件回來
+					ProjOrderVO projOrderVO2 = projOrderSvc.addProjOrder(mem_id, perk_id, order_zipcode, order_addr, order_receiver,order_tel, order_pay);
+				
+				/***************************3.新增完成,準備轉交(Send the Success view)***********/
+/**備註：為了測試，MemVO暫時用req帶過去*******/
+				req.setAttribute("memVO",memVO3);
+				req.setAttribute("projectVO", projectVO3);
+				String url = "/projOrder/success_addOrderByMem.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+				successView.forward(req, res);				
+				
+				/***************************其他可能的錯誤處理**********************************/
+			} catch (Exception e) {
+				errorMsgs.add(e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/projOrder/addOrderByMem.jsp");
+				failureView.forward(req, res);
+			}
+		}
 //		
 //		//***********************我不會用到刪除訂單這個功能**********************/
 //		if ("delete".equals(action)) { // 來自listAllEmp.jsp 
