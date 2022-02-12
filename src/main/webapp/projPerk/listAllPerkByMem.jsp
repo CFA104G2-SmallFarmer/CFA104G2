@@ -21,7 +21,8 @@ pageContext.setAttribute("list",list);
 <jsp:useBean id="projectSvc" scope="page" class="com.project.model.ProjectService" />
 <jsp:useBean id="projPerkSvc1" scope="page" class="com.projPerk.model.ProjPerkService" />
 <%-- <jsp:useBean id="fMemSvc" scope="page" class="com.fMem.model.FMemService" /> --%>
-
+<!-- 衧配有改 -->
+<jsp:useBean id="fmemSvc" scope="page" class="com.fMem.model.FMemService" />
 
 <!-- 核心在1173 -->
 <!-- 704有圖要抽換 -->
@@ -751,10 +752,10 @@ translateY
 					</a>
 					<div class="gray f7 mb3">
 						<span>由</span> <a class="b"
-							href="#">${fMemSvc.getOnefMem(projectSvc.getOneProject(projectVO.proj_id).f_mem_id).f_mem_fname}</a><span
+							href="#">${fmemSvc.getOneFMem(projectSvc.getOneProject(projectVO.proj_id).f_mem_id).f_mem_fname}</a><span
 							class="mh2">發起</span>
 					</div>
-					<span class="b">NT$${projectVO.proj_total_fund}</span> <span class="f7 dark-gray">
+					<span class="b">目前總認養金額NT$${projectVO.proj_total_fund}</span> <span class="f7 dark-gray">
 						/ 目標 NT$${projectVO.proj_goal} </span>				</div>
 			</div>
 		</div>
@@ -800,9 +801,10 @@ translateY
 										【${projPerkVO.perk_abbr_name}】 <br>${projPerkVO.perk_intro}
 										<%-- 【${projPerkVO.perk_abbr_name}】 <br>NT$${projPerkVO.perk_fund} --%>
 									</p>
-									<p>
-										
-									</p>
+									<br>
+									 <p style="margin-block-start:0px">
+                    寄送地區：${projPerkVO.perk_ship_area}
+                  </p>
 								</div>
 								<div class="mt3 gray tc ph2 f7 ba">預計於${projPerkVO.perk_ship_date}實現</div> 
 								 </a>
