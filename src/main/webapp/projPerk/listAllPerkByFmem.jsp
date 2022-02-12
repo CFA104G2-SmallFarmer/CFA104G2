@@ -9,15 +9,15 @@
 
 
 <%
-ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
+	ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
  	Integer proj_id  = projectVO.getProj_id();
   	ProjPerkService projPerkSvc = new ProjPerkService();
  	List<ProjPerkVO> list = projPerkSvc.getAll(proj_id);
-     pageContext.setAttribute("list",list);
+    pageContext.setAttribute("list",list);
 %>
 <jsp:useBean id="projectSvc" scope="page" class="com.project.model.ProjectService" />
 <jsp:useBean id="projPerkSvc1" scope="page" class="com.projPerk.model.ProjPerkService" />
-<%-- <jsp:useBean id="fMemSvc" scope="page" class="com.fMem.model.FMemService" /> --%>
+<%-- <jsp:useBean id="fMemSvc" scope="page" class="com.fMem.model.FmemService" /> --%>
 
 
 
@@ -186,14 +186,14 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
           <FORM  METHOD="post" ACTION="<%=request.getContextPath()%>/projPerk/projPerk.do" name="form9">
     <input style="margin-right:10px;float: right;display: inline;font-size: 16px;" type="submit" name="commit" value="回到編輯專案詳情"
       class="button green b--green b mb3">
-      <input type="hidden" name="action" value="go_back_to_listOneProjByFMem">
+      <input type="hidden" name="action" value="go_back_to_listOneProjByFmem">
       <input type="hidden" name="proj_id" value="<%=projectVO.getProj_id()%>"> 
      
       </FORM>
       <FORM  METHOD="post" ACTION="<%=request.getContextPath()%>/projPerk/projPerk.do" name="form9">
     <input style="margin-right:10px;float: right;display: inline;font-size: 16px;" type="submit" name="commit" value="新增回饋方案"
       class="button green b--green b mb3">
-      <input type="hidden" name="action" value="insert_from_listAllPerkByFMem">
+      <input type="hidden" name="action" value="insert_from_listAllPerkByFmem">
       <input type="hidden" name="proj_id" value="<%=projectVO.getProj_id()%>"> 
      
       </FORM>
