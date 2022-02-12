@@ -347,7 +347,7 @@ ul.pagination {
 								<!-- 	<select size="1" name="proj_id"> -->
 								<%-- 	<option value="${projectVO.proj_id}">${projectVO.proj_id} --%>
 								<!-- 	</select> -->
-								<!-- 	<input type="hidden" name="action" value="getOne_For_Display"> -->
+								<!-- 	<input type="hidden" name="action" value="getOne_For_Display_ByFmem"> -->
 								<!-- 	<input type="submit" value="送出"> -->
 								<!-- 	</FORM> -->
 
@@ -358,14 +358,14 @@ ul.pagination {
 										<div class="projectThumb" style="position:relative;" >
 										
 										<div style="position:absolute;right:0;top:0;">
-										<a href="${pageContext.request.contextPath}/project/project.do?proj_id=${projectVO.proj_id}&action=getOne_For_Update"  >
+										<a href="${pageContext.request.contextPath}/project/project.do?proj_id=${projectVO.proj_id}&f_mem_id=${projectVO.f_mem_id}&action=getOne_For_Display_ByFmem"  >
 										<img src="<%= request.getContextPath() %>/project/projectoverview_files/Edit_icon.png"
 												class="projectCoverImg img-responsive"
 												style="left:70%;transition:opacity 350ms;width: 30%;height: 30%;
 												z-index:999;position:relative;">		
 												</a></div>
 																			
-										<a href="${pageContext.request.contextPath}/project/project.do?proj_id=${projectVO.proj_id}&action=getOne_For_Display"
+										<a href="${pageContext.request.contextPath}/project/project.do?proj_id=${projectVO.proj_id}&f_mem_id=70000&action=getOne_For_Display_ByMem"
 											class="projectUrl" data-id="${projectVO.proj_id}"
 											data-title="${projectVO.proj_name}" data-category="1"></a>
 											<%@ taglib prefix="fmt"
@@ -416,7 +416,7 @@ ul.pagination {
 												prefix="fmt"%>
 											<!-- 先取值 -->
 											<fmt:formatDate var="mydate"
-												value="${projectVO.excepted_end_date}"
+												value="${projectVO.expected_end_date}"
 												pattern="yyyy-MM-dd HH:mm:ss" />
 											<!-- parsing -->
 											<fmt:parseDate var="someDate" value="${mydate}"

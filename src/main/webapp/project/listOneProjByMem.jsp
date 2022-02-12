@@ -7,13 +7,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%
-ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO"); 
+ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 %>
-<%-- <% --%>
-<!-- // ProjectService projectSvc = new ProjectService(); -->
-<!-- // ProjectVO projectVO = projectSvc.getOneProject(1001);  -->
-<%-- %> --%>
-
 
 <!-- 待辦 -->
 <!-- 登入確認 -->
@@ -1350,40 +1345,22 @@ footer:hover .logo-safari-fix {
 						<div class="dib pv1">留言</div> <span class="f7 b ml3 gray">0</span>
 					</a>
 				</div>
-
-
-<%-- 				<c:choose> --%>
-<%-- 					<c:when test="${interval<=0}"> --%>
-<!-- 						<div class="w-30-l pv3 ph3 tc w-100"> -->
-<!-- 							<div class="nt3 dn-l"></div> -->
-<!-- 							<div class="pv2 dark-gray bg-near-white f7">專案已結束</div> -->
-<!-- 						</div> -->
-<%-- 					</c:when> --%>
-<%-- 					<c:otherwise> --%>
-<div class=" pv3 ph3 tc w-100">
-						<div style="float:right;font-size:17px;" class="w-30-l pv3 ph3 tc w-100">
+				<c:choose>
+					<c:when test="${interval<=0}">
+						<div class="w-30-l pv3 ph3 tc w-100">
+							<div class="nt3 dn-l"></div>
+							<div class="pv2 dark-gray bg-near-white f7">專案已結束</div>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<div class="w-30-l pv3 ph3 tc w-100">
 							<div class="nt3 dn-l"></div>
 							<a class="bg-white button w-100 green hover-green focus grow"
-								href="${pageContext.request.contextPath}/projPerk/projPerk.do?proj_id=${projectVO.proj_id}&f_mem_id=70000&action=getAllPerk_For_Display_ByFmem">
-							編輯回饋方案</a>
+								href="${pageContext.request.contextPath}/projPerk/projPerk.do?proj_id=${projectVO.proj_id}&action=getAllPerk_For_Display_ByMem">
+								贊助專案</a>
 						</div>
-							<div style="float:right;font-size:17px;" class="w-30-l pv3 ph3 tc w-100">
-							<div class="nt3 dn-l"></div>
-							<a class="bg-white button w-100 green hover-green focus grow"
-								href="${pageContext.request.contextPath}/projPic/projPic.do?proj_id=${projectVO.proj_id}&f_mem_id=70000&action=getAllPic_For_Display_ByFmem">
-							編輯專案圖文</a>
-						</div>
-							<div style="float:right;font-size:17px;" class="w-30-l pv3 ph3 tc w-100">
-							<div class="nt3 dn-l"></div>
-							<a class="bg-white button w-100 green hover-green focus grow"
-								href="${pageContext.request.contextPath}/project/project.do?proj_id=${projectVO.proj_id}&action=getOne_For_Update">
-							
-							編輯認養專案</a>
-							
-						</div>
-						</div>
-<%-- 					</c:otherwise> --%>
-<%-- 				</c:choose> --%>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 	</div>
@@ -1494,7 +1471,7 @@ footer:hover .logo-safari-fix {
 							alt="72345 banner">
 							<div class="black b f4">NT$${projPerkVO.perk_fund}</div>
 							<div class="f7 mv2">
-								<span style="background-color:#717d34 ;"class="f7 white ph2 bg-red b dib"> 剩餘
+								<span class="f7 white ph2 bg-red b dib"> 剩餘
 									${projPerkVO.perk_limited - projPerkVO.perk_total_count} 份 </span><span
 									class="black ph2 bg-near-white dib"> 已被贊助 <span
 									class="b">${projPerkVO.perk_total_count}</span> /
