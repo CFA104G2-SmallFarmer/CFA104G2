@@ -1507,6 +1507,9 @@ footer:hover .logo-safari-fix {
 									${projPerkVO.perk_intro} <br>特惠價
 									${projPerkVO.perk_fund}（限量${projPerkVO.perk_limited}組）
 								</p>
+										<p>
+											寄送地區：${projPerkVO.perk_ship_area}
+									</p>
 							</div>
 							<div class="mt3 gray tc ph2 f7 ba">預計於${projPerkVO.perk_ship_date}實現</div>
 						</a>
