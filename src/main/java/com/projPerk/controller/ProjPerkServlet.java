@@ -7,6 +7,8 @@ import javax.servlet.*;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.*;
 
+import com.mem.model.MemService;
+import com.mem.model.MemVO;
 import com.projPerk.model.ProjPerkService;
 import com.projPerk.model.ProjPerkVO;
 import com.project.model.ProjectService;
@@ -593,6 +595,35 @@ public class ProjPerkServlet extends HttpServlet {
 			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 			successView.forward(req, res);
 			System.out.println("go_back_to_listOneProjByFmem done");
+
+		}
+		
+		/* 0212 18:00新增 */
+		if ("go_to_addOrderByMem".equals(action)) {
+			
+			Integer mem_id = new Integer(req.getParameter("mem_id").trim());
+			System.out.println(mem_id);
+			Integer proj_id = new Integer(req.getParameter("proj_id").trim());
+			System.out.println(proj_id);
+			Integer perk_id = new Integer(req.getParameter("perk_id").trim());
+			System.out.println(perk_id);
+			
+			ProjectService projectSvc = new ProjectService();
+			ProjectVO projectVO = projectSvc.getOneProject(proj_id);
+			req.setAttribute("projectVO", projectVO);
+			
+			ProjPerkService projPerkSvc = new ProjPerkService();  
+			ProjPerkVO projPerkVO = projPerkSvc.getOneProjPerk(perk_id);  
+			req.setAttribute("projPerkVO",projPerkVO);  
+			
+			MemService memSvc3 = new MemService();  
+			MemVO memVO3 = memSvc3.getOneMem(mem_id);  
+			req.setAttribute("memVO",memVO3); 
+
+			String url = "/projOrder/addOrderByMem.jsp";
+			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+			successView.forward(req, res);
+			System.out.println("go_to_addOrderByMem.jsp done");
 
 		}
 
