@@ -87,7 +87,7 @@ public class ProjPerkServlet extends HttpServlet {
 				req.setAttribute("projectVO", projectVO); // 資料庫取出的projPerkVO物件,存入req
 //				req.setAttribute("projPerkVO", projPerkVO); // 資料庫取出的projPerkVO物件,存入req
 
-				String url = "/project/listAllPerkByMem.jsp";
+				String url = "/projPerk/listAllPerkByMem.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 perkoverview.jsp
 				successView.forward(req, res);
 				System.out.println("成功");
@@ -196,7 +196,7 @@ public class ProjPerkServlet extends HttpServlet {
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
-				
+
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("projectVO", projectVO); // 資料庫取出的projPerkVO物件,存入req
 //		req.setAttribute("projPerkVO", projPerkVO); // 資料庫取出的projPerkVO物件,存入req

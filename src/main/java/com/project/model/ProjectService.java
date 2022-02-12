@@ -13,7 +13,7 @@ public class ProjectService {
 
 	public ProjectVO addProject(Integer f_mem_id,String proj_name,
 			byte[] proj_main_pic,String proj_abstract,
-			Integer proj_goal,Date excepted_end_date,String  proj_intro,
+			Integer proj_goal,Date expected_end_date,String  proj_intro,
 			String proj_risk,String proj_video,Integer proj_pay) {
 
 		ProjectVO projectVO = new ProjectVO();
@@ -23,7 +23,7 @@ public class ProjectService {
 		projectVO.setProj_main_pic(proj_main_pic);
 		projectVO.setProj_abstract(proj_abstract);
 		projectVO.setProj_goal(proj_goal);
-		projectVO.setExcepted_end_date(excepted_end_date);
+		projectVO.setExpected_end_date(expected_end_date);
 		projectVO.setProj_intro(proj_intro);
 		projectVO.setProj_risk(proj_risk);
 		projectVO.setProj_video(proj_video);
@@ -53,7 +53,7 @@ public class ProjectService {
 
 	public ProjectVO updateProjectDetail( String proj_name,
 			Integer proj_state,byte[] proj_main_pic,String proj_abstract,
-			Integer  proj_goal,Date excepted_end_date,
+			Integer  proj_goal,Date expected_end_date,
 			Date actual_end_date,Integer proj_total_fund,String  proj_intro,
 			String proj_risk,Integer  proj_total_count,
 			String  proj_video,Integer mem_report_count,Integer proj_pay, Integer proj_id )  {
@@ -65,7 +65,7 @@ public class ProjectService {
 		projectVO.setProj_main_pic(proj_main_pic);
 		projectVO.setProj_abstract(proj_abstract);
 		projectVO.setProj_goal(proj_goal);
-		projectVO.setExcepted_end_date(excepted_end_date);
+		projectVO.setExpected_end_date(expected_end_date);
 		projectVO.setActual_end_date(actual_end_date);
 		projectVO.setProj_total_fund(proj_total_fund);
 		projectVO.setProj_intro(proj_intro);
@@ -90,7 +90,7 @@ public class ProjectService {
 //更新PROJ_TOTAL_COUNT(當有人遞交order時，針對PROJ_TOTAL_COUNT+1)
 	public ProjectVO UpdateProjTotalCountByAddOne(String proj_name,
 			Integer proj_state,byte[] proj_main_pic,String proj_abstract,
-			Integer  proj_goal,Date excepted_end_date,
+			Integer  proj_goal,Date expected_end_date,
 			Date actual_end_date,Integer proj_total_fund,String  proj_intro,
 			String proj_risk,Integer  proj_total_count,
 			String  proj_video,Integer mem_report_count,Integer proj_pay, Integer proj_id ) {
@@ -101,7 +101,7 @@ public class ProjectService {
 		projectVO.setProj_main_pic(proj_main_pic);
 		projectVO.setProj_abstract(proj_abstract);
 		projectVO.setProj_goal(proj_goal);
-		projectVO.setExcepted_end_date(excepted_end_date);
+		projectVO.setExpected_end_date(expected_end_date);
 		projectVO.setActual_end_date(actual_end_date);
 		projectVO.setProj_total_fund(proj_total_fund);
 		projectVO.setProj_intro(proj_intro);
@@ -125,7 +125,7 @@ public class ProjectService {
 	//更新PROJ_TOTAL_COUNT(當有人取消order時，針對PROJ_TOTAL_COUNT-1)
 	public ProjectVO UpdateProjTotalCountBySubOne(String proj_name,
 			Integer proj_state,byte[] proj_main_pic,String proj_abstract,
-			Integer  proj_goal,Date excepted_end_date,
+			Integer  proj_goal,Date expected_end_date,
 			Date actual_end_date,Integer proj_total_fund,String  proj_intro,
 			String proj_risk,Integer  proj_total_count,
 			String  proj_video,Integer mem_report_count,Integer proj_pay, Integer proj_id ) {
@@ -136,7 +136,7 @@ public class ProjectService {
 		projectVO.setProj_main_pic(proj_main_pic);
 		projectVO.setProj_abstract(proj_abstract);
 		projectVO.setProj_goal(proj_goal);
-		projectVO.setExcepted_end_date(excepted_end_date);
+		projectVO.setExpected_end_date(expected_end_date);
 		projectVO.setActual_end_date(actual_end_date);
 		projectVO.setProj_total_fund(proj_total_fund);
 		projectVO.setProj_intro(proj_intro);
@@ -161,7 +161,7 @@ public class ProjectService {
 //更新MEM_REPORT_COUNT(當有人遞交report時，針對MEM_REPORT_COUNT+1)
 	public ProjectVO autoUpdateMem_report_Count(Integer proj_id, Integer f_mem_id,String proj_name,
 			Integer proj_state,byte[] proj_main_pic,String proj_abstract,
-			Integer  proj_goal,Date  start_date,Date excepted_end_date,
+			Integer  proj_goal,Date  start_date,Date expected_end_date,
 			Date actual_end_date,Integer proj_total_fund,String  proj_intro,
 			String proj_risk,Integer  proj_total_count,
 			String  proj_video,Integer mem_report_count,Integer  proj_pay) {
@@ -172,7 +172,7 @@ public class ProjectService {
 		projectVO.setProj_main_pic(proj_main_pic);
 		projectVO.setProj_abstract(proj_abstract);
 		projectVO.setProj_goal(proj_goal);
-		projectVO.setExcepted_end_date(excepted_end_date);
+		projectVO.setExpected_end_date(expected_end_date);
 		projectVO.setActual_end_date(actual_end_date);
 		projectVO.setProj_total_fund(proj_total_fund);
 		projectVO.setProj_intro(proj_intro);

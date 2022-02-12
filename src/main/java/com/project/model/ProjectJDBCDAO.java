@@ -14,17 +14,17 @@ public class ProjectJDBCDAO implements ProjectDAO_interface {
 
 //	PROJ_ID is AI, PROJ_STATE df=0, START_DATE is NOW(), 
 //	ACTUAL_END_DATE 結束才有 PROJ_TOTAL_FUND df=0, PROJ_TOTAL_COUNT df=0, MEM_REPORT_COUNT 檢舉才有
-	private static final String INSERT_STMT = "INSERT INTO PROJECT (F_MEM_ID,PROJ_NAME,PROJ_STATE,PROJ_MAIN_PIC,PROJ_ABSTRACT,PROJ_GOAL,START_DATE,EXCEPTED_END_DATE,PROJ_TOTAL_FUND,PROJ_INTRO,PROJ_RISK,PROJ_TOTAL_COUNT,PROJ_VIDEO,PROJ_PAY)"
+	private static final String INSERT_STMT = "INSERT INTO PROJECT (F_MEM_ID,PROJ_NAME,PROJ_STATE,PROJ_MAIN_PIC,PROJ_ABSTRACT,PROJ_GOAL,START_DATE,EXPECTED_END_DATE,PROJ_TOTAL_FUND,PROJ_INTRO,PROJ_RISK,PROJ_TOTAL_COUNT,PROJ_VIDEO,PROJ_PAY)"
 			+ "VALUES (?, ?, 0, ?, ?, ?,NOW(), ?, 0, ?, ?, 0, ?,  ?)";
-	private static final String GET_ALL_STMT = "SELECT PROJ_ID,F_MEM_ID,PROJ_NAME,PROJ_STATE,PROJ_MAIN_PIC,PROJ_ABSTRACT,PROJ_GOAL,START_DATE,EXCEPTED_END_DATE,ACTUAL_END_DATE,PROJ_TOTAL_FUND,PROJ_INTRO,PROJ_RISK,PROJ_TOTAL_COUNT,PROJ_VIDEO,MEM_REPORT_COUNT,PROJ_PAY FROM PROJECT ORDER BY PROJ_ID";
-	private static final String GET_ONE_STMT = "SELECT PROJ_ID,F_MEM_ID,PROJ_NAME,PROJ_STATE,PROJ_MAIN_PIC,PROJ_ABSTRACT,PROJ_GOAL,START_DATE,EXCEPTED_END_DATE,ACTUAL_END_DATE,PROJ_TOTAL_FUND,PROJ_INTRO,PROJ_RISK,PROJ_TOTAL_COUNT,PROJ_VIDEO,MEM_REPORT_COUNT,PROJ_PAY FROM PROJECT WHERE PROJ_ID = ?";
+	private static final String GET_ALL_STMT = "SELECT PROJ_ID,F_MEM_ID,PROJ_NAME,PROJ_STATE,PROJ_MAIN_PIC,PROJ_ABSTRACT,PROJ_GOAL,START_DATE,EXPECTED_END_DATE,ACTUAL_END_DATE,PROJ_TOTAL_FUND,PROJ_INTRO,PROJ_RISK,PROJ_TOTAL_COUNT,PROJ_VIDEO,MEM_REPORT_COUNT,PROJ_PAY FROM PROJECT ORDER BY PROJ_ID";
+	private static final String GET_ONE_STMT = "SELECT PROJ_ID,F_MEM_ID,PROJ_NAME,PROJ_STATE,PROJ_MAIN_PIC,PROJ_ABSTRACT,PROJ_GOAL,START_DATE,EXPECTED_END_DATE,ACTUAL_END_DATE,PROJ_TOTAL_FUND,PROJ_INTRO,PROJ_RISK,PROJ_TOTAL_COUNT,PROJ_VIDEO,MEM_REPORT_COUNT,PROJ_PAY FROM PROJECT WHERE PROJ_ID = ?";
 	private static final String DELETE = "DELETE FROM PROJECT WHERE PROJ_ID = ?";
 
 //	不可改PROJ_ID, F_MEM_ID, START_DATE
-	private static final String UPDATE = "UPDATE PROJECT SET PROJ_NAME=?,PROJ_STATE=?,PROJ_MAIN_PIC=?,PROJ_ABSTRACT=?,PROJ_GOAL=?,EXCEPTED_END_DATE=?,ACTUAL_END_DATE=?,PROJ_TOTAL_FUND=?,PROJ_INTRO=?,PROJ_RISK=?,PROJ_TOTAL_COUNT=?,PROJ_VIDEO=?,MEM_REPORT_COUNT=?,PROJ_PAY=? WHERE PROJ_ID = ?";
+	private static final String UPDATE = "UPDATE PROJECT SET PROJ_NAME=?,PROJ_STATE=?,PROJ_MAIN_PIC=?,PROJ_ABSTRACT=?,PROJ_GOAL=?,EXPECTED_END_DATE=?,ACTUAL_END_DATE=?,PROJ_TOTAL_FUND=?,PROJ_INTRO=?,PROJ_RISK=?,PROJ_TOTAL_COUNT=?,PROJ_VIDEO=?,MEM_REPORT_COUNT=?,PROJ_PAY=? WHERE PROJ_ID = ?";
 
 	private static final String GET_ALL_SAME_FMEM_STMT = // 列出某小農的所有專案
-			"SELECT PROJ_ID,F_MEM_ID,PROJ_NAME,PROJ_STATE,PROJ_MAIN_PIC,PROJ_ABSTRACT,PROJ_GOAL,START_DATE,EXCEPTED_END_DATE,ACTUAL_END_DATE,PROJ_TOTAL_FUND,PROJ_INTRO,PROJ_RISK,PROJ_TOTAL_COUNT,PROJ_VIDEO,MEM_REPORT_COUNT,PROJ_PAY FROM PROJECT WHERE F_MEM_ID=?";
+			"SELECT PROJ_ID,F_MEM_ID,PROJ_NAME,PROJ_STATE,PROJ_MAIN_PIC,PROJ_ABSTRACT,PROJ_GOAL,START_DATE,EXPECTED_END_DATE,ACTUAL_END_DATE,PROJ_TOTAL_FUND,PROJ_INTRO,PROJ_RISK,PROJ_TOTAL_COUNT,PROJ_VIDEO,MEM_REPORT_COUNT,PROJ_PAY FROM PROJECT WHERE F_MEM_ID=?";
 
 	private static final String UPDATE_PROJ_TOTAL_FUND_AND_COUNT = // 更新目前專案總募資金額及數量
 			"UPDATE PROJECT \r\n"
@@ -68,7 +68,7 @@ public class ProjectJDBCDAO implements ProjectDAO_interface {
 			pstmt.setBytes(3, projectVO.getProj_main_pic());
 			pstmt.setString(4, projectVO.getProj_abstract());
 			pstmt.setInt(5, projectVO.getProj_goal());
-			pstmt.setDate(6, projectVO.getExcepted_end_date());
+			pstmt.setDate(6, projectVO.getExpected_end_date());
 			pstmt.setString(7, projectVO.getProj_intro());
 			pstmt.setString(8, projectVO.getProj_risk());
 			pstmt.setString(9, projectVO.getProj_video());
@@ -117,7 +117,7 @@ public class ProjectJDBCDAO implements ProjectDAO_interface {
 			pstmt.setBytes(3, projectVO.getProj_main_pic());
 			pstmt.setString(4, projectVO.getProj_abstract());
 			pstmt.setInt(5, projectVO.getProj_goal());
-			pstmt.setDate(6, projectVO.getExcepted_end_date());
+			pstmt.setDate(6, projectVO.getExpected_end_date());
 			pstmt.setDate(7, projectVO.getActual_end_date());
 			pstmt.setInt(8, projectVO.getProj_total_fund());
 			pstmt.setString(9, projectVO.getProj_intro());
@@ -226,7 +226,7 @@ public class ProjectJDBCDAO implements ProjectDAO_interface {
 				projectVO.setProj_abstract(rs.getString("proj_abstract"));
 				projectVO.setProj_goal(rs.getInt("proj_goal"));
 				projectVO.setStart_date(rs.getDate("start_date"));
-				projectVO.setExcepted_end_date(rs.getDate("excepted_end_date"));
+				projectVO.setExpected_end_date(rs.getDate("expected_end_date"));
 				projectVO.setActual_end_date(rs.getDate("actual_end_date"));
 				projectVO.setProj_total_fund(rs.getInt("proj_total_fund"));
 				projectVO.setProj_intro(rs.getString("proj_intro"));
@@ -309,7 +309,7 @@ public class ProjectJDBCDAO implements ProjectDAO_interface {
 				projectVO.setProj_abstract(rs.getString("proj_abstract"));
 				projectVO.setProj_goal(rs.getInt("proj_goal"));
 				projectVO.setStart_date(rs.getDate("start_date"));
-				projectVO.setExcepted_end_date(rs.getDate("excepted_end_date"));
+				projectVO.setExpected_end_date(rs.getDate("expected_end_date"));
 				projectVO.setActual_end_date(rs.getDate("actual_end_date"));
 				projectVO.setProj_total_fund(rs.getInt("proj_total_fund"));
 				projectVO.setProj_intro(rs.getString("proj_intro"));
@@ -391,7 +391,7 @@ public class ProjectJDBCDAO implements ProjectDAO_interface {
 				projectVO.setProj_abstract(rs.getString("proj_abstract"));
 				projectVO.setProj_goal(rs.getInt("proj_goal"));
 				projectVO.setStart_date(rs.getDate("start_date"));
-				projectVO.setExcepted_end_date(rs.getDate("excepted_end_date"));
+				projectVO.setExpected_end_date(rs.getDate("expected_end_date"));
 				projectVO.setActual_end_date(rs.getDate("actual_end_date"));
 				projectVO.setProj_total_fund(rs.getInt("proj_total_fund"));
 				projectVO.setProj_intro(rs.getString("proj_intro"));
@@ -510,7 +510,7 @@ public class ProjectJDBCDAO implements ProjectDAO_interface {
 //		
 //		ProjectVO2.setProj_abstract("來自達利的文旦");
 //		ProjectVO2.setProj_goal(100000);
-//		ProjectVO2.setExcepted_end_date(java.sql.Date.valueOf("2022-11-10"));
+//		ProjectVO2.setExpected_end_date(java.sql.Date.valueOf("2022-11-10"));
 //		ProjectVO2.setProj_intro("在文旦樹掛上知名藝術家達利的作畫，讓文旦更甜更好吃");
 //		ProjectVO2.setProj_risk("颱風來了很危險，畫跟文旦都會被吹走");
 //		ProjectVO2.setProj_video("https://www.youtube.com/watch?v=072tU1tamd0");
@@ -549,7 +549,7 @@ public class ProjectJDBCDAO implements ProjectDAO_interface {
 		
 		ProjectVO3.setProj_abstract("來自達利的文旦");
 		ProjectVO3.setProj_goal(100000);
-		ProjectVO3.setExcepted_end_date(java.sql.Date.valueOf("2022-11-10"));
+		ProjectVO3.setExpected_end_date(java.sql.Date.valueOf("2022-11-10"));
 		ProjectVO3.setActual_end_date(java.sql.Date.valueOf("2023-11-10"));
 		ProjectVO3.setProj_total_fund(10);
 		ProjectVO3.setProj_intro("在文旦樹掛上知名藝術家達利的作畫，讓文旦更甜更好吃");
@@ -576,7 +576,7 @@ public class ProjectJDBCDAO implements ProjectDAO_interface {
 //		System.out.println(ProjectVO4.getProj_abstract() + ",");
 //		System.out.println(ProjectVO4.getProj_goal() + ",");
 //		System.out.println(ProjectVO4.getStart_date() + ",");
-//		System.out.println(ProjectVO4.getExcepted_end_date() + ",");
+//		System.out.println(ProjectVO4.getExpected_end_date() + ",");
 //		System.out.println(ProjectVO4.getActual_end_date() + ",");
 //		System.out.println(ProjectVO4.getProj_total_fund() + ",");
 //		System.out.println(ProjectVO4.getProj_intro() + ",");
@@ -601,7 +601,7 @@ public class ProjectJDBCDAO implements ProjectDAO_interface {
 //			System.out.println(ProjectVO5.getProj_abstract() + ",");
 //			System.out.println(ProjectVO5.getProj_goal() + ",");
 //			System.out.println(ProjectVO5.getStart_date() + ",");
-//			System.out.println(ProjectVO5.getExcepted_end_date() + ",");
+//			System.out.println(ProjectVO5.getExpected_end_date() + ",");
 //			System.out.println(ProjectVO5.getActual_end_date() + ",");
 //			System.out.println(ProjectVO5.getProj_total_fund() + ",");
 //			System.out.println(ProjectVO5.getProj_intro() + ",");
@@ -627,7 +627,7 @@ public class ProjectJDBCDAO implements ProjectDAO_interface {
 //			System.out.println(ProjectVO5.getProj_abstract() + ",");
 //			System.out.println(ProjectVO5.getProj_goal() + ",");
 //			System.out.println(ProjectVO5.getStart_date() + ",");
-//			System.out.println(ProjectVO5.getExcepted_end_date() + ",");
+//			System.out.println(ProjectVO5.getExpected_end_date() + ",");
 //			System.out.println(ProjectVO5.getActual_end_date() + ",");
 //			System.out.println(ProjectVO5.getProj_total_fund() + ",");
 //			System.out.println(ProjectVO5.getProj_intro() + ",");

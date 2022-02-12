@@ -24,15 +24,15 @@ public class ProjPicServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-		System.out.println("pic enter");
+//		System.out.println("pic enter");
 
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action"); // 表單有用hidden name="action" value="getOne_For_Display"
 
-		System.out.println("pic enter action get");
+//		System.out.println("pic enter action get");
 
-		System.out.println(req);
-		System.out.println(action);
+//		System.out.println(req);
+//		System.out.println(action);
 
 		// 來自select_page.jsp的請求
 		if ("getOne_For_Display".equals(action)) {
@@ -130,142 +130,68 @@ public class ProjPicServlet extends HttpServlet {
 			}
 		}
 
-//		if ("update".equals(action)) { // 來自update_emp_input.jsp的請求
-//
-//			
-//			List<String> errorMsgs = new LinkedList<String>();
-//			// Store this set in the request scope, in case we need to
-//			// send the ErrorPage view.
-//			req.setAttribute("errorMsgs", errorMsgs);
-//
-//			try {
-//				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
-//
-//				Integer proj_id = new Integer(req.getParameter("proj_id").trim());
-//				
-//				String proj_name = req.getParameter("proj_name");
-//				String enameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,40}$";
-//				if (proj_name == null || proj_name.trim().length() == 0) {
-//					errorMsgs.add("認養專案名稱: 請勿空白");
-//				} else if (!proj_name.trim().matches(enameReg)) {
-//					errorMsgs.add("認養專案名稱: 只能是中、英文字母、數字和_ , 且長度必需在2到40之間");
-//				}
-//
-//				Integer proj_state = new Integer(req.getParameter("proj_state").trim());
-//
-////				------------------處理圖片--------------------
-//				InputStream inputStream = null; // input stream of the upload file
-//				byte[] proj_main_pic = null;
-//				// obtains the upload file part in this multipart request
-//				Part filePart = req.getPart("proj_main_pic");
-//				if (filePart != null) {
-//					// prints out some information for debugging
-//					System.out.println(filePart.getName());
-//					System.out.println(filePart.getSize());
-//					System.out.println(filePart.getContentType());
-//					// obtains input stream of the upload file
-//					inputStream = filePart.getInputStream();
-//					proj_main_pic = new byte[inputStream.available()];// 長度，資料流多少bytes
-//				}
-////				------------------處理圖片--------------------					
-//
-//				String proj_abstract = req.getParameter("proj_abstract").trim();
-//				if (proj_abstract == null || proj_abstract.trim().length() == 0) {
-//					errorMsgs.add("專案摘要請勿空白");
-//				}	
-//				
-//				Integer proj_goal = new Integer(req.getParameter("proj_goal").trim());
-//				
-//				java.sql.Date excepted_end_date = null;
-//				try {
-//					excepted_end_date = java.sql.Date.valueOf(req.getParameter("excepted_end_date").trim());// 要轉型
-//				} catch (IllegalArgumentException e) {
-//					excepted_end_date = new java.sql.Date(System.currentTimeMillis());
-//					errorMsgs.add("請輸入日期!");
-//				}
-//				
-//				java.sql.Date actual_end_date = null;
-//				try {
-//					actual_end_date = java.sql.Date.valueOf(req.getParameter("actual_end_date").trim());// 要轉型
-//				} catch (IllegalArgumentException e) {
-//					actual_end_date = new java.sql.Date(System.currentTimeMillis());
-//					errorMsgs.add("請輸入日期!");
-//				}
-//				
-//				Integer proj_total_fund = new Integer(req.getParameter("proj_total_fund").trim());
-//				
-//				String proj_intro = req.getParameter("proj_intro").trim();
-//				if (proj_abstract == null || proj_abstract.trim().length() == 0) {
-//					errorMsgs.add("專案簡介請勿空白");
-//				}
-//				
-//				String proj_risk = req.getParameter("proj_risk").trim();
-//				if (proj_abstract == null || proj_abstract.trim().length() == 0) {
-//					errorMsgs.add("專案風險請勿空白");
-//				}
-//
-//				Integer proj_total_count = new Integer(req.getParameter("proj_total_count").trim());
-//
-//				String proj_video = req.getParameter("proj_video").trim();
-//				if (proj_abstract == null || proj_abstract.trim().length() == 0) {
-//					errorMsgs.add("專案影片連結請勿空白");
-//				}
-//				
-//				Integer mem_report_count = new Integer(req.getParameter("mem_report_count").trim());
-//				
-//				Integer proj_pay = new Integer(req.getParameter("proj_pay").trim());
-//
-//				ProjPicVO projPicVO = new ProjPicVO();
-//				
-//				projPicVO.setProj_id(proj_id);
-//				projPicVO.setProj_name(proj_name);
-//				projPicVO.setProj_state(proj_state);
-//				projPicVO.setProj_main_pic(proj_main_pic);
-//				projPicVO.setProj_abstract(proj_abstract);
-//				projPicVO.setProj_goal(proj_goal);
-//				projPicVO.setExcepted_end_date(excepted_end_date);
-//				projPicVO.setActual_end_date(actual_end_date);
-//				projPicVO.setProj_total_fund(proj_total_fund);
-//				projPicVO.setProj_intro(proj_intro);
-//				projPicVO.setProj_risk(proj_risk);
-//				projPicVO.setProj_total_count(proj_total_count);
-//				projPicVO.setProj_video(proj_video);
-//				projPicVO.setMem_report_count(mem_report_count);
-//				projPicVO.setProj_pay(proj_pay);
-//
-//				// Send the use back to the form, if there were errors
-//				if (!errorMsgs.isEmpty()) {
-//					req.setAttribute("projPicVO", projPicVO); // 含有輸入格式錯誤的projPicVO物件,也存入req
-//					RequestDispatcher failureView = req.getRequestDispatcher("listAllProj.jsp");
-//					failureView.forward(req, res);
-//					return; // 程式中斷
-//				}
-//
-//				/*************************** 2.開始修改資料 *****************************************/
-//				ProjPicService projSvc = new ProjPicService();
-//				// 控制起驗證完拿到的碎片，new領班，交給領班去組合。
-//				// 領班用自己的方法去組合將碎片放入一個ProjPicVO物件，物件再交給工人去施工更新 的動作，然後領班會再回傳一個projPicVO物件回來
-//				projPicVO = projSvc.updateProjPicDetail(proj_name,
-//						proj_state,proj_main_pic,proj_abstract,
-//						proj_goal,excepted_end_date,
-//						actual_end_date,proj_total_fund,proj_intro,
-//						proj_risk,proj_total_count,
-//						proj_video, mem_report_count,proj_pay, proj_id);
-//
-//				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
-//				req.setAttribute("projPicVO", projPicVO); // 資料庫update成功後,正確的的projPicVO物件,存入req
-//				String url = "/projPic/listOneProjPic.jsp";
-//				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
-//				successView.forward(req, res);
-//
-//				/*************************** 其他可能的錯誤處理 *************************************/
-//			} catch (Exception e) {
-//				errorMsgs.add("修改資料失敗:" + e.getMessage());
-//				RequestDispatcher failureView = req.getRequestDispatcher("listAllProj.jsp");
-//				failureView.forward(req, res);
-//			}
-//		}
-//
+		if ("update".equals(action)) { // 來自update_emp_input.jsp的請求
+// 只有單一更新的功能 可能還是寫交易控制比較好
+			
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+
+			try {
+				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
+
+				Integer proj_id = new Integer(req.getParameter("proj_id").trim());
+				
+//				------------------處理圖片--------------------
+				InputStream inputStream = null; // input stream of the upload file
+				byte[] proj_pic = null;
+				// obtains the upload file part in this multipart request
+				Part filePart = req.getPart("proj_pic");
+				if (filePart != null) {
+					// prints out some information for debugging
+					System.out.println(filePart.getName());
+					System.out.println(filePart.getSize());
+					System.out.println(filePart.getContentType());
+					// obtains input stream of the upload file
+					inputStream = filePart.getInputStream();
+					proj_pic = new byte[inputStream.available()];// 長度，資料流多少bytes
+				}
+//				------------------處理圖片--------------------					
+
+				ProjPicVO projPicVO = new ProjPicVO();
+				
+				projPicVO.setProj_id(proj_id);
+				projPicVO.setProj_pic(proj_pic);
+
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					req.setAttribute("projPicVO", projPicVO); // 含有輸入格式錯誤的projPicVO物件,也存入req
+					RequestDispatcher failureView = req.getRequestDispatcher("listAllProj.jsp");
+					failureView.forward(req, res);
+					return; // 程式中斷
+				}
+
+				/*************************** 2.開始修改資料 *****************************************/
+				ProjPicService projSvc = new ProjPicService();
+				// 控制起驗證完拿到的碎片，new領班，交給領班去組合。
+				// 領班用自己的方法去組合將碎片放入一個ProjPicVO物件，物件再交給工人去施工更新 的動作，然後領班會再回傳一個projPicVO物件回來
+				projPicVO = projSvc.updateProjPic(proj_id,proj_pic);
+
+				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
+				req.setAttribute("projPicVO", projPicVO); // 資料庫update成功後,正確的的projPicVO物件,存入req
+				String url = "/projPic/listOneProjPic.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
+				successView.forward(req, res);
+
+				/*************************** 其他可能的錯誤處理 *************************************/
+			} catch (Exception e) {
+				errorMsgs.add("修改資料失敗:" + e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("listAllProj.jsp");
+				failureView.forward(req, res);
+			}
+		}
+
 
 		/* ======================衧霈寫的insert============================= */
 		if ("insert".equals(action)) { // 來自addEmp.jsp的請求
@@ -336,7 +262,7 @@ public class ProjPicServlet extends HttpServlet {
 				ProjectService projectSvc = new ProjectService();
 				ProjectVO projectVO = projectSvc.getOneProject(proj_id);
 				req.setAttribute("projectVO", projectVO);
-				String url = "/projPerk/listAllPerkByFMem.jsp";
+				String url = "/projPerk/listAllPerkByFmem.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 				System.out.println("good in pic");
@@ -430,34 +356,171 @@ public class ProjPicServlet extends HttpServlet {
 //		}
 //================0206聖凱寫的insert==========================================/		
 
-//
-//		if ("delete".equals(action)) { // 來自listAllEmp.jsp
-//
-//			List<String> errorMsgs = new LinkedList<String>();
-//			// Store this set in the request scope, in case we need to
-//			// send the ErrorPage view.
-//			req.setAttribute("errorMsgs", errorMsgs);
-//
-//			try {
-//				/*************************** 1.接收請求參數 ***************************************/
-//				Integer proj_id = new Integer(req.getParameter("proj_id"));
-//
-//				/*************************** 2.開始刪除資料 ***************************************/
-//				ProjPicService projSvc = new ProjPicService();
-//				projSvc.deleteProjPic(proj_id);
-//
-//				/*************************** 3.刪除完成,準備轉交(Send the Success view) ***********/
-//				String url = "listAllProj.jsp";
-//				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
-//				successView.forward(req, res);
-//
-//				/*************************** 其他可能的錯誤處理 **********************************/
-//			} catch (Exception e) {
-//				errorMsgs.add("刪除資料失敗:" + e.getMessage());
-//				RequestDispatcher failureView = req.getRequestDispatcher("listAllProj.jsp");
-//				failureView.forward(req, res);
-//			}
+
+		if ("delete".equals(action)) { // 來自listAllEmp.jsp
+			System.out.println("delete in");
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+
+			try {
+				/*************************** 1.接收請求參數 ***************************************/
+				String str = req.getParameter("proj_id");
+				System.out.println(str);
+				if (str == null || (str.trim()).length() == 0) {
+					System.out.println(str);
+					errorMsgs.add("請輸入專案編號");
+					System.out.println(str);
+				}
+				Integer proj_id = null;
+				try {
+					proj_id = new Integer(str);
+				} catch (Exception e) {
+					errorMsgs.add("專案編號格式不正確");
+				};
+				System.out.println("proj_id get "+proj_id);
+				
+				Integer proj_pic_id = new Integer(req.getParameter("proj_pic_id"));
+
+				/*************************** 2.開始刪除資料 ***************************************/
+				ProjPicService projSvc = new ProjPicService();
+				projSvc.deleteProjPic(proj_pic_id);
+				
+				ProjectService projectSvc = new ProjectService();
+				ProjectVO projectVO = projectSvc.getOneProject(proj_id);
+				System.out.println("proj_id get again"+projectVO.getProj_id());
+				
+				/*************************** 3.刪除完成,準備轉交(Send the Success view) ***********/
+				req.setAttribute("projectVO", projectVO); 
+				String url = "update_proj_pic_input.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
+				successView.forward(req, res);
+				System.out.println("delete done");
+
+				/*************************** 其他可能的錯誤處理 **********************************/
+			} catch (Exception e) {
+				errorMsgs.add("刪除資料失敗:" + e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("update_proj_pic_input.jsp");
+				failureView.forward(req, res);
+			}
+		}
+		
+		
+		if ("getAllPic_For_Display_ByFmem".equals(action)) {
+			System.out.println("1");
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+
+			try {
+				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
+
+				String str = req.getParameter("proj_id");
+				System.out.println(str);
+				if (str == null || (str.trim()).length() == 0) {
+					System.out.println(str);
+					errorMsgs.add("請輸入專案編號");
+					System.out.println(str);
+				}
+//				// Send the use back to the form, if there were errors
+//				if (!errorMsgs.isEmpty()) {
+//					RequestDispatcher failureView = req.getRequestDispatcher("/project/listOneProjByFmem.jsp");
+//					failureView.forward(req, res);
+//					return;// 程式中斷
+//				}
+
+				Integer proj_id = null;
+				try {
+					proj_id = new Integer(str);
+				} catch (Exception e) {
+					errorMsgs.add("專案編號格式不正確");
+				}
+//				// Send the use back to the form, if there were errors
+//				if (!errorMsgs.isEmpty()) {
+//					RequestDispatcher failureView = req.getRequestDispatcher("/project/listOneProjByFmem.jsp");
+//					failureView.forward(req, res);
+//					return;// 程式中斷
+//				}
+
+//				String str2 = req.getParameter("f_mem_id");
+//				System.out.println(str2);
+//				if (str2 == null || (str2.trim()).length() == 0) {
+//					System.out.println(str2);
+//					errorMsgs.add("請輸入小農編號");
+//					System.out.println(str2);
+//				}
+//				// Send the use back to the form, if there were errors
+//				if (!errorMsgs.isEmpty()) {
+//					RequestDispatcher failureView = req.getRequestDispatcher("/project/listOneProjByFmem.jsp");
+//					failureView.forward(req, res);
+//					return;// 程式中斷
+//				}
+
+//				Integer f_mem_id = null;
+//				try {
+//					f_mem_id = new Integer(str2);
+//				} catch (Exception e) {
+//					errorMsgs.add("小農編號格式不正確");
+//				}
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req.getRequestDispatcher("/project/listOneProjByFmem.jsp");
+					failureView.forward(req, res);
+					return;// 程式中斷
+				}
+				System.out.println("2");
+				/*************************** 2.開始查詢資料 *****************************************/
+				ProjectService projectSvc = new ProjectService();
+				ProjectVO projectVO = projectSvc.getOneProject(proj_id);
+
+//		ProjPerkService projPerkSvc = new ProjPerkService();
+//		List<ProjPerkVO> projPerkVO = projPerkSvc.getAll(proj_id);
+//		
+//		for(int i=0; i<projPerkVO.size(); i++) {
+//			System.out.println(projPerkVO.get(i));
 //		}
+
+				if (projectVO == null) {
+					errorMsgs.add("查無資料");
+				}
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req.getRequestDispatcher("/project/listOneProjByFmem.jsp");
+					failureView.forward(req, res);
+					return;// 程式中斷
+				}
+
+				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
+				req.setAttribute("projectVO", projectVO); // 資料庫取出的projPerkVO物件,存入req
+//		req.setAttribute("projPerkVO", projPerkVO); // 資料庫取出的projPerkVO物件,存入req
+//				req.setAttribute("f_mem_id", f_mem_id);
+				String url = "update_proj_pic_input.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 perkoverview.jsp
+				successView.forward(req, res);
+				System.out.println("去小農update_proj_pic_input.jsp成功");
+				/*************************** 其他可能的錯誤處理 *************************************/
+			} catch (Exception e) {
+				System.out.println("error in final");
+				errorMsgs.add("無法取得資料:" + e.getMessage());
+				String str = req.getParameter("proj_id");
+				Integer proj_id = null;
+				proj_id = new Integer(str);
+				ProjectService projectSvc = new ProjectService();
+				ProjectVO projectVO = projectSvc.getOneProject(proj_id);
+				req.setAttribute("projectVO", projectVO);
+
+				RequestDispatcher failureView = req.getRequestDispatcher("/project/listOneProjByFmem.jsp");
+				failureView.forward(req, res);
+
+				System.out.println("getAllPic_For_Display_ByFmem error in final");
+			}
+		}
+		
+		
+		
+		
 	}
 
 	// 取出上傳的檔案名稱 (因為API未提供method,所以必須自行撰寫)

@@ -12,7 +12,7 @@ public class ProjectVO {
 	    private String proj_abstract;
 	    private Integer  proj_goal;
 	    private Date  start_date;
-	    private Date excepted_end_date;
+	    private Date expected_end_date;
 	    private Date actual_end_date;
 	    private Integer proj_total_fund;
 	    private String  proj_intro;
@@ -78,11 +78,11 @@ public class ProjectVO {
 		public void setStart_date(Date start_date) {
 			this.start_date = start_date;
 		}
-		public Date getExcepted_end_date() {
-			return excepted_end_date;
+		public Date getExpected_end_date() {
+			return expected_end_date;
 		}
-		public void setExcepted_end_date(Date excepted_end_date) {
-			this.excepted_end_date = excepted_end_date;
+		public void setExpected_end_date(Date expected_end_date) {
+			this.expected_end_date = expected_end_date;
 		}
 		public Date getActual_end_date() {
 			return actual_end_date;
