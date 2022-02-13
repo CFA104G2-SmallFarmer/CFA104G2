@@ -18,7 +18,7 @@ public class ShopProductJDBCDAO implements ShopProductDAO_interface {
 	private static final String DELETE = 
 		"DELETE FROM shop_product WHERE prod_id = ?";
 	private static final String UPDATE = 
-		"UPDATE shop_product SET prod_type_id = ? ,prod_name =?,f_mem_id =?,prod_status =?, prod_price =?,prod_unit =?,prod_qty =?,prod_reg_date =?,prod_intro =?prod_pic=? WHERE prod_id=?";
+		"UPDATE shop_product SET prod_type_id = ? ,prod_name =?,f_mem_id =?,prod_status =?, prod_price =?,prod_unit =?,prod_qty =?,prod_reg_date =?,prod_intro =?,prod_pic=? WHERE prod_id=?";
 
 	
 
@@ -89,9 +89,10 @@ public class ShopProductJDBCDAO implements ShopProductDAO_interface {
 			pstmt.setString(6,shopProductVO.getProd_unit());
 			pstmt.setInt(7,shopProductVO.getProd_qty());
 			pstmt.setDate(8,shopProductVO.getProd_reg_date());
-			pstmt.setString(9,shopProductVO.getProd_intro());		
-			pstmt.setInt(10,shopProductVO.getProd_id());
-			pstmt.setBytes(11,shopProductVO.getProd_pic());
+			pstmt.setString(9,shopProductVO.getProd_intro());
+			pstmt.setBytes(10,shopProductVO.getProd_pic());
+			pstmt.setInt(11,shopProductVO.getProd_id());
+			
 			
 			
 

@@ -5,11 +5,13 @@ import java.util.*;
 
 import javax.servlet.*;
 import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
 import com.shopProduct.model.ShopProductService;
 import com.shopProduct.model.ShopProductVO;
 import com.shopProductPic.model.ShopProductPicVO;
+
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 5 * 1024 * 1024, maxRequestSize = 5 * 5 * 1024 * 1024)
 
@@ -65,33 +67,7 @@ public class ShopProductServlet extends HttpServlet {
 				Integer prod_id = new Integer(req.getParameter("prod_id").trim());
 
 				Integer f_mem_id = new Integer(req.getParameter("f_mem_id").trim());
-				
-//				------------------處理圖片--------------------
-				InputStream inputStream = null; // input stream of the upload file
-				byte[] prod_pic = null;
-				// obtains the upload file part in this multipart request
-				Part filePart = req.getPart("prod_pic");
-//				System.out.println("______________");
-//				System.out.println(filePart);
-//				System.out.println("______________");
-				// prints out some information for debugging
-				System.out.println(filePart.getName());
-				System.out.println(filePart.getSize());
-				System.out.println(filePart.getContentType());
-				// obtains input stream of the upload file
-				inputStream = filePart.getInputStream();
-				
-				if (inputStream.available() != 0) {
-					prod_pic = new byte[inputStream.available()];// 長度，資料流多少bytes
-					inputStream.read(prod_pic);
-					inputStream.close();
-				} else {
-					ShopProductService shopProductSvc = new ShopProductService();
-					ShopProductVO projectVO2 = shopProductSvc.getOneProduct(prod_id);
-					prod_pic = projectVO2.getProd_pic();
-				}
-//				------------------處理圖片--------------------		
-
+	
 				String prod_name = req.getParameter("prod_name");
 				String prod_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
 				if (prod_name == null || prod_name.trim().length() == 0) {
@@ -127,6 +103,40 @@ public class ShopProductServlet extends HttpServlet {
 				if (prod_intro == null || prod_intro.trim().length() == 0) {
 					errorMsgs.add("商品介紹: 請勿空白");
 				} 
+				
+				
+				/* 這邊是為了拿到原本的圖，設給一個變數p */
+				ShopProductService projPerkSvc2 = new ShopProductService();
+				ShopProductVO projPerkVO2 = projPerkSvc2.getOneProduct(prod_id);
+				byte[] p = projPerkVO2.getProd_pic();
+				
+				
+				/* 圖片區 */
+
+//老師
+//				Collection<Part> parts = req.getParts();
+//				for (Part part : parts) {
+//					String filename = getFileNameFromPart(part); // 方法寫在此頁最下面
+//					if (filename != null && part.getContentType() != null) {
+
+//              伺服器端程式設計要點:
+//				檢查Part是普通表單控制元件還是文字上傳控制元件,判斷content-type的值是否是null
+//				檢查檔名是否為null,為空則表示未選擇上傳檔案,判斷檔名是否是””
+
+				Part part = req.getPart("prod_pic");
+
+				String filename = getFileNameFromPart(part); // 方法寫在此頁最下面
+				
+				byte[] prod_pic = null;
+			if (filename != null && part.getContentType() != null) { // 如果有傳圖片
+
+					InputStream in = req.getPart("prod_pic").getInputStream();
+
+					if (in.available() != 0) {
+						prod_pic = new byte[in.available()];
+						in.read(prod_pic);
+						in.close();
+					}	
 
 				ShopProductVO shopProductVO = new ShopProductVO();
 				
@@ -164,6 +174,47 @@ public class ShopProductServlet extends HttpServlet {
 				String url = "/Product/listOneProduct.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
+				
+			} else {
+				// 如果沒更新圖片
+				ShopProductVO shopProductVO = new ShopProductVO();
+				
+				shopProductVO.setProd_id(prod_id);
+				shopProductVO.setF_mem_id(f_mem_id);
+				shopProductVO.setProd_pic(p);
+				shopProductVO.setProd_name(prod_name);
+				shopProductVO.setProd_type_id(prod_type_id);
+				shopProductVO.setProd_status(prod_status);
+				shopProductVO.setProd_price(prod_price);
+				shopProductVO.setProd_unit(prod_unit);
+				shopProductVO.setProd_qty(prod_qty);
+				shopProductVO.setProd_reg_date(prod_reg_date);
+				shopProductVO.setProd_intro(prod_intro);
+
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					req.setAttribute("shopProductVO", shopProductVO); // 含有輸入格式錯誤的empVO物件,也存入req
+					RequestDispatcher failureView = req.getRequestDispatcher("/Product/listAllProduct.jsp");
+					failureView.forward(req, res);
+					return;
+				}
+
+				/*************************** 2.開始修改資料 *****************************************/
+			
+				
+				ShopProductService shopProductSvc = new ShopProductService();
+				shopProductVO = shopProductSvc.updateProductVO(prod_id,f_mem_id,p, prod_name, prod_type_id, prod_status, prod_price,
+						prod_unit, prod_qty, prod_reg_date, prod_intro);
+
+
+				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
+				ShopProductVO shopProductVO1 = shopProductSvc.getOneProduct(prod_id);
+				req.setAttribute("shopProductVO", shopProductVO); // 資料庫update成功後,正確的的empVO物件,存入req
+				String url = "/Product/listOneProduct.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
+				successView.forward(req, res);		
+				
+			}
 
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
@@ -186,20 +237,14 @@ public class ShopProductServlet extends HttpServlet {
 				Integer f_mem_id = new Integer(req.getParameter("f_mem_id").trim());
 				
 //				------------------處理圖片--------------------
-				InputStream inputStream = null; // input stream of the upload file
+				InputStream in = req.getPart("prod_pic").getInputStream();
 				byte[] prod_pic = null;
-				// obtains the upload file part in this multipart request
-				Part filePart = req.getPart("prod_pic");
-				if (filePart != null) {
-					// prints out some information for debugging
-//					System.out.println(filePart.getName());
-//					System.out.println(filePart.getSize());
-//					System.out.println(filePart.getContentType());
-					// obtains input stream of the upload file
-					inputStream = filePart.getInputStream();
-					prod_pic = new byte[inputStream.available()];// 長度，資料流多少bytes
-					inputStream.read(prod_pic);
-					inputStream.close();
+				if (in.available() != 0) {
+					prod_pic = new byte[in.available()];
+					in.read(prod_pic);
+					in.close();
+				} else {
+					errorMsgs.add("請上傳圖片");
 				}
 //				------------------處理圖片--------------------						
 			
@@ -312,5 +357,17 @@ public class ShopProductServlet extends HttpServlet {
 				}
 			}
 	}
+	// 取出上傳的檔案名稱 (因為API未提供method,所以必須自行撰寫)
+			public String getFileNameFromPart(Part part) {
+				String header = part.getHeader("content-disposition");
+				System.out.println("header=" + header); // 測試用
+//				String filename = header.substring(header.lastIndexOf("=") + 2, header.length() - 1);   此版本chrome可以用,除了IE
+				String filename = new File(header.substring(header.lastIndexOf("=") + 2, header.length() - 1)).getName();  //為了讓IE能跑得動
+				System.out.println("filename=" + filename); // 測試用
+				if (filename.length() == 0) {
+					return null;
+				}
+				return filename;
+			}
 
 }
