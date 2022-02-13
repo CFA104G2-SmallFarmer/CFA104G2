@@ -10,12 +10,13 @@ public class ShopProductService {
 	public  ShopProductService() {
 		dao = new ShopProductJDBCDAO();
 	}
-	public ShopProductVO addProductVO(Integer f_mem_id,String prod_name,Integer prod_type_id,Integer prod_status,
+	public ShopProductVO addProductVO(Integer f_mem_id,byte[] prod_pic,String prod_name,Integer prod_type_id,Integer prod_status,
 					Integer prod_price,String prod_unit,Integer prod_qty,java.sql.Date  prod_reg_date,String prod_intro) {
 		
 		ShopProductVO shopProductVO = new ShopProductVO();
 		
 		shopProductVO.setF_mem_id(f_mem_id);
+		shopProductVO.setProd_pic(prod_pic);
 		shopProductVO.setProd_name(prod_name);
 		shopProductVO.setProd_type_id(prod_type_id);
 		shopProductVO.setProd_status(prod_status);
@@ -31,13 +32,14 @@ public class ShopProductService {
 		return  shopProductVO;
 		
 	}
-	public ShopProductVO updateProductVO(Integer prod_id,Integer f_mem_id,String prod_name,Integer prod_type_id,Integer prod_status,
+	public ShopProductVO updateProductVO(Integer prod_id,Integer f_mem_id,byte[] prod_pic,String prod_name,Integer prod_type_id,Integer prod_status,
 			Integer prod_price,String prod_unit,Integer prod_qty,java.sql.Date prod_reg_date,String prod_intro) {
 		
 		ShopProductVO shopProductVO = new ShopProductVO();
 		
 		shopProductVO.setProd_id(prod_id);
 		shopProductVO.setF_mem_id(f_mem_id);
+		shopProductVO.setProd_pic(prod_pic);
 		shopProductVO.setProd_name(prod_name);
 		shopProductVO.setProd_type_id(prod_type_id);
 		shopProductVO.setProd_status(prod_status);

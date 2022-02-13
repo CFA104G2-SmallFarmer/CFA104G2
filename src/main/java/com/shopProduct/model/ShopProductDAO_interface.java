@@ -10,7 +10,8 @@ public interface ShopProductDAO_interface {
     public void delete(Integer prod_id);
     
     public ShopProductVO findByPrimaryKey(Integer prod_id);    
-    public List<ShopProductVO> getAll();    
+    public List<ShopProductVO> getAll();   
+    
     
 //  public List<ShopProductVO> getAll(Map<String, String[]> map); 
 	

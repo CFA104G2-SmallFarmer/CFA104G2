@@ -4,10 +4,14 @@ import java.io.*;
 import java.util.*;
 
 import javax.servlet.*;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.*;
 
 import com.shopProduct.model.ShopProductService;
 import com.shopProduct.model.ShopProductVO;
+import com.shopProductPic.model.ShopProductPicVO;
+
+@MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 5 * 1024 * 1024, maxRequestSize = 5 * 5 * 1024 * 1024)
 
 public class ShopProductServlet extends HttpServlet {
 
@@ -61,6 +65,32 @@ public class ShopProductServlet extends HttpServlet {
 				Integer prod_id = new Integer(req.getParameter("prod_id").trim());
 
 				Integer f_mem_id = new Integer(req.getParameter("f_mem_id").trim());
+				
+//				------------------處理圖片--------------------
+				InputStream inputStream = null; // input stream of the upload file
+				byte[] prod_pic = null;
+				// obtains the upload file part in this multipart request
+				Part filePart = req.getPart("prod_pic");
+//				System.out.println("______________");
+//				System.out.println(filePart);
+//				System.out.println("______________");
+				// prints out some information for debugging
+				System.out.println(filePart.getName());
+				System.out.println(filePart.getSize());
+				System.out.println(filePart.getContentType());
+				// obtains input stream of the upload file
+				inputStream = filePart.getInputStream();
+				
+				if (inputStream.available() != 0) {
+					prod_pic = new byte[inputStream.available()];// 長度，資料流多少bytes
+					inputStream.read(prod_pic);
+					inputStream.close();
+				} else {
+					ShopProductService shopProductSvc = new ShopProductService();
+					ShopProductVO projectVO2 = shopProductSvc.getOneProduct(prod_id);
+					prod_pic = projectVO2.getProd_pic();
+				}
+//				------------------處理圖片--------------------		
 
 				String prod_name = req.getParameter("prod_name");
 				String prod_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
@@ -102,6 +132,7 @@ public class ShopProductServlet extends HttpServlet {
 				
 				shopProductVO.setProd_id(prod_id);
 				shopProductVO.setF_mem_id(f_mem_id);
+				shopProductVO.setProd_pic(prod_pic);
 				shopProductVO.setProd_name(prod_name);
 				shopProductVO.setProd_type_id(prod_type_id);
 				shopProductVO.setProd_status(prod_status);
@@ -123,11 +154,12 @@ public class ShopProductServlet extends HttpServlet {
 			
 				
 				ShopProductService shopProductSvc = new ShopProductService();
-				shopProductVO = shopProductSvc.updateProductVO(prod_id,f_mem_id, prod_name, prod_type_id, prod_status, prod_price,
+				shopProductVO = shopProductSvc.updateProductVO(prod_id,f_mem_id,prod_pic, prod_name, prod_type_id, prod_status, prod_price,
 						prod_unit, prod_qty, prod_reg_date, prod_intro);
 
 
 				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
+				ShopProductVO shopProductVO1 = shopProductSvc.getOneProduct(prod_id);
 				req.setAttribute("shopProductVO", shopProductVO); // 資料庫update成功後,正確的的empVO物件,存入req
 				String url = "/Product/listOneProduct.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
@@ -152,7 +184,27 @@ public class ShopProductServlet extends HttpServlet {
 				/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
 
 				Integer f_mem_id = new Integer(req.getParameter("f_mem_id").trim());
-
+				
+//				------------------處理圖片--------------------
+				InputStream inputStream = null; // input stream of the upload file
+				byte[] prod_pic = null;
+				// obtains the upload file part in this multipart request
+				Part filePart = req.getPart("prod_pic");
+				if (filePart != null) {
+					// prints out some information for debugging
+//					System.out.println(filePart.getName());
+//					System.out.println(filePart.getSize());
+//					System.out.println(filePart.getContentType());
+					// obtains input stream of the upload file
+					inputStream = filePart.getInputStream();
+					prod_pic = new byte[inputStream.available()];// 長度，資料流多少bytes
+					inputStream.read(prod_pic);
+					inputStream.close();
+				}
+//				------------------處理圖片--------------------						
+			
+				
+				
 				String prod_name = req.getParameter("prod_name");
 				String prod_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
 				if (prod_name == null || prod_name.trim().length() == 0) {
@@ -192,6 +244,7 @@ public class ShopProductServlet extends HttpServlet {
 				ShopProductVO shopProductVO = new ShopProductVO();
 
 				shopProductVO.setF_mem_id(f_mem_id);
+				shopProductVO.setProd_pic(prod_pic);
 				shopProductVO.setProd_name(prod_name);
 				shopProductVO.setProd_type_id(prod_type_id);
 				shopProductVO.setProd_status(prod_status);
@@ -211,8 +264,9 @@ public class ShopProductServlet extends HttpServlet {
 
 				/*************************** 2.開始新增資料 ***************************************/
 				ShopProductService shopProductSvc = new ShopProductService();
-				shopProductVO = shopProductSvc.addProductVO(f_mem_id, prod_name, prod_type_id, prod_status, prod_price,
+				shopProductVO = shopProductSvc.addProductVO(f_mem_id,prod_pic, prod_name, prod_type_id, prod_status, prod_price,
 						prod_unit, prod_qty, prod_reg_date, prod_intro);
+				
 
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
 				String url = "/Product/listAllProduct.jsp";
@@ -257,7 +311,6 @@ public class ShopProductServlet extends HttpServlet {
 					failureView.forward(req, res);
 				}
 			}
-
 	}
 
 }

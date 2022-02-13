@@ -5,6 +5,7 @@ import java.sql.Date;
 public class ShopProductVO implements java.io.Serializable{
 	private Integer prod_id;
 	private Integer f_mem_id;
+	private byte[] prod_pic;
 	private String prod_name;
 	private Integer prod_type_id;
 	private Integer prod_status;
@@ -75,6 +76,12 @@ public class ShopProductVO implements java.io.Serializable{
 	}
 	public void setProd_type_id(Integer prod_type_id) {
 		this.prod_type_id = prod_type_id;
+	}
+	public byte[] getProd_pic() {
+		return prod_pic;
+	}
+	public void setProd_pic(byte[] prod_pic) {
+		this.prod_pic = prod_pic;
 	}
 
 }

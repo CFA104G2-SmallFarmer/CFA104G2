@@ -10,7 +10,7 @@ public class ShopProductJDBCDAO implements ShopProductDAO_interface {
 	String passwd = "password";
 
 	private static final String INSERT_STMT = 
-		"INSERT INTO  shop_product(prod_type_id,prod_name,f_mem_id,prod_status, prod_price,prod_qty,prod_intro,prod_reg_date,prod_unit) VALUES ( ?, ?, ?, ?, ?,?,?,?,?)";
+		"INSERT INTO  shop_product(prod_type_id,prod_name,f_mem_id,prod_status, prod_price,prod_qty,prod_intro,prod_reg_date,prod_unit,prod_pic) VALUES ( ?, ?, ?, ?, ?,?,?,?,?,?)";
 	private static final String GET_ALL_STMT = 
 		"SELECT * FROM shop_product ";
 	private static final String GET_ONE_STMT = 
@@ -18,7 +18,7 @@ public class ShopProductJDBCDAO implements ShopProductDAO_interface {
 	private static final String DELETE = 
 		"DELETE FROM shop_product WHERE prod_id = ?";
 	private static final String UPDATE = 
-		"UPDATE shop_product SET prod_type_id = ? ,prod_name =?,f_mem_id =?,prod_status =?, prod_price =?,prod_unit =?,prod_qty =?,prod_reg_date =?,prod_intro =? WHERE prod_id=?";
+		"UPDATE shop_product SET prod_type_id = ? ,prod_name =?,f_mem_id =?,prod_status =?, prod_price =?,prod_unit =?,prod_qty =?,prod_reg_date =?,prod_intro =?prod_pic=? WHERE prod_id=?";
 
 	
 
@@ -41,7 +41,8 @@ public class ShopProductJDBCDAO implements ShopProductDAO_interface {
 			pstmt.setString(7,shopProductVO.getProd_intro());
 			pstmt.setDate(8,shopProductVO.getProd_reg_date());
 			pstmt.setString(9,shopProductVO.getProd_unit());
-
+			pstmt.setBytes(10,shopProductVO.getProd_pic());
+			
 			pstmt.executeUpdate();
 		} catch (ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. "
@@ -90,6 +91,7 @@ public class ShopProductJDBCDAO implements ShopProductDAO_interface {
 			pstmt.setDate(8,shopProductVO.getProd_reg_date());
 			pstmt.setString(9,shopProductVO.getProd_intro());		
 			pstmt.setInt(10,shopProductVO.getProd_id());
+			pstmt.setBytes(11,shopProductVO.getProd_pic());
 			
 			
 
@@ -191,6 +193,7 @@ public class ShopProductJDBCDAO implements ShopProductDAO_interface {
 				shopProductVO.setProd_intro(rs.getString("prod_intro"));
 				shopProductVO.setProd_reg_date(rs.getDate("prod_reg_date"));
 				shopProductVO.setProd_unit(rs.getString("prod_unit"));
+				shopProductVO.setProd_pic(rs.getBytes("prod_pic"));
 			}
 			
 		} catch (ClassNotFoundException e) {
@@ -257,6 +260,7 @@ public class ShopProductJDBCDAO implements ShopProductDAO_interface {
 				shopProductVO.setProd_intro(rs.getString("prod_intro"));
 				shopProductVO.setProd_reg_date(rs.getDate("prod_reg_date"));
 				shopProductVO.setProd_unit(rs.getString("prod_unit"));
+				shopProductVO.setProd_pic(rs.getBytes("prod_pic"));
 				
 				list.add(shopProductVO);
 			}
