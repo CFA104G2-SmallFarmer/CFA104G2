@@ -25,6 +25,102 @@ public class ShopProductServlet extends HttpServlet {
 
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
+		
+
+		if ("getOne_For_DisplayByMem".equals(action)) { // 來自select_page.jsp的請求
+
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+
+			try {
+				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
+				String str = req.getParameter("prod_id");
+				if (str == null || (str.trim()).length() == 0) {
+					errorMsgs.add("請輸入商品編號");
+				}
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/Product/browseProduct.jsp");
+					failureView.forward(req, res);
+					return;//程式中斷
+				}
+				
+				Integer prod_id = null;
+				try {
+					prod_id = new Integer(str);
+				} catch (Exception e) {
+					errorMsgs.add("商品編號格式不正確");
+				}
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/Product/browseProduct.jsp");
+					failureView.forward(req, res);
+					return;//程式中斷
+				}
+				
+				/***************************2.開始查詢資料*****************************************/
+				ShopProductService shopProductSvc = new ShopProductService();
+				ShopProductVO shopProductVO = shopProductSvc.getOneProduct(prod_id);
+				if (shopProductVO == null) {
+					errorMsgs.add("查無資料");
+				}
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/Product/browseProduct.jsp");
+					failureView.forward(req, res);
+					return;//程式中斷
+				}
+				
+				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
+				req.setAttribute("shopProductVO", shopProductVO); // 資料庫取出的empVO物件,存入req
+				String url = "/Product/listOneProduct.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
+				successView.forward(req, res);
+
+				/***************************其他可能的錯誤處理*************************************/
+			} catch (Exception e) {
+				errorMsgs.add("無法取得資料:" + e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/Product/browseProduct.jsp");
+				failureView.forward(req, res);
+			}
+		}
+		
+
+		if ("getOne_For_UpdateByMem".equals(action)) { // 來自listAllProduct.jsp的請求
+
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+
+			try {
+				/*************************** 1.接收請求參數 ****************************************/
+				Integer prod_id = new Integer(req.getParameter("prod_id"));
+
+				/*************************** 2.開始查詢資料 ****************************************/
+				ShopProductService shopProductSvc = new ShopProductService();
+				ShopProductVO shopProductVO = shopProductSvc.getOneProduct(prod_id);
+
+				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
+				req.setAttribute("shopProductVO", shopProductVO); // 資料庫取出的empVO物件,存入req
+				String url = "/Product/update_Product_input.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
+				successView.forward(req, res);
+
+				/*************************** 其他可能的錯誤處理 **********************************/
+			} catch (Exception e) {
+				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/Product/browseProduct.jsp");
+				failureView.forward(req, res);
+			}
+		}
+
 
 		if ("getOne_For_Update".equals(action)) { // 來自listAllProduct.jsp的請求
 
