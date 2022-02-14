@@ -7,8 +7,8 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 %>
 
 <jsp:useBean id="memSvc" scope="page" class="com.mem.model.MemService" />
-<jsp:useBean id="fMemSvc" scope="page" class="com.fMem.model.FMemService" />
-<%--   小農暱稱：${memSvc.getOneMem(fMemSvc.getOnefMem.mem_id).mem_nickname} --%>
+<jsp:useBean id="fmemSvc" scope="page" class="com.fMem.model.FMemService" />
+<%--   小農暱稱：${memSvc.getOneMem(fmemSvc.getOneFMem.mem_id).mem_nickname} --%>
 
 
 <!-- form185開始 -->
@@ -235,7 +235,7 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
                 
                 <!-- 			Integer f_mem_id, -->
               <input type="hidden"  class="w-100" placeholder="小農編號" type="text" value="70000"
-                name="f_mem_id" id="f_mem_id" value="hiddenValue">${memSvc.getOneMem(fMemSvc.getOnefMem(70000).mem_id).mem_nickname}，您好
+                name="f_mem_id" id="f_mem_id" value="hiddenValue">${memSvc.getOneMem(fmemSvc.getOneFMem(70000).mem_id).mem_nickname}，您好
                 
 				<!-- 			String proj_name, -->
               <label class="b" for="proj_name">認養專案名稱
