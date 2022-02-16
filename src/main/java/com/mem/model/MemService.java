@@ -5,6 +5,7 @@ import java.util.List;
 
 
 
+
 public class MemService {
 	private MemDAO_interface dao;
 
@@ -74,6 +75,29 @@ public class MemService {
 		memVO.setMem_id_state(mem_id_state);
 		dao.update(memVO);
 
+		return memVO;
+	}
+	//修改會員資料
+	public MemVO updateMemInput(Integer mem_id, String mem_acc, String mem_pwd, String mem_name, 
+			String mem_nickname, String mem_mobile, String mem_tel, Integer mem_zipcode,
+			String mem_city, String mem_dist, String mem_addr, byte[] mem_pic) {
+		
+		MemVO memVO = new MemVO();
+		
+		memVO.setMem_id(mem_id);
+		memVO.setMem_acc(mem_acc);
+		memVO.setMem_pwd(mem_pwd);
+		memVO.setMem_name(mem_name);
+		memVO.setMem_nickname(mem_nickname);
+		memVO.setMem_mobile(mem_mobile);
+		memVO.setMem_tel(mem_tel);
+		memVO.setMem_zipcode(mem_zipcode);
+		memVO.setMem_city(mem_city);
+		memVO.setMem_dist(mem_dist);
+		memVO.setMem_addr(mem_addr);
+		memVO.setMem_pic(mem_pic);
+		dao.updateMemInput(memVO);
+		
 		return memVO;
 	}
 	// 專門修改帳號狀態 待確認

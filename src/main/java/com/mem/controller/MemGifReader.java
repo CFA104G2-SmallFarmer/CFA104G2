@@ -2,6 +2,7 @@ package com.mem.controller;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -43,6 +44,11 @@ public class MemGifReader extends HttpServlet{
 				in.close();
 			} else {
 				res.sendError(HttpServletResponse.SC_NOT_FOUND);
+				InputStream in = getServletContext().getResourceAsStream("/NoData/none2.jpg");
+				byte[] b = new byte[in.available()];
+				in.read(b);
+				out.write(b);
+				in.close();
 			}
 			rs.close();
 			stmt.close();

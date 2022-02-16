@@ -41,6 +41,10 @@ public class MemJDBCDAO implements MemDAO_interface {
 		+ " mem_mobile=?, mem_tel=?, mem_zipcode=?, mem_city=?, mem_dist=?, mem_addr=?,"
 		+ " reg_date=?, mem_pic=?, rating_score_mk=?, rating_count_mk=?, rating_score_tr=?,"
 		+ " rating_count_tr=?, report_count=?, mem_id_state=?  WHERE mem_id = ?";
+	private static final String UPDATEMEMINPUT = 
+			"UPDATE mem set mem_acc=?, mem_pwd=?, mem_name=?, mem_nickname=?,"
+					+ " mem_mobile=?, mem_tel=?, mem_zipcode=?, mem_city=?, mem_dist=?, mem_addr=?,"
+					+ " mem_pic=? WHERE mem_id = ?";
 	private static final String UPDATEACCSTATE = 
 		"UPDATE mem set acc_state=? WHERE mem_id = ?";
 
@@ -167,6 +171,60 @@ public class MemJDBCDAO implements MemDAO_interface {
 			}
 		}
 
+	}
+
+	@Override
+	public void updateMemInput(MemVO memVO) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(UPDATEMEMINPUT);
+			
+			pstmt.setString(1, memVO.getMem_acc());
+			pstmt.setString(2, memVO.getMem_pwd());
+			pstmt.setString(3, memVO.getMem_name());
+			pstmt.setString(4, memVO.getMem_nickname());
+			pstmt.setString(5, memVO.getMem_mobile());
+			pstmt.setString(6, memVO.getMem_tel());
+			pstmt.setInt(7, memVO.getMem_zipcode());
+			pstmt.setString(8, memVO.getMem_city());
+			pstmt.setString(9, memVO.getMem_dist());
+			pstmt.setString(10, memVO.getMem_addr());
+			pstmt.setBytes(11, memVO.getMem_pic());
+			pstmt.setInt(12, memVO.getMem_id());
+			pstmt.executeUpdate();
+			
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		
 	}
 	
 	@Override

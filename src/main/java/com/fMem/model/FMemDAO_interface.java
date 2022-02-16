@@ -4,6 +4,7 @@ import java.util.*;
 
 public interface FMemDAO_interface {
           public void insert(FMemVO fMemVO);
+          public void insertAll(FMemVO fMemVO);
           public void update(FMemVO fMemVO);
           public void delete(Integer f_mem_id);
           public FMemVO findByPrimaryKey(Integer f_mem_id);

@@ -16,6 +16,12 @@ public class FMemJDBCDAO implements FMemDAO_interface {
 	String passwd = "password";
 
 	private static final String INSERT_STMT = "INSERT INTO f_mem ("
+			+ "	mem_id, f_mem_acc, f_mem_pwd, f_mem_fname, "
+			+ " f_mem_mobile, f_mem_zipcode, f_mem_city, "
+			+ "f_mem_dist, f_mem_add)" 
+			+ " VALUES" 
+			+ " (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String INSERT_STMT_All = "INSERT INTO f_mem ("
 			+ "	mem_id, f_mem_acc, f_mem_pwd, acc_state, f_mem_fname, "
 			+ " f_mem_info, f_mem_mobile, f_mem_tel, f_mem_zipcode, f_mem_city, "
 			+ "f_mem_dist, f_mem_add, bank_code, bank_account, reg_date, f_mem_pic,"
@@ -62,6 +68,57 @@ public class FMemJDBCDAO implements FMemDAO_interface {
 			pstmt.setInt(1, fMemVO.getMem_id());
 			pstmt.setString(2, fMemVO.getF_mem_acc());
 			pstmt.setString(3, fMemVO.getF_mem_pwd());
+			pstmt.setString(4, fMemVO.getF_mem_fname());
+			pstmt.setString(5, fMemVO.getF_mem_mobile());
+			pstmt.setInt(6, fMemVO.getF_mem_zipcode());
+			pstmt.setString(7, fMemVO.getF_mem_city());
+			pstmt.setString(8, fMemVO.getF_mem_dist());
+			pstmt.setString(9, fMemVO.getF_mem_add());
+			
+			pstmt.executeUpdate();
+
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+	}
+
+	@Override
+	public void insertAll(FMemVO fMemVO) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(INSERT_STMT_All);
+			
+			pstmt.setInt(1, fMemVO.getMem_id());
+			pstmt.setString(2, fMemVO.getF_mem_acc());
+			pstmt.setString(3, fMemVO.getF_mem_pwd());
 			pstmt.setInt(4, fMemVO.getAcc_state());
 			pstmt.setString(5, fMemVO.getF_mem_fname());
 			pstmt.setString(6, fMemVO.getF_mem_info());
@@ -85,7 +142,7 @@ public class FMemJDBCDAO implements FMemDAO_interface {
 			pstmt.setInt(24, fMemVO.getCerti_state());
 			
 			pstmt.executeUpdate();
-
+			
 			// Handle any driver errors
 		} catch (ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. "
