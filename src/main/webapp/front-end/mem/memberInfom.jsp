@@ -2,8 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.mem.model.*"%>
-<!-- 有時間可接入信箱更改驗證 -->
-<!-- shopee-dropdown__entry--selected 更改框線顏色 -->
 <%
 request.setAttribute("mem_id", 77001); // 測試用，之後get方法要改成session.get...
 %>
@@ -470,7 +468,7 @@ invisible.style.display = "";
 
 <script
 	src="chrome-extension://jhffgcfmcckgmioipfnmbannkpncfipo/pagejs.js"></script>
-<title>更新會員資料</title>
+<title>會員資訊</title>
 <link rel="stylesheet" type="text/css"
 	href="./mem_files/2825.51680d86fe84cd4ddf65.css">
 </head>
@@ -487,21 +485,13 @@ invisible.style.display = "";
 						<div class="h4QDlo" role="main">
 							<div class="_2YiVnW">
 								<div class="_2w2H6X">
-									<h1 class="_3iiDCN">會員資料修改</h1>
-									<div class="TQG40c">修改資料及新增投貼</div>
+									<h1 class="_3iiDCN">會員資料</h1>
+<!-- 									<div class="TQG40c">修改資料及新增投貼</div> -->
 									<div style="height: 36px;">
-										<%-- 錯誤表列 --%>
-										<c:if test="${not empty errorMsgs}">
-											<font style="color: red">請修正以下錯誤:</font>
-											<ul>
-												<c:forEach var="message" items="${errorMsgs}">
-													<li style="color: red">${message}</li>
-												</c:forEach>
-											</ul>
-										</c:if>
 									</div>
 								</div>
-								<FORM METHOD="post" ACTION="mem.do" name="form1" enctype="multipart/form-data">
+								<FORM METHOD="post" ACTION="mem.do" name="form1"
+									enctype="multipart/form-data">
 									<div class="goiz2O">
 										<div class="pJout2">
 											<!-- 可更改form表單寬度 -->
@@ -542,12 +532,9 @@ invisible.style.display = "";
 													</div>
 													<div class="_2_JugQ">
 														<div class="_2bdFDW">
-															<div class="input-with-validator-wrapper">
-																<div class="input-with-validator">
-																	<input type="text" placeholder="" maxlength="255"
-																		name="mem_pwd" value="<%=memVO.getMem_pwd()%>">
-																</div>
-															</div>
+															<div class="_3S9myJ"><%=memVO.getMem_pwd()%></div>
+															<input type="hidden" name="mem_pwd"
+																value="<%=memVO.getMem_pwd()%>">
 														</div>
 													</div>
 												</div>
@@ -559,12 +546,9 @@ invisible.style.display = "";
 													</div>
 													<div class="_2_JugQ">
 														<div class="_2bdFDW">
-															<div class="input-with-validator-wrapper">
-																<div class="input-with-validator">
-																	<input type="text" placeholder="" maxlength="255"
-																		name="mem_name" value="<%=memVO.getMem_name()%>">
-																</div>
-															</div>
+															<div class="_3S9myJ"><%=memVO.getMem_name()%></div>
+															<input type="hidden" name="mem_name"
+																value="<%=memVO.getMem_name()%>">
 														</div>
 													</div>
 												</div>
@@ -577,30 +561,13 @@ invisible.style.display = "";
 													</div>
 													<div class="_2_JugQ">
 														<div class="_2bdFDW">
-															<div class="input-with-validator-wrapper">
-																<div class="input-with-validator">
-																	<input type="text" placeholder="" maxlength="255"
-																		name="mem_nickname" value="<%=memVO.getMem_nickname()%>">
-																</div>
-															</div>
+															<div class="_3S9myJ"><%=memVO.getMem_nickname()%></div>
+															<input type="hidden" name="mem_nickname"
+																value="<%=memVO.getMem_nickname()%>">
 														</div>
 													</div>
 												</div>
 											</div>
-											<!-- 與帳號名稱相同 -->
-											<!-- 											<div class="_3BlbUs"> -->
-											<!-- 												<div class="_1iNZU3"> -->
-											<!-- 													<div class="_2PfA-y"> -->
-											<!-- 														<label>Email</label> -->
-											<!-- 													</div> -->
-											<!-- 													<div class="_2_JugQ"> -->
-											<!-- 														<div class="_2bdFDW"> -->
-											<!-- 															<div class="_3S9myJ">se**********@gmail.com</div> -->
-											<!-- 															<button class="_2CLMxo">變更</button> -->
-											<!-- 														</div> -->
-											<!-- 													</div> -->
-											<!-- 												</div> -->
-											<!-- 											</div> -->
 											<div class="_3BlbUs">
 												<div class="_1iNZU3">
 													<div class="_2PfA-y">
@@ -608,12 +575,9 @@ invisible.style.display = "";
 													</div>
 													<div class="_2_JugQ">
 														<div class="_2bdFDW">
-															<div class="input-with-validator-wrapper">
-																<div class="input-with-validator">
-																	<input type="text" placeholder="" maxlength="255"
-																		name="mem_mobile" value="<%=memVO.getMem_mobile()%>">
-																</div>
-															</div>
+															<div class="_3S9myJ"><%=memVO.getMem_mobile()%></div>
+															<input type="hidden" name="mem_mobile"
+																value="<%=memVO.getMem_mobile()%>">
 														</div>
 													</div>
 												</div>
@@ -626,12 +590,9 @@ invisible.style.display = "";
 													</div>
 													<div class="_2_JugQ">
 														<div class="_2bdFDW">
-															<div class="input-with-validator-wrapper">
-																<div class="input-with-validator">
-																	<input type="text" placeholder="" maxlength="255"
-																		name="mem_tel" value="<%=memVO.getMem_tel()%>">
-																</div>
-															</div>
+															<div class="_3S9myJ"><%=memVO.getMem_tel()%></div>
+															<input type="hidden" name="mem_tel"
+																value="<%=memVO.getMem_tel()%>">
 														</div>
 													</div>
 												</div>
@@ -644,9 +605,7 @@ invisible.style.display = "";
 													</div>
 													<div class="_2_JugQ">
 														<div class="_2bdFDW">
-															<div class="_3S9myJ">
-																(<%=memVO.getMem_zipcode()%>)<%=memVO.getMem_city()%><%=memVO.getMem_dist()%><%=memVO.getMem_addr()%></div>
-															<span class="_2CLMxo showhand" id="changeadd">變更</span>
+															<div class="_3S9myJ">(<%=memVO.getMem_zipcode()%>)<%=memVO.getMem_city()%><%=memVO.getMem_dist()%><%=memVO.getMem_addr()%></div>
 														</div>
 													</div>
 												</div>
@@ -874,13 +833,13 @@ invisible.style.display = "";
 
 
 											<!-- 這邊控制傳送至Servlet -->
-											<input type="hidden" name="action" value="Update_Mem_Input"> 
+											<input type="hidden" name="action" value="Update_Mem_Input">
 											<input type="hidden" name="mem_id" value="${memVO.mem_id}">
-											<div class="_31PFen">
-												<button type="submit"
-													class="btn btn-solid-primary btn--m btn--inline"
-													aria-disabled="false">儲存</button>
-											</div>
+<!-- 											<div class="_31PFen"> -->
+<!-- 												<button type="submit" -->
+<!-- 													class="btn btn-solid-primary btn--m btn--inline" -->
+<!-- 													aria-disabled="false">修改資料</button> -->
+<!-- 											</div> -->
 										</div>
 										<div class="_1aIEbS">
 											<div class="X1SONv">
@@ -898,9 +857,9 @@ invisible.style.display = "";
 													type="file" accept="image/*" style="display: block;"
 													name="mem_pic" value="<%=memVO.getMem_pic()%>">
 												<div class="_3Jd4Zu">
-<%-- 												<c:if test="${!empty memVO.mem_pic}"><c:set var="mem_pic" value="${context_root}/MemGifReader?mem_id=${memVO.mem_id}"/></c:if> --%>
-<!-- 													<div class="_3UgHT6">檔案大小:最大1MB</div> -->
-<!-- 													<div class="_3UgHT6">檔案限制: .JPEG, .PNG</div> -->
+													<%-- 												<c:if test="${!empty memVO.mem_pic}"><c:set var="mem_pic" value="${context_root}/MemGifReader?mem_id=${memVO.mem_id}"/></c:if> --%>
+													<!-- 													<div class="_3UgHT6">檔案大小:最大1MB</div> -->
+													<!-- 													<div class="_3UgHT6">檔案限制: .JPEG, .PNG</div> -->
 												</div>
 											</div>
 										</div>
@@ -913,7 +872,6 @@ invisible.style.display = "";
 		</div>
 		<div></div>
 		<div class="qgeUgW" id="BackgroundImagePortalAnchor"></div>
-	</div>
 	</div>
 	<div id="modal">
 		<div>
