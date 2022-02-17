@@ -6,32 +6,22 @@ import java.util.List;
 
 public class FarmTravelPartnerJDBCDAO implements FarmTravelPartnerDAO{
 
-    public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    public static final String URL = "jdbc:mysql://localhost:3306/CFA104G2?serverTimezone=Asia/Taipei";
-    public static final String USER = "root";
-    public static final String PASSWORD = "password";
-
     public static final String INSERT_STMT = "INSERT INTO FARM_TRAVEL_PARTNER ( ORDER_ID, PARTNER_NAME, PARTNER_PHONE, GUARDIAN_NAME, GUARDIAN_PHONE, APPLY_MEM_ID ) VALUES ( ?, ?, ?, ?, ?, ? );";
     public static final String UPDATE_STMT = "UPDATE FARM_TRAVEL_PARTNER SET PARTNER_NAME = ?, PARTNER_PHONE = ?, GUARDIAN_NAME = ?, GUARDIAN_PHONE = ? WHERE PARTNER_ID = ?;";
     public static final String DELETE_STMT = "DELETE FROM FARM_TRAVEL_PARTNER WHERE PARTNER_ID = ?;";
     public static final String GET_ONE_STMT = "SELECT * FROM FARM_TRAVEL_PARTNER WHERE PARTNER_ID = ?;";
     public static final String GET_ALL_STMT = "SELECT * FROM FARM_TRAVEL_PARTNER WHERE ORDER_ID = ?;";
 
-    static {
-        try {
-            Class.forName(DRIVER);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
+    Connection con = null;
+    PreparedStatement pstmt = null;
+    ResultSet rs = null;
 
     @Override
-    public void add(FarmTravelPartnerVO farm_travel_partner) {
-        Connection con = null;
-        PreparedStatement pstmt = null;
+    public void add(Connection con, FarmTravelPartnerVO farm_travel_partner) {
+
+        this.con = con;
 
         try {
-            con = DriverManager.getConnection(URL, USER, PASSWORD);
             pstmt = con.prepareStatement(INSERT_STMT);
 
             pstmt.setInt(1, farm_travel_partner.getOrder_ID());
@@ -44,19 +34,12 @@ public class FarmTravelPartnerJDBCDAO implements FarmTravelPartnerDAO{
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.err);
         }finally {
             if (pstmt != null) {
                 try {
                     pstmt.close();
-                } catch (SQLException se) {
-                    se.printStackTrace(System.err);
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (Exception e) {
+                } catch (SQLException e) {
                     e.printStackTrace(System.err);
                 }
             }
@@ -64,12 +47,11 @@ public class FarmTravelPartnerJDBCDAO implements FarmTravelPartnerDAO{
     }
 
     @Override
-    public void update(FarmTravelPartnerVO farm_travel_partner) {
-        Connection con = null;
-        PreparedStatement pstmt = null;
+    public void update(Connection con, FarmTravelPartnerVO farm_travel_partner) {
+
+        this.con = con;
 
         try {
-            con = DriverManager.getConnection(URL, USER, PASSWORD);
             pstmt = con.prepareStatement(UPDATE_STMT);
 
             pstmt.setString(1, farm_travel_partner.getPartner_name());
@@ -81,19 +63,12 @@ public class FarmTravelPartnerJDBCDAO implements FarmTravelPartnerDAO{
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.err);
         }finally {
             if (pstmt != null) {
                 try {
                     pstmt.close();
-                } catch (SQLException se) {
-                    se.printStackTrace(System.err);
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (Exception e) {
+                } catch (SQLException e) {
                     e.printStackTrace(System.err);
                 }
             }
@@ -101,12 +76,11 @@ public class FarmTravelPartnerJDBCDAO implements FarmTravelPartnerDAO{
     }
 
     @Override
-    public void delete(Integer partner_id) {
-        Connection con = null;
-        PreparedStatement pstmt = null;
+    public void delete(Connection con, Integer partner_id) {
+
+        this.con = con;
 
         try {
-            con = DriverManager.getConnection(URL, USER, PASSWORD);
             pstmt = con.prepareStatement(DELETE_STMT);
 
             pstmt.setInt(1, partner_id);
@@ -114,19 +88,12 @@ public class FarmTravelPartnerJDBCDAO implements FarmTravelPartnerDAO{
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.err);
         }finally {
             if (pstmt != null) {
                 try {
                     pstmt.close();
-                } catch (SQLException se) {
-                    se.printStackTrace(System.err);
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (Exception e) {
+                } catch (SQLException e) {
                     e.printStackTrace(System.err);
                 }
             }
@@ -134,14 +101,11 @@ public class FarmTravelPartnerJDBCDAO implements FarmTravelPartnerDAO{
     }
 
     @Override
-    public FarmTravelPartnerVO findByPK(Integer partner_ID) {
-        FarmTravelPartnerVO farm_travel_partner = null;
-        Connection con = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
+    public FarmTravelPartnerVO findByPK(Connection con, Integer partner_ID) {
 
+        this.con = con;
+        FarmTravelPartnerVO farm_travel_partner = null;
         try {
-            con = DriverManager.getConnection(URL, USER, PASSWORD);
             pstmt = con.prepareStatement(GET_ONE_STMT);
 
             pstmt.setInt(1, partner_ID);
@@ -158,27 +122,20 @@ public class FarmTravelPartnerJDBCDAO implements FarmTravelPartnerDAO{
                 farm_travel_partner.setGuardian_phone(rs.getString("GUARDIAN_PHONE"));
                 farm_travel_partner.setApply_mem_ID(rs.getInt("APPLY_MEM_ID"));
             }
-        } catch (SQLException se) {
-            se.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace(System.err);
         } finally {
             if (rs != null) {
                 try {
                     rs.close();
-                } catch (SQLException se) {
-                    se.printStackTrace(System.err);
+                } catch (SQLException e) {
+                    e.printStackTrace(System.err);
                 }
             }
             if (pstmt != null) {
                 try {
                     pstmt.close();
-                } catch (SQLException se) {
-                    se.printStackTrace(System.err);
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (Exception e) {
+                } catch (SQLException e) {
                     e.printStackTrace(System.err);
                 }
             }
@@ -187,14 +144,12 @@ public class FarmTravelPartnerJDBCDAO implements FarmTravelPartnerDAO{
     }
 
     @Override
-    public List<FarmTravelPartnerVO> getAll(Integer order_ID) {
+    public List<FarmTravelPartnerVO> getAll(Connection con, Integer order_ID) {
+
+        this.con = con;
         List<FarmTravelPartnerVO> farm_travel_partner_list = new ArrayList<>();
         FarmTravelPartnerVO farm_travel_partner = null;
-        Connection con = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
         try {
-            con = DriverManager.getConnection(URL, USER, PASSWORD);
             pstmt = con.prepareStatement(GET_ALL_STMT);
 
             pstmt.setInt(1, order_ID);
@@ -212,27 +167,20 @@ public class FarmTravelPartnerJDBCDAO implements FarmTravelPartnerDAO{
                 farm_travel_partner.setApply_mem_ID(rs.getInt("APPLY_MEM_ID"));
                 farm_travel_partner_list.add(farm_travel_partner);
             }
-        } catch (SQLException se) {
-            se.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace(System.err);
         } finally {
             if (rs != null) {
                 try {
                     rs.close();
-                } catch (SQLException se) {
-                    se.printStackTrace(System.err);
+                } catch (SQLException e) {
+                    e.printStackTrace(System.err);
                 }
             }
             if (pstmt != null) {
                 try {
                     pstmt.close();
-                } catch (SQLException se) {
-                    se.printStackTrace(System.err);
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (Exception e) {
+                } catch (SQLException e) {
                     e.printStackTrace(System.err);
                 }
             }

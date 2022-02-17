@@ -1,5 +1,8 @@
 package com.farmTravelTagDetails.model;
 
+import com.core.connectionFactory.ConnectionFactory;
+
+import java.sql.Connection;
 import java.util.List;
 
 public class FarmTravelTagDetailsService {
@@ -8,24 +11,22 @@ public class FarmTravelTagDetailsService {
     public FarmTravelTagDetailsService(){
         dao = new FarmTravelTagDetailsJDBCDAO();
     }
-    public FarmTravelTagDetailsVO addFarmTravelTagDetails(Integer farm_travel_ID, Integer tag_ID) {
 
-        FarmTravelTagDetailsVO farm_travel_tag_details = new FarmTravelTagDetailsVO();
-        farm_travel_tag_details.setFarm_travel_ID(farm_travel_ID);
-        farm_travel_tag_details.setTag_ID(tag_ID);
-        dao.add(farm_travel_tag_details);
+    ConnectionFactory connectionFactory = new ConnectionFactory();
+    Connection con = connectionFactory.getConnection();
 
-        return farm_travel_tag_details;
+    public void addFarmTravelTagDetails(Integer farm_travel_ID, Integer tag_ID) {
+        dao.add(con, farm_travel_ID, tag_ID);
     }
 
     public void deleteFarmTravelTagDetails(Integer farm_travel_ID, Integer tag_ID) {
-        dao.delete(farm_travel_ID, tag_ID);
+        dao.delete(con, farm_travel_ID, tag_ID);
     }
 
     public List<FarmTravelTagDetailsVO> getTagByFarmTravelID(Integer farm_travel_ID) {
-        return dao.getTagByFarmTravelID(farm_travel_ID);
+        return dao.getTagByFarmTravelID(con, farm_travel_ID);
     }
     public List<FarmTravelTagDetailsVO> getFarmTravelByTagID(Integer tag_ID) {
-        return dao.getFarmTravelByTagID(tag_ID);
+        return dao.getFarmTravelByTagID(con, tag_ID);
     }
 }

@@ -1,8 +1,7 @@
 package com.farmTravelCollection.controller;
 
-import com.farmTravel.model.FarmTravelService;
-import com.farmTravel.model.FarmTravelVO;
 import com.farmTravelCollection.model.FarmTravelCollectionService;
+import com.mem.model.MemVO;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -15,12 +14,13 @@ public class FarmTravelCollectionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("image/gif");
+        HttpSession session = request.getSession();
         ServletOutputStream out = response.getOutputStream();
         String action = request.getParameter("action");
         boolean collection ;
 
         if ("collection".equals(action)){
-            Integer mem_ID = Integer.valueOf(request.getParameter("mem_ID"));
+            Integer mem_ID = ((MemVO)(session.getAttribute("mem"))).getMem_id();
             Integer farm_travel_ID = Integer.valueOf(request.getParameter("farm_travel_ID"));
 
             FarmTravelCollectionService farmTravelCollectionService = new FarmTravelCollectionService();
@@ -53,7 +53,7 @@ public class FarmTravelCollectionServlet extends HttpServlet {
 
         if ("collection".equals(action)){
 
-            Integer mem_ID = (Integer) session.getAttribute("mem_ID");
+            Integer mem_ID = ((MemVO)(session.getAttribute("mem"))).getMem_id();
             Integer farm_travel_ID = Integer.valueOf(request.getParameter("farm_travel_ID"));
 
             FarmTravelCollectionService farmTravelCollectionService = new FarmTravelCollectionService();

@@ -6,52 +6,36 @@ import java.util.List;
 
 public class FarmTravelTagJDBCDAO implements FarmTravelTagDAO{
 
-    public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    public static final String URL = "jdbc:mysql://localhost:3306/CFA104G2?serverTimezone=Asia/Taipei";
-    public static final String USER = "root";
-    public static final String PASSWORD = "password";
-
     public static final String INSERT_STMT = "INSERT INTO FARM_TRAVEL_TAG ( TAG_NAME, TAG_TIMES ) VALUES ( ?, '1' );";
-    public static final String UPDATE_STMT = "UPDATE FARM_TRAVEL_TAG SET TAG_NAME = ?, TAG_TIMES = ? WHERE TAG_ID = ?;";
+    public static final String UPDATE_STMT = "UPDATE FARM_TRAVEL_TAG SET TAG_TIMES = ? WHERE TAG_NAME = ?;";
     public static final String DELETE_STMT = "DELETE FROM FARM_TRAVEL_TAG WHERE TAG_ID = ?;";
-    public static final String GET_ONE_STMT = "SELECT * FROM FARM_TRAVEL_TAG WHERE TAG_ID = ?;";
+    public static final String GET_ONE_STMT = "SELECT * FROM FARM_TRAVEL_TAG WHERE TAG_NAME = ?;";
+    public static final String GET_ONE_BY_PK_STMT = "SELECT * FROM FARM_TRAVEL_TAG WHERE TAG_ID = ?;";
     public static final String GET_ALL_STMT = "SELECT * FROM FARM_TRAVEL_TAG;";
 
-    static {
-        try {
-            Class.forName(DRIVER);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
+    Connection con = null;
+    PreparedStatement pstmt = null;
+    ResultSet rs = null;
 
     @Override
-    public void add(FarmTravelTagVO farm_travel_tag) {
-        Connection con = null;
-        PreparedStatement pstmt = null;
+    public void add(Connection con, String tag_name) {
+
+        this.con = con;
 
         try {
-            con = DriverManager.getConnection(URL, USER, PASSWORD);
             pstmt = con.prepareStatement(INSERT_STMT);
 
-            pstmt.setString(1, farm_travel_tag.getTag_name());
+            pstmt.setString(1, tag_name);
 
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.err);
         }finally {
             if (pstmt != null) {
                 try {
                     pstmt.close();
-                } catch (SQLException se) {
-                    se.printStackTrace(System.err);
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (Exception e) {
+                } catch (SQLException e) {
                     e.printStackTrace(System.err);
                 }
             }
@@ -59,34 +43,25 @@ public class FarmTravelTagJDBCDAO implements FarmTravelTagDAO{
     }
 
     @Override
-    public void update(FarmTravelTagVO farm_travel_tag) {
-        Connection con = null;
-        PreparedStatement pstmt = null;
+    public void update(Connection con, FarmTravelTagVO farm_travel_tag) {
+
+        this.con = con;
 
         try {
-            con = DriverManager.getConnection(URL, USER, PASSWORD);
             pstmt = con.prepareStatement(UPDATE_STMT);
 
-            pstmt.setString(1,farm_travel_tag.getTag_name());
-            pstmt.setInt(2, farm_travel_tag.getTag_times());
-            pstmt.setInt(3, farm_travel_tag.getTag_ID());
+            pstmt.setInt(1,farm_travel_tag.getTag_times()+1);
+            pstmt.setString(2, farm_travel_tag.getTag_name());
 
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.err);
         }finally {
             if (pstmt != null) {
                 try {
                     pstmt.close();
-                } catch (SQLException se) {
-                    se.printStackTrace(System.err);
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (Exception e) {
+                } catch (SQLException e) {
                     e.printStackTrace(System.err);
                 }
             }
@@ -94,12 +69,11 @@ public class FarmTravelTagJDBCDAO implements FarmTravelTagDAO{
     }
 
     @Override
-    public void delete(Integer tag_ID) {
-        Connection con = null;
-        PreparedStatement pstmt = null;
+    public void delete(Connection con, Integer tag_ID) {
+
+        this.con = con;
 
         try {
-            con = DriverManager.getConnection(URL, USER, PASSWORD);
             pstmt = con.prepareStatement(DELETE_STMT);
 
             pstmt.setInt(1, tag_ID);
@@ -107,19 +81,12 @@ public class FarmTravelTagJDBCDAO implements FarmTravelTagDAO{
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.err);
         }finally {
             if (pstmt != null) {
                 try {
                     pstmt.close();
-                } catch (SQLException se) {
-                    se.printStackTrace(System.err);
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (Exception e) {
+                } catch (SQLException e) {
                     e.printStackTrace(System.err);
                 }
             }
@@ -127,47 +94,40 @@ public class FarmTravelTagJDBCDAO implements FarmTravelTagDAO{
     }
 
     @Override
-    public FarmTravelTagVO findByPK(Integer tag_ID) {
-        FarmTravelTagVO farm_travel_tag = null;
-        Connection con = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
+    public FarmTravelTagVO findByTagName(Connection con, String tag_name) {
 
+        this.con = con;
+
+        FarmTravelTagVO farm_travel_tag = null;
         try {
-            con = DriverManager.getConnection(URL, USER, PASSWORD);
             pstmt = con.prepareStatement(GET_ONE_STMT);
 
-            pstmt.setInt(1, tag_ID);
+            pstmt.setString(1, tag_name);
 
             rs = pstmt.executeQuery();
 
-            while (rs.next()) {
+            if (rs.next()) {
                 farm_travel_tag = new FarmTravelTagVO();
                 farm_travel_tag.setTag_ID(rs.getInt("TAG_ID"));
                 farm_travel_tag.setTag_name(rs.getString("TAG_NAME"));
                 farm_travel_tag.setTag_times(rs.getInt("TAG_TIMES"));
+            }else {
+                return null;
             }
-        } catch (SQLException se) {
-            se.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace(System.err);
         } finally {
             if (rs != null) {
                 try {
                     rs.close();
-                } catch (SQLException se) {
-                    se.printStackTrace(System.err);
+                } catch (SQLException e) {
+                    e.printStackTrace(System.err);
                 }
             }
             if (pstmt != null) {
                 try {
                     pstmt.close();
-                } catch (SQLException se) {
-                    se.printStackTrace(System.err);
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (Exception e) {
+                } catch (SQLException e) {
                     e.printStackTrace(System.err);
                 }
             }
@@ -176,14 +136,53 @@ public class FarmTravelTagJDBCDAO implements FarmTravelTagDAO{
     }
 
     @Override
-    public List<FarmTravelTagVO> getAll() {
-        List<FarmTravelTagVO> farm_travel_tag_list = new ArrayList<>();
+    public FarmTravelTagVO findByPK(Connection con, Integer tag_ID) {
+
+        this.con = con;
+
         FarmTravelTagVO farm_travel_tag = null;
-        Connection con = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
         try {
-            con = DriverManager.getConnection(URL, USER, PASSWORD);
+            pstmt = con.prepareStatement(GET_ONE_BY_PK_STMT);
+
+            pstmt.setInt(1, tag_ID);
+
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                farm_travel_tag = new FarmTravelTagVO();
+                farm_travel_tag.setTag_ID(rs.getInt("TAG_ID"));
+                farm_travel_tag.setTag_name(rs.getString("TAG_NAME"));
+                farm_travel_tag.setTag_times(rs.getInt("TAG_TIMES"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(System.err);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+        }
+        return farm_travel_tag;
+    }
+
+    @Override
+    public List<FarmTravelTagVO> getAll(Connection con) {
+
+        this.con = con;
+
+        FarmTravelTagVO farm_travel_tag = null;
+        List<FarmTravelTagVO> farm_travel_tag_list = new ArrayList<>();
+        try {
             pstmt = con.prepareStatement(GET_ALL_STMT);
 
             rs = pstmt.executeQuery();
@@ -195,27 +194,20 @@ public class FarmTravelTagJDBCDAO implements FarmTravelTagDAO{
                 farm_travel_tag.setTag_times(rs.getInt("TAG_TIMES"));
                 farm_travel_tag_list.add(farm_travel_tag);
             }
-        } catch (SQLException se) {
-            se.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace(System.err);
         } finally {
             if (rs != null) {
                 try {
                     rs.close();
-                } catch (SQLException se) {
-                    se.printStackTrace(System.err);
+                } catch (SQLException e) {
+                    e.printStackTrace(System.err);
                 }
             }
             if (pstmt != null) {
                 try {
                     pstmt.close();
-                } catch (SQLException se) {
-                    se.printStackTrace(System.err);
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (Exception e) {
+                } catch (SQLException e) {
                     e.printStackTrace(System.err);
                 }
             }

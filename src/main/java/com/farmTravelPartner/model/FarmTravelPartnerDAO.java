@@ -1,11 +1,12 @@
 package com.farmTravelPartner.model;
 
+import java.sql.Connection;
 import java.util.List;
 
 public interface FarmTravelPartnerDAO {
-    void add(FarmTravelPartnerVO farm_travel_partner);
-    void update(FarmTravelPartnerVO farm_travel_partner);
-    void delete(Integer partner_ID);
-    FarmTravelPartnerVO findByPK(Integer partner_ID);
-    List<FarmTravelPartnerVO> getAll(Integer order_ID);
+    void add(Connection con, FarmTravelPartnerVO farm_travel_partner);
+    void update(Connection con, FarmTravelPartnerVO farm_travel_partner);
+    void delete(Connection con, Integer partner_ID);
+    FarmTravelPartnerVO findByPK(Connection con, Integer partner_ID);
+    List<FarmTravelPartnerVO> getAll(Connection con, Integer order_ID);
 }

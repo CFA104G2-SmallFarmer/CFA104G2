@@ -2,12 +2,18 @@ package com.farmTravel.controller;
 
 import com.farmTravel.model.FarmTravelService;
 import com.farmTravel.model.FarmTravelVO;
+import com.farmTravelTag.model.FarmTravelTagService;
+import com.farmTravelTag.model.FarmTravelTagVO;
+import com.farmTravelTagDetails.model.FarmTravelTagDetailsService;
+import com.farmTravelTagDetails.model.FarmTravelTagDetailsVO;
+import com.mem.model.MemVO;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -27,7 +33,7 @@ public class FarmTravelServlet extends HttpServlet {
             byte[] farm_travel_img = dao.getFarm_travel_img();
             out.write(farm_travel_img);
         } catch (NullPointerException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.err);
         }
     }
 
@@ -40,8 +46,8 @@ public class FarmTravelServlet extends HttpServlet {
             List<String> errorMsgs = new LinkedList<String>();
             request.setAttribute("errorMsgs", errorMsgs);
             try {  // 接收參數並嘗試做錯誤判斷
-                Integer mem_ID = (Integer) session.getAttribute("mem_ID");
-                Integer F_mem_ID = (Integer) session.getAttribute("F_mem_ID");
+                Integer mem_ID = ((MemVO)(session.getAttribute("mem"))).getMem_id();
+                Integer f_mem_ID = Integer.valueOf(request.getParameter("f_mem_ID"));
 
                 String farm_travel_title = request.getParameter("farm_travel_title");
                 if(farm_travel_title==null || farm_travel_title.trim().length()==0) { errorMsgs.add("請輸入農遊標題"); }
@@ -93,10 +99,12 @@ public class FarmTravelServlet extends HttpServlet {
                     farm_travel_max = Integer.valueOf(request.getParameter("farm_travel_max"));
                 }catch (Exception e) { errorMsgs.add("請確認最大滿額人數"); }
 
+                String[] tag_names = request.getParameterValues("tag_name");
+
                 // 存入VO，避免新增失敗時需再次輸入重複資料
                 FarmTravelVO farmTravel = new FarmTravelVO();
                 farmTravel.setMem_ID(mem_ID);
-                farmTravel.setF_mem_ID(F_mem_ID);
+                farmTravel.setF_mem_ID(f_mem_ID);
                 farmTravel.setFarm_travel_title(farm_travel_title);
                 farmTravel.setFarm_travel_img(farm_travel_img);
                 farmTravel.setFarm_travel_info(farm_travel_info);
@@ -114,14 +122,11 @@ public class FarmTravelServlet extends HttpServlet {
                     errView.forward(request, response);
                     return;
                 }
-
                 try{  // 嘗試新增資料，若發生錯誤返回add頁面
                     FarmTravelService farmTravelService = new FarmTravelService();
-                    farmTravel = farmTravelService.addFarmTravel(
-                            mem_ID, F_mem_ID, farm_travel_title, farm_travel_img, farm_travel_info, farm_travel_start, farm_travel_end, farm_travel_fee,
-                            travel_apply_start, travel_apply_end, farm_travel_min, farm_travel_max);
+                    farmTravel = farmTravelService.addFarmTravel(mem_ID, f_mem_ID, farm_travel_title, farm_travel_img, farm_travel_info, farm_travel_start, farm_travel_end, farm_travel_fee, travel_apply_start, travel_apply_end, farm_travel_min, farm_travel_max, tag_names);
                 }catch(Exception e){
-                    e.printStackTrace();
+                    e.printStackTrace(System.err);
                     errorMsgs.add("新增失敗");
                     request.setAttribute("farmTravel", farmTravel);
                     RequestDispatcher errView = request.getRequestDispatcher("/front-end/farmTravel/addFarmTravel.jsp");
@@ -133,7 +138,7 @@ public class FarmTravelServlet extends HttpServlet {
                 successView.forward(request, response);
 
             }catch(Exception e){  // 發生其他Error時
-                e.printStackTrace();
+                e.printStackTrace(System.err);
                 errorMsgs.add(e.getMessage());
                 RequestDispatcher errView = request.getRequestDispatcher("/front-end/farmTravel/addFarmTravel.jsp");
                 errView.forward(request, response);
@@ -147,20 +152,68 @@ public class FarmTravelServlet extends HttpServlet {
                 // 開始查詢資料
                 FarmTravelService farmTravelService = new FarmTravelService();
                 FarmTravelVO farmTravel = farmTravelService.getOneFarmTravel(farm_travel_ID);
-
+                FarmTravelTagService farmTravelTagService = new FarmTravelTagService();
+                FarmTravelTagDetailsService farmTravelTagDetailsService = new FarmTravelTagDetailsService();
+                List<FarmTravelTagVO> tagList = new ArrayList<>();
+                List<FarmTravelTagDetailsVO> tagDetailsList = farmTravelTagDetailsService.getTagByFarmTravelID(farm_travel_ID);
+                if (tagDetailsList != null) {
+                    for (FarmTravelTagDetailsVO tagDetails : tagDetailsList) {
+                        tagList.add(farmTravelTagService.getOneFarmTravelTag(tagDetails.getTag_ID()));
+                    }
+                }
                 // 查詢完成，準備轉交
-                session.setAttribute("farmTravel", farmTravel);
+                request.setAttribute("farmTravel", farmTravel);
+                request.setAttribute("tagList",tagList);
 
-            }catch (Exception e) {  // 發生其他Error時
-                e.printStackTrace();
+                RequestDispatcher successView = request.getRequestDispatcher("/front-end/farmTravel/listOneFarmTravel.jsp");
+                successView.forward(request, response);
+
+            }catch(Exception e){  // 發生其他Error時
+                e.printStackTrace(System.err);
+                RequestDispatcher errView = request.getRequestDispatcher("/front-end/farmTravel/listAllFarmTravel.jsp");
+                errView.forward(request, response);
+            }
+        }
+        if("getOneForUpdate".equals(action)) {
+            try{
+                // 接收請求參數，並做錯誤判斷
+                Integer farm_travel_ID = Integer.valueOf(request.getParameter("farm_travel_ID"));
+
+                // 開始查詢資料
+                FarmTravelService farmTravelService = new FarmTravelService();
+                FarmTravelVO farmTravel = farmTravelService.getOneFarmTravel(farm_travel_ID);
+                FarmTravelTagService farmTravelTagService = new FarmTravelTagService();
+                FarmTravelTagDetailsService farmTravelTagDetailsService = new FarmTravelTagDetailsService();
+                List<FarmTravelTagVO> tagList = new ArrayList<>();
+                List<FarmTravelTagDetailsVO> tagDetailsList = farmTravelTagDetailsService.getTagByFarmTravelID(farm_travel_ID);
+                if (tagDetailsList != null) {
+                    for (FarmTravelTagDetailsVO tagDetails : tagDetailsList) {
+                        tagList.add(farmTravelTagService.getOneFarmTravelTag(tagDetails.getTag_ID()));
+                    }
+                }
+                // 查詢完成，準備轉交
+                request.setAttribute("farmTravel", farmTravel);
+                request.setAttribute("tagList",tagList);
+
+                RequestDispatcher successView = request.getRequestDispatcher("/front-end/farmTravel/updateFarmTravel.jsp");
+                successView.forward(request, response);
+
+            }catch(Exception e){  // 發生其他Error時
+                e.printStackTrace(System.err);
+                RequestDispatcher errView = request.getRequestDispatcher("/front-end/farmTravel/listAllFarmTravel.jsp");
+                errView.forward(request, response);
             }
         }
         if("update".equals(action)) {
             List<String> errorMsgs = new LinkedList<String>();
             request.setAttribute("errorMsgs", errorMsgs);
             try {  // 接收參數並嘗試做錯誤判斷
-                FarmTravelVO farmTravel = (FarmTravelVO)session.getAttribute("farmTravel");
+                Integer farm_travel_ID = Integer.valueOf(request.getParameter("farm_travel_ID"));
 
+                FarmTravelService farmTravelService = new FarmTravelService();  // 查DB取出此筆資料
+                FarmTravelVO farmTravel = farmTravelService.getOneFarmTravel(farm_travel_ID);
+
+                // 接收參數並嘗試做錯誤判斷
                 String farm_travel_title = request.getParameter("farm_travel_title");
                 if(farm_travel_title==null || farm_travel_title.trim().length()==0) { errorMsgs.add("請輸入農遊標題"); }
                 else { farmTravel.setFarm_travel_title(farm_travel_title); }
@@ -221,21 +274,21 @@ public class FarmTravelServlet extends HttpServlet {
                 }catch (Exception e) { errorMsgs.add("請確認最大滿額人數"); }
 
                 if (!errorMsgs.isEmpty()) {  // 若以上格式有錯返回update頁面
-                    session.setAttribute("farmTravel", farmTravel);
+                    request.setAttribute("farmTravel", farmTravel);
                     RequestDispatcher errView = request.getRequestDispatcher("/front-end/farmTravel/updateFarmTravel.jsp");
                     errView.forward(request, response);
                     return;
                 }
 
                 try{  // 嘗試更新資料，若發生錯誤返回update頁面
-                    FarmTravelService farmTravelService = new FarmTravelService();
+                    farmTravelService = new FarmTravelService();
                     farmTravel = farmTravelService.updateFarmTravel(
                             farm_travel_title, farm_travel_img, farm_travel_info, farm_travel_start, farm_travel_end, farm_travel_fee, travel_apply_start, travel_apply_end,
                             farm_travel_min, farm_travel_max, farmTravel.getFarm_travel_now(), farmTravel.getFarm_travel_state(), farmTravel.getFarm_travel_ID());
                 }catch(Exception e){
-                    e.printStackTrace();
+                    e.printStackTrace(System.err);
                     errorMsgs.add("更新失敗");
-                    session.setAttribute("farmTravel", farmTravel);
+                    request.setAttribute("farmTravel", farmTravel);
                     RequestDispatcher errView = request.getRequestDispatcher("/front-end/farmTravel/updateFarmTravel.jsp");
                     errView.forward(request, response);
                     return;
@@ -245,9 +298,30 @@ public class FarmTravelServlet extends HttpServlet {
                 successView.forward(request, response);
 
             }catch(Exception e){  // 發生其他Error時
-                e.printStackTrace();
+                e.printStackTrace(System.err);
                 errorMsgs.add(e.getMessage());
                 RequestDispatcher errView = request.getRequestDispatcher("/front-end/farmTravel/updateFarmTravel.jsp");
+                errView.forward(request, response);
+            }
+        }
+        if("getOneForApply".equals(action)) {
+            try{
+                // 接收請求參數，並做錯誤判斷
+                Integer farm_travel_ID = Integer.valueOf(request.getParameter("farm_travel_ID"));
+
+                // 開始查詢資料
+                FarmTravelService farmTravelService = new FarmTravelService();
+                FarmTravelVO farmTravel = farmTravelService.getOneFarmTravel(farm_travel_ID);
+
+                // 查詢完成，準備轉交
+                request.setAttribute("farmTravel", farmTravel);
+
+                RequestDispatcher successView = request.getRequestDispatcher("/front-end/farmTravel/applyFarmTravel.jsp");
+                successView.forward(request, response);
+
+            }catch(Exception e){  // 發生其他Error時
+                e.printStackTrace(System.err);
+                RequestDispatcher errView = request.getRequestDispatcher("/front-end/farmTravel/listOneFarmTravel.jsp");
                 errView.forward(request, response);
             }
         }

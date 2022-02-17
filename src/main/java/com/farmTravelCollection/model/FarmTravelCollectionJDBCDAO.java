@@ -6,30 +6,21 @@ import java.util.List;
 
 public class FarmTravelCollectionJDBCDAO implements FarmTravelCollectionDAO{
 
-    public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    public static final String URL = "jdbc:mysql://localhost:3306/CFA104G2?serverTimezone=Asia/Taipei";
-    public static final String USER = "root";
-    public static final String PASSWORD = "password";
-
     public static final String INSERT_STMT = "INSERT INTO FARM_TRAVEL_COLLECTION ( MEM_ID, FARM_TRAVEL_ID, COLLECTION_TIME ) VALUES ( ?, ?, NOW() );";
     public static final String DELETE_STMT = "DELETE FROM FARM_TRAVEL_COLLECTION WHERE MEM_ID = ? AND FARM_TRAVEL_ID = ?;";
     public static final String GET_ONE_STMT = "SELECT * FROM FARM_TRAVEL_COLLECTION WHERE MEM_ID = ? AND FARM_TRAVEL_ID = ?;";
     public static final String GET_ALL_STMT = "SELECT * FROM FARM_TRAVEL_COLLECTION WHERE MEM_ID = ?;";
 
-    static {
-        try {
-            Class.forName(DRIVER);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
+    Connection con = null;
+    PreparedStatement pstmt = null;
+    ResultSet rs = null;
+
     @Override
-    public void add(FarmTravelCollectionVO farm_travel_collection) {
-        Connection con = null;
-        PreparedStatement pstmt = null;
+    public void add(Connection con, FarmTravelCollectionVO farm_travel_collection) {
+
+        this.con = con;
 
         try {
-            con = DriverManager.getConnection(URL, USER, PASSWORD);
             pstmt = con.prepareStatement(INSERT_STMT);
 
             pstmt.setInt(1, farm_travel_collection.getMem_ID());
@@ -38,19 +29,12 @@ public class FarmTravelCollectionJDBCDAO implements FarmTravelCollectionDAO{
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.err);
         }finally {
             if (pstmt != null) {
                 try {
                     pstmt.close();
-                } catch (SQLException se) {
-                    se.printStackTrace(System.err);
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (Exception e) {
+                } catch (SQLException e) {
                     e.printStackTrace(System.err);
                 }
             }
@@ -58,12 +42,12 @@ public class FarmTravelCollectionJDBCDAO implements FarmTravelCollectionDAO{
     }
 
     @Override
-    public void delete(Integer mem_ID, Integer farm_travel_ID) {
-        Connection con = null;
-        PreparedStatement pstmt = null;
+    public void delete(Connection con, Integer mem_ID, Integer farm_travel_ID) {
+
+        this.con = con;
 
         try {
-            con = DriverManager.getConnection(URL, USER, PASSWORD);
+
             pstmt = con.prepareStatement(DELETE_STMT);
 
             pstmt.setInt(1, mem_ID);
@@ -72,32 +56,23 @@ public class FarmTravelCollectionJDBCDAO implements FarmTravelCollectionDAO{
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.err);
         }finally {
             if (pstmt != null) {
                 try {
                     pstmt.close();
-                } catch (SQLException se) {
-                    se.printStackTrace(System.err);
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (Exception e) {
+                } catch (SQLException e) {
                     e.printStackTrace(System.err);
                 }
             }
         }
     }
     @Override
-    public boolean findByPK(Integer mem_ID, Integer farm_travel_ID) {
+    public boolean findByPK(Connection con, Integer mem_ID, Integer farm_travel_ID) {
+
+        this.con = con;
         FarmTravelCollectionVO farm_travel_collection = null;
-        Connection con = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
         try {
-            con = DriverManager.getConnection(URL, USER, PASSWORD);
             pstmt = con.prepareStatement(GET_ONE_STMT);
 
             pstmt.setInt(1, mem_ID);
@@ -108,27 +83,20 @@ public class FarmTravelCollectionJDBCDAO implements FarmTravelCollectionDAO{
             if (rs.next()) {
                 return true;
             }
-        } catch (SQLException se) {
-            se.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace(System.err);
         } finally {
             if (rs != null) {
                 try {
                     rs.close();
-                } catch (SQLException se) {
-                    se.printStackTrace(System.err);
+                } catch (SQLException e) {
+                    e.printStackTrace(System.err);
                 }
             }
             if (pstmt != null) {
                 try {
                     pstmt.close();
-                } catch (SQLException se) {
-                    se.printStackTrace(System.err);
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (Exception e) {
+                } catch (SQLException e) {
                     e.printStackTrace(System.err);
                 }
             }
@@ -137,14 +105,12 @@ public class FarmTravelCollectionJDBCDAO implements FarmTravelCollectionDAO{
     }
 
     @Override
-    public List<FarmTravelCollectionVO> getAll(Integer mem_ID) {
+    public List<FarmTravelCollectionVO> getAll(Connection con, Integer mem_ID) {
+
+        this.con = con;
         List<FarmTravelCollectionVO> farm_travel_collection_list = new ArrayList<>();
         FarmTravelCollectionVO farm_travel_collection = null;
-        Connection con = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
         try {
-            con = DriverManager.getConnection(URL, USER, PASSWORD);
             pstmt = con.prepareStatement(GET_ALL_STMT);
 
             rs = pstmt.executeQuery();
@@ -157,27 +123,20 @@ public class FarmTravelCollectionJDBCDAO implements FarmTravelCollectionDAO{
 
                 farm_travel_collection_list.add(farm_travel_collection);
             }
-        } catch (SQLException se) {
-            se.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace(System.err);
         } finally {
             if (rs != null) {
                 try {
                     rs.close();
-                } catch (SQLException se) {
-                    se.printStackTrace(System.err);
+                } catch (SQLException e) {
+                    e.printStackTrace(System.err);
                 }
             }
             if (pstmt != null) {
                 try {
                     pstmt.close();
-                } catch (SQLException se) {
-                    se.printStackTrace(System.err);
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (Exception e) {
+                } catch (SQLException e) {
                     e.printStackTrace(System.err);
                 }
             }
