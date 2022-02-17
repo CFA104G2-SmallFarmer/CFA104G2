@@ -16,7 +16,7 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 MemVO memVO = (MemVO) request.getAttribute("memVO");
 ProjOrderVO projOrderVO = (ProjOrderVO) request.getAttribute("projOrderVO");
 %>
-
+<%@ include file="/header/header.jsp" %>
 <%-- <% --%>
 <!-- // 	ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO"); -->
 <!-- //  	Integer proj_id  = projectVO.getProj_id(); -->
@@ -75,11 +75,17 @@ ProjOrderVO projOrderVO = (ProjOrderVO) request.getAttribute("projOrderVO");
   <link href="<%=request.getContextPath()%>/projOrder/addOrderByMem_css/css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" media="all"
     href="<%=request.getContextPath()%>/projOrder/addOrderByMem_css/zeczec-e9e0ba9825d4b970fff398209948a791b4d18185e43b929ef4ffa0e7e5346248.css">
-
+<style>
+/* p {
+font-size=20px;
+} */
+</style>
 </head>
 
+
+
 <body class="intent-mouse">
-  <header class="relative z-2 bb pv2 ph3 ph0-l b--near-white">
+  <%-- <header class="relative z-2 bb pv2 ph3 ph0-l b--near-white">
     <div class="cf container">
       <div class="f6 mv2 flex items-center justify-between">
         <a clsas="dib order-0" href="https://www.zeczec.com/">
@@ -161,7 +167,7 @@ ProjOrderVO projOrderVO = (ProjOrderVO) request.getAttribute("projOrderVO");
         </div>
       </div>
     </div>
-  </header>
+  </header> --%>
   <div class="container"></div>
   <div class="bt b--light-gray bb">
     <div class="container cf">

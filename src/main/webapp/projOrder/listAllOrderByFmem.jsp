@@ -11,15 +11,21 @@
 <!-- // session.setAttribute("f_mem_id",70003); -->
 <%-- %> --%>
 
-<%
+<%-- <%
     String f_mem_id = request.getParameter("f_mem_id");
 	String membership= "seller";
-%>
+%> --%>
 
 <!-- 用傳list<某物件>的方式寫，讓servlet那邊先做完projOrderSvc.getAllFmemOrder(Integer f_mem_id) -->
+<%-- <%
+	List<ProjOrderVO> list2 = (List<ProjOrderVO>) request.getAttribute("projOrderVO");
+    pageContext.setAttribute("list",list2);
+%> --%>
+
 <%
-	List<ProjOrderVO> list = (List<ProjOrderVO>) request.getAttribute("projOrderVO");
-    pageContext.setAttribute("list",list);
+ProjOrderService projOrderSvc = new ProjOrderService();
+List<ProjOrderVO> projOrderVO = projOrderSvc.getAllFmemOrder(70003); 
+pageContext.setAttribute("list",projOrderVO);
 %>
 
 <!-- 領班 -->
@@ -79,7 +85,7 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
 
   <link href="./farmer_order_css/icon" rel="stylesheet">
 
-  <title>小農認養訂單管理</title>
+  <title>我家門前有塊地 | 小農認養訂單管理</title>
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
