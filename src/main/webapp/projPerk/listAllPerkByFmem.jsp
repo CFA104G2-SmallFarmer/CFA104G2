@@ -57,12 +57,12 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
 <meta content="width=device-width, initial-scale=1" name="viewport">
 <meta content="zh_TW" property="og:locale">
 <meta content="zh_TW" property="og:locale:alternate">
-<link
+<!-- <link
 	href="https://www.zeczec.com/assets/logo-square-04c45286e84ea49d07c97c86625fbf3a75f4f32dd02da3ad3ca70a9a68fd0395.png"
 	rel="apple-touch-icon">
 <link
 	href="https://www.zeczec.com/assets/fav-69601a279a66f2e6e31e508900d4f057559d3affcae42730d045b17d281107a6.png"
-	rel="shortcut icon" type="image/x-icon">
+	rel="shortcut icon" type="image/x-icon"> -->
 <title>我家門前有塊地 | ${projectVO.proj_name} |</title>
 <link href="<%=request.getContextPath()%>/projPerk/perkoverview_files/css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" media="all"
@@ -78,20 +78,12 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
         <!-- <a clsas="dib order-0" href="https://www.zeczec.com/"> -->
   
         <img  style="width:160px" src="<%=request.getContextPath()%>/projPerk/addPerk_css/farmer_management/farmer_management.png" alt="HTML tutorial" style="width:42px;height:42px;">
-<!--           <div class="dib logo-safari-fix"><svg class="logo v-mid" style="height: 28px; width: 28px; " -->
-<!--               viewBox="0 0 138 138" xmlns="http://www.w3.org/2000/svg"> -->
-<!--               <title>zeczec</title> -->
-<!--               <path -->
-<!--                 d="M69 0a69 69 0 1 0 69 69A69 69 0 0 0 69 0zm38.7 75.53l-1.55 7.18c-.23 1.18-.81 1.54-1.82 1.49l-40.48-1.9a1.72 1.72 0 0 1-1.43-2.2l2.3-11.94a2.05 2.05 0 0 0-1.87-2.23l-31-2.09c-1 0-1.57-.66-1.57-1.82l1.16-6.81c.22-1.15.8-1.43 1.84-1.37l41.94 2.32a1.94 1.94 0 0 1 1.72 2.13l-2.19 12.13a1.88 1.88 0 0 0 1.87 2.1l30.06 1.39c.93 0 1.24.53 1.03 1.62z"> -->
-<!--               </path> -->
-<!--             </svg> -->
-<!--           </div> -->
+
         
 
         <div
           class="mt0-ns mt3 pt2 ph2 nb1 nl3 nr3 tc tl-ns pa0-ns mh0-ns items-center db-ns bt bn-ns b--near-white flex-auto order-last order-1-ns w-100 w-auto-ns inline-flex">
-<!--           <span style="color: #717d34;font-size: 20px;font-weight: 300;" -->
-<!--             class="mr3-ns hover-fg-blue dark-gray flex-auto flex-none-ns" href="">&nbsp;&nbsp;小農認養管理專區</span> -->
+
           <div class="divider dib-ns dn">&nbsp;</div>
           <a style="color: #717d34;font-size: 19px;" class="mr3-ns hover-fg-blue dark-gray flex-auto flex-none-ns"
             href="https://www.zeczec.com/categories">認養專案管理</a>

@@ -220,8 +220,7 @@ ProjPerkVO projPerkVO = projPerkSvc.getOneProjPerk(9);
                 id="datepicker">
               <!-- <input type="text" id="datepicker"> -->
               <label class="b" for="perk_ship_area">可寄送區域</label>
-              <select  class="mb0 w-100" name="perk_ship_area" id="order_country">
-       														
+              <select  class="mb0 w-100" name="perk_ship_area" id="order_country">       														
                 <option data-shipping-cost="120" value="台灣（本島)" ${(projPerkVO.perk_ship_area=="台灣（本島)")? "selected":""}>
                   台灣（本島)
 

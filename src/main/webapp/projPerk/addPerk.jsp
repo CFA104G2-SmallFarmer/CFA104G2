@@ -14,6 +14,7 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 <html lang="zh-Hant-TW">
 
 <head>
+<title>我家門前有塊地 | ${projectVO.proj_name}</title>
   <!-- datepicker加入這段 -->
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="https:/resources/demos/style.css">
