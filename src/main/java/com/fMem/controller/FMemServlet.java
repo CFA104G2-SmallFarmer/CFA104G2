@@ -1,5 +1,5 @@
 package com.fMem.controller;
-
+// 等待驗證碼產生util
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -41,10 +41,13 @@ public class FMemServlet extends HttpServlet {
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 
-//			try {
+			try {
 				/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
+				Integer mem_id = new Integer(req.getParameter("mem_id").trim());
+				
 				FMemVO fMemVO = new FMemVO();
-Integer mem_id = new Integer(req.getParameter("mem_id").trim());
+				MemService memSvc = new MemService();
+				MemVO memVO = memSvc.getOneMem(mem_id);
 
 String f_mem_acc = req.getParameter("f_mem_acc");
 				String fMemAccReg = "^([A-Za-z0-9_\\-\\.])+\\@([A-Za-z0-9_\\-\\.])+\\.([A-Za-z]{2,4})?$";
@@ -60,6 +63,12 @@ String f_mem_pwd = req.getParameter("f_mem_pwd").trim();
 					errorMsgs.add("請輸入密碼");
 				} else if (!f_mem_pwd.trim().matches(fMemReg)) {
 					errorMsgs.add("至少8個字符，至少1個大寫字母，1個小寫字母和1個數字");
+				}
+String f_mem_pwd2 = req.getParameter("f_mem_pwd2").trim();
+				if (f_mem_pwd2 == null || f_mem_pwd2.trim().length() == 0) {
+					errorMsgs.add("請輸入密碼");
+				} else if (f_mem_pwd2 != null && !f_mem_pwd2.equals(f_mem_pwd)) {
+					errorMsgs.add("兩次輸入的密碼不一致!");
 				}
 				
 String f_mem_fname = req.getParameter("f_mem_fname").trim();
@@ -142,6 +151,20 @@ String f_mem_fname = req.getParameter("f_mem_fname").trim();
 //				fMemVO.setF_mem_pic(f_mem_pic);
 //				fMemVO.setOrganic_certi(organic_certi);
 //				fMemVO.setEnv_friendly_certi(env_friendly_certi);
+				
+//				寄送郵件寫這
+				
+				String to = f_mem_acc;
+				      
+				String subject = "密碼通知";
+				      
+				String ch_name = memVO.getMem_name();
+				String passRandom = "111";
+				String messageText = "親愛的會員 " + ch_name + " 請謹記此密碼: " + passRandom + "\n" +" (已經啟用)"; 
+				       
+				MailService mailService = new MailService();
+				mailService.sendMail(to, subject, messageText);
+
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 req.setAttribute("fMemVO", fMemVO); // 含有輸入格式錯誤的fMemVO物件,也存入req
@@ -162,12 +185,12 @@ req.setAttribute("fMemVO", fMemVO); // 含有輸入格式錯誤的fMemVO物件,�
 				successView.forward(req, res);				
 				
 				/***************************其他可能的錯誤處理**********************************/
-//			} catch (Exception e) {
-//				errorMsgs.add(e.getMessage());
-//				RequestDispatcher failureView = req
-//						.getRequestDispatcher("/front-end/fMem/addFMem.jsp");
-//				failureView.forward(req, res);
-//			}
+			} catch (Exception e) {
+				errorMsgs.add(e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/front-end/fMem/addFMem.jsp");
+				failureView.forward(req, res);
+			}
 		}
 		
 //		
