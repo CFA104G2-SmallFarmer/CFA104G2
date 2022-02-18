@@ -474,7 +474,7 @@ invisible.style.display = "";
 </head>
 
 <body style="" class="nt-s nl-l">
-	<jsp:include page="/header/header.jsp" flush="true" />
+	<jsp:include page="/front-end/home/header.jsp" flush="true"/>
 	<div id="main">
 		<div>
 			<div class="shopee-progress-bar"></div>
@@ -886,7 +886,7 @@ invisible.style.display = "";
 		<div class="shopee-modal-xbcA3dFx0Ck"></div>
 	</div>
 
-	<jsp:include page="/footer/footer.jsp" flush="true" />
+	<jsp:include page="/front-end/home/footer.jsp" flush="true"/>
 
 
 	<script
