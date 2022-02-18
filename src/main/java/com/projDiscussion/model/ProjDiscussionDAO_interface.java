@@ -11,4 +11,7 @@ public interface ProjDiscussionDAO_interface {
 
 //  public ProjDiscussionVO findByPrimaryKey(Integer comments_id);
 //  public List<projDiscussionVO> getAll(Map<String, String[]> map); 
+    
+    public List<ProjDiscussionVO> getFirstLayerByID(Integer proj_id);
+    public void updateFirstLayer(ProjDiscussionVO projDiscussionVO);
 }
