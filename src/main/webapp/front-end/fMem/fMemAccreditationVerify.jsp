@@ -486,8 +486,8 @@ invisible.style.display = "";
 						<div class="h4QDlo" role="main">
 							<div class="_2YiVnW">
 								<div class="_2w2H6X">
-									<h1 class="_3iiDCN">小農註冊</h1>
-									<div class="TQG40c">提交資料以供審核</div>
+									<h1 class="_3iiDCN">認證審核</h1>
+									<div class="TQG40c">提交認證照片以供審核</div>
 									<div style="height: 36px;">
 										<%-- 錯誤表列 --%>
 										<c:if test="${not empty errorMsgs}">
@@ -505,240 +505,28 @@ invisible.style.display = "";
 										<div class="pJout2">
 											<!-- 可更改form表單寬度 -->
 
-											<div class="_3BlbUs">
-												<div class="_1iNZU3">
-													<div class="_2PfA-y">
-														<label>會員編號</label>
-													</div>
-													<div class="_2_JugQ">
-														<div class="_2bdFDW">
-															<div class="_3S9myJ"><%=mem_id%></div>
-															<input type="hidden" name="mem_id" value="<%=mem_id%>">
-														</div>
-													</div>
-												</div>
+											<div id="wrapper" style="height:400px; width:700px; position:abslute;">
+												<h1 class="_3iiDCN">有機認證照片</h1>
+												<input id="put1" class="btn btn-light btn--m btn--inline selectimg"
+													type="file" accept="image/*" style="display: block;"
+													name="mem_pic" value="">
+											</div>
+											
+											<div id="wrapper2" style="height:400px; width:700px; position:abslute;">
+												<h1 class="_3iiDCN">友善環境認證照片</h1>
+												<input id="put2" class="btn btn-light btn--m btn--inline selectimg"
+													type="file" accept="image/*" style="display: block;"
+													name="mem_pic" value="">
 											</div>
 
-											<div class="_3BlbUs">
-												<div class="_1iNZU3">
-													<div class="_2PfA-y">
-														<label>會員帳號</label>
-													</div>
-													<div class="_2_JugQ">
-														<div class="_2bdFDW">
-															<div class="input-with-validator-wrapper">
-																<div class="input-with-validator shopee-dropdown__entry--selected">
-																	<input type="text" placeholder="請填入會員帳號" maxlength="255"
-																		name="f_mem_acc" value="<%=(fMemVO==null)? "" : fMemVO.getF_mem_acc()%>">
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="_3BlbUs">
-												<div class="_1iNZU3">
-													<div class="_2PfA-y">
-														<label>密碼</label>
-													</div>
-													<div class="_2_JugQ">
-														<div class="_2bdFDW">
-															<div class="input-with-validator-wrapper">
-																<div class="input-with-validator shopee-dropdown__entry--selected">
-																	<input type="password" placeholder="請填入密碼" maxlength="25"
-																		name="f_mem_pwd" value="<%=(fMemVO==null)? "" : fMemVO.getF_mem_pwd()%>">
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="_3BlbUs">
-												<div class="_1iNZU3">
-													<div class="_2PfA-y">
-														<label>確認密碼</label>
-													</div>
-													<div class="_2_JugQ">
-														<div class="_2bdFDW">
-															<div class="input-with-validator-wrapper">
-																<div class="input-with-validator shopee-dropdown__entry--selected">
-																	<input type="password" placeholder="請填入密碼" maxlength="25"
-																		name="f_mem_pwd2" value="<%=(fMemVO==null)? "" : fMemVO.getF_mem_pwd()%>">
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="_3BlbUs">
-												<div class="_1iNZU3">
-													<div class="_2PfA-y">
-														<label>農場名稱</label>
-													</div>
-													<div class="_2_JugQ">
-														<div class="_2bdFDW">
-															<div class="input-with-validator-wrapper">
-																<div class="input-with-validator shopee-dropdown__entry--selected">
-																	<input type="text" placeholder="請填入農場名稱" maxlength="255"
-																		name="f_mem_fname" value="<%=(fMemVO==null)? "" : fMemVO.getF_mem_fname()%>">
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="_3BlbUs">
-												<div class="_1iNZU3">
-													<div class="_2PfA-y">
-														<label>手機號碼</label>
-													</div>
-													<div class="_2_JugQ">
-														<div class="_2bdFDW">
-															<div class="input-with-validator-wrapper">
-																<div class="input-with-validator shopee-dropdown__entry--selected">
-																	<input type="text" placeholder="請填入手機號碼" maxlength="10"
-																		name="f_mem_mobile" value="<%=(fMemVO==null)? "" : fMemVO.getF_mem_mobile()%>">
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-												<div class="_3BlbUs">
-													<div class="_1iNZU3">
-														<div class="_2PfA-y">
-															<label class="mt3 b" for="order_country">地點</label>
-														</div>
-														<div class="_2_JugQ">
-															<div class="_2w5iZe">
-																<select required="required"
-																	class="mb0 js-shipping-cost js-country-select js-update-sum-for-postage w-100 shopee-dropdown__entry shopee-dropdown__entry--selected"
-																	autocomplete="country-name" name="order[country]"
-																	id="order_country">
-																	<option data-shipping-cost="0" selected="" value="TW">
-																		台灣（本島） Taiwan</option>
-																	<option data-shipping-cost="120" value="TWI">
-																		台灣（外島） Taiwan's surrounding islands</option>
-																</select>
-															</div>
-														</div>
-													</div>
-												</div>
-
-												<div class="_3BlbUs">
-													<div class="mt3 flex-auto js-city" data-country="TW">
-														<div class="_1iNZU3">
-															<label class="b _2PfA-y">縣市</label>
-															<div class="_2_JugQ">
-																<div class="_2w5iZe">
-																	<select name="f_mem_city" id="city"
-																		class="mb0 js-city-select w-100 shopee-dropdown__entry shopee-dropdown__entry--selected choose-el">
-																		<option value=""<c:if test="${empty fMemVO.f_mem_city}">selected</c:if>>- 選擇 -</option>
-																		<option value="台北市"
-																			<c:if test="${fMemVO.f_mem_city == '台北市'}">selected</c:if>>台北市</option>
-																		<option value="基隆市"
-																			<c:if test="${fMemVO.f_mem_city == '基隆市'}">selected</c:if>>基隆市</option>
-																		<option value="新北市"
-																			<c:if test="${fMemVO.f_mem_city == '新北市'}">selected</c:if>>新北市</option>
-																		<option value="宜蘭縣"
-																			<c:if test="${fMemVO.f_mem_city == '宜蘭縣'}">selected</c:if>>宜蘭縣</option>
-																		<option value="新竹市"
-																			<c:if test="${fMemVO.f_mem_city == '新竹市'}">selected</c:if>>新竹市</option>
-																		<option value="新竹縣"
-																			<c:if test="${fMemVO.f_mem_city == '新竹縣'}">selected</c:if>>新竹縣</option>
-																		<option value="桃園市"
-																			<c:if test="${fMemVO.f_mem_city == '桃園市'}">selected</c:if>>桃園市</option>
-																		<option value="苗栗縣"
-																			<c:if test="${fMemVO.f_mem_city == '苗栗縣'}">selected</c:if>>苗栗縣</option>
-																		<option value="臺中市"
-																			<c:if test="${fMemVO.f_mem_city == '臺中市'}">selected</c:if>>臺中市</option>
-																		<option value="彰化縣"
-																			<c:if test="${fMemVO.f_mem_city == '彰化縣'}">selected</c:if>>彰化縣</option>
-																		<option value="南投縣"
-																			<c:if test="${fMemVO.f_mem_city == '南投縣'}">selected</c:if>>南投縣</option>
-																		<option value="嘉義市"
-																			<c:if test="${fMemVO.f_mem_city == '嘉義市'}">selected</c:if>>嘉義市</option>
-																		<option value="嘉義縣"
-																			<c:if test="${fMemVO.f_mem_city == '嘉義縣'}">selected</c:if>>嘉義縣</option>
-																		<option value="雲林縣"
-																			<c:if test="${fMemVO.f_mem_city == '雲林縣'}">selected</c:if>>雲林縣</option>
-																		<option value="臺南市"
-																			<c:if test="${fMemVO.f_mem_city == '臺南市'}">selected</c:if>>臺南市</option>
-																		<option value="高雄市"
-																			<c:if test="${fMemVO.f_mem_city == '高雄市'}">selected</c:if>>高雄市</option>
-																		<option value="屏東縣"
-																			<c:if test="${fMemVO.f_mem_city == '屏東縣'}">selected</c:if>>屏東縣</option>
-																		<option value="臺東縣"
-																			<c:if test="${fMemVO.f_mem_city == '臺東縣'}">selected</c:if>>臺東縣</option>
-																		<option value="花蓮縣"
-																			<c:if test="${fMemVO.f_mem_city == '花蓮縣'}">selected</c:if>>花蓮縣</option>
-																		<option value="連江縣"
-																			<c:if test="${fMemVO.f_mem_city == '連江縣'}">selected</c:if>>連江縣</option>
-																		<option value="釣魚臺"
-																			<c:if test="${fMemVO.f_mem_city == '釣魚臺'}">selected</c:if>>釣魚臺</option>
-																		<option value="南海島"
-																			<c:if test="${fMemVO.f_mem_city == '南海市'}">selected</c:if>>南海島</option>
-																		<option value="澎湖縣"
-																			<c:if test="${fMemVO.f_mem_city == '澎湖縣'}">selected</c:if>>澎湖縣</option>
-																		<option value="金門縣"
-																			<c:if test="${fMemVO.f_mem_city == '金門縣'}">selected</c:if>>金門縣</option>
-																	</select>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-
-												<div class="_3BlbUs">
-													<div class="mt3 js-district pl3" data-for="TW">
-														<div class="_1iNZU3">
-															<label class="b _2PfA-y">鄉鎮市區</label>
-															<div class="_2_JugQ">
-																	<div class="input-with-validator-wrapper">
-																	<div class="input-with-validator shopee-dropdown__entry--selected">
-																	<input type="text" placeholder="請填入鄉鎮市區" maxlength="10"
-																		name="f_mem_dist" value="<%=(fMemVO==null)? "" : fMemVO.getF_mem_dist()%>">
-																</div>
-																	</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<div class="_3BlbUs">
-													<div class="flex-auto">
-														<div class="_1iNZU3">
-															<label class="b _2PfA-y" for="order_address">地址</label>
-															<div class="_2_JugQ">
-																<div class="input-with-validator shopee-dropdown__entry--selected">
-																	<input type="text" placeholder="請填入地址" maxlength="10"
-																		name="f_mem_add" value="<%=(fMemVO==null)? "" : fMemVO.getF_mem_add()%>">
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<div class="_3BlbUs">
-													<div class="w4 pl3 js-postcode">
-														<div class="_1iNZU3">
-															<label class="b _2PfA-y" for="order_postcode">郵遞區號</label>
-																<div class="_2_JugQ">
-																<div class="input-with-validator shopee-dropdown__entry--selected">
-																	<input type="text" placeholder="請填入郵遞區號" maxlength="10"
-																		name="f_mem_zipcode" value="<%=(fMemVO==null)? "" : fMemVO.getF_mem_zipcode()%>">
-																</div>
-															</div>
-														</div>
-													</div>
-													</div>
-												</div>
-											</div>
 											<!-- 這邊控制傳送至Servlet -->
 											<input type="hidden" name="action" value="insert"> 
 											<div class="_31PFen">
 												<button type="submit" id="demo4"
 													class="btn btn-solid-primary btn--m btn--inline"
-													aria-disabled="false">送出申請</button>
+													aria-disabled="false">送出審核</button>
 											</div>
+										</div>
 										</div>
 								</FORM>
 							</div>
@@ -773,6 +561,41 @@ invisible.style.display = "";
 	<script
 		src="./fMem_files/back-7b8325ae78ca7c794fdc8c2ff6c2ef5676fc24748e3a262866e67978e98c4561.js"
 		type="text/javascript"></script>
+	<!--    新增已更改的圖片用，動態生成選擇的圖片， -->
+	<script>
+        let blockArray = [];
+
+        const wrapper = document.querySelector('#wrapper');
+        const block = genSelectImgBlock1();
+        wrapper.appendChild(block);
+
+        function genSelectImgBlock1() {
+            const div = document.createElement('div');
+            const inputBtn = document.querySelector('#put1');
+            const img = document.createElement('img');
+            const hr = document.createElement('hr');
+
+            img.setAttribute('style', 'display:block;max-height:300px;position:absolute;');
+
+            div.appendChild(img);
+
+            inputBtn.addEventListener('input', (e) => {
+                const url = URL.createObjectURL(inputBtn.files[0]);
+                console.log(url);
+                if (url) { 
+                    img.setAttribute('src', url);
+                    if (blockArray[blockArray.length - 1] === div) {
+                        const block = genSelectImgBlock();
+                        wrapper.appendChild(block);
+                    }
+                }
+            });
+
+            return div;
+        }
+        
+    </script>
+
 </body>
 
 </html>
