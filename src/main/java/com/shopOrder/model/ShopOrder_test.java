@@ -46,7 +46,7 @@ public class ShopOrder_test {
 	
 	@Test  //只需要更改訂單狀態
 	public void testdelet() {
-		jdbcdao.delete(12);
+		jdbcdao.delete(10);
 	}
 	
 	@Test

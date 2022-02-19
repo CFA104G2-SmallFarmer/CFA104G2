@@ -2,6 +2,8 @@ package com.shopOrder.model;
 
 import java.util.List;
 
+import com.shopOrderDetails.model.ShopOrderDetailsVO;
+
 public class ShopOrderService {
 
 	private ShopOrderDAO_interface dao;
@@ -73,4 +75,11 @@ public class ShopOrderService {
 	public ShopOrderVO getOneOrder(Integer order_id) {
 		return dao.findByPrimaryKey(order_id);
 	}
+	
+	//自增主鍵
+	public void addWithDetails(ShopOrderVO shopOrderVO , List<ShopOrderDetailsVO> list) {
+		 dao.insertWithOrderDetails(shopOrderVO,list);
+	}
+	
+	
 }

@@ -7,8 +7,13 @@ import java.util.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+import com.shopCart.model.ShopCartService;
+import com.shopCart.model.ShopCartVO;
 import com.shopOrder.model.ShopOrderService;
 import com.shopOrder.model.ShopOrderVO;
+import com.shopOrderDetails.model.ShopOrderDetailsVO;
+import com.shopProduct.model.ShopProductService;
+import com.shopProduct.model.ShopProductVO;
 
 public class ShopOrderServlet extends HttpServlet {
 
@@ -44,7 +49,7 @@ public class ShopOrderServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
 							// 連結到商城查詢網頁
-							.getRequestDispatcher("searchOrder.jsp");/// ***我還沒改
+							.getRequestDispatcher("/front-end/shopOrder/searchOrder.jsp");
 					failureView.forward(req, res);
 					return;// 程式回到原點
 				}
@@ -58,7 +63,7 @@ public class ShopOrderServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
 							// 連結到商城查詢網頁
-							.getRequestDispatcher("searchOrder.jsp");/// ***我還沒改
+							.getRequestDispatcher("/front-end/shopOrder/searchOrder.jsp");
 					failureView.forward(req, res);
 					return;// 程式回到原點
 				}
@@ -75,7 +80,7 @@ public class ShopOrderServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
 							// 連結到商城查詢網頁
-							.getRequestDispatcher("searchOrder.jsp");/// ***我還沒改
+							.getRequestDispatcher("/front-end/shopOrder/searchOrder.jsp");/// ***我還沒改
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -86,14 +91,14 @@ public class ShopOrderServlet extends HttpServlet {
 				req.setAttribute("order_state", new String[] { "待付款", "待出貨", "已出貨", "已完成", "已取消" });
 				req.setAttribute("order_payment", new String[] { "信用卡", "銀行轉帳" });
 
-				String url = "listOneOrder.jsp";/// ***我還沒改
+				String url = "/front-end/shopOrder/listOneOrder.jsp";/// ***我還沒改
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("searchOrder.jsp");/// ***我還沒改
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/shopOrder/searchOrder.jsp");/// ***我還沒改
 				failureView.forward(req, res);
 			}
 		}
@@ -116,7 +121,7 @@ public class ShopOrderServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
 							// 連結到小農查詢網頁
-							.getRequestDispatcher("searchOrderByFMem.jsp");
+							.getRequestDispatcher("/front-end/shopOrder/searchOrderByFMem.jsp");
 					failureView.forward(req, res);
 					return;// 程式回到原點
 				}
@@ -130,7 +135,7 @@ public class ShopOrderServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = 
 														// 連結到小農查詢網頁
-							req.getRequestDispatcher("searchOrderByFMem.jsp");
+							req.getRequestDispatcher("/front-end/shopOrder/searchOrderByFMem.jsp");
 					failureView.forward(req, res);
 					return;// 程式回到原點
 				}
@@ -147,7 +152,7 @@ public class ShopOrderServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = 
 														// 連結到小農查詢網頁
-							req.getRequestDispatcher("searchOrderByFMem.jsp");/// 
+							req.getRequestDispatcher("/front-end/shopOrder/searchOrderByFMem.jsp");/// 
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -165,7 +170,7 @@ public class ShopOrderServlet extends HttpServlet {
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("searchOrderByFMem.jsp");/// ***我還沒改
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/shopOrder/searchOrderByFMem.jsp");/// ***我還沒改
 				failureView.forward(req, res);
 			}
 		}
@@ -188,14 +193,14 @@ public class ShopOrderServlet extends HttpServlet {
 								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				req.setAttribute("shopOrderVO", shopOrderVO);         // 資料庫取出的empVO物件,存入req
-				String url = "update_order_input.jsp";
+				String url = "/front-end/shopOrder/update_order_input.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
 				successView.forward(req, res);
 				/***************************其他可能的錯誤處理**********************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("listALLOrderByFMem.jsp");
+						.getRequestDispatcher("/front-end/shopOrder/listALLOrderByFMem.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -213,9 +218,6 @@ public class ShopOrderServlet extends HttpServlet {
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 				Integer order_id = new Integer(req.getParameter("order_id").trim());
 				System.out.println(order_id);
-				Integer mem_id = new Integer(req.getParameter("mem_id").trim());
-				Integer f_mem_id = new Integer(req.getParameter("f_mem_id").trim());
-				Integer order_amount = new Integer(req.getParameter("order_amount").trim());
 				Integer order_state = new Integer(req.getParameter("order_state").trim());
 				
 //				日期藥用try catch才能收到null值，再設值回去
@@ -288,7 +290,7 @@ public class ShopOrderServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("shopOrderVO", shopOrderVO); // 含有輸入格式錯誤的empVO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("update_order_input.jsp");
+							.getRequestDispatcher("/front-end/shopOrder/update_order_input.jsp");
 					failureView.forward(req, res);
 					return; //程式中斷
 				}
@@ -300,7 +302,7 @@ public class ShopOrderServlet extends HttpServlet {
 				System.out.println("開始修改資料");
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("shopOrderVO", shopOrderVO); // 資料庫update成功後,正確的的empVO物件,存入req
-				String url = "listALLOrderByFMem.jsp";
+				String url = "/front-end/shopOrder/listAllOrderByMem.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 
@@ -335,7 +337,7 @@ public class ShopOrderServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
 							// 連結到小農查詢網頁
-							.getRequestDispatcher("listAllOrderByMem.jsp");
+							.getRequestDispatcher("/front-end/shopOrder/listAllOrderByMem.jsp");
 					failureView.forward(req, res);
 					return;// 程式回到原點
 				}
@@ -349,7 +351,7 @@ public class ShopOrderServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = 
 														// 連結到小農查詢網頁
-							req.getRequestDispatcher("listAllOrderByMem.jsp");
+							req.getRequestDispatcher("/front-end/shopOrder/listAllOrderByMem.jsp");
 					failureView.forward(req, res);
 					return;// 程式回到原點
 				}
@@ -370,7 +372,7 @@ public class ShopOrderServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = 
 														// 連結到小農查詢網頁
-							req.getRequestDispatcher("listAllOrderByMem.jsp");/// 
+							req.getRequestDispatcher("/front-end/shopOrder/listAllOrderByMem.jsp");/// 
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -381,14 +383,14 @@ public class ShopOrderServlet extends HttpServlet {
 				req.setAttribute("order_state", new String[] { "待付款", "待出貨", "已出貨", "已完成", "已取消" });
 				req.setAttribute("order_payment", new String[] { "信用卡", "銀行轉帳" });
 
-				String url = "listAllOrderByMem.jsp";/// 加上?mem_id=77005&action=getAllByMem做測試
+				String url = "/front-end/shopOrder/listAllOrderByMem.jsp";/// 加上?mem_id=77005&action=getAllByMem做測試
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("listAllOrderByMem.jsp");/// ***我還沒改
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/shopOrder/listAllOrderByMem.jsp");/// ***我還沒改
 				failureView.forward(req, res);
 			}
 		}
@@ -411,7 +413,7 @@ public class ShopOrderServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
 							// 連結到小農查詢網頁
-							.getRequestDispatcher("listAllOrderByFMem.jsp");
+							.getRequestDispatcher("/front-end/shopOrder/listAllOrderByFMem.jsp");
 					failureView.forward(req, res);
 					return;// 程式回到原點
 				}
@@ -425,7 +427,7 @@ public class ShopOrderServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = 
 														// 連結到小農查詢網頁
-							req.getRequestDispatcher("listAllOrderByFMem.jsp");
+							req.getRequestDispatcher("/front-end/shopOrder/listAllOrderByFMem.jsp");
 					failureView.forward(req, res);
 					return;// 程式回到原點
 				}
@@ -446,7 +448,7 @@ public class ShopOrderServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = 
 														// 連結到小農查詢網頁
-							req.getRequestDispatcher("listAllOrderByFMem.jsp");/// 
+							req.getRequestDispatcher("/front-end/shopOrder/listAllOrderByFMem.jsp");/// 
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -457,14 +459,14 @@ public class ShopOrderServlet extends HttpServlet {
 				req.setAttribute("order_state", new String[] { "待付款", "待出貨", "已出貨", "已完成", "已取消" });
 				req.setAttribute("order_payment", new String[] { "信用卡", "銀行轉帳" });
 
-				String url = "listAllOrderByMem.jsp";/// ***?f_mem_id=70001&action=getAllByFMem
+				String url = "/front-end/shopOrder/listAllOrderByMem.jsp";/// ***?f_mem_id=70001&action=getAllByFMem
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("listAllOrderByMem.jsp");/// ***我還沒改
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/shopOrder/listAllOrderByMem.jsp");/// ***我還沒改
 				failureView.forward(req, res);
 			}
 		}
@@ -536,13 +538,13 @@ public class ShopOrderServlet extends HttpServlet {
 				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("shopOrderVO", shopOrderVO2); // 資料庫update成功後,正確的的empVO物件,存入req
 
-				String url = "searchOrderByFMem.jsp";
+				String url = "/front-end/shopOrder/searchOrderByFMem.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("searchOrderByFMem.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/shopOrder/searchOrderByFMem.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -608,13 +610,13 @@ public class ShopOrderServlet extends HttpServlet {
 				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("shopOrderVO", shopOrderVO2); // 資料庫update成功後,正確的的empVO物件,存入req
 
-				String url = "searchOrderByFMem.jsp";
+				String url = "/front-end/shopOrder/searchOrderByFMem.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("farmer_listOneShopOrder.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/shopOrder/farmer_listOneShopOrder.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -679,13 +681,13 @@ public class ShopOrderServlet extends HttpServlet {
 				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("shopOrderVO", shopOrderVO2); // 資料庫update成功後,正確的的empVO物件,存入req
 
-				String url = "searchOrderByFMem.jsp";
+				String url = "/front-end/shopOrder/searchOrderByFMem.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("farmer_listOneShopOrder.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/shopOrder/farmer_listOneShopOrder.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -756,13 +758,13 @@ public class ShopOrderServlet extends HttpServlet {
 					/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 					req.setAttribute("shopOrderVO", shopOrderVO2); // 資料庫update成功後,正確的的empVO物件,存入req
 
-					String url = "searchOrderByFMem.jsp";
+					String url = "/front-end/shopOrder/searchOrderByFMem.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 					successView.forward(req, res);
 					/*************************** 其他可能的錯誤處理 *************************************/
 				} catch (Exception e) {
 					errorMsgs.add("修改資料失敗:" + e.getMessage());
-					RequestDispatcher failureView = req.getRequestDispatcher("farmer_listOneShopOrder.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/shopOrder/farmer_listOneShopOrder.jsp");
 					failureView.forward(req, res);
 				}
 			}
@@ -877,11 +879,11 @@ public class ShopOrderServlet extends HttpServlet {
 					
 					if (membership.equals("seller")) {
 						req.setAttribute("f_mem_id", f_mem_id);
-						url = "listAllOrderByFMem.jsp";	
+						url = "/front-end/shopOrder/listAllOrderByFMem.jsp";	
 						System.out.println(f_mem_id);
 					}else if(membership.equals("buyer")) {
 						req.setAttribute("mem_id", mem_id);
-						url = "listAllOrderByMem.jsp";
+						url = "/front-end/shopOrder/listAllOrderByMem.jsp";
 						System.out.println(mem_id);
 					}
 					req.setAttribute("membership", membership);
@@ -894,7 +896,7 @@ public class ShopOrderServlet extends HttpServlet {
 					errorMsgs.add("修改資料失敗:"+e.getMessage());
 					e.printStackTrace();
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("listAllOrderByFMem.jsp");
+							.getRequestDispatcher("/front-end/shopOrder/listAllOrderByFMem.jsp");
 					failureView.forward(req, res);
 				}
 			}
@@ -911,6 +913,7 @@ public class ShopOrderServlet extends HttpServlet {
 					String membership = (req.getParameter("membership").trim());
 					String mem_id = (req.getParameter("mem_id"));
 					String f_mem_id = (req.getParameter("f_mem_id"));
+					
 					if (membership.equals("seller")) {
 						f_mem_id=f_mem_id.trim();
 					}else if (membership.equals("buyer")) {
@@ -927,9 +930,7 @@ public class ShopOrderServlet extends HttpServlet {
 						
 						//日期用try catch才能設收到null值，再設成null回去
 						java.sql.Date order_ship_date = new java.sql.Date(System.currentTimeMillis());// 要轉型
-
 						
-
 						java.sql.Date order_finish_date = null;
 						try {
 							order_finish_date = java.sql.Date.valueOf(req.getParameter("order_finish_date"));// 要轉型
@@ -960,14 +961,6 @@ public class ShopOrderServlet extends HttpServlet {
 						shopOrderVO.setOrder_cancel_date(order_cancel_date);
 						shopOrderVO.setOrder_id(order_id);
 
-						// Send the use back to the form, if there were errors
-//						if (!errorMsgs.isEmpty()) {
-		//req.setAttribute("projOrderVO", projOrderVO); // 含有輸入格式錯誤的empVO物件,也存入req
-//							RequestDispatcher failureView = req
-//									.getRequestDispatcher("farmer_listOneProjOrder.jsp");
-//							failureView.forward(req, res);
-//							return; //程式中斷
-//						}
 //						
 						/***************************2.開始修改資料*****************************************/
 						ShopOrderService shopOrderSvc = new ShopOrderService();
@@ -1015,7 +1008,7 @@ public class ShopOrderServlet extends HttpServlet {
 						errorMsgs.add("修改資料失敗:"+e.getMessage());
 						e.printStackTrace();
 						RequestDispatcher failureView = req
-								.getRequestDispatcher("listAllOrderByFMem.jsp");
+								.getRequestDispatcher("/front-end/shopOrder/listAllOrderByFMem.jsp");
 						failureView.forward(req, res);
 					}
 			}
@@ -1107,11 +1100,11 @@ public class ShopOrderServlet extends HttpServlet {
 					
 					if (membership.equals("seller")) {
 						req.setAttribute("f_mem_id", f_mem_id);
-						url = "listAllOrderByFMem.jsp";	
+						url = "/front-end/shopOrder/listAllOrderByFMem.jsp";	
 						System.out.println(f_mem_id);
 					}else if(membership.equals("buyer")) {
 						req.setAttribute("mem_id", mem_id);
-						url = "listAllOrderByMem.jsp";
+						url = "/front-end/shopOrder/listAllOrderByMem.jsp";
 						System.out.println(mem_id);
 					}
 					req.setAttribute("membership", membership);
@@ -1124,7 +1117,7 @@ public class ShopOrderServlet extends HttpServlet {
 					errorMsgs.add("修改資料失敗:"+e.getMessage());
 					e.printStackTrace();
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("listAllOrderByFMem.jsp");
+							.getRequestDispatcher("/front-end/shopOrder/listAllOrderByFMem.jsp");
 					failureView.forward(req, res);
 				}
 		}
@@ -1218,11 +1211,11 @@ public class ShopOrderServlet extends HttpServlet {
 					
 					if (membership.equals("seller")) {
 						req.setAttribute("f_mem_id", f_mem_id);
-						url = "listAllOrderByFMem.jsp";	
+						url = "/front-end/shopOrder/listAllOrderByFMem.jsp";	
 						System.out.println(f_mem_id);
 					}else if(membership.equals("buyer")) {
 						req.setAttribute("mem_id", mem_id);
-						url = "listAllOrderByMem.jsp";
+						url = "/front-end/shopOrder/listAllOrderByMem.jsp";
 						System.out.println(mem_id);
 					}
 					req.setAttribute("membership", membership);
@@ -1235,9 +1228,109 @@ public class ShopOrderServlet extends HttpServlet {
 						errorMsgs.add("修改資料失敗:"+e.getMessage());
 						e.printStackTrace();
 						RequestDispatcher failureView = req
-								.getRequestDispatcher("listAllOrderByFMem.jsp");
+								.getRequestDispatcher("/front-end/shopOrder/listAllOrderByFMem.jsp");
 						failureView.forward(req, res);
 					}
 			}
+///////////////////////////////  付款	/////////////////////////////////////////////////////////
+//				付款pay=新增一筆訂單及多筆訂單明細
+				if ("pay".equals(action)) { // 來自addEmp.jsp的請求  
+					
+					List<String> errorMsgs = new LinkedList<String>();
+					// Store this set in the request scope, in case we need to
+					// send the ErrorPage view.
+					req.setAttribute("errorMsgs", errorMsgs);
+
+					try {
+						/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
+						Integer mem_id = new Integer(req.getParameter("mem_id").trim());
+						Integer f_mem_id = new Integer(req.getParameter("f_mem_id").trim());
+						Integer order_amount = new Integer(req.getParameter("order_amount").trim());
+						String order_memo = new String(req.getParameter("order_memo").trim());
+						Integer order_payment = new Integer(req.getParameter("order_payment").trim());
+	
+						String order_receiver = req.getParameter("order_receiver");
+						String enameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
+						if (order_receiver == null || order_receiver.trim().length() == 0) {
+							errorMsgs.add("收件人: 請勿空白");
+						} else if(!order_receiver.trim().matches(enameReg)) { //以下練習正則(規)表示式(regular-expression)
+							errorMsgs.add("收件人: 只能是中、英文字母、數字和_ , 且長度必需在2到10之間");
+			            }
+
+						String order_tel = req.getParameter("order_tel");
+						String telReg = "^09[0-9]{8}$";
+						if (order_tel == null || order_tel.trim().length() == 0) {
+							errorMsgs.add("收件人電話: 請勿空白");
+						} else if(!order_tel.trim().matches(telReg)) { //以下練習正則(規)表示式(regular-expression)
+							errorMsgs.add("收件人電話: 只能是數字 , 且長度必需在10到10之間");
+			            }
+						
+						String order_add = req.getParameter("order_add").trim();
+						if (order_add == null || order_add.trim().length() == 0) {
+							errorMsgs.add("收件地址請勿空白");
+						}
+//						訂單參數
+						ShopOrderVO shopOrderVO = new ShopOrderVO();
+						shopOrderVO.setMem_id(mem_id);
+						shopOrderVO.setF_mem_id(f_mem_id);
+						shopOrderVO.setOrder_payment(order_payment);
+						shopOrderVO.setOrder_add(order_add);
+						shopOrderVO.setOrder_receiver(order_receiver);
+						shopOrderVO.setOrder_tel(order_tel);
+						shopOrderVO.setOrder_memo(order_memo);
+						shopOrderVO.setOrder_amount(order_amount);
+						
+//						訂單明細參數
+						
+						if (!errorMsgs.isEmpty()) {
+		/*跟getParameter無關*/
+							req.setAttribute("shopOrderVO", shopOrderVO); // 含有輸入格式錯誤的empVO物件,也存入req
+							RequestDispatcher failureView = req
+									.getRequestDispatcher("/front-end/shopOrder/checkout.jsp");
+							failureView.forward(req, res);
+							return;
+						}
+						
+						/***************************2.開始新增資料***************************************/
+						ShopCartService shopCartSVC = new ShopCartService();
+						List<ShopCartVO> shopCartList = shopCartSVC.getBreakeList(mem_id, f_mem_id);
+//						List<ShopOrderDetailsVO> shopOrderDeatailsVO = List<ShopOrderDetailsVO>.valueof(shopCartList);
+						List<ShopOrderDetailsVO> list = new ArrayList<>();
+						
+						ShopProductService prodSVC = new ShopProductService();
+//						ShopProductVO productVO1 = prodSVC.getOneProduct(prod_id);
+//						System.out.println(productVO1.getProd_unit());
+						for(ShopCartVO vo: shopCartList) {
+							
+							ShopOrderDetailsVO dVO = new ShopOrderDetailsVO();
+							dVO.setProd_id(vo.getProd_id());
+							dVO.setOrder_unit_price(vo.getCart_unit_price());
+							dVO.setOrder_qty(vo.getCart_qty());
+							dVO.setOrder_unit_amount(vo.getCart_unit_price() * vo.getCart_qty());
+							
+							ShopProductVO productVO1 = prodSVC.getOneProduct(vo.getProd_id());
+
+							dVO.setProd_unit(productVO1.getProd_unit());
+							list.add(dVO);
+						}
+						ShopOrderService shopOrderSvc = new ShopOrderService();
+						shopOrderSvc.addWithDetails(shopOrderVO, list);
+						
+						shopCartSVC.deleteAllShopCart(mem_id, f_mem_id);
+						System.out.println("清除購物車指令執行成功");										
+						/***************************3.新增完成,準備轉交(Send the Success view)***********/
+						String url = "/front-end/shopOrder/pay_success.jsp";
+						RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+						successView.forward(req, res);				
+						
+						/***************************其他可能的錯誤處理**********************************/
+					} catch (Exception e) {
+						errorMsgs.add(e.getMessage());
+						RequestDispatcher failureView = req
+								.getRequestDispatcher("/front-end/shopOrder/checkout.jsp");
+						failureView.forward(req, res);
+					}
+				}	
+				
 	}
 }

@@ -2,7 +2,7 @@ package com.shopOrder.model;
 
 import java.util.*;
 
-import com.projOrder.model.ProjOrderVO;
+import com.shopOrderDetails.model.*;
 
 import java.sql.*;
 
@@ -113,7 +113,7 @@ public class ShopOrderJDBCDAO implements ShopOrderDAO_interface {
 						+ "`ORDER_SHIP_DATE`,"
 						+ "`ORDER_FINISH_DATE`,"
 						+ "`ORDER_CANCEL_DATE`"
-						+ "FROM `SHOP_ORDER` WHERE `MEM_ID` = ?";
+						+ "FROM `SHOP_ORDER` WHERE `MEM_ID` = ? ORDER BY `ORDER_ID` DESC;";
 	
 		// 列出小農的所有訂單(因為訂單裡沒有小農編號，所以要JOIN兩次才抓得到)
 		private static final String GET_All_FMEM_ORDER_STMT = 
@@ -131,7 +131,7 @@ public class ShopOrderJDBCDAO implements ShopOrderDAO_interface {
 						+ "`ORDER_SHIP_DATE`,"
 						+ "`ORDER_FINISH_DATE`,"
 						+ "`ORDER_CANCEL_DATE`"
-						+ "FROM `SHOP_ORDER` WHERE `F_MEM_ID` = ?";
+						+ "FROM `SHOP_ORDER` WHERE `F_MEM_ID` = ? ORDER BY `ORDER_ID` DESC;";
 		
 	
 	@Override
@@ -168,11 +168,6 @@ public class ShopOrderJDBCDAO implements ShopOrderDAO_interface {
 			pstmt.setInt(6, shopOrderVO.getOrder_amount());
 			pstmt.setString(7, shopOrderVO.getOrder_memo());
 			pstmt.setInt(8, shopOrderVO.getOrder_payment());
-//			pstmt.setDate(7, shopOrderVO.getOrder_ship_date());
-//			pstmt.setDate(8, shopOrderVO.getOrder_finish_date());
-//			pstmt.setDate(9, shopOrderVO.getOrder_cancel_date());
-//			pstmt.setInt(9, shoporderVO.getOrder_state());
-//			pstmt.setDate(2, shoporderVO.getOrder_date());
 			
 			
 			pstmt.executeUpdate();
@@ -599,7 +594,7 @@ public class ShopOrderJDBCDAO implements ShopOrderDAO_interface {
 //						+ "`ORDER_ORDER_DATE`,"
 //						+ "`ORDER_SHIP_DATE`,"
 //						+ "`ORDER_FINISH_DATE`,"
-//						+ "`ORDER_CANCEL_DATE`,"
+//						+ "`ORDER_CANCEL_DATE`"
 //						+ "FROM `SHOP_ORDER` WHERE `F_MEM_ID` = ?";
 				
 				shoporderVO = new ShopOrderVO();
@@ -654,7 +649,140 @@ public class ShopOrderJDBCDAO implements ShopOrderDAO_interface {
 
 	}
 	
+	/////////////////////////////////////////////////////////////
+//	訂單主檔與明細檔一次新增
+	@Override
+	public void insertWithOrderDetails(ShopOrderVO shopOrderVO , List<ShopOrderDetailsVO> list) {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			
+			// 1●設定於 pstm.executeUpdate()之前
+    		con.setAutoCommit(false);
+			
+    		// 先新增訂單
+			String cols[] = {"ORDER_ID"};
+			pstmt = con.prepareStatement(INSERT_STMT , cols);			
+			
+			pstmt.setInt(1, shopOrderVO.getMem_id());
+			pstmt.setInt(2, shopOrderVO.getF_mem_id());
+			pstmt.setString(3, shopOrderVO.getOrder_add());
+			pstmt.setString(4, shopOrderVO.getOrder_receiver());
+			pstmt.setString(5, shopOrderVO.getOrder_tel());
+			pstmt.setInt(6, shopOrderVO.getOrder_amount());
+			pstmt.setString(7, shopOrderVO.getOrder_memo());
+			pstmt.setInt(8, shopOrderVO.getOrder_payment());
+			
+Statement stmt=	con.createStatement();
+//stmt.executeUpdate("set auto_increment_offset=10;");    //自增主鍵-初始值
+//stmt.executeUpdate("set auto_increment_increment=10;"); //自增主鍵-遞增
+			pstmt.executeUpdate();
+			//掘取對應的自增主鍵值
+			String next_order_id = null;
+			ResultSet rs = pstmt.getGeneratedKeys();
+			if (rs.next()) {
+				next_order_id = rs.getString(1);
+				System.out.println("自增主鍵值= " + next_order_id +"(剛新增成功的訂單編號)");
+			} else {
+				System.out.println("未取得自增主鍵值");
+			}
+			rs.close();
+			// 再同時新增訂單明細
+			ShopOrderDetailsJDBCDAO dao = new ShopOrderDetailsJDBCDAO();
+			System.out.println("list.size()-A="+list.size());
+			for (ShopOrderDetailsVO aShopOrderDetails : list) {
+				aShopOrderDetails.setOrder_id(new Integer(next_order_id)) ;
+				dao.insert2(aShopOrderDetails,con);
+			}
+
+			// 2●設定於 pstm.executeUpdate()之後
+			con.commit();
+			con.setAutoCommit(true);
+			System.out.println("list.size()-B="+list.size());
+			System.out.println("新增訂單編號" + next_order_id + "時,共有訂單明細" + list.size()
+					+ "筆同時被新增");
+			
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			if (con != null) {
+				try {
+					// 3●設定於當有exception發生時之catch區塊內
+					System.err.print("Transaction is being ");
+					System.err.println("rolled back-由-order");
+					con.rollback();
+				} catch (SQLException excep) {
+					throw new RuntimeException("rollback error occured. "
+							+ excep.getMessage());
+				}
+			}
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+
+	}
+	
 	public static void main(String[] args) {
+	
+		ShopOrderJDBCDAO dao = new ShopOrderJDBCDAO();
+		
+		ShopOrderVO shopOrderVO = new ShopOrderVO();
+		shopOrderVO.setMem_id(77006);
+		shopOrderVO.setF_mem_id(70003);
+		shopOrderVO.setOrder_add("台北市萬巒鄉豬腳路1號");
+		shopOrderVO.setOrder_receiver("蛇丸");
+		shopOrderVO.setOrder_tel("09123456789");
+		shopOrderVO.setOrder_amount(1000);
+		shopOrderVO.setOrder_memo("指定到貨時間");
+		shopOrderVO.setOrder_payment(1);
+		
+		List<ShopOrderDetailsVO> testList = new ArrayList<ShopOrderDetailsVO>();
+		
+		//明細一
+		ShopOrderDetailsVO shopOrderDetailsxx = new ShopOrderDetailsVO();
+		shopOrderDetailsxx.setProd_id(5);
+		shopOrderDetailsxx.setProd_unit("公斤");
+		shopOrderDetailsxx.setOrder_qty(10);
+		shopOrderDetailsxx.setOrder_unit_price(20);
+		shopOrderDetailsxx.setOrder_unit_amount(200);
+		
+		//明細二
+		ShopOrderDetailsVO shopOrderDetailsyy = new ShopOrderDetailsVO();
+		shopOrderDetailsyy.setProd_id(2);
+		shopOrderDetailsyy.setProd_unit("公斤");
+		shopOrderDetailsyy.setOrder_qty(1);
+		shopOrderDetailsyy.setOrder_unit_price(20);
+		shopOrderDetailsyy.setOrder_unit_amount(20);
+		
+		testList.add(shopOrderDetailsxx);
+		testList.add(shopOrderDetailsyy);
+		
+		dao.insertWithOrderDetails(shopOrderVO, testList);
+		
 	}
 
 }

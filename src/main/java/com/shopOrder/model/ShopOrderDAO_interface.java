@@ -2,6 +2,9 @@ package com.shopOrder.model;
 
 import java.util.*;
 
+import com.shopOrderDetails.model.ShopOrderDetailsVO;
+
+
 
 public interface ShopOrderDAO_interface {
 	 //新增訂單
@@ -21,4 +24,7 @@ public interface ShopOrderDAO_interface {
 	 //列出所有訂單
 	 public List<ShopOrderVO> getAll();
 //   public List<ShopOrderVO> getAll(Map<String, String[]> map);
+
+	//同時新增訂單與訂單明細,可用在訂單主檔與明細檔一次新增成功
+     public void insertWithOrderDetails(ShopOrderVO shopOrderVO , List<ShopOrderDetailsVO> list);
 }
