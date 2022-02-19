@@ -50,7 +50,7 @@ public class ProjOrderServlet extends HttpServlet{
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("searchOrder.jsp");///***我還沒改
+							.getRequestDispatcher("/front-end/projOrder/searchOrder.jsp");///***我還沒改
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -64,7 +64,7 @@ public class ProjOrderServlet extends HttpServlet{
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("searchOrder.jsp");///***我還沒改
+							.getRequestDispatcher("/front-end/projOrder/searchOrder.jsp");///***我還沒改
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -79,7 +79,7 @@ public class ProjOrderServlet extends HttpServlet{
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("searchOrder.jsp");///***我還沒改
+							.getRequestDispatcher("/front-end/projOrder/searchOrder.jsp");///***我還沒改
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -101,7 +101,7 @@ public class ProjOrderServlet extends HttpServlet{
 				req.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買家取消","小農取消","專案募資失敗"});
 				/*****我增加的部分end******/
 				
-				String url = "listOneOrder.jsp";
+				String url = "/front-end/projOrder/listOneOrder.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
 
@@ -109,7 +109,7 @@ public class ProjOrderServlet extends HttpServlet{
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("searchOrder.jsp");
+						.getRequestDispatcher("/front-end/projOrder/searchOrder.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -133,7 +133,7 @@ public class ProjOrderServlet extends HttpServlet{
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("searchOrderByFmem.jsp");///***我還沒改
+							.getRequestDispatcher("/front-end/projOrder/searchOrderByFmem.jsp");///***我還沒改
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -147,7 +147,7 @@ public class ProjOrderServlet extends HttpServlet{
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("searchOrderByFmem.jsp");///***我還沒改
+							.getRequestDispatcher("/front-end/projOrder/searchOrderByFmem.jsp");///***我還沒改
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -162,7 +162,7 @@ public class ProjOrderServlet extends HttpServlet{
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("searchOrderByFmem.jsp");///***我還沒改
+							.getRequestDispatcher("/front-end/projOrder/searchOrderByFmem.jsp");///***我還沒改
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -184,7 +184,7 @@ public class ProjOrderServlet extends HttpServlet{
 				req.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買家取消","小農取消","專案募資失敗"});
 				/*****我增加的部分end******/
 				
-				String url = "listOneOrderByFmem.jsp";///***我還沒改
+				String url = "/front-end/projOrder/listOneOrderByFmem.jsp";///***我還沒改
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
 
@@ -192,7 +192,7 @@ public class ProjOrderServlet extends HttpServlet{
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("searchOrderByFmem.jsp");///***我還沒改
+						.getRequestDispatcher("/front-end/projOrder/searchOrderByFmem.jsp");///***我還沒改
 				failureView.forward(req, res);
 			}
 		}
@@ -223,7 +223,7 @@ public class ProjOrderServlet extends HttpServlet{
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/project/listAllProj.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listAllProj.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -236,7 +236,7 @@ public class ProjOrderServlet extends HttpServlet{
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/project/listAllProj.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listAllProj.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -255,7 +255,7 @@ public class ProjOrderServlet extends HttpServlet{
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/project/listAllProj.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listAllProj.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -263,7 +263,7 @@ public class ProjOrderServlet extends HttpServlet{
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("projOrderVO", projOrderVO); // 資料庫取出的projPerkVO物件,存入req
 				
-				String url = "listAllOrderByMem.jsp";
+				String url = "/front-end/projOrder/listAllOrderByMem.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 perkoverview.jsp
 				successView.forward(req, res);
 //				System.out.println("成功");
@@ -274,7 +274,7 @@ public class ProjOrderServlet extends HttpServlet{
 				
 
 				
-				RequestDispatcher failureView = req.getRequestDispatcher("/project/listAllProj.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listAllProj.jsp");
 				failureView.forward(req, res);
 				
 				System.out.println("error in final");
@@ -301,7 +301,7 @@ public class ProjOrderServlet extends HttpServlet{
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("listAllOrderByFmem.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/projOrder/listAllOrderByFmem.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -314,7 +314,7 @@ public class ProjOrderServlet extends HttpServlet{
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("listAllOrderByFmem.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/projOrder/listAllOrderByFmem.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -334,7 +334,7 @@ public class ProjOrderServlet extends HttpServlet{
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("listAllOrderByFmem.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/projOrder/listAllOrderByFmem.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -342,7 +342,7 @@ public class ProjOrderServlet extends HttpServlet{
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("projOrderVO", projOrderVO); // 資料庫取出的projPerkVO物件,存入req
 			
-				String url = "listAllOrderByFmem.jsp";
+				String url = "/front-end/projOrder/listAllOrderByFmem.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 perkoverview.jsp
 				successView.forward(req, res);
 				System.out.println("成功getAllByFmem");
@@ -351,7 +351,7 @@ public class ProjOrderServlet extends HttpServlet{
 //				System.out.println("error in final");
 				errorMsgs.add("無法取得資料:" + e.getMessage());
 
-				RequestDispatcher failureView = req.getRequestDispatcher("listAllOrderByFmem.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/projOrder/listAllOrderByFmem.jsp");
 				failureView.forward(req, res);
 				
 //				System.out.println("error in final");
@@ -396,7 +396,7 @@ public class ProjOrderServlet extends HttpServlet{
 				req.setAttribute("memVO",memVO3); 
 				req.setAttribute("projOrderVO", projOrderVO);    // 資料庫取出的empVO物件,存入req
 				
-				String url = "/projOrder/update_order_input_ByMem.jsp";///***我還沒改
+				String url = "/front-end/projOrder/update_order_input_ByMem.jsp";///***我還沒改
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
 				successView.forward(req, res);
 
@@ -404,7 +404,7 @@ public class ProjOrderServlet extends HttpServlet{
 			} catch (Exception e) {
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/emp/listAllEmp.jsp");///***我還沒改
+						.getRequestDispatcher("/front-end/projOrder/emp/listAllEmp.jsp");///***我還沒改
 				failureView.forward(req, res);
 			}
 		}
@@ -529,7 +529,7 @@ public class ProjOrderServlet extends HttpServlet{
 							req.setAttribute("memVO",memVO3);
 //		req.setAttribute("projOrderVO", projOrderVO); // 含有輸入格式錯誤的empVO物件,也存入req
 							RequestDispatcher failureView = req
-									.getRequestDispatcher("/projOrder/update_order_input_ByMem.jsp");
+									.getRequestDispatcher("/front-end/projOrder/update_order_input_ByMem.jsp");
 							failureView.forward(req, res);
 							return; //程式中斷
 						}
@@ -545,7 +545,7 @@ public class ProjOrderServlet extends HttpServlet{
 						List<ProjOrderVO> projOrderVO5=projOrderSvc4.getAllMemOrder(mem_id);
 					req.setAttribute("memVO",memVO3);
 					req.setAttribute("projOrderVO", projOrderVO5);
-					String url = "/projOrder/listAllOrderByMem.jsp";
+					String url = "/front-end/projOrder/listAllOrderByMem.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 					successView.forward(req, res);				
 					
@@ -553,7 +553,7 @@ public class ProjOrderServlet extends HttpServlet{
 				} catch (Exception e) {
 					errorMsgs.add(e.getMessage());
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/projOrder/update_order_input_ByMem.jsp");
+							.getRequestDispatcher("/front-end/projOrder/update_order_input_ByMem.jsp");
 					failureView.forward(req, res);
 				}
 			}
@@ -626,7 +626,7 @@ public class ProjOrderServlet extends HttpServlet{
 //				if (!errorMsgs.isEmpty()) {
 //req.setAttribute("projOrderVO", projOrderVO); // 含有輸入格式錯誤的empVO物件,也存入req
 //					RequestDispatcher failureView = req
-//							.getRequestDispatcher("farmer_listOneProjOrder.jsp");
+//							.getRequestDispatcher("/front-end/projOrder/farmer_listOneProjOrder.jsp");
 //					failureView.forward(req, res);
 //					return; //程式中斷
 //				}
@@ -658,14 +658,14 @@ public class ProjOrderServlet extends HttpServlet{
 				
 			
 				
-				String url = "searchOrderByFmem.jsp";
+				String url = "/front-end/projOrder/searchOrderByFmem.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 				/***************************其他可能的錯誤處理*************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("searchOrderByFmem.jsp");
+						.getRequestDispatcher("/front-end/projOrder/searchOrderByFmem.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -731,7 +731,7 @@ public class ProjOrderServlet extends HttpServlet{
 //				if (!errorMsgs.isEmpty()) {
 //req.setAttribute("projOrderVO", projOrderVO); // 含有輸入格式錯誤的empVO物件,也存入req
 //					RequestDispatcher failureView = req
-//							.getRequestDispatcher("farmer_listOneProjOrder.jsp");
+//							.getRequestDispatcher("/front-end/projOrder/farmer_listOneProjOrder.jsp");
 //					failureView.forward(req, res);
 //					return; //程式中斷
 //				}
@@ -745,14 +745,14 @@ public class ProjOrderServlet extends HttpServlet{
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("projOrderVO", projOrderVO2); // 資料庫update成功後,正確的的empVO物件,存入req	
 				
-				String url = "searchOrderByFmem.jsp";
+				String url = "/front-end/projOrder/searchOrderByFmem.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 				/***************************其他可能的錯誤處理*************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("searchOrderByFmem.jsp");
+						.getRequestDispatcher("/front-end/projOrder/searchOrderByFmem.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -817,7 +817,7 @@ public class ProjOrderServlet extends HttpServlet{
 //				if (!errorMsgs.isEmpty()) {
 //req.setAttribute("projOrderVO", projOrderVO); // 含有輸入格式錯誤的empVO物件,也存入req
 //					RequestDispatcher failureView = req
-//							.getRequestDispatcher("farmer_listOneProjOrder.jsp");
+//							.getRequestDispatcher("/front-end/projOrder/farmer_listOneProjOrder.jsp");
 //					failureView.forward(req, res);
 //					return; //程式中斷
 //				}
@@ -831,14 +831,14 @@ public class ProjOrderServlet extends HttpServlet{
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("projOrderVO", projOrderVO2); // 資料庫update成功後,正確的的empVO物件,存入req	
 				
-				String url = "searchOrderByFmem.jsp";
+				String url = "/front-end/projOrder/searchOrderByFmem.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 				/***************************其他可能的錯誤處理*************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("searchOrderByFmem.jsp");
+						.getRequestDispatcher("/front-end/projOrder/searchOrderByFmem.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -903,7 +903,7 @@ public class ProjOrderServlet extends HttpServlet{
 //				if (!errorMsgs.isEmpty()) {
 //req.setAttribute("projOrderVO", projOrderVO); // 含有輸入格式錯誤的empVO物件,也存入req
 //					RequestDispatcher failureView = req
-//							.getRequestDispatcher("farmer_listOneProjOrder.jsp");
+//							.getRequestDispatcher("/front-end/projOrder/farmer_listOneProjOrder.jsp");
 //					failureView.forward(req, res);
 //					return; //程式中斷
 //				}
@@ -917,14 +917,14 @@ public class ProjOrderServlet extends HttpServlet{
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("projOrderVO", projOrderVO2); // 資料庫update成功後,正確的的empVO物件,存入req	
 				
-				String url = "searchOrderByFmem.jsp";
+				String url = "/front-end/projOrder/searchOrderByFmem.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 				/***************************其他可能的錯誤處理*************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("searchOrderByFmem.jsp");
+						.getRequestDispatcher("/front-end/projOrder/searchOrderByFmem.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -993,7 +993,7 @@ public class ProjOrderServlet extends HttpServlet{
 //				if (!errorMsgs.isEmpty()) {
 //req.setAttribute("projOrderVO", projOrderVO); // 含有輸入格式錯誤的empVO物件,也存入req
 //					RequestDispatcher failureView = req
-//							.getRequestDispatcher("farmer_listOneProjOrder.jsp");
+//							.getRequestDispatcher("/front-end/projOrder/farmer_listOneProjOrder.jsp");
 //					failureView.forward(req, res);
 //					return; //程式中斷
 //				}
@@ -1007,14 +1007,14 @@ public class ProjOrderServlet extends HttpServlet{
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("projOrderVO", projOrderVO2); // 資料庫update成功後,正確的的empVO物件,存入req	
 				
-				String url = "searchOrderByFmem.jsp";
+				String url = "/front-end/projOrder/searchOrderByFmem.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 				/***************************其他可能的錯誤處理*************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("searchOrderByFmem.jsp");
+						.getRequestDispatcher("/front-end/projOrder/searchOrderByFmem.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -1103,7 +1103,7 @@ public class ProjOrderServlet extends HttpServlet{
 //				if (!errorMsgs.isEmpty()) {
 //req.setAttribute("projOrderVO", projOrderVO); // 含有輸入格式錯誤的empVO物件,也存入req
 //					RequestDispatcher failureView = req
-//							.getRequestDispatcher("farmer_listOneProjOrder.jsp");
+//							.getRequestDispatcher("/front-end/projOrder/farmer_listOneProjOrder.jsp");
 //					failureView.forward(req, res);
 //					return; //程式中斷
 //				}
@@ -1136,11 +1136,11 @@ public class ProjOrderServlet extends HttpServlet{
 				
 				if (membership.equals("seller")) {
 					req.setAttribute("f_mem_id", f_mem_id);
-					url = "listAllOrderByFmem.jsp";	
+					url = "/front-end/projOrder/listAllOrderByFmem.jsp";	
 					System.out.println(f_mem_id);
 				}else if(membership.equals("buyer")) {
 					req.setAttribute("mem_id", mem_id);
-					url = "listAllOrderByMem.jsp";
+					url = "/front-end/projOrder/listAllOrderByMem.jsp";
 					System.out.println(mem_id);
 				}
 				req.setAttribute("membership", membership);
@@ -1153,7 +1153,7 @@ public class ProjOrderServlet extends HttpServlet{
 				errorMsgs.add("修改資料失敗:"+e.getMessage());
 				e.printStackTrace();
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("listAllOrderByMem.jsp");
+						.getRequestDispatcher("/front-end/projOrder/listAllOrderByMem.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -1229,7 +1229,7 @@ public class ProjOrderServlet extends HttpServlet{
 //				if (!errorMsgs.isEmpty()) {
 //req.setAttribute("projOrderVO", projOrderVO); // 含有輸入格式錯誤的empVO物件,也存入req
 //					RequestDispatcher failureView = req
-//							.getRequestDispatcher("farmer_listOneProjOrder.jsp");
+//							.getRequestDispatcher("/front-end/projOrder/farmer_listOneProjOrder.jsp");
 //					failureView.forward(req, res);
 //					return; //程式中斷
 //				}
@@ -1262,23 +1262,23 @@ public class ProjOrderServlet extends HttpServlet{
 				
 				if (membership.equals("seller")) {
 					req.setAttribute("f_mem_id", f_mem_id);
-					url = "listAllOrderByFmem.jsp";	
+					url = "/front-end/projOrder/listAllOrderByFmem.jsp";	
 					System.out.println(f_mem_id);
 				}else if(membership.equals("buyer")) {
 					req.setAttribute("mem_id", mem_id);
-					url = "listAllOrderByMem.jsp";
+					url = "/front-end/projOrder/listAllOrderByMem.jsp";
 					System.out.println(mem_id);
 				}
 				req.setAttribute("membership", membership);
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
-//				res.sendRedirect("listAllOrderByFmem.jsp");
+//				res.sendRedirect("/front-end/projOrder/listAllOrderByFmem.jsp");
 				/***************************其他可能的錯誤處理*************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:"+e.getMessage());
 				e.printStackTrace();
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("listAllOrderByFmem.jsp");
+						.getRequestDispatcher("/front-end/projOrder/listAllOrderByFmem.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -1353,7 +1353,7 @@ public class ProjOrderServlet extends HttpServlet{
 //				if (!errorMsgs.isEmpty()) {
 //req.setAttribute("projOrderVO", projOrderVO); // 含有輸入格式錯誤的empVO物件,也存入req
 //					RequestDispatcher failureView = req
-//							.getRequestDispatcher("farmer_listOneProjOrder.jsp");
+//							.getRequestDispatcher("/front-end/projOrder/farmer_listOneProjOrder.jsp");
 //					failureView.forward(req, res);
 //					return; //程式中斷
 //				}
@@ -1386,23 +1386,23 @@ public class ProjOrderServlet extends HttpServlet{
 				
 				if (membership.equals("seller")) {
 					req.setAttribute("f_mem_id", f_mem_id);
-					url = "listAllOrderByFmem.jsp";	
+					url = "/front-end/projOrder/listAllOrderByFmem.jsp";	
 					System.out.println(f_mem_id);
 				}else if(membership.equals("buyer")) {
 					req.setAttribute("mem_id", mem_id);
-					url = "listAllOrderByMem.jsp";
+					url = "/front-end/projOrder/listAllOrderByMem.jsp";
 					System.out.println(mem_id);
 				}
 				req.setAttribute("membership", membership);
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
-//				res.sendRedirect("listAllOrderByFmem.jsp");
+//				res.sendRedirect("/front-end/projOrder/listAllOrderByFmem.jsp");
 				/***************************其他可能的錯誤處理*************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:"+e.getMessage());
 				e.printStackTrace();
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("listAllOrderByFmem.jsp");
+						.getRequestDispatcher("/front-end/projOrder/listAllOrderByFmem.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -1477,7 +1477,7 @@ public class ProjOrderServlet extends HttpServlet{
 //				if (!errorMsgs.isEmpty()) {
 //req.setAttribute("projOrderVO", projOrderVO); // 含有輸入格式錯誤的empVO物件,也存入req
 //					RequestDispatcher failureView = req
-//							.getRequestDispatcher("farmer_listOneProjOrder.jsp");
+//							.getRequestDispatcher("/front-end/projOrder/farmer_listOneProjOrder.jsp");
 //					failureView.forward(req, res);
 //					return; //程式中斷
 //				}
@@ -1510,23 +1510,23 @@ public class ProjOrderServlet extends HttpServlet{
 				
 				if (membership.equals("seller")) {
 					req.setAttribute("f_mem_id", f_mem_id);
-					url = "listAllOrderByFmem.jsp";	
+					url = "/front-end/projOrder/listAllOrderByFmem.jsp";	
 					System.out.println(f_mem_id);
 				}else if(membership.equals("buyer")) {
 					req.setAttribute("mem_id", mem_id);
-					url = "listAllOrderByMem.jsp";
+					url = "/front-end/projOrder/listAllOrderByMem.jsp";
 					System.out.println(mem_id);
 				}
 				req.setAttribute("membership", membership);
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
-//				res.sendRedirect("listAllOrderByFmem.jsp");
+//				res.sendRedirect("/front-end/projOrder/listAllOrderByFmem.jsp");
 				/***************************其他可能的錯誤處理*************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:"+e.getMessage());
 				e.printStackTrace();
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("listAllOrderByFmem.jsp");
+						.getRequestDispatcher("/front-end/projOrder/listAllOrderByFmem.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -1606,7 +1606,7 @@ public class ProjOrderServlet extends HttpServlet{
 //				if (!errorMsgs.isEmpty()) {
 //req.setAttribute("projOrderVO", projOrderVO); // 含有輸入格式錯誤的empVO物件,也存入req
 //					RequestDispatcher failureView = req
-//							.getRequestDispatcher("farmer_listOneProjOrder.jsp");
+//							.getRequestDispatcher("/front-end/projOrder/farmer_listOneProjOrder.jsp");
 //					failureView.forward(req, res);
 //					return; //程式中斷
 //				}
@@ -1638,23 +1638,23 @@ public class ProjOrderServlet extends HttpServlet{
 				
 				if (membership.equals("seller")) {
 					req.setAttribute("f_mem_id", f_mem_id);
-					url = "listAllOrderByFmem.jsp";	
+					url = "/front-end/projOrder/listAllOrderByFmem.jsp";	
 					System.out.println(f_mem_id);
 				}else if(membership.equals("buyer")) {
 					req.setAttribute("mem_id", mem_id);
-					url = "listAllOrderByMem.jsp";
+					url = "/front-end/projOrder/listAllOrderByMem.jsp";
 					System.out.println(mem_id);
 				}
 				req.setAttribute("membership", membership);
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
-//				res.sendRedirect("listAllOrderByFmem.jsp");
+//				res.sendRedirect("/front-end/projOrder/listAllOrderByFmem.jsp");
 				/***************************其他可能的錯誤處理*************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:"+e.getMessage());
 				e.printStackTrace();
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("listAllOrderByFmem.jsp");
+						.getRequestDispatcher("/front-end/projOrder/listAllOrderByFmem.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -1754,7 +1754,7 @@ public class ProjOrderServlet extends HttpServlet{
 						req.setAttribute("memVO",memVO3);
 //	req.setAttribute("projOrderVO", projOrderVO); // 含有輸入格式錯誤的empVO物件,也存入req
 						RequestDispatcher failureView = req
-								.getRequestDispatcher("/projOrder/addOrderByMem.jsp");
+								.getRequestDispatcher("/front-end/projOrder/addOrderByMem.jsp");
 						failureView.forward(req, res);
 						return; //程式中斷
 					}
@@ -1769,7 +1769,7 @@ public class ProjOrderServlet extends HttpServlet{
 /**備註：為了測試，MemVO暫時用req帶過去*******/
 				req.setAttribute("memVO",memVO3);
 				req.setAttribute("projectVO", projectVO3);
-				String url = "/projOrder/success_addOrderByMem.jsp";
+				String url = "/front-end/projOrder/success_addOrderByMem.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);				
 				
@@ -1777,7 +1777,7 @@ public class ProjOrderServlet extends HttpServlet{
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/projOrder/addOrderByMem.jsp");
+						.getRequestDispatcher("/front-end/projOrder/addOrderByMem.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -1799,7 +1799,7 @@ public class ProjOrderServlet extends HttpServlet{
 //				projOrderSvc.deleteProjOrder(order_id);
 //				
 //				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
-//				String url = "/projOrder/farmer_listOneProjOrder.jsp";//****我還沒改
+//				String url = "/front-end/projOrder/farmer_listOneProjOrder.jsp";//****我還沒改
 //				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 //				successView.forward(req, res);
 //				
@@ -1807,7 +1807,7 @@ public class ProjOrderServlet extends HttpServlet{
 //			} catch (Exception e) {
 //				errorMsgs.add("刪除資料失敗:"+e.getMessage());
 //				RequestDispatcher failureView = req
-//						.getRequestDispatcher("/emp/listAllEmp.jsp");//****我還沒改
+//						.getRequestDispatcher("/front-end/projOrder/emp/listAllEmp.jsp");//****我還沒改
 //				failureView.forward(req, res);
 //			}
 //		}

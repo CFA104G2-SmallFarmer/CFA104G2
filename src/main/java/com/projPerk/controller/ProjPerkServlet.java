@@ -46,7 +46,7 @@ public class ProjPerkServlet extends HttpServlet {
 				}
 //				// Send the use back to the form, if there were errors
 //				if (!errorMsgs.isEmpty()) {
-//					RequestDispatcher failureView = req.getRequestDispatcher("/project/listOneProj.jsp");
+//					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listOneProj.jsp");
 //					failureView.forward(req, res);
 //					return;// 程式中斷
 //				}
@@ -59,7 +59,7 @@ public class ProjPerkServlet extends HttpServlet {
 				}
 //				// Send the use back to the form, if there were errors
 //				if (!errorMsgs.isEmpty()) {
-//					RequestDispatcher failureView = req.getRequestDispatcher("/project/listOneProj.jsp");
+//					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listOneProj.jsp");
 //					failureView.forward(req, res);
 //					return;// 程式中斷
 //				}
@@ -80,7 +80,7 @@ public class ProjPerkServlet extends HttpServlet {
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/project/listOneProjByMem.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listOneProjByMem.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -89,7 +89,7 @@ public class ProjPerkServlet extends HttpServlet {
 				req.setAttribute("projectVO", projectVO); // 資料庫取出的projPerkVO物件,存入req
 //				req.setAttribute("projPerkVO", projPerkVO); // 資料庫取出的projPerkVO物件,存入req
 
-				String url = "/projPerk/listAllPerkByMem.jsp";
+				String url = "/front-end/projPerk/listAllPerkByMem.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 perkoverview.jsp
 				successView.forward(req, res);
 				System.out.println("成功");
@@ -105,7 +105,7 @@ public class ProjPerkServlet extends HttpServlet {
 				ProjectVO projectVO = projectSvc.getOneProject(proj_id);
 				req.setAttribute("projectVO", projectVO);
 
-				RequestDispatcher failureView = req.getRequestDispatcher("/project/listOneProjByMem.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listOneProjByMem.jsp");
 				failureView.forward(req, res);
 
 				System.out.println("Mem error in final");
@@ -133,7 +133,7 @@ public class ProjPerkServlet extends HttpServlet {
 				}
 //				// Send the use back to the form, if there were errors
 //				if (!errorMsgs.isEmpty()) {
-//					RequestDispatcher failureView = req.getRequestDispatcher("/project/listOneProjByFmem.jsp");
+//					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listOneProjByFmem.jsp");
 //					failureView.forward(req, res);
 //					return;// 程式中斷
 //				}
@@ -146,7 +146,7 @@ public class ProjPerkServlet extends HttpServlet {
 				}
 //				// Send the use back to the form, if there were errors
 //				if (!errorMsgs.isEmpty()) {
-//					RequestDispatcher failureView = req.getRequestDispatcher("/project/listOneProjByFmem.jsp");
+//					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listOneProjByFmem.jsp");
 //					failureView.forward(req, res);
 //					return;// 程式中斷
 //				}
@@ -160,7 +160,7 @@ public class ProjPerkServlet extends HttpServlet {
 				}
 //				// Send the use back to the form, if there were errors
 //				if (!errorMsgs.isEmpty()) {
-//					RequestDispatcher failureView = req.getRequestDispatcher("/project/listOneProjByFmem.jsp");
+//					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listOneProjByFmem.jsp");
 //					failureView.forward(req, res);
 //					return;// 程式中斷
 //				}
@@ -173,7 +173,7 @@ public class ProjPerkServlet extends HttpServlet {
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/project/listOneProjByFmem.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listOneProjByFmem.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -194,7 +194,7 @@ public class ProjPerkServlet extends HttpServlet {
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/project/listOneProjByFmem.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listOneProjByFmem.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -203,7 +203,7 @@ public class ProjPerkServlet extends HttpServlet {
 				req.setAttribute("projectVO", projectVO); // 資料庫取出的projPerkVO物件,存入req
 //		req.setAttribute("projPerkVO", projPerkVO); // 資料庫取出的projPerkVO物件,存入req
 				req.setAttribute("f_mem_id", f_mem_id);
-				String url = "listAllPerkByFmem.jsp";
+				String url = "/front-end/projPerk/listAllPerkByFmem.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 perkoverview.jsp
 				successView.forward(req, res);
 				System.out.println("去小農listAllPerkByFmem.jsp成功");
@@ -218,7 +218,7 @@ public class ProjPerkServlet extends HttpServlet {
 				ProjectVO projectVO = projectSvc.getOneProject(proj_id);
 				req.setAttribute("projectVO", projectVO);
 
-				RequestDispatcher failureView = req.getRequestDispatcher("/project/listOneProjByFmem.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listOneProjByFmem.jsp");
 				failureView.forward(req, res);
 
 				System.out.println("getAllPerk_For_Display_ByFmem error in final");
@@ -331,7 +331,7 @@ public class ProjPerkServlet extends HttpServlet {
 						ProjectVO projectVO = projectSvc.getOneProject(proj_id);
 						req.setAttribute("projectVO", projectVO);
 
-						RequestDispatcher failureView = req.getRequestDispatcher("/projPerk/update_perk_input.jsp");
+						RequestDispatcher failureView = req.getRequestDispatcher("/front-end/projPerk/update_perk_input.jsp");
 						failureView.forward(req, res);
 						return;
 					}
@@ -347,7 +347,7 @@ public class ProjPerkServlet extends HttpServlet {
 					ProjectService projectSvc = new ProjectService();
 					ProjectVO projectVO = projectSvc.getOneProject(proj_id);
 					req.setAttribute("projectVO", projectVO);
-					String url = "/projPerk/listAllPerkByFmem.jsp";
+					String url = "/front-end/projPerk/listAllPerkByFmem.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 					successView.forward(req, res);
 
@@ -379,7 +379,7 @@ public class ProjPerkServlet extends HttpServlet {
 						ProjectVO projectVO = projectSvc.getOneProject(proj_id);
 						req.setAttribute("projectVO", projectVO);
 
-						RequestDispatcher failureView = req.getRequestDispatcher("/projPerk/update_perk_input.jsp");
+						RequestDispatcher failureView = req.getRequestDispatcher("/front-end/projPerk/update_perk_input.jsp");
 						failureView.forward(req, res);
 						return;
 					}
@@ -397,7 +397,7 @@ public class ProjPerkServlet extends HttpServlet {
 					ProjectService projectSvc = new ProjectService();
 					ProjectVO projectVO = projectSvc.getOneProject(proj_id);
 					req.setAttribute("projectVO", projectVO);
-					String url = "/projPerk/listAllPerkByFmem.jsp";
+					String url = "/front-end/projPerk/listAllPerkByFmem.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 					successView.forward(req, res);
 //					res.sendRedirect("listAllPerkByFmem.jsp");
@@ -408,7 +408,7 @@ public class ProjPerkServlet extends HttpServlet {
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/projPerk/listAllPerkByFmem.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/projPerk/listAllPerkByFmem.jsp");
 				failureView.forward(req, res);
 				System.out.println("101112");
 			}
@@ -437,7 +437,7 @@ public class ProjPerkServlet extends HttpServlet {
 				ProjectVO projectVO = projectSvc.getOneProject(proj_id);
 				req.setAttribute("projectVO", projectVO);
 				req.setAttribute("projPerkVO", projPerkVO); // 資料庫取出的empVO物件,存入req
-				String url = "update_perk_input.jsp";
+				String url = "/front-end/projPerk/update_perk_input.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
 				successView.forward(req, res);
 
@@ -445,7 +445,7 @@ public class ProjPerkServlet extends HttpServlet {
 			} catch (Exception e) {
 				System.out.println("getOnePerk_For_Update error occured");
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("listAllPerkByFmem.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/projPerk/listAllPerkByFmem.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -540,7 +540,7 @@ public class ProjPerkServlet extends HttpServlet {
 					req.setAttribute("projPerkVO", projPerkVO); // 含有輸入格式錯誤的projPerkVO物件,也存入req
 					req.setAttribute("projectVO", projectVO1);// 含有輸入格式錯誤的projectVO物件,也存入req
 
-					RequestDispatcher failureView = req.getRequestDispatcher("/projPerk/addPerk.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/projPerk/addPerk.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -556,14 +556,14 @@ public class ProjPerkServlet extends HttpServlet {
 				req.setAttribute("proPerkVO", projPerkVO);
 				req.setAttribute("projectVO", projectVO1);
 
-				String url = "/projPerk/listAllPerkByFmem.jsp";
+				String url = "/front-end/projPerk/listAllPerkByFmem.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/projPerk/addPerk.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/projPerk/addPerk.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -576,7 +576,7 @@ public class ProjPerkServlet extends HttpServlet {
 			ProjectVO projectVO = projectSvc.getOneProject(proj_id);
 			req.setAttribute("projectVO", projectVO);
 
-			String url = "/projPerk/addPerk.jsp";
+			String url = "/front-end/projPerk/addPerk.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 			successView.forward(req, res);
 			System.out.println("insert_from_listAllPerkByFmem done");
@@ -591,7 +591,7 @@ public class ProjPerkServlet extends HttpServlet {
 			ProjectVO projectVO = projectSvc.getOneProject(proj_id);
 			req.setAttribute("projectVO", projectVO);
 
-			String url = "/project/listOneProjByFmem.jsp";
+			String url = "/front-end/project/listOneProjByFmem.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 			successView.forward(req, res);
 			System.out.println("go_back_to_listOneProjByFmem done");
@@ -620,7 +620,7 @@ public class ProjPerkServlet extends HttpServlet {
 			MemVO memVO3 = memSvc3.getOneMem(mem_id);  
 			req.setAttribute("memVO",memVO3); 
 
-			String url = "/projOrder/addOrderByMem.jsp";
+			String url = "/front-end/projOrder/addOrderByMem.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 			successView.forward(req, res);
 			System.out.println("go_to_addOrderByMem.jsp done");
@@ -649,7 +649,7 @@ public class ProjPerkServlet extends HttpServlet {
 				req.setAttribute("projectVO", projectVO);
 
 				/*************************** 3.刪除完成,準備轉交(Send the Success view) ***********/
-				String url = "listAllPerkByFmem.jsp";
+				String url = "/front-end/projPerk/listAllPerkByFmem.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 				successView.forward(req, res);
 				System.out.println("delete out");
@@ -657,7 +657,7 @@ public class ProjPerkServlet extends HttpServlet {
 			} catch (Exception e) {
 				System.out.println("delete error");
 				errorMsgs.add("刪除資料失敗:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("listAllPerkByFmem.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/projPerk/listAllPerkByFmem.jsp");
 				failureView.forward(req, res);
 			}
 		}

@@ -18,7 +18,7 @@ public class projectTest {
 		project.setProj_abstract("masterpiece");
 		project.setProj_goal(100000);
 		project.setStart_date(java.sql.Date.valueOf("2022-01-03"));
-		project.setExcepted_end_date(java.sql.Date.valueOf("2022-01-03"));
+		project.setExpected_end_date(java.sql.Date.valueOf("2022-01-03"));
 		project.setActual_end_date(java.sql.Date.valueOf("2022-01-03"));
 		project.setProj_total_fund(1000);
 		project.setProj_intro("在文旦樹掛上世界名畫，讓文旦更甜更好吃");

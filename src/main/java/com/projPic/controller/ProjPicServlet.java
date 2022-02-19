@@ -50,7 +50,7 @@ public class ProjPicServlet extends HttpServlet {
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("listAllProj.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listAllProj.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -63,7 +63,7 @@ public class ProjPicServlet extends HttpServlet {
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("listAllProj.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listAllProj.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -76,7 +76,7 @@ public class ProjPicServlet extends HttpServlet {
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("listAllProj.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listAllProj.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -89,14 +89,14 @@ public class ProjPicServlet extends HttpServlet {
 				}
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("projPicVO", projPicVO); // 資料庫取出的projPicVO物件,存入req
-				String url = "listOneProj.jsp";
+				String url = "/front-end/project/listOneProj.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("listAllProj.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listAllProj.jsp");
 			}
 		}
 
@@ -118,14 +118,14 @@ public class ProjPicServlet extends HttpServlet {
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
 				req.setAttribute("projPicVO", projPicVO); // 資料庫取出的projPicVO物件,存入req
-				String url = "/projPic/update_projPic_input.jsp";///
+				String url = "/front-end/projPic/update_projPic_input.jsp";///
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 /projPic/update_projPic_input.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("listAllProj.jsp");///
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listAllProj.jsp");///
 				failureView.forward(req, res);
 			}
 		}
@@ -167,7 +167,7 @@ public class ProjPicServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("projPicVO", projPicVO); // 含有輸入格式錯誤的projPicVO物件,也存入req
-					RequestDispatcher failureView = req.getRequestDispatcher("listAllProj.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listAllProj.jsp");
 					failureView.forward(req, res);
 					return; // 程式中斷
 				}
@@ -180,14 +180,14 @@ public class ProjPicServlet extends HttpServlet {
 
 				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("projPicVO", projPicVO); // 資料庫update成功後,正確的的projPicVO物件,存入req
-				String url = "/projPic/listOneProjPic.jsp";
+				String url = "/front-end/projPic/listOneProjPic.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("listAllProj.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listAllProj.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -262,7 +262,7 @@ public class ProjPicServlet extends HttpServlet {
 				ProjectService projectSvc = new ProjectService();
 				ProjectVO projectVO = projectSvc.getOneProject(proj_id);
 				req.setAttribute("projectVO", projectVO);
-				String url = "/projPerk/listAllPerkByFmem.jsp";
+				String url = "/front-end/projPerk/listAllPerkByFmem.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 				System.out.println("good in pic");
@@ -323,7 +323,7 @@ public class ProjPicServlet extends HttpServlet {
 //						if (!errorMsgs.isEmpty()) {
 //
 //							req.setAttribute("projPicVO", projPicVO); // 含有輸入格式錯誤的projPicVO物件,也存入req
-//							RequestDispatcher failureView = req.getRequestDispatcher("listAllProj.jsp");
+//							RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listAllProj.jsp");
 //							failureView.forward(req, res);
 //							return;
 //						}
@@ -341,7 +341,7 @@ public class ProjPicServlet extends HttpServlet {
 //				ProjectService projectSvc = new ProjectService();
 //				ProjectVO projectVO = projectSvc.getOneProject(proj_id);
 //				req.setAttribute("projectVO", projectVO);
-//				String url = "/project/listOneProj.jsp";
+//				String url = "/front-end/project/listOneProj.jsp";
 //				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 //				successView.forward(req, res);
 //				System.out.println("good in pic");
@@ -350,7 +350,7 @@ public class ProjPicServlet extends HttpServlet {
 //				System.out.println("error4 in pic");
 //				e.printStackTrace();
 //				errorMsgs.add(e.getMessage());
-//				RequestDispatcher failureView = req.getRequestDispatcher("listAllProj.jsp");
+//				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listAllProj.jsp");
 //				failureView.forward(req, res);
 //			}
 //		}
@@ -393,7 +393,7 @@ public class ProjPicServlet extends HttpServlet {
 				
 				/*************************** 3.刪除完成,準備轉交(Send the Success view) ***********/
 				req.setAttribute("projectVO", projectVO); 
-				String url = "update_proj_pic_input.jsp";
+				String url = "/front-end/projPic/update_proj_pic_input.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 				successView.forward(req, res);
 				System.out.println("delete done");
@@ -401,7 +401,7 @@ public class ProjPicServlet extends HttpServlet {
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.add("刪除資料失敗:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("update_proj_pic_input.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/projPic/update_proj_pic_input.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -426,7 +426,7 @@ public class ProjPicServlet extends HttpServlet {
 				}
 //				// Send the use back to the form, if there were errors
 //				if (!errorMsgs.isEmpty()) {
-//					RequestDispatcher failureView = req.getRequestDispatcher("/project/listOneProjByFmem.jsp");
+//					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listOneProjByFmem.jsp");
 //					failureView.forward(req, res);
 //					return;// 程式中斷
 //				}
@@ -439,7 +439,7 @@ public class ProjPicServlet extends HttpServlet {
 				}
 //				// Send the use back to the form, if there were errors
 //				if (!errorMsgs.isEmpty()) {
-//					RequestDispatcher failureView = req.getRequestDispatcher("/project/listOneProjByFmem.jsp");
+//					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listOneProjByFmem.jsp");
 //					failureView.forward(req, res);
 //					return;// 程式中斷
 //				}
@@ -453,7 +453,7 @@ public class ProjPicServlet extends HttpServlet {
 //				}
 //				// Send the use back to the form, if there were errors
 //				if (!errorMsgs.isEmpty()) {
-//					RequestDispatcher failureView = req.getRequestDispatcher("/project/listOneProjByFmem.jsp");
+//					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listOneProjByFmem.jsp");
 //					failureView.forward(req, res);
 //					return;// 程式中斷
 //				}
@@ -466,7 +466,7 @@ public class ProjPicServlet extends HttpServlet {
 //				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/project/listOneProjByFmem.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listOneProjByFmem.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -487,7 +487,7 @@ public class ProjPicServlet extends HttpServlet {
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/project/listOneProjByFmem.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listOneProjByFmem.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -496,10 +496,10 @@ public class ProjPicServlet extends HttpServlet {
 				req.setAttribute("projectVO", projectVO); // 資料庫取出的projPerkVO物件,存入req
 //		req.setAttribute("projPerkVO", projPerkVO); // 資料庫取出的projPerkVO物件,存入req
 //				req.setAttribute("f_mem_id", f_mem_id);
-				String url = "update_proj_pic_input.jsp";
+				String url = "/front-end/projPic/update_proj_pic_input.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 perkoverview.jsp
 				successView.forward(req, res);
-				System.out.println("去小農update_proj_pic_input.jsp成功");
+				System.out.println("去小農/front-end/projPic/update_proj_pic_input.jsp成功");
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				System.out.println("error in final");
@@ -511,7 +511,7 @@ public class ProjPicServlet extends HttpServlet {
 				ProjectVO projectVO = projectSvc.getOneProject(proj_id);
 				req.setAttribute("projectVO", projectVO);
 
-				RequestDispatcher failureView = req.getRequestDispatcher("/project/listOneProjByFmem.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listOneProjByFmem.jsp");
 				failureView.forward(req, res);
 
 				System.out.println("getAllPic_For_Display_ByFmem error in final");
