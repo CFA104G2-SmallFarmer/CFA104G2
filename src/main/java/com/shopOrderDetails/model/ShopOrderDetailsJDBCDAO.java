@@ -1,6 +1,8 @@
 package com.shopOrderDetails.model;
 
 import java.util.*;
+
+
 import java.sql.*;
 
 public class ShopOrderDetailsJDBCDAO implements ShopOrderDetails_inferface {
@@ -64,7 +66,7 @@ public class ShopOrderDetailsJDBCDAO implements ShopOrderDetails_inferface {
 					+ "FROM shop_order_details where ORDER_ID = ?";
 	
 	@Override
-	public void insert(ShopOrderDetailsVO shoporderdetailsVO) {
+	public void insert(ShopOrderDetailsVO shopOrderDetailsVO) {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -84,12 +86,12 @@ public class ShopOrderDetailsJDBCDAO implements ShopOrderDetails_inferface {
 //			+ "ORDER_UNIT_AMOUNT) "
 //			+ "VALUES (?, ?, ?, ?, ?, ?)";
 			
-			pstmt.setInt(1, shoporderdetailsVO.getOrder_id());
-			pstmt.setInt(2, shoporderdetailsVO.getProd_id());
-			pstmt.setString(3, shoporderdetailsVO.getProd_unit());
-			pstmt.setInt(4, shoporderdetailsVO.getOrder_qty());
-			pstmt.setInt(5, shoporderdetailsVO.getOrder_unit_price());
-			pstmt.setInt(6, shoporderdetailsVO.getOrder_unit_amount());
+			pstmt.setInt(1, shopOrderDetailsVO.getOrder_id());
+			pstmt.setInt(2, shopOrderDetailsVO.getProd_id());
+			pstmt.setString(3, shopOrderDetailsVO.getProd_unit());
+			pstmt.setInt(4, shopOrderDetailsVO.getOrder_qty());
+			pstmt.setInt(5, shopOrderDetailsVO.getOrder_unit_price());
+			pstmt.setInt(6, shopOrderDetailsVO.getOrder_unit_amount());
 
 			pstmt.executeUpdate();
 			// Handle any driver errors
@@ -118,7 +120,7 @@ public class ShopOrderDetailsJDBCDAO implements ShopOrderDetails_inferface {
 	}
 
 	@Override
-	public void update(ShopOrderDetailsVO shoporderdetailsVO) {
+	public void update(ShopOrderDetailsVO shopOrderDetailsVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -137,13 +139,13 @@ public class ShopOrderDetailsJDBCDAO implements ShopOrderDetails_inferface {
 //			+ "where order_id = ? and prod_id = ?";
 			
 			
-			pstmt.setString(1, shoporderdetailsVO.getProd_unit());
-			pstmt.setInt(2, shoporderdetailsVO.getOrder_qty());
-			pstmt.setInt(3, shoporderdetailsVO.getOrder_unit_price());
-			pstmt.setInt(4, shoporderdetailsVO.getOrder_unit_amount());
+			pstmt.setString(1, shopOrderDetailsVO.getProd_unit());
+			pstmt.setInt(2, shopOrderDetailsVO.getOrder_qty());
+			pstmt.setInt(3, shopOrderDetailsVO.getOrder_unit_price());
+			pstmt.setInt(4, shopOrderDetailsVO.getOrder_unit_amount());
 			//where
-			pstmt.setInt(5, shoporderdetailsVO.getOrder_id());
-			pstmt.setInt(6, shoporderdetailsVO.getProd_id());
+			pstmt.setInt(5, shopOrderDetailsVO.getOrder_id());
+			pstmt.setInt(6, shopOrderDetailsVO.getProd_id());
 			
 			
 			pstmt.executeUpdate();
@@ -219,7 +221,7 @@ public class ShopOrderDetailsJDBCDAO implements ShopOrderDetails_inferface {
 	@Override
 	public ShopOrderDetailsVO findByPrimaryKey(Integer order_id,Integer prod_id) {
 
-		ShopOrderDetailsVO shoporderdetailsVO = null;
+		ShopOrderDetailsVO shopOrderDetailsVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -246,13 +248,13 @@ public class ShopOrderDetailsJDBCDAO implements ShopOrderDetails_inferface {
 			
 			while (rs.next()) {
 				
-				shoporderdetailsVO = new ShopOrderDetailsVO();
-				shoporderdetailsVO.setOrder_id(rs.getInt("order_id"));
-				shoporderdetailsVO.setProd_id(rs.getInt("prod_id"));
-				shoporderdetailsVO.setProd_unit(rs.getString("prod_unit"));
-				shoporderdetailsVO.setOrder_qty(rs.getInt("order_qty"));
-				shoporderdetailsVO.setOrder_unit_price(rs.getInt("order_unit_price"));
-				shoporderdetailsVO.setOrder_unit_amount(rs.getInt("order_unit_amount"));
+				shopOrderDetailsVO = new ShopOrderDetailsVO();
+				shopOrderDetailsVO.setOrder_id(rs.getInt("order_id"));
+				shopOrderDetailsVO.setProd_id(rs.getInt("prod_id"));
+				shopOrderDetailsVO.setProd_unit(rs.getString("prod_unit"));
+				shopOrderDetailsVO.setOrder_qty(rs.getInt("order_qty"));
+				shopOrderDetailsVO.setOrder_unit_price(rs.getInt("order_unit_price"));
+				shopOrderDetailsVO.setOrder_unit_amount(rs.getInt("order_unit_amount"));
 			}
 
 			// Handle any driver errors
@@ -285,13 +287,13 @@ public class ShopOrderDetailsJDBCDAO implements ShopOrderDetails_inferface {
 				}
 			}
 		}
-		return shoporderdetailsVO;
+		return shopOrderDetailsVO;
 	}
 
 	@Override
 	public List<ShopOrderDetailsVO> getAll() {
 		List<ShopOrderDetailsVO> list = new ArrayList<ShopOrderDetailsVO>();
-		ShopOrderDetailsVO shoporderdetailsVO = null;
+		ShopOrderDetailsVO shopOrderDetailsVO = null;
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -306,14 +308,14 @@ public class ShopOrderDetailsJDBCDAO implements ShopOrderDetails_inferface {
 			
 			while (rs.next()) {
 				
-				shoporderdetailsVO = new ShopOrderDetailsVO();
-				shoporderdetailsVO.setOrder_id(rs.getInt("order_id"));
-				shoporderdetailsVO.setProd_id(rs.getInt("prod_id"));
-				shoporderdetailsVO.setProd_unit(rs.getString("prod_unit"));
-				shoporderdetailsVO.setOrder_qty(rs.getInt("order_qty"));
-				shoporderdetailsVO.setOrder_unit_price(rs.getInt("order_unit_price"));
-				shoporderdetailsVO.setOrder_unit_amount(rs.getInt("order_unit_amount"));
-				list.add(shoporderdetailsVO);
+				shopOrderDetailsVO = new ShopOrderDetailsVO();
+				shopOrderDetailsVO.setOrder_id(rs.getInt("order_id"));
+				shopOrderDetailsVO.setProd_id(rs.getInt("prod_id"));
+				shopOrderDetailsVO.setProd_unit(rs.getString("prod_unit"));
+				shopOrderDetailsVO.setOrder_qty(rs.getInt("order_qty"));
+				shopOrderDetailsVO.setOrder_unit_price(rs.getInt("order_unit_price"));
+				shopOrderDetailsVO.setOrder_unit_amount(rs.getInt("order_unit_amount"));
+				list.add(shopOrderDetailsVO);
 			}
 			
 				// Handle any driver errors
@@ -354,7 +356,7 @@ public class ShopOrderDetailsJDBCDAO implements ShopOrderDetails_inferface {
 	@Override
 	public List<ShopOrderDetailsVO> getPKAll(Integer order_id) {
 		List<ShopOrderDetailsVO> list = new ArrayList<ShopOrderDetailsVO>();
-		ShopOrderDetailsVO shoporderdetailsVO = null;
+		ShopOrderDetailsVO shopOrderDetailsVO = null;
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -381,14 +383,14 @@ public class ShopOrderDetailsJDBCDAO implements ShopOrderDetails_inferface {
 //						+ "FROM `shop_order_details` where `order_id` = ?";
 //				
 				
-				shoporderdetailsVO = new ShopOrderDetailsVO();
-				shoporderdetailsVO.setOrder_id(rs.getInt("order_id"));
-				shoporderdetailsVO.setProd_id(rs.getInt("prod_id"));
-				shoporderdetailsVO.setProd_unit(rs.getString("prod_unit"));
-				shoporderdetailsVO.setOrder_qty(rs.getInt("order_qty"));
-				shoporderdetailsVO.setOrder_unit_price(rs.getInt("order_unit_price"));
-				shoporderdetailsVO.setOrder_unit_amount(rs.getInt("order_unit_amount"));
-				list.add(shoporderdetailsVO);
+				shopOrderDetailsVO = new ShopOrderDetailsVO();
+				shopOrderDetailsVO.setOrder_id(rs.getInt("order_id"));
+				shopOrderDetailsVO.setProd_id(rs.getInt("prod_id"));
+				shopOrderDetailsVO.setProd_unit(rs.getString("prod_unit"));
+				shopOrderDetailsVO.setOrder_qty(rs.getInt("order_qty"));
+				shopOrderDetailsVO.setOrder_unit_price(rs.getInt("order_unit_price"));
+				shopOrderDetailsVO.setOrder_unit_amount(rs.getInt("order_unit_amount"));
+				list.add(shopOrderDetailsVO);
 			}
 			
 				// Handle any driver errors
@@ -426,8 +428,57 @@ public class ShopOrderDetailsJDBCDAO implements ShopOrderDetails_inferface {
 			return list;
 		}
 
+	/////////////////////////////////////////////////////////////
+//	訂單主檔與明細檔一次新增
+	@Override
+	public void insert2 (ShopOrderDetailsVO shopOrderDetailsVO , Connection con) {
+
+		PreparedStatement pstmt = null;
+
+		try {
+
+     		pstmt = con.prepareStatement(INSERT_STMT);
+
+     		pstmt.setInt(1, shopOrderDetailsVO.getOrder_id());
+			pstmt.setInt(2, shopOrderDetailsVO.getProd_id());
+			pstmt.setString(3, shopOrderDetailsVO.getProd_unit());
+			pstmt.setInt(4, shopOrderDetailsVO.getOrder_qty());
+			pstmt.setInt(5, shopOrderDetailsVO.getOrder_unit_price());
+			pstmt.setInt(6, shopOrderDetailsVO.getOrder_unit_amount());
 
 
+//Statement stmt=	con.createStatement();
+//stmt.executeUpdate("set auto_increment_offset=7001;"); //自增主鍵-初始值
+//stmt.executeUpdate("set auto_increment_increment=1;");   //自增主鍵-遞增
+			pstmt.executeUpdate();
+
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			if (con != null) {
+				try {
+					// 3●設定於當有exception發生時之catch區塊內
+					System.err.print("Transaction is being ");
+					System.err.println("rolled back-由-orderdetails");
+					con.rollback();
+				} catch (SQLException excep) {
+					throw new RuntimeException("rollback error occured. "
+							+ excep.getMessage());
+				}
+			}
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+		}
+
+	}
 
 
 }

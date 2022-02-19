@@ -1,5 +1,6 @@
 package com.shopOrderDetails.model;
 
+import java.sql.Connection;
 import java.util.List;
 
 
@@ -59,6 +60,19 @@ public class ShopOrderDetailsService {
 	public List<ShopOrderDetailsVO> getPKAll(Integer order_id) {
 		return dao.getPKAll(order_id); 
 }
-	
+	//自增主鍵
+//	public ShopOrderDetailsVO insert2(ShopOrderDetailsVO shopOrderDetailsVO, Connection con) {
+//		
+//ShopOrderDetailsVO shopOrderDetailsVO1 = new ShopOrderDetailsVO();
+//		
+//		shopOrderDetailsVO1.setOrder_id(order_id);
+//		shopOrderDetailsVO1.setProd_id(prod_id);
+//		shopOrderDetailsVO1.setProd_unit(prod_unit);
+//		shopOrderDetailsVO1.setOrder_qty(order_qty);
+//		shopOrderDetailsVO1.setOrder_unit_price(order_unit_price);
+//		shopOrderDetailsVO1.setOrder_unit_amount(order_unit_amount);
+//		dao.insert2(shopOrderDetailsVO1, con);
+//		return shopOrderDetailsVO1;
+//	}
 	
 }

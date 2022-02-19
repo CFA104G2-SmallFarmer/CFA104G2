@@ -43,7 +43,7 @@ public class ShopOrderDetailsServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
 							// 連結到小農查詢網頁
-							.getRequestDispatcher("listPKALLShopOrderDetails.jsp");
+							.getRequestDispatcher("/front-end/shopOrderDetails/listPKALLShopOrderDetails.jsp");
 					failureView.forward(req, res);
 					return;// 程式回到原點
 				}
@@ -57,7 +57,7 @@ public class ShopOrderDetailsServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView =
 							// 連結到小農查詢網頁
-							req.getRequestDispatcher("listPKALLShopOrderDetails.jsp");
+							req.getRequestDispatcher("/front-end/shopOrderDetails/listPKALLShopOrderDetails.jsp");
 					failureView.forward(req, res);
 					return;// 程式回到原點
 				}
@@ -68,7 +68,7 @@ public class ShopOrderDetailsServlet extends HttpServlet {
 				List<ShopOrderDetailsVO> shopOrderDetailsVO = shopOrderDetalsSvc.getPKAll(order_id);
 
 //			for(int i=0; i<shopOrderVO.size(); i++) {
-//				System.out.println(projOrderVO.get(i));
+//				System.out.println(shopOrderVO.get(i));
 //			}
 
 				if (shopOrderDetailsVO == null) {
@@ -78,7 +78,7 @@ public class ShopOrderDetailsServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView =
 							// 連結到小農查詢網頁
-							req.getRequestDispatcher("listPKALLShopOrderDetails.jsp");///
+							req.getRequestDispatcher("/front-end/shopOrderDetails/listPKALLShopOrderDetails.jsp");///
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -90,14 +90,14 @@ public class ShopOrderDetailsServlet extends HttpServlet {
 //				req.setAttribute("mem_star", new String[] { "★", "★★", "★★★", "★★★★", "★★★★★" });
 			
 
-				String url = "listPKALLShopOrderDetails.jsp";
+				String url = "/front-end/shopOrderDetails/listPKALLShopOrderDetails.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); 
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("listPKALLShopOrderDetails.jsp");/// ***我還沒改
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/shopOrderDetails/listPKALLShopOrderDetails.jsp");/// ***我還沒改
 				failureView.forward(req, res);
 			}
 		}
