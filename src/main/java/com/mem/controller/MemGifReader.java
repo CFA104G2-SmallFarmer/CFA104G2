@@ -43,8 +43,8 @@ public class MemGifReader extends HttpServlet{
 				}
 				in.close();
 			} else {
-				res.sendError(HttpServletResponse.SC_NOT_FOUND);
-				InputStream in = getServletContext().getResourceAsStream("/NoData/none2.jpg");
+//				res.sendError(HttpServletResponse.SC_NOT_FOUND);
+				InputStream in = getServletContext().getResourceAsStream("/front-end/assets/images/farmforUploadPic.png");
 				byte[] b = new byte[in.available()];
 				in.read(b);
 				out.write(b);
@@ -53,7 +53,12 @@ public class MemGifReader extends HttpServlet{
 			rs.close();
 			stmt.close();
 		} catch (Exception e) {
-			System.out.println(e);
+			InputStream in = getServletContext().getResourceAsStream("/front-end/assets/images/farmforUploadPic.png");
+			byte[] b = new byte[in.available()];
+			in.read(b);
+			out.write(b);
+			in.close();
+//			System.out.println(e);
 		}
 	}
 

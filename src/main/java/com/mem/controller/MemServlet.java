@@ -95,7 +95,7 @@ public class MemServlet extends HttpServlet {
 				failureView.forward(req, res);
 			}
 		}
-		// 圖片尚未存入
+		
 		if ("Update_Mem_Input".equals(action)) { // 來自update_emp_input.jsp的請求
 			
 			List<String> errorMsgs = new LinkedList<String>();
@@ -103,7 +103,7 @@ public class MemServlet extends HttpServlet {
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 		
-//			try {
+			try {
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 				MemVO memVO = new MemVO();
 Integer mem_id = new Integer(req.getParameter("mem_id").trim());
@@ -218,12 +218,12 @@ req.setAttribute("memVO", memVO); // 含有輸入格式錯誤的memVO物件,也�
 				successView.forward(req, res);
 
 				/***************************其他可能的錯誤處理*************************************/
-//			} catch (Exception e) {
-//				errorMsgs.add("修改資料失敗:"+e.getMessage());
-//				RequestDispatcher failureView = req
-//						.getRequestDispatcher("/front-end/mem/update_mem_input.jsp");
-//				failureView.forward(req, res);
-//			}
+			} catch (Exception e) {
+				errorMsgs.add("修改資料失敗:"+e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/front-end/mem/update_mem_input.jsp");
+				failureView.forward(req, res);
+			}
 		}
 		
 		
@@ -249,7 +249,7 @@ req.setAttribute("memVO", memVO); // 含有輸入格式錯誤的memVO物件,也�
 				if (!errorMsgs.isEmpty()) {
 req.setAttribute("memVO", memVO); // 含有輸入格式錯誤的memVO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/mem/listAllMem.jsp");
+							.getRequestDispatcher("/back-end/mem/listAllMem.jsp");
 					failureView.forward(req, res);
 					return; //程式中斷
 				}
@@ -260,7 +260,7 @@ req.setAttribute("memVO", memVO); // 含有輸入格式錯誤的memVO物件,也�
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("memVO", memVO); // 資料庫update成功後,正確的的memVO物件,存入req
-				String url = "/mem/listAllMem.jsp";
+				String url = "/back-end/mem/listAllMem.jsp";
 				//印出成功視窗尚未完成，導向位置尚未決定
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listAllMem.jsp
 				successView.forward(req, res);
@@ -269,7 +269,7 @@ req.setAttribute("memVO", memVO); // 含有輸入格式錯誤的memVO物件,也�
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/mem/listAllMem.jsp");
+						.getRequestDispatcher("/back-end/mem/listAllMem.jsp");
 				failureView.forward(req, res);
 			}
 		}

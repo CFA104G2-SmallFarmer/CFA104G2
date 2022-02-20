@@ -7,6 +7,7 @@ public interface MemDAO_interface {
           public void update(MemVO memVO);
           public void updateMemInput(MemVO memVO);
           public void updateAccState(MemVO memVO);
+          public void updateIDAccState(MemVO memVO);
           public void delete(Integer mem_id);
           public MemVO findByPrimaryKey(Integer mem_id);
           public List<MemVO> getAll();
