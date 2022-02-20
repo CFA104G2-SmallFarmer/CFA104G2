@@ -1,6 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.project.model.*"%>
+<%@ page import="com.fMem.model.*"%>
+<%@ page import="com.mem.model.*"%>
+
+<%	FMemVO fMemVO = (FMemVO) session.getAttribute("fMemVO");%>
+<%	MemVO MemVO = (MemVO) session.getAttribute("MemVO");%>
+<%  Integer f_mem_id  = fMemVO.getF_mem_id();%>
+
 
 <%
 ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
@@ -147,8 +154,8 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 			<!--   name="proj_id"> -->
                 
                 <!-- 			Integer f_mem_id, -->
-              <input type="hidden"  class="w-100" placeholder="小農編號" type="text" value="70000"
-                name="f_mem_id" id="f_mem_id" value="hiddenValue">${memSvc.getOneMem(fmemSvc.getOneFMem(70000).mem_id).mem_nickname}，您好
+              <input type="hidden"  class="w-100" placeholder="小農編號" type="text" value="${f_mem_id}"
+                name="f_mem_id" id="f_mem_id" value="hiddenValue">${memSvc.getOneMem(fmemSvc.getOneFMem(f_mem_id).mem_id).mem_nickname}，您好
                 
 				<!-- 			String proj_name, -->
               <label class="b" for="proj_name">認養專案名稱

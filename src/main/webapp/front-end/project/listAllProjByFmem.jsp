@@ -5,12 +5,17 @@
 <%@ page import="com.project.model.*"%>
 <%@ page
 	import="java.time.LocalDate,java.sql.Timestamp,java.util.Vector"%>
+	
+<%@ page import="com.fMem.model.*"%>
+<%@ page import="com.mem.model.*"%>
+
+<%	FMemVO fMemVO = (FMemVO) session.getAttribute("fMemVO");%>
+<%	MemVO MemVO = (MemVO) session.getAttribute("MemVO");%>
+<%  Integer f_mem_id  = fMemVO.getF_mem_id();%>
 
 
 <%	ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");%>
 <%	
-//     Integer f_mem_id  = projectVO.getF_mem_id();
-	Integer f_mem_id  = 70003; // 登入功能完成後再改回來
 	ProjectService projSvc = new ProjectService();
 	List<ProjectVO> list = projSvc.getAllSameFmemProject(f_mem_id);
 	pageContext.setAttribute("list", list);

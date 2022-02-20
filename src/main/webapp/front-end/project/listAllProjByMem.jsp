@@ -316,7 +316,7 @@ ul.pagination {
 			</div>
 		</section>
 <footer>
-        <jsp:include page="/footer/footer.jsp" />
+        <jsp:include page="/front-end/home/footer.jsp" />
 </footer>
 
 		<div class="modal fade" id="messageModal" tabindex="-1" role="dialog"

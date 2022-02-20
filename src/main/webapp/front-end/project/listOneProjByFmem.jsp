@@ -49,10 +49,10 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 	href="https://www.zeczec.com/assets/fav-69601a279a66f2e6e31e508900d4f057559d3affcae42730d045b17d281107a6.png"
 	rel="shortcut icon" type="image/x-icon"> -->
 <title>認養專案管理 | ${projectVO.proj_name} </title>
-<link href="<%=request.getContextPath()%>/project/listOneProj_files/css"
+<link href="<%=request.getContextPath()%>/front-end/project/listOneProj_files/css"
 	rel="stylesheet" type="text/css">
 <link rel="stylesheet" media="all"
-	href="<%=request.getContextPath()%>/project/listOneProj_files/zeczec-e9e0ba9825d4b970fff398209948a791b4d18185e43b929ef4ffa0e7e5346248.css">
+	href="<%=request.getContextPath()%>/front-end/project/listOneProj_files/zeczec-e9e0ba9825d4b970fff398209948a791b4d18185e43b929ef4ffa0e7e5346248.css">
 
 
 </style>
@@ -171,7 +171,8 @@ footer:hover .logo-safari-fix {
 					</a> 
 					<a
 						class="near-black dib pv3 mr4 mt1 hover-b--dark-gray bb-l b--transparent"
-						href="#">
+						href="${pageContext.request.contextPath}/projDiscussion/projDiscussion.do?proj_id=${projectVO.proj_id}&action=getAllDisc_For_Display_By_Mem">
+						
 						<div style="font-size:16px"class="dib pv1">留言</div> <span class="f7 b gray"><i class="material-icons" style="font-size:19px">sms</i></span>
 					</a>
 				</div>

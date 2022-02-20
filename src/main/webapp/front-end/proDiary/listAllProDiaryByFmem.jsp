@@ -180,7 +180,7 @@ footer:hover .logo-safari-fix {
 							style='font-size: 19px; color: #717d34;'></i></span>
 					</a> <a
 						class="near-black dib pv3 mr4 mt1 hover-b--dark-gray bb-l b--transparent"
-						href="#">
+						href="${pageContext.request.contextPath}/projDiscussion/projDiscussion.do?proj_id=${projectVO.proj_id}&action=getAllDisc_For_Display_By_Fmem">
 						<div style="font-size: 16px" class="dib pv1">留言</div> <span
 						class="f7 b gray"><i class="material-icons"
 							style="font-size: 19px">sms</i></span>
