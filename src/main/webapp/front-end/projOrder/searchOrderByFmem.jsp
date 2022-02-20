@@ -70,8 +70,8 @@
 
 <body class=" route-index route-portal-sale route-portal-sale-order route-portal-sale-order">
 
- <header>
-         <jsp:include page="/header/header.jsp" />
+<header>
+         <jsp:include page="/front-end/home/header_for_Proj_Mem.jsp" />
 </header>
   <div class="app-container">
     <div class="page-content-wrapper">
@@ -267,9 +267,13 @@
     document.body.onpaste = null;
   </script>
   
-  <footer>
-        <jsp:include page="/footer/footer.jsp" />
+<footer>
+   <%--      <jsp:include page="/footer/footer.jsp" /> --%>
+   
+   <div style="width:100%;height:150px">
+   </div>
 </footer>
+
   
 </body>
 

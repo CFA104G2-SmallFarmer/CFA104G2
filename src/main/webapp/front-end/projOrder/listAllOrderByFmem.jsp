@@ -138,6 +138,248 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
       <br>user-select: text !important;
       <br>
     }
+      </style>
+    <style>
+    /*****************************/
+.wrap {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.header {
+padding_top:10px;
+    height: 78px;
+ 
+    position: relative;
+}
+
+.logo {
+    float: left;
+    width: 250px;
+    height: 76px;
+    padding: 5px;
+    /* background: #ffffff; */
+    /* border: 3px solid rgb(255, 216, 157); */
+}
+
+.menu {
+    float: right;
+    font-size: 24px;
+
+}
+
+.menu li {
+    list-style-type: none;
+    float: left;
+    display: inline-block;
+    height: 60px;
+
+}
+
+.menu li a {
+    display: block;
+    color: #717d34;
+    text-decoration: none;
+    padding-left: 1em;
+    padding-right: 0em;
+    padding-top: 0.4em;
+
+}
+
+.menu li a:hover {
+    /* background: #8ca27e; */
+    color: #8ca27e;
+}
+
+/*在pc隱藏漢堡選單,showmenu右上角點擊按鈕*/
+
+.showmenu {
+    display: none;
+    color: #FFCCCC;
+}
+
+/*在手機瀏覽漢堡選單*/
+.div1 {
+    width: 35px;
+    height: 5px;
+    background-color: #aaba8b;
+    margin: 6px 0;
+}
+
+@media (max-width: 767px) {
+    .menu {
+        /*隱藏選單開始*/
+        max-height: 0px;
+        overflow: hidden;
+        /*隱藏選單結束*/
+        transition: max-height 2.3s;
+        margin-top: 1px;
+        /*絕對定位疊在網頁上*/
+        position: absolute;
+        z-index: 100;
+        /*header 80px+1px boder 線條*/
+        top: 81px;
+        left: 0;
+        right: 0;
+        background: #d4e1bb;
+    }
+
+    .menu li {
+
+        list-style-type: none;
+        float: none;
+        border-bottom: 1px dashed #919191;
+        display: inline;
+    }
+
+
+
+    .menu li a {
+        transition: all 0.2s;
+        padding-left: 0em;
+        padding-right: 0em;
+        padding-top: 0.7em;
+        padding-bottom: 0.7em;
+    }
+
+    .menu li a:hover {
+        background: #8ca27e;
+        color: #fff;
+    }
+
+    .showmenu {
+        /* transition: all 0.2s; */
+        display: block;
+        float: right;
+        padding: 20px;
+
+
+    }
+
+    /*jQ點擊後動態在 body 加上 class */
+    .menu-show .menu {
+        max-height: 500px
+    }/*****************************/
+.wrap {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.header {
+padding_top:10px;
+    height: 78px;
+ 
+    position: relative;
+}
+
+.logo {
+    float: left;
+    width: 250px;
+    height: 76px;
+    padding: 5px;
+    /* background: #ffffff; */
+    /* border: 3px solid rgb(255, 216, 157); */
+}
+
+.menu {
+    float: right;
+    font-size: 24px;
+margin-top:20px;
+}
+
+.menu li {
+    list-style-type: none;
+    float: left;
+    display: inline-block;
+    height: 60px;
+   margin-top:20px;
+
+}
+
+.menu li a {
+    display: block;
+    color: #717d34;
+    text-decoration: none;
+    padding-left: 1em;
+    padding-right: 0em;
+    padding-top:0.9em;
+
+} 
+
+.menu li a:hover {
+    /* background: #8ca27e; */
+    color: #8ca27e;
+}
+
+/*在pc隱藏漢堡選單,showmenu右上角點擊按鈕*/
+
+.showmenu {
+    display: none;
+    color: #FFCCCC;
+}
+
+/*在手機瀏覽漢堡選單*/
+.div1 {
+    width: 35px;
+    height: 5px;
+    background-color: #aaba8b;
+    margin: 6px 0;
+}
+
+@media (max-width: 767px) {
+    .menu {
+        /*隱藏選單開始*/
+        max-height: 0px;
+        overflow: hidden;
+        /*隱藏選單結束*/
+        transition: max-height 2.3s;
+        margin-top: 1px;
+        /*絕對定位疊在網頁上*/
+        position: absolute;
+        z-index: 100;
+        /*header 80px+1px boder 線條*/
+        top: 81px;
+        left: 0;
+        right: 0;
+        background: #d4e1bb;
+    }
+
+    .menu li {
+
+        list-style-type: none;
+        float: none;
+        border-bottom: 1px dashed #919191;
+        display: inline;
+    }
+
+
+
+    .menu li a {
+        transition: all 0.2s;
+        padding-left: 0em;
+        padding-right: 0em;
+        padding-top: 0.7em;
+        padding-bottom: 0.7em;
+    }
+
+    .menu li a:hover {
+        background: #8ca27e;
+        color: #fff;
+    }
+
+    .showmenu {
+        /* transition: all 0.2s; */
+        display: block;
+        float: right;
+        padding: 20px;
+
+
+    }
+
+    /*jQ點擊後動態在 body 加上 class */
+    .menu-show .menu {
+        max-height: 500px
+    }
   </style>
   
 </head>
@@ -145,8 +387,47 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
 <body class=" route-index route-portal-sale route-portal-sale-order route-portal-sale-order">
 
 <header>
-         <jsp:include page="/header/header.jsp" />
+
+         <%--  <jsp:include page="/front-end/home/header_for_Proj_Fmem.jsp" />  --%>
+         
 </header>
+<header>
+<script>
+    $(document).ready(function () {
+        $('.showmenu').on('click', function (e) {
+            e.preventDefault();
+            $('body').toggleClass('menu-show');
+          }
+
+        );
+      }
+
+    );
+  </script>
+  <div class="wrap">
+    <div class="header">
+      <div class="logo"><img style="margin-top:5px;width:210px"src="<%=request.getContextPath()%>/front-end/home/images/farmerManage-Final.png">
+      </div>
+      <ul class="menu">
+        <li><a href="#">認養專案管理&nbsp;</a></li>
+
+        <li><a href="#">認養訂單管理&nbsp;</a></li>
+
+        <li><a href="#">回到首頁 &nbsp;</a></li>
+        <li><a href="#"><i class="material-icons" style="font-size:27px">mail_outline</i> &nbsp;</a></li>
+      </ul>
+      <div class="div0 showmenu">
+        <!-- <a href="#" >menu</a> -->
+        <div class="div1"></div>
+        <div class="div1"></div>
+        <div class="div1"></div>
+      </div>
+
+      <!-- <a href="#" class="showmenu">menu</a> -->
+    </div>
+     </div>
+</header>
+<div style="border:solid 2px lightgray"></div>
 
 <%--                     <%=projOrderVO==null%> --%>
 <%--                     <%=projPerkVO==null%> --%>
@@ -243,7 +524,7 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
                                   <input type="text" placeholder="請輸入訂單編號" clearable="true" resize="vertical" rows="2"
                                     minrows="2" maxlength="50" restrictiontype="input" max="Infinity" min="-Infinity"
                                     class="shopee-input__input" name="order_id" >
-                                    <input type="hidden" name="action" value="getOne_For_Display">
+                                    <input type="hidden" name="action" value="getOneByFmem">
                       <!-- name在這裡 -->
                                   <div class="shopee-input__suffix">
                                   </div>
@@ -705,7 +986,10 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
     document.body.onpaste = null;
   </script>
   <footer>
-        <jsp:include page="/footer/footer.jsp" />
+   <%--      <jsp:include page="/footer/footer.jsp" /> --%>
+   
+   <div style="width:100%;height:150px">
+   </div>
 </footer>
   
   

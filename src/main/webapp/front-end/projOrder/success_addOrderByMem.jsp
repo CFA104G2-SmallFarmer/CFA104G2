@@ -57,9 +57,11 @@ MemVO memVO = (MemVO) session.getAttribute("memVO");
 </head>
 
 <body class="intent-mouse">
-  <header>
-         <jsp:include page="/header/header_for_Proj_Fmem.jsp" />
-</header>
+	<header style="height: 80px">
+		<jsp:include page="/front-end/home/header_for_Proj_Mem.jsp" />
+	</header>
+	<header style="padding-bottom: 5px"
+		class="relative z-2 bb pv2 ph3 ph0-l b--near-white">
 
   <div class="container"></div>
   <div class="bt b--light-gray bb">
@@ -153,8 +155,8 @@ MemVO memVO = (MemVO) session.getAttribute("memVO");
     document.body.onpaste = null;
   </script>
   
-      <footer>
-        <jsp:include page="/footer/footer_for_Proj_Fmem.jsp" />
+    <footer>
+         <jsp:include page="/front-end/home/footer_for_Proj_Fmem.jsp" />
 </footer>
 </body>
 

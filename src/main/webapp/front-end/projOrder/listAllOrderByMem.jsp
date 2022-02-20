@@ -61,6 +61,14 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
 
 
   <style>
+  span ,p ,a{
+  text-decoration:none;
+  
+  
+  }
+  
+  
+  
     .ct-item-product-info {
       font-family: sans-serif;
       color: #7b7b7b;
@@ -686,10 +694,16 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
     document.body.oncopy = null;
     document.body.onpaste = null;
   </script>
-  <footer>
+<%--   <footer>
         <jsp:include page="/footer/footer.jsp" />
-</footer>
+</footer> --%>
   
+  <footer>
+   <%--      <jsp:include page="/footer/footer.jsp" /> --%>
+   
+   <div style="width:100%;height:150px">
+   </div>
+</footer>
   
 </body>
 
