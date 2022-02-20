@@ -70,7 +70,7 @@ ProjPerkVO projPerkVO = projPerkSvc.getOneProjPerk(9);
 
 <body class="intent-mouse">
  <header>
-         <jsp:include page="/header/header_for_Proj_Fmem.jsp" />
+         <jsp:include page="/front-end/home/header_for_Proj_Fmem.jsp" />
 </header>
  
 
@@ -304,8 +304,8 @@ ProjPerkVO projPerkVO = projPerkSvc.getOneProjPerk(9);
           document.body.onpaste = null;
         </script>
         <!-- Code injected by live-server -->
-<footer>
-        <jsp:include page="/footer/footer_for_Proj_Fmem.jsp" />
+    <footer>
+         <jsp:include page="/front-end/home/footer_for_Proj_Fmem.jsp" />
 </footer>
 
 </body>

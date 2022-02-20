@@ -42,10 +42,7 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
 	prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# zeczec-com: http://ogp.me/ns/fb/zeczec-com#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token"
-	content="at7SKlt/ImyGEJPpThvpFsPrcCvpbVMKG6UvAClXNinGclBO6imi1c4uGjybebZDHocPtRijEbgglqNwWft0hA=="><script src="<%=request.getContextPath()%>/front-end/projPerk/perkoverview_files/sdk.js.下載" async=""
-	crossorigin="anonymous"></script>
-	
+
 	  <!-- jQuery加入這段  -->
   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
  
@@ -57,13 +54,8 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
 <meta content="width=device-width, initial-scale=1" name="viewport">
 <meta content="zh_TW" property="og:locale">
 <meta content="zh_TW" property="og:locale:alternate">
-<!-- <link
-	href="https://www.zeczec.com/assets/logo-square-04c45286e84ea49d07c97c86625fbf3a75f4f32dd02da3ad3ca70a9a68fd0395.png"
-	rel="apple-touch-icon">
-<link
-	href="https://www.zeczec.com/assets/fav-69601a279a66f2e6e31e508900d4f057559d3affcae42730d045b17d281107a6.png"
-	rel="shortcut icon" type="image/x-icon"> -->
-<title>我家門前有塊地 | ${projectVO.proj_name} |</title>
+
+<title>我家門前有塊地 | ${projectVO.proj_name}</title>
 <link href="<%=request.getContextPath()%>/front-end/projPerk/perkoverview_files/css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" media="all"
 	href="<%=request.getContextPath()%>/front-end/projPerk/perkoverview_files/zeczec-e9e0ba9825d4b970fff398209948a791b4d18185e43b929ef4ffa0e7e5346248.css">
@@ -75,7 +67,7 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
 <!-- 核心 -->
 <body class="intent-mouse">	
 <header>
-         <jsp:include page="/header/header_for_Proj_Fmem.jsp" />
+         <jsp:include page="/front-end/home/header_for_Proj_Fmem.jsp" />
 </header>
 
 
@@ -295,8 +287,8 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
 <!-- 		aria-atomic="true" aria-live="assertive" role="log" -->
 <!-- 		style="position: fixed; width: 1px; height: 1px; top: -1px; overflow: hidden;"></div> -->
 
-<footer>
-        <jsp:include page="/footer/footer_for_Proj_Fmem.jsp" />
+    <footer>
+         <jsp:include page="/front-end/home/footer_for_Proj_Fmem.jsp" />
 </footer>
 
 </body>
