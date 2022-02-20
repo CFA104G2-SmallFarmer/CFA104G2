@@ -84,9 +84,9 @@
       <header> <!-- 此處加上id="header會跑版" -->
         <!-- 這裡刪掉幻燈片會跑版，勿刪!!! -->
         <!-- 此處導入header.jsp -->
-        <jsp:include page="/front-end/home/header.jsp" flush="true"/>
+<%--         <jsp:include page="/front-end/home/header.jsp" flush="true"/> --%>
 <%--         <%@ include file="header.jsp" %> --%>
-<!--         <iframe src="/front-end/home/header.jsp" width="100%" height="100%" style="display: block;"></iframe> -->
+        <iframe src="<%= request.getContextPath() %>/front-end/home/header.jsp" width="100%" height="100%" style="display: block;"></iframe>
       </header>
       
     </section>
@@ -1174,7 +1174,7 @@
             </div>
 
 
-
+<iframe src="<%= request.getContextPath() %>/front-end/home/footer.jsp" width="100%" height="100%" style="display: block;"></iframe>
           </div>
 
           <div class="btn btn-hover handdraw-btn" style="position: relative; width: 261px; height: 43px;">
@@ -1347,7 +1347,8 @@
 
   <section class="footer-wrapper">
     <section id="">
-      <jsp:include page="/front-end/home/footer.jsp" flush="true"/>
+<%--       <jsp:include page="/front-end/home/footer.jsp" flush="true"/> --%>
+ <iframe src="<%= request.getContextPath() %>/front-end/home/footer.jsp" width="100%" height="100%" style="display: block;"></iframe>
     </section>
   </section>
 

@@ -13,10 +13,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
-<!--     <link rel="stylesheet" -->
-<!--       href=" https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css "> -->
-<!--     <link rel="stylesheet" -->
-<!--       href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"> -->
+    <link rel="stylesheet"
+      href=" https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css ">
+    <link rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
 
 
 <!-- 	從header接來的，用於重新刷新css	 -->
