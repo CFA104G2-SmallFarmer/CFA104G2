@@ -20,14 +20,7 @@
 		<res-auth>Container</res-auth>
 	</resource-ref>
 
-	<servlet>
-		<servlet-name>ProjOrderServlet</servlet-name>
-		<servlet-class>com.projOrder.controller.ProjOrderServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>ProjOrderServlet</servlet-name>
-		<url-pattern>/projOrder/projOrder.do</url-pattern>
-	</servlet-mapping>
+
 
 	<!--************************ 會員小農專區 ************************ -->
 	<servlet>
@@ -141,6 +134,79 @@
 
 
 	<!--************************** 認養專區 ************************** -->
+	<servlet>
+		<servlet-name>ProjectServlet</servlet-name>
+		<servlet-class>com.project.controller.ProjectServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ProjectServlet</servlet-name>
+		<url-pattern>/project/project.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ProjOrderServlet</servlet-name>
+		<servlet-class>com.projOrder.controller.ProjOrderServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ProjOrderServlet</servlet-name>
+		<url-pattern>/projOrder/projOrder.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ProjPerkServlet</servlet-name>
+		<servlet-class>com.projPerk.controller.ProjPerkServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ProjPerkServlet</servlet-name>
+		<url-pattern>/projPerk/projPerk.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ProDiaryServlet</servlet-name>
+		<servlet-class>com.proDiary.controller.ProDiaryServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ProDiaryServlet</servlet-name>
+		<url-pattern>/proDiary/proDiary.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ProjPicServlet</servlet-name>
+		<servlet-class>com.projPic.controller.ProjPicServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ProjPicServlet</servlet-name>
+		<url-pattern>/projPic/projPic.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ProjPicServletInsert</servlet-name>
+		<servlet-class>com.projPic.controller.ProjPicServletInsert</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ProjPicServletInsert</servlet-name>
+		<url-pattern>/projPic/projPicInsert.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ProjPerkDBGifReader4</servlet-name>
+		<servlet-class>com.projPerk.model.ProjPerkDBGifReader4</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ProjPerkDBGifReader4</servlet-name>
+		<url-pattern>/projPerk/ProjPerkDBGifReader4</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ProDiaryDBGifReader4</servlet-name>
+		<servlet-class>com.proDiary.controller.ProDiaryDBGifReader4</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ProDiaryDBGifReader4</servlet-name>
+		<url-pattern>/proDiary/ProDiaryDBGifReader4</url-pattern>
+	</servlet-mapping>
+
+
+
+
+
+
 	<!--************************** 以上認養 ************************** -->
 
 
@@ -173,5 +239,40 @@
 	</servlet-mapping>
 
 	<!--************************* 以上管理員 ************************* -->
+
+	<!--************************ filter區 ************************ -->
+	<filter>
+		<filter-name>loginFilter</filter-name>
+		<filter-class>com.filters.LoginFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>loginFilter</filter-name>
+		<url-pattern>/front-end/projDiary/addProDiaryByFmem.jsp</url-pattern>
+		<url-pattern>/front-end/projDiary/listAllProDiaryByFmem.jsp</url-pattern>
+		<url-pattern>/front-end/projDiary/update_proDiary_input_ByFmem.jsp</url-pattern>
+		<url-pattern>/front-end/projDiscussion/discussionByFmem.jsp</url-pattern>
+		<url-pattern>/front-end/projDiscussion/listAllProjDiscByProjByFmem.jsp</url-pattern>
+		<url-pattern>/front-end/projDiscussion/UnitByFmem.jsp</url-pattern>
+		<url-pattern>/front-end/project/addProj.jsp</url-pattern>
+		<url-pattern>/front-end/project/listAllProjByFmem.jsp</url-pattern>
+		<url-pattern>/front-end/project/listOneProjByFmem.jsp</url-pattern>
+		<url-pattern>/front-end/project/update_proj_input.jsp</url-pattern>
+		<url-pattern>/front-end/projOrder/addOrderByMem.jsp</url-pattern>
+		<url-pattern>/front-end/projOrder/listAllOrderByFmem.jsp</url-pattern>
+		<url-pattern>/front-end/projOrder/listAllOrderByMem.jsp</url-pattern>
+		<url-pattern>/front-end/projOrder/listOneOrderByFmem.jsp</url-pattern>
+		<url-pattern>/front-end/projPerk/addPerk.jsp</url-pattern>
+		<url-pattern>/front-end/projPerk/listAllPerkByFmem.jsp</url-pattern>
+		<url-pattern>/front-end/projPerk/update_perk_input.jsp</url-pattern>
+		<url-pattern>/front-end/projPic/addProjPic.jsp</url-pattern>
+		<url-pattern>/front-end/projPic/update_proj_pic_input.jsp</url-pattern>
+
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>ERROR</dispatcher>
+		<dispatcher>ASYNC</dispatcher>
+	</filter-mapping>
+	<!--************************* 以上filter ************************* -->
 
 </web-app>
