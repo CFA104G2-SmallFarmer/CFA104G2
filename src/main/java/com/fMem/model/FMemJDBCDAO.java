@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.mem.model.MemVO;
+
 public class FMemJDBCDAO implements FMemDAO_interface {
 	String driver = "com.mysql.cj.jdbc.Driver";
 	String url = "jdbc:mysql://localhost:3306/CFA104G2?serverTimezone=Asia/Taipei";
@@ -51,6 +53,18 @@ public class FMemJDBCDAO implements FMemDAO_interface {
 			+ " f_mem_dist=?, f_mem_add=?, bank_code=?, bank_account=?, reg_date=?, f_mem_pic=?, "
 			+ " rating_score_mk=?, rating_count_mk=?, rating_score_tr=?, rating_count_tr=?, "
 			+ " report_count=?, organic_certi=?, env_friendly_certi=?, certi_state=? WHERE f_mem_id = ?";
+
+	private static final String UPDATEFMEMINPUT = 
+			"UPDATE f_mem set f_mem_acc=?, f_mem_pwd=?, f_mem_fname=?, "
+					+ " f_mem_info=?, f_mem_mobile=?, f_mem_tel=?, f_mem_zipcode=?, f_mem_city=?, "
+					+ " f_mem_dist=?, f_mem_add=?, f_mem_pic=? "
+					+ " WHERE f_mem_id = ?";
+	
+	private static final String UPDATEADD =
+			"UPDATE f_mem set organic_certi=?, env_friendly_certi=? WHERE f_mem_id = ?";
+	
+	private static final String UPDATEACCCER = 
+			"UPDATE f_mem set acc_state=?, certi_state=? WHERE f_mem_id = ?";
 
 	
 	@Override
@@ -237,7 +251,153 @@ public class FMemJDBCDAO implements FMemDAO_interface {
 			}
 		}
 	}
+	
+	@Override
+	public void updateaddAuthenticate(FMemVO fMemVO) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(UPDATEADD);
+			
+			pstmt.setBytes(1, fMemVO.getOrganic_certi());
+			pstmt.setBytes(2, fMemVO.getEnv_friendly_certi());
+			pstmt.setInt(3, fMemVO.getF_mem_id());
+			
+			pstmt.executeUpdate();
+			
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+	}
 
+	
+	@Override
+	public void updateFMemInput(FMemVO fMemVO) {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(UPDATEFMEMINPUT);
+
+
+			
+			pstmt.setString(1, fMemVO.getF_mem_acc());
+			pstmt.setString(2, fMemVO.getF_mem_pwd());
+			pstmt.setString(3, fMemVO.getF_mem_fname());
+			pstmt.setString(4, fMemVO.getF_mem_info());
+			pstmt.setString(5, fMemVO.getF_mem_mobile());
+			pstmt.setString(6, fMemVO.getF_mem_tel());
+			pstmt.setInt(7, fMemVO.getF_mem_zipcode());
+			pstmt.setString(8, fMemVO.getF_mem_city());
+			pstmt.setString(9, fMemVO.getF_mem_dist());
+			pstmt.setString(10, fMemVO.getF_mem_add());
+			pstmt.setBytes(11, fMemVO.getF_mem_pic());
+			pstmt.setInt(12, fMemVO.getF_mem_id());
+			
+			pstmt.executeUpdate();
+
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+	}
+
+	@Override
+	public void updateAccCer(FMemVO fMemVO) {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(UPDATEACCCER);
+
+			pstmt.setInt(1, fMemVO.getAcc_state());
+			pstmt.setInt(2, fMemVO.getCerti_state());
+			pstmt.setInt(3, fMemVO.getF_mem_id());
+			pstmt.executeUpdate();
+
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+
+	}
 
 	@Override
 	public void delete(Integer f_mem_id) {

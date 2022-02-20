@@ -6,6 +6,9 @@ public interface FMemDAO_interface {
           public void insert(FMemVO fMemVO);
           public void insertAll(FMemVO fMemVO);
           public void update(FMemVO fMemVO);
+          public void updateaddAuthenticate(FMemVO fMemVO);
+          public void updateFMemInput(FMemVO fMemVO);
+          public void updateAccCer(FMemVO fMemVO);
           public void delete(Integer f_mem_id);
           public FMemVO findByPrimaryKey(Integer f_mem_id);
           public List<FMemVO> getAll();

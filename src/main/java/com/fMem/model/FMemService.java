@@ -3,6 +3,8 @@ package com.fMem.model;
 import java.sql.Date;
 import java.util.List;
 
+import com.mem.model.MemVO;
+
 public class FMemService {
 	private FMemDAO_interface dao;
 
@@ -102,6 +104,52 @@ public class FMemService {
 		fMemVO.setCerti_state(certi_state);
 		dao.update(fMemVO);
 
+		return fMemVO;
+	}
+
+	public FMemVO updateFMemInput(Integer f_mem_id,  String f_mem_acc, String f_mem_pwd, String f_mem_fname,
+			String f_mem_info, String f_mem_mobile, String f_mem_tel, Integer f_mem_zipcode, String f_mem_city, 
+			String f_mem_dist, String f_mem_add, byte[] f_mem_pic) {
+
+		FMemVO fMemVO = new FMemVO();
+
+		fMemVO.setF_mem_id(f_mem_id);
+		fMemVO.setF_mem_acc(f_mem_acc);
+		fMemVO.setF_mem_pwd(f_mem_pwd);
+		fMemVO.setF_mem_fname(f_mem_fname);
+		fMemVO.setF_mem_info(f_mem_info);
+		fMemVO.setF_mem_mobile(f_mem_mobile);
+		fMemVO.setF_mem_tel(f_mem_tel);
+		fMemVO.setF_mem_zipcode(f_mem_zipcode);
+		fMemVO.setF_mem_city(f_mem_city);
+		fMemVO.setF_mem_dist(f_mem_dist);
+		fMemVO.setF_mem_add(f_mem_add);
+		fMemVO.setF_mem_pic(f_mem_pic);
+		dao.updateFMemInput(fMemVO);
+
+		return fMemVO;
+	}
+
+	
+	public FMemVO updateAuthenticate(byte[] organic_certi, byte[] env_friendly_certi, Integer f_mem_id) {
+		
+		FMemVO fMemVO = new FMemVO();
+		
+		fMemVO.setF_mem_id(f_mem_id);
+		fMemVO.setOrganic_certi(organic_certi);
+		fMemVO.setEnv_friendly_certi(env_friendly_certi);
+		dao.updateaddAuthenticate(fMemVO);
+		
+		return fMemVO;
+	}
+	
+	public FMemVO updateAccCer(Integer f_mem_id, Integer acc_state, Integer certi_state) {
+
+		FMemVO fMemVO = new FMemVO();
+		fMemVO.setF_mem_id(f_mem_id);
+		fMemVO.setAcc_state(acc_state);
+		fMemVO.setCerti_state(certi_state);
+		dao.updateAccCer(fMemVO);
 		return fMemVO;
 	}
 
