@@ -486,7 +486,7 @@ invisible.style.display = "";
 							<div class="_2YiVnW">
 								<div class="_2w2H6X">
 									<h1 class="_3iiDCN">會員資料</h1>
-<!-- 									<div class="TQG40c">修改資料及新增投貼</div> -->
+									<div class="TQG40c">顯示會員資料及頭貼</div>
 									<div style="height: 36px;">
 									</div>
 								</div>
@@ -525,20 +525,20 @@ invisible.style.display = "";
 													</div>
 												</div>
 											</div>
-											<div class="_3BlbUs">
-												<div class="_1iNZU3">
-													<div class="_2PfA-y">
-														<label>密碼</label>
-													</div>
-													<div class="_2_JugQ">
-														<div class="_2bdFDW">
-															<div class="_3S9myJ"><%=memVO.getMem_pwd()%></div>
-															<input type="hidden" name="mem_pwd"
-																value="<%=memVO.getMem_pwd()%>">
-														</div>
-													</div>
-												</div>
-											</div>
+<!-- 											<div class="_3BlbUs"> -->
+<!-- 												<div class="_1iNZU3"> -->
+<!-- 													<div class="_2PfA-y"> -->
+<!-- 														<label>密碼</label> -->
+<!-- 													</div> -->
+<!-- 													<div class="_2_JugQ"> -->
+<!-- 														<div class="_2bdFDW"> -->
+<%-- 															<div class="_3S9myJ"><%=memVO.getMem_pwd()%></div> --%>
+<!-- 															<input type="hidden" name="mem_pwd" -->
+<%-- 																value="<%=memVO.getMem_pwd()%>"> --%>
+<!-- 														</div> -->
+<!-- 													</div> -->
+<!-- 												</div> -->
+<!-- 											</div> -->
 											<div class="_3BlbUs">
 												<div class="_1iNZU3">
 													<div class="_2PfA-y">
@@ -853,9 +853,9 @@ invisible.style.display = "";
 												<input class="_2xS5eV" type="file" accept=".jpg,.jpeg,.png">
 												<!-- <button type="button" -->
 												<!-- class="btn btn-light btn--m btn--inline">選擇圖片</button> -->
-												<input class="btn btn-light btn--m btn--inline selectimg"
-													type="file" accept="image/*" style="display: block;"
-													name="mem_pic" value="<%=memVO.getMem_pic()%>">
+<!-- 												<input class="btn btn-light btn--m btn--inline selectimg" -->
+<!-- 													type="file" accept="image/*" style="display: block;" -->
+<%-- 													name="mem_pic" value="<%=memVO.getMem_pic()%>"> --%>
 												<div class="_3Jd4Zu">
 													<%-- 												<c:if test="${!empty memVO.mem_pic}"><c:set var="mem_pic" value="${context_root}/MemGifReader?mem_id=${memVO.mem_id}"/></c:if> --%>
 													<!-- 													<div class="_3UgHT6">檔案大小:最大1MB</div> -->

@@ -2,15 +2,32 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.fMem.model.*"%>
-<!-- 有時間可接入信箱更改驗證 -->
+<%@ page import="com.mem.model.*"%>
+<!-- 有時間可接入信箱更改驗證  處理取的FMem物件 -->
 <!-- shopee-dropdown__entry--selected 更改框線顏色 -->
 <%
 request.setAttribute("mem_id", 77007); // 測試用，之後get方法要改成session.get...
 %>
 <%
 Integer mem_id = (Integer) request.getAttribute("mem_id");
-FMemVO fMemVO = (FMemVO) request.getAttribute("fMemVO");
+
+FMemVO fMemVO = new FMemVO();
+MemService memSvc = new MemService();
+FMemService fMSvc = new FMemService();
+
+MemVO memVO = memSvc.getOneMem(mem_id);
+List<FMemVO> list = fMSvc.getAll();
+pageContext.setAttribute("list",list);
+for(FMemVO fMemVO2 : list) {
+	int mem_id2 = (Integer) fMemVO2.getMem_id();
+	int f_mem_id = (Integer) fMemVO2.getF_mem_id();
+	if(mem_id2 == mem_id){
+		fMemVO = fMSvc.getOneFMem(f_mem_id);
+	}
+}
 %>
+<%-- <%= fMemVO==null %> --%>
+<%-- <%= fMemVO.getF_mem_id() %> --%>
 <!DOCTYPE html>
 <html lang="zh-Hant">
 
@@ -485,7 +502,7 @@ invisible.style.display = "";
 					<div class="_3D9BVC">
 						<div class="h4QDlo" role="main">
 							<div class="_2YiVnW">
-								<div class="_2w2H6X">
+								<div class="_2w2H6X" >
 									<h1 class="_3iiDCN">認證審核</h1>
 									<div class="TQG40c">提交認證照片以供審核</div>
 									<div style="height: 36px;">
@@ -503,26 +520,25 @@ invisible.style.display = "";
 								<FORM METHOD="post" ACTION="fMem.do" name="form1" enctype="multipart/form-data" style="width:587px;">
 									<div class="goiz2O">
 										<div class="pJout2">
-											<!-- 可更改form表單寬度 -->
-
 											<div id="wrapper" style="height:400px; width:700px; position:abslute;">
 												<h1 class="_3iiDCN">有機認證照片</h1>
 												<input id="put1" class="btn btn-light btn--m btn--inline selectimg"
 													type="file" accept="image/*" style="display: block;"
-													name="mem_pic" value="">
+													name="organic_certi" value="<%=(fMemVO==null)? "" : fMemVO.getOrganic_certi()%>">
 											</div>
 											
 											<div id="wrapper2" style="height:400px; width:700px; position:abslute;">
 												<h1 class="_3iiDCN">友善環境認證照片</h1>
 												<input id="put2" class="btn btn-light btn--m btn--inline selectimg"
 													type="file" accept="image/*" style="display: block;"
-													name="mem_pic" value="">
+													name="env_friendly_certi" value="<%=(fMemVO==null)? "" : fMemVO.getEnv_friendly_certi()%>">
 											</div>
-
+												
 											<!-- 這邊控制傳送至Servlet -->
-											<input type="hidden" name="action" value="insert"> 
+											<input type="hidden" name="action" value="updateAuthenticate">
+											<input type="hidden" name="f_mem_id" value= <%= fMemVO.getF_mem_id() %>>
 											<div class="_31PFen">
-												<button type="submit" id="demo4"
+												<button style="background-color:#b9d4b3;" type="submit" id="demo4"
 													class="btn btn-solid-primary btn--m btn--inline"
 													aria-disabled="false">送出審核</button>
 											</div>
@@ -566,8 +582,8 @@ invisible.style.display = "";
         let blockArray = [];
 
         const wrapper = document.querySelector('#wrapper');
-        const block = genSelectImgBlock1();
-        wrapper.appendChild(block);
+        const block1 = genSelectImgBlock1();
+        wrapper.appendChild(block1);
 
         function genSelectImgBlock1() {
             const div = document.createElement('div');
@@ -592,6 +608,35 @@ invisible.style.display = "";
             });
 
             return div;
+        }
+        
+        const wrapper2 = document.querySelector('#wrapper2');
+        const block2 = genSelectImgBlock2();
+        wrapper2.appendChild(block2);
+
+        function genSelectImgBlock2() {
+            const div2 = document.createElement('div');
+            const inputBtn2 = document.querySelector('#put2');
+            const img2 = document.createElement('img');
+            const hr2 = document.createElement('hr');
+
+            img2.setAttribute('style', 'display:block;max-height:300px;position:absolute;');
+
+            div2.appendChild(img2);
+
+            inputBtn2.addEventListener('input', (e) => {
+                const url = URL.createObjectURL(inputBtn2.files[0]);
+                console.log(url);
+                if (url) { 
+                    img2.setAttribute('src', url);
+                    if (blockArray[blockArray.length - 1] === div2) {
+                        const block = genSelectImgBlock();
+                        wrapper2.appendChild(block);
+                    }
+                }
+            });
+
+            return div2;
         }
         
     </script>

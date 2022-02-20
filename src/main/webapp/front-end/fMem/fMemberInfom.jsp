@@ -2,16 +2,27 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.mem.model.*"%>
-<!-- 有時間可接入信箱更改驗證 -->
-<!-- shopee-dropdown__entry--selected 更改框線顏色 -->
+<%@ page import="com.fMem.model.*"%>
 <%
 request.setAttribute("mem_id", 77001); // 測試用，之後get方法要改成session.get...
 %>
 <%
-MemService memSvc = new MemService();
 Integer mem_id = (Integer) request.getAttribute("mem_id");
+
+FMemVO fMemVO = new FMemVO();
+MemService memSvc = new MemService();
+FMemService fMSvc = new FMemService();
+
 MemVO memVO = memSvc.getOneMem(mem_id);
-pageContext.setAttribute("memVO", memVO);
+List<FMemVO> list = fMSvc.getAll();
+// pageContext.setAttribute("list",list);
+for(FMemVO fMemVO2 : list) {
+	int mem_id2 = (Integer) fMemVO2.getMem_id();
+	int f_mem_id = (Integer) fMemVO2.getF_mem_id();
+	if(mem_id2 == mem_id){
+		fMemVO = fMSvc.getOneFMem(f_mem_id);
+	}
+}
 %>
 <!-- 445行無法選擇後貼上selected -->
 <!DOCTYPE html>
@@ -42,7 +53,7 @@ pageContext.setAttribute("memVO", memVO);
 				g.parentNode.insertBefore(m, g)
 	}(window, document, "script", "dataLayer")
 </script>
-<link href="./mem_files/bundle.57fe1e2ad5aca5e20f23.css"
+<link href="./fMem_files/bundle.57fe1e2ad5aca5e20f23.css"
 	rel="stylesheet">
 <style
 	data-href="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/1714.97be9cb79641e5619edf.css">
@@ -470,14 +481,13 @@ invisible.style.display = "";
 
 <script
 	src="chrome-extension://jhffgcfmcckgmioipfnmbannkpncfipo/pagejs.js"></script>
-<title>更新會員資料</title>
+<title>會員資訊</title>
 <link rel="stylesheet" type="text/css"
-	href="./mem_files/2825.51680d86fe84cd4ddf65.css">
+	href="./fMem_files/2825.51680d86fe84cd4ddf65.css">
 </head>
 
 <body style="" class="nt-s nl-l">
 	<jsp:include page="/front-end/home/header.jsp" flush="true"/>
-        <iframe src="<%= request.getContextPath() %>/front-end/home/header.jsp" width="100%" height="100%" style="display: block;"></iframe>
 	<div id="main">
 		<div>
 			<div class="shopee-progress-bar"></div>
@@ -488,21 +498,13 @@ invisible.style.display = "";
 						<div class="h4QDlo" role="main">
 							<div class="_2YiVnW">
 								<div class="_2w2H6X">
-									<h1 class="_3iiDCN">會員資料修改</h1>
-									<div class="TQG40c">修改資料及新增投貼</div>
+									<h1 class="_3iiDCN">小農資料</h1>
+									<div class="TQG40c">顯示小農資料及頭貼</div>
 									<div style="height: 36px;">
-										<%-- 錯誤表列 --%>
-										<c:if test="${not empty errorMsgs}">
-											<font style="color: red">請修正以下錯誤:</font>
-											<ul>
-												<c:forEach var="message" items="${errorMsgs}">
-													<li style="color: red">${message}</li>
-												</c:forEach>
-											</ul>
-										</c:if>
 									</div>
 								</div>
-								<FORM METHOD="post" ACTION="mem.do" name="form1" enctype="multipart/form-data">
+								<FORM METHOD="post" ACTION="mem.do" name="form1"
+									enctype="multipart/form-data">
 									<div class="goiz2O">
 										<div class="pJout2">
 											<!-- 可更改form表單寬度 -->
@@ -514,9 +516,22 @@ invisible.style.display = "";
 													</div>
 													<div class="_2_JugQ">
 														<div class="_2bdFDW">
-															<div class="_3S9myJ"><%=memVO.getMem_id()%></div>
+															<div class="_3S9myJ"><%=fMemVO.getMem_id()%></div>
 															<input type="hidden" name="mem_id"
-																value="<%=memVO.getMem_id()%>">
+																value="<%=fMemVO.getMem_id()%>">
+														</div>
+													</div>
+												</div>
+											</div>
+											
+											<div class="_3BlbUs">
+												<div class="_1iNZU3">
+													<div class="_2PfA-y">
+														<label>小農編號</label>
+													</div>
+													<div class="_2_JugQ">
+														<div class="_2bdFDW">
+															<div class="_3S9myJ"><%=fMemVO.getF_mem_id()%></div>
 														</div>
 													</div>
 												</div>
@@ -525,47 +540,37 @@ invisible.style.display = "";
 											<div class="_3BlbUs">
 												<div class="_1iNZU3">
 													<div class="_2PfA-y">
-														<label>會員帳號</label>
+														<label>小農帳號</label>
 													</div>
 													<div class="_2_JugQ">
 														<div class="_2bdFDW">
-															<div class="_3S9myJ"><%=memVO.getMem_acc()%></div>
-															<input type="hidden" name="mem_acc"
-																value="<%=memVO.getMem_acc()%>">
+															<div class="_3S9myJ"><%=fMemVO.getF_mem_acc()%></div>
 														</div>
 													</div>
 												</div>
 											</div>
+<!-- 											<div class="_3BlbUs"> -->
+<!-- 												<div class="_1iNZU3"> -->
+<!-- 													<div class="_2PfA-y"> -->
+<!-- 														<label>密碼</label> -->
+<!-- 													</div> -->
+<!-- 													<div class="_2_JugQ"> -->
+<!-- 														<div class="_2bdFDW"> -->
+<%-- 															<div class="_3S9myJ"><%=fMemVO.getF_mem_pwd()%></div> --%>
+<!-- 															<input type="hidden" name="mem_pwd" -->
+<%-- 																value="<%=fMemVO.getF_mem_pwd()%>"> --%>
+<!-- 														</div> -->
+<!-- 													</div> -->
+<!-- 												</div> -->
+<!-- 											</div> -->
 											<div class="_3BlbUs">
 												<div class="_1iNZU3">
 													<div class="_2PfA-y">
-														<label>密碼</label>
+														<label>農場名稱</label>
 													</div>
 													<div class="_2_JugQ">
 														<div class="_2bdFDW">
-															<div class="input-with-validator-wrapper">
-																<div class="input-with-validator">
-																	<input type="password" placeholder="" maxlength="255"
-																		name="mem_pwd" value="<%=memVO.getMem_pwd()%>">
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="_3BlbUs">
-												<div class="_1iNZU3">
-													<div class="_2PfA-y">
-														<label>姓名</label>
-													</div>
-													<div class="_2_JugQ">
-														<div class="_2bdFDW">
-															<div class="input-with-validator-wrapper">
-																<div class="input-with-validator">
-																	<input type="text" placeholder="" maxlength="255"
-																		name="mem_name" value="<%=memVO.getMem_name()%>">
-																</div>
-															</div>
+															<div class="_3S9myJ"><%= fMemVO.getF_mem_fname() %></div>
 														</div>
 													</div>
 												</div>
@@ -574,34 +579,16 @@ invisible.style.display = "";
 											<div class="_3BlbUs">
 												<div class="_1iNZU3">
 													<div class="_2PfA-y">
-														<label>暱稱</label>
+														<label>農場簡介</label>
 													</div>
 													<div class="_2_JugQ">
 														<div class="_2bdFDW">
-															<div class="input-with-validator-wrapper">
-																<div class="input-with-validator">
-																	<input type="text" placeholder="" maxlength="255"
-																		name="mem_nickname" value="<%=memVO.getMem_nickname()%>">
-																</div>
-															</div>
+															<div class="_3S9myJ"><%=(fMemVO.getF_mem_info()==null)? "" : fMemVO.getF_mem_info()%></div>
 														</div>
 													</div>
 												</div>
 											</div>
-											<!-- 與帳號名稱相同 -->
-											<!-- 											<div class="_3BlbUs"> -->
-											<!-- 												<div class="_1iNZU3"> -->
-											<!-- 													<div class="_2PfA-y"> -->
-											<!-- 														<label>Email</label> -->
-											<!-- 													</div> -->
-											<!-- 													<div class="_2_JugQ"> -->
-											<!-- 														<div class="_2bdFDW"> -->
-											<!-- 															<div class="_3S9myJ">se**********@gmail.com</div> -->
-											<!-- 															<button class="_2CLMxo">變更</button> -->
-											<!-- 														</div> -->
-											<!-- 													</div> -->
-											<!-- 												</div> -->
-											<!-- 											</div> -->
+											
 											<div class="_3BlbUs">
 												<div class="_1iNZU3">
 													<div class="_2PfA-y">
@@ -609,12 +596,7 @@ invisible.style.display = "";
 													</div>
 													<div class="_2_JugQ">
 														<div class="_2bdFDW">
-															<div class="input-with-validator-wrapper">
-																<div class="input-with-validator">
-																	<input type="text" placeholder="" maxlength="255"
-																		name="mem_mobile" value="<%=memVO.getMem_mobile()%>">
-																</div>
-															</div>
+															<div class="_3S9myJ"><%=fMemVO.getF_mem_mobile()%></div>
 														</div>
 													</div>
 												</div>
@@ -627,12 +609,7 @@ invisible.style.display = "";
 													</div>
 													<div class="_2_JugQ">
 														<div class="_2bdFDW">
-															<div class="input-with-validator-wrapper">
-																<div class="input-with-validator">
-																	<input type="text" placeholder="" maxlength="255"
-																		name="mem_tel" value="<%=memVO.getMem_tel()%>">
-																</div>
-															</div>
+															<div class="_3S9myJ"><%=(fMemVO.getF_mem_tel()==null)? "" : fMemVO.getF_mem_tel()%></div>
 														</div>
 													</div>
 												</div>
@@ -645,150 +622,7 @@ invisible.style.display = "";
 													</div>
 													<div class="_2_JugQ">
 														<div class="_2bdFDW">
-															<div class="_3S9myJ">
-																(<%=memVO.getMem_zipcode()%>)<%=memVO.getMem_city()%><%=memVO.getMem_dist()%><%=memVO.getMem_addr()%></div>
-															<span class="_2CLMxo showhand" id="changeadd">變更</span>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div id=address
-												style="display: none; background-color: #eff8ec;">
-												<div class="_2PfA-y" style="padding: 30px 0 30px 0;">地址更改</div>
-												<div class="_3BlbUs">
-													<div class="_1iNZU3">
-														<div class="_2PfA-y">
-															<label class="mt3 b" for="order_country">收件地點</label>
-														</div>
-														<div class="_2_JugQ">
-															<div class="_2w5iZe">
-																<select required="required"
-																	class="mb0 js-shipping-cost js-country-select js-update-sum-for-postage w-100 shopee-dropdown__entry shopee-dropdown__entry--selected"
-																	autocomplete="country-name" name="order[country]"
-																	id="order_country">
-																	<option data-shipping-cost="0" selected="" value="TW">
-																		台灣（本島） Taiwan</option>
-																	<option data-shipping-cost="120" value="TWI">
-																		台灣（外島） Taiwan's surrounding islands</option>
-																</select>
-															</div>
-														</div>
-													</div>
-												</div>
-
-												<!-- 											<div class="flex"> 將兩個區塊div併在一行-->
-												<div class="_3BlbUs">
-													<div class="mt3 flex-auto js-city" data-country="TW">
-														<div class="_1iNZU3">
-															<label class="b _2PfA-y">縣市</label>
-															<div class="_2_JugQ">
-																<div class="_2w5iZe">
-																	<select name="mem_city" id="city"
-																		class="mb0 js-city-select w-100 shopee-dropdown__entry shopee-dropdown__entry--selected choose-el">
-																		<option value="">- 選擇 -</option>
-																		<option value="台北市"
-																			<c:if test="${memVO.mem_city == '台北市'}">selected</c:if>>台北市</option>
-																		<option value="基隆市"
-																			<c:if test="${memVO.mem_city == '基隆市'}">selected</c:if>>基隆市</option>
-																		<option value="新北市"
-																			<c:if test="${memVO.mem_city == '新北市'}">selected</c:if>>新北市</option>
-																		<option value="宜蘭縣"
-																			<c:if test="${memVO.mem_city == '宜蘭縣'}">selected</c:if>>宜蘭縣</option>
-																		<option value="新竹市"
-																			<c:if test="${memVO.mem_city == '新竹市'}">selected</c:if>>新竹市</option>
-																		<option value="新竹縣"
-																			<c:if test="${memVO.mem_city == '新竹縣'}">selected</c:if>>新竹縣</option>
-																		<option value="桃園市"
-																			<c:if test="${memVO.mem_city == '桃園市'}">selected</c:if>>桃園市</option>
-																		<option value="苗栗縣"
-																			<c:if test="${memVO.mem_city == '苗栗縣'}">selected</c:if>>苗栗縣</option>
-																		<option value="臺中市"
-																			<c:if test="${memVO.mem_city == '臺中市'}">selected</c:if>>臺中市</option>
-																		<option value="彰化縣"
-																			<c:if test="${memVO.mem_city == '彰化縣'}">selected</c:if>>彰化縣</option>
-																		<option value="南投縣"
-																			<c:if test="${memVO.mem_city == '南投縣'}">selected</c:if>>南投縣</option>
-																		<option value="嘉義市"
-																			<c:if test="${memVO.mem_city == '嘉義市'}">selected</c:if>>嘉義市</option>
-																		<option value="嘉義縣"
-																			<c:if test="${memVO.mem_city == '嘉義縣'}">selected</c:if>>嘉義縣</option>
-																		<option value="雲林縣"
-																			<c:if test="${memVO.mem_city == '雲林縣'}">selected</c:if>>雲林縣</option>
-																		<option value="臺南市"
-																			<c:if test="${memVO.mem_city == '臺南市'}">selected</c:if>>臺南市</option>
-																		<option value="高雄市"
-																			<c:if test="${memVO.mem_city == '高雄市'}">selected</c:if>>高雄市</option>
-																		<option value="屏東縣"
-																			<c:if test="${memVO.mem_city == '屏東縣'}">selected</c:if>>屏東縣</option>
-																		<option value="臺東縣"
-																			<c:if test="${memVO.mem_city == '臺東縣'}">selected</c:if>>臺東縣</option>
-																		<option value="花蓮縣"
-																			<c:if test="${memVO.mem_city == '花蓮縣'}">selected</c:if>>花蓮縣</option>
-																		<option value="連江縣"
-																			<c:if test="${memVO.mem_city == '連江縣'}">selected</c:if>>連江縣</option>
-																		<option value="釣魚臺"
-																			<c:if test="${memVO.mem_city == '釣魚臺'}">selected</c:if>>釣魚臺</option>
-																		<option value="南海島"
-																			<c:if test="${memVO.mem_city == '南海市'}">selected</c:if>>南海島</option>
-																		<option value="澎湖縣"
-																			<c:if test="${memVO.mem_city == '澎湖縣'}">selected</c:if>>澎湖縣</option>
-																		<option value="金門縣"
-																			<c:if test="${memVO.mem_city == '金門縣'}">selected</c:if>>金門縣</option>
-																	</select>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-
-												<div class="_3BlbUs">
-													<div class="mt3 js-district pl3" data-for="TW">
-														<div class="_1iNZU3">
-															<label class="b _2PfA-y">鄉鎮市區</label>
-															<div class="_2_JugQ">
-																<div class="_2w5iZe">
-																	<div class="input-with-validator-wrapper">
-																		<div class="input-with-validator">
-																			<input type="text" placeholder="" maxlength="255"
-																				name="mem_dist" value="<%=memVO.getMem_dist()%>">
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!-- 											</div> -->
-
-												<!-- 											<div class="flex mt3"> 將兩個區塊div併在一行-->
-												<div class="_3BlbUs">
-													<div class="flex-auto">
-														<div class="_1iNZU3">
-															<label class="b _2PfA-y" for="order_address">地址</label>
-															<div class="_2_JugQ">
-																<div class="_2w5iZe">
-																	<input class="mb3 w-100 input-with-validator"
-																		required="required" autocomplete="street-address"
-																		type="text" value="<%=memVO.getMem_addr()%>"
-																		name="mem_addr" id="order_address">
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<div class="_3BlbUs">
-													<div class="w4 pl3 js-postcode">
-														<div class="_1iNZU3" style="padding: 30px 0 30px 0;">
-															<label class="b _2PfA-y" for="order_postcode">郵遞區號</label>
-															<div class="_2_JugQ">
-																<div class="_2w5iZe">
-																	<input
-																		class="mb3 w-100 js-postcode-field input-with-validator"
-																		required="required" autocomplete="postal-code"
-																		type="text" value="<%=memVO.getMem_zipcode()%>"
-																		name="mem_zipcode" id="order_postcode">
-																</div>
-															</div>
+															<div class="_3S9myJ">(<%=fMemVO.getF_mem_zipcode()%>)<%=fMemVO.getF_mem_city()%><%=fMemVO.getF_mem_dist()%><%=fMemVO.getF_mem_add()%></div>
 														</div>
 													</div>
 												</div>
@@ -874,20 +708,12 @@ invisible.style.display = "";
 -->
 
 
-											<!-- 這邊控制傳送至Servlet -->
-											<input type="hidden" name="action" value="Update_Mem_Input"> 
-											<input type="hidden" name="mem_id" value="${memVO.mem_id}">
-											<div class="_31PFen">
-												<button type="submit"
-													class="btn btn-solid-primary btn--m btn--inline"
-													aria-disabled="false">儲存</button>
-											</div>
 										</div>
 										<div class="_1aIEbS">
 											<div class="X1SONv">
 												<div class="_1FzaUZ">
 													<div class="TgSfgo"
-														style="background-image: url(<%= request.getContextPath() %>/MemGifReader?mem_id=${memVO.mem_id}); position:absolute;top:10px;left:10px;">
+														style="background-image: url(<%= request.getContextPath() %>/FMemGifReader?f_mem_id=${fMemVO.f_mem_id}); position:absolute;top:10px;left:10px;">
 														<div id="wrapper"></div>
 													</div>
 												</div>
@@ -895,13 +721,13 @@ invisible.style.display = "";
 												<input class="_2xS5eV" type="file" accept=".jpg,.jpeg,.png">
 												<!-- <button type="button" -->
 												<!-- class="btn btn-light btn--m btn--inline">選擇圖片</button> -->
-												<input class="btn btn-light btn--m btn--inline selectimg"
-													type="file" accept="image/*" style="display: block;"
-													name="mem_pic" value="<%=memVO.getMem_pic()%>">
+<!-- 												<input class="btn btn-light btn--m btn--inline selectimg" -->
+<!-- 													type="file" accept="image/*" style="display: block;" -->
+<%-- 													name="mem_pic" value="<%=memVO.getMem_pic()%>"> --%>
 												<div class="_3Jd4Zu">
-<%-- 												<c:if test="${!empty memVO.mem_pic}"><c:set var="mem_pic" value="${context_root}/MemGifReader?mem_id=${memVO.mem_id}"/></c:if> --%>
-<!-- 													<div class="_3UgHT6">檔案大小:最大1MB</div> -->
-<!-- 													<div class="_3UgHT6">檔案限制: .JPEG, .PNG</div> -->
+													<%-- 												<c:if test="${!empty memVO.mem_pic}"><c:set var="mem_pic" value="${context_root}/MemGifReader?mem_id=${memVO.mem_id}"/></c:if> --%>
+													<!-- 													<div class="_3UgHT6">檔案大小:最大1MB</div> -->
+													<!-- 													<div class="_3UgHT6">檔案限制: .JPEG, .PNG</div> -->
 												</div>
 											</div>
 										</div>
@@ -914,7 +740,6 @@ invisible.style.display = "";
 		</div>
 		<div></div>
 		<div class="qgeUgW" id="BackgroundImagePortalAnchor"></div>
-	</div>
 	</div>
 	<div id="modal">
 		<div>
@@ -933,10 +758,10 @@ invisible.style.display = "";
 
 
 	<script
-		src="./mem_files/zeczec-75aefb6b17bb84ace5c7e76b106774304d1830945ab570527f3cb44045f686b1.js"
+		src="./fMem_files/zeczec-75aefb6b17bb84ace5c7e76b106774304d1830945ab570527f3cb44045f686b1.js"
 		type="text/javascript"></script>
 	<script
-		src="./mem_files/back-7b8325ae78ca7c794fdc8c2ff6c2ef5676fc24748e3a262866e67978e98c4561.js"
+		src="./fMem_files/back-7b8325ae78ca7c794fdc8c2ff6c2ef5676fc24748e3a262866e67978e98c4561.js"
 		type="text/javascript"></script>
 	<!--    新增已更改的圖片用，動態生成選擇的圖片， -->
 	<script>
@@ -973,6 +798,13 @@ invisible.style.display = "";
         }
         
     </script>
+
+
+
+
+
+
+
 
 </body>
 

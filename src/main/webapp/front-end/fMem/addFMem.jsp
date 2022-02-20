@@ -15,6 +15,7 @@ FMemVO fMemVO = (FMemVO) request.getAttribute("fMemVO");
 <html lang="zh-Hant">
 
 <head>
+<title>註冊小農</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=1240,shrink-to-fit=no">
@@ -468,7 +469,6 @@ invisible.style.display = "";
 <!-- sweet alert -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-<title>更新會員資料</title>
 <link rel="stylesheet" type="text/css"
 	href="./fMem_files/2825.51680d86fe84cd4ddf65.css">
 </head>
@@ -522,7 +522,7 @@ invisible.style.display = "";
 											<div class="_3BlbUs">
 												<div class="_1iNZU3">
 													<div class="_2PfA-y">
-														<label>會員帳號</label>
+														<label>小農帳號</label>
 													</div>
 													<div class="_2_JugQ">
 														<div class="_2bdFDW">
@@ -607,7 +607,7 @@ invisible.style.display = "";
 												<div class="_3BlbUs">
 													<div class="_1iNZU3">
 														<div class="_2PfA-y">
-															<label class="mt3 b" for="order_country">地點</label>
+															<label class="mt3 b" for="order_country">農場地點</label>
 														</div>
 														<div class="_2_JugQ">
 															<div class="_2w5iZe">

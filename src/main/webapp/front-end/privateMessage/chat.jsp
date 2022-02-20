@@ -1,25 +1,109 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<!-- 剩版型修改 -->
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/privateMessage/css/friendchat.css" type="text/css" />
-<style type="text/css">
+<style>._3YurerlznH {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
 
+._1jxtCX6jiG {
+  -webkit-user-drag: none;
+  
+
+  
+  width: 120px;
+  margin-bottom: 8px;
+  
+}
+
+._3l9IBXMpxr {
+  color: #333;
+  font-weight: 500;
+  letter-spacing: 0;
+
+  
+
+  
+  font-size: 12px;
+  line-height: 14px;
+  
+}
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLFlBQVk7RUFDWixhQUFhO0VBQ2IsbUJBQW1CO0VBQ25CLHNCQUFzQjtFQUN0Qix1QkFBdUI7QUFDekI7O0FBRUE7RUFDRSx1QkFBdUI7Ozs7RUFJdkIsWUFBWTtFQUNaLGtCQUFrQjs7QUFFcEI7O0FBRUE7RUFDRSxXQUFXO0VBQ1gsZ0JBQWdCO0VBQ2hCLGlCQUFpQjs7Ozs7RUFLakIsZUFBZTtFQUNmLGlCQUFpQjs7QUFFbkIiLCJmaWxlIjoiaW5kZXguY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnJvb3Qge1xuICBoZWlnaHQ6IDEwMCU7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xufVxuXG4uaW1nIHtcbiAgLXdlYmtpdC11c2VyLWRyYWc6IG5vbmU7XG4gIFxuXG4gIFxuICB3aWR0aDogMTIwcHg7XG4gIG1hcmdpbi1ib3R0b206IDhweDtcbiAgXG59XG5cbi50ZXh0IHtcbiAgY29sb3I6ICMzMzM7XG4gIGZvbnQtd2VpZ2h0OiA1MDA7XG4gIGxldHRlci1zcGFjaW5nOiAwO1xuXG4gIFxuXG4gIFxuICBmb250LXNpemU6IDEycHg7XG4gIGxpbmUtaGVpZ2h0OiAxNHB4O1xuICBcbn1cbiJdfQ== */</style>
+<style type="text/css">
 </style>
+<link href="https://deo.shopeemobile.com/shopee/shopee-seller-live-tw/chateasy/styles.21833f8f.6faae855a24d979165aa.css" rel="stylesheet" type="text/css" crossorigin="anonymous">
 <title>最大私人聊天室</title>
 </head>
 <body onload="connect();" onunload="disconnect();">
 	<h3 id="statusOutput" class="statusOutput"></h3>
-	<div id="row"></div>
-	<div id="messagesArea" class="panel message-area" ></div>
+<!-- 	<div id="row"></div> -->
+<!-- 	<div id="messagesArea" class="panel message-area" ></div> -->
 	<div class="panel input-area">
 		<input id="message" class="text-field" type="text" placeholder="Message" onkeydown="if (event.keyCode == 13) sendMessage();" /> 
 		<input type="submit" id="sendMessage" class="button" value="Send" onclick="sendMessage();" /> 
 		<input type="button" id="connect" class="button" value="Connect" onclick="connect();" /> 
 		<input type="button" id="disconnect" class="button" value="Disconnect" onclick="disconnect();" />
 	</div>
+	
+	<div id="shopee-mini-chat-embedded"
+		style="position: fixed; right: 8px; bottom: 0px; z-index: 99999;">
+		<div class="src-pages-ChatWindow-index__container--1qoj1">
+			<div class="src-pages-ChatWindow-index__header--USXSl">
+				<div class="src-pages-ChatWindow-index__logo-wrapper--1rM8W">
+					<i class="_3kEAcT1Mk5 src-pages-ChatWindow-index__logo--3ygfr"><svg
+							xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 22"
+							class="chat-icon">
+							<path
+								d="M4.236 3.314h.016l.052.005h3.29l.05-.005.068.005h1.03c.365 0 .664.3.664.665 0 .332-.247.609-.566.657l-.098.007h-.408v8.837l1.04-.252.353 1.28-1.393.338v4.66H6.972v-4.33l-3.961.959a.666.666 0 01-.817-.464.667.667 0 01.371-.784l.092-.033.907-.22-.001-.012v-9.98h-.408a.666.666 0 01-.664-.663c0-.333.247-.61.567-.658l.097-.007h1.03l.05-.005zm20.7 0h.016l.05.005h3.291l.067-.005.052.005h1.03c.365 0 .664.3.664.665 0 .332-.248.609-.567.657l-.098.007h-.407v8.837l1.039-.252.354 1.28-1.393.338v4.66H27.67v-4.33l-3.96.959a.666.666 0 01-.818-.464.667.667 0 01.371-.784l.093-.033.906-.22-.001-.012v-9.98h-.407a.666.666 0 01-.665-.663c0-.333.247-.61.567-.658l.098-.007h1.03l.05-.005zm-5.142 0c.685 0 1.254.524 1.322 1.19l.007.135v8.27a2.662 2.662 0 01-2.474 2.643l-.185.007h-.231v-1.325h.231l.136-.007a1.333 1.333 0 001.187-1.183l.007-.135V5.301a.656.656 0 00-.566-.655l-.1-.007h-1.706v14.866h-1.33V4.109c0-.404.306-.74.698-.789l.1-.006h2.904zm20.699 0c.686 0 1.254.524 1.323 1.19l.007.135v8.27a2.662 2.662 0 01-2.475 2.643l-.184.007h-.232v-1.325h.232l.135-.007a1.333 1.333 0 001.187-1.183l.007-.135V5.302a.656.656 0 00-.565-.656l-.1-.007h-1.707v14.866h-1.33V4.109c0-.404.306-.74.699-.789l.1-.006h2.903zM14.566 2.48c.365 0 .664.3.664.664 0 .333-.247.61-.566.657l-.098.008-3.035.69v8.15l2.348-.575.014-.438c.005-.22.007-.392.007-.485V5.994a.665.665 0 011.323-.099l.007.1v5.429c-.04 2.16-.385 3.988-1.05 5.3-.608 1.125-1.657 1.95-2.994 2.605l-.29.138-.678-1.1c1.356-.65 2.313-1.51 2.871-2.57a8.875 8.875 0 00.518-1.612l.084-.38.04-.327-2.686.659a.666.666 0 01-.803-.487l-.015-.097-.015-9.57c0-.331.247-.609.567-.657l.098-.007 3.69-.839zm20.7 0c.365 0 .664.3.664.664 0 .333-.247.61-.567.657l-.098.008-3.035.69.001 8.15 2.347-.575.012-.348c.006-.216.008-.394.01-.51V5.994a.665.665 0 011.322-.099l.008.1v5.429c-.04 2.16-.386 3.988-1.05 5.3-.609 1.125-1.657 1.95-2.994 2.605l-.291.138-.678-1.1c1.356-.65 2.313-1.51 2.872-2.57a8.875 8.875 0 00.517-1.612l.084-.38.04-.327-2.686.659a.666.666 0 01-.803-.487l-.015-.097-.014-9.57c0-.331.247-.609.566-.657l.098-.007 3.69-.839zM6.971 11.569H4.926v2.741l2.046-.495v-2.246zm20.699 0h-2.046v2.741l2.046-.495v-2.246zm-20.7-3.46H4.927v2.131h2.046V8.108zm20.7 0h-2.046v2.131h2.046V8.108zM6.97 4.647H4.927V6.78h2.046V4.648zm20.7 0h-2.046V6.78h2.046V4.648z"></path></svg></i>
+				</div>
+				<div class="src-pages-ChatWindow-index__operator-wrapper--Wcn9j">
+					<div
+						class="src-pages-ChatWindow-index__operator-item-wrapper--2_9Si">
+						<div class="">
+							<i
+								class="_3kEAcT1Mk5 src-pages-ChatWindow-index__hide-dialog--1STCP src-pages-ChatWindow-index__operator-item--JM24S"><svg
+									xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
+									class="chat-icon">
+									<path
+										d="M14 1a1 1 0 011 1v12a1 1 0 01-1 1H9v-1h5V2H9V1h5zM2 13v1h1v1H2a1 1 0 01-.993-.883L1 14v-1h1zm6 1v1H4v-1h4zM2 3.999V12H1V3.999h1zm5.854 1.319l2.828 2.828a.5.5 0 010 .708l-2.828 2.828a.5.5 0 11-.708-.707L9.121 9H4.5a.5.5 0 010-1h4.621L7.146 6.025a.5.5 0 11.708-.707zM3 1v1H2v.999H1V2a1 1 0 01.883-.993L2 1h1zm5 0v1H4V1h4z"></path></svg></i>
+						</div>
+					</div>
+					<div
+						class="src-pages-ChatWindow-index__operator-item-wrapper--2_9Si">
+						<div class="">
+							<i
+								class="_3kEAcT1Mk5 src-pages-ChatWindow-index__minimize--3dPxE src-pages-ChatWindow-index__operator-item--JM24S"><svg
+									viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
+									class="chat-icon">
+									<path
+										d="M14 1a1 1 0 011 1v12a1 1 0 01-1 1H2a1 1 0 01-1-1V2a1 1 0 011-1h12zm0 1H2v12h12V2zm-2.904 5.268l-2.828 2.828a.5.5 0 01-.707 0L4.732 7.268a.5.5 0 11.707-.707l2.475 2.475L10.39 6.56a.5.5 0 11.707.707z"></path></svg></i>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="src-pages-ChatWindow-index__windows--3KL4n">
+				<div class="src-pages-ChatWindow-index__details--3uIPO">
+					<div class="src-pages-ChatWindow-index__blank--2pLm1">
+	<div id="messagesArea" class="panel message-area" style="width:250px; height:350px;"></div>
+					</div>
+				</div>
+				<div class="src-pages-ConversationLists-index__root--3_OYj">
+				<div id="row"></div>
+				</div>
+			</div>
+		</div>
+		<div class="ReactModalPortal"></div>
+	</div>
+	
 </body>
 <script>
 	var MyPoint = "/FriendWS/${mem_name}";
@@ -143,5 +227,6 @@
 	function updateFriendName(name) {
 		statusOutput.innerHTML = name;
 	}
+	
 </script>
 </html>
