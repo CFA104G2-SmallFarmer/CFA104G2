@@ -6,18 +6,10 @@
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 <!-- 尚未加入儲存更新、刪除， -->
 <%
-    MemService memSvc = new MemService();
-    List<MemVO> list = memSvc.getAll();
+    FMemService fMemSvc = new FMemService();
+    List<FMemVO> list = fMemSvc.getAll();
     pageContext.setAttribute("list",list);
-    MemVO memVO = (MemVO) request.getAttribute("memVO");
 %>
-<%
-FMemService fMemSvc = new FMemService();
-List<FMemVO> list2 = fMemSvc.getAll();
-pageContext.setAttribute("list2",list2);
-FMemVO fMemVO = (FMemVO) request.getAttribute("fMemVO");
-%>
-
 
 <html class="TW" style="overflow: scroll;">
 
@@ -51,7 +43,11 @@ FMemVO fMemVO = (FMemVO) request.getAttribute("fMemVO");
       .resize-triggers > div { background: #eee; overflow: auto; }
       .contract-trigger:before { width: 200%; height: 200%; }
 </style>
-
+<style>
+.showhand {
+	cursor: pointer;
+}
+</style>
 <script type="text/javascript">
 	window.performanceHTMLStartTime = Date.now(), performance.clearMarks(),
 			performance.mark("index.begin")
@@ -89,6 +85,58 @@ FMemVO fMemVO = (FMemVO) request.getAttribute("fMemVO");
 	src="chrome-extension://jhffgcfmcckgmioipfnmbannkpncfipo/util.js"></script>
 <script
 	src="chrome-extension://jhffgcfmcckgmioipfnmbannkpncfipo/pagejs.js"></script>
+	<!-- 我加的 -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>	
+<script>
+	$(document).ready(function() {
+		$("#changeadd70000").click(function() {
+			$("#address70000").toggle("slow");
+		});
+	});
+
+	$(document).ready(function() {
+		$("#changeadd70001").click(function() {
+			$("#address70001").toggle("slow");
+		});
+	});
+
+	$(document).ready(function() {
+		$("#changeadd70002").click(function() {
+			$("#address70002").toggle("slow");
+		});
+	});
+	
+	$(document).ready(function() {
+		$("#changeadd70003").click(function() {
+			$("#address70003").toggle("slow");
+		});
+	});
+	
+	$(document).ready(function() {
+		$("#changeadd70004").click(function() {
+			$("#address70004").toggle("slow");
+		});
+	});
+	
+	$(document).ready(function() {
+		$("#changeadd70005").click(function() {
+			$("#address70005").toggle("slow");
+		});
+	});
+	
+	$(document).ready(function() {
+		$("#changeadd70006").click(function() {
+			$("#address70006").toggle("slow");
+		});
+	});
+	
+	$(document).ready(function() {
+		$("#changeadd70007").click(function() {
+			$("#address70007").toggle("slow");
+		});
+	});
+	
+</script>
 </head>
 
 <body style="overflow: visible;" class=" route-index route-portal-sale route-portal-sale-order route-portal-sale-order">
@@ -108,17 +156,17 @@ FMemVO fMemVO = (FMemVO) request.getAttribute("fMemVO");
 														<div class="shopee-tabs__nav-tabs"
 															style="transform: translateX(0px);">
 															
-															<div class="shopee-tabs__nav-tab active"
+															<div class="shopee-tabs__nav-tab"
 																style="white-space: normal;">
 																<div data-v-ddf12cca="" class="tab-label">
-																	<span data-v-ddf12cca="" style="color:#717d34; font-size:20px">一般會員</span>
+																	<span data-v-ddf12cca="" class="tab-label" style="font-size:20px;">一般會員</span>
 																</div>
 															</div>
 															
-															<div class="shopee-tabs__nav-tab"
+															<div class=" shopee-tabs__nav-tab active"
 																style="white-space: normal;">
-																<div data-v-ddf12cca="" class="tab-label" style="font-size:20px">
-																	<span data-v-ddf12cca="">小農會員</span>
+																<div data-v-ddf12cca="" >
+																	<span data-v-ddf12cca="" style="color:#717d34; font-size:20px">小農會員</span>
 																</div>
 															</div>
 															
@@ -151,7 +199,7 @@ FMemVO fMemVO = (FMemVO) request.getAttribute("fMemVO");
 								<div data-v-550e8c91="" class="fulfillment-order-page-content">
 									<div data-v-acb72a84="" data-v-550e8c91="" class="order-list">
 										<!---->
-									<form METHOD="post" ACTION="mem.do">
+									<form METHOD="post" ACTION="fMem.do">
 										<div data-v-acb72a84="" class="padding-wrap">
 											<div data-v-54562b84="" data-v-acb72a84="" class="order-search-pannel order-search-panel order-search-pannel-inline order-search-improve">												<div data-v-4325ccd1="" data-v-54562b84=""
 													class="order-search-container">
@@ -160,7 +208,7 @@ FMemVO fMemVO = (FMemVO) request.getAttribute("fMemVO");
 															<div data-v-4325ccd1="" class="search-prepend shopee-select" data-v-2449cb06="">
 																<div class="shopee-selector" style="display: flex; justify-content: center; align-items: center; background-color: #eff8ec ">
 																	
-																	<div><b>會員編號</b></div>
+																	<div><b>小農編號</b></div>
 																	
 																</div>
 															</div>
@@ -170,9 +218,9 @@ FMemVO fMemVO = (FMemVO) request.getAttribute("fMemVO");
 																	<div data-v-5af42b48="" class="shopee-input order-search-btn">
 																		<div class="shopee-input__inner shopee-input__inner--normal">
 																			<!---->
-																			<input type="text" placeholder="請輸入會員編號" clearable="true" 
+																			<input type="text" placeholder="請輸入小農編號" clearable="true" 
 																			resize="vertical" rows="2" minrows="2" maxlength="50" restrictiontype="input" 
-																			max="Infinity" min="-Infinity" class="shopee-input__input" name="mem_id">
+																			max="Infinity" min="-Infinity" class="shopee-input__input" name="f_mem_id">
 																			<input type="hidden" name="action" value="getOne_For_Display">
 																		</div>
 																	</div>
@@ -201,14 +249,14 @@ FMemVO fMemVO = (FMemVO) request.getAttribute("fMemVO");
 												<div data-v-dff31658="" data-v-a414b804="" class="shopee-fixed-top-card">
 													<div data-v-dff31658="" class="fixed-container" style="top: 112px; z-index: 999;">
 														<div data-v-a414b804="" data-v-dff31658="" class="order-list-header outer" style="background-color: #eff9ec; font-size:16px; font-weight:bold">
-															<span data-v-a414b804="" data-v-dff31658="" class="" style="width:90px;">會員編號</span> <!-- 用item-action統一寬度 -->
-															<span data-v-a414b804="" data-v-dff31658="" class="" style="width:80px;">頭像</span> 
-															<span data-v-a414b804="" data-v-dff31658="" class="" style="width:230px;">帳號</span> 
-															<span data-v-a414b804="" data-v-dff31658="" class="" style="width:90px;">姓名</span>
+															<span data-v-a414b804="" data-v-dff31658="" class="" style="width:90px;">小農編號</span> <!-- 用item-action統一寬度 -->
+															<span data-v-a414b804="" data-v-dff31658="" class="" style="width:80px;">小農頭像</span> 
+															<span data-v-a414b804="" data-v-dff31658="" class="" style="width:230px;">小農帳號</span> 
+															<span data-v-a414b804="" data-v-dff31658="" class="" style="width:90px;">農場名稱</span>
 															<span data-v-a414b804="" data-v-dff31658="" class="" style="width:120px;">行動電話</span>
 															<span data-v-a414b804="" data-v-dff31658="" class="" style="width:110px;">加入時間</span> 
-															<span data-v-a414b804="" data-v-dff31658="" class="" style="width:90px;">帳號狀態</span>
-															<span data-v-a414b804="" data-v-dff31658="" class="" style="width:80px;">小農身份</span>
+															<span data-v-a414b804="" data-v-dff31658="" class="" style="width:100px;">帳號狀態</span>
+															<span data-v-a414b804="" data-v-dff31658="" class="" style="width:100px;">認證狀態</span>
 														</div>
 													</div>
 													
@@ -217,70 +265,100 @@ FMemVO fMemVO = (FMemVO) request.getAttribute("fMemVO");
 												
 
 											<%@ include file="page1.file" %> 
-											<c:forEach var="memVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-											<FORM METHOD="post" ACTION="mem.do" name="form1">
-											<input type="hidden" name="mem_id"  value="${memVO.mem_id}"><!-- 這裡可調整 -->
+											<c:forEach var="fMemVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+											<FORM METHOD="post" ACTION="fMem.do" name="form1">
+											<input type="hidden" name="f_mem_id"  value="${fMemVO.f_mem_id}"><!-- 這裡可調整 -->
+											<input type="hidden" name="actionpic"  value="f_mem_pic">
 												<div data-v-a414b804="" data-v-dff31658="" class="order-list-header outer" style="background-color:; font-size:16px; font-weight:bold">
-															<span data-v-a414b804="" data-v-dff31658="" class="" style="width:90px;">${memVO.mem_id}</span> <!-- 用item-action統一寬度 -->
+															<span data-v-a414b804="" data-v-dff31658="" class="" style="width:90px;">${fMemVO.f_mem_id}</span> <!-- 用item-action統一寬度 -->
 															<span data-v-a414b804="" data-v-dff31658="" class="" style="width:80px;">
-																	<!-- *************以下區使用MemGifReader查詢圖片(有問題) *************-->
+																	<!-- *************以下區使用FMemGifReader查詢圖片(有問題) *************-->
 																<div data-v-1274329c="" class="">
                                       								<div data-v-3eef092e="" data-v-1274329c="" class="order-view-item order-view-item--small" highlight-return-item="" order-pre-order-flag="">
                                        									<div data-v-3eef092e="" class="order-product-list">
                                          									<div data-v-3eef092e="" class="order-product-wrapper normal-wrapper">
-                                         										<img data-v-3eef092e="" src="<%= request.getContextPath() %>/MemGifReader?mem_id=${memVO.mem_id}" class="item-images" style=" margin: auto;" >
+                                         										<img data-v-3eef092e="" src="<%= request.getContextPath() %>/FMemGifReader?f_mem_id=${fMemVO.f_mem_id}&actionpic=f_mem_pic" class="item-images" style=" margin: auto;" >
                                         									</div>
                                      	 								</div>
                                     										</div>
 																		</div>
 																	<!-- *************以上區使用MemGifReader查詢圖片************* -->
 															</span>
-															<span data-v-a414b804="" data-v-dff31658="" class="" style="width:230px;">${memVO.mem_acc}</span> 
-															<span data-v-a414b804="" data-v-dff31658="" class="" style="width:90px;">${memVO.mem_name}</span>
-															<span data-v-a414b804="" data-v-dff31658="" class="" style="width:120px;">${memVO.mem_mobile}</span>
-															<span data-v-a414b804="" data-v-dff31658="" class="" style="width:110px;">${memVO.reg_date}</span> 
-															<span data-v-a414b804="" data-v-dff31658="" class="" style="width:90px;">
+															<span data-v-a414b804="" data-v-dff31658="" class="" style="width:230px;">${fMemVO.f_mem_acc}</span> 
+															<span data-v-a414b804="" data-v-dff31658="" class="" style="width:90px;">${fMemVO.f_mem_fname}</span>
+															<span data-v-a414b804="" data-v-dff31658="" class="" style="width:120px;">${fMemVO.f_mem_mobile}</span>
+															<span data-v-a414b804="" data-v-dff31658="" class="" style="width:110px;">${fMemVO.reg_date}</span> 
+															<span data-v-a414b804="" data-v-dff31658="" class="" style="width:100px;">
 																<div data-v-883305fa="" class="order-list-filter-item shopee-select is-show">
 																	<div data-v-883305fa="" class="shopee-select">
 																		<select data-v-2449cb06="" tabindex="0" class="shopee-selector shopee-selector--normal shopee-select__options"
 																		name="acc_state" style="background: #eff9ec 0px 0px; color: #ffffff; font-size: 14px;padding:0;width:88px; height:32px; color:rgb(128, 140, 153);"><!-- 名字在這 -->
 																			<option class="shopee-option" value="0">未驗證</option>
-																			<option class="shopee-option" value="1" <c:if test="${memVO.acc_state == 1}">selected</c:if>>已驗證</option>
-																			<option class="shopee-option" value="2" <c:if test="${memVO.acc_state == 2}">selected</c:if>>停權</option>
+																			<option class="shopee-option" value="1" <c:if test="${fMemVO.acc_state == 1}">selected</c:if>>已驗證</option>
+																			<option class="shopee-option" value="2" <c:if test="${fMemVO.acc_state == 2}">selected</c:if>>停權</option>
 																		</select>
 																	</div>
 																</div>
 															</span>
-															<span data-v-a414b804="" data-v-dff31658="" class="" style="width:90px;">
-																<div data-v-1274329c="" class="">
-                                      								<div data-v-3eef092e="" data-v-1274329c="" class="order-view-item order-view-item--small" highlight-return-item="" order-pre-order-flag="">
-                                       									<div data-v-3eef092e="" class="order-product-list">
-                                         									<div data-v-3eef092e="" class="">
-                                         												<!-- 將數字轉換為驗證文字 -->
-																				<c:choose>
-																					<c:when test="${memVO.mem_id_state eq 1}">
-																					<a style="cursor: pointer;" href="<%=request.getContextPath() %>/back-end/fMem/listOneFMem.jsp?f_mem_id=<c:forEach var="fMemVO" items="${list2}"><c:if test="${fMemVO.mem_id==memVO.mem_id}">${fMemVO.f_mem_id}</c:if></c:forEach>">
-																					<img onclick="sendName();" data-v-3eef092e="" src="../mem/images/mem_id_state.png" style="width:30px; margin: auto;">
-																					</a>
-																					</c:when>
-																				</c:choose>
-                                        									</div>
-                                     	 								</div>
-                                    								</div>
+															<span data-v-a414b804="" data-v-dff31658="" class="" style="width:100px;">
+																<div data-v-883305fa="" class="order-list-filter-item shopee-select is-show">
+																	<div data-v-883305fa="" class="shopee-select">
+																		<select data-v-2449cb06="" tabindex="0" class="shopee-selector shopee-selector--normal shopee-select__options"
+																		name="certi_state" style="background: #eff9ec 0px 0px; color: #ffffff; font-size: 14px;padding:0;width:88px; height:32px; color:rgb(128, 140, 153);"><!-- 名字在這 -->
+																			<option class="shopee-option" value="0">無認證</option>
+																			<option class="shopee-option" value="1" <c:if test="${fMemVO.certi_state == 1}">selected</c:if>>有機認證</option>
+																			<option class="shopee-option" value="2" <c:if test="${fMemVO.certi_state == 2}">selected</c:if>>友善環境認證</option>
+																			<option class="shopee-option" value="3" <c:if test="${fMemVO.certi_state == 3}">selected</c:if>>皆有認證</option>
+																		</select>
+																	</div>
 																</div>
 															</span>
-																			<!--確認後待刪除 -->
+						<!--確認後待刪除 -->
 <!-- 															<div data-v-4325ccd1="" class="order-search-buttons" > -->
 <!-- 																<button data-v-4325ccd1="" type="button" class="search-btn shopee-button shopee-button--primary shopee-button--normal"  -->
 <!-- 																	style="background-color:#64A600 ;border:#64A600"> -->
 <!-- 																	<span> 儲存 </span> -->
 <!-- 																</button> -->
 <!-- 															</div> -->
-															
+																<span class="_2CLMxo showhand" id="changeadd${fMemVO.f_mem_id}">查看</span>
 			     												<input data-v-4325ccd1="" type="submit" value="送出修改" class="search-btn shopee-button shopee-button--primary shopee-button--normal" style="background-color:#64A600 ;border:#64A600">
 	
-			     												<input type="hidden" name="action"	value="updateAccState">
+			     												<input type="hidden" name="action"	value="updateAccCer">
 			     											
+												</div>
+												<div id=address${fMemVO.f_mem_id} style="display:none">
+													<div data-v-a414b804="" data-v-dff31658="" class="order-list-header outer" style="background-color:#eff8ec; font-size:16px; font-weight:bold">
+														<span data-v-a414b804="" data-v-dff31658="" class="" style="width:1000px;">
+																	<!-- *************以下區使用FMemGifReader查詢圖片(有問題) *************-->
+																<div data-v-1274329c="" class="">
+                                      								<div data-v-3eef092e="" data-v-1274329c="" class="order-view-item order-view-item--medium" highlight-return-item="" order-pre-order-flag="">
+                                       									<div data-v-3eef092e="" class="order-product-list">
+                                         									<div data-v-3eef092e="" class="order-product-wrapper normal-wrapper is-show">
+                                         										<span data-v-a414b804="" data-v-dff31658="" class="" style="width:140px;">有機認證照片</span><br>
+                                         										<img data-v-3eef092e="" src="<%= request.getContextPath() %>/FMemGifReader?f_mem_id=${fMemVO.f_mem_id}&actionpic=organic_certi" class="item-images" style=" margin:20 20 20 20; width:500px;" >
+                                        									</div>
+                                     	 								</div>
+                                    								</div>
+																</div>
+																	<!-- *************以上區使用MemGifReader查詢圖片************* -->
+														</span>
+													</div>
+												<div data-v-a414b804="" data-v-dff31658="" class="order-list-header outer" style="background-color:#eff8ec; font-size:16px; font-weight:bold">
+														<span data-v-a414b804="" data-v-dff31658="" class="" style="width:1000px;">
+																	<!-- *************以下區使用FMemGifReader查詢圖片(有問題) *************-->
+																<div data-v-1274329c="" class="">
+                                      								<div data-v-3eef092e="" data-v-1274329c="" class="order-view-item order-view-item--medium" highlight-return-item="" order-pre-order-flag="">
+                                       									<div data-v-3eef092e="" class="order-product-list">
+                                         									<div data-v-3eef092e="" class="order-product-wrapper normal-wrapper is-show">
+                                         										<span data-v-a414b804="" data-v-dff31658="" class="" style="width:140px;">友善環境認證照片</span><br>
+                                         										<img data-v-3eef092e="" src="<%= request.getContextPath() %>/FMemGifReader?f_mem_id=${fMemVO.f_mem_id}&actionpic=env_friendly_certi" class="item-images" style=" margin:20 20 20 20; width:500px;" >
+                                        									</div>
+                                     	 								</div>
+                                    								</div>
+																</div>
+																	<!-- *************以上區使用MemGifReader查詢圖片************* -->
+														</span>
+													</div>
 												</div>
 											</FORM>
 											</c:forEach>
@@ -297,22 +375,6 @@ FMemVO fMemVO = (FMemVO) request.getAttribute("fMemVO");
 		</div>
 	</div>
 </div>
-<!-- 我加的 -->
-    <script>
-	var inputUserName = document.getElementById("userName");
-	inputUserName.focus();
-	
-	function sendName() {
-		var userName = inputUserName.value.trim();
-		if (userName === "") {
-			alert("Input a user name");
-			inputUserName.focus();
-			return;
-		} else {
-			document.getElementById("myForm").submit();
-		}
-	}
-</script>
 </body>
 
 </html>

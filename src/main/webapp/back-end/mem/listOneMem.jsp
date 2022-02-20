@@ -176,7 +176,6 @@
 							<div data-v-a414b804="" data-v-acb72a84=""
 											class="order-list-pannel">
 											<div data-v-a414b804="" class="order-list-section">
-											<div data-v-a414b804="" class="order-list-section">
 												<div data-v-dff31658="" data-v-a414b804="" class="shopee-fixed-top-card">
 													<div data-v-dff31658="" class="fixed-container" style="top: 112px; z-index: 999;">
 														<div data-v-a414b804="" data-v-dff31658="" class="order-list-header outer" style="background-color: #eff9ec; font-size:16px; font-weight:bold">
