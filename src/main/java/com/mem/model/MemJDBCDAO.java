@@ -13,7 +13,18 @@ public class MemJDBCDAO implements MemDAO_interface {
 	String url = "jdbc:mysql://localhost:3306/CFA104G2?serverTimezone=Asia/Taipei";
 	String userid = "root";
 	String passwd = "password";
-
+	
+	/*=========   yupei 區域    ========*/
+	private static final String UPDATE_PWD_BY_MEM_ACC=
+			"UPDATE mem set mem_pwd=? WHERE mem_acc = ?";
+	
+	private static final String FIND_USER_BY_MEM_ACC=
+			"SELECT* FROM MEM WHERE MEM_ACC=?";
+	
+	private static final String REGISTER_STMT = 
+			"INSERT INTO mem (mem_acc, mem_pwd, mem_nickname,reg_date) VALUES( ?, ?, ?,NOW())";
+	/*===================================*/
+	
 	private static final String INSERT_STMT = 
 		"INSERT INTO mem ("
 		+ "	mem_acc, mem_pwd, acc_state, mem_name, mem_nickname, "
@@ -50,6 +61,190 @@ public class MemJDBCDAO implements MemDAO_interface {
 	private static final String UPDATEIDACCSTATE = 
 			"UPDATE mem set mem_id_state=? WHERE mem_id = ?";
 
+	@Override
+	public void updatePWD_ByMem_acc(MemVO memVO) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(UPDATE_PWD_BY_MEM_ACC);
+
+			pstmt.setString(1, memVO.getMem_pwd());
+			pstmt.setString(2, memVO.getMem_acc());
+			pstmt.executeUpdate();
+			System.out.println(memVO.getMem_pwd());
+			System.out.println(memVO.getMem_acc());
+			System.out.println("mem JDBC updatePWD_ByMem_acc");
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+
+	}
+
+
+
+
+
+
+	@Override
+	public MemVO findUserByMem_acc(String mem_acc) {
+		MemVO memVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(FIND_USER_BY_MEM_ACC);
+
+			pstmt.setString(1, mem_acc);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				memVO = new MemVO();
+				memVO.setMem_id(rs.getInt("mem_id"));
+				memVO.setMem_acc(rs.getString("mem_acc"));
+				memVO.setMem_pwd(rs.getString("mem_pwd"));
+				memVO.setAcc_state(rs.getInt("acc_state"));
+				memVO.setMem_name(rs.getString("mem_name"));
+				memVO.setMem_nickname(rs.getString("mem_nickname"));
+				memVO.setMem_mobile(rs.getString("mem_mobile"));
+				memVO.setMem_tel(rs.getString("mem_tel"));
+				memVO.setMem_zipcode(rs.getInt("mem_zipcode"));
+				memVO.setMem_city(rs.getString("mem_city"));
+				memVO.setMem_dist(rs.getString("mem_dist"));
+				memVO.setMem_addr(rs.getString("mem_addr"));
+				memVO.setReg_date(rs.getDate("reg_date"));
+				memVO.setMem_pic(rs.getBytes("mem_pic"));
+				memVO.setRating_score_mk(rs.getInt("rating_score_mk"));
+				memVO.setRating_count_mk(rs.getInt("rating_count_mk"));
+				memVO.setRating_score_tr(rs.getInt("rating_score_tr"));
+				memVO.setRating_count_tr(rs.getInt("rating_count_tr"));
+				memVO.setReport_count(rs.getInt("report_count"));
+				memVO.setMem_id_state(rs.getInt("mem_id_state"));
+			}	
+				
+
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return memVO;
+	}
+		
+		
+		
+		
+		
+
+	@Override
+	public void register(MemVO memVO) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(REGISTER_STMT);
+
+			pstmt.setString(1, memVO.getMem_acc());
+			pstmt.setString(2, memVO.getMem_pwd());
+			pstmt.setString(3, memVO.getMem_nickname());
+
+			pstmt.executeUpdate();
+
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+
+	}	
+	
+	
+	
+	
+	
+	
+	
+	
 	@Override
 	public void insert(MemVO memVO) {
 

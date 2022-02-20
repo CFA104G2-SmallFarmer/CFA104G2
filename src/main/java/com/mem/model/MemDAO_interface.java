@@ -13,4 +13,10 @@ public interface MemDAO_interface {
           public List<MemVO> getAll();
           //萬用複合查詢(傳入參數型態Map)(回傳 List)
         public List<MemVO> getAll(Map<String, String[]> map); 
+        
+        /*=========   yupei 區域    ========*/
+        public void updatePWD_ByMem_acc(MemVO memVO);
+        public MemVO findUserByMem_acc(String mem_acc);
+        public void register(MemVO memVO);
+        /*===================================*/
 }

@@ -12,6 +12,37 @@ public class MemService {
 	public MemService() {
 		dao = new MemJDBCDAO();
 	}
+	/*=========   yupei 區域    ========*/
+	// 專門修改密碼
+		public MemVO updatePWD_ByMem_acc(String mem_pwd, String mem_acc) {
+
+			MemVO memVO = new MemVO();
+			memVO.setMem_pwd(mem_pwd);
+			memVO.setMem_acc(mem_acc);
+			dao.updatePWD_ByMem_acc(memVO);
+			System.out.println("mem service updatePWD_ByMem_acc");
+			return memVO;
+		}
+		
+		
+		public MemVO findUserByMem_acc(String mem_acc) {
+			return dao.findUserByMem_acc(mem_acc);
+		}
+		
+		public MemVO registerMem(String mem_acc, String mem_pwd,String mem_nickname) {
+			MemVO memVO = new MemVO();
+			
+			memVO.setMem_acc(mem_acc);
+			memVO.setMem_pwd(mem_pwd);
+			memVO.setMem_nickname(mem_nickname);
+
+			dao.register(memVO);
+			return memVO;
+		}
+		/*===================================*/
+	
+	
+	
 
 	public MemVO addMem(String mem_acc, String mem_pwd, Integer acc_state, String mem_name, 
 						String mem_nickname, String mem_mobile, String mem_tel, Integer mem_zipcode,

@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import com.mem.model.GenerateLinkUtils;
+import com.mem.model.MailService;
 import com.mem.model.MemService;
 import com.mem.model.MemVO;
 @MultipartConfig
@@ -356,7 +358,288 @@ req.setAttribute("memVO", memVO); // 含有輸入格式錯誤的memVO物件,也�
 //				failureView.forward(req, res);
 //			}
 //		}
-//		
+
+		
+		
+		/*=================================================*/
+		/*=========         yupei 區域   register   ========*/
+		/*=================================================*/	
+		        if ("register".equals(action)) { // 來自addEmp.jsp的請求  
+					
+					List<String> errorMsgs = new LinkedList<String>();
+					// Store this set in the request scope, in case we need to
+					// send the ErrorPage view.
+					req.setAttribute("errorMsgs", errorMsgs);
+
+					try {
+						
+						MemService memSvc=new MemService();
+						
+						/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
+						String mem_nickname = req.getParameter("mem_nickname");
+						String mem_acc = req.getParameter("mem_acc");
+						if (mem_acc != null && memSvc.findUserByMem_acc(mem_acc) != null) {
+							errorMsgs.add("該用戶已註冊過!");
+							
+						}
+
+
+						String mem_pwd = req.getParameter("mem_pwd");
+
+
+						MemVO memVO = new MemVO();
+						memVO.setMem_nickname(mem_nickname);
+						memVO.setMem_acc(mem_acc);
+						memVO.setMem_pwd(mem_pwd);
+
+						// Send the use back to the form, if there were errors
+						if (!errorMsgs.isEmpty()) {
+		req.setAttribute("memVO", memVO); // 含有輸入格式錯誤的empVO物件,也存入req
+							RequestDispatcher failureView = req
+									.getRequestDispatcher("/front-end/mem/addMemByMem.jsp");
+							failureView.forward(req, res);
+							return;
+						}
+						
+						/***************************2.開始新增資料***************************************/
+						MemService memSvc2 = new MemService();
+						MemVO memVO1 = memSvc2.registerMem(mem_acc, mem_pwd, mem_nickname);
+						MemVO memVO2 = memSvc2.findUserByMem_acc(memVO1.getMem_acc());
+						// 注册成功后,发送帐户激活链接
+						MailService.sendAccountActivateEmail(memVO2);
+						/***************************3.新增完成,準備轉交(Send the Success view)***********/
+						String url = "/front-end/mem/success_addMem_page.jsp";
+						RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+						successView.forward(req, res);				
+						
+						/***************************其他可能的錯誤處理**********************************/
+					} catch (Exception e) {
+						errorMsgs.add(e.getMessage());
+						RequestDispatcher failureView = req
+								.getRequestDispatcher("/front-end/mem/addMemByMem.jsp");
+						failureView.forward(req, res);
+					}
+				}
+		        
+		/*=================================================*/
+		/*=========         yupei 區域   ActivateAccount ===*/
+		/*=================================================*/  
+		        
+				if ("ActivateAccount".equals(action)) { // 來自listAllEmp.jsp
+
+					List<String> errorMsgs = new LinkedList<String>();
+					// Store this set in the request scope, in case we need to
+					// send the ErrorPage view.
+					req.setAttribute("errorMsgs", errorMsgs);
+			
+					try {
+						/***************************1.接收請求參數***************************************/
+						
+						String idValue = req.getParameter("mem_id");
+						int mem_id = -1;
+						try {
+							mem_id = Integer.parseInt(idValue);
+						} catch (NumberFormatException e) {
+							throw new RuntimeException("無效的用戶！");
+						}
+						
+						
+						/***************************2.開始刪除資料***************************************/
+						MemService memSvc = new MemService();		
+						MemVO memVO = memSvc.getOneMem(mem_id);// 得到要激活的帐户
+
+						if(GenerateLinkUtils.verifyCheckcode(memVO, req)){
+							// 校验验证码是否和注册时发送的一致，以此设置是否激活该帐户
+							 //如果一致返回true，否则返回false
+							memSvc.updateMemAccState(mem_id, 1);
+							
+						}else {
+							errorMsgs.add("驗證失敗");
+							
+						}
+
+						/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
+						String url = "/front-end/mem/success_email_activated_page.jsp";
+						RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
+						successView.forward(req, res);
+						
+						/***************************其他可能的錯誤處理**********************************/
+					} catch (Exception e) {
+						errorMsgs.add("有錯誤發生:"+e.getMessage());
+						RequestDispatcher failureView = req
+								.getRequestDispatcher("/front-end/mem/addMemByMem.jsp");
+						failureView.forward(req, res);
+					}
+				}
+				
+				
+		/*===========================================================*/
+		/*=========         yupei 區域   send_resetPWD_mail_ByMem ===*/
+		/*==========================================================*/ 
+				
+		        if ("send_resetPWD_mail_ByMem".equals(action)) { // 來自addEmp.jsp的請求  
+					
+					List<String> errorMsgs = new LinkedList<String>();
+					// Store this set in the request scope, in case we need to
+					// send the ErrorPage view.
+					req.setAttribute("errorMsgs", errorMsgs);
+
+					try {			
+						MemService memSvc = new MemService();
+						/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
+
+						String mem_acc = req.getParameter("mem_acc");
+						if (mem_acc == null || memSvc.findUserByMem_acc(mem_acc) == null) {
+							errorMsgs.add("該用戶未註冊過! 請輸入正確信箱");
+						}
+
+						MemVO memVO = new MemVO();
+
+						memVO.setMem_acc(mem_acc);
+
+
+						// Send the use back to the form, if there were errors
+						if (!errorMsgs.isEmpty()) {
+							req.setAttribute("memVO", memVO); // 含有輸入格式錯誤的empVO物件,也存入req
+							RequestDispatcher failureView = req
+									.getRequestDispatcher("/front-end/mem/go_to_send_resetPWD_mail_ByMem.jsp");
+							failureView.forward(req, res);
+							return;
+						}
+						
+						/***************************2.開始新增資料***************************************/
+						MemService memSvc2 = new MemService();
+
+						MemVO memVO2 = memSvc2.findUserByMem_acc(mem_acc);
+						// 注册成功后,发送帐户激活链接
+						MailService.sendResetPasswordEmail(memVO2);
+						/***************************3.新增完成,準備轉交(Send the Success view)***********/
+						String url = "/front-end/mem/success_send_resetPWD_email_ByMem_page.jsp";
+						RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+						successView.forward(req, res);				
+						
+						/***************************其他可能的錯誤處理**********************************/
+					} catch (Exception e) {
+						errorMsgs.add(e.getMessage());
+						RequestDispatcher failureView = req
+								.getRequestDispatcher("/front-end/mem/go_to_send_resetPWD_mail_ByMem.jsp");
+						failureView.forward(req, res);
+					}
+				}
+				
+		/*===========================================================*/
+		/*=========       yupei 區域   go_to_reset_PWD_page_ByMem ===*/
+		/*==========================================================*/ 		
+				if ("go_to_reset_PWD_page_ByMem".equals(action)) { // 來自listAllEmp.jsp
+
+					List<String> errorMsgs = new LinkedList<String>();
+					// Store this set in the request scope, in case we need to
+					// send the ErrorPage view.
+					req.setAttribute("errorMsgs", errorMsgs);
+			
+					try {
+						
+						System.out.println("進到go_to_reset_PWD_page_ByMem 區域");
+						/***************************1.接收請求參數***************************************/
+						
+						String mem_acc = req.getParameter("mem_acc");
+
+						/***************************2.開始刪除資料***************************************/
+						MemService memSvc2 = new MemService();
+						MemVO memVO2 = memSvc2.findUserByMem_acc(mem_acc);// 得到要重設密碼的帳戶
+
+						if(GenerateLinkUtils.verifyCheckcode(memVO2, req)){
+							System.out.println("go_to_reset_PWD_page_ByMem checkcode是"+(GenerateLinkUtils.verifyCheckcode(memVO2, req)));
+							// 校验验证码是否和申請重設密碼时发送的一致
+							 //如果一致返回true，否则返回false
+
+							req.setAttribute("memVO", memVO2);   
+							System.out.println("有拿到"+memVO2.getMem_acc());
+							String url = "/front-end/mem/resetPWD_ByMem.jsp";
+							RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
+							successView.forward(req, res);
+							System.out.println("成功去resetPWD_ByMem.jsp");
+							return;
+						}else {
+							errorMsgs.add("申請重設密碼失敗");
+							
+						}
+						// Send the use back to the form, if there were errors
+						if (!errorMsgs.isEmpty()) {
+		//req.setAttribute("empVO", empVO); // 含有輸入格式錯誤的empVO物件,也存入req
+							RequestDispatcher failureView = req
+									.getRequestDispatcher("/front-end/mem/addMemByMem.jsp");
+							failureView.forward(req, res);
+							return;
+						}
+					
+
+						/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
+//						String url = "/front-end/mem/success_email_activated_page.jsp";
+//						RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
+//						successView.forward(req, res);
+						
+						/***************************其他可能的錯誤處理**********************************/
+					} catch (Exception e) {
+						errorMsgs.add("有錯誤發生:"+e.getMessage());
+						RequestDispatcher failureView = req
+								.getRequestDispatcher("/front-end/mem/addMemByMem.jsp");
+						failureView.forward(req, res);
+					}
+				}
+				
+		        
+		/*===========================================================*/
+		/*=========       yupei 區域   reset_PWD_ByMem   ============*/
+		/*==========================================================*/
+				if ("reset_PWD_ByMem".equals(action)) { // 來自addEmp.jsp的請求  
+						
+						List<String> errorMsgs = new LinkedList<String>();
+						// Store this set in the request scope, in case we need to
+						// send the ErrorPage view.
+						req.setAttribute("errorMsgs", errorMsgs);
+
+						try {
+							
+							MemService memSvc=new MemService();
+							
+//							memSvc.getOneMem(Integer mem_id)
+							/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
+
+							String mem_acc = req.getParameter("mem_acc");
+							String mem_pwd = req.getParameter("mem_pwd");
+
+		System.out.println("reset_PWD_ByMem 收到"+mem_acc);
+							
+							/***************************2.開始新增資料***************************************/
+							MemService memSvc2 = new MemService();
+							MemVO memVO1 = memSvc2.updatePWD_ByMem_acc(mem_pwd,mem_acc);
+//							MemVO memVO2 = memSvc2.findUserByMem_acc(memVO1.getMem_acc());
+//							// 注册成功后,发送帐户激活链接
+//							MailService.sendAccountActivateEmail(memVO2);
+							/***************************3.新增完成,準備轉交(Send the Success view)***********/
+							String url = "/front-end/mem/success_resetPWD_ByMem_page.jsp";
+							RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+							successView.forward(req, res);				
+							
+							/***************************其他可能的錯誤處理**********************************/
+						} catch (Exception e) {
+							errorMsgs.add(e.getMessage());
+							RequestDispatcher failureView = req
+									.getRequestDispatcher("/front-end/mem/resetPWD_ByMem.jsp");
+							failureView.forward(req, res);
+						}
+					}
+		        
+		
+		
+		
+		
+		
+		
+		
+		
+		
 //		
 //		if ("delete".equals(action)) { // 來自listAllEmp.jsp
 //
