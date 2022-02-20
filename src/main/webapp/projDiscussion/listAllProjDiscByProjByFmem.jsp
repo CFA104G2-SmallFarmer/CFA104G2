@@ -50,7 +50,7 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
 <meta name="csrf-token"
 	content="at7SKlt/ImyGEJPpThvpFsPrcCvpbVMKG6UvAClXNinGclBO6imi1c4uGjybebZDHocPtRijEbgglqNwWft0hA==">
 <script
-	src="<%=request.getContextPath()%>/projDiscussion/discussion1_files/sdk.js.下載"
+	src="<%=request.getContextPath()%>/front-end/projDiscussion/discussion1_files/sdk.js.下載"
 	async="" crossorigin="anonymous"></script>
 
 <!-- jQuery加入這段  -->
@@ -76,17 +76,307 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
 	rel="shortcut icon" type="image/x-icon"> -->
 <title>我家門前有塊地 | ${projectVO.proj_name} |</title>
 <link
-	href="<%=request.getContextPath()%>/projDiscussion/discussion1_files/css"
+	href="<%=request.getContextPath()%>/front-end/projDiscussion/discussion1_files/css"
 	rel="stylesheet" type="text/css">
 <link rel="stylesheet" media="all"
-	href="<%=request.getContextPath()%>/projDiscussion/discussion1_files/zeczec-e9e0ba9825d4b970fff398209948a791b4d18185e43b929ef4ffa0e7e5346248.css">
+	href="<%=request.getContextPath()%>/front-end/projDiscussion/discussion1_files/zeczec-e9e0ba9825d4b970fff398209948a791b4d18185e43b929ef4ffa0e7e5346248.css">
 
+
+<style>
+/*****************************/
+.wrap {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.header {
+padding_top:10px;
+    height: 78px;
+ 
+    position: relative;
+}
+
+.logo {
+    float: left;
+    width: 250px;
+    height: 76px;
+    padding: 5px;
+    /* background: #ffffff; */
+    /* border: 3px solid rgb(255, 216, 157); */
+}
+
+.menu {
+    float: right;
+    font-size: 24px;
+
+}
+
+.menu li {
+    list-style-type: none;
+    float: left;
+    display: inline-block;
+    height: 60px;
+
+}
+
+.menu li a {
+    display: block;
+    color: #717d34;
+    text-decoration: none;
+    padding-left: 1em;
+    padding-right: 0em;
+    padding-top: 0.4em;
+
+}
+
+.menu li a:hover {
+    /* background: #8ca27e; */
+    color: #8ca27e;
+}
+
+/*在pc隱藏漢堡選單,showmenu右上角點擊按鈕*/
+
+.showmenu {
+    display: none;
+    color: #FFCCCC;
+}
+
+/*在手機瀏覽漢堡選單*/
+.div1 {
+    width: 35px;
+    height: 5px;
+    background-color: #aaba8b;
+    margin: 6px 0;
+}
+
+@media (max-width: 767px) {
+    .menu {
+        /*隱藏選單開始*/
+        max-height: 0px;
+        overflow: hidden;
+        /*隱藏選單結束*/
+        transition: max-height 2.3s;
+        margin-top: 1px;
+        /*絕對定位疊在網頁上*/
+        position: absolute;
+        z-index: 100;
+        /*header 80px+1px boder 線條*/
+        top: 81px;
+        left: 0;
+        right: 0;
+        background: #d4e1bb;
+    }
+
+    .menu li {
+
+        list-style-type: none;
+        float: none;
+        border-bottom: 1px dashed #919191;
+        display: inline;
+    }
+
+
+
+    .menu li a {
+        transition: all 0.2s;
+        padding-left: 0em;
+        padding-right: 0em;
+        padding-top: 0.7em;
+        padding-bottom: 0.7em;
+    }
+
+    .menu li a:hover {
+        background: #8ca27e;
+        color: #fff;
+    }
+
+    .showmenu {
+        /* transition: all 0.2s; */
+        display: block;
+        float: right;
+        padding: 20px;
+
+
+    }
+
+    /*jQ點擊後動態在 body 加上 class */
+    .menu-show .menu {
+        max-height: 500px
+    }/*****************************/
+.wrap {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.header {
+padding_top:10px;
+    height: 78px;
+ 
+    position: relative;
+}
+
+.logo {
+    float: left;
+    width: 250px;
+    height: 76px;
+    padding: 5px;
+    /* background: #ffffff; */
+    /* border: 3px solid rgb(255, 216, 157); */
+}
+
+.menu {
+    float: right;
+    font-size: 30px;
+margin-top:20px;
+}
+
+.menu li {
+    list-style-type: none;
+    float: left;
+    display: inline-block;
+    height: 60px;
+   margin-top:20px;
+
+}
+
+.menu li a {
+    display: block;
+    color: #717d34;
+    text-decoration: none;
+    padding-left: 1em;
+    padding-right: 0em;
+    padding-top:0.9em;
+
+} 
+
+.menu li a:hover {
+    /* background: #8ca27e; */
+    color: #8ca27e;
+}
+
+/*在pc隱藏漢堡選單,showmenu右上角點擊按鈕*/
+
+.showmenu {
+    display: none;
+    color: #FFCCCC;
+}
+
+/*在手機瀏覽漢堡選單*/
+.div1 {
+    width: 35px;
+    height: 5px;
+    background-color: #aaba8b;
+    margin: 6px 0;
+}
+
+@media (max-width: 767px) {
+    .menu {
+        /*隱藏選單開始*/
+        max-height: 0px;
+        overflow: hidden;
+        /*隱藏選單結束*/
+        transition: max-height 2.3s;
+        margin-top: 1px;
+        /*絕對定位疊在網頁上*/
+        position: absolute;
+        z-index: 100;
+        /*header 80px+1px boder 線條*/
+        top: 81px;
+        left: 0;
+        right: 0;
+        background: #d4e1bb;
+    }
+
+    .menu li {
+
+        list-style-type: none;
+        float: none;
+        border-bottom: 1px dashed #919191;
+        display: inline;
+    }
+
+
+
+    .menu li a {
+        transition: all 0.2s;
+        padding-left: 0em;
+        padding-right: 0em;
+        padding-top: 0.7em;
+        padding-bottom: 0.7em;
+    }
+
+    .menu li a:hover {
+        background: #8ca27e;
+        color: #fff;
+    }
+
+    .showmenu {
+        /* transition: all 0.2s; */
+        display: block;
+        float: right;
+        padding: 20px;
+
+
+    }
+
+    /*jQ點擊後動態在 body 加上 class */
+    .menu-show .menu {
+        max-height: 500px
+    }
 </style>
 </head>
 <!-- 核心 -->
 <body class="intent-mouse">
+<%-- <header style="height: 90px">
+		<jsp:include page="/front-end/home/header_for_Proj_Fmem.jsp" />
+	</header>
+	<header style="padding-bottom: 5px"
+		class="relative z-2 bb pv2 ph3 ph0-l b--near-white">
+</header> --%>
+<header>
 
-	<header class="relative z-2 bb pv2 ph3 ph0-l b--near-white">
+<script>
+    $(document).ready(function () {
+        $('.showmenu').on('click', function (e) {
+            e.preventDefault();
+            $('body').toggleClass('menu-show');
+          }
+
+        );
+      }
+
+    );
+  </script>
+  <div class="wrap">
+    <div class="header">
+  <%--     <div class="logo"><img style="margin-top:5px;width:210px"src="<%=request.getContextPath()%>/front-end/home/images/farmerManage-Final.png">
+      </div> --%>
+           <img style="margin-top:5px;width:210px"src="<%=request.getContextPath()%>/front-end/home/images/farmerManage-Final.png">
+     
+      <ul class="menu">
+        <li><a href="#">認養專案管理&nbsp;</a></li>
+
+        <li><a href="#">認養訂單管理&nbsp;</a></li>
+
+        <li><a href="#">回到首頁 &nbsp;</a></li>
+        <li><a href="#"><i class="material-icons" style="font-size:27px">mail_outline</i> &nbsp;</a></li>
+      </ul>
+      <div class="div0 showmenu">
+        <!-- <a href="#" >menu</a> -->
+        <div class="div1"></div>
+        <div class="div1"></div>
+        <div class="div1"></div>
+      </div>
+
+      <!-- <a href="#" class="showmenu">menu</a> -->
+    </div>
+     </div>
+</header>
+<div style="border:solid 1px lightgray"></div>
+
+
+
+<%-- 	<header class="relative z-2 bb pv2 ph3 ph0-l b--near-white">
 		<div class="cf container">
 			<div class="f6 mv2 flex items-center justify-between">
 				<!-- <a clsas="dib order-0" href="https://www.zeczec.com/"> -->
@@ -127,7 +417,7 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
 				</div>
 			</div>
 		</div>
-	</header>
+	</header> --%>
 
 	<div class="container"></div>
 	<div class="bt b--light-gray bb">
@@ -140,8 +430,7 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
             成功贊助記錄
           </a> -->
 					<span class="order-0 flex-auto black w-100 w-auto-l"
-						href="https://www.zeczec.com/account/cancelled"> <i
-						class="material-icons v-mid dark-gray f3">error</i> 查看回饋方案
+						href="https://www.zeczec.com/account/cancelled"> <i class="material-icons" style="font-size:26px">sms</i>留言區
 					</span>
 					<!-- <span class="order-3 f6 ml4-l black w-100 w-auto-l" href="https://www.zeczec.com/account/atm"><i
               class="material-icons v-mid dark-gray f4">timer</i>
@@ -326,6 +615,11 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
 										}
 									
 									</script>
+<footer>
+        <jsp:include page="/footer/footer_for_Proj_Fmem.jsp" />
+</footer>
+
+
 </body>
 </html>
 
