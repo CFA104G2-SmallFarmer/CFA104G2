@@ -10,7 +10,7 @@
 <%	ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");%>
 <%	
 //     Integer f_mem_id  = projectVO.getF_mem_id();
-	Integer f_mem_id  = 70000; // 登入功能完成後再改回來
+	Integer f_mem_id  = 70003; // 登入功能完成後再改回來
 	ProjectService projSvc = new ProjectService();
 	List<ProjectVO> list = projSvc.getAllSameFmemProject(f_mem_id);
 	pageContext.setAttribute("list", list);
@@ -29,7 +29,7 @@
     initial-scale=1.0">
 <title>瀏覽認養專案</title>
 
-<link rel="shortcut icon" href="https://www.flyingv.cc/favicon.ico">
+
 <link rel="stylesheet"
 	href="<%= request.getContextPath() %>/front-end/project/projectoverview_files/css">
 <link rel="stylesheet"
@@ -70,6 +70,248 @@ ul.pagination {
 .fancybox-margin {
 	margin-right: 17px;
 }
+
+
+/*****************************/
+.wrap {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.header {
+padding_top:10px;
+    height: 78px;
+ 
+    position: relative;
+}
+
+.logo {
+    float: left;
+    width: 250px;
+    height: 76px;
+    padding: 5px;
+    /* background: #ffffff; */
+    /* border: 3px solid rgb(255, 216, 157); */
+}
+
+.menu {
+    float: right;
+    font-size: 24px;
+
+}
+
+.menu li {
+    list-style-type: none;
+    float: left;
+    display: inline-block;
+    height: 60px;
+
+}
+
+.menu li a {
+    display: block;
+    color: #717d34;
+    text-decoration: none;
+    padding-left: 1em;
+    padding-right: 0em;
+    padding-top: 0.4em;
+
+}
+
+.menu li a:hover {
+    /* background: #8ca27e; */
+    color: #8ca27e;
+}
+
+/*在pc隱藏漢堡選單,showmenu右上角點擊按鈕*/
+
+.showmenu {
+    display: none;
+    color: #FFCCCC;
+}
+
+/*在手機瀏覽漢堡選單*/
+.div1 {
+    width: 35px;
+    height: 5px;
+    background-color: #aaba8b;
+    margin: 6px 0;
+}
+
+@media (max-width: 767px) {
+    .menu {
+        /*隱藏選單開始*/
+        max-height: 0px;
+        overflow: hidden;
+        /*隱藏選單結束*/
+        transition: max-height 2.3s;
+        margin-top: 1px;
+        /*絕對定位疊在網頁上*/
+        position: absolute;
+        z-index: 100;
+        /*header 80px+1px boder 線條*/
+        top: 81px;
+        left: 0;
+        right: 0;
+        background: #d4e1bb;
+    }
+
+    .menu li {
+
+        list-style-type: none;
+        float: none;
+        border-bottom: 1px dashed #919191;
+        display: inline;
+    }
+
+
+
+    .menu li a {
+        transition: all 0.2s;
+        padding-left: 0em;
+        padding-right: 0em;
+        padding-top: 0.7em;
+        padding-bottom: 0.7em;
+    }
+
+    .menu li a:hover {
+        background: #8ca27e;
+        color: #fff;
+    }
+
+    .showmenu {
+        /* transition: all 0.2s; */
+        display: block;
+        float: right;
+        padding: 20px;
+
+
+    }
+
+    /*jQ點擊後動態在 body 加上 class */
+    .menu-show .menu {
+        max-height: 500px
+    }/*****************************/
+.wrap {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.header {
+padding_top:10px;
+    height: 78px;
+ 
+    position: relative;
+}
+
+.logo {
+    float: left;
+    width: 250px;
+    height: 76px;
+    padding: 5px;
+    /* background: #ffffff; */
+    /* border: 3px solid rgb(255, 216, 157); */
+}
+
+.menu {
+    float: right;
+    font-size: 24px;
+margin-top:20px;
+}
+
+.menu li {
+    list-style-type: none;
+    float: left;
+    display: inline-block;
+    height: 60px;
+   margin-top:20px;
+
+}
+
+.menu li a {
+    display: block;
+    color: #717d34;
+    text-decoration: none;
+    padding-left: 1em;
+    padding-right: 0em;
+    padding-top:0.9em;
+
+} 
+
+.menu li a:hover {
+    /* background: #8ca27e; */
+    color: #8ca27e;
+}
+
+/*在pc隱藏漢堡選單,showmenu右上角點擊按鈕*/
+
+.showmenu {
+    display: none;
+    color: #FFCCCC;
+}
+
+/*在手機瀏覽漢堡選單*/
+.div1 {
+    width: 35px;
+    height: 5px;
+    background-color: #aaba8b;
+    margin: 6px 0;
+}
+
+@media (max-width: 767px) {
+    .menu {
+        /*隱藏選單開始*/
+        max-height: 0px;
+        overflow: hidden;
+        /*隱藏選單結束*/
+        transition: max-height 2.3s;
+        margin-top: 1px;
+        /*絕對定位疊在網頁上*/
+        position: absolute;
+        z-index: 100;
+        /*header 80px+1px boder 線條*/
+        top: 81px;
+        left: 0;
+        right: 0;
+        background: #d4e1bb;
+    }
+
+    .menu li {
+
+        list-style-type: none;
+        float: none;
+        border-bottom: 1px dashed #919191;
+        display: inline;
+    }
+
+
+
+    .menu li a {
+        transition: all 0.2s;
+        padding-left: 0em;
+        padding-right: 0em;
+        padding-top: 0.7em;
+        padding-bottom: 0.7em;
+    }
+
+    .menu li a:hover {
+        background: #8ca27e;
+        color: #fff;
+    }
+
+    .showmenu {
+        /* transition: all 0.2s; */
+        display: block;
+        float: right;
+        padding: 20px;
+
+
+    }
+
+    /*jQ點擊後動態在 body 加上 class */
+    .menu-show .menu {
+        max-height: 500px
+    }
 </style>
 </head>
 <body>
@@ -107,7 +349,7 @@ ul.pagination {
                 </svg>
 			</div>
 			<div class="sidebar-wrapper">
-				<div class="sidebar-header">
+				<%-- <div class="sidebar-header">
 					<div class="hlogo">
 						<a href="https://www.flyingv.cc/"> <svg
 								xmlns="http://www.w3.org/2000/svg" width="144" height="64"
@@ -198,12 +440,51 @@ ul.pagination {
                                 </path>
                             </g>
                         </svg></a>
-				</div>
+				</div> --%>
 			</div>
 		</div>
-		<header>
-			<jsp:include page="/header/header.jsp" />
-		</header>
+<%-- 		<header>
+		<div>
+			<jsp:include page="/front-end/home/header_for_Proj_Fmem.jsp" /> 
+			</div>
+		</header> --%>
+<header>
+<script>
+    $(document).ready(function () {
+        $('.showmenu').on('click', function (e) {
+            e.preventDefault();
+            $('body').toggleClass('menu-show');
+          }
+
+        );
+      }
+
+    );
+  </script>
+  <div class="wrap">
+    <div class="header">
+      <div class="logo"><img style="margin-top:5px;width:210px"src="<%=request.getContextPath()%>/front-end/home/images/farmerManage-Final.png">
+      </div>
+      <ul class="menu">
+        <li><a href="#">認養專案管理&nbsp;</a></li>
+
+        <li><a href="#">認養訂單管理&nbsp;</a></li>
+
+        <li><a href="#">回到首頁 &nbsp;</a></li>
+        <li><a href="#"><i class="material-icons" style="font-size:27px">mail_outline</i> &nbsp;</a></li>
+      </ul>
+      <div class="div0 showmenu">
+        <!-- <a href="#" >menu</a> -->
+        <div class="div1"></div>
+        <div class="div1"></div>
+        <div class="div1"></div>
+      </div>
+
+      <!-- <a href="#" class="showmenu">menu</a> -->
+    </div>
+     </div>
+</header>
+<div style="border:solid 2px lightgray"></div>
 
 
 		<%-- 錯誤表列 --%>
@@ -215,6 +496,9 @@ ul.pagination {
 				</c:forEach>
 			</ul>
 		</c:if>
+		<section style="text-align:center;color:#717d34"class="mainBlock" id="categoryPad"><h2 style="font-size:30px">我的所有認養專案</h2></section>
+		
+		
 		<!-- 陳列區 -->
 		<section class="mainBlock" id="categoryPad">
 			<div class="container">
@@ -327,6 +611,7 @@ ul.pagination {
 										</div>
 									</div>
 								</div>
+								
 							</c:forEach>
 
 							<!-- 新增專案按鈕 -->
@@ -571,9 +856,9 @@ ul.pagination {
 		}
 	</script>
 
-	<footer>
+<%-- 	<footer>
 		<jsp:include page="/footer/footer.jsp" />
-	</footer>
+	</footer>   --%>
 
 </body>
 </html>

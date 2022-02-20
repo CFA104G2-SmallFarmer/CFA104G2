@@ -16,21 +16,20 @@ pageContext.setAttribute("list", list);
 <!-- 核心在471 -->
 <!DOCTYPE html>
 <html lang="en" class="js no-touch mdl-js">
-<head
-	prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# flyingv: http://ogp.me/ns/fb/flyingv#">
+<head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport"
 	content="width=device-width,
     initial-scale=1.0">
 <title>瀏覽認養專案</title>
 
-<link rel="shortcut icon" href="https://www.flyingv.cc/favicon.ico">
+
 <link rel="stylesheet"
 	href="<%= request.getContextPath() %>/front-end/project/projectoverview_files/css">
 <link rel="stylesheet"
 	href="<%= request.getContextPath() %>/front-end/project/projectoverview_files/css(1)">
-<link rel="stylesheet"
-	href="<%= request.getContextPath() %>/front-end/project/projectoverview_files/icon">
+<%-- <link rel="stylesheet"
+	href="<%= request.getContextPath() %>/front-end/project/projectoverview_files/icon"> --%>
 <link rel="stylesheet"
 	href="<%= request.getContextPath() %>/front-end/project/projectoverview_files/notosanstc.css">
 <link rel="stylesheet"
@@ -50,17 +49,15 @@ ul.pagination {
 	display: none !important;
 }
 </style>
-<script async=""
+<%-- <script async=""
 	src="<%= request.getContextPath() %>/front-end/project/projectoverview_files/gtm.js.下載"></script>
 <script
-	src="<%= request.getContextPath() %>/front-end/project/projectoverview_files/material.min.js.下載"></script>
+	src="<%= request.getContextPath() %>/front-end/project/projectoverview_files/material.min.js.下載"></script> --%>
 <script>
 	window.default_locale = "zh_TW";
 	window.fallback_locale = "zh_TW";
 </script>
-<meta name="csrf-token"
-	content="SosYwft0iG6yUmGI6gcAFUzoL7NAt6gx6DTG61k8">
-<meta name="csrf-param" content="_token">
+
 <style type="text/css">
 .fancybox-margin {
 	margin-right: 17px;
@@ -89,7 +86,7 @@ ul.pagination {
 	</script>
 	<!-- 核心 -->
 	<div class="wrapper">
-		<div class="flyingSidebar hidden-lg hidden-md">
+		<%-- <div class="flyingSidebar hidden-lg hidden-md">
 			<div class="sidebar-mask"></div>
 			<div class="sidebar-close">
 				<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
@@ -194,10 +191,10 @@ ul.pagination {
                             </g>
                         </svg></a>
 				</div>
-			</div>
+			</div> --%>
 		</div>
 		<header class="flyingHeader" style="color: #2f7b39">
-			<div class="header-container"">
+			<%-- <div class="header-container"">
 				<div class="header-left">
 					<div class="hidden-lg hidden-md hamburger-menu">
 						<span></span>
@@ -310,7 +307,7 @@ ul.pagination {
 							</div></li>
 					</ul>
 				</div>
-			</div>
+			</div> --%>
 		</header>
 		<section class="mainBlock" id="siteCategory">
 			<div class="container">

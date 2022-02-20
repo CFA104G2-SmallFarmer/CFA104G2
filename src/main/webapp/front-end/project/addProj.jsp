@@ -23,7 +23,7 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
   <meta name="csrf-param" content="authenticity_token">
   <meta name="csrf-token"
     content="MTox+EBrRuwHIR0noSGsb2DvNE5yK9mN9yvfhUb5DU+8BoCotRpDcw+HJZiqMtaHV1h0lZRdUnXWNvNmpla3Cg==">
-
+<title>新增認養專案案</title>
   <!-- <script type="text/javascript" src="<%= request.getContextPath() %>/front-end/project/addProj_files/6df56d3465"></script> -->
   <!-- <script src="<%= request.getContextPath() %>/front-end/project/addProj_files/nr-1214.min.js"></script> -->
   <!-- <script async="" src="<%= request.getContextPath() %>/front-end/project/addProj_files/clarity.js"></script>
@@ -61,8 +61,8 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
   <!-- <link
     href="https://www.zeczec.com/assets/logo-square-04c45286e84ea49d07c97c86625fbf3a75f4f32dd02da3ad3ca70a9a68fd0395.png"
     rel="apple-touch-icon"> -->
-  <link href="https://www.zeczec.com/assets/fav-69601a279a66f2e6e31e508900d4f057559d3affcae42730d045b17d281107a6.png"
-    rel="shortcut icon" type="image/x-icon">
+<!--   <link href="https://www.zeczec.com/assets/fav-69601a279a66f2e6e31e508900d4f057559d3affcae42730d045b17d281107a6.png"
+    rel="shortcut icon" type="image/x-icon"> -->
   <link href="<%= request.getContextPath() %>/front-end/project/addProj_files/css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" media="all"
     href="<%= request.getContextPath() %>/front-end/project/addProj_files/zeczec-e9e0ba9825d4b970fff398209948a791b4d18185e43b929ef4ffa0e7e5346248.css">
@@ -70,7 +70,7 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 
 <body class="intent-mouse">
   <header>
-         <jsp:include page="/header/header_for_Proj_Fmem.jsp" />
+         <jsp:include page="/front-end/home/header_for_Proj_Fmem.jsp" />
 </header>
   
 
@@ -268,7 +268,7 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
         </script>
         <!-- Code injected by live-server -->
 <footer>
-        <jsp:include page="/footer/footer_for_Proj_Fmem.jsp" />
+        <jsp:include page="/front-end/home/footer_for_Proj_Fmem.jsp" />
 </footer>
 </body>
 

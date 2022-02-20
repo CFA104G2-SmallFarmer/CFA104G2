@@ -24,7 +24,7 @@ pageContext.setAttribute("list", list);
     initial-scale=1.0">
 <title>瀏覽認養專案</title>
 
-<link rel="shortcut icon" href="https://www.flyingv.cc/favicon.ico">
+<!-- <link rel="shortcut icon" href="https://www.flyingv.cc/favicon.ico"> -->
 <link rel="stylesheet"
 	href="<%= request.getContextPath() %>/front-end/project/projectoverview_files/css">
 <link rel="stylesheet"
@@ -197,7 +197,7 @@ ul.pagination {
 			</div>
 		</div>
 		<header>
-         <jsp:include page="/header/header.jsp" />
+         <jsp:include page="/front-end/home/header2.jsp" />
 </header>
 
 
