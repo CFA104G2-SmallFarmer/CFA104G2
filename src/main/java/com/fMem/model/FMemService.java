@@ -11,6 +11,13 @@ public class FMemService {
 	public FMemService() {
 		dao = new FMemJDBCDAO();
 	}
+	
+	
+	public FMemVO findUserByFMem_acc(String f_mem_acc) {
+		return dao.findUserByFMem_acc(f_mem_acc);
+	}
+	
+	
 
 	public FMemVO addFMem(Integer mem_id, String f_mem_acc, String f_mem_pwd, String f_mem_fname,
 			String f_mem_mobile, Integer f_mem_zipcode, String f_mem_city, 

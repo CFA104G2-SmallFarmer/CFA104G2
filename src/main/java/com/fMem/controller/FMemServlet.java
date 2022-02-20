@@ -248,7 +248,7 @@ req.setAttribute("fMemVO", fMemVO); // 含有輸入格式錯誤的fMemVO物件,�
 				fMemVO = fMemSvc.addFMem(mem_id, f_mem_acc, f_mem_pwd, f_mem_fname, 
 						f_mem_mobile, f_mem_zipcode, f_mem_city, f_mem_dist, f_mem_add);
 
-				memSvc.updateMemIDAccState(mem_id, 1);
+				memSvc.updateMemAccState(mem_id, 1);
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
 				String url = "/front-end/fMem/addFMem.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
