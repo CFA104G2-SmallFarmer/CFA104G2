@@ -133,7 +133,7 @@ public class ProjOrderServlet extends HttpServlet{
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/front-end/projOrder/searchOrderByFmem.jsp");///***我還沒改
+							.getRequestDispatcher("/front-end/projOrder/listOneOrderByFmem.jsp");///***我還沒改
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
