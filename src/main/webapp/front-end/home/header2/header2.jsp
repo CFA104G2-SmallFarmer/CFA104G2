@@ -279,7 +279,7 @@
 
             </li>
 
-            <li class="about-us"><a href="<%=request.getContextPath()%>/front-end/login/listAllProjByMem.jsp">農產認養</a></li>
+            <li class="about-us"><a href="<%=request.getContextPath()%>/front-end/project/listAllProjByMem.jsp">農產認養</a></li>
             
             
             <li class="qa"><a href="#">小農論壇</a></li>
@@ -289,6 +289,8 @@
 
 
             <li><a href="#">會員專區</a></li>
+                        <li><a href="<%=request.getContextPath()%>/front-end/login/loginByMem.jsp">登入</a></li>
+                                    <li><a href="<%=request.getContextPath()%>/front-end/mem/addMemByMem.jsp">註冊</a></li>
 
 
 
@@ -342,7 +344,7 @@
 
               <li style="padding: 0;">
 					<div class="flip4">
-                      <a href="<%=request.getContextPath()%>/front-end/login/listAllProjByMem.jsp"" style="padding:3px 16px 0px 16px;">農產認養</a>
+                      <a href="<%=request.getContextPath()%>/front-end/project/listAllProjByMem.jsp" style="padding:3px 16px 0px 16px;">農產認養</a>
                       
                      <!--  <div class="dropdown-menu toggle4" style="position:absolute; top:30px;">
                         <a class="dropdown-item" href="https://www.facebook.com/BuyDirectlyFromFarmers" >Action</a>
@@ -377,26 +379,7 @@
                   </span>
                 </a>
               </li>
-              <li>
-
-                <a href="<%=request.getContextPath()%>/front-end/login/loginByMem.jsp" style="color:#000;">
-
-                  <span class="hover" style="color:#000;">
-                    <svg class="svg-inline--fa fa-smile fa-w-16" style="color: #aaba8b;font-size: 20px;" aria-hidden="true" data-fa-processed="" data-prefix="far" data-icon="smile" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 56c110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200-110.532 0-200-89.451-200-200 0-110.532 89.451-200 200-200m0-48C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm64 136c-9.535 0-18.512 2.386-26.37 6.589h.017c12.735 0 23.059 10.324 23.059 23.059 0 12.735-10.324 23.059-23.059 23.059s-23.059-10.324-23.059-23.059v-.017C266.386 181.488 264 190.465 264 200c0 30.928 25.072 56 56 56s56-25.072 56-56-25.072-56-56-56zm-128 0c-9.535 0-18.512 2.386-26.37 6.589h.017c12.735 0 23.059 10.324 23.059 23.059 0 12.735-10.324 23.059-23.059 23.059-12.735 0-23.059-10.324-23.059-23.059v-.017C138.386 181.488 136 190.465 136 200c0 30.928 25.072 56 56 56s56-25.072 56-56-25.072-56-56-56zm195.372 182.219c18.819-25.592-19.856-54.017-38.67-28.438-50.135 68.177-135.229 68.18-185.367 0-18.828-25.601-57.478 2.861-38.67 28.438 69.298 94.231 193.323 94.351 262.707 0z"></path></svg><!-- <i class="far fa-smile" style="color:#aaba8b;font-size: 20px;"></i> -->
-                    登入
-                  </span>
-                </a>
-              </li>
-                            <li>
-
-                <a href="<%=request.getContextPath()%>/front-end/mem/addMemByMem.jsp">
-
-                  <span class="hover" style="color:#000;">
-                    <svg class="svg-inline--fa fa-smile fa-w-16" style="color: #aaba8b;font-size: 20px;" aria-hidden="true" data-fa-processed="" data-prefix="far" data-icon="smile" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 56c110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200-110.532 0-200-89.451-200-200 0-110.532 89.451-200 200-200m0-48C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm64 136c-9.535 0-18.512 2.386-26.37 6.589h.017c12.735 0 23.059 10.324 23.059 23.059 0 12.735-10.324 23.059-23.059 23.059s-23.059-10.324-23.059-23.059v-.017C266.386 181.488 264 190.465 264 200c0 30.928 25.072 56 56 56s56-25.072 56-56-25.072-56-56-56zm-128 0c-9.535 0-18.512 2.386-26.37 6.589h.017c12.735 0 23.059 10.324 23.059 23.059 0 12.735-10.324 23.059-23.059 23.059-12.735 0-23.059-10.324-23.059-23.059v-.017C138.386 181.488 136 190.465 136 200c0 30.928 25.072 56 56 56s56-25.072 56-56-25.072-56-56-56zm195.372 182.219c18.819-25.592-19.856-54.017-38.67-28.438-50.135 68.177-135.229 68.18-185.367 0-18.828-25.601-57.478 2.861-38.67 28.438 69.298 94.231 193.323 94.351 262.707 0z"></path></svg><!-- <i class="far fa-smile" style="color:#aaba8b;font-size: 20px;"></i> -->
-                    註冊
-                  </span>
-                </a>
-              </li>
+ 
 
             </ul>
           </nav>
