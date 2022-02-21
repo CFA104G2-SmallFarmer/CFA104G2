@@ -78,7 +78,7 @@ margin-top:10px;
 
                 <div class="login-block flex-display space-between">
                     <span class="dark"></span>
-                    <a href="https://www.flyingv.cc/login" class="btn fGhostred">馬上登入</a>
+                    <a href="<%=request.getContextPath()%>/front-end/login/loginByMem.jsp" class="btn fGhostred">馬上登入</a>
                 </div>
             </div>
         </div>

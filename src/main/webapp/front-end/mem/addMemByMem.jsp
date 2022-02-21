@@ -101,7 +101,7 @@ margin-top:10px;
 
                 <div style="padding:5px"class="login-block flex-display space-between">
                     <span class="dark">已經有 我家門前有塊地 帳號了？</span>
-                    <a href="https://www.flyingv.cc/login" class="btn fGhostred">登入</a>
+                    <a href="<%=request.getContextPath()%>/front-end/login/loginByMem.jsp" class="btn fGhostred">登入</a>
                 </div>
                 <div style="padding:5px" class="login-block  flex-display space-between">
                     <span class="dark">忘記密碼/重設密碼？ 請前往</span>
