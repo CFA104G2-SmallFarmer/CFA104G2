@@ -449,8 +449,9 @@ public class ProjectServlet extends HttpServlet {
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				System.out.println("error4");
+				errorMsgs.add("專案名稱已存在");
 				e.printStackTrace();
-				errorMsgs.add("修改資料失敗:" + e.getMessage());
+//				errorMsgs.add("新增專案失敗:" + e.getMessage());
 				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/addProj.jsp");
 				failureView.forward(req, res);
 			}
