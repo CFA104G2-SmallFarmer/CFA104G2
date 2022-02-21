@@ -19,12 +19,11 @@ pageContext.setAttribute("list2", list2);
 
 Map<Date, List<ProDiaryVO>>  list3 = proDiarySvc.getAll_groupingBy_date(projectVO.getProj_id());
 pageContext.setAttribute("list3", list3);		
-
-		
+java.sql.Date dir_upload_date =(java.sql.Date)request.getAttribute("dir_upload_date");
+pageContext.setAttribute("dir_upload_date3", dir_upload_date);	
 %>
-
-
-
+<%-- ${list3.key[0]}
+${dir_upload_date3} --%>
 <%-- <% --%>
 <!-- // ProjectService projectSvc = new ProjectService(); -->
 <!-- // ProjectVO projectVO = projectSvc.getOneProject(1001);  -->
@@ -281,8 +280,19 @@ font-size:23px;
 									<td>
 
 										<div class="flex gutter3-l">
+										
+												<div style="margin-bottom: 30px;height:28px;"
+					class="w-100-l w-50-ns ph3 ph0-l flex-none self-start">
+					<a href="<%=request.getContextPath()%>/proDiary/proDiary.do?proj_id=${projectVO.proj_id}&dir_upload_date=${list3.key}&action=go_to_listAll_ProDiary_ByDate_from_listOneProjByMem">
+					
+						<div
+							style="color:#aaba8b;font-size:20px;border-radius: 10px; text-align:center;border: solid #aaba8b 2px; padding: 15px; padding: 10px;"
+							class="w-60 ph3 ph0-l flex-none self-start"> ${dir_upload_date3}</div>
+					</a>
+				</div>
+									
 
-											<c:forEach var="proDiaryVO" items="${list2}">
+											<c:forEach var="proDiaryVO" items="${list3[dir_upload_date3]}">
 
 												<!-- 這裡是開始 -->
 												<div class=" ph3 pv3 w-50-ns w-100">
@@ -462,6 +472,7 @@ font-size:23px;
 				<div style="margin-bottom: 30px;height:28px;"
 					class="w-100-l w-50-ns ph3 ph0-l flex-none self-start">
 					<a href="<%=request.getContextPath()%>/proDiary/proDiary.do?proj_id=${projectVO.proj_id}&dir_upload_date=${list3.key}&action=go_to_listAll_ProDiary_ByDate_from_listOneProjByMem">
+					
 						<div
 							style="color:#aaba8b;font-size:20px;border-radius: 10px; text-align:center;border: solid #aaba8b 2px; padding: 15px; padding: 10px;"
 							class="w-60 ph3 ph0-l flex-none self-start"> ${list3.key}</div>
