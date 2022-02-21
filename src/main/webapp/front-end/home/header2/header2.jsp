@@ -7,8 +7,7 @@
 <html lang="zh-tw" class="no-js fontawesome-i2svg-active fontawesome-i2svg-complete arwf-inactive"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <script async="" src="<%=request.getContextPath()%>/front-end/home/header2/header_files/8frlty15ix"></script><script async="" src="<%=request.getContextPath()%>/front-end/home/header2/header_files/clarity.js"></script><script async="" src="<%=request.getContextPath()%>/front-end/home/header2/header_files/8frlty15ix"></script><script async="" src="<%=request.getContextPath()%>/front-end/home/header2/header_files/gtm.js"></script><script async="" src="<%=request.getContextPath()%>/front-end/home/header2/header_files/analytics.js"></script><script defer="" src="<%=request.getContextPath()%>/front-end/home/header2/header_files/all.js"></script>
   <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script> 
-  <meta name="google-site-verification" content="jTLy2uztFyeCd-TzuYYqOIOkRNTOdiikG5fC8Eacm6I">
-  <meta name="google-site-verification" content="B2cWaUCcewU8njTlgb7JZb0nC4RHQBPnV4f5opNFJh4">
+  
 
   <title>首頁header</title>
 
@@ -20,7 +19,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
-
+<!-- 這段給emoji的 -->
+<!-- <link rel="stylesheet"
+	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+	integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+	crossorigin="anonymous" /> -->
 
 
 
@@ -207,7 +210,7 @@
               </a></li>
 
 
-            <li id="qqq"><a href="#">
+            <li id="qqq"><a href="<%=request.getContextPath()%>/front-end/article/listAllArticle.jsp">
                 <span class="hover WStdsong-B" style="font-size:14px;">
                   小農論壇
                 </span>
@@ -224,8 +227,8 @@
               </a></li>
             <li>
               <!-- <i class="material-icons" style="font-size:48px;color:red">mail_outline</i> -->
-              <a href="#"></path></svg><!-- <i class="far fa-bell" style="font-size:30px;color:#aaba8b
-              "></i> --></a>
+              <a href="#"></path></svg> <i class="far fa-bell" style="font-size:30px;color:#aaba8b
+              "></i> </a>
             </li>
             <li>
               <!-- <i class="material-icons" style="font-size:48px;color:red">mail_outline</i> -->
@@ -269,28 +272,28 @@
 
             <li>
 
-              <a href="#">小農商城</a>
+              <a href="<%=request.getContextPath()%>/front-end/Product/shop.jsp">小農商城</a>
 
             </li>
 
             <li>
 
-              <a href="#">農場旅遊</a>
+              <a href="<%=request.getContextPath()%>/front-end/farmTravel/listAllFarmTravelByMem.jsp">農場旅遊</a>
 
             </li>
 
             <li class="about-us"><a href="<%=request.getContextPath()%>/front-end/project/listAllProjByMem.jsp">農產認養</a></li>
             
             
-            <li class="qa"><a href="#">小農論壇</a></li>
+            <li class="qa"><a href="<%=request.getContextPath()%>/front-end/article/listAllArticle.jsp">小農論壇</a></li>
 
 
             <li class="qa"><a href="#">小農專區</a></li>
 
 
             <li><a href="#">會員專區</a></li>
-                        <li><a href="<%=request.getContextPath()%>/front-end/login/loginByMem.jsp">登入</a></li>
-                                    <li><a href="<%=request.getContextPath()%>/front-end/mem/addMemByMem.jsp">註冊</a></li>
+            <li><a href="<%=request.getContextPath()%>/front-end/login/loginByMem.jsp">登入</a></li>
+            <li><a href="<%=request.getContextPath()%>/front-end/mem/addMemByMem.jsp">註冊</a></li>
 
 
 
@@ -321,7 +324,7 @@
               </li>
 			  <li style="padding: 0;">
 					<div class="flip2">
-                      <a href="#" style="padding:3px 16px 0px 16px;">小農商城</a>
+                      <a href="<%=request.getContextPath()%>/front-end/Product/shop.jsp" style="padding:3px 16px 0px 16px;">小農商城</a>
                      
                      <!--  <div class="dropdown-menu toggle2" style="position:absolute; top:30px;">
                         <a class="dropdown-item" href="https://www.facebook.com/BuyDirectlyFromFarmers" >Action</a>
@@ -332,7 +335,7 @@
               </li>              
               <li style="padding: 0;">
 					<div class="flip3">
-                      <a href="#" style="padding:3px 16px 0px 16px;">農場旅遊</a>
+                      <a href="<%=request.getContextPath()%>/front-end/farmTravel/listAllFarmTravelByMem.jsp" style="padding:3px 16px 0px 16px;">農場旅遊</a>
                       
                     <!--   <div class="dropdown-menu toggle3" style="position:absolute; top:30px;">
                         <a class="dropdown-item" href="#" >Action</a>
