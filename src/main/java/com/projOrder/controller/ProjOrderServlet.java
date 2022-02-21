@@ -126,10 +126,25 @@ public class ProjOrderServlet extends HttpServlet{
 
 			try {
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
+				String str1 = req.getParameter("f_mem_id");
+//				System.out.println(str1);//////////////////////
+				if (str1 == null || (str1.trim()).length() == 0) {
+//					System.out.println(str1);
+					errorMsgs.add("請輸入專案編號");
+//					System.out.println(str1);
+				}
+				Integer f_mem_id = null;
+				try {
+					f_mem_id = new Integer(str1);
+				} catch (Exception e) {
+					errorMsgs.add("訂單編號格式不正確");
+				}
+				
 				String str = req.getParameter("order_id");
 				if (str == null || (str.trim()).length() == 0) {
 					errorMsgs.add("請輸入訂單編號");
 				}
+				
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
@@ -154,7 +169,7 @@ public class ProjOrderServlet extends HttpServlet{
 				
 				/***************************2.開始查詢資料*****************************************/
 				ProjOrderService projOrderSvc = new ProjOrderService();
-				ProjOrderVO projOrderVO = projOrderSvc.getOneProjOrder(order_id);
+				ProjOrderVO projOrderVO = projOrderSvc.getOneProjOrderByFMem(order_id, f_mem_id);
 
 				if (projOrderVO == null) {
 					errorMsgs.add("查無資料");
@@ -190,7 +205,7 @@ public class ProjOrderServlet extends HttpServlet{
 
 				/***************************其他可能的錯誤處理*************************************/
 			} catch (Exception e) {
-				errorMsgs.add("無法取得資料:" + e.getMessage());
+				errorMsgs.add("該筆訂單不存在");
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/front-end/projOrder/searchOrderByFmem.jsp");///***我還沒改
 				failureView.forward(req, res);

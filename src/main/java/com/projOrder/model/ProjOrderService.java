@@ -1,6 +1,7 @@
 package com.projOrder.model;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.projPerk.model.ProjPerkVO;
@@ -65,6 +66,39 @@ public class ProjOrderService {
 
 		return dao.findByPrimaryKey(order_id);
 	}
+	
+	public ProjOrderVO getOneProjOrderByMem(Integer order_id, Integer mem_id) {
+
+		List<ProjOrderVO> list = dao.getAllMemOrder(mem_id);
+		ProjOrderVO oneResult = new ProjOrderVO(); 
+		
+		for (int i=0; i<list.size(); i++) {
+			if(list.get(i).getOrder_id() == order_id) {
+				oneResult=list.get(i);
+			}
+		}
+		return oneResult;
+	}
+	
+	
+	public ProjOrderVO getOneProjOrderByFMem(Integer order_id, Integer f_mem_id) {
+		System.out.println(order_id+"JDBC");
+		System.out.println(f_mem_id+"JDBC");
+		List<ProjOrderVO> list = dao.getAllFmemOrder(f_mem_id);
+//		System.out.println(list.size());
+		ProjOrderVO oneResult = new ProjOrderVO(); 
+		
+		for (int i=0; i<list.size(); i++) {
+//			System.out.println(list.get(i).getOrder_id());
+			if(list.get(i).getOrder_id().equals(order_id)) {
+				oneResult=list.get(i);
+//				System.out.println(list.get(i).getOrder_id());
+			}
+		}
+//		System.out.println(oneResult.getOrder_id());
+		return oneResult;
+	}
+	
 	
 	
 	//這裡對嗎？
