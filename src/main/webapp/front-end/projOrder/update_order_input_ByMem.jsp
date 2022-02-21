@@ -68,7 +68,10 @@ ProjOrderVO projOrderVO = (ProjOrderVO) request.getAttribute("projOrderVO");
 
 <body class="intent-mouse">
   <header class="relative z-2 bb pv2 ph3 ph0-l b--near-white">
-    <div class="cf container">
+  <header>
+         <jsp:include page="/front-end/home/header_for_Proj_Mem.jsp" />
+</header>
+   <%--  <div class="cf container">
       <div class="f6 mv2 flex items-center justify-between">
         <a clsas="dib order-0" href="https://www.zeczec.com/">
           <h1 class="gray text-mono hover-logo ma0">
@@ -147,8 +150,8 @@ ProjOrderVO projOrderVO = (ProjOrderVO) request.getAttribute("projOrderVO");
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </div> --%>
+<!--     </div> -->
   </header>
   <div class="container"></div>
   <div class="bt b--light-gray bb">
@@ -368,7 +371,7 @@ ProjOrderVO projOrderVO = (ProjOrderVO) request.getAttribute("projOrderVO");
                   如提案人因故決定不接受認養訂單，將會取消訂單並主動退還訂單款項。${projPerkVO.perk_id}
                 </p>
 
- <p> mem_id= <%=memVO.getMem_id()%></p>
+<%--  <p> mem_id= <%=memVO.getMem_id()%></p> --%>
                 
                 
                					 <input type="hidden" name="mem_id"  value="${memVO.mem_id}">	
@@ -388,7 +391,7 @@ ProjOrderVO projOrderVO = (ProjOrderVO) request.getAttribute("projOrderVO");
       </div>
     </div>
   </div>
-  <footer class="pt5 pb6 f6 bt light-gray relative">
+  <!-- <footer class="pt5 pb6 f6 bt light-gray relative">
     <div class="container dark-gray">
       <div class="flex ph0-l ph3">
         <div class="w-third-l w-100 mt-child-0 mb0-l mb4">
@@ -423,7 +426,7 @@ ProjOrderVO projOrderVO = (ProjOrderVO) request.getAttribute("projOrderVO");
         </div>
       </div>
     </div>
-  </footer>
+  </footer> -->
   <div class="pa3 z-5 bt b--moon-gray w-100 relative bg-near-white fixed bottom-0 js-cookie-banner" hidden="">
     <!-- <div class="container pv4-ns">
       <div class="flex-ns flex-nowrap items-center">
