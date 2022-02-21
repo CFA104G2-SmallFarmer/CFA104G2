@@ -11,7 +11,8 @@
 
 <%	FMemVO fMemVO = (FMemVO) session.getAttribute("fMemVO");%>
 <%	MemVO MemVO = (MemVO) session.getAttribute("MemVO");%>
-<%  Integer f_mem_id  = fMemVO.getF_mem_id();%>
+<%  Integer f_mem_id  = fMemVO.getF_mem_id();
+	pageContext.setAttribute("f_mem_id", f_mem_id);%>
 
 
 <%	ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");%>
@@ -542,7 +543,7 @@ margin-top:20px;
 											</div>
 
 											<a
-												href="${pageContext.request.contextPath}/project/project.do?proj_id=${projectVO.proj_id}&f_mem_id=70000&action=getOne_For_Display_ByMem"
+												href="${pageContext.request.contextPath}/project/project.do?proj_id=${projectVO.proj_id}&f_mem_id=${projectVO.f_mem_id}&action=getOne_For_Display_ByMem"
 												class="projectUrl" data-id="${projectVO.proj_id}"
 												data-title="${projectVO.proj_name}" data-category="1"></a>
 											<%@ taglib prefix="fmt"
@@ -624,9 +625,9 @@ margin-top:20px;
 								<div class="projectCard">
 
 
-									<div class="projectThumb " style="border-radius: 1em">
+									<div class="projectThumb " style="border-radius: 1em; " >
 										<a
-											href="${pageContext.request.contextPath}/front-end/project/addProj.jsp?f_mem_id=70000"
+											href="${pageContext.request.contextPath}/front-end/project/addProj.jsp?f_mem_id=${f_mem_id}"
 											class="projectUrl" data-category="1"></a> <img
 											src="<%=request.getContextPath()%>/front-end/project/projectoverview_files/SmallFarmer_logo.png"
 											class="projectCoverImg img-responsive">

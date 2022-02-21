@@ -6,6 +6,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ page import="com.fMem.model.*"%>
+<%@ page import="com.mem.model.*"%>
+<%	FMemVO fMemVO = (FMemVO) session.getAttribute("fMemVO");%>
+<%	MemVO MemVO = (MemVO) session.getAttribute("MemVO");%>
+<%  Integer f_mem_id  = fMemVO.getF_mem_id();
+	pageContext.setAttribute("f_mem_id", f_mem_id);%>
 <%
 ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 %>
@@ -188,14 +194,14 @@ footer:hover .logo-safari-fix {
 						class="w-33-l pv3 ph3 tc w-100">
 						<div class="nt3 dn-l"></div>
 						<a class="bg-white button w-100 green hover-green focus grow"
-							href="${pageContext.request.contextPath}/projPerk/projPerk.do?proj_id=${projectVO.proj_id}&f_mem_id=70000&action=getAllPerk_For_Display_ByFmem">
+							href="${pageContext.request.contextPath}/projPerk/projPerk.do?proj_id=${projectVO.proj_id}&f_mem_id=${f_mem_id}&action=getAllPerk_For_Display_ByFmem">
 							編輯回饋方案</a>
 					</div>
 					<div style="float: right; font-size: 17px;"
 						class="w-33-l pv3 ph3 tc w-100">
 						<div class="nt3 dn-l"></div>
 						<a class="bg-white button w-100 green hover-green focus grow"
-							href="${pageContext.request.contextPath}/projPic/projPic.do?proj_id=${projectVO.proj_id}&f_mem_id=70000&action=getAllPic_For_Display_ByFmem">
+							href="${pageContext.request.contextPath}/projPic/projPic.do?proj_id=${projectVO.proj_id}&f_mem_id=${f_mem_id}&action=getAllPic_For_Display_ByFmem">
 							編輯專案圖文</a>
 					</div>
 					<div style="float: right; font-size: 17px;"

@@ -6,12 +6,10 @@
 
 <%	FMemVO fMemVO = (FMemVO) session.getAttribute("fMemVO");%>
 <%	MemVO MemVO = (MemVO) session.getAttribute("MemVO");%>
-<%  Integer f_mem_id  = fMemVO.getF_mem_id();%>
+<%  Integer f_mem_id  = fMemVO.getF_mem_id();
+	pageContext.setAttribute("f_mem_id", f_mem_id);%>
 
 
-<%
-ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
-%>
 
 <jsp:useBean id="memSvc" scope="page" class="com.mem.model.MemService" />
 <jsp:useBean id="fmemSvc" scope="page" class="com.fMem.model.FMemService" />
@@ -105,10 +103,24 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 
     </div>
   </div>
+
+  
   <div class="container"></div>
   <div class="container mv4">
     <div class="gutter3-l flex">
       <div class="w-100 ph3 mb4 mb0">
+
+  
+  <%-- 錯誤表列 --%>
+		<c:if test="${not empty errorMsgs}">
+			<font style="color: red">請修正以下錯誤:</font>
+			<ul>
+				<c:forEach var="message" items="${errorMsgs}">
+					<li style="color: red">${message}</li>
+				</c:forEach>
+			</ul>
+		</c:if>
+
 
 	<!--   form開始 -->
         <form  class="js-previewable-sum" id="new_order"
@@ -154,7 +166,7 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 			<!--   name="proj_id"> -->
                 
                 <!-- 			Integer f_mem_id, -->
-              <input type="hidden"  class="w-100" placeholder="小農編號" type="text" value="${f_mem_id}"
+              <input type="hidden"  class="w-100" placeholder="小農編號" type="text" value="<%= f_mem_id%>"
                 name="f_mem_id" id="f_mem_id" value="hiddenValue">${memSvc.getOneMem(fmemSvc.getOneFMem(f_mem_id).mem_id).mem_nickname}，您好
                 
 				<!-- 			String proj_name, -->
@@ -211,7 +223,10 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
             </div>
         </form>
 
+ </div>
 
+    </div>
+  </div>
 
 
 

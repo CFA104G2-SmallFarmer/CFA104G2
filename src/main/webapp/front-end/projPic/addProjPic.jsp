@@ -23,7 +23,7 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 
   <link rel="stylesheet" media="all"
     href="<%=request.getContextPath()%>/front-end/projPic/addProjPic_css/zeczec-e9e0ba9825d4b970fff398209948a791b4d18185e43b929ef4ffa0e7e5346248.css">
-
+<title>上傳認養專案內容圖片</title>
 </head>
 
 <body class="intent-mouse">
@@ -91,6 +91,16 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
       <div class="container pb5">
 
         <div class="flex gutter3-l">
+  
+  		<%-- 錯誤表列 --%>
+		<c:if test="${not empty errorMsgs}">
+			<font style="color: red">請修正以下錯誤:</font>
+			<ul>
+				<c:forEach var="message" items="${errorMsgs}">
+					<li style="color: red">${message}</li>
+				</c:forEach>
+			</ul>
+		</c:if>
 
           <!-- 這裡是開始 -->
           <div class="w-25-l ph3 pv3 w-50-ns w-100">
