@@ -26,28 +26,10 @@ public class ProjectJDBCDAO implements ProjectDAO_interface {
 	private static final String GET_ALL_SAME_FMEM_STMT = // 列出某小農的所有專案
 			"SELECT PROJ_ID,F_MEM_ID,PROJ_NAME,PROJ_STATE,PROJ_MAIN_PIC,PROJ_ABSTRACT,PROJ_GOAL,START_DATE,EXPECTED_END_DATE,ACTUAL_END_DATE,PROJ_TOTAL_FUND,PROJ_INTRO,PROJ_RISK,PROJ_TOTAL_COUNT,PROJ_VIDEO,MEM_REPORT_COUNT,PROJ_PAY FROM PROJECT WHERE F_MEM_ID=?";
 
-	private static final String UPDATE_PROJ_TOTAL_FUND_AND_COUNT = // 更新目前專案總募資金額及數量
-			"UPDATE PROJECT \r\n"
-			+ "SET PROJ_TOTAL_FUND =\r\n"
-			+ "(SELECT SUM(PERK_FUND) \r\n"
-			+ "FROM \r\n"
-			+ "(select a.*, b.PROJ_ID,b.PERK_FUND \r\n"
-			+ "from CFA104G2.PROJ_ORDER as a \r\n"
-			+ "left join CFA104G2.PROJ_PERK as b \r\n"
-			+ "on a.PERK_ID=b.PERK_ID)\r\n"
-			+ "as total \r\n"
-			+ "where (PROJ_ID=?)),\r\n"
-			+ "PROJ_TOTAL_FUND=\r\n"
-			+ "(SELECT count(*) \r\n"
-			+ "FROM \r\n"
-			+ "(select a.*, b.PROJ_ID,b.PERK_FUND \r\n"
-			+ "from CFA104G2.PROJ_ORDER as a \r\n"
-			+ "left join CFA104G2.PROJ_PERK as b \r\n"
-			+ "on a.PERK_ID=b.PERK_ID)\r\n"
-			+ "as total \r\n"
-			+ "where (PROJ_ID=?))\r\n"
-			+ " where (PROJ_ID=?) ;";
+	private static final String UPDATE_PROJ_TOTAL_FUND_AND_COUNT = // 更新目前專案總募資金額及數量(取相同perk_id且訂單狀態不為5者)
+			"UPDATE PROJECT SET PROJ_TOTAL_FUND =(SELECT SUM(PERK_FUND) FROM (select a.*, b.PROJ_ID,b.PERK_FUND from CFA104G2.PROJ_ORDER as a left join CFA104G2.PROJ_PERK as b on a.PERK_ID=b.PERK_ID AND a.ORDER_STATE!=5)as total where (PROJ_ID=?)),PROJ_TOTAL_COUNT=(SELECT count(*) FROM 	(select a.*, b.PROJ_ID,b.PERK_FUND from CFA104G2.PROJ_ORDER as a left join CFA104G2.PROJ_PERK as b on a.PERK_ID=b.PERK_ID AND a.ORDER_STATE!=5)as total where (PROJ_ID=?)) where (PROJ_ID=?) ;";
 
+	
 	@Override
 	public void insert(ProjectVO projectVO) {
 

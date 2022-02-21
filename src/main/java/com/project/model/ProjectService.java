@@ -82,7 +82,7 @@ public class ProjectService {
 		return projectVO;
 	}
 
-//更新PROJ_TOTAL_FUND
+//更新PROJ_TOTAL_FUND及PROJ_TOTAL_COUNT(完全體，底下兩個方法用不到了)
 	public void UpdateOneProjTotalFund(Integer proj_id) {
 		dao.autoUpdateProjTotalFundAndCount(proj_id);
 	};

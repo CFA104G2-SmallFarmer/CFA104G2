@@ -357,7 +357,7 @@ public class ProjectServlet extends HttpServlet {
 				if (proj_name == null || proj_name.trim().length() == 0) {
 					errorMsgs.add("認養專案名稱: 請勿空白");
 				} else if (!proj_name.trim().matches(enameReg)) {
-					errorMsgs.add("認養專案名稱: 只能是中、英文字母、數字和_ , 且長度必需在2到50之間");
+					errorMsgs.add("認養專案名稱: 只能是中、英文字母、數字和_(不包含「-」) , 且長度必需在2到50之間");
 				}
 
 //				------------------處理圖片--------------------
@@ -424,7 +424,7 @@ public class ProjectServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					System.out.println("error3");
 					req.setAttribute("projectVO", projectVO); // 含有輸入格式錯誤的projectVO物件,也存入req
-					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listAllProjByFmem.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/projPic/addProjPic.jsp");
 					failureView.forward(req, res);
 					return; // 程式中斷
 				}
