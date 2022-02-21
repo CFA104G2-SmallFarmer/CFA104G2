@@ -20,8 +20,7 @@
 
     <title>我家門前有塊地</title>
 
-    <meta name="description"
-        content="flyingV is a Crowdfunding platform in Asia. flyingV 是一個群眾募資平台。我們正在打造一個環境，讓不限領域的創意，能更容易地實踐。">
+ 
 
     <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/mem/addMemByMem_css/all-19a228fd40.css">
 </head>

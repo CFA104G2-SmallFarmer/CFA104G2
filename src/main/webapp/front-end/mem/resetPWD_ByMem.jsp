@@ -101,7 +101,7 @@ margin-top:10px;
 
                 <div class="login-block flex-display space-between">
                     <span class="dark">已經有 我家門前有塊地 帳號了？</span>
-                    <a href="https://www.flyingv.cc/login" class="btn fGhostred">登入</a>
+                    <a href="" class="btn fGhostred">登入</a>
                 </div>
             </div>
         </div>
