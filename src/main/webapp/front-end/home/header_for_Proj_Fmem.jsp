@@ -35,7 +35,7 @@
         <li><a href="#">認養訂單管理&nbsp;</a></li>
 
         <li><a href="#">回到首頁 &nbsp;</a></li>
-        <li><a href="#"><i class="material-icons" style="font-size:27px">mail_outline</i> &nbsp;</a></li>
+        <li><a href="#"><span class="material-icons" style="font-size:27px">聯絡我們</span> &nbsp;</a></li>
       </ul>
       <div class="div0 showmenu">
         <!-- <a href="#" >menu</a> -->
