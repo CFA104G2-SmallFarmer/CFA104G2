@@ -56,7 +56,12 @@ pageContext.setAttribute("list",list);
 <link href="<%=request.getContextPath()%>/front-end/projPerk/perkoverview_files/css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" media="all"
 	href="<%=request.getContextPath()%>/front-end/projPerk/perkoverview_files/zeczec-e9e0ba9825d4b970fff398209948a791b4d18185e43b929ef4ffa0e7e5346248.css">
-
+  <!-- jQuery加入這段  -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+ 
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+  <!-- 加入這段 -->
 <style>
 .buya :hover {
 	background-color: #f7f6e4;
@@ -173,10 +178,10 @@ pageContext.setAttribute("list",list);
 															<div style="margin-top: 10px; margin-bottom: 20px; height: 17px;"
 								class="w-100-l w-50-ns ph3 ph0-l flex-none self-start">
 								<a class="buya"
-									href="${pageContext.request.contextPath}/projPerk/projPerk.do?proj_id=${projectVO.proj_id}&mem_id=${memVO.mem_id}7&perk_id=${projPerkVO.perk_id}&action=go_to_addOrderByMem">
+									href="${pageContext.request.contextPath}/projPerk/projPerk.do?proj_id=${projectVO.proj_id}&mem_id=${memVO.mem_id}&perk_id=${projPerkVO.perk_id}&action=go_to_addOrderByMem">
 									<div
 										style="color: #8f7e5d; font-size: 16px; border-radius: 0px; text-align: center; border: solid #aaba8b 1.5px; padding: 4px;"
-										class="w-100 ph3 ph0-l flex-none self-start">
+										class="w-100 ph3 ph0-l flex-none self-start buyy">
 										<strong>認購此專案</strong>
 									</div>
 								</a>
@@ -190,6 +195,34 @@ pageContext.setAttribute("list",list);
 	<script
 		src="<%=request.getContextPath()%>/front-end/projPerk/perkoverview_files/zeczec-75aefb6b17bb84ace5c7e76b106774304d1830945ab570527f3cb44045f686b1.js.下載"
 		type="text/javascript"></script>
+		
+		<script type="text/javascript">
+              $(function () {
+                var projectexpected_end_date = new Date('${projectVO.expected_end_date}'); /*募資結束日*/
+       
+                var thisDay = new Date(); /*今天*/
+                if ( (Date.parse(thisDay)).valueOf() > (Date.parse(projectexpected_end_date)).valueOf())  {
+                  $(".buyy").hide();
+
+                 /*  printAlert(); */
+                } else {
+                  $(".buyy").show();            
+                }
+              });
+
+              function printAlert() {
+                window.alert('專案募資已經結束');
+              }
+</script>
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	<div id="fb-root" class=" fb_reset">
 		<div
 			style="position: absolute; top: -10000px; width: 0px; height: 0px;">

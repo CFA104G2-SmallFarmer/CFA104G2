@@ -182,7 +182,7 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
              				 </FORM>
              				 
              				 <FORM style="display: inline-block" METHOD="post" ACTION="<%=request.getContextPath()%>/projPerk/projPerk.do" name="form6">
-            <button  type="submit" style="margin-bottom: 10px;" class="button-s b-ns ph2 ph3-ns button dark-gray bg-near-white bn ml1"
+            <button   type="submit" style="margin-bottom: 10px;" class="button-s b-ns ph2 ph3-ns button dark-gray bg-near-white bn ml1"
               rel="nofollow" href="#">刪除</button>
                		 <input type="hidden" name="proj_id" value="${projectVO.proj_id}"> 
                      <input type="hidden" name="perk_id"  value="${projPerkVO.perk_id}">
@@ -225,27 +225,25 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
 			</div>
 		</div>
 	</div>
-	<!-- <script
-		src="<%=request.getContextPath()%>/front-end/projPerk/perkoverview_files/zeczec-75aefb6b17bb84ace5c7e76b106774304d1830945ab570527f3cb44045f686b1.js.下載"
-		type="text/javascript"></script> -->
+	
 	<div id="fb-root" class=" fb_reset">
 		<div
 			style="position: absolute; top: -10000px; width: 0px; height: 0px;">
 			<div></div>
 		</div>
 	</div>
-	
-	<!-- 設定專案開始募資後，不能修改 -->
-	
-	<!-- ０２０６專案開始日期還沒抓到 -->
-	
-            <script type="text/javascript">
-              $(function () {
-                var projectStartDay = new Date('2022-05-22 00:00:00').getDate(); /*募資開始日*/
-                var thisDay = new Date().getDate(); /*今天*/
-                if (thisDay >= projectStartDay) {
-                  $(".button-s").attr("disabled", true);
+<%-- 	${projectVO.start_date} --%>
+	<!-- 設定專案START_DATE開始募資後，不能修改 -->
 
+	<script>
+	${projectVO.start_date}
+	</script>
+<script type="text/javascript">
+              $(function () {
+                var projectStartDay = new Date('${projectVO.start_date}'); /*募資開始日*/
+                var thisDay = new Date(); /*今天*/
+                if ( (Date.parse(thisDay)).valueOf() > (Date.parse(projectStartDay)).valueOf()) {
+                  $(".button-s").attr("disabled", true);
                   $(".b--green").attr("disabled", true);
                 
 
@@ -259,7 +257,7 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
               function printAlert() {
                 window.alert('專案募資已經開始，不能修改或刪除回饋方案');
               }
-            </script>
+</script>
 	
 	
 <!-- 	<script type="text/javascript"> -->

@@ -61,8 +61,7 @@ ProjPerkVO projPerkVO = projPerkSvc.getOneProjPerk(9);
 
 
 
-  <link href="https://www.zeczec.com/assets/fav-69601a279a66f2e6e31e508900d4f057559d3affcae42730d045b17d281107a6.png"
-    rel="shortcut icon" type="image/x-icon">
+  
   <link href="<%= request.getContextPath() %>/front-end/projPerk/addPerk_css/css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" media="all"
     href="<%= request.getContextPath() %>/front-end/projPerk/addPerk_css/zeczec-e9e0ba9825d4b970fff398209948a791b4d18185e43b929ef4ffa0e7e5346248.css">
