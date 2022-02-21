@@ -5,17 +5,28 @@
 <%@ page import="com.projPerk.model.*"%>
 <%@ page import="com.project.model.*"%>
 <%@ page import="java.util.*"%>
-
+<%@ page import="com.fMem.model.*"%>
+<%@ page import="com.mem.model.*"%>
+<%FMemVO fMemVO = (FMemVO) session.getAttribute("fMemVO");%>
+<%MemVO MemVO = (MemVO) session.getAttribute("MemVO");%>
 
 <!-- 迭代在282 -->
 <%
-    String mem_id = request.getParameter("mem_id");
+//用session那到MemVO
+Integer mem_id = MemVO.getMem_id();
+//   /*   String mem_id = request.getParameter("mem_id"); */
 	String membership= "buyer";
 %>
 <!-- 用傳list<某物件>的方式寫，讓servlet那邊先做完projOrderSvc.getAllMemOrder(mem_id) -->
+<%-- <% --%>
+<!-- // 	List<ProjOrderVO> list = (List<ProjOrderVO>)request.getAttribute("projOrderVO"); -->
+<!-- //     pageContext.setAttribute("list",list); -->
+<%-- %> --%>
+
 <%
-	List<ProjOrderVO> list = (List<ProjOrderVO>)request.getAttribute("projOrderVO");
-    pageContext.setAttribute("list",list);
+ProjOrderService projOrderSvc = new ProjOrderService();
+List<ProjOrderVO> projOrderVO = projOrderSvc.getAllMemOrder(mem_id);  
+pageContext.setAttribute("list",projOrderVO); 
 %>
 
 <!-- 領班 -->
@@ -24,6 +35,7 @@
 
 <!-- 衧霈有改 -->
 <jsp:useBean id="fmemSvc" scope="page" class="com.fMem.model.FMemService" />
+
 
 <%
 request.setAttribute("order_state_arr", new String[]{"待付款","待出貨","運送中","已完成","不成立<br>(未處理)","不成立<br>(已解決)"});
@@ -127,7 +139,7 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
 <%--                        <%=projPerkVO.getPerk_abbr_name()%> --%>
 <%--                     <%=projectVO.getProj_name()%> --%>
 <header>
-         <jsp:include page="/header/header.jsp" />
+         <jsp:include page="/front-end/home/header_for_Proj_Mem.jsp" />
 </header>
 
   
@@ -142,11 +154,12 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
                   <div class="shopee-tabs__nav">
                     <div class="shopee-tabs__nav-warp">
                       <div class="shopee-tabs__nav-tabs" style="transform: translateX(0px);">
-                        <div class="shopee-tabs__nav-tab " style="white-space: normal;">
+                        <!-- <div class="shopee-tabs__nav-tab " style="white-space: normal;">
                           <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">查詢</span>
                           </div>
-                        </div>
-                        <div class="shopee-tabs__nav-tab active" style="white-space: normal;">
+                        </div> -->
+                        <div onclick="location.href=
+'<%=request.getContextPath()%>/front-end/projOrder/listAllOrderByMem.jsp';" class="shopee-tabs__nav-tab active" style="white-space: normal;">
                           <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">全部</span>
                           </div>
                         </div>
@@ -474,7 +487,7 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
 			    				<input type="hidden" name="order_cancel_reason"  value="${projOrderVO.order_cancel_reason}">	
 			     				<input type="hidden" name="action" value="update_state_to_1_and_then_show_All">
     							
-    							<input type="hidden" name="mem_id" value="${param.mem_id}">
+    							<input type="hidden" name="mem_id" value="${MemVO.mem_id}">
     							<input type="hidden" name="membership" value="buyer">
     							
     							
@@ -499,7 +512,7 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
 			    				<input type="hidden" name="order_cancel_reason"  value="${projOrderVO.order_cancel_reason}">	
 			     				<input type="hidden" name="action" value="update_state_to_4_and_then_show_All">	 			  
 			
-			    				<input type="hidden" name="mem_id" value="${param.mem_id}">
+			    				<input type="hidden" name="mem_id" value="${MemVO.mem_id}">
     							<input type="hidden" name="membership" value="buyer">
 			
                                   <button data-v-4325ccd1="" 
@@ -527,7 +540,7 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
 			    				<input type="hidden" name="order_cancel_reason"  value="${projOrderVO.order_cancel_reason}">	
 			     				<input type="hidden" name="action" value="update_state_to_3_and_then_show_All">	 			  
 			
-						    	<input type="hidden" name="mem_id" value="${param.mem_id}">
+						    	<input type="hidden" name="mem_id" value="${MemVO.mem_id}">
     							<input type="hidden" name="membership" value="buyer">
 			
 			
@@ -555,7 +568,7 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
 			    				<input type="hidden" name="order_cancel_reason"  value="${projOrderVO.order_cancel_reason}">	
 			     				<input type="hidden" name="action" value="update_state_to_4_and_then_show_All">	 			  
 			
-								<input type="hidden" name="mem_id" value="${param.mem_id}">
+								<input type="hidden" name="mem_id" value="${MemVO.mem_id}">
     							<input type="hidden" name="membership" value="buyer">
 			
 			
@@ -582,7 +595,7 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
 			    				<input type="hidden" name="order_cancel_reason"  value="${projOrderVO.order_cancel_reason}">	
 			     				<input type="hidden" name="action" value="update_state_to_3_and_then_show_All">	 			  
 			
-								<input type="hidden" name="mem_id" value="${param.mem_id}">
+								<input type="hidden" name="mem_id" value="${MemVO.mem_id}">
     							<input type="hidden" name="membership" value="buyer">
 								--%>
 			
@@ -614,7 +627,7 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
 			    				<input type="hidden" name="order_cancel_reason"  value="${projOrderVO.order_cancel_reason}">	
 			     				<input type="hidden" name="action" value="update_state_to_5_and_then_show_All">	 			  
 			
-								<input type="hidden" name="mem_id" value="${param.mem_id}">
+								<input type="hidden" name="mem_id" value="${MemVO.mem_id}">
     							<input type="hidden" name="membership" value="buyer">
 							--%>
                                   <button data-v-4325ccd1="" 

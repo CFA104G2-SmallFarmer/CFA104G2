@@ -5,28 +5,36 @@
 <%@ page import="com.projPerk.model.*"%>
 <%@ page import="com.project.model.*"%>
 <%@ page import="java.util.*"%>
+<%@ page import="com.fMem.model.*"%>
+<%@ page import="com.mem.model.*"%>
+<%FMemVO fMemVO = (FMemVO) session.getAttribute("fMemVO");%>
+<%MemVO MemVO = (MemVO) session.getAttribute("MemVO");%>
 
-<!-- getAllFmemOrder(Integer f_mem_id) -->
-<%-- <% --%>
-<!-- // session.setAttribute("f_mem_id",70003); -->
-<%-- %> --%>
-
-<%-- <%
-    String f_mem_id = request.getParameter("f_mem_id");
-	String membership= "seller";
-%> --%>
-
-<!-- 用傳list<某物件>的方式寫，讓servlet那邊先做完projOrderSvc.getAllFmemOrder(Integer f_mem_id) -->
-<%-- <%
-	List<ProjOrderVO> list2 = (List<ProjOrderVO>) request.getAttribute("projOrderVO");
-    pageContext.setAttribute("list",list2);
-%> --%>
 
 <%
+//用session那到FMemVO
+Integer f_mem_id = fMemVO.getF_mem_id();
+//   /*   String mem_id = request.getParameter("mem_id"); */
+	String membership= "seller";
+	%>
+	
+<%
 ProjOrderService projOrderSvc = new ProjOrderService();
-List<ProjOrderVO> projOrderVO = projOrderSvc.getAllFmemOrder(70003); 
-pageContext.setAttribute("list",projOrderVO);
+List<ProjOrderVO> projOrderVO = projOrderSvc.getAllFmemOrder(f_mem_id);  
+pageContext.setAttribute("list",projOrderVO); 
 %>
+	
+<!--     String f_mem_id = request.getParameter("f_mem_id"); -->
+<!-- 	String membership= "seller"; -->
+
+
+<!-- 用傳list<某物件>的方式寫，讓servlet那邊先做完projOrderSvc.getAllFmemOrder(Integer f_mem_id) -->
+<%-- <% --%>
+<!-- // 	List<ProjOrderVO> list2 = (List<ProjOrderVO>) request.getAttribute("projOrderVO"); -->
+<!-- //     pageContext.setAttribute("list",list2); -->
+<%-- %> --%>
+
+
 
 <!-- 領班 -->
 <jsp:useBean id="projectSvc" scope="page" class="com.project.model.ProjectService" />
@@ -447,11 +455,13 @@ margin-top:20px;
                   <div class="shopee-tabs__nav">
                     <div class="shopee-tabs__nav-warp">
                       <div class="shopee-tabs__nav-tabs" style="transform: translateX(0px);">
-                        <div class="shopee-tabs__nav-tab active" style="white-space: normal;">
-                          <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">查詢</span>
+                        <div class="shopee-tabs__nav-tab" style="white-space: normal;">
+                          <div onclick="location.href=
+'<%=request.getContextPath()%>/front-end/projOrder/searchOrderByFmem.jsp';" data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">查詢</span>
                           </div>
                         </div>
-                        <div class="shopee-tabs__nav-tab" style="white-space: normal;">
+                        <div onclick="location.href=
+'<%=request.getContextPath()%>/front-end/projOrder/listAllOrderByFmem.jsp';" class="shopee-tabs__nav-tab active" style="white-space: normal;">
                           <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">全部</span>
                           </div>
                         </div>
@@ -493,7 +503,7 @@ margin-top:20px;
               <div data-v-acb72a84="" data-v-550e8c91="" class="order-list">
                 <div data-v-acb72a84="" class="padding-wrap">
                <!--  form開始 -->
-                  <form method="post" action="projOrder.do">
+                  <form method="post" action="${pageContext.request.contextPath}/projOrder/projOrder.do">
                     <div data-v-54562b84="" data-v-acb72a84=""
                       class="order-search-pannel order-search-panel order-search-pannel-inline order-search-improve">
                       <div data-v-4325ccd1="" data-v-54562b84="" class="order-search-container">
@@ -524,6 +534,7 @@ margin-top:20px;
                                   <input type="text" placeholder="請輸入訂單編號" clearable="true" resize="vertical" rows="2"
                                     minrows="2" maxlength="50" restrictiontype="input" max="Infinity" min="-Infinity"
                                     class="shopee-input__input" name="order_id" >
+                                    <input type="hidden" name="f_mem_id" value="${fMemVO.f_mem_id}">
                                     <input type="hidden" name="action" value="getOneByFmem">
                       <!-- name在這裡 -->
                                   <div class="shopee-input__suffix">
@@ -780,7 +791,7 @@ margin-top:20px;
 			    				<input type="hidden" name="order_cancel_reason"  value="${projOrderVO.order_cancel_reason}">	
 			     				<input type="hidden" name="action" value="update_state_to_1_and_then_show_All">
     							
-    							<input type="hidden" name="f_mem_id" value="${param.f_mem_id}">
+    							<input type="hidden" name="f_mem_id" value="${fMemVO.f_mem_id}">
     							<input type="hidden" name="membership" value="seller">
     							
     							<button data-v-4325ccd1=""
@@ -802,7 +813,7 @@ margin-top:20px;
 			    				<input type="hidden" name="order_cancel_reason"  value="${projOrderVO.order_cancel_reason}">	
 			     				<input type="hidden" name="action" value="update_state_to_4_and_then_show_All">	 			  
 			
-			    				<input type="hidden" name="f_mem_id" value="${param.f_mem_id}">
+			    				<input type="hidden" name="f_mem_id" value="${fMemVO.f_mem_id}">
     							<input type="hidden" name="membership" value="seller">
 			
                                   <button data-v-4325ccd1="" 
@@ -826,7 +837,7 @@ margin-top:20px;
 			    				<input type="hidden" name="order_cancel_reason"  value="${projOrderVO.order_cancel_reason}">	
 			     				<input type="hidden" name="action" value="update_state_to_2_and_then_show_All">	 			  
 			
-								<input type="hidden" name="f_mem_id" value="${param.f_mem_id}">
+								<input type="hidden" name="f_mem_id" value="${fMemVO.f_mem_id}">
     							<input type="hidden" name="membership" value="seller">
 			
 			
@@ -852,7 +863,7 @@ margin-top:20px;
 			    				<input type="hidden" name="order_cancel_reason"  value="${projOrderVO.order_cancel_reason}">	
 			     				<input type="hidden" name="action" value="update_state_to_4_and_then_show_All">	 			  
 			
-								<input type="hidden" name="f_mem_id" value="${param.f_mem_id}">
+								<input type="hidden" name="f_mem_id" value="${fMemVO.f_mem_id}">
     							<input type="hidden" name="membership" value="seller">
 			
 			
@@ -877,7 +888,7 @@ margin-top:20px;
 			    				<input type="hidden" name="order_cancel_reason"  value="${projOrderVO.order_cancel_reason}">	
 			     				<input type="hidden" name="action" value="update_state_to_3_and_then_show_All">	 			
 			
-								<input type="hidden" name="f_mem_id" value="${param.f_mem_id}">
+								<input type="hidden" name="f_mem_id" value="${fMemVO.f_mem_id}">
     							<input type="hidden" name="membership" value="seller">
 			
 			
@@ -905,7 +916,7 @@ margin-top:20px;
 			    				<input type="hidden" name="order_cancel_reason"  value="${projOrderVO.order_cancel_reason}">	
 			     				<input type="hidden" name="action" value="update_state_to_5_and_then_show_All">	 			  
 			
-								<input type="hidden" name="f_mem_id" value="${param.f_mem_id}">
+								<input type="hidden" name="f_mem_id" value="${fMemVO.f_mem_id}">
     							<input type="hidden" name="membership" value="seller">
 			
 			

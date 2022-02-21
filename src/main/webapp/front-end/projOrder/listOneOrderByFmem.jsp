@@ -4,9 +4,17 @@
 <%@ page import="com.projOrder.model.*"%>
 <%@ page import="com.projPerk.model.*"%>
 <%@ page import="com.project.model.*"%>
+<%@ page import="com.fMem.model.*"%>
+<%@ page import="com.mem.model.*"%>
+<%FMemVO fMemVO = (FMemVO) session.getAttribute("fMemVO");%>
+<%MemVO MemVO = (MemVO) session.getAttribute("MemVO");%>
 
-
-
+<%
+//用session那到FMemVO
+Integer f_mem_id = fMemVO.getF_mem_id();
+//   /*   String mem_id = request.getParameter("mem_id"); */
+	String membership= "seller";
+	%>
 <%
 ProjOrderVO projOrderVO = (ProjOrderVO) request.getAttribute("projOrderVO"); //EmpServlet.java(Concroller), 存入req的empVO物件
 %>
@@ -390,11 +398,13 @@ margin-top:20px;
                     <div class="shopee-tabs__nav-warp">
                       <div class="shopee-tabs__nav-tabs" style="transform: translateX(0px);">
                         <div class="shopee-tabs__nav-tab active" style="white-space: normal;">
-                          <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">查詢</span>
+                          <div onclick="location.href=
+'<%=request.getContextPath()%>/front-end/projOrder/searchOrderByFmem.jsp';" data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">查詢</span>
                           </div>
                         </div>
                         <div class="shopee-tabs__nav-tab" style="white-space: normal;">
-                          <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">全部</span>
+                          <div onclick="location.href=
+'<%=request.getContextPath()%>/front-end/projOrder/listAllOrderByFmem.jsp';" data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">全部</span>
                           </div>
                         </div>
                         <div class="shopee-tabs__nav-tab" style="white-space: normal;">
@@ -435,7 +445,7 @@ margin-top:20px;
               <div data-v-acb72a84="" data-v-550e8c91="" class="order-list">
                 <div data-v-acb72a84="" class="padding-wrap">
                <!--  form開始 -->
-                  <form method="post" action="projOrder.do">
+                  <form method="post" action="${pageContext.request.contextPath}/projOrder/projOrder.do">
                     <div data-v-54562b84="" data-v-acb72a84=""
                       class="order-search-pannel order-search-panel order-search-pannel-inline order-search-improve">
                       <div data-v-4325ccd1="" data-v-54562b84="" class="order-search-container">
@@ -466,6 +476,7 @@ margin-top:20px;
                                   <input type="text" placeholder="請輸入訂單編號" clearable="true" resize="vertical" rows="2"
                                     minrows="2" maxlength="50" restrictiontype="input" max="Infinity" min="-Infinity"
                                     class="shopee-input__input" name="order_id" >
+                                      <input type="hidden" name="f_mem_id" value="${fMemVO.f_mem_id}">
                                     <input type="hidden" name="action" value="getOneByFmem">
                       <!-- name在這裡 -->
                                   <div class="shopee-input__suffix">
