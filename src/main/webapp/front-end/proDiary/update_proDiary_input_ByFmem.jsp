@@ -16,8 +16,8 @@ ProDiaryVO proDiaryVO = (ProDiaryVO) request.getAttribute("proDiaryVO"); //EmpSe
 <jsp:useBean id="projectSvc" scope="page" class="com.project.model.ProjectService" />
 <jsp:useBean id="proDiarySvc" scope="page" class="com.proDiary.model.ProDiaryService" />
 
-${proDiaryVO.dir_id}
-${projectSvc.getOneProject(proDiarySvc.getOneProDiary(proDiaryVO.dir_id).proj_id).proj_name}
+<%-- ${proDiaryVO.dir_id}
+${projectSvc.getOneProject(proDiarySvc.getOneProDiary(proDiaryVO.dir_id).proj_id).proj_name} --%>
 <!-- 我的筆記 join -->
 
 
@@ -91,12 +91,12 @@ ${projectSvc.getOneProject(proDiarySvc.getOneProDiary(proDiaryVO.dir_id).proj_id
 
 
 
-
+<!-- 
   <link href="https://www.zeczec.com/assets/fav-69601a279a66f2e6e31e508900d4f057559d3affcae42730d045b17d281107a6.png"
-    rel="shortcut icon" type="image/x-icon">
-  <link href="<%=request.getContextPath()%>/projPerk/addPerk_css/css" rel="stylesheet" type="text/css">
+    rel="shortcut icon" type="image/x-icon"> -->
+  <link href="<%=request.getContextPath()%>/front-end/projPerk/addPerk_css/css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" media="all"
-    href="<%=request.getContextPath()%>/projPerk/addPerk_css/zeczec-e9e0ba9825d4b970fff398209948a791b4d18185e43b929ef4ffa0e7e5346248.css">
+    href="<%=request.getContextPath()%>/front-end/projPerk/addPerk_css/zeczec-e9e0ba9825d4b970fff398209948a791b4d18185e43b929ef4ffa0e7e5346248.css">
 </head>
 
 <body class="intent-mouse">
@@ -148,6 +148,7 @@ ${projectSvc.getOneProject(proDiarySvc.getOneProDiary(proDiaryVO.dir_id).proj_id
 <header style="height: 90px">
 		<jsp:include page="/front-end/home/header_for_Proj_Fmem.jsp" />
 	</header>
+	
 	<header style="padding-bottom: 5px"
 		class="relative z-2 bb pv2 ph3 ph0-l b--near-white">
 
