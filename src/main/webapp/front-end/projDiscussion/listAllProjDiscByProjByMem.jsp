@@ -327,7 +327,8 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
 									
 									</script>
 									<footer>
-        <jsp:include page="/footer/footer_for_Proj_Fmem.jsp" />
+
+        <jsp:include page="/front-end/home/footer_for_Proj_Fmem.jsp" />
 </footer>
 </body>
 </html>

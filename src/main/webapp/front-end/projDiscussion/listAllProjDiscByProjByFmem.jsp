@@ -616,7 +616,7 @@ margin-top:20px;
 									
 									</script>
 <footer>
-        <jsp:include page="/footer/footer_for_Proj_Fmem.jsp" />
+       <jsp:include page="/front-end/home/footer_for_Proj_Fmem.jsp" />
 </footer>
 
 
