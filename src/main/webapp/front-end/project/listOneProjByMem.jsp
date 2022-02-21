@@ -28,6 +28,15 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 	prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# zeczec-com: http://ogp.me/ns/fb/zeczec-com#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="csrf-param" content="authenticity_token">
+
+	  <!-- jQuery加入這段  -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+ 
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+  <!-- 加入這段 -->	
+		
+
 <%-- <meta name="csrf-token"
 	content="5+gyP059yldfSDrM1IhtsJpYSE663M3nCcO9K2QrgPoAHFunOIF+oaikpmNPaJ1IPFP0ZvFZM2oJr74gGvDGyQ==">
 <script
@@ -48,6 +57,12 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 <meta content="width=device-width, initial-scale=1" name="viewport">
 <meta content="zh_TW" property="og:locale">
 <meta content="zh_TW" property="og:locale:alternate">
+
+<!-- 這段給emoji的 -->
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+crossorigin="anonymous" /> 
+
 
 <title>我家門前有塊地 | ${projectVO.proj_name}</title>
 <link
@@ -102,6 +117,26 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 }
 
 </style>
+<%-- ${projectVO.expected_end_date} --%>
+<script type="text/javascript">
+              $(function () {
+            	  
+                var projectexpected_end_date = new Date('${projectVO.expected_end_date}'); /*募資結束日*/
+                var thisDay = new Date(); /*今天*/
+                	if ( (Date.parse(thisDay)).valueOf() > (Date.parse(projectexpected_end_date)).valueOf()) {
+                  $(".buyy").hide();
+
+                /*    printAlert();  */
+                } else {
+                  $(".buyy").show();
+
+                }
+              });
+              function printAlert() {
+                window.alert('專案募資已經結束');
+              }
+</script>
+
 
 
 </head>
@@ -167,7 +202,7 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 				<div class="ph3-l">
 					<div class="bt b--light-gray pt3 nl3 nr3"></div>
 				</div>
-				<div class="mb1 f7">
+				<div class="mb1 f7"style="font-size:16px">
 					<span class="mr2 b">贊助人數</span> <span class="js-backers-count">${projectVO.proj_total_count}</span>
 				</div>
 				<!-- 先取值 -->
@@ -182,7 +217,7 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 				<c:set var="interval" value="${someDate.time - nowDate.time}" />
 				<fmt:formatNumber var="dayleft" value="${interval/1000/60/60/24}"
 					pattern="#0" />
-				<div class="mb1 f7" id="dayleft">
+				<div class="mb1 f7"style="font-size:16px" id="dayleft">
 					<!-- 算完取條件判斷後呈現 -->
 					<span class="mr2 b"> <c:set var="prefix" value="剩餘時間" /> <c:set
 							var="suffix" value="天" /> <c:choose>
@@ -195,7 +230,7 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 					let e=document.getElementById("dayleft")
 					if (${interval}<=0){e.setAttribute("style","display:none;")}
      			</script>
-				<div class="mb2 f7">
+				<div class="mb2 f7"style="font-size:16px">
 					<span class="mr2 b">時程</span> ${projectVO.start_date} –
 					${projectVO.expected_end_date}
 				</div>
@@ -375,10 +410,10 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 							<div style="margin-top: 10px; margin-bottom: 20px; height: 17px;"
 								class="w-100-l w-50-ns ph3 ph0-l flex-none self-start">
 								<a class="buya"
-									href="${pageContext.request.contextPath}/projPerk/projPerk.do?proj_id=${projectVO.proj_id}&mem_id=${memVO.mem_id}7&perk_id=${projPerkVO.perk_id}&action=go_to_addOrderByMem">
+									href="${pageContext.request.contextPath}/projPerk/projPerk.do?proj_id=${projectVO.proj_id}&mem_id=${memVO.mem_id}&perk_id=${projPerkVO.perk_id}&action=go_to_addOrderByMem">
 									<div
 										style="color: #8f7e5d; font-size: 16px; border-radius: 0px; text-align: center; border: solid #aaba8b 1.5px; padding: 4px;"
-										class="w-100 ph3 ph0-l flex-none self-start">
+										class="w-100 ph3 ph0-l flex-none self-start buyy">
 										<strong>認購此專案</strong>
 									</div>
 								</a>

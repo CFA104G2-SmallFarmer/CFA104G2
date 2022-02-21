@@ -21,14 +21,15 @@
 	List<ProjectVO> list = projSvc.getAllSameFmemProject(f_mem_id);
 	pageContext.setAttribute("list", list);
 %>
+ <jsp:useBean id="projectSvc" scope="page" class="com.project.model.ProjectService" />
 
+<jsp:useBean id="fmemSvc" scope="page" class="com.fMem.model.FMemService" />
 
 
 <!-- 核心在471 -->
 <!DOCTYPE html>
 <html lang="en" class="js no-touch mdl-js">
-<head
-	prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# flyingv: http://ogp.me/ns/fb/flyingv#">
+<head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport"
 	content="width=device-width,
@@ -577,7 +578,7 @@ margin-top:20px;
 											</div>
 											<h2 class="title">${projectVO.proj_name}</h2>
 											<p class="creator">
-												<a href="https://www.flyingv.cc/users/535782">${projectVO.f_mem_id}</a>
+												<a href="#">${fmemSvc.getOneFMem(projectSvc.getOneProject(projectVO.proj_id).f_mem_id).f_mem_fname}</a>
 											</p>
 										</div>
 										<div class="downMeta">

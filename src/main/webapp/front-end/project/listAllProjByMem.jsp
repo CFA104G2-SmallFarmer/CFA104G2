@@ -11,13 +11,14 @@ List<ProjectVO> list = projSvc.getAllProject();
 pageContext.setAttribute("list", list);
 %>
 
+ <jsp:useBean id="projectSvc" scope="page" class="com.project.model.ProjectService" />
 
+<jsp:useBean id="fmemSvc" scope="page" class="com.fMem.model.FMemService" />
 
 <!-- 核心在471 -->
 <!DOCTYPE html>
 <html lang="en" class="js no-touch mdl-js">
-<head
-	prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# flyingv: http://ogp.me/ns/fb/flyingv#">
+<head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport"
 	content="width=device-width,
@@ -66,6 +67,31 @@ ul.pagination {
 	margin-right: 17px;
 }
 </style>
+
+
+
+		<script type="text/javascript">
+              $(function () {
+                var projectexpected_end_date = new Date(${projectVO.expected_end_date}).getDate(); /*募資開始日*/
+         /*        var projectStartDay = new Date('2022-05-22 00:00:00').getDate(); /*募資結束日*/
+                var thisDay = new Date().getDate(); /*今天*/
+                if (thisDay <= projectexpected_end_date) {
+                  $(".buyy").hide();
+                /*   $(".b--green").attr("disabled", true); */
+                
+
+                 /*  printAlert(); */
+                } else {
+                  $(".buyy").show();
+              /*     $(".b--green").attr("disabled", false);  */
+                }
+              });
+
+              function printAlert() {
+                window.alert('專案募資已經結束');
+              }
+</script>
+		
 </head>
 <body>
 	<noscript>
@@ -269,7 +295,7 @@ ul.pagination {
 											</div>
 											<h2 class="title">${projectVO.proj_name}</h2>
 											<p class="creator">
-												<a href="https://www.flyingv.cc/users/535782">${projectVO.f_mem_id}</a>
+												<a href="#">${fmemSvc.getOneFMem(projectSvc.getOneProject(projectVO.proj_id).f_mem_id).f_mem_fname}</a>
 											</p>
 										</div>
 										<div class="downMeta">
