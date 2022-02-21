@@ -24,6 +24,11 @@ pageContext.setAttribute("list3", list3);
 java.sql.Date dir_upload_date =(java.sql.Date)request.getAttribute("dir_upload_date");
 pageContext.setAttribute("dir_upload_date3", dir_upload_date);	
 %>
+
+ <jsp:useBean id="projectSvc" scope="page" class="com.project.model.ProjectService" />
+
+<jsp:useBean id="fmemSvc" scope="page" class="com.fMem.model.FMemService" />
+
 <%-- ${list3.key[0]} --%>
 <%-- <% --%>
 <!-- // ProjectService projectSvc = new ProjectService(); -->
@@ -109,7 +114,7 @@ footer:hover .logo-safari-fix {
 					href="https://www.zeczec.com/projects/paradisepet2022zeczecnewyear"><h2
 						class="f4 mt2 mb1">${projectVO.proj_name}</h2> </a><span
 					class="f6 mr1">提案人</span><a class="b f6"
-					href="https://www.zeczec.com/users/Pet-Paradise0507">${projectVO.f_mem_id}</a>
+					href="#">${fmemSvc.getOneFMem(projectSvc.getOneProject(projectVO.proj_id).f_mem_id).f_mem_fname}</a>
 				<p class="f6 gray mv3">${projectVO.proj_abstract}</p>
 				<div class="mv3 relative flex items-center flex-nowrap">
 					<svg class="progress mr3 succeeded sprint">
@@ -132,7 +137,7 @@ footer:hover .logo-safari-fix {
 				<div class="ph3-l">
 					<div class="bt b--light-gray pt3 nl3 nr3"></div>
 				</div>
-				<div class="mb1 f7" style="font-size: 16px">
+				<div class="mb1 f7 " style="font-size: 16px">
 					<span class="mr2 b">贊助人數</span> <span class="js-backers-count">${projectVO.proj_total_count}</span>
 				</div>
 				<!-- 先取值 -->
@@ -368,7 +373,7 @@ footer:hover .logo-safari-fix {
 
 														<p
 															style="font-size: 17px; margin-bottom: 4px; margin-top: 4px;">
-															<i class='far fa-calendar-alt' style='font-size: 16px'></i>：${proDiaryVO.dir_upload_date}<br>
+															日期：${proDiaryVO.dir_upload_date}<br>
 															<%-- 日誌發布狀態：${proDiaryVO.dir_upload_state}<br> --%>
 															生產過程：${proDiaryVO.dir_procedure}<br>
 															產品/種苗：${proDiaryVO.dir_product}<br>
@@ -434,7 +439,7 @@ footer:hover .logo-safari-fix {
 				<div style="margin-bottom: 20px;"
 					class="w-100-l w-50-ns ph3 ph0-l flex-none self-start">
 					<a
-						href="${pageContext.request.contextPath}/proDiary/proDiary.do?proj_id=${projectVO.proj_id}&action=go_to_listAll_ProDiary_from_listOneProjByFmem">
+						href="${pageContext.request.contextPath}/proDiary/proDiary.do?proj_id=${projectVO.proj_id}&action=go_to_listAll_ProDiary_from_listOneProjByMem">
 						<div
 							style="font-size: 20px; color: #3f3f3f; text-align: center; border-radius: 10px; background-color: #e0ffd8; border: solid white 2px; padding: 15px; padding: 10px;"
 							class="w-100-l ph3 ph0-l flex-none self-start">
@@ -446,7 +451,7 @@ footer:hover .logo-safari-fix {
 					<c:forEach var="list3" items="${list3}">
 						<div style="margin-bottom: 30px; height: 28px;"
 							class="w-100-l w-50-ns ph3 ph0-l flex-none self-start">
-							<a href="<%=request.getContextPath()%>/proDiary/proDiary.do?proj_id=${projectVO.proj_id}&dir_upload_date=${list3.key}&action=go_to_listAll_ProDiary_ByDate_from_listOneProjByFmem">
+							<a href="<%=request.getContextPath()%>/proDiary/proDiary.do?proj_id=${projectVO.proj_id}&dir_upload_date=${list3.key}&action=go_to_listAll_ProDiary_ByDate_from_listOneProjByMem">
 								<div
 									style="color: #aaba8b; font-size: 20px; border-radius: 10px; text-align: center; border: solid #aaba8b 2px; padding: 15px; padding: 10px;"
 									class="w-60 ph3 ph0-l flex-none self-start">${list3.key}</div>

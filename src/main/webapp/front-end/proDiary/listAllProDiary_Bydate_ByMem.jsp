@@ -28,7 +28,10 @@ ${dir_upload_date3} --%>
 <!-- // ProjectService projectSvc = new ProjectService(); -->
 <!-- // ProjectVO projectVO = projectSvc.getOneProject(1001);  -->
 <%-- %> --%>
+ <jsp:useBean id="projectSvc" scope="page" class="com.project.model.ProjectService" />
 
+<%-- <jsp:useBean id="fMemSvc" scope="page" class="com.fMem.model.FMemService" /> --%> 
+<jsp:useBean id="fmemSvc" scope="page" class="com.fMem.model.FMemService" />
 
 <!-- 待辦 -->
 <!-- 登入確認 -->
@@ -63,12 +66,7 @@ ${dir_upload_date3} --%>
 <meta content="width=device-width, initial-scale=1" name="viewport">
 <meta content="zh_TW" property="og:locale">
 <meta content="zh_TW" property="og:locale:alternate">
-<link
-	href="https://www.zeczec.com/assets/logo-square-04c45286e84ea49d07c97c86625fbf3a75f4f32dd02da3ad3ca70a9a68fd0395.png"
-	rel="apple-touch-icon">
-<link
-	href="https://www.zeczec.com/assets/fav-69601a279a66f2e6e31e508900d4f057559d3affcae42730d045b17d281107a6.png"
-	rel="shortcut icon" type="image/x-icon">
+
 <title>我家門前有塊地 | ${projectVO.proj_name}</title>
 <link href="<%=request.getContextPath()%>/front-end/project/listOneProj_files/css"
 	rel="stylesheet" type="text/css">
@@ -166,7 +164,7 @@ font-size:23px;
 					href="https://www.zeczec.com/projects/paradisepet2022zeczecnewyear"><h2
 						class="f4 mt2 mb1">${projectVO.proj_name}</h2> </a><span
 					class="f6 mr1">提案人</span><a class="b f6"
-					href="https://www.zeczec.com/users/Pet-Paradise0507">${projectVO.f_mem_id}</a>
+					href="#">${fmemSvc.getOneFMem(projectSvc.getOneProject(projectVO.proj_id).f_mem_id).f_mem_fname}</a>
 				<p class="f6 gray mv3">${projectVO.proj_abstract}</p>
 				<div class="mv3 relative flex items-center flex-nowrap">
 					<svg class="progress mr3 succeeded sprint">
@@ -189,7 +187,7 @@ font-size:23px;
 				<div class="ph3-l">
 					<div class="bt b--light-gray pt3 nl3 nr3"></div>
 				</div>
-				<div class="mb1 f7">
+				<div class="mb1 f7"style="font-size:16px">
 					<span class="mr2 b">贊助人數</span> <span class="js-backers-count">${projectVO.proj_total_count}</span>
 				</div>
 				<!-- 先取值 -->
@@ -217,7 +215,7 @@ font-size:23px;
 					let e=document.getElementById("dayleft")
 					if (${interval}<=0){e.setAttribute("style","display:none;")}
      			</script>
-				<div class="mb2 f7">
+				<div class="mb2 f7"style="font-size:16px">
 					<span class="mr2 b">時程</span> ${projectVO.start_date} –
 					${projectVO.expected_end_date}
 				</div>
@@ -399,7 +397,7 @@ font-size:23px;
 
 														<p
 															style="font-size: 17px; margin-bottom: 4px; margin-top: 4px;">
-															<i class='far fa-calendar-alt' style='font-size: 16px'></i>：${proDiaryVO.dir_upload_date}<br>
+															日期：${proDiaryVO.dir_upload_date}<br>
 															<%-- 日誌發布狀態：${proDiaryVO.dir_upload_state}<br> --%>
 															生產過程：${proDiaryVO.dir_procedure}<br>
 															產品/種苗：${proDiaryVO.dir_product}<br>

@@ -20,7 +20,11 @@ pageContext.setAttribute("list2", list2);
 Map<Date, List<ProDiaryVO>> list3 = proDiarySvc.getAll_groupingBy_date(projectVO.getProj_id());
 pageContext.setAttribute("list3", list3);
 %>
-${list3.key[0]}
+<%-- ${list3.key[0]} --%>
+
+ <jsp:useBean id="projectSvc" scope="page" class="com.project.model.ProjectService" />
+
+<jsp:useBean id="fmemSvc" scope="page" class="com.fMem.model.FMemService" />
 <%-- <% --%>
 <!-- // ProjectService projectSvc = new ProjectService(); -->
 <!-- // ProjectVO projectVO = projectSvc.getOneProject(1001);  -->
@@ -105,7 +109,7 @@ footer:hover .logo-safari-fix {
 					href="https://www.zeczec.com/projects/paradisepet2022zeczecnewyear"><h2
 						class="f4 mt2 mb1">${projectVO.proj_name}</h2> </a><span
 					class="f6 mr1">提案人</span><a class="b f6"
-					href="https://www.zeczec.com/users/Pet-Paradise0507">${projectVO.f_mem_id}</a>
+					href="#">${fmemSvc.getOneFMem(projectSvc.getOneProject(projectVO.proj_id).f_mem_id).f_mem_fname}</a>
 				<p class="f6 gray mv3">${projectVO.proj_abstract}</p>
 				<div class="mv3 relative flex items-center flex-nowrap">
 					<svg class="progress mr3 succeeded sprint">
@@ -355,7 +359,7 @@ footer:hover .logo-safari-fix {
 
 														<p
 															style="font-size: 17px; margin-bottom: 4px; margin-top: 4px;">
-															<i class='far fa-calendar-alt' style='font-size: 16px'></i>：${proDiaryVO.dir_upload_date}<br>
+															日期：${proDiaryVO.dir_upload_date}<br>
 															<%-- 日誌發布狀態：${proDiaryVO.dir_upload_state}<br> --%>
 															生產過程：${proDiaryVO.dir_procedure}<br>
 															產品/種苗：${proDiaryVO.dir_product}<br>
@@ -433,7 +437,7 @@ footer:hover .logo-safari-fix {
 					<c:forEach var="list3" items="${list3}">
 						<div style="margin-bottom: 30px; height: 28px;"
 							class="w-100-l w-50-ns ph3 ph0-l flex-none self-start">
-							<a href="#">
+							<a href="<%=request.getContextPath()%>/proDiary/proDiary.do?proj_id=${projectVO.proj_id}&dir_upload_date=${list3.key}&action=go_to_listAll_ProDiary_ByDate_from_listOneProjByFmem">
 								<div
 									style="color: #aaba8b; font-size: 20px; border-radius: 10px; text-align: center; border: solid #aaba8b 2px; padding: 15px; padding: 10px;"
 									class="w-60 ph3 ph0-l flex-none self-start">${list3.key}</div>
