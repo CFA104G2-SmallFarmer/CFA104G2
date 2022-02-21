@@ -219,7 +219,7 @@
             <li><a id="login_link" href="<%=request.getContextPath()%>/front-end/mem/addMemByMem.jsp">
                 <div class="account">會員註冊</div>
               </a></li>
-            <li><a id="login_link" href="#">
+            <li><a id="login_link" href="<%=request.getContextPath()%>/front-end/fMem/addFMem.jsp">
                 <div class="account">註冊成為小農</div>
               </a></li>
             <li>
