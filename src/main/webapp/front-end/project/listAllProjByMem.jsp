@@ -197,7 +197,7 @@ ul.pagination {
 			</div>
 		</div>
 		<header>
-         <jsp:include page="/front-end/home/header2.jsp" />
+         <jsp:include page="/front-end/home/header2/header2.jsp" />
 </header>
 
 

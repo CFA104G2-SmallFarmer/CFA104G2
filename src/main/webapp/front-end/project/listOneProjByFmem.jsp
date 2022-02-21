@@ -42,12 +42,7 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 <meta content="width=device-width, initial-scale=1" name="viewport">
 <meta content="zh_TW" property="og:locale">
 <meta content="zh_TW" property="og:locale:alternate">
-<!-- <link
-	href="https://www.zeczec.com/assets/logo-square-04c45286e84ea49d07c97c86625fbf3a75f4f32dd02da3ad3ca70a9a68fd0395.png"
-	rel="apple-touch-icon">
-<link
-	href="https://www.zeczec.com/assets/fav-69601a279a66f2e6e31e508900d4f057559d3affcae42730d045b17d281107a6.png"
-	rel="shortcut icon" type="image/x-icon"> -->
+
 <title>認養專案管理 | ${projectVO.proj_name} </title>
 <link href="<%=request.getContextPath()%>/front-end/project/listOneProj_files/css"
 	rel="stylesheet" type="text/css">
