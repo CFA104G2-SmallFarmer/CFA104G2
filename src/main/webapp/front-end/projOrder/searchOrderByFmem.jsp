@@ -3,7 +3,7 @@
 <%@ page import="com.fMem.model.*"%>
 <%@ page import="com.mem.model.*"%>
 <%FMemVO fMemVO = (FMemVO) session.getAttribute("fMemVO");%>
-<%MemVO MemVO = (MemVO) session.getAttribute("MemVO");%>
+<%MemVO MemVO = (MemVO) session.getAttribute("memVO");%>
 
 <%
 //用session那到FMemVO

@@ -8,7 +8,7 @@
 <%@ page import="com.fMem.model.*"%>
 <%@ page import="com.mem.model.*"%>
 <%FMemVO fMemVO = (FMemVO) session.getAttribute("fMemVO");%>
-<%MemVO MemVO = (MemVO) session.getAttribute("MemVO");%>
+<%MemVO MemVO = (MemVO) session.getAttribute("memVO");%>
 
 
 <%
@@ -915,6 +915,9 @@ margin-top:20px;
     							<input type="hidden" name="order_cancel_time"  value="${projOrderVO.order_cancel_time}">		 			  
 			    				<input type="hidden" name="order_cancel_reason"  value="${projOrderVO.order_cancel_reason}">	
 			     				<input type="hidden" name="action" value="update_state_to_5_and_then_show_All">	 			  
+			
+								<!-- 	下單同時更新專案募資總額、人數及方案總人數這三項，所以取這變數			 -->
+								<input type="hidden" name="perk_id"  value="${projOrderVO.perk_id}">	
 			
 								<input type="hidden" name="f_mem_id" value="${fMemVO.f_mem_id}">
     							<input type="hidden" name="membership" value="seller">
