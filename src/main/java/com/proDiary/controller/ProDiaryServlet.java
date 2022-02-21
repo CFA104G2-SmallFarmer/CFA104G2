@@ -782,6 +782,60 @@ Integer dir_id = new Integer(req.getParameter("dir_id").trim());
 
 		}
 		
+		if ("go_to_listAll_ProDiary_ByDate_from_listOneProjByMem".equals(action)) {
+
+			Integer proj_id = new Integer(req.getParameter("proj_id").trim());
+			System.out.println(proj_id);
+//			Integer dir_upload_date = new Integer(req.getParameter("dir_upload_date").trim());
+			java.sql.Date dir_upload_date = null;
+			try {
+				dir_upload_date = java.sql.Date.valueOf(req.getParameter("dir_upload_date").trim());
+			} catch (IllegalArgumentException e) {
+
+				dir_upload_date = null;
+//				errorMsgs.add("請輸入日期!");
+			}
+			req.setAttribute("dir_upload_date", dir_upload_date);
+			
+			ProjectService projectSvc = new ProjectService();
+			ProjectVO projectVO = projectSvc.getOneProject(proj_id);
+			req.setAttribute("projectVO", projectVO);
+
+			String url = "/front-end/proDiary/listAllProDiary_Bydate_ByMem.jsp";
+			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+			successView.forward(req, res);
+			System.out.println("go_to_listAll_ProDiary_ByDate_from_listOneProjByMem done");
+
+		}
+		
+		if ("go_to_listAll_ProDiary_ByDate_from_listOneProjByFmem".equals(action)) {
+
+			Integer proj_id = new Integer(req.getParameter("proj_id").trim());
+			System.out.println(proj_id);
+//			Integer dir_upload_date = new Integer(req.getParameter("dir_upload_date").trim());
+			java.sql.Date dir_upload_date = null;
+			try {
+				dir_upload_date = java.sql.Date.valueOf(req.getParameter("dir_upload_date").trim());
+			} catch (IllegalArgumentException e) {
+
+				dir_upload_date = null;
+//				errorMsgs.add("請輸入日期!");
+			}
+			req.setAttribute("dir_upload_date", dir_upload_date);
+			
+			ProjectService projectSvc = new ProjectService();
+			ProjectVO projectVO = projectSvc.getOneProject(proj_id);
+			req.setAttribute("projectVO", projectVO);
+
+			String url = "/front-end/proDiary/listAllProDiary_Bydate_ByFmem.jsp";
+			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+			successView.forward(req, res);
+			System.out.println("go_to_listAll_ProDiary_ByDate_from_listOneProjByFmem done");
+
+		}
+		
+
+		
 		
 		
 		
