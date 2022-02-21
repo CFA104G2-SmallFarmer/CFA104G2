@@ -382,7 +382,7 @@ font-size=20px;
                     </span>
                 </button>
                 <a class="gray f6 ml3 dn-ns"
-                  href="https://www.zeczec.com/projects/verde/orders/back_project?selected_reward=72126#preview">
+                  href="#">
                   <i class="material-icons v-mid f6 mr1">help_outline</i>
                   金額細節
                 </a>
@@ -395,7 +395,7 @@ font-size=20px;
                   如提案人因故決定不接受認養訂單，將會取消訂單並主動退還訂單款項。${projPerkVO.perk_id}
                 </p>
 
- <p> mem_id= <%=memVO.getMem_id()%></p>
+<%--  <p> mem_id= <%=memVO.getMem_id()%></p> --%>
                 
                 
                					 <input type="hidden" name="mem_id"  value="${memVO.mem_id}">	
@@ -405,7 +405,7 @@ font-size=20px;
 <%-- 			    				<input type="hidden" name="f_mem_id" value="${param.f_mem_id}">
     							<input type="hidden" name="membership" value="seller"> --%>
                 
-                <button type="submit" class="dn js-update-sum" formaction="https://www.zeczec.com/orders/preview_sum"
+                <button type="submit" class="dn js-update-sum"
                   formnovalidate="">Preview</button>
                   
               </div>
