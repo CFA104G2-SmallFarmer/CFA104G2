@@ -169,19 +169,8 @@ public class ProjOrderServlet extends HttpServlet{
 				
 				/***************************2.開始查詢資料*****************************************/
 				ProjOrderService projOrderSvc = new ProjOrderService();
+				try {
 				ProjOrderVO projOrderVO = projOrderSvc.getOneProjOrderByFMem(order_id, f_mem_id);
-
-				if (projOrderVO == null) {
-					errorMsgs.add("查無資料");
-				}
-				// Send the use back to the form, if there were errors
-				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req
-							.getRequestDispatcher("/front-end/projOrder/searchOrderByFmem.jsp");///***我還沒改
-					failureView.forward(req, res);
-					return;//程式中斷
-				}
-				
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("projOrderVO", projOrderVO); // 資料庫取出的empVO物件,存入req
 			
@@ -202,6 +191,41 @@ public class ProjOrderServlet extends HttpServlet{
 				String url = "/front-end/projOrder/listOneOrderByFmem.jsp";///***我還沒改
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
+
+				}catch (Exception e) {
+					errorMsgs.add("查無資料");
+				}
+//				if (projOrderVO == null) {
+//					errorMsgs.add("查無資料");
+//				}
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/front-end/projOrder/searchOrderByFmem.jsp");///***我還沒改
+					failureView.forward(req, res);
+					return;//程式中斷
+				}
+				
+//				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
+//				req.setAttribute("projOrderVO", projOrderVO); // 資料庫取出的empVO物件,存入req
+//			
+//				/*****我增加的部分start*****為了拿到專案名稱*/
+//				ProjPerkService projPerkSvc = new ProjPerkService();
+//				ProjPerkVO projPerkVO = projPerkSvc.getOneProjPerk(projOrderVO.getPerk_id());
+//				ProjectService projectSvc = new ProjectService();
+//				ProjectVO projectVO = projectSvc.getOneProject(projPerkVO.getProj_id());
+//				
+//				req.setAttribute("projPerkVO", projPerkVO); // 資料庫取出的empVO物件,存入req
+//				req.setAttribute("projectVO", projectVO); // 資料庫取出的empVO物件,存入req
+//				
+//				req.setAttribute("order_state_arr", new String[]{"待付款","待出貨","運送中","已完成","不成立<br>(未處理)","不成立<br>(已解決)"});
+//				req.setAttribute("proj_pay_arr", new String[]{"信用卡","銀行轉帳"});
+//				req.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買家取消","小農取消","專案募資失敗"});
+//				/*****我增加的部分end******/
+//				
+//				String url = "/front-end/projOrder/listOneOrderByFmem.jsp";///***我還沒改
+//				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
+//				successView.forward(req, res);
 
 				/***************************其他可能的錯誤處理*************************************/
 			} catch (Exception e) {
@@ -238,7 +262,7 @@ public class ProjOrderServlet extends HttpServlet{
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listAllProj.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/projOrder/listAllOrderByMem.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -251,7 +275,7 @@ public class ProjOrderServlet extends HttpServlet{
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listAllProj.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/projOrder/listAllOrderByMem.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -270,7 +294,7 @@ public class ProjOrderServlet extends HttpServlet{
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listAllProj.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/projOrder/listAllOrderByMem.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -289,7 +313,7 @@ public class ProjOrderServlet extends HttpServlet{
 				
 
 				
-				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listAllProj.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/projOrder/listAllOrderByMem.jsp");
 				failureView.forward(req, res);
 				
 				System.out.println("error in final");
@@ -316,7 +340,7 @@ public class ProjOrderServlet extends HttpServlet{
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/projOrder/listAllOrderByFmem.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/projOrder/searchOrderByFmem.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -329,7 +353,7 @@ public class ProjOrderServlet extends HttpServlet{
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/projOrder/listAllOrderByFmem.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/projOrder/searchOrderByFmem.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -349,7 +373,7 @@ public class ProjOrderServlet extends HttpServlet{
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/projOrder/listAllOrderByFmem.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/projOrder/searchOrderByFmem.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -366,7 +390,7 @@ public class ProjOrderServlet extends HttpServlet{
 //				System.out.println("error in final");
 				errorMsgs.add("無法取得資料:" + e.getMessage());
 
-				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/projOrder/listAllOrderByFmem.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/projOrder/searchOrderByFmem.jsp");
 				failureView.forward(req, res);
 				
 //				System.out.println("error in final");
