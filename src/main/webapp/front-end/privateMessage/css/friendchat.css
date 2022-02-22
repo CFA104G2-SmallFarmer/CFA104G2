@@ -3,17 +3,11 @@
 	padding: 0px;
 }
 
-html, body {
-	font: 15px verdana, Times New Roman, arial, helvetica, sans-serif,
-		Microsoft JhengHei;
-	width: 90%;
-	height: 90%;
-	background: #eeeeda;
-}
+
 
 .panel {
 	float: right;
-	border: 2px solid #0078ae;
+	border: 2px solid #b9d4b3;
 	border-radius: 5px;
 	width: 50%;
 }
@@ -53,28 +47,33 @@ h1 {
 }
 
 .statusOutput {
-	background: #0078ae;
+	background: #b9d4b3;
 	text-align: center;
 	color: #ffffff;
-	border: 1px solid grey;
+	border: 1px solid #ffffff;
 	padding: 0.2em;
-	box-shadow: 0 0 5px #000000;
-	width: 30%;
+	width: 100%;
 	margin-top: 10%;
 	margin-left: 60%;
 }
 
 #row {
-	float: left;
-	width: 50%;
+	top:10;
+	margin:0;
+	padding: 10px 0px 0px 10px;
+	border: 2px solid #b9d4b3;
+	border-radius: 5px;
 }
 
 .column {
+  margin:0;
   float: left;
+  font-size: 16px;
+  color:#ffffff;
   width: 50%;
   padding: 5%;
   margin-bottom: 5px;
-  background-color: #ffffff;
+  background-color: #b9d4b3;
 }
 
 ul{

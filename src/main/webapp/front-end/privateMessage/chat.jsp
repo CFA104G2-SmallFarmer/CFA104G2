@@ -3,61 +3,38 @@
 <!-- 剩版型修改 -->
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!-- 以下私訊用 -->
 <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/privateMessage/css/friendchat.css" type="text/css" />
-<style>._3YurerlznH {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-}
-
-._1jxtCX6jiG {
-  -webkit-user-drag: none;
-  
-
-  
-  width: 120px;
-  margin-bottom: 8px;
-  
-}
-
-._3l9IBXMpxr {
-  color: #333;
-  font-weight: 500;
-  letter-spacing: 0;
-
-  
-
-  
-  font-size: 12px;
-  line-height: 14px;
-  
-}
-
-/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLFlBQVk7RUFDWixhQUFhO0VBQ2IsbUJBQW1CO0VBQ25CLHNCQUFzQjtFQUN0Qix1QkFBdUI7QUFDekI7O0FBRUE7RUFDRSx1QkFBdUI7Ozs7RUFJdkIsWUFBWTtFQUNaLGtCQUFrQjs7QUFFcEI7O0FBRUE7RUFDRSxXQUFXO0VBQ1gsZ0JBQWdCO0VBQ2hCLGlCQUFpQjs7Ozs7RUFLakIsZUFBZTtFQUNmLGlCQUFpQjs7QUFFbkIiLCJmaWxlIjoiaW5kZXguY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnJvb3Qge1xuICBoZWlnaHQ6IDEwMCU7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xufVxuXG4uaW1nIHtcbiAgLXdlYmtpdC11c2VyLWRyYWc6IG5vbmU7XG4gIFxuXG4gIFxuICB3aWR0aDogMTIwcHg7XG4gIG1hcmdpbi1ib3R0b206IDhweDtcbiAgXG59XG5cbi50ZXh0IHtcbiAgY29sb3I6ICMzMzM7XG4gIGZvbnQtd2VpZ2h0OiA1MDA7XG4gIGxldHRlci1zcGFjaW5nOiAwO1xuXG4gIFxuXG4gIFxuICBmb250LXNpemU6IDEycHg7XG4gIGxpbmUtaGVpZ2h0OiAxNHB4O1xuICBcbn1cbiJdfQ== */</style>
-<style type="text/css">
-</style>
 <link href="https://deo.shopeemobile.com/shopee/shopee-seller-live-tw/chateasy/styles.21833f8f.6faae855a24d979165aa.css" rel="stylesheet" type="text/css" crossorigin="anonymous">
-<title>最大私人聊天室</title>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script>
+$(document).ready(function() {
+	$("#clickpri").click(function() {
+		$("#showpri").toggle("slow");
+	});
+});
+</script>
+<!-- 以上私訊用 -->
 </head>
 <body onload="connect();" onunload="disconnect();">
-	<h3 id="statusOutput" class="statusOutput"></h3>
-<!-- 	<div id="row"></div> -->
-<!-- 	<div id="messagesArea" class="panel message-area" ></div> -->
-	<div class="panel input-area">
-		<input id="message" class="text-field" type="text" placeholder="Message" onkeydown="if (event.keyCode == 13) sendMessage();" /> 
-		<input type="submit" id="sendMessage" class="button" value="Send" onclick="sendMessage();" /> 
-		<input type="button" id="connect" class="button" value="Connect" onclick="connect();" /> 
-		<input type="button" id="disconnect" class="button" value="Disconnect" onclick="disconnect();" />
-	</div>
-	
-	<div id="shopee-mini-chat-embedded"
-		style="position: fixed; right: 8px; bottom: 0px; z-index: 99999;">
+<% %>
+<%-- 	<form action="<%=request.getContextPath() %>/front-end/privateMessage/privateMessage.do" method="POST"> --%>
+<%-- 		<input id="userName" name="mem_name"  type="hidden" value="${memVO.mem_name}" />  --%>
+<!-- 	</form> -->
+<%
+request.setAttribute("mem_name", "王小名"); // 測試用，之後get方法要改成session.get...
+%>
+    <a id="clickpri" style="width:48px; height: 48px;cursor: pointer; z-index:999999; position:fixed; right:5%; top:85%;">
+	<img src="<%=request.getContextPath() %>/front-end/privateMessage/images/comment.png" style=" font-size: 30px;color: #aaba8b; width:48px; height: 48px;">
+<!--     <svg onclick="sendName();" class="svg-inline--fa fa-envelope fa-w-16" style=" font-size: 30px;color: #aaba8b;" aria-hidden="true" data-fa-processed="" data-prefix="far" data-icon="envelope" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z"></path></svg> -->
+    </a>
+
+
+<div>	
+	<div id="showpri"
+		style=" display:none; position: fixed; right:5%; top:35%; z-index: 99999;">
 		<div class="src-pages-ChatWindow-index__container--1qoj1">
-			<div class="src-pages-ChatWindow-index__header--USXSl">
+			<div class="src-pages-ChatWindow-index__header--USXSl" style="background-color: #b9d4b3;">
 				<div class="src-pages-ChatWindow-index__logo-wrapper--1rM8W">
 					<i class="_3kEAcT1Mk5 src-pages-ChatWindow-index__logo--3ygfr"><svg
 							xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 22"
@@ -93,17 +70,23 @@
 			<div class="src-pages-ChatWindow-index__windows--3KL4n">
 				<div class="src-pages-ChatWindow-index__details--3uIPO">
 					<div class="src-pages-ChatWindow-index__blank--2pLm1">
-	<div id="messagesArea" class="panel message-area" style="width:250px; height:350px;"></div>
+					<!-- 對話接入點 -->
+					<h3 id="statusOutput" class="statusOutput" style="margin: 0; height: 32px;"></h3>
+					<div id="messagesArea" class="panel message-area" style="width:100%; height:350px;"></div>
+					<div class="panel" style="width: 100%;">
+		<input id="message" class="text-field" type="text" placeholder="Message" onkeydown="if (event.keyCode == 13) sendMessage();" style="display:inline-block; width: width:calc(100% - 10px);"/> 
+		<input type="submit" id="sendMessage" class="button" value="Send" onclick="sendMessage();" style="display:inline-block;"/> 
+	</div>
+					
 					</div>
 				</div>
-				<div class="src-pages-ConversationLists-index__root--3_OYj">
-				<div id="row"></div>
+				<div id="row" class="src-pages-ConversationLists-index__root--3_OYj">
 				</div>
 			</div>
 		</div>
 		<div class="ReactModalPortal"></div>
 	</div>
-	
+</div>	
 </body>
 <script>
 	var MyPoint = "/FriendWS/${mem_name}";
@@ -124,8 +107,8 @@
 		webSocket.onopen = function(event) {
 			console.log("Connect Success!");
 			document.getElementById('sendMessage').disabled = false;
-			document.getElementById('connect').disabled = true;
-			document.getElementById('disconnect').disabled = false;
+// 			document.getElementById('connect').disabled = true;
+// 			document.getElementById('disconnect').disabled = false;
 		};
 
 		webSocket.onmessage = function(event) {
@@ -151,7 +134,7 @@
 				messagesArea.scrollTop = messagesArea.scrollHeight;
 			} else if ("chat" === jsonObj.type) {
 				var li = document.createElement('li');
-				jsonObj.sender_name === self ? li.className += 'me' : li.className += 'friend';
+				jsonObj.sender_mem === self ? li.className += 'me' : li.className += 'friend';
 				li.innerHTML = jsonObj.message;
 				console.log(li);
 				document.getElementById("area").appendChild(li);

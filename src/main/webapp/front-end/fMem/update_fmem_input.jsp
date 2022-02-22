@@ -489,16 +489,20 @@ invisible.style.display = "";
 </head>
 
 <body style="" class="nt-s nl-l">
-	<jsp:include page="/front-end/home/header.jsp" flush="true"/>
-	<div id="main">
+<jsp:include page="/front-end/home/header.jsp" flush="true"/>
+<jsp:include page="/front-end/home/fmemindex.jsp" flush="true"/>
+<div>
+    
+</div>	
+
+	<div id="main" style="float:left; width: 1000px;">
 		<div>
 			<div class="shopee-progress-bar"></div>
 			<div class="_193wCc">
-				<div class="container _1QwuCJ">
-					<div class="_36cLcR"></div>
+				<div class="container _1QwuCJ" style="width: 1100px;">
 					<div class="_3D9BVC">
 						<div class="h4QDlo" role="main">
-							<div class="_2YiVnW">
+							<div class="_2YiVnW" style="width: 1070px; height:1180px;">
 								<div class="_2w2H6X">
 									<h1 class="_3iiDCN">小農資料修改</h1>
 									<div class="TQG40c">修改資料及新增頭貼</div>
@@ -514,7 +518,7 @@ invisible.style.display = "";
 										</c:if>
 									</div>
 								</div>
-								<FORM METHOD="post" ACTION="fMem.do" name="form1" enctype="multipart/form-data">
+								<FORM METHOD="post" ACTION="fMem.do" name="form1" enctype="multipart/form-data" style="width:1000px;">
 									<div class="goiz2O">
 										<div class="pJout2">
 											<!-- 可更改form表單寬度 -->
@@ -942,7 +946,7 @@ invisible.style.display = "";
 		<div class="shopee-modal-xbcA3dFx0Ck"></div>
 	</div>
 
-	<jsp:include page="/front-end/home/footer.jsp" flush="true"/>
+	<iframe src="<%= request.getContextPath() %>/front-end/home/footer.jsp" width="100%" height="100%" style="display: block;"></iframe>
 
 
 	<script

@@ -475,13 +475,13 @@ invisible.style.display = "";
 
 <body style="" class="nt-s nl-l">
 	<jsp:include page="/front-end/home/header.jsp" flush="true"/>
-	<div id="main">
+	<jsp:include page="/front-end/home/fmemindex.jsp" flush="true"/>
+	<div id="main" style="float:left; width:1000px;">
 		<div>
 		<div>
 			<div class="shopee-progress-bar"></div>
 			<div class="_193wCc">
-				<div class="container _1QwuCJ">
-					<div class="_36cLcR"></div>
+				<div class="container _1QwuCJ" style="width:1100px; ">
 					<div class="_3D9BVC">
 						<div class="h4QDlo" role="main">
 							<div class="_2YiVnW">
@@ -764,8 +764,7 @@ invisible.style.display = "";
 		<div class="shopee-modal-xbcA3dFx0Ck"></div>
 	</div>
 
-	<jsp:include page="/front-end/home/footer.jsp" flush="true"/>
-
+<iframe src="<%= request.getContextPath() %>/front-end/home/footer.jsp" width="100%" height="100%" style="display: block;"></iframe>
 
 	<script
 		src="./fMem_files/zeczec-75aefb6b17bb84ace5c7e76b106774304d1830945ab570527f3cb44045f686b1.js"

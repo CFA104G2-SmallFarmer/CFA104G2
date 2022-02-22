@@ -476,8 +476,10 @@ invisible.style.display = "";
 </head>
 
 <body style="" class="nt-s nl-l">
-	<jsp:include page="/front-end/home/header.jsp" flush="true"/>
+<%-- 	<jsp:include page="/front-end/home/header.jsp" flush="true"/> --%>
+<%-- 	<jsp:include page="/front-end/home/header.jsp" flush="true"/> --%>
         <iframe src="<%= request.getContextPath() %>/front-end/home/header.jsp" width="100%" height="100%" style="display: block;"></iframe>
+	
 	<div id="main">
 		<div>
 			<div class="shopee-progress-bar"></div>
