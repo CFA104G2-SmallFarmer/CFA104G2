@@ -21,10 +21,134 @@
   <link href=".addprod_files_css/css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" media="all"
     href="./addprod_files_css/zeczec-e9e0ba9825d4b970fff398209948a791b4d18185e43b929ef4ffa0e7e5346248.css">
+ <style >
+            
+.wrap {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.header {
+padding_top:10px;
+    height: 78px;
+ 
+    position: relative;
+}
+
+.logo {
+    float: left;
+    width: 250px;
+    height: 76px;
+    padding: 5px;
+    /* background: #ffffff; */
+    /* border: 3px solid rgb(255, 216, 157); */
+}
+
+.menu {
+    float: right;
+    font-size: 24px;
+
+}
+
+.menu li {
+    list-style-type: none;
+    float: left;
+    display: inline-block;
+    height: 60px;
+
+}
+
+.menu li a {
+    display: block;
+    color: #717d34;
+    text-decoration: none;
+    padding-left: 1em;
+    padding-right: 0em;
+    padding-top: 0.4em;
+
+}
+
+.menu li a:hover {
+    /* background: #8ca27e; */
+    color: #8ca27e;
+}
+
+/*在pc隱藏漢堡選單,showmenu右上角點擊按鈕*/
+
+.showmenu {
+    display: none;
+    color: #FFCCCC;
+}
+
+/*在手機瀏覽漢堡選單*/
+.div1 {
+    width: 35px;
+    height: 5px;
+    background-color: #aaba8b;
+    margin: 6px 0;
+}
+
+@media (max-width: 767px) {
+    .menu {
+        /*隱藏選單開始*/
+        max-height: 0px;
+        overflow: hidden;
+        /*隱藏選單結束*/
+        transition: max-height 2.3s;
+        margin-top: 1px;
+        /*絕對定位疊在網頁上*/
+        position: absolute;
+        z-index: 100;
+        /*header 80px+1px boder 線條*/
+        top: 81px;
+        left: 0;
+        right: 0;
+        background: #d4e1bb;
+    }
+
+    .menu li {
+
+        list-style-type: none;
+        float: none;
+        border-bottom: 1px dashed #919191;
+        display: inline;
+    }
+
+
+
+    .menu li a {
+        transition: all 0.2s;
+        padding-left: 0em;
+        padding-right: 0em;
+        padding-top: 0.7em;
+        padding-bottom: 0.7em;
+    }
+
+    .menu li a:hover {
+        background: #8ca27e;
+        color: #fff;
+    }
+
+    .showmenu {
+        /* transition: all 0.2s; */
+        display: block;
+        float: right;
+        padding: 20px;
+
+
+    }
+
+    /*jQ點擊後動態在 body 加上 class */
+    .menu-show .menu {
+        max-height: 500px
+    }
+    </style>
+</head> 
  
 <header>
-          <jsp:include page="/front-end/home/header2/header2.jsp" /> 
-</header> 
+         <jsp:include page="/front-end/home/header_for_Prod_Fmem.jsp" />
+</header>
+<hr />
 <body>
   <div data-v-ddf12cca="" class="tabs shopee-tabs shopee-tabs-line shopee-tabs-normal">
     <div class="shopee-tabs__nav">
@@ -47,8 +171,7 @@
 		<div class="gutter3-l flex">
 			<div class="w-100 ph3 mb4 mb0">
 <!--   form開始 -->
-				 <form class="js-previewable-sum"
-          action="product.do" enctype="multipart/form-data" method="post" name="form1">
+				 <form class="js-previewable-sum" action="product.do" enctype="multipart/form-data" method="post" name="form1">
 					<div class="flex mb5 f6 gutter3">
 						<div class="w-30-ns w-20 fl ph3">
 							<div class="cf">
@@ -74,30 +197,7 @@
 			fileReader1.readAsDataURL(file1);
 		}
 	</script>						
-<!-- 						<div class="cf">
-								<img class="w-60 round mb3"
-									src="./updateprod_files_css/fallback(1).jpg" alt="Fallback">
-								<label class="b" for="user_avatar">顯示圖片</label> <input
-									class="w-100 border-box mv3" accept="image/*" type="file"
-									name="user[avatar]" id="user_avatar">
-							</div>
-							<div class="cf">
-								<img class="w-60 round mb3"
-									src="./updateprod_files_css/fallback(1).jpg" alt="Fallback">
-								<label class="b" for="user_avatar">顯示圖片</label> <input
-									class="w-100 border-box mv3" accept="image/*" type="file"
-									name="user[avatar]" id="user_avatar">
-							</div>   -->	
 						</div>
-<%-- 錯誤表列 --%>
-<c:if test="${not empty errorMsgs}">
-	<font style="color: red">請修正以下錯誤:</font>
-		<ul>
-			<c:forEach var="message" items="${errorMsgs}">
-				<li style="color: red">${message}</li>
-			</c:forEach>
-		</ul>
-</c:if>
 					<div class="w-70-l w-150 ph2">
 						<div class="dn-ns db pt2" id="details"></div>
 							<div class=""><br>
@@ -166,8 +266,8 @@
               </select> -->
 							<label  for="order_note">商品介紹:<span class="gray mb3">特色說明</span></label><br>
 							<textarea placeholder="123"  class="w-100 height-100" type="text" value="" name="prod_intro" />
-                  <%= (shopProductVO==null)?"": shopProductVO.getProd_intro()%>
-                  </textarea>
+                  			<%= (shopProductVO==null)?"": shopProductVO.getProd_intro()%>
+                  			</textarea>
 
 							<input type="hidden" name="action" value="update">
 							<input type="hidden" name="prod_id" value="<%=shopProductVO.getProd_id()%>"> 
@@ -175,13 +275,22 @@
 			</div>
 		</div>
 	</div>
-	</form>
+</form>
 	<!-- form結束 -->
+<%-- 錯誤表列 --%>
+<c:if test="${not empty errorMsgs}">
+	<font style="color: red">請修正以下錯誤:</font>
+		<ul>
+			<c:forEach var="message" items="${errorMsgs}">
+				<li style="color: red">${message}</li>
+			</c:forEach>
+		</ul>
+</c:if>
 	</div>
 	</div>
 	 <!-- 頁尾 -->
 <footer class="pt5 pb6 f6 bt light-gray relative">
-   <jsp:include page="/front-end/footer/footer.jsp" flush="true"/>
+   <jsp:include page="/front-end/home/footer.jsp" flush="true"/>
   </footer>
 </body>
 </html>

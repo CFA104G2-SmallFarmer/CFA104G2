@@ -3,6 +3,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.shopProduct.model.*"%>
 <%@ page import="com.shopProductType.model.*"%>
+<%@ page import="com.shopCart.model.*"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
 <%
@@ -44,7 +45,46 @@
         height: 200px;
         object-fit:cover;
     }
-
+/*     /////////////////購物車/////////// */
+.shopcart{
+    width: 80px;
+    height: 80px;
+    position: fixed;
+    top: 85%;
+    left: 90%;
+    opacity: 0.5; /*透明度50%*/
+}
+.shopcart:hover{ /*滑鼠滑過*/
+    opacity: 1; /*不透明*/
+}
+------
+a{
+  display: inline-block;
+  text-decoration: none;
+  &:hover{
+    text-decoration: none;
+  }
+}
+.position{
+  &-relative{
+    position:relative;
+  }
+  &-absolute{
+    position:absolute;
+  }
+}
+.cartQuantity{
+  position:absolute;
+  width: 25px;
+  height: 25px;
+  border-radius:50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right:-9px;
+  top:-8px;
+}
+/*     /////////////////購物車/////////// */
     </style>
     </head>
     
@@ -240,6 +280,34 @@
                             <div class="product-img position-relative overflow-hidden">
                                 <img class="img-fluid w-100" src="<%=request.getContextPath()%>/front-end/Product/ShopProductDBGifReader4?id=${shopProductVO.prod_id}" alt="">
                                 <div class="product-action">
+                                
+                                <!--              購物車     /////////////////////////////////////////////////////////////////////////////////////////// -->
+<!--                   購物車小圖 -->
+<div class="shopcart">
+                  <div onclick="location.href='<%=request.getContextPath()%>/front-end/shopCart/shopCart.jsp?mem_id=77000&action=getOneList';" class="point point-flicker">
+                   <img class="shopcart" 
+            src="<%=request.getContextPath()%>/front-end/Product/images/shopcart.png" style="cursor: pointer;" width="50" height="50">
+					<div class="container pt-5">
+    					<span class="cartQuantity text-white bg-warning" >
+    					<%ShopCartService sc = new  ShopCartService();
+    					List<ShopCartVO> li = sc.getALL();	
+    					int count = 0;
+    					for(ShopCartVO a : li){
+    						int b = a.getCart_qty();
+    						count = b + count;
+    					}
+    					%>
+    					<%=count %>
+    					
+    					</span>
+<!--   				<a class="position-relative" href="#"> -->
+<!--     			<i class="fas fa-shopping-cart fa-3x"></i> -->
+<!--   							</a> -->
+						</div>
+					</div>
+</div>
+<!--                   購物車小圖 -->
+					
                                     <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
                                     <a class="btn btn-outline-dark btn-square" href="<%=request.getContextPath()%>/front-end/Product/product.do?prod_id=${shopProductVO.prod_id}&action=getOne_list_For_DisplayByMem"><i class="fa fa-search"></i></a>
                                 </div>

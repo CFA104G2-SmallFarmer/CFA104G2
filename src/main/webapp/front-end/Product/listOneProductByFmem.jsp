@@ -36,44 +36,178 @@
        		table-layout:fixed;/* 只有定義了表格的佈局算法爲fixed，下面td的定義才能起作用。 */
        		}
     </style>
-</head>
+    <style >
+            
+.wrap {
+    max-width: 960px;
+    margin: 0 auto;
+}
 
-<header>
-          <jsp:include page="/front-end/home/header2/header2.jsp" /> 
-</header> 
+.header {
+padding_top:10px;
+    height: 78px;
+ 
+    position: relative;
+}
+
+.logo {
+    float: left;
+    width: 250px;
+    height: 76px;
+    padding: 5px;
+    /* background: #ffffff; */
+    /* border: 3px solid rgb(255, 216, 157); */
+}
+
+.menu {
+    float: right;
+    font-size: 24px;
+
+}
+
+.menu li {
+    list-style-type: none;
+    float: left;
+    display: inline-block;
+    height: 60px;
+
+}
+
+.menu li a {
+    display: block;
+    color: #717d34;
+    text-decoration: none;
+    padding-left: 0.4em;
+    padding-right: 0em;
+    padding-top: 0.4em;
+
+}
+
+.menu li a:hover {
+    /* background: #8ca27e; */
+    color: #8ca27e;
+}
+
+/*在pc隱藏漢堡選單,showmenu右上角點擊按鈕*/
+
+.showmenu {
+    display: none;
+    color: #FFCCCC;
+}
+
+/*在手機瀏覽漢堡選單*/
+.div1 {
+    width: 35px;
+    height: 5px;
+    background-color: #aaba8b;
+    margin: 6px 0;
+}
+
+@media (max-width: 767px) {
+    .menu {
+        /*隱藏選單開始*/
+        max-height: 0px;
+        overflow: hidden;
+        /*隱藏選單結束*/
+        transition: max-height 2.3s;
+        margin-top: 1px;
+        /*絕對定位疊在網頁上*/
+        position: absolute;
+        z-index: 100;
+        /*header 80px+1px boder 線條*/
+        top: 81px;
+        left: 0;
+        right: 0;
+        background: #d4e1bb;
+    }
+
+    .menu li {
+
+        list-style-type: none;
+        float: none;
+        border-bottom: 1px dashed #919191;
+        display: inline;
+    }
+
+
+
+    .menu li a {
+        transition: all 0.2s;
+        padding-left: 0em;
+        padding-right: 0em;
+        padding-top: 0.7em;
+        padding-bottom: 0.7em;
+    }
+
+    .menu li a:hover {
+        background: #8ca27e;
+        color: #fff;
+    }
+
+    .showmenu {
+        /* transition: all 0.2s; */
+        display: block;
+        float: right;
+        padding: 20px;
+
+
+    }
+
+    /*jQ點擊後動態在 body 加上 class */
+    .menu-show .menu {
+        max-height: 500px
+    }
+    </style>
+</head>
+<!-- <header> -->
+<%--            <jsp:include page="/front-end/home/header_for_Prod_Mem.jsp" /> --%>
+<!-- </header>  -->
 <!-- 頁首完  -->
 <body>
         <!-- Header Start -->
-   <!--      <div class="header bg-dark">
+   <div class="head bg-white">
             <div class="container">
-                <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-                    <a href="#" class="navbar-brand">MENU</a>
-                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                        <div class="navbar-nav m-auto">
-                            <a href="index.html" class="nav-item nav-link active">Home</a>
-                            <a href="addProductByFmem.jsp" class="nav-item nav-link">Products</a>
-                            <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
-                                <div class="dropdown-menu">
-                                    <a href="product-list.html" class="dropdown-item">Product</a>
-                                    <a href="product-detail.html" class="dropdown-item">Product Detail</a>
-                                    <a href="cart.html" class="dropdown-item">Cart</a>
-                                    <a href="wishlist.html" class="dropdown-item">Wishlist</a>
-                                    <a href="checkout.html" class="dropdown-item">Checkout</a>
-                                    <a href="login.html" class="dropdown-item">Login & Register</a>
-                                    <a href="my-account.html" class="dropdown-item">My Account</a>
-                                </div>
-                            </div>
-                            <a href="contact.html" class="nav-item nav-link">Contact Us</a>
-                        </div>
-                    </div>
+                <nav class="navbar navbar-expand-md bg-white navbar-white">
+                
+				 <script>
+				    $(document).ready(function () {
+				        $('.showmenu').on('click', function (e) {
+				            e.preventDefault();
+				            $('body').toggleClass('menu-show');
+				          }
+				
+				        );
+				      }
+				
+				    );
+				  </script>
+				
+				   <div class="wrap">
+				    <div class="head">
+					      <div class="logo" ><img style="margin-top:10px;height:70px"src="<%=request.getContextPath()%>/front-end/home/images/farmerManage-Final.png">
+					      </div>
+					      <ul class="menu">
+					        <li><a href="listAllProductByFmem.jsp">我的商品列表</a></li>
+					
+					        <li><a href="#">我的訂單管理</a></li>
+					
+					        <li><a href="shop.jsp">回到首頁 </a></li>
+<!-- 					        <li><a href="#"><i class="material-icons" style="font-size:27px">mail_outline</i></a></li> -->
+<!-- 					 		  <li><a href="#"><i class="material-icons" style="font-size:27px">person</i> </a></li> -->
+					      </ul>
+					      <div class="div0 showmenu">
+					        <a href="#" >menu</a>
+					        <div class="div1"></div>
+					        <div class="div1"></div>
+					        <div class="div1"></div>
+					      </div>
+					
+					      <a href="#" class="showmenu">menu</a>
+					    </div>
+				     </div>      
                 </nav>
             </div>
-        </div> -->
+        </div> 
         <!-- Header End -->
         
  <!-- Breadcrumb Start -->
@@ -90,15 +224,7 @@
         <!-- Breadcrumb End -->        
 <!-- Cart Start -->
 <div class="container-fluid">
-<%-- 錯誤表列 --%>
-<c:if test="${not empty errorMsgs}">
-	<font style="color:red">請修正以下錯誤:</font>
-	<ul>
-		<c:forEach var="message" items="${errorMsgs}">
-			<li style="color:red">${message}</li>
-		</c:forEach>
-	</ul>
-</c:if>
+
 
             <table class="table table-light table-border table-hover text-center mb-0">
                 <thead class="thead-light">
@@ -141,47 +267,19 @@
 				</tr>
 	
 	
-            <!--     <tr>
-                        <td class="align-middle">1</td>
-                        <td class="align-middle">70000</td>
-                        <td class="align-middle">梨山高麗菜</td>
-                        <td class="align-middle">蔬菜</td>
-                        <td class="align-middle">已上架</td>
-                        <td class="align-middle">19</td>
-                        <td class="align-middle">台斤</td>
-                        <td class="align-middle">500</td>
-                        <td class="align-middle">2022-02-02</td>
-                        <td class="align-middle">虎年特惠</td>
-                        <td class="align-middle"><button class="btn btn-sm btn-primary">修改</button></td>
-                        <td class="align-middle"><button class="btn btn-sm btn-danger">刪除</button></td>
-                    </tr> -->
-
-
-                    <!-- <tr>
-                            <td class="align-middle"><img src="img/product-5.jpg" alt="" style="width:100px;"><th>木瓜</th></td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus" >
-                                        <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" class="form-control form-control-sm bg-first border-0 text-center" value="1">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button></td>
-                        </tr> -->
+        
                 </tbody>
             </table>
         </div>
-
+<%-- 錯誤表列 --%>
+<c:if test="${not empty errorMsgs}">
+	<font style="color:red">請修正以下錯誤:</font>
+	<ul>
+		<c:forEach var="message" items="${errorMsgs}">
+			<li style="color:red">${message}</li>
+		</c:forEach>
+	</ul>
+</c:if>
 
 
     </div>
@@ -190,11 +288,12 @@
 
     <!-- 頁尾 -->
   
-<footer class="pt5 pb6 f6 bt light-gray relative">
-  <iframe src="<%= request.getContextPath() %>/front-end/footer/footer.jsp" width="100%" height="100%" style="display: block;"></iframe>
-  </footer>
   
 </body>
+<footer class="pt5 pb6 f6 bt light-gray relative">
+  <iframe src="<%= request.getContextPath() %>/front-end/home/footer.jsp" width="100%" height="100%" style="display: block;"></iframe>
+ <jsp:include page="/front-end/home/footer.jsp" flush="true"/>
+ </footer>
 
 </html>
 

@@ -23,6 +23,7 @@
   <link href="./addprod_files_css/css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" media="all"
     href="./addprod_files_css/zeczec-e9e0ba9825d4b970fff398209948a791b4d18185e43b929ef4ffa0e7e5346248.css">
+    
 <style >
             
 .wrap {
@@ -148,29 +149,13 @@ padding_top:10px;
 </head> 
 
 <header>
-         <jsp:include page="/front-end/home/header_for_Proj_Fmem.jsp" />
+         <jsp:include page="/front-end/home/header_for_Prod_Fmem.jsp" />
 </header>
 
 
 <!-- 頁首完  -->
-
+<hr />
 <body> 
-  <div data-v-ddf12cca="" class="tabs shopee-tabs shopee-tabs-line shopee-tabs-normal">
-    <div class="shopee-tabs__nav">
-      <div class="shopee-tabs__nav-warp">
-        <div class="shopee-tabs__nav-tabs" style="transform: translateX(100px);">
-          <div class="shopee-tabs__nav-tab" style="white-space: normal;">
-            <div data-v-ddf12cca="" class="tab-label"><a data-v-ddf12cca="" href="addProductByFmem.jsp">新增商品</a>
-          </div>
-          </div>
-          <div class="shopee-tabs__nav-tab" style="white-space: normal;">
-            <div data-v-ddf12cca="" class="tab-label" ><a data-v-ddf12cca="" href="listAllProductByFmem.jsp">我的商品</a>
-          </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="container"></div>
   <div class="container mv4">
     <div class="gutter3-l flex">
@@ -204,15 +189,8 @@ padding_top:10px;
 		}
 	</script>
             </div>
-   <%-- 錯誤表列 --%>
-<c:if test="${not empty errorMsgs}">
-	<font style="color:red">請修正以下錯誤:</font>
-	<ul>
-		<c:forEach var="message" items="${errorMsgs}">
-			<li style="color:red">${message}</li>
-		</c:forEach>
-	</ul>
-</c:if>
+            
+
             <div class="w-70-l w-150 ph2">
               <div class="dn-ns db pt2" id="details"></div>
               <div class="">  
@@ -278,7 +256,7 @@ padding_top:10px;
                   </textarea>
                  
                 <input type="hidden" name="action" value="insert">
-				<input class="db js-submit-order button green mt3" type="submit" value="送出新增"></FORM>
+				<input class="db js-submit-order button green mt3" type="submit" value="送出新增">
               </div>
             </div>
           </div>
@@ -286,9 +264,18 @@ padding_top:10px;
           <!-- form結束 -->
     </div>
   </div>
-  
+     <%-- 錯誤表列 --%>
+<c:if test="${not empty errorMsgs}">
+	<font style="color:red">請修正以下錯誤:</font>
+	<ul>
+		<c:forEach var="message" items="${errorMsgs}">
+			<li style="color:red">${message}</li>
+		</c:forEach>
+	</ul>
+</c:if>
+   <%-- 錯誤表列 --%>
  <footer class="pt5 pb6 f6 bt light-gray relative">
-   <jsp:include page="/front-end/footer/footer.jsp" flush="true"/>
+   <jsp:include page="/front-end/home/footer.jsp" flush="true"/>
   </footer>
  
   </body> 
