@@ -334,7 +334,7 @@ public class ProjectServlet extends HttpServlet {
 				System.out.println("update out");
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
-				errorMsgs.add("修改資料失敗:" + e.getMessage());
+				errorMsgs.add("請再試一次");
 				e.printStackTrace();
 				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/update_proj_input.jsp");
 				failureView.forward(req, res);
@@ -449,7 +449,7 @@ public class ProjectServlet extends HttpServlet {
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				System.out.println("error4");
-				errorMsgs.add("專案名稱已存在");
+				errorMsgs.add("輸入格式不符或專案名稱已存在，請再試一次");
 				e.printStackTrace();
 //				errorMsgs.add("新增專案失敗:" + e.getMessage());
 				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/addProj.jsp");

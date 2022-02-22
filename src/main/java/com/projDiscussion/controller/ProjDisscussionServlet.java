@@ -227,7 +227,7 @@ public class ProjDisscussionServlet extends HttpServlet {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
 //				String mem_id = req.getParameter("mem_id");
 //				mem_id = new Integer(mem_id);
-				Integer mem_id=77000;
+				
 				
 				String str = req.getParameter("proj_id");
 				System.out.println(str);
@@ -250,7 +250,7 @@ public class ProjDisscussionServlet extends HttpServlet {
 //					failureView.forward(req, res);
 //					return;// 程式中斷
 //				}
-				System.out.println("2");
+				System.out.println("proj_id是"+proj_id);
 				/*************************** 2.開始查詢資料 *****************************************/
 				ProjectService projectSvc = new ProjectService();
 				ProjectVO projectVO = projectSvc.getOneProject(proj_id);
@@ -275,7 +275,6 @@ public class ProjDisscussionServlet extends HttpServlet {
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("projectVO", projectVO); // 資料庫取出的projPerkVO物件,存入req
 //				req.setAttribute("projPerkVO", projPerkVO); // 資料庫取出的projPerkVO物件,存入req
-				req.setAttribute("mem_id",mem_id); 
 				
 				String url = "/front-end/projDiscussion/listAllProjDiscByProjByMem.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 perkoverview.jsp
