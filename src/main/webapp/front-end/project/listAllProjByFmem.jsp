@@ -473,7 +473,7 @@ margin-top:20px;
       <div class="logo"><img style="margin-top:5px;width:210px"src="<%=request.getContextPath()%>/front-end/home/images/farmerManage-Final.png">
       </div>
       <ul class="menu">
-        <li><a href="<%=request.getContextPath()%>/front-end/project/listAllProjByFmem.jsp">認養專案管理&nbsp;</a></li>
+        <li><a href="<%=request.getContextPath()%>/front-end/project/listAllProjByFmem.jsp">小農認養專案管理&nbsp;</a></li>
 
         <li><a href="<%=request.getContextPath()%>/front-end/projOrder/listAllOrderByFmem.jsp">小農認養訂單管理&nbsp;</a></li>
 
