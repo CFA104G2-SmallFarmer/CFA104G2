@@ -15,6 +15,13 @@ pageContext.setAttribute("list", list);
 pageContext.setAttribute("parentComment_id", parentComment_id);
 %>
 
+
+
+<jsp:useBean id="fmemSvc" scope="page"
+	class="com.fMem.model.FMemService" />
+<jsp:useBean id="memSvc" scope="page"
+	class="com.mem.model.MemService" />
+
 <%--
 <ul>
 	<c:forEach var="projDiscussionVO" items="${list}">
@@ -48,13 +55,25 @@ pageContext.setAttribute("parentComment_id", parentComment_id);
 						test="${parentComment_id==projDiscussionVO.discussion_id && projDiscussionVO.comment_id!=projDiscussionVO.discussion_id}">
 
 						<div class="flex-center align-baseline message-text-wrap">
-							<img class="message-user-image mr-2 j-lazyload"
-								src="<%= request.getContextPath() %>/front-end/projDiscussion/discussion1_files/lecture_detail_03.jpg" alt=""
-								data-original="/images/lecture_detail_03.jpg"
-								data-bind="attr:{src:checkAuthorPicture($element)}">
+					
+											<c:choose>
+												<c:when test="${projDiscussionVO.f_mem_id==0}">
+												<img class="message-user-image mr-2 j-lazyload"
+													src="<%= request.getContextPath() %>/front-end/projDiscussion/discussion1_files/mem_icon.png" alt=""
+													data-original="/images/lecture_detail_03.jpg"
+													data-bind="attr:{src:checkAuthorPicture($element)}">
+												</c:when>
+												   <c:otherwise>
+												        <img class="message-user-image mr-2 j-lazyload"
+													src="<%= request.getContextPath() %>/front-end/projDiscussion/discussion1_files/fmem_icon.png" alt=""
+													data-original="/images/lecture_detail_03.jpg"
+													data-bind="attr:{src:checkAuthorPicture($element)}">
+												    </c:otherwise>
+												</c:choose>
 							<div class="seconded-message-list">
 								<div class="seconded-message-card mb-4">
 									<div class="flex-between">
+									<span class="text-gray message-date">${memSvc.getOneMem(projDiscussionVO.mem_id).mem_nickname}${fmemSvc.getOneFMem(projDiscussionVO.f_mem_id).f_mem_fname}</span>														
 										<span class="text-gray message-date"> <!--ko text:beforeNow-->${projDiscussionVO.comment_date}
 											<!--/ko-->
 										</span>

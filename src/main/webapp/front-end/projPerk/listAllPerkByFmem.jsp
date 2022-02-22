@@ -238,11 +238,19 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
 	<script>
 	${projectVO.start_date}
 	</script>
+	
+	
 <script type="text/javascript">
               $(function () {
                 var projectStartDay = new Date('${projectVO.start_date}'); /*募資開始日*/
                 var thisDay = new Date(); /*今天*/
-                if ( (Date.parse(thisDay)).valueOf() > (Date.parse(projectStartDay)).valueOf()) {
+                
+                var difference = thisDay.getTime()-projectStartDay.getTime();
+                console.log("thisDay "+thisDay)
+                console.log("projectStartDay "+projectStartDay)
+                console.log("difference "+difference)
+                
+                if ( difference>432000000) {
                   $(".button-s").attr("disabled", true);
                   $(".b--green").attr("disabled", true);
                 
@@ -255,7 +263,7 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
               });
 
               function printAlert() {
-                window.alert('專案募資已經開始，不能修改或刪除回饋方案');
+                window.alert('專案上架五日後，不能修改或刪除回饋方案');
               }
 </script>
 	

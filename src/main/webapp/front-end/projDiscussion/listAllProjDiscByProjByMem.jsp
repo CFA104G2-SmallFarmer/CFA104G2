@@ -7,12 +7,22 @@
 <%@ page
 	import="java.time.LocalDate,java.sql.Timestamp,java.util.Vector"%>
 
+<%@ page import="com.fMem.model.*"%>
+<%@ page import="com.mem.model.*"%>
+
+<%	FMemVO fMemVO = (FMemVO) session.getAttribute("fMemVO");%>
+<%-- 會員的fMemVO是空的	--%>
+<%	MemVO MemVO = (MemVO) session.getAttribute("memVO");%>
+<%	System.out.println(MemVO.getMem_id());%>
+<%	pageContext.setAttribute("MemVO", MemVO);%>
+
+
 <%
 ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 Integer proj_id = projectVO.getProj_id();
 ProjDiscussionService projDiscSvc = new ProjDiscussionService();
-List<ProjDiscussionVO> updateFirst=projDiscSvc.updateFirstLayerProjDiscussion(1003);
-List<ProjDiscussionVO> list = projDiscSvc.getAllSameProjDiscussion(1003);
+List<ProjDiscussionVO> updateFirst=projDiscSvc.updateFirstLayerProjDiscussion(proj_id);
+List<ProjDiscussionVO> list = projDiscSvc.getAllSameProjDiscussion(proj_id);
 pageContext.setAttribute("list", list);
 %>
 
@@ -36,6 +46,8 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
 	class="com.project.model.ProjectService" />
 <jsp:useBean id="fmemSvc" scope="page"
 	class="com.fMem.model.FMemService" />
+<jsp:useBean id="memSvc" scope="page"
+	class="com.mem.model.MemService" />
 
 <!-- 核心在1173 -->
 <!-- 704有圖要抽換 -->
@@ -87,46 +99,7 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
 <body class="intent-mouse">
 
 	<header class="relative z-2 bb pv2 ph3 ph0-l b--near-white">
-		<div class="cf container">
-			<div class="f6 mv2 flex items-center justify-between">
-				<!-- <a clsas="dib order-0" href="https://www.zeczec.com/"> -->
-
-				<img style="width: 160px"
-					src="<%=request.getContextPath()%>/projPerk/addPerk_css/farmer_management/farmer_management.png"
-					alt="HTML tutorial" style="width:42px;height:42px;">
-
-
-
-				<div
-					class="mt0-ns mt3 pt2 ph2 nb1 nl3 nr3 tc tl-ns pa0-ns mh0-ns items-center db-ns bt bn-ns b--near-white flex-auto order-last order-1-ns w-100 w-auto-ns inline-flex">
-
-					<div class="divider dib-ns dn">&nbsp;</div>
-					<a style="color: #717d34; font-size: 19px;"
-						class="mr3-ns hover-fg-blue dark-gray flex-auto flex-none-ns"
-						href="https://www.zeczec.com/categories">認養專案管理</a>
-					<div class="divider dib-ns dn">&nbsp;</div>
-					<a style="color: #717d34; font-size: 19px;"
-						class="mr3-ns hover-fg-blue dark-gray flex-auto flex-none-ns"
-						href="https://www.zeczec.com/categories">認養訂單管理</a>
-					<div class="divider dib-ns dn">&nbsp;</div>
-					<a style="color: #717d34; font-size: 19px;"
-						class="mr3-ns hover-fg-blue dark-gray flex-auto flex-none-ns"
-						href="https://www.zeczec.com/start_project">小農日誌管理</a>
-					<div class="divider dib-ns dn">&nbsp;</div>
-					<a style="color: #717d34; font-size: 19px;"
-						class="mr3-ns hover-fg-blue dark-gray flex-auto flex-none-ns"
-						href="https://www.zeczec.com/start_project">回到首頁</a>
-				</div>
-				<div class="tr order-2">
-					<a aria-label="站內訊息"
-						class="near-black dib gray pa2 mr3 v-mid tooltip tooltip-b"
-						href="#"> <i style="font-size: 24px"
-						class="material-icons f5 v-mid"> mail </i>
-					</a>
-
-				</div>
-			</div>
-		</div>
+		
 	</header>
 
 	<div class="container"></div>
@@ -194,17 +167,11 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
 		<!--     <h2 style="display: inline-block;" class="flex mt0">查看回饋方案</h2> -->
 
 
-		<FORM METHOD="post"
-			ACTION="<%=request.getContextPath()%>/projPerk/projPerk.do"
-			name="form9">
-			<input
-				style="margin-right: 10px; float: right; display: inline; font-size: 16px;"
-				type="submit" name="commit" value="回到編輯專案詳情"
-				class="button green b--green b mb3"> <input type="hidden"
-				name="action" value="go_back_to_listOneProjByFmem"> <input
-				type="hidden" name="proj_id" value="<%=projectVO.getProj_id()%>">
+		
+			<input type="button" onclick=history.back() value="回到上一頁"
+					class="button green b--green b mb3">
 
-		</FORM>
+		
 
 
 	</div>
@@ -215,7 +182,7 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
 		<div>
 			<div>
 				<c:set var="projectVO" value="${projectVO}" scope="request" />
-				<jsp:include page="discussionByMem.jsp" />
+				<jsp:include page="discussionByFmem.jsp" />
 			</div>
 		</div>
 	</div>
@@ -232,27 +199,7 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
 
 	<!-- ０２０６專案開始日期還沒抓到 -->
 
-	<script type="text/javascript">
-              $(function () {
-                var projectStartDay = new Date('2022-05-22 00:00:00').getDate(); /*募資開始日*/
-                var thisDay = new Date().getDate(); /*今天*/
-                if (thisDay >= projectStartDay) {
-                  $(".button-s").attr("disabled", true);
 
-                  $(".b--green").attr("disabled", true);
-                
-
-                  printAlert();
-                } else {
-                  $(".button-s").attr("disabled", false);
-                  $(".b--green").attr("disabled", false); 
-                }
-              });
-
-              function printAlert() {
-                window.alert('專案募資已經開始，不能修改或刪除回饋方案');
-              }
-            </script>
 
 <script>
 	
@@ -271,7 +218,7 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
 												'<input type="hidden" name="discussion_id"  value="'+
 												c+
 												'" >'+
-												'<input type="hidden" name="f_mem_id"  value="${projectVO.f_mem_id}" >'+
+												'<input type="hidden" name="mem_id"  value="${MemVO.mem_id}" >'+
 												
 												'<textarea placeholder="請輸入文字..." name="comment_content" maxlength="500" class="w-100" name="proj_abstract" id="proj_abstract"style="width: 250px; height: 250px;"></textarea><br>'+
 												'<button type="submit" id="commit" class="swal2-confirm swal2-styled">送出</button>'+
@@ -305,7 +252,7 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
 									 			'<input type="hidden" name="action" value="insertByMem" >'+
 												'<input type="hidden" name="proj_id"  value="${projectVO.proj_id}" >'+
 												'<input type="hidden" name="discussion_id"  value="-1" >'+
-												'<input type="hidden" name="f_mem_id"  value="${projectVO.f_mem_id}" >'+
+												'<input type="hidden" name="mem_id"  value="${MemVO.mem_id}" >'+
 												
 												'<textarea placeholder="請輸入文字..." name="comment_content" maxlength="500" class="w-100" name="proj_abstract" id="proj_abstract"style="width: 250px; height: 250px;"></textarea><br>'+
 												'<button type="submit" id="commit" class="swal2-confirm swal2-styled">送出</button>'+

@@ -6,13 +6,20 @@
 <%@ page import="com.projDiscussion.model.*"%>
 <%@ page
 	import="java.time.LocalDate,java.sql.Timestamp,java.util.Vector"%>
+<%@ page import="com.fMem.model.*"%>
+<%@ page import="com.mem.model.*"%>
+
+<%	FMemVO fMemVO = (FMemVO) session.getAttribute("fMemVO");%>
+<%	MemVO MemVO = (MemVO) session.getAttribute("memVO");%>
+
+
 
 <%
 ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 Integer proj_id = projectVO.getProj_id();
 ProjDiscussionService projDiscSvc = new ProjDiscussionService();
-List<ProjDiscussionVO> updateFirst=projDiscSvc.updateFirstLayerProjDiscussion(1003);
-List<ProjDiscussionVO> list = projDiscSvc.getAllSameProjDiscussion(1003);
+List<ProjDiscussionVO> updateFirst=projDiscSvc.updateFirstLayerProjDiscussion(proj_id);
+List<ProjDiscussionVO> list = projDiscSvc.getAllSameProjDiscussion(proj_id);
 pageContext.setAttribute("list", list);
 %>
 
@@ -36,6 +43,9 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
 	class="com.project.model.ProjectService" />
 <jsp:useBean id="fmemSvc" scope="page"
 	class="com.fMem.model.FMemService" />
+<jsp:useBean id="memSvc" scope="page"
+	class="com.mem.model.MemService" />
+
 
 <!-- 核心在1173 -->
 <!-- 704有圖要抽換 -->
@@ -61,7 +71,7 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 <!-- 加入這段 -->
 
-<!--   sweetalert -->
+<!--   sweet -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
 
@@ -521,27 +531,7 @@ margin-top:20px;
 
 	<!-- ０２０６專案開始日期還沒抓到 -->
 
-	<script type="text/javascript">
-              $(function () {
-                var projectStartDay = new Date('2022-05-22 00:00:00').getDate(); /*募資開始日*/
-                var thisDay = new Date().getDate(); /*今天*/
-                if (thisDay >= projectStartDay) {
-                  $(".button-s").attr("disabled", true);
 
-                  $(".b--green").attr("disabled", true);
-                
-
-                  printAlert();
-                } else {
-                  $(".button-s").attr("disabled", false);
-                  $(".b--green").attr("disabled", false); 
-                }
-              });
-
-              function printAlert() {
-                window.alert('專案募資已經開始，不能修改或刪除回饋方案');
-              }
-            </script>
 
 <script>
 	
