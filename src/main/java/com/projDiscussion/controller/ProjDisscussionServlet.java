@@ -66,7 +66,7 @@ public class ProjDisscussionServlet extends HttpServlet {
 //					failureView.forward(req, res);
 //					return;// 程式中斷
 //				}
-				System.out.println("2");
+//				System.out.println("2");
 				/*************************** 2.開始查詢資料 *****************************************/
 				ProjectService projectSvc = new ProjectService();
 				ProjectVO projectVO = projectSvc.getOneProject(proj_id);
@@ -83,11 +83,11 @@ public class ProjDisscussionServlet extends HttpServlet {
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/projDiscussion/listAllProjDiscByProjByFmem.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listAllProjByFmem.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
-				System.out.println("3");
+				System.out.println("查詢完成,準備轉交");
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("projectVO", projectVO); // 資料庫取出的projPerkVO物件,存入req
 //				req.setAttribute("projPerkVO", projPerkVO); // 資料庫取出的projPerkVO物件,存入req
@@ -108,7 +108,7 @@ public class ProjDisscussionServlet extends HttpServlet {
 				ProjectVO projectVO = projectSvc.getOneProject(proj_id);
 				req.setAttribute("projectVO", projectVO);
 
-				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/projDiscussion/listAllProjDiscByProjByFmem.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listAllProjByFmem.jsp");
 				failureView.forward(req, res);
 
 				System.out.println("Mem error in final");
@@ -267,7 +267,7 @@ public class ProjDisscussionServlet extends HttpServlet {
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/projDiscussion/listAllProjDiscByProjByMem.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listAllProjByMem.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -277,7 +277,7 @@ public class ProjDisscussionServlet extends HttpServlet {
 //				req.setAttribute("projPerkVO", projPerkVO); // 資料庫取出的projPerkVO物件,存入req
 				req.setAttribute("mem_id",mem_id); 
 				
-				String url = "/front-end/projDiscussion/listAllProjDiscByProjByFmem.jsp";
+				String url = "/front-end/projDiscussion/listAllProjDiscByProjByMem.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 perkoverview.jsp
 				successView.forward(req, res);
 				System.out.println("成功");
@@ -293,7 +293,7 @@ public class ProjDisscussionServlet extends HttpServlet {
 				ProjectVO projectVO = projectSvc.getOneProject(proj_id);
 				req.setAttribute("projectVO", projectVO);
 
-				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/projDiscussion/listAllProjDiscByProjByMem.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listAllProjByMem.jsp");
 				failureView.forward(req, res);
 
 				System.out.println("Mem error in final");

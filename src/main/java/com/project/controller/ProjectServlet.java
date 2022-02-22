@@ -194,7 +194,7 @@ public class ProjectServlet extends HttpServlet {
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listAllProjByMem.jsp");///
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listAllProjByFmem.jsp");///
 				failureView.forward(req, res);
 			}
 		}
@@ -312,7 +312,7 @@ public class ProjectServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("projectVO", projectVO); // 含有輸入格式錯誤的projectVO物件,也存入req
-					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listAllProjByFmem.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/update_proj_input.jsp");
 					failureView.forward(req, res);
 					return; // 程式中斷
 				}
@@ -336,7 +336,7 @@ public class ProjectServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:" + e.getMessage());
 				e.printStackTrace();
-				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listAllProjByFmem.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/update_proj_input.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -424,7 +424,7 @@ public class ProjectServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					System.out.println("error3");
 					req.setAttribute("projectVO", projectVO); // 含有輸入格式錯誤的projectVO物件,也存入req
-					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/projPic/addProjPic.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/addProj.jsp");
 					failureView.forward(req, res);
 					return; // 程式中斷
 				}

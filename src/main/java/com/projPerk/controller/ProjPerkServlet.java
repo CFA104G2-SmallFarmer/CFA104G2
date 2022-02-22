@@ -112,7 +112,7 @@ public class ProjPerkServlet extends HttpServlet {
 			}
 		}
 
-		/* 小農的 0210改到一半 */
+		
 // 來自listOneProj.jsp的請求，傳入proj_id後，透過ProjPerkService的getAll列出旗下所有perk
 		if ("getAllPerk_For_Display_ByFmem".equals(action)) {
 			System.out.println("1");
