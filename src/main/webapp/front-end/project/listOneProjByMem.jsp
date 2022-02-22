@@ -254,7 +254,7 @@ crossorigin="anonymous" />
 							style='font-size: 19px;'></i></span>
 					</a> <a
 						class="near-black dib pv3 mr4 mt1 hover-b--dark-gray bb-l b--transparent"
-						href="${pageContext.request.contextPath}/projDiscussion/projDiscussion.do?proj_id=${projectVO.proj_id}&action=getAllDisc_For_Display_By_Fmem">
+						href="${pageContext.request.contextPath}/projDiscussion/projDiscussion.do?proj_id=${projectVO.proj_id}&action=getAllDisc_For_Display_By_Mem">
 						<div style="font-size: 16px" class="dib pv1">留言</div> <span
 						class="f7 b gray"><i class="material-icons"
 							style="font-size: 19px">sms</i></span>
