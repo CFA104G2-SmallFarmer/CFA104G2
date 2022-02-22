@@ -56,16 +56,16 @@ ShopCartVO shopCartVO = (ShopCartVO) request.getAttribute("shopCartVO"); //EmpSe
     .totalprice{
       size: 200px;
     }
-     .menu {
-      flex: 0 1 80px;
-      background-color: #EAF0ED;
-      color: #3F5D45;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      padding: 100px 0;
-    }
+/*      .menu { */
+/*       flex: 0 1 80px; */
+/*       background-color: #EAF0ED; */
+/*       color: #3F5D45; */
+/*       display: flex; */
+/*       flex-direction: column; */
+/*       align-items: center; */
+/*       justify-content: space-between; */
+/*       padding: 100px 0; */
+/*     } */
 
     .all {
       display: flex;
@@ -89,8 +89,47 @@ ShopCartVO shopCartVO = (ShopCartVO) request.getAttribute("shopCartVO"); //EmpSe
 
     display: none;
 }
+/* 文字 */
+  .bubbles {
+            display: inline-block;
+            font-family: arial;
+            position: relative;
+        }
+
+        .bubbles span {
+            position: relative;
+            margin: 1em 0 0;
+            font-family: 'Luckiest Guy', cursive;
+            color: green;
+            z-index: 2;
+            font-size: 40px;
+        }
+        .individual-bubble {
+            position: absolute;
+            border-radius: 100%;
+            bottom: 10px;
+            background-color: orange;
+            z-index: 2;
+        }
   </style>
+  
+  
+<!--   頁首 -->
+
+<%-- <jsp:include page="/front-end/home/header2/header2.jsp" flush="true"/> --%>
 <jsp:include page="/front-end/home/header.jsp" flush="true"/>
+<%-- <iframe src="<%= request.getContextPath() %>/front-end/home/header.jsp" width="100%" height="100%" style="display: block;"></iframe> --%>
+
+<%-- <jsp:include page="/front-end/home/header_for_Proj_Mem.jsp" flush="true"/> --%>
+<%-- <jsp:include page="/front-end/home/header_for_Proj_Fmem.jsp" flush="true"/> --%>
+
+<!-- <div style="border:solid 1px lightgray"></div> -->
+<!--   頁首 -->	
+
+ <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
+        </script>
+
 </head>
 <body>
 
@@ -119,9 +158,9 @@ ShopCartVO shopCartVO = (ShopCartVO) request.getAttribute("shopCartVO"); //EmpSe
     <div class="container" style="border:10px solid #b9d4b3 ;box-shadow:3px 3px 5px 6px #cccccc;border-radius:60px">
       <!-- <div class="col-lg-12 col-md-12 col-12" style="background-color: rgb(247, 239, 239);"> -->
 <br>
-      <h2>
+      <div class="bubbles"><span>
 		${fmemSvc.getOneFMem(shopCartVO1).f_mem_fname}
-      </h2>
+      </span></div>
 <br>
       
       <div class="table-responsive">
@@ -152,7 +191,10 @@ ShopCartVO shopCartVO = (ShopCartVO) request.getAttribute("shopCartVO"); //EmpSe
             <tr>
               <td>
 <%--               ${shopCartVO.f_mem_id} --%>
-              ${fmemSvc.getOneFMem(shopCartVO.f_mem_id).f_mem_fname}
+<%--               ${fmemSvc.getOneFMem(shopCartVO.f_mem_id).f_mem_fname} --%>
+<!--               <div class="carousel-item active"> -->
+               <img  src="<%=request.getContextPath()%>/front-end/Product/ShopProductDBGifReader4?id=${shopCartVO.prod_id}" alt="" width="100" height="100">
+<!--                         </div> -->
               </td>
 <!--             	商品名稱 -->
               <td>
@@ -234,7 +276,8 @@ ShopCartVO shopCartVO = (ShopCartVO) request.getAttribute("shopCartVO"); //EmpSe
 			<td></td>
 <!-- 			上一頁 -->
 			<td>
-			<button class="btn btn-warning" type="button"type="button"name="back" class="gree" value="上一頁"onClick="location.href='<%=request.getContextPath()%>/Product/browseProduct.jsp';">上一頁</button>
+<%-- 			<button class="btn btn-warning" type="button"type="button"name="back" class="gree" value="上一頁"onClick="location.href='<%=request.getContextPath()%>/front-end/Product/shop.jsp';">上一頁</button> --%>
+			<button class="btn btn-warning" type="button"type="button"name="back" class="gree" value="上一頁"onClick="location.href='javascript:history.back()';">上一頁</button>
 			</td>
 			<td>
 			
@@ -266,12 +309,59 @@ ShopCartVO shopCartVO = (ShopCartVO) request.getAttribute("shopCartVO"); //EmpSe
 
 </div>
 <!-- 防止購物車是空的 -->
-<div  align="center" valign="center" onclick="location.href='<%=request.getContextPath()%>/Product/browseProduct.jsp';">
+<div  align="center" valign="center" onclick="location.href='<%=request.getContextPath()%>/front-end/Product/shop.jsp';">
 <img alt="" src="<%=request.getContextPath()%>/front-end/shopCart/images/透明小小農.png " width="50" height="50">
 <button class="btn btn-info" type="button"name="back" class="gree" style="background-color:#98afe5;">
 還有許多優惠產品，再去逛逛吧~~</button>
 </div>
 <br>
+<!-- 頁尾 -->
 <jsp:include page="/front-end/home/footer.jsp" flush="true"/>
+<%-- <iframe src="<%= request.getContextPath() %>/front-end/home/footer.jsp" width="100%" height="100%" style="display: block;"></iframe> --%>
+<!-- 頁尾 -->
+<script>
+
+jQuery(document).ready(function ($) {
+
+    // Define a blank array for the effect positions. This will be populated based on width of the title.
+    var bArray = [];
+    // Define a size array, this will be used to vary bubble sizes
+    var sArray = [4, 6, 8, 10];
+
+    // Push the header width values to bArray
+    for (var i = 0; i < $('.bubbles').width(); i++) {
+        bArray.push(i);
+    }
+
+    // Function to select random array element
+    // Used within the setInterval a few times
+    function randomValue(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    // setInterval function used to create new bubble every 350 milliseconds
+    setInterval(function () {
+
+        // Get a random size, defined as variable so it can be used for both width and height
+        var size = randomValue(sArray);
+        // New bubble appeneded to div with it's size and left position being set inline
+        // Left value is set through getting a random value from bArray
+        $('.bubbles').append('<div class="individual-bubble" style="left: ' + randomValue(bArray) + 'px; width: ' + size + 'px; height:' + size + 'px;"></div>');
+
+        // Animate each bubble to the top (bottom 100%) and reduce opacity as it moves
+        // Callback function used to remove finsihed animations from the page
+        $('.individual-bubble').animate({
+            'bottom': '100%',
+            'opacity': '-=0.7'
+        }, 2000, function () {
+            $(this).remove()
+        }
+        );
+
+
+    }, 350);
+
+});
+</script>
 </body>
 </html>

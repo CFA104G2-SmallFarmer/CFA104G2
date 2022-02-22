@@ -52,7 +52,7 @@
 </style>
 
 </head>
-<body bgcolor='red'>
+<body bgcolor='tan'>
 <jsp:include page="/front-end/home/header.jsp" flush="true"/>
 
 <br>

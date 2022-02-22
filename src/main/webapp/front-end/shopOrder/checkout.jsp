@@ -41,10 +41,33 @@ ShopOrderVO shopOrderVO = (ShopOrderVO) request.getAttribute("shopOrderVO"); //E
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.js" type="text/javascript"></script>
 
+<style type="text/css">
+/* bookstrap */
+.color-btn{
+  /**定義一串顏色，8個顏色，1|2號顏色和最後的7|8號顏色要相同，才能銜接上，看不出迴圈間斷*/
+  background: linear-gradient(to right, #5adeff, #2ff598, #FFE419, #A2FF00, #31FFEE, #297BFF, #DC5AFF, #7D4DFF);
+  /**動畫的寬度，8個顏色，寬度就是8-1=7*100%，最後一個顏色用來迴圈迴歸的。*/
+  background-size: 700% 100%;
+  /**動畫使用，線性移動，速率20秒*/
+  animation: mymove 20s linear infinite;
+  /**適配不同瀏覽器*/
+  -webkit-animation: mymove 20s linear infinite;
+  -moz-animation: mymove 20s linear infinite;
+}
+/**定義過度動畫*/
+@-webkit-keyframes mymove {
+        0% {background-position: 0% 0%;}
+        100% {background-position: 100% 0%;}
+}
+
+
+</style>
+
+
 </head>
 <body>
-${shopOrderVO.mem_id}
-${memSvc.getOneMem(shopOrderVO.mem_id).mem_name}
+<%-- ${shopOrderVO.mem_id} --%>
+<%-- ${memSvc.getOneMem(shopOrderVO.mem_id).mem_name} --%>
 <jsp:include page="/front-end/home/header.jsp" flush="true"/>
 
 <br><br>
@@ -123,8 +146,8 @@ ${memSvc.getOneMem(shopOrderVO.mem_id).mem_name}
 						</div>
 					</div>
 					<input type="hidden" name="action" value="pay">
-					<button class="btn btn-block btn-primary font-weight-bold py-3"
-						style="background-color: #aaba8b" id="btn1" type="submit" value="付款">付款</button>
+					<button class="btn btn-block color-btn font-weight-bold py-3"
+						style="background-color: origin" id="btn1" type="submit" value="付款">付款</button>
 				</div>
 				<!-- 付款方式End -->
 			<%-- 錯誤表列 --%>

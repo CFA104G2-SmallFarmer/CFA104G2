@@ -25,8 +25,8 @@
 
 <%
   ShopOrderService shopOrderSvc = new ShopOrderService(); 
-  List<ShopOrderVO> list1 = shopOrderSvc.getAllFmemOrder(70001);
-   pageContext.setAttribute("list",list1);	 
+  List<ShopOrderVO> list = shopOrderSvc.getAllFmemOrder(70001);
+   pageContext.setAttribute("list",list);	 
 %>
 
 
@@ -111,29 +111,21 @@ request.setAttribute("order_pay_arr", new String[]{"信用卡","銀行轉帳"});
 </head>
 
 
-<!-- <body class=" route-index route-portal-sale route-portal-sale-order route-portal-sale-order"> -->
-<!--   <div class="app-container"> -->
-<!--     <div class="page-content-wrapper"> -->
-<!--       <div data-v-6de0ecc3="" class="portal-sale-root"> -->
-<!--         <div data-v-6de0ecc3="" class="portal-sale-container"> -->
-<!--           <div data-v-dff31658="" class="fixed-container fixed-top"> -->
-<!--             <div data-v-6de0ecc3="" data-v-dff31658="" class="portal-panel"> -->
-<!--               <div data-v-ddf12cca="" data-v-6de0ecc3="" class="list-tabs" data-v-dff31658=""> -->
-<!--                 <div data-v-ddf12cca="" class="tabs shopee-tabs shopee-tabs-line shopee-tabs-normal"> -->
-<!--                   <div class="shopee-tabs__nav"> -->
-<!--                     <div class="shopee-tabs__nav-warp"> -->
-<!--                       <div class="shopee-tabs__nav-tabs" style="transform: translateX(0px);"> -->
-                        
-
-<!--                       </div> -->
-<!--                       <div class="shopee-tabs__ink-bar" style="width: 60px; transform: translateX(0px);"></div> -->
-<!--                     </div> -->
-<!--                   </div> -->
-<!--                 </div> -->
-<!--               </div> -->
-<!--             </div> -->
-<!--           </div> -->
-          <div align="center" valign="center">
+<body class=" route-index route-portal-sale route-portal-sale-order route-portal-sale-order">
+  <div class="app-container">
+    <div class="page-content-wrapper">
+      <div data-v-6de0ecc3="" class="portal-sale-root">
+        <div data-v-6de0ecc3="" class="portal-sale-container">
+       <!--         刪掉class裡的 fixed-top --> 
+ <%@ include file="page1.file" %>
+          <div data-v-dff31658="" class="fixed-container ">
+            <div data-v-6de0ecc3="" data-v-dff31658="" class="portal-panel">
+              <div data-v-ddf12cca="" data-v-6de0ecc3="" class="list-tabs" data-v-dff31658="">
+                <div data-v-ddf12cca="" class="tabs shopee-tabs shopee-tabs-line shopee-tabs-normal">
+                  <div class="shopee-tabs__nav">
+                    <div class="shopee-tabs__nav-warp">
+                      <div class="shopee-tabs__nav-tabs" style="transform: translateX(0px);">
+          				<div class="shopee-tabs__nav-tab " style="white-space: normal;">
           
                       	<div class="shopee-tabs__nav-tab" style="transform: translateX(0px);"
                       		 onclick="location.href='http://localhost:8081/CFA104G2_MVC/front-end/shopOrder/listOneOrder.jsp';">
@@ -147,6 +139,16 @@ request.setAttribute("order_pay_arr", new String[]{"信用卡","銀行轉帳"});
                           <span data-v-ddf12cca="">全部</span>
                           </div>
                         </div>
+                        
+
+                      </div>
+                      <div class="shopee-tabs__ink-bar" style="width: 60px; transform: translateX(0px);"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           </div>
           
           <div data-v-550e8c91="" data-v-6de0ecc3="" class="page fulfillment-order">
@@ -253,8 +255,9 @@ request.setAttribute("order_pay_arr", new String[]{"信用卡","銀行轉帳"});
                       target="_blank" class="order-item">
                 <!-- 訂單瀏覽列end -->
                       
-<!-- 				foreach取出資料 -->                     
-         <c:forEach var="shopOrderVO" items="${list}">
+<!-- 				foreach取出資料 --> 
+<c:forEach var="shopOrderVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">               
+<%--          <c:forEach var="shopOrderVO" items="${list}"> --%>
                       <div data-v-1eaa89e5="" class="order-title">
                         <div data-v-1eaa89e5="" class="title-prefix">
                           <div data-v-78a21620="" data-v-1eaa89e5="" class="user-header user-view-item simple-nofollow">
@@ -519,6 +522,7 @@ request.setAttribute("order_pay_arr", new String[]{"信用卡","銀行轉帳"});
                         </div>
                       </div>
                        </c:forEach>
+                       <%@ include file="page2.file" %>
                       <!-- foreach這邊是結束 -->
 
                     </a></div><a data-v-1eaa89e5="" target="_blank" class="order-item">

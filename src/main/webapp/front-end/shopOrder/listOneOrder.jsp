@@ -91,7 +91,7 @@ ShopOrderVO shopOrderVO = (ShopOrderVO) request.getAttribute("shopOrderVO"); //E
     <div class="page-content-wrapper">
       <div data-v-6de0ecc3="" class="portal-sale-root">
         <div data-v-6de0ecc3="" class="portal-sale-container">
-          <div data-v-dff31658="" class="fixed-container fixed-top">
+          <div data-v-dff31658="" class="fixed-container ">
             <div data-v-6de0ecc3="" data-v-dff31658="" class="portal-panel">
               <div data-v-ddf12cca="" data-v-6de0ecc3="" class="list-tabs" data-v-dff31658="">
                 <div data-v-ddf12cca="" class="tabs shopee-tabs shopee-tabs-line shopee-tabs-normal">
@@ -197,7 +197,7 @@ ShopOrderVO shopOrderVO = (ShopOrderVO) request.getAttribute("shopOrderVO"); //E
 </c:if>
 <%-- 錯誤表列End --%> 
 
-                    	<%=shopOrderVO==null%>
+<%--                     	<%=shopOrderVO==null%> --%>
 	<%--                     <%=projPerkVO==null%> --%>
 	<%--                     <%=projectVO==null%> --%>
                     <!---->
@@ -217,8 +217,8 @@ ShopOrderVO shopOrderVO = (ShopOrderVO) request.getAttribute("shopOrderVO"); //E
                           <span data-v-a414b804="" data-v-dff31658="" class="item-total">付款方式</span>
                           <span data-v-a414b804="" data-v-dff31658="" class="item-total">運送方式</span>
                           <span data-v-a414b804="" data-v-dff31658="" class="item-total">訂單日期</span>
-                          <span data-v-a414b804="" data-v-dff31658="" class="item-action"
-                            style="padding-left:80px;">功能</span>
+<!--                           <span data-v-a414b804="" data-v-dff31658="" class="item-action" -->
+<!--                             style="padding-left:80px;">功能</span> -->
                         </div>
                       </div>
                     </div>
@@ -348,135 +348,135 @@ ShopOrderVO shopOrderVO = (ShopOrderVO) request.getAttribute("shopOrderVO"); //E
                               <div data-v-1274329c="" class="item-action">
                               
                             
-                             <c:choose>
-    							<c:when test="${shopOrderVO.order_state ==0}">
-    							<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/shopOrder/shopOrder.do">
-    							<input type="hidden" name="order_id"  value="${shopOrderVO.order_id}">	
-    							<input type="hidden" name="order_add"  value="${shopOrderVO.order_add}">	
-    							<input type="hidden" name="order_receiver"  value="${shopOrderVO.order_receiver}">	
-    							<input type="hidden" name="order_tel"  value="${shopOrderVO.order_tel}">	
-    							<input type="hidden" name="order_memo"  value="${shopOrderVO.order_memo}">	
-    							<input type="hidden" name="order_state"  value="${shopOrderVO.order_state}">	
-    							<input type="hidden" name="order_ship_date"  value="${shopOrderVO.order_ship_date}">	
-    							<input type="hidden" name="order_finish_date"  value="${shopOrderVO.order_finish_date}">
-    							<input type="hidden" name="order_cancel_date"  value="${shopOrderVO.order_cancel_date}">		 			  
+<%--                              <c:choose> --%>
+<%--     							<c:when test="${shopOrderVO.order_state ==0}"> --%>
+<%--     							<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/shopOrder/shopOrder.do"> --%>
+<%--     							<input type="hidden" name="order_id"  value="${shopOrderVO.order_id}">	 --%>
+<%--     							<input type="hidden" name="order_add"  value="${shopOrderVO.order_add}">	 --%>
+<%--     							<input type="hidden" name="order_receiver"  value="${shopOrderVO.order_receiver}">	 --%>
+<%--     							<input type="hidden" name="order_tel"  value="${shopOrderVO.order_tel}">	 --%>
+<%--     							<input type="hidden" name="order_memo"  value="${shopOrderVO.order_memo}">	 --%>
+<%--     							<input type="hidden" name="order_state"  value="${shopOrderVO.order_state}">	 --%>
+<%--     							<input type="hidden" name="order_ship_date"  value="${shopOrderVO.order_ship_date}">	 --%>
+<%--     							<input type="hidden" name="order_finish_date"  value="${shopOrderVO.order_finish_date}"> --%>
+<%--     							<input type="hidden" name="order_cancel_date"  value="${shopOrderVO.order_cancel_date}">		 			   --%>
 			     				
-			     				<input type="hidden" name="action" value="update_state_to_1_and_then_show_All">
+<!-- 			     				<input type="hidden" name="action" value="update_state_to_1_and_then_show_All"> -->
     							
-    							<input type="hidden" name="f_mem_id" value="${shopOrderVO.f_mem_id}">
-    							<input type="hidden" name="membership" value="seller">
+<%--     							<input type="hidden" name="f_mem_id" value="${shopOrderVO.f_mem_id}"> --%>
+<!--     							<input type="hidden" name="membership" value="seller"> -->
     							
-    							<button data-v-4325ccd1=""
-                                    class="shopee-button shopee-button--normal" type="submit"><span>
-                                      確認收款
-                                    </span></button>
-<!--                                  </FORM> -->
-                                     <br>
-    							</FORM>
-                                <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/shopOrder/shopOrder.do">	
-    							<input type="hidden" name="order_id"  value="${shopOrderVO.order_id}">	
-    							<input type="hidden" name="order_add"  value="${shopOrderVO.order_add}">	
-    							<input type="hidden" name="order_receiver"  value="${shopOrderVO.order_receiver}">	
-    							<input type="hidden" name="order_tel"  value="${shopOrderVO.order_tel}">	
-    							<input type="hidden" name="order_memo"  value="${shopOrderVO.order_memo}">	
-    							<input type="hidden" name="order_state"  value="${shopOrderVO.order_state}">	
-    							<input type="hidden" name="order_ship_date"  value="${shopOrderVO.order_ship_date}">	
-    							<input type="hidden" name="order_finish_date"  value="${shopOrderVO.order_finish_date}">
-    							<input type="hidden" name="order_cancel_date"  value="${shopOrderVO.order_cancel_date}">	
+<!--     							<button data-v-4325ccd1="" -->
+<!--                                     class="shopee-button shopee-button--normal" type="submit"><span> -->
+<!--                                       確認收款 -->
+<!--                                     </span></button> -->
+<!-- <!--                                  </FORM> --> 
+<!--                                      <br> -->
+<!--     							</FORM> -->
+<%--                                 <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/shopOrder/shopOrder.do">	 --%>
+<%--     							<input type="hidden" name="order_id"  value="${shopOrderVO.order_id}">	 --%>
+<%--     							<input type="hidden" name="order_add"  value="${shopOrderVO.order_add}">	 --%>
+<%--     							<input type="hidden" name="order_receiver"  value="${shopOrderVO.order_receiver}">	 --%>
+<%--     							<input type="hidden" name="order_tel"  value="${shopOrderVO.order_tel}">	 --%>
+<%--     							<input type="hidden" name="order_memo"  value="${shopOrderVO.order_memo}">	 --%>
+<%--     							<input type="hidden" name="order_state"  value="${shopOrderVO.order_state}">	 --%>
+<%--     							<input type="hidden" name="order_ship_date"  value="${shopOrderVO.order_ship_date}">	 --%>
+<%--     							<input type="hidden" name="order_finish_date"  value="${shopOrderVO.order_finish_date}"> --%>
+<%--     							<input type="hidden" name="order_cancel_date"  value="${shopOrderVO.order_cancel_date}">	 --%>
 			     				
-			     				<input type="hidden" name="action" value="update_state_to_4_and_then_show_All">	 			  
+<!-- 			     				<input type="hidden" name="action" value="update_state_to_4_and_then_show_All">	 			   -->
 			
-								<input type="hidden" name="f_mem_id" value="${shopOrderVO.f_mem_id}">
-    							<input type="hidden" name="membership" value="seller">
+<%-- 								<input type="hidden" name="f_mem_id" value="${shopOrderVO.f_mem_id}"> --%>
+<!--     							<input type="hidden" name="membership" value="seller"> -->
 			
-                                  <button data-v-4325ccd1="" 
-                                    class="shopee-button shopee-button--normal" type="submit"><span>
-                                      取消訂單
-                                    </span>
-                                  </button> 
-                                  </FORM>
-   							 </c:when>
-   							 	<c:when test="${shopOrderVO.order_state ==1}">
-   							  	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/shopOrder/shopOrder.do">	
-    							<input type="hidden" name="order_id"  value="${shopOrderVO.order_id}">	
-    							<input type="hidden" name="order_add"  value="${shopOrderVO.order_add}">	
-    							<input type="hidden" name="order_receiver"  value="${shopOrderVO.order_receiver}">	
-    							<input type="hidden" name="order_tel"  value="${shopOrderVO.order_tel}">	
-    							<input type="hidden" name="order_memo"  value="${shopOrderVO.order_memo}">	
-    							<input type="hidden" name="order_state"  value="${shopOrderVO.order_state}">	
-    							<input type="hidden" name="order_ship_date"  value="${shopOrderVO.order_ship_date}">	
-    							<input type="hidden" name="order_finish_date"  value="${shopOrderVO.order_finish_date}">
-    							<input type="hidden" name="order_cancel_date"  value="${shopOrderVO.order_cancel_date}">	
+<!--                                   <button data-v-4325ccd1=""  -->
+<!--                                     class="shopee-button shopee-button--normal" type="submit"><span> -->
+<!--                                       取消訂單 -->
+<!--                                     </span> -->
+<!--                                   </button>  -->
+<!--                                   </FORM> -->
+<%--    							 </c:when> --%>
+<%--    							 	<c:when test="${shopOrderVO.order_state ==1}"> --%>
+<%--    							  	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/shopOrder/shopOrder.do">	 --%>
+<%--     							<input type="hidden" name="order_id"  value="${shopOrderVO.order_id}">	 --%>
+<%--     							<input type="hidden" name="order_add"  value="${shopOrderVO.order_add}">	 --%>
+<%--     							<input type="hidden" name="order_receiver"  value="${shopOrderVO.order_receiver}">	 --%>
+<%--     							<input type="hidden" name="order_tel"  value="${shopOrderVO.order_tel}">	 --%>
+<%--     							<input type="hidden" name="order_memo"  value="${shopOrderVO.order_memo}">	 --%>
+<%--     							<input type="hidden" name="order_state"  value="${shopOrderVO.order_state}">	 --%>
+<%--     							<input type="hidden" name="order_ship_date"  value="${shopOrderVO.order_ship_date}">	 --%>
+<%--     							<input type="hidden" name="order_finish_date"  value="${shopOrderVO.order_finish_date}"> --%>
+<%--     							<input type="hidden" name="order_cancel_date"  value="${shopOrderVO.order_cancel_date}">	 --%>
 			     				
-			     				<input type="hidden" name="action" value="update_state_to_2_and_then_show_All">	 			  
+<!-- 			     				<input type="hidden" name="action" value="update_state_to_2_and_then_show_All">	 			   -->
 			
-						    	<input type="hidden" name="f_mem_id" value="${shopOrderVO.f_mem_id}">
-    							<input type="hidden" name="membership" value="seller">
+<%-- 						    	<input type="hidden" name="f_mem_id" value="${shopOrderVO.f_mem_id}"> --%>
+<!--     							<input type="hidden" name="membership" value="seller"> -->
 			
-                                  <button data-v-4325ccd1="" 
-                                    class="shopee-button shopee-button--normal" type="submit"><span>
-                                      已出貨
-                                    </span>
-                                  </button> 
-                                  </FORM>
+<!--                                   <button data-v-4325ccd1=""  -->
+<!--                                     class="shopee-button shopee-button--normal" type="submit"><span> -->
+<!--                                       已出貨 -->
+<!--                                     </span> -->
+<!--                                   </button>  -->
+<!--                                   </FORM> -->
                                     
-                                    <br>
-    							<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/shopOrder/shopOrder.do">	
-    							<input type="hidden" name="order_id"  value="${shopOrderVO.order_id}">	
-    							<input type="hidden" name="order_add"  value="${shopOrderVO.order_add}">	
-    							<input type="hidden" name="order_receiver"  value="${shopOrderVO.order_receiver}">	
-    							<input type="hidden" name="order_tel"  value="${shopOrderVO.order_tel}">	
-    							<input type="hidden" name="order_memo"  value="${shopOrderVO.order_memo}">	
-    							<input type="hidden" name="order_state"  value="${shopOrderVO.order_state}">	
-    							<input type="hidden" name="order_ship_date"  value="${shopOrderVO.order_ship_date}">	
-    							<input type="hidden" name="order_finish_date"  value="${shopOrderVO.order_finish_date}">
-    							<input type="hidden" name="order_cancel_date"  value="${shopOrderVO.order_cancel_date}">	
+<!--                                     <br> -->
+<%--     							<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/shopOrder/shopOrder.do">	 --%>
+<%--     							<input type="hidden" name="order_id"  value="${shopOrderVO.order_id}">	 --%>
+<%--     							<input type="hidden" name="order_add"  value="${shopOrderVO.order_add}">	 --%>
+<%--     							<input type="hidden" name="order_receiver"  value="${shopOrderVO.order_receiver}">	 --%>
+<%--     							<input type="hidden" name="order_tel"  value="${shopOrderVO.order_tel}">	 --%>
+<%--     							<input type="hidden" name="order_memo"  value="${shopOrderVO.order_memo}">	 --%>
+<%--     							<input type="hidden" name="order_state"  value="${shopOrderVO.order_state}">	 --%>
+<%--     							<input type="hidden" name="order_ship_date"  value="${shopOrderVO.order_ship_date}">	 --%>
+<%--     							<input type="hidden" name="order_finish_date"  value="${shopOrderVO.order_finish_date}"> --%>
+<%--     							<input type="hidden" name="order_cancel_date"  value="${shopOrderVO.order_cancel_date}">	 --%>
 			     				
-			     				<input type="hidden" name="action" value="update_state_to_4_and_then_show_All">	 			  
+<!-- 			     				<input type="hidden" name="action" value="update_state_to_4_and_then_show_All">	 			   -->
 			
-								<input type="hidden" name="f_mem_id" value="${shopOrderVO.f_mem_id}">
-    							<input type="hidden" name="membership" value="seller">
+<%-- 								<input type="hidden" name="f_mem_id" value="${shopOrderVO.f_mem_id}"> --%>
+<!--     							<input type="hidden" name="membership" value="seller"> -->
 			
-                                  <button data-v-4325ccd1="" 
-                                    class="shopee-button shopee-button--normal" type="submit"><span>
-                                      取消訂單
-                                    </span>
-                                  </button> 
-                                  </FORM>
-   							 </c:when>
-    							<c:when test="${shopOrderVO.order_state ==2}">
-    							<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/shopOrder/shopOrder.do">	
-    							<input type="hidden" name="order_id"  value="${shopOrderVO.order_id}">	
-    							<input type="hidden" name="order_add"  value="${shopOrderVO.order_add}">	
-    							<input type="hidden" name="order_receiver"  value="${shopOrderVO.order_receiver}">	
-    							<input type="hidden" name="order_tel"  value="${shopOrderVO.order_tel}">	
-    							<input type="hidden" name="order_memo"  value="${shopOrderVO.order_memo}">	
-    							<input type="hidden" name="order_state"  value="${shopOrderVO.order_state}">	
-    							<input type="hidden" name="order_ship_date"  value="${shopOrderVO.order_ship_date}">	
-    							<input type="hidden" name="order_finish_date"  value="${shopOrderVO.order_finish_date}">
-    							<input type="hidden" name="order_cancel_date"  value="${shopOrderVO.order_cancel_date}">	
+<!--                                   <button data-v-4325ccd1=""  -->
+<!--                                     class="shopee-button shopee-button--normal" type="submit"><span> -->
+<!--                                       取消訂單 -->
+<!--                                     </span> -->
+<!--                                   </button>  -->
+<!--                                   </FORM> -->
+<%--    							 </c:when> --%>
+<%--     							<c:when test="${shopOrderVO.order_state ==2}"> --%>
+<%--     							<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/shopOrder/shopOrder.do">	 --%>
+<%--     							<input type="hidden" name="order_id"  value="${shopOrderVO.order_id}">	 --%>
+<%--     							<input type="hidden" name="order_add"  value="${shopOrderVO.order_add}">	 --%>
+<%--     							<input type="hidden" name="order_receiver"  value="${shopOrderVO.order_receiver}">	 --%>
+<%--     							<input type="hidden" name="order_tel"  value="${shopOrderVO.order_tel}">	 --%>
+<%--     							<input type="hidden" name="order_memo"  value="${shopOrderVO.order_memo}">	 --%>
+<%--     							<input type="hidden" name="order_state"  value="${shopOrderVO.order_state}">	 --%>
+<%--     							<input type="hidden" name="order_ship_date"  value="${shopOrderVO.order_ship_date}">	 --%>
+<%--     							<input type="hidden" name="order_finish_date"  value="${shopOrderVO.order_finish_date}"> --%>
+<%--     							<input type="hidden" name="order_cancel_date"  value="${shopOrderVO.order_cancel_date}">	 --%>
     								
-			     				<input type="hidden" name="action" value="update_state_to_3_and_then_show_All">	 			  
+<!-- 			     				<input type="hidden" name="action" value="update_state_to_3_and_then_show_All">	 			   -->
 			
-								<input type="hidden" name="f_mem_id" value="${shopOrderVO.f_mem_id}">
-    							<input type="hidden" name="membership" value="seller">
+<%-- 								<input type="hidden" name="f_mem_id" value="${shopOrderVO.f_mem_id}"> --%>
+<!--     							<input type="hidden" name="membership" value="seller"> -->
 			
 			
-                                  <button data-v-4325ccd1="" 
-                                    class="shopee-button shopee-button--normal" type="submit"><span>
-                                      完成訂單
-                                    </span>
-                                  </button> 
-                                  </FORM>
-   							 </c:when>
-   							   	<c:when test="${shopOrderVO.order_state ==3}">
+<!--                                   <button data-v-4325ccd1=""  -->
+<!--                                     class="shopee-button shopee-button--normal" type="submit"><span> -->
+<!--                                       完成訂單 -->
+<!--                                     </span> -->
+<!--                                   </button>  -->
+<!--                                   </FORM> -->
+<%--    							 </c:when> --%>
+<%--    							   	<c:when test="${shopOrderVO.order_state ==3}"> --%>
     							
-   							 </c:when>
+<%--    							 </c:when> --%>
    						
-  						  	  <c:otherwise>
+<%--   						  	  <c:otherwise> --%>
   						  
-  					  		</c:otherwise>
-							</c:choose>
+<%--   					  		</c:otherwise> --%>
+<%-- 							</c:choose> --%>
 							
 							
                               </div>
@@ -521,6 +521,9 @@ ShopOrderVO shopOrderVO = (ShopOrderVO) request.getAttribute("shopOrderVO"); //E
     document.body.oncopy = null;
     document.body.onpaste = null;
   </script>
+  <br>
 </body>
+<footer>
  <jsp:include page="/front-end/home/footer.jsp" flush="true"/>
+</footer>
 </html>

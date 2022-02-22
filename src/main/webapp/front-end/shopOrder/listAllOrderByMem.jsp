@@ -99,13 +99,15 @@ request.setAttribute("order_pay_arr", new String[]{"信用卡","銀行轉帳"});
   
   
 </head>
-<h3>會員買家訂單管理</h3>
+<!-- <h3>會員買家訂單管理</h3> -->
 <body class=" route-index route-portal-sale route-portal-sale-order route-portal-sale-order">
   <div class="app-container">
     <div class="page-content-wrapper">
       <div data-v-6de0ecc3="" class="portal-sale-root">
         <div data-v-6de0ecc3="" class="portal-sale-container">
-          <div data-v-dff31658="" class="fixed-container fixed-top">
+<!--         刪掉class裡的 fixed-top -->
+   <%@ include file="page1.file" %>                    
+          <div data-v-dff31658="" class="fixed-container ">
             <div data-v-6de0ecc3="" data-v-dff31658="" class="portal-panel">
               <div data-v-ddf12cca="" data-v-6de0ecc3="" class="list-tabs" data-v-dff31658="">
                 <div data-v-ddf12cca="" class="tabs shopee-tabs shopee-tabs-line shopee-tabs-normal">
@@ -178,10 +180,9 @@ request.setAttribute("order_pay_arr", new String[]{"信用卡","銀行轉帳"});
                   <div data-v-1eaa89e5="" data-v-a414b804="" class="order-list-body"><a data-v-1eaa89e5=""
                       target="_blank" class="order-item">
               <!-- 訂單瀏覽列end -->
-                      
    <!-- 				foreach取出資料 -->  
-<%-- 	<c:forEach var="shopOrderVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>"> --%>
-    		<c:forEach var="shopOrderVO" items="${list}">                   
+	<c:forEach var="shopOrderVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+<%--     		<c:forEach var="shopOrderVO" items="${list}">                    --%>
                       <div data-v-1eaa89e5="" class="order-title">
                         <div data-v-1eaa89e5="" class="title-prefix">
                           <div data-v-78a21620="" data-v-1eaa89e5="" class="user-header user-view-item simple-nofollow">
@@ -473,7 +474,7 @@ request.setAttribute("order_pay_arr", new String[]{"信用卡","銀行轉帳"});
                       </div>
                       </c:forEach>
                       <!-- foreach這邊是結束 -->
-
+<%@ include file="page2.file" %>
                     </a></div><a data-v-1eaa89e5="" target="_blank" class="order-item">
                   </a>
                 </div><a data-v-1eaa89e5="" target="_blank" class="order-item">
