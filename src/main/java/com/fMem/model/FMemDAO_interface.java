@@ -14,7 +14,4 @@ public interface FMemDAO_interface {
           public List<FMemVO> getAll();
           //萬用複合查詢(傳入參數型態Map)(回傳 List)
         public List<FMemVO> getAll(Map<String, String[]> map);
-        
-        
-        public FMemVO findUserByFMem_acc(String f_mem_acc);
 }
