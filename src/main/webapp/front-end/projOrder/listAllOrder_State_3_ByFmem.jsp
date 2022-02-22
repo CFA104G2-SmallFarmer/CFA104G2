@@ -10,32 +10,31 @@
 <%FMemVO fMemVO = (FMemVO) session.getAttribute("fMemVO");%>
 <%MemVO MemVO = (MemVO) session.getAttribute("memVO");%>
 
-
 <%
 //用session那到FMemVO
 Integer f_mem_id = fMemVO.getF_mem_id();
-//   /*   String mem_id = request.getParameter("mem_id"); */
+
 	String membership= "seller";
-	%>
+%>
+	
 	
 <%
+Integer order_state = 3;
 ProjOrderService projOrderSvc = new ProjOrderService();
-List<ProjOrderVO> list = projOrderSvc.getAllFmemOrder(f_mem_id);  
-pageContext.setAttribute("list",list); 
-%>
-<%-- <%  
-    int rowNumber=0;
+
+Map<Integer, List<ProjOrderVO>> list2 = projOrderSvc.getAll_groupingBy_order_state(f_mem_id);
+List<ProjOrderVO> list =list2.get(order_state);
+pageContext.setAttribute("list", list);
+
+
+/* List<ProjOrderVO> list = (List<ProjOrderVO>)request.getAttribute("ProjOrderVOlist_ByState"); */
+
+
 
 %>
 
-<%  
-try{
-    rowNumber=list.size(); 
-}catch(Exception e){
-	rowNumber=0; 
-}
-pageContext.setAttribute("rowNumber", rowNumber);
-%> --%>
+
+	
 <!--     String f_mem_id = request.getParameter("f_mem_id"); -->
 <!-- 	String membership= "seller"; -->
 
@@ -74,7 +73,7 @@ pageContext.setAttribute("rowNumber", rowNumber);
 
 
 <%
-request.setAttribute("order_state_arr", new String[]{"待付款","待出貨","運送中","已完成","不成立<br>(未處理)","不成立<br>(已解決)"});
+request.setAttribute("order_state_arr", new String[]{"待付款","待出貨","運送中","已完成","不成立(未處理)","不成立(已解決)"});
 request.setAttribute("proj_pay_arr", new String[]{"信用卡","銀行轉帳"});
 request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買家取消","小農取消","專案募資失敗"});
 %>
@@ -470,12 +469,12 @@ margin-top:20px;
                           </div>
                         </div>
                         <div onclick="location.href=
-'<%=request.getContextPath()%>/front-end/projOrder/listAllOrderByFmem.jsp';" class="shopee-tabs__nav-tab active" style="white-space: normal;">
+'<%=request.getContextPath()%>/front-end/projOrder/listAllOrderByFmem.jsp';" class="shopee-tabs__nav-tab" style="white-space: normal;">
                           <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">全部</span>
                           </div>
                         </div>
                         <div onclick="location.href=
-'<%=request.getContextPath()%>/front-end/projOrder/listAllOrder_State_0_ByFmem.jsp';" class="shopee-tabs__nav-tab" style="white-space: normal;">
+'<%=request.getContextPath()%>/front-end/projOrder/listAllOrder_State_0_ByFmem.jsp';" class="shopee-tabs__nav-tab  " style="white-space: normal;">
                           <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">待付款</span>
                           </div>
                         </div>
@@ -490,7 +489,7 @@ margin-top:20px;
                           </div>
                         </div>
                         <div onclick="location.href=
-'<%=request.getContextPath()%>/front-end/projOrder/listAllOrder_State_3_ByFmem.jsp';" class="shopee-tabs__nav-tab" style="white-space: normal;">
+'<%=request.getContextPath()%>/front-end/projOrder/listAllOrder_State_3_ByFmem.jsp';" class="shopee-tabs__nav-tab active" style="white-space: normal;">
                           <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">已完成</span>
                           </div>
                         </div>
@@ -504,59 +503,6 @@ margin-top:20px;
                           <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">不成立(已解決)</span>
                           </div>
                         </div>
-                        <%-- <div onclick="location.href=
-'<%=request.getContextPath()%>/front-end/projOrder/listAllOrder_State__ByFmem.jsp';" class="shopee-tabs__nav-tab" style="white-space: normal;">
-                          <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">待付款</span>
-                          </div>
-                        </div>
-                       <FORM id="search_form1" METHOD="post" ACTION="<%=request.getContextPath()%>/projOrder/projOrder.do">	
-                        <div onclick="document:search_form1.submit();" class="shopee-tabs__nav-tab" style="white-space: normal;">
-                          <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">尚未付款</span>
-                          <input type="hidden" name="order_state"  value="0">
-                          <input type="hidden" name="action" value="go_to_listAllOrder_ByState_ByFmem">	 			
-                          </div>
-                        </div>
-                        </FORM>
-                         <FORM id="search_form2" METHOD="post" ACTION="<%=request.getContextPath()%>/projOrder/projOrder.do">	
-                        <div onclick="document:search_form2.submit();" class="shopee-tabs__nav-tab" style="white-space: normal;">
-                          <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">待出貨</span>
-                          <input type="hidden" name="order_state"  value="1">
-                          <input type="hidden" name="action" value="go_to_listAllOrder_ByState_ByFmem">	 			
-                          </div>
-                        </div>
-                        </FORM>
-                        <FORM id="search_form3" METHOD="post" ACTION="<%=request.getContextPath()%>/projOrder/projOrder.do">	
-                        <div onclick="document:search_form3.submit();" class="shopee-tabs__nav-tab" style="white-space: normal;">
-                          <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">運送中</span>
-                          <input type="hidden" name="order_state"  value="2">
-                          <input type="hidden" name="action" value="go_to_listAllOrder_ByState_ByFmem">	 			
-                          </div>
-                        </div>
-                        </FORM>
-                         <FORM id="search_form4" METHOD="post" ACTION="<%=request.getContextPath()%>/projOrder/projOrder.do">	
-                        <div onclick="document:search_form4.submit();" class="shopee-tabs__nav-tab" style="white-space: normal;">
-                          <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">已完成</span>
-                          <input type="hidden" name="order_state"  value="3">
-                          <input type="hidden" name="action" value="go_to_listAllOrder_ByState_ByFmem">	 			
-                          </div>
-                        </div>
-                        </FORM>
-                         <FORM id="search_form5" METHOD="post" ACTION="<%=request.getContextPath()%>/projOrder/projOrder.do">	
-                        <div onclick="document:search_form5.submit();" class="shopee-tabs__nav-tab" style="white-space: normal;">
-                          <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">不成立(未處理)</span>
-                          <input type="hidden" name="order_state"  value="4">
-                          <input type="hidden" name="action" value="go_to_listAllOrder_ByState_ByFmem">	 			
-                          </div>
-                        </div>
-                        </FORM>
-                        <FORM id="search_form6" METHOD="post" ACTION="<%=request.getContextPath()%>/projOrder/projOrder.do">	
-                        <div onclick="document:search_form6.submit();" class="shopee-tabs__nav-tab" style="white-space: normal;">
-                          <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">不成立(已解決)</span>
-                          <input type="hidden" name="order_state"  value="5">
-                          <input type="hidden" name="action" value="go_to_listAllOrder_ByState_ByFmem">	 			
-                          </div>
-                        </div>
-                        </FORM> --%>
 
                       </div>
                       <div class="shopee-tabs__ink-bar" style="width: 60px; transform: translateX(0px);"></div>
@@ -633,7 +579,17 @@ margin-top:20px;
                   <!-- form結束 -->
                   <div data-v-acb72a84="" class="order-panel-header">
                     <div data-v-acb72a84="" class="title">
-<h1 style="float:left;font-size:30px"><strong>全部</strong></h1><br>
+                       <c:set var="num" scope="request" value="${param.order_state}"/>
+                    
+                            
+<%--                                   <% int num = projOrderVO.getOrder_state(); %> --%>
+                                  
+<%--                                   <%= ((String[])request.getAttribute("order_state_arr"))[num] %> --%>
+                                 
+                              
+<h1 style="float:left;font-size:30px"><strong>已完成</strong></h1><br>
+
+
                     </div>
                     <div data-v-acb72a84="" class="more-action">
                      <%-- 錯誤表列 --%>
@@ -654,6 +610,7 @@ margin-top:20px;
                   </div>
                 </div>
               </div>
+          
               <!---->
               <div data-v-a414b804="" data-v-acb72a84="" class="order-list-pannel">
                 <div data-v-a414b804="" class="order-list-section">
@@ -676,9 +633,8 @@ margin-top:20px;
                       
                    
                        
-
-                      <%@ include file="/front-end/projOrder/page1.file" %>
-                                             
+<%@ include file="/front-end/projOrder/page1.file" %>
+                                            
                        <c:forEach var="projOrderVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
                   
 
@@ -1029,7 +985,7 @@ margin-top:20px;
                       </div>
                       <!-- 這邊是結束 -->
                       </c:forEach>
-                      <%@ include file="/front-end/projOrder/page2.file" %>
+          <%@ include file="/front-end/projOrder/page2.file" %>
 
 
                     </a></div><a data-v-1eaa89e5="" target="_blank" class="order-item">
