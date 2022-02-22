@@ -25,7 +25,7 @@
 <header>
        <%--   <jsp:include page="/front-end/home/header.jsp" /> 這個會失敗--%>
        
-<%--           <jsp:include page="<%=request.getContextPath()%>/front-end/home/header2.jsp"/>  --%>
+          <jsp:include page="/front-end/home/header2/header2.jsp" /> 
 </header>
 <style>
 .header-wrapper{
