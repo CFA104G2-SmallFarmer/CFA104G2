@@ -11,15 +11,11 @@ public class FarmTravelCollectionJDBCDAO implements FarmTravelCollectionDAO{
     public static final String GET_ONE_STMT = "SELECT * FROM FARM_TRAVEL_COLLECTION WHERE MEM_ID = ? AND FARM_TRAVEL_ID = ?;";
     public static final String GET_ALL_STMT = "SELECT * FROM FARM_TRAVEL_COLLECTION WHERE MEM_ID = ?;";
 
-    Connection con = null;
     PreparedStatement pstmt = null;
     ResultSet rs = null;
 
     @Override
     public void add(Connection con, FarmTravelCollectionVO farm_travel_collection) {
-
-        this.con = con;
-
         try {
             pstmt = con.prepareStatement(INSERT_STMT);
 
@@ -43,11 +39,7 @@ public class FarmTravelCollectionJDBCDAO implements FarmTravelCollectionDAO{
 
     @Override
     public void delete(Connection con, Integer mem_ID, Integer farm_travel_ID) {
-
-        this.con = con;
-
         try {
-
             pstmt = con.prepareStatement(DELETE_STMT);
 
             pstmt.setInt(1, mem_ID);
@@ -69,9 +61,6 @@ public class FarmTravelCollectionJDBCDAO implements FarmTravelCollectionDAO{
     }
     @Override
     public boolean findByPK(Connection con, Integer mem_ID, Integer farm_travel_ID) {
-
-        this.con = con;
-        FarmTravelCollectionVO farm_travel_collection = null;
         try {
             pstmt = con.prepareStatement(GET_ONE_STMT);
 
@@ -106,12 +95,12 @@ public class FarmTravelCollectionJDBCDAO implements FarmTravelCollectionDAO{
 
     @Override
     public List<FarmTravelCollectionVO> getAll(Connection con, Integer mem_ID) {
-
-        this.con = con;
         List<FarmTravelCollectionVO> farm_travel_collection_list = new ArrayList<>();
         FarmTravelCollectionVO farm_travel_collection = null;
         try {
             pstmt = con.prepareStatement(GET_ALL_STMT);
+
+            pstmt.setInt(1, mem_ID);
 
             rs = pstmt.executeQuery();
 

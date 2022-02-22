@@ -11,15 +11,11 @@ public class FarmTravelReportJDBCDAO implements FarmTravelReportDAO{
     public static final String GET_ONE_STMT = "SELECT * FROM FARM_TRAVEL_REPORT WHERE REPORT_ID = ?;";
     public static final String GET_ALL_STMT = "SELECT * FROM FARM_TRAVEL_REPORT;";
 
-    Connection con = null;
     PreparedStatement pstmt = null;
     ResultSet rs = null;
 
     @Override
     public void add(Connection con, FarmTravelReportVO farm_travel_report) {
-
-        this.con = con;
-
         try {
             pstmt = con.prepareStatement(INSERT_STMT);
 
@@ -44,9 +40,6 @@ public class FarmTravelReportJDBCDAO implements FarmTravelReportDAO{
 
     @Override
     public void update(Connection con, FarmTravelReportVO farm_travel_report) {
-
-        this.con = con;
-
         try {
             pstmt = con.prepareStatement(UPDATE_STMT);
 
@@ -72,9 +65,6 @@ public class FarmTravelReportJDBCDAO implements FarmTravelReportDAO{
     @Override
     public FarmTravelReportVO findByPK(Connection con, Integer report_ID) {
         FarmTravelReportVO farm_travel_report = null;
-
-        this.con = con;
-
         try {
             pstmt = con.prepareStatement(GET_ONE_STMT);
 
@@ -116,8 +106,6 @@ public class FarmTravelReportJDBCDAO implements FarmTravelReportDAO{
 
     @Override
     public List<FarmTravelReportVO> getAll(Connection con) {
-
-        this.con = con;
         List<FarmTravelReportVO> farm_travel_report_list = new ArrayList<>();
         FarmTravelReportVO farm_travel_report = null;
         try {

@@ -65,8 +65,6 @@
                 minDate: 0,
                 onClose: travelStartDate=>{
                     $("#farm_travel_end").datepicker("option", "minDate", travelStartDate);
-                    $("#travel_apply_start").datepicker("option", "maxDate", travelStartDate);
-                    $("#travel_apply_end").datepicker("option", "maxDate", travelStartDate);
                 }
             });
             $("#farm_travel_end").datepicker({
@@ -81,30 +79,20 @@
                 dropdown: true,
                 scrollbar: true
             });
-            $("#travel_apply_start").datepicker({
-                dateFormat:"yy-mm-dd",
-                minDate: 0,
-                onClose: startDate=>$("#travel_apply_end").datepicker("option", "minDate", startDate)
-            });
-            $("#travel_apply_end").datepicker({
-                dateFormat:"yy-mm-dd",
-                minDate: 0,
-                onClose: endDate=>$("#travel_apply_start").datepicker("option", "maxDate", endDate)
-            });
         });
     </script>
 </head>
 <body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <button type="button" class="back btn btn-outline-light">
-    <a href="<%=request.getContextPath()%>/front-end/farmTravel/listAllFarmTravel.jsp"><img src="<%=request.getContextPath()%>/front-end/farmTravel/images/back.png"></a>
+    <a href="<%=request.getContextPath()%>/front-end/farmTravel/listAllFarmTravelByFMem.jsp"><img src="<%=request.getContextPath()%>/front-end/farmTravel/images/back.png"></a>
 </button>
 <main>
     <h3>編輯農遊行程</h3>
     <div id="left">
         <figure class="figure">
             <c:if test="${not empty farmTravel.farm_travel_img}">
-                <img src="<%=request.getContextPath()%>/farmTravel.do?farm_travel_ID=${farmTravel.farm_travel_ID}" class="figure-img img-fluid rounded" id="imgPreview">
+                <img src="<%=request.getContextPath()%>/getImage.do?farm_travel_ID=${farmTravel.farm_travel_ID}" class="figure-img img-fluid rounded" id="imgPreview">
             </c:if>
             <c:if test="${empty farmTravel.farm_travel_img}" >
                 <img src="<%=request.getContextPath()%>/front-end/farmTravel/images/NoImage.png" class="figure-img img-fluid rounded" id="imgPreview">
@@ -158,14 +146,6 @@
             <div class="input-group mb-3">
                 <input type="number" class="form-control" id="farm_travel_fee" min="0" autocomplete="off" name="farm_travel_fee" value="<%=(farmTravel == null) ? "" : farmTravel.getFarm_travel_fee()%>">
                 <span class="input-group-text">元</span>
-            </div>
-            <div class="mb-3">
-                <label for="travel_apply_start" class="form-label">報名起日</label>
-                <input type="text" class="form-control" id="travel_apply_start" autocomplete="off" name="travel_apply_start" value="<%=(farmTravel == null) ? "" : (farmTravel.getTravel_apply_start() == null) ? "" : new SimpleDateFormat("yyyy-MM-dd").format(farmTravel.getTravel_apply_start())%>">
-            </div>
-            <div class="mb-3">
-                <label for="travel_apply_end" class="form-label">報名迄日</label>
-                <input type="text" class="form-control" id="travel_apply_end" autocomplete="off" name="travel_apply_end" value="<%=(farmTravel == null) ? "" : (farmTravel.getTravel_apply_end() == null) ? "" : new SimpleDateFormat("yyyy-MM-dd").format(farmTravel.getTravel_apply_end())%>">
             </div>
             <label for="farm_travel_min" class="form-label">最少成團人數</label>
             <div class="input-group mb-3">
@@ -261,8 +241,6 @@
         addForm.farm_travel_end_date.value="2022-03-09";
         addForm.farm_travel_end_time.value="15:30:00";
         addForm.farm_travel_fee.value="2500";
-        addForm.travel_apply_start.value="2022-02-09";
-        addForm.travel_apply_end.value="2022-02-28";
         addForm.farm_travel_min.value="5";
         addForm.farm_travel_max.value="15";
     }

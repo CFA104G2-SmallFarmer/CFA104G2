@@ -8,7 +8,6 @@ public interface FarmTravelDAO {
     void update(Connection con, FarmTravelVO farm_travel);
     void delete(Connection con, Integer farm_travel_ID);
     FarmTravelVO findByPK(Connection con, Integer farm_travel_ID);
-    List<FarmTravelVO> getAll(Connection con);
+    List<FarmTravelVO> getAllFromFMem(Connection con, Integer f_mem_ID);
     List<FarmTravelVO> getAllMemCanApply(Connection con);
-
 }

@@ -35,7 +35,7 @@ public class FarmTravelOrderService {
         try {
             con.setAutoCommit(false);
             Integer next_farm_travel_order_ID = dao.add(con, farm_travel_order);
-            FarmTravelPartnerDAO farmTravelPartnerDAO = null;
+            FarmTravelPartnerDAO farmTravelPartnerDAO;
             for (int i = 0 ; i < farm_travel_order.getPeople_num() ; i++){
                 farmTravelPartnerDAO = new FarmTravelPartnerJDBCDAO();
                 FarmTravelPartnerVO farmTravelPartner = new FarmTravelPartnerVO();
@@ -61,16 +61,15 @@ public class FarmTravelOrderService {
         return farm_travel_order;
     }
 
-    public FarmTravelOrderVO updateFarmTravelOrder(Integer order_state, Integer order_payment, java.sql.Timestamp refund_time, Integer farm_travel_stars, Integer mem_ID_stars, String order_memo, Integer farm_travel_ID) {
+    public FarmTravelOrderVO updateFarmTravelOrder(Integer order_state, java.sql.Timestamp refund_time, Integer farm_travel_stars, Integer mem_ID_stars, String order_memo, Integer order_ID) {
 
         FarmTravelOrderVO farm_travel_order = new FarmTravelOrderVO();
         farm_travel_order.setOrder_state(order_state);
-        farm_travel_order.setOrder_payment(order_payment);
         farm_travel_order.setRefund_time(refund_time);
         farm_travel_order.setFarm_travel_stars(farm_travel_stars);
         farm_travel_order.setMem_ID_stars(mem_ID_stars);
         farm_travel_order.setOrder_memo(order_memo);
-        farm_travel_order.setFarm_travel_ID(farm_travel_ID);
+        farm_travel_order.setOrder_ID(order_ID);
         dao.update(con, farm_travel_order);
 
         return farm_travel_order;
@@ -80,7 +79,9 @@ public class FarmTravelOrderService {
         return dao.findByPK(con, order_ID);
     }
 
-    public List<FarmTravelOrderVO> getAllFarmTravelOrder(Integer mem_ID) {
-        return dao.getAll(con, mem_ID);
+    public List<FarmTravelOrderVO> getAllFarmTravelOrderByMem(Integer mem_ID) {
+        return dao.getAllByMem(con, mem_ID);
     }
+
+    public List<FarmTravelOrderVO> getAllFarmTravelOrderByFMem(Integer f_mem_ID) { return dao.getAllByFMem(con, f_mem_ID); }
 }

@@ -12,16 +12,13 @@ public class FarmTravelTagJDBCDAO implements FarmTravelTagDAO{
     public static final String GET_ONE_STMT = "SELECT * FROM FARM_TRAVEL_TAG WHERE TAG_NAME = ?;";
     public static final String GET_ONE_BY_PK_STMT = "SELECT * FROM FARM_TRAVEL_TAG WHERE TAG_ID = ?;";
     public static final String GET_ALL_STMT = "SELECT * FROM FARM_TRAVEL_TAG;";
+    public static final String GET_TOP_THREE_STMT = "SELECT FTT.* FROM FARM_TRAVEL_TAG FTT JOIN (SELECT TAG_ID FROM FARM_TRAVEL_TAG_DETAILS FTTD JOIN (SELECT FARM_TRAVEL_ID FROM FARM_TRAVEL WHERE FARM_TRAVEL_STATE IN ('1','2') AND NOW() < FARM_TRAVEL_START ) FT ON FTTD.FARM_TRAVEL_ID  = FT.FARM_TRAVEL_ID GROUP BY TAG_ID) FTD ON FTT.TAG_ID = FTD.TAG_ID ORDER BY TAG_TIMES DESC LIMIT 5;";
 
-    Connection con = null;
     PreparedStatement pstmt = null;
     ResultSet rs = null;
 
     @Override
     public void add(Connection con, String tag_name) {
-
-        this.con = con;
-
         try {
             pstmt = con.prepareStatement(INSERT_STMT);
 
@@ -44,9 +41,6 @@ public class FarmTravelTagJDBCDAO implements FarmTravelTagDAO{
 
     @Override
     public void update(Connection con, FarmTravelTagVO farm_travel_tag) {
-
-        this.con = con;
-
         try {
             pstmt = con.prepareStatement(UPDATE_STMT);
 
@@ -70,9 +64,6 @@ public class FarmTravelTagJDBCDAO implements FarmTravelTagDAO{
 
     @Override
     public void delete(Connection con, Integer tag_ID) {
-
-        this.con = con;
-
         try {
             pstmt = con.prepareStatement(DELETE_STMT);
 
@@ -95,9 +86,6 @@ public class FarmTravelTagJDBCDAO implements FarmTravelTagDAO{
 
     @Override
     public FarmTravelTagVO findByTagName(Connection con, String tag_name) {
-
-        this.con = con;
-
         FarmTravelTagVO farm_travel_tag = null;
         try {
             pstmt = con.prepareStatement(GET_ONE_STMT);
@@ -137,9 +125,6 @@ public class FarmTravelTagJDBCDAO implements FarmTravelTagDAO{
 
     @Override
     public FarmTravelTagVO findByPK(Connection con, Integer tag_ID) {
-
-        this.con = con;
-
         FarmTravelTagVO farm_travel_tag = null;
         try {
             pstmt = con.prepareStatement(GET_ONE_BY_PK_STMT);
@@ -177,13 +162,47 @@ public class FarmTravelTagJDBCDAO implements FarmTravelTagDAO{
 
     @Override
     public List<FarmTravelTagVO> getAll(Connection con) {
-
-        this.con = con;
-
-        FarmTravelTagVO farm_travel_tag = null;
+        FarmTravelTagVO farm_travel_tag;
         List<FarmTravelTagVO> farm_travel_tag_list = new ArrayList<>();
         try {
             pstmt = con.prepareStatement(GET_ALL_STMT);
+
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                farm_travel_tag = new FarmTravelTagVO();
+                farm_travel_tag.setTag_ID(rs.getInt("TAG_ID"));
+                farm_travel_tag.setTag_name(rs.getString("TAG_NAME"));
+                farm_travel_tag.setTag_times(rs.getInt("TAG_TIMES"));
+                farm_travel_tag_list.add(farm_travel_tag);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(System.err);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+        }
+        return farm_travel_tag_list;
+    }
+
+    @Override
+    public List<FarmTravelTagVO> getTopThree(Connection con) {
+        FarmTravelTagVO farm_travel_tag;
+        List<FarmTravelTagVO> farm_travel_tag_list = new ArrayList<>();
+        try {
+            pstmt = con.prepareStatement(GET_TOP_THREE_STMT);
 
             rs = pstmt.executeQuery();
 

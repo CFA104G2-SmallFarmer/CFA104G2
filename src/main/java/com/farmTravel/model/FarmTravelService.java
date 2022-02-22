@@ -1,12 +1,14 @@
 package com.farmTravel.model;
 
 import com.core.connectionFactory.ConnectionFactory;
+import com.farmTravelCollection.model.FarmTravelCollectionVO;
 import com.farmTravelTag.model.FarmTravelTagJDBCDAO;
 import com.farmTravelTag.model.FarmTravelTagVO;
 import com.farmTravelTagDetails.model.FarmTravelTagDetailsJDBCDAO;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FarmTravelService {
@@ -20,7 +22,7 @@ public class FarmTravelService {
     Connection con = connectionFactory.getConnection();
 
     public FarmTravelVO addFarmTravel(Integer mem_ID, Integer f_mem_ID, String farm_travel_title, byte[] farm_travel_img, String farm_travel_info, java.sql.Timestamp farm_travel_start, java.sql.Timestamp farm_travel_end, Integer farm_travel_fee,
-                                      java.sql.Timestamp travel_apply_start, java.sql.Timestamp travel_apply_end, Integer farm_travel_min, Integer farm_travel_max, String[] tag_names) {
+                                      Integer farm_travel_min, Integer farm_travel_max, String[] tag_names) {
         FarmTravelVO farm_travel = new FarmTravelVO();
         farm_travel.setMem_ID(mem_ID);
         farm_travel.setF_mem_ID(f_mem_ID);
@@ -30,16 +32,16 @@ public class FarmTravelService {
         farm_travel.setFarm_travel_start(farm_travel_start);
         farm_travel.setFarm_travel_end(farm_travel_end);
         farm_travel.setFarm_travel_fee(farm_travel_fee);
-        farm_travel.setTravel_apply_start(travel_apply_start);
-        farm_travel.setTravel_apply_end(travel_apply_end);
         farm_travel.setFarm_travel_min(farm_travel_min);
         farm_travel.setFarm_travel_max(farm_travel_max);
 
         try {
             con.setAutoCommit(false);
             Integer next_farm_travel_ID = dao.add(con, farm_travel);
+            System.out.println(next_farm_travel_ID);
             if (tag_names != null){
                 for (String tag_name : tag_names){
+                    System.out.println(tag_name);
                     FarmTravelTagJDBCDAO farmTravelTagDAO = new FarmTravelTagJDBCDAO();
                     FarmTravelTagVO farmTravelTag = farmTravelTagDAO.findByTagName(con, tag_name);
                     FarmTravelTagDetailsJDBCDAO farmTravelTagDetailsDAO = new FarmTravelTagDetailsJDBCDAO();
@@ -68,7 +70,7 @@ public class FarmTravelService {
     }
 
     public FarmTravelVO updateFarmTravel(String farm_travel_title, byte[] farm_travel_img, String farm_travel_info, java.sql.Timestamp farm_travel_start, java.sql.Timestamp farm_travel_end, Integer farm_travel_fee,
-                                         java.sql.Timestamp travel_apply_start, java.sql.Timestamp travel_apply_end, Integer farm_travel_min, Integer farm_travel_max, Integer farm_travel_now, Integer farm_travel_state, Integer farm_travel_ID) {
+                                         Integer farm_travel_min, Integer farm_travel_max, Integer farm_travel_now, Integer farm_travel_state, Integer farm_travel_ID) {
 
         FarmTravelVO farm_travel = new FarmTravelVO();
         farm_travel.setFarm_travel_title(farm_travel_title);
@@ -77,8 +79,6 @@ public class FarmTravelService {
         farm_travel.setFarm_travel_start(farm_travel_start);
         farm_travel.setFarm_travel_end(farm_travel_end);
         farm_travel.setFarm_travel_fee(farm_travel_fee);
-        farm_travel.setTravel_apply_start(travel_apply_start);
-        farm_travel.setTravel_apply_end(travel_apply_end);
         farm_travel.setFarm_travel_min(farm_travel_min);
         farm_travel.setFarm_travel_max(farm_travel_max);
         farm_travel.setFarm_travel_now(farm_travel_now);
@@ -96,7 +96,21 @@ public class FarmTravelService {
         return dao.findByPK(con, farm_travel_ID);
     }
 
-    public List<FarmTravelVO> getAllFarmTravel() {
-        return dao.getAll(con);
+    public List<FarmTravelVO> getAllMemCanApply() {
+        return dao.getAllMemCanApply(con);
+    }
+
+    public List<FarmTravelVO> getAllFarmTravelFromFMem(Integer f_mem_ID) {
+        return dao.getAllFromFMem(con, f_mem_ID);
+    }
+
+    public List<FarmTravelVO> getAllFromCollection(List<FarmTravelCollectionVO> farmTravelCollectionList) {
+        List<FarmTravelVO> farmTravelList = new ArrayList<>();
+        FarmTravelVO farmTravel = null;
+        for (FarmTravelCollectionVO farmTravelCollection : farmTravelCollectionList){
+            farmTravel = dao.findByPK(con, farmTravelCollection.getFarm_travel_ID());
+            farmTravelList.add(farmTravel);
+        }
+        return farmTravelList;
     }
 }

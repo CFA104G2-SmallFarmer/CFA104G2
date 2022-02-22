@@ -12,15 +12,11 @@ public class FarmTravelPartnerJDBCDAO implements FarmTravelPartnerDAO{
     public static final String GET_ONE_STMT = "SELECT * FROM FARM_TRAVEL_PARTNER WHERE PARTNER_ID = ?;";
     public static final String GET_ALL_STMT = "SELECT * FROM FARM_TRAVEL_PARTNER WHERE ORDER_ID = ?;";
 
-    Connection con = null;
     PreparedStatement pstmt = null;
     ResultSet rs = null;
 
     @Override
     public void add(Connection con, FarmTravelPartnerVO farm_travel_partner) {
-
-        this.con = con;
-
         try {
             pstmt = con.prepareStatement(INSERT_STMT);
 
@@ -48,9 +44,6 @@ public class FarmTravelPartnerJDBCDAO implements FarmTravelPartnerDAO{
 
     @Override
     public void update(Connection con, FarmTravelPartnerVO farm_travel_partner) {
-
-        this.con = con;
-
         try {
             pstmt = con.prepareStatement(UPDATE_STMT);
 
@@ -77,9 +70,6 @@ public class FarmTravelPartnerJDBCDAO implements FarmTravelPartnerDAO{
 
     @Override
     public void delete(Connection con, Integer partner_id) {
-
-        this.con = con;
-
         try {
             pstmt = con.prepareStatement(DELETE_STMT);
 
@@ -102,8 +92,6 @@ public class FarmTravelPartnerJDBCDAO implements FarmTravelPartnerDAO{
 
     @Override
     public FarmTravelPartnerVO findByPK(Connection con, Integer partner_ID) {
-
-        this.con = con;
         FarmTravelPartnerVO farm_travel_partner = null;
         try {
             pstmt = con.prepareStatement(GET_ONE_STMT);
@@ -145,8 +133,6 @@ public class FarmTravelPartnerJDBCDAO implements FarmTravelPartnerDAO{
 
     @Override
     public List<FarmTravelPartnerVO> getAll(Connection con, Integer order_ID) {
-
-        this.con = con;
         List<FarmTravelPartnerVO> farm_travel_partner_list = new ArrayList<>();
         FarmTravelPartnerVO farm_travel_partner = null;
         try {

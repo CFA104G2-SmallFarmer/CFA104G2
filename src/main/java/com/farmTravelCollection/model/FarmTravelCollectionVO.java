@@ -3,7 +3,6 @@ package com.farmTravelCollection.model;
 import java.sql.Timestamp;
 
 public class FarmTravelCollectionVO {
-
     private Integer mem_ID;
     private Integer farm_travel_ID;
     private Timestamp collection_time;

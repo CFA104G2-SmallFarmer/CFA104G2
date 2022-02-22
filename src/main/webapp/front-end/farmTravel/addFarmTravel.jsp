@@ -7,6 +7,7 @@
 %>
 <html>
 <head>
+    <meta charset="utf-8">
     <title>Add Farm Travel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -65,8 +66,6 @@
                 minDate: 0,
                 onClose: travelStartDate=>{
                     $("#farm_travel_end").datepicker("option", "minDate", travelStartDate);
-                    $("#travel_apply_start").datepicker("option", "maxDate", travelStartDate);
-                    $("#travel_apply_end").datepicker("option", "maxDate", travelStartDate);
                 }
             });
             $("#farm_travel_end").datepicker({
@@ -81,23 +80,13 @@
                 dropdown: true,
                 scrollbar: true
             });
-            $("#travel_apply_start").datepicker({
-                dateFormat:"yy-mm-dd",
-                minDate: 0,
-                onClose: startDate=>$("#travel_apply_end").datepicker("option", "minDate", startDate)
-            });
-            $("#travel_apply_end").datepicker({
-                dateFormat:"yy-mm-dd",
-                minDate: 0,
-                onClose: endDate=>$("#travel_apply_start").datepicker("option", "maxDate", endDate)
-            });
         });
     </script>
 </head>
 <body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <button type="button" class="back btn btn-outline-light">
-    <a href="<%=request.getContextPath()%>/front-end/farmTravel/listAllFarmTravel.jsp"><img src="<%=request.getContextPath()%>/front-end/farmTravel/images/back.png"></a>
+    <a href="<%=request.getContextPath()%>/front-end/farmTravel/listAllFarmTravelByFMem.jsp"><img src="<%=request.getContextPath()%>/front-end/farmTravel/images/back.png"></a>
 </button>
 <main>
     <h3>新增農遊行程</h3>
@@ -149,14 +138,6 @@
             <div class="input-group mb-3">
                 <input type="number" class="form-control" id="farm_travel_fee" min="0" autocomplete="off" name="farm_travel_fee" value="<%=(farmTravel == null) ? "" : farmTravel.getFarm_travel_fee()%>">
                 <span class="input-group-text">元</span>
-            </div>
-            <div class="mb-3">
-                <label for="travel_apply_start" class="form-label">報名起日</label>
-                <input type="text" class="form-control" id="travel_apply_start" autocomplete="off" name="travel_apply_start" value="<%=(farmTravel == null) ? "" : (farmTravel.getTravel_apply_start() == null) ? "" : new SimpleDateFormat("yyyy-MM-dd").format(farmTravel.getTravel_apply_start())%>">
-            </div>
-            <div class="mb-3">
-                <label for="travel_apply_end" class="form-label">報名迄日</label>
-                <input type="text" class="form-control" id="travel_apply_end" autocomplete="off" name="travel_apply_end" value="<%=(farmTravel == null) ? "" : (farmTravel.getTravel_apply_end() == null) ? "" : new SimpleDateFormat("yyyy-MM-dd").format(farmTravel.getTravel_apply_end())%>">
             </div>
             <label for="farm_travel_min" class="form-label">最少成團人數</label>
             <div class="input-group mb-3">
@@ -239,8 +220,6 @@
         addForm.farm_travel_end_date.value="2022-03-09";
         addForm.farm_travel_end_time.value="15:00:00";
         addForm.farm_travel_fee.value="3000";
-        addForm.travel_apply_start.value="2022-02-08";
-        addForm.travel_apply_end.value="2022-02-28";
         addForm.farm_travel_min.value="3";
         addForm.farm_travel_max.value="10";
     };

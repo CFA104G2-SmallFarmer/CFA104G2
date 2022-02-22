@@ -2,6 +2,7 @@ package com.farmTravelOrder.controller;
 
 import com.farmTravel.model.FarmTravelService;
 import com.farmTravel.model.FarmTravelVO;
+import com.farmTravelCollection.model.FarmTravelCollectionService;
 import com.farmTravelOrder.model.FarmTravelOrderService;
 import com.farmTravelOrder.model.FarmTravelOrderVO;
 import com.farmTravelPartner.model.FarmTravelPartnerService;
@@ -11,6 +12,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -23,50 +25,38 @@ public class FarmTravelOrderServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
+        PrintWriter out = response.getWriter();
         String action = request.getParameter("action");
-
+        FarmTravelOrderVO farmTravelOrder;
         if ("insert".equals(action)){
             List<String> errorMsgs = new LinkedList<String>();
             request.setAttribute("errorMsgs", errorMsgs);
             try{
                 Integer mem_ID = ((MemVO)(session.getAttribute("mem"))).getMem_id();
                 Integer farm_travel_ID = Integer.valueOf(request.getParameter("farm_travel_ID"));
-                Integer f_mem_ID = Integer.valueOf(request.getParameter("f_mem_ID"));
+
+                FarmTravelService farmTravelService = new FarmTravelService();
+                FarmTravelVO farmTravel = farmTravelService.getOneFarmTravel(farm_travel_ID);
+
+                Integer f_mem_ID = Integer.valueOf(farmTravel.getF_mem_ID());
                 Integer people_num = Integer.valueOf(request.getParameter("people_num"));
-                Integer order_fee = Integer.valueOf(request.getParameter("order_fee"));
+                Integer order_fee = farmTravel.getFarm_travel_fee()*people_num;
 
-                java.sql.Timestamp farm_travel_start = null;
-                try {
-                    farm_travel_start = java.sql.Timestamp.valueOf(request.getParameter("farm_travel_start"));
-                }catch (Exception e) { errorMsgs.add("請確認行程起日"); }
+                java.sql.Timestamp farm_travel_start = farmTravel.getFarm_travel_start();
 
-                java.sql.Timestamp farm_travel_end = null;
-                try {
-                    farm_travel_end = java.sql.Timestamp.valueOf(request.getParameter("farm_travel_end"));
-                }catch (Exception e) { errorMsgs.add("請確認行程迄日"); }
+                java.sql.Timestamp farm_travel_end = farmTravel.getFarm_travel_end();
 
                 String order_memo = request.getParameter("order_memo");
 
                 // 以下為農遊小夥伴資料
                 String[] partner_name_list = request.getParameterValues("partner_name");
-                if (partner_name_list.length != people_num){
-                    errorMsgs.add("請填寫參加人姓名");
-                }
                 String[] partner_phone_list = request.getParameterValues("partner_phone");
-                if (partner_phone_list.length != people_num){
-                    errorMsgs.add("請填寫參加人電話");
-                }
                 String[] guardian_name_list = request.getParameterValues("guardian_name");
-                if (guardian_name_list.length != people_num){
-                    errorMsgs.add("請填寫緊急連絡人姓名");
-                }
                 String[] guardian_phone_list = request.getParameterValues("guardian_phone");
-                if (guardian_phone_list.length != people_num){
-                    errorMsgs.add("請填寫緊急連絡人姓名");
-                }
 
-                FarmTravelOrderVO farmTravelOrder = new FarmTravelOrderVO();
+                farmTravelOrder = new FarmTravelOrderVO();
                 farmTravelOrder.setMem_ID(mem_ID);
                 farmTravelOrder.setFarm_travel_ID(farm_travel_ID);
                 farmTravelOrder.setF_mem_ID(f_mem_ID);
@@ -82,8 +72,6 @@ public class FarmTravelOrderServlet extends HttpServlet {
                 request.setAttribute("guardian_phone_list", guardian_phone_list);
                 request.setAttribute("errorMsgs", errorMsgs);
 
-                FarmTravelService farmTravelService = new FarmTravelService();
-                FarmTravelVO farmTravel = farmTravelService.getOneFarmTravel(farm_travel_ID);
                 request.setAttribute("farmTravel",farmTravel);
 
                 if (!errorMsgs.isEmpty()) {  // 若以上格式有錯返回add頁面
@@ -96,9 +84,9 @@ public class FarmTravelOrderServlet extends HttpServlet {
                     FarmTravelOrderService farmTravelOrderService = new FarmTravelOrderService();
                     farmTravelOrder =  farmTravelOrderService.addFarmTravelOrder(mem_ID, farm_travel_ID, f_mem_ID, people_num, order_fee, farm_travel_start, farm_travel_end, order_memo, partner_name_list, partner_phone_list, guardian_name_list, guardian_phone_list);
                     if (farmTravel.getFarm_travel_max() == farmTravel.getFarm_travel_now()+people_num){
-                        farmTravel = farmTravelService.updateFarmTravel(farmTravel.getFarm_travel_title(),farmTravel.getFarm_travel_img(),farmTravel.getFarm_travel_info(),farmTravel.getFarm_travel_start(),farmTravel.getFarm_travel_end(),farmTravel.getFarm_travel_fee(),farmTravel.getTravel_apply_start(),farmTravel.getTravel_apply_end(),farmTravel.getFarm_travel_min(),farmTravel.getFarm_travel_max(),farmTravel.getFarm_travel_now()+people_num,3,farmTravel.getFarm_travel_ID());
+                        farmTravelService.updateFarmTravel(farmTravel.getFarm_travel_title(),farmTravel.getFarm_travel_img(),farmTravel.getFarm_travel_info(),farmTravel.getFarm_travel_start(),farmTravel.getFarm_travel_end(),farmTravel.getFarm_travel_fee(),farmTravel.getFarm_travel_min(),farmTravel.getFarm_travel_max(),farmTravel.getFarm_travel_now()+people_num,3,farmTravel.getFarm_travel_ID());
                     }else{
-                        farmTravel = farmTravelService.updateFarmTravel(farmTravel.getFarm_travel_title(),farmTravel.getFarm_travel_img(),farmTravel.getFarm_travel_info(),farmTravel.getFarm_travel_start(),farmTravel.getFarm_travel_end(),farmTravel.getFarm_travel_fee(),farmTravel.getTravel_apply_start(),farmTravel.getTravel_apply_end(),farmTravel.getFarm_travel_min(),farmTravel.getFarm_travel_max(),farmTravel.getFarm_travel_now()+people_num,farmTravel.getFarm_travel_state(),farmTravel.getFarm_travel_ID());
+                        farmTravelService.updateFarmTravel(farmTravel.getFarm_travel_title(),farmTravel.getFarm_travel_img(),farmTravel.getFarm_travel_info(),farmTravel.getFarm_travel_start(),farmTravel.getFarm_travel_end(),farmTravel.getFarm_travel_fee(),farmTravel.getFarm_travel_min(),farmTravel.getFarm_travel_max(),farmTravel.getFarm_travel_now()+people_num,farmTravel.getFarm_travel_state(),farmTravel.getFarm_travel_ID());
                     }
                 }catch(Exception e){
                     e.printStackTrace(System.err);
@@ -115,6 +103,63 @@ public class FarmTravelOrderServlet extends HttpServlet {
                 e.printStackTrace(System.err);
                 RequestDispatcher errView = request.getRequestDispatcher("/front-end/farmTravel/applyFarmTravel.jsp");
                 errView.forward(request, response);
+            }
+        }
+        if ("pay".equals(action)){
+            try{
+                Integer order_ID = Integer.valueOf(request.getParameter("order_ID"));
+
+                try{
+                    FarmTravelOrderService farmTravelOrderService = new FarmTravelOrderService();
+                    farmTravelOrder =  farmTravelOrderService.getOneFarmTravelOrder(order_ID);
+                    farmTravelOrderService.updateFarmTravelOrder(1, farmTravelOrder.getRefund_time(), farmTravelOrder.getFarm_travel_stars(), farmTravelOrder.getMem_ID_stars(), farmTravelOrder.getOrder_memo(), order_ID);
+                    out.print("付款成功");
+                }catch(Exception e){
+                    e.printStackTrace(System.err);
+                    out.print("付款失敗");
+                    return;
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+                out.print("付款失敗");
+            }
+        }
+        if ("completed".equals(action)){
+            try{
+                Integer order_ID = Integer.valueOf(request.getParameter("order_ID"));
+
+                try{
+                    FarmTravelOrderService farmTravelOrderService = new FarmTravelOrderService();
+                    farmTravelOrder = farmTravelOrderService.getOneFarmTravelOrder(order_ID);
+                    farmTravelOrderService.updateFarmTravelOrder(2, farmTravelOrder.getRefund_time(), farmTravelOrder.getFarm_travel_stars(), farmTravelOrder.getMem_ID_stars(), farmTravelOrder.getOrder_memo(), order_ID);
+                    out.print("活動已完成");
+                }catch(Exception e){
+                    e.printStackTrace(System.err);
+                    out.print("發生意外的錯誤");
+                    return;
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+                out.print("發生意外的錯誤");
+            }
+        }if ("mem_rating".equals(action)){
+            try{
+                Integer order_ID = Integer.valueOf(request.getParameter("order_ID"));
+                Integer farm_travel_stars = Integer.valueOf(request.getParameter("farm_travel_stars"));
+
+                try{
+                    FarmTravelOrderService farmTravelOrderService = new FarmTravelOrderService();
+                    farmTravelOrder = farmTravelOrderService.getOneFarmTravelOrder(order_ID);
+                    farmTravelOrderService.updateFarmTravelOrder(3, farmTravelOrder.getRefund_time(), farm_travel_stars, farmTravelOrder.getMem_ID_stars(), farmTravelOrder.getOrder_memo(), order_ID);
+                    out.print("評價完成");
+                }catch(Exception e){
+                    e.printStackTrace(System.err);
+                    out.print("評價失敗");
+                    return;
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+                out.print("評價失敗");
             }
         }
     }

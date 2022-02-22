@@ -12,15 +12,11 @@ public class FarmTravelTagDetailsJDBCDAO implements FarmTravelTagDetailsDAO {
     public static final String GET_BY_FARM_TRAVEL_STMT = "SELECT * FROM FARM_TRAVEL_TAG_DETAILS WHERE FARM_TRAVEL_ID = ?;";
     public static final String GET_BY_TAG_STMT = "SELECT * FROM FARM_TRAVEL_TAG_DETAILS WHERE TAG_ID = ?;";
 
-    Connection con = null;
     PreparedStatement pstmt = null;
     ResultSet rs = null;
 
     @Override
     public void add(Connection con, Integer farm_travel_ID, Integer tag_ID) {
-
-        this.con = con;
-
         try {
             pstmt = con.prepareStatement(INSERT_STMT);
 
@@ -44,14 +40,10 @@ public class FarmTravelTagDetailsJDBCDAO implements FarmTravelTagDetailsDAO {
 
     @Override
     public void update(Connection con, FarmTravelTagDetailsVO farm_travel_tag_details) {
-
     }
 
     @Override
     public void delete(Connection con, Integer farm_travel_ID, Integer tag_ID) {
-
-        this.con = con;
-
         try {
             pstmt = con.prepareStatement(DELETE_STMT);
 
@@ -75,8 +67,6 @@ public class FarmTravelTagDetailsJDBCDAO implements FarmTravelTagDetailsDAO {
 
     @Override
     public List<FarmTravelTagDetailsVO> getTagByFarmTravelID(Connection con, Integer farm_travel_ID) {
-
-        this.con = con;
         List<FarmTravelTagDetailsVO> farm_travel_tag_details_list = new ArrayList<>();
         FarmTravelTagDetailsVO farm_travel_tag_details = null;
         try {
@@ -115,8 +105,6 @@ public class FarmTravelTagDetailsJDBCDAO implements FarmTravelTagDetailsDAO {
 
     @Override
     public List<FarmTravelTagDetailsVO> getFarmTravelByTagID(Connection con, Integer tag_ID) {
-
-        this.con = con;
         List<FarmTravelTagDetailsVO> farm_travel_tag_details_list = new ArrayList<>();
         FarmTravelTagDetailsVO farm_travel_tag_details = null;
         try {

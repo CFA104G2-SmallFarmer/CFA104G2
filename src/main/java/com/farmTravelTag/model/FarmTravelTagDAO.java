@@ -10,4 +10,5 @@ public interface FarmTravelTagDAO {
     FarmTravelTagVO findByTagName(Connection con, String tag_name);
     FarmTravelTagVO findByPK(Connection con, Integer tag_ID);
     List<FarmTravelTagVO> getAll(Connection con);
+    List<FarmTravelTagVO> getTopThree(Connection con);
 }
