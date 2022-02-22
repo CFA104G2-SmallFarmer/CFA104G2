@@ -7,11 +7,16 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/home/header_css_for_Proj">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- 這段給emoji的 -->
-          <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-            integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
-            crossorigin="anonymous" />
+<!-- <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+crossorigin="anonymous" /> -->
+
+<!-- 這段給Header emoji的 -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <!-- <body> -->
+
 <header>
 <script>
     $(document).ready(function () {
@@ -30,9 +35,15 @@
       <div class="logo" ><img style="margin-top:5px;height:75px"src="<%=request.getContextPath()%>/front-end/home/images/透明LOGO有字有框.png">
       </div>
       <ul class="menu">
-        <li><a href="#">瀏覽認養專案</a></li>
-
-        <li><a href="#">我的認養訂單</a></li>
+        <li><a href="<%=request.getContextPath()%>/front-end/project/listAllProjByMem.jsp">瀏覽認養專案</a></li>
+ 
+        <li> 
+                  
+        <a href="<%=request.getContextPath()%>/front-end/projOrder/listAllOrderByMem.jsp">我的認養訂單</a>
+       
+          			</form>
+                  <!-- form結束 -->
+        </li>
 
         <li><a href="#">回到首頁 </a></li>
         <li><a href="#"><i class="material-icons" style="font-size:27px">mail_outline</i></a></li>
