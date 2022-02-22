@@ -385,7 +385,7 @@ pageContext.setAttribute("memVO", memVO);
 	function sendName() {
 		var userName = inputUserName.value.trim();
 		if (userName === "") {
-			alert("Input a user name");
+// 			alert("Input a user name");
 			inputUserName.focus();
 			return;
 		} else {
