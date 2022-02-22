@@ -81,7 +81,7 @@ public class ProjectServlet extends HttpServlet {
 
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
-				errorMsgs.add("無法取得資料:" + e.getMessage());
+				errorMsgs.add("請再試一次");
 				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listAllProjByMem.jsp");
 			}
 		}
@@ -164,7 +164,7 @@ public class ProjectServlet extends HttpServlet {
 				System.out.println("去小農listOneProjByFmem.jsp成功");
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
-				errorMsgs.add("無法取得資料:" + e.getMessage());
+				errorMsgs.add("請再試一次");
 				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listAllProjByFmem.jsp");
 			}
 		}

@@ -99,7 +99,7 @@ public class ProjDisscussionServlet extends HttpServlet {
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				System.out.println("error in final");
-				errorMsgs.add("無法取得資料:" + e.getMessage());
+				errorMsgs.add("請再試一次");
 
 				String str = req.getParameter("proj_id");
 				Integer proj_id = null;
@@ -284,7 +284,7 @@ public class ProjDisscussionServlet extends HttpServlet {
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				System.out.println("error in final");
-				errorMsgs.add("無法取得資料:" + e.getMessage());
+				errorMsgs.add("請再試一次");
 
 				String str = req.getParameter("proj_id");
 				Integer proj_id = null;

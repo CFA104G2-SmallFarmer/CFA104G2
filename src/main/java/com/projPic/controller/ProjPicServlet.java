@@ -95,7 +95,7 @@ public class ProjPicServlet extends HttpServlet {
 
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
-				errorMsgs.add("無法取得資料:" + e.getMessage());
+				errorMsgs.add("請再試一次");
 				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listAllProjByMem.jsp");
 			}
 		}
@@ -503,7 +503,7 @@ public class ProjPicServlet extends HttpServlet {
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				System.out.println("error in final");
-				errorMsgs.add("無法取得資料:" + e.getMessage());
+				errorMsgs.add("請再試一次");
 				String str = req.getParameter("proj_id");
 				Integer proj_id = null;
 				proj_id = new Integer(str);
@@ -517,6 +517,101 @@ public class ProjPicServlet extends HttpServlet {
 				System.out.println("getAllPic_For_Display_ByFmem error in final");
 			}
 		}
+		
+		
+		
+		
+		
+		
+		
+		/* ======================衧霈寫的insert============================= */
+		if ("insertFromUpdate".equals(action)) { // 來自addEmp.jsp的請求
+
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+
+			try {
+				/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
+
+				Integer proj_id = new Integer(req.getParameter("proj_id").trim());
+
+				Collection<Part> parts = req.getParts();
+				for (Part part : parts) {
+					String filename = getFileNameFromPart(part); // 方法寫在此頁最下面
+					if (filename != null && part.getContentType() != null) {
+
+						// 額外測試 InputStream 與 byte[] (幫將來model的VO預作準備)
+						// Java SQL
+						// ------- -----------------
+						// byte[] BLOB (longblob)
+						// String CLOB (longtext)
+//						InputStream in = part.getInputStream();
+//						byte[] buf = new byte[in.available()];//陣列存著
+//						in.read(buf);
+//						in.close();
+//						out.println("buffer length: " + buf.length);
+
+						InputStream in = part.getInputStream();
+
+						byte[] proj_pic = null;
+						if (in.available() != 0) {
+							proj_pic = new byte[in.available()];
+							in.read(proj_pic);
+							in.close();
+						} else {
+							errorMsgs.add("請上傳圖片");
+						}
+
+						ProjPicVO projPicVO = new ProjPicVO();
+						projPicVO.setProj_id(proj_id);
+						projPicVO.setProj_pic(proj_pic);
+
+						// Send the use back to the form, if there were errors
+						if (!errorMsgs.isEmpty()) {
+							req.setAttribute("projPicVO", projPicVO); // 含有輸入格式錯誤的projPicVO物件,也存入req
+							RequestDispatcher failureView = req.getRequestDispatcher("/front-end/projPic/update_proj_pic_input.jsp");
+							failureView.forward(req, res);
+							return;
+						}
+
+						/*************************** 2.開始新增資料 ***************************************/
+						ProjPicService projpicSvc = new ProjPicService();
+						// 控制器驗證完拿到的碎片，new領班，交給領班去組合。
+						// 領班用自己的方法去組合將碎片放入一個ProjPicVO物件，物件再交給工人去施工新增的動作，然後領班會再回傳一個projPicVO物件回來
+						projPicVO = projpicSvc.addProjPic(proj_id, proj_pic);
+
+					}
+
+				} // 迭代結束
+				
+				
+				
+				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
+
+				ProjectService projectSvc = new ProjectService();
+				ProjectVO projectVO = projectSvc.getOneProject(proj_id);
+				req.setAttribute("projectVO", projectVO);
+				String url = "/front-end/projPic/update_proj_pic_input.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+				successView.forward(req, res);
+				System.out.println("good in pic");
+
+				/*************************** 其他可能的錯誤處理 **********************************/
+
+			} catch (Exception e) {
+				errorMsgs.add(e.getMessage());
+				e.printStackTrace();
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/projPic/update_proj_pic_input.jsp");
+				failureView.forward(req, res);
+			}
+		}
+		/* ======================衧霈寫的insert============================= */
+		
+		
+		
+		
 		
 		
 		

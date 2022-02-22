@@ -114,7 +114,7 @@ public class LoginHandler extends HttpServlet {
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				System.out.println("error in final");
-				errorMsgs.add("無法取得資料:" + e.getMessage());
+				errorMsgs.add("請再試一次");
 				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/login/loginByFmem.jsp");
 				failureView.forward(req, res);
 				System.out.println("登入失敗 error in final");
@@ -213,7 +213,7 @@ public class LoginHandler extends HttpServlet {
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				System.out.println("error in final");
-				errorMsgs.add("無法取得資料:" + e.getMessage());
+				errorMsgs.add("請再試一次");
 				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/login/loginByMem.jsp");
 				failureView.forward(req, res);
 				System.out.println("登入失敗 error in final");
