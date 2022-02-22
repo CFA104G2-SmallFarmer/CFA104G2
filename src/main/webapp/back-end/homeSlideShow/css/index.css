@@ -1,0 +1,272 @@
+@import "./common/all.css";
+@import "./common/header.css";
+@import "./common/footer.css";
+@import "./common/banner.css";
+
+*{
+  font-family: arial, 微軟正黑體;
+}
+
+div.main_container{
+  width: 768px;
+  font-size: 0;
+  margin: 0 auto;
+}
+
+aside.aside, main.main{
+  display: inline-block;
+  font-size: 1rem;
+  box-sizing: border-box;
+  
+}
+
+
+aside.aside{
+  width: 200px;
+  margin-right: 20px;
+  vertical-align: top;
+  text-align: center;
+}
+div.sidelink{
+  width: 200px;
+  height: 1000px;
+  display: block;
+  
+  background-color:   #F5F5F5;
+  position: relative;
+  top:20px;
+}
+
+
+div.avatar_block{
+  position: relative;
+  top:10px;
+}
+div.avatar_block div.img_block{
+  font-size: 0;
+  width: 150px;
+  display: inline-block;
+  border: 1px solid black;
+  border-radius: 50%;
+  position: relative;
+  top:40px;
+  overflow: hidden;
+}
+div.avatar_block div.img_block img{
+  max-width: 100%;
+}
+span.name_span{
+  font-size: 1rem;
+  display: block;
+  position: relative;
+  top:50px;
+  margin-top: 10px;
+}
+
+
+
+main.main{
+  width: calc(100% - 200px - 20px);
+  vertical-align: sub;
+  padding-bottom: 50px;
+}
+
+div.body-link{
+  list-style: none;
+  margin: 0;
+  padding:0;
+  
+}
+
+div.body-link{
+  display: inline-block;
+  font-size: 1.1rem;
+  text-decoration: none;
+  padding: 14px 10px;
+  min-width: 100px;
+  text-align: center;
+  color: black;
+  
+}
+
+div.sidelink_a{
+  color: #000;
+}
+
+hr{
+  width: 670px;
+  color: gray;
+  margin-bottom: 10px;
+}
+
+div.img_block2 img{
+  max-width: 670px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+table.table3{
+  width: 670px;
+  margin-bottom: 30px;
+}
+table.table3 th{
+  
+  padding: 10px;
+}
+table.table3 td{
+  
+  padding: 10px;
+}
+
+table.table{
+  width: 670px;
+  border: 1px solid black;
+  border-collapse: collapse;
+  margin-bottom: 50px;
+}
+table.table th{
+  border: 1px solid black;
+  padding: 10px;
+}
+table.table td{
+  border: 1px solid black;
+  padding: 10px;
+}
+
+h1.title1{
+  margin: 30px 0;
+  font-size: 1.4rem;
+}
+
+h1.title2{
+  margin: 10px 0;
+  font-size: 1.4rem;
+}
+
+ul.expirence_list > li{
+  
+  margin-bottom: 10px;
+  padding: 5px;
+  font-size: 1rem
+}
+
+form.the_form{
+  width: 600px;
+  margin: 0 auto;
+}
+div.item_block{
+  font-size: 0;
+  margin-bottom: 20px;
+}
+
+div.item_block > label{
+  width: 120px;
+  display: inline-block;
+  text-align: right;
+  font-size: 1.2rem;
+  vertical-align: top;
+  line-height: 34px;
+  height: 34px;
+}
+div.item_block > input{
+  height: 34px;
+  font-size: 1rem;
+  padding: 0 10px;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid gray;
+  width: calc(100% - 120px);
+  vertical-align: top;
+}
+
+div.item_block textarea.notes{
+  width: calc(100% - 120px);
+  vertical-align: top;
+  height: 120px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  resize:vertical;
+}
+
+div.item_block div.reply_block{
+  display: inline-block;
+  width: calc(100% - 120px);
+  vertical-align: top;
+  font-size: 1rem;
+}
+
+div.item_block div.radio_block{
+  display: inline-block;
+  margin-right: 20px;
+}
+div.item_block div.radio_block label{
+  margin: 0;
+  display: inline-block;
+  line-height: 32px;
+  height: 32px;
+  box-sizing: border-box;
+}
+div.item_block div.radio_block input{
+  margin: 0;
+  display: inline-block;
+  position: relative;
+  top: -1px;
+}
+
+button.btn_submit{
+  font-size: 1rem;
+  background-color: gray;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  padding: 6px 10px;
+}
+
+button.btn_submit:hover{
+  background-color: gray;
+  color: black;
+}
+
+button.btn_submit2{
+  font-size: 1rem;
+  background-color: gray;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  position: relative;
+  top:20px;
+  left: -120px;
+  padding: 5px 20px;
+}
+
+button.btn_submit2:hover{
+  background-color: gray;
+  color: black;
+}
+
+button.btn_submit3{
+  font-size: 1rem;
+  background-color: #878787;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  position: relative;
+ top: 10px;
+  padding: 5px 10px;
+}
+
+button.btn_submit3:hover{
+  background-color: #787878;
+  color: black;
+}
+
+a{
+  color: darkgreen;
+  text-decoration:none
+}
+
+a:hover{
+  color: green;
+  font-weight: bold;
+  text-decoration:none
+}
