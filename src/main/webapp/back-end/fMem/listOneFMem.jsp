@@ -9,15 +9,17 @@
   MemVO memVO = (MemVO) request.getAttribute("memVO"); //MemServlet.java(Concroller), 存入req的memVO物件
 %>
 <%
-  FMemService fMemSvc = new FMemService();
+  	FMemService fMemSvc = new FMemService();
+	if(!(request.getQueryString()==null)){
 	String q = request.getQueryString();
 	String[] splitted = q.split("=");
 	
-  Integer f_mem_id = Integer.parseInt(splitted[1]);
-  System.out.print(f_mem_id);
+ 	Integer f_mem_id = Integer.parseInt(splitted[1]);
+  	System.out.print(f_mem_id);
   
-  FMemVO fMemVO2 = fMemSvc.getOneFMem(f_mem_id);
-  pageContext.setAttribute("fMemVO2", fMemVO2);
+  	FMemVO fMemVO2 = fMemSvc.getOneFMem(f_mem_id);
+  	pageContext.setAttribute("fMemVO2", fMemVO2);
+	}
 %>
 
 <html class="TW" style="overflow: scroll;">
@@ -80,6 +82,7 @@
 	src="chrome-extension://jhffgcfmcckgmioipfnmbannkpncfipo/util.js"></script>
 <script
 	src="chrome-extension://jhffgcfmcckgmioipfnmbannkpncfipo/pagejs.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>	
 <script>
 	$(document).ready(function() {
 		$("#changeadd70000").click(function() {
@@ -130,6 +133,11 @@
 	});
 	
 </script>
+<style>
+.showhand {
+	cursor: pointer;
+}
+</style>
 </head>
 
 <body style="overflow: visible;" class=" route-index route-portal-sale route-portal-sale-order route-portal-sale-order">
