@@ -252,6 +252,7 @@
 		<url-pattern>/front-end/projDiary/update_proDiary_input_ByFmem.jsp</url-pattern>
 		<url-pattern>/front-end/projDiscussion/discussionByFmem.jsp</url-pattern>
 		<url-pattern>/front-end/projDiscussion/listAllProjDiscByProjByFmem.jsp</url-pattern>
+		<url-pattern>/front-end/projDiscussion/listAllProjDiscByProjByMem.jsp</url-pattern>
 		<url-pattern>/front-end/projDiscussion/UnitByFmem.jsp</url-pattern>
 		<url-pattern>/front-end/project/addProj.jsp</url-pattern>
 		<url-pattern>/front-end/project/listAllProjByFmem.jsp</url-pattern>
