@@ -11,6 +11,8 @@ import javax.servlet.http.*;
 
 import com.shopProduct.model.ShopProductService;
 import com.shopProduct.model.ShopProductVO;
+import com.shopProductCollection.model.ShopProductCollectionService;
+import com.shopProductCollection.model.ShopProductCollectionVO;
 import com.shopProductPic.model.ShopProductPicVO;
 import com.shopProductType.model.ShopProductTypeService;
 import com.shopProductType.model.ShopProductTypeVO;
@@ -299,16 +301,18 @@ public class ShopProductServlet extends HttpServlet {
 		}
 		
 
-//		if ("getOne_For_UpdateByMem".equals(action)) { // 來自listAllProduct.jsp的請求
+//		if ("getOne_Collection_ByMem".equals(action)) { // 來自listAllProduct.jsp的請求
 //
 //			List<String> errorMsgs = new LinkedList<String>();
 //			// Store this set in the request scope, in case we need to
 //			// send the ErrorPage view.
 //			req.setAttribute("errorMsgs", errorMsgs);
 //
-//			try {
+////			try {
 //				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
+//			
 //				String str = req.getParameter("prod_id");
+//				Integer prod_id = null;
 ////				if (str == null || (str.trim()).length() == 0) {
 ////					errorMsgs.add("請輸入商品編號");
 ////				}
@@ -320,12 +324,19 @@ public class ShopProductServlet extends HttpServlet {
 ////					return;//程式中斷
 ////				}
 //				
-//				Integer prod_id = null;
-//				try {
-//					prod_id = new Integer(str);
-//				} catch (Exception e) {
-//					errorMsgs.add("商品編號格式不正確");
-//				}
+//				java.sql.Date prod_fav_date = null;
+////				try {
+////					prod_id = new Integer(str);
+////				} catch (Exception e) {
+////					errorMsgs.add("商品編號格式不正確");
+////				}
+//				
+//				
+//				ShopProductCollectionVO shopProdVO = new ShopProductCollectionVO();
+//				
+//				shopProdVO.setProd_id(prod_id);
+//				shopProdVO.setProd_fav_date(prod_fav_date);
+//				
 //				// Send the use back to the form, if there were errors
 //				if (!errorMsgs.isEmpty()) {
 //					RequestDispatcher failureView = req
@@ -335,11 +346,14 @@ public class ShopProductServlet extends HttpServlet {
 //		return;//程式中斷
 //				}
 //				
-//				/***************************2.開始查詢資料*****************************************/
-//				ShopProductService shopProductSvc = new ShopProductService();
-//				ShopProductVO shopProductVO = shopProductSvc.getOneProduct(prod_id);
 //				
-//				if (shopProductVO == null) {
+////				ShopProductService shopProductSvc = new ShopProductService();
+////				ShopProductVO shopProductVO = shopProductSvc.getOneProduct(prod_id);
+//				/***************************2.開始查詢資料*****************************************/
+//				ShopProductCollectionService shopProductSvc = new ShopProductCollectionService();
+//				ShopProductCollectionVO shopProdVO = shopProductSvc.getOneCollection(mem_id,prod_id);
+//				
+//				if (shopProdVO == null) {
 //					errorMsgs.add("查無資料");
 //				}
 //				// Send the use back to the form, if there were errors
@@ -351,18 +365,18 @@ public class ShopProductServlet extends HttpServlet {
 //				}
 //				
 //				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
-//				req.setAttribute("shopProductVO", shopProductVO); // 資料庫取出的empVO物件,存入req
-//				String url = "/front-end/Product/shop.jsp";
+//				req.setAttribute("shopProdVO", shopProdVO); // 資料庫取出的empVO物件,存入req
+//				String url = "/front-end/Product/listAllProdByCollection_ByMem.jsp";
 //				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 //				successView.forward(req, res);
 //
 //				/***************************其他可能的錯誤處理*************************************/
-//			} catch (Exception e) {
-//				errorMsgs.add("無法取得資料:" + e.getMessage());
-//				RequestDispatcher failureView = req
-//						.getRequestDispatcher("/front-end/Product/shop.jsp");
-//				failureView.forward(req, res);
-//			}
+////			} catch (Exception e) {
+////				errorMsgs.add("無法取得資料:" + e.getMessage());
+////				RequestDispatcher failureView = req
+////						.getRequestDispatcher("/front-end/Product/shop.jsp");
+////				failureView.forward(req, res);
+////			}
 //		}
 //		
 
@@ -411,6 +425,7 @@ public class ShopProductServlet extends HttpServlet {
 	
 				String prod_name = req.getParameter("prod_name");
 				String prod_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
+				
 				if (prod_name == null || prod_name.trim().length() == 0) {
 					errorMsgs.add("商品名稱: 請勿空白");
 				} else if (!prod_name.trim().matches(prod_nameReg)) { // 以下練習正則(規)表示式(regular-expression)
@@ -496,7 +511,7 @@ public class ShopProductServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("shopProductVO", shopProductVO); // 含有輸入格式錯誤的empVO物件,也存入req
-					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/Product/listAllProductByFmem.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/Product/update_ProductByFmem_input.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -535,7 +550,7 @@ public class ShopProductServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("shopProductVO", shopProductVO); // 含有輸入格式錯誤的empVO物件,也存入req
-					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/Product/listAllProductByFmem.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/Product/update_ProductByFmem_input.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -560,7 +575,7 @@ public class ShopProductServlet extends HttpServlet {
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/Product/listAllProductByFmem.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/Product/update_ProductByFmem_input.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -667,6 +682,37 @@ public class ShopProductServlet extends HttpServlet {
 				failureView.forward(req, res);
 			}
 		}
+		if ("deleteByCollection".equals(action)) { // 來自listAllEmp.jsp
+
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+	
+			try {
+				/***************************1.接收請求參數***************************************/
+			
+				Integer mem_id = new Integer(req.getParameter("mem_id").trim());
+				Integer prod_id = new Integer(req.getParameter("prod_id").trim());
+				
+				/***************************2.開始刪除資料***************************************/
+				ShopProductCollectionService shopProductSvc = new ShopProductCollectionService();
+				shopProductSvc.deleteCollection(mem_id,prod_id);
+					
+				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
+				String url = "/front-end/Product/listAllProdByCollection_ByMem.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
+				successView.forward(req, res);
+				
+				/***************************其他可能的錯誤處理**********************************/
+			} catch (Exception e) {
+				errorMsgs.add("刪除資料失敗:"+e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/front-end/Product/listAllProdByCollection_ByMem.jsp");
+				failureView.forward(req, res);
+			}
+		}
+
 
 			if ("delete".equals(action)) { // 來自listAllEmp.jsp
 
@@ -705,7 +751,7 @@ if ("listEmps_ByCompositeQuery".equals(action)) { // 來自select_page.jsp的複
 		// send the ErrorPage view.
 		req.setAttribute("errorMsgs", errorMsgs);
 
-		try {
+//		try {
 			
 			/***************************1.將輸入資料轉為Map**********************************/ 
 			//採用Map<String,String[]> getParameterMap()的方法 
@@ -718,16 +764,9 @@ if ("listEmps_ByCompositeQuery".equals(action)) { // 來自select_page.jsp的複
 			
 			/***************************3.查詢完成,準備轉交(Send the Success view)************/
 			req.setAttribute("listEmps_ByCompositeQuery", list); // 資料庫取出的list物件,存入request
-			RequestDispatcher successView = req.getRequestDispatcher("/front-end/Product/listOneProductByMem.jsp"); // 成功轉交listEmps_ByCompositeQuery.jsp
+			RequestDispatcher successView = req.getRequestDispatcher("/front-end/Product/listOneProductBySearch_ByMem.jsp"); // 成功轉交listEmps_ByCompositeQuery.jsp
 			successView.forward(req, res);
 			
-			/***************************其他可能的錯誤處理**********************************/
-		} catch (Exception e) {
-			errorMsgs.add(e.getMessage());
-			RequestDispatcher failureView = req
-					.getRequestDispatcher("/shop.jsp");
-			failureView.forward(req, res);
-		}
 	}		
 }
 	// 取出上傳的檔案名稱 (因為API未提供method,所以必須自行撰寫)

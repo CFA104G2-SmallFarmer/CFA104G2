@@ -261,17 +261,6 @@ public class ShopCartServlet extends HttpServlet {
 //			判斷是否有重複商品Start/////////////////////////////////////
 			ShopCartService shopCartSvc = new ShopCartService();
 			ShopCartVO scVO = shopCartSvc.getOneShopCart(mem_id, prod_id);
-//			System.out.println(scVO.getProd_id());
-//			Integer a = new Integer (scVO.getProd_id());
-//			for(ShopCartVO scVO: scList) {
-//				ShopCartVO shopCartVO1 = new ShopCartVO();
-//				
-//				shopCartVO1.setMem_id(scVO.getMem_id());
-//				shopCartVO1.setF_mem_id(scVO.getF_mem_id());
-//				shopCartVO1.setProd_id(scVO.getProd_id());
-//				shopCartVO1.setCart_qty(scVO.getCart_qty());
-//				shopCartVO1.setCart_unit_price(scVO.getCart_unit_price());
-//			}
 			int x = 0;
 			try {
 				x = scVO.getProd_id();
@@ -298,7 +287,7 @@ public class ShopCartServlet extends HttpServlet {
 					if (!errorMsgs.isEmpty()) {
 						/* 跟getParameter無關 */
 						req.setAttribute("shopCartVO", shopCartVO); // 含有輸入格式錯誤的empVO物件,也存入req
-						RequestDispatcher failureView = req.getRequestDispatcher("/Product/browseProduct.jsp");
+						RequestDispatcher failureView = req.getRequestDispatcher("/front-end/Product/shop.jsp");
 						failureView.forward(req, res);
 						return;
 					}
@@ -307,14 +296,14 @@ public class ShopCartServlet extends HttpServlet {
 					shopCartSvc.addShopCart(mem_id, prod_id, f_mem_id, cart_qty, cart_unit_price);
 
 					/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-					String url = "/Product/browseProduct.jsp";
+					String url = "/front-end/Product/shop.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 					successView.forward(req, res);
 //				res.sendRedirect("/CFA104G2_MVC/Product/browseProduct.jsp");
 					/*************************** 其他可能的錯誤處理 **********************************/
 				} catch (Exception e) {
 					errorMsgs.add("新增資料失敗:" + e.getMessage());
-					RequestDispatcher failureView = req.getRequestDispatcher("/Product/browseProduct.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/Product/shop.jsp");
 					failureView.forward(req, res);
 				}
 			} else {
@@ -348,7 +337,7 @@ public class ShopCartServlet extends HttpServlet {
 					// Send the use back to the form, if there were errors
 					if (!errorMsgs.isEmpty()) {
 						req.setAttribute("shopCartVO", shopCartVO); // 含有輸入格式錯誤的empVO物件,也存入req
-						RequestDispatcher failureView = req.getRequestDispatcher("/front-end/shopCart/shopCart.jsp");
+						RequestDispatcher failureView = req.getRequestDispatcher("/front-end/Product/shop.jsp");
 						failureView.forward(req, res);
 						return; // 程式中斷
 					}
@@ -357,14 +346,14 @@ public class ShopCartServlet extends HttpServlet {
 
 //					/***************************3.修改完成,準備轉交(Send the Success view)*************/
 					req.setAttribute("shopCartVO", shopCartVO); // 資料庫update成功後,正確的的empVO物件,存入req
-					String url = "/Product/browseProduct.jsp";
+					String url = "/front-end/Product/shop.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 					successView.forward(req, res);
 
 					/*************************** 其他可能的錯誤處理 *************************************/
 				} catch (Exception e) {
 					errorMsgs.add("修改資料失敗:" + e.getMessage());
-					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/shopCart/shopCart.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/Product/shop.jsp");
 					failureView.forward(req, res);
 				}
 			}

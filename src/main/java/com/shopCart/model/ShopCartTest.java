@@ -65,6 +65,7 @@ public class ShopCartTest {
 		List<ShopCartVO> list = jdbcdao.getAll();
 		for (ShopCartVO shop : list) {
 			System.out.print(shop.getMem_id() + ",");
+			System.out.print(shop.getF_mem_id() + ",");
 			System.out.print(shop.getProd_id() + ",");
 			System.out.print(shop.getCart_qty() + ",");
 			System.out.print(shop.getCart_unit_price() + ",");

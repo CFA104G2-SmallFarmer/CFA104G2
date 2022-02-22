@@ -3,7 +3,7 @@ package com.shopProduct.model;
 import java.util.*;
 import java.sql.*;
 
-import org.junit.Test;
+//import org.junit.Test;
 
 
 public class ShopProduct_test {

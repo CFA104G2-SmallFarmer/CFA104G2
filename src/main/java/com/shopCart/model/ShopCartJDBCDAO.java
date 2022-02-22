@@ -26,8 +26,8 @@ public class ShopCartJDBCDAO implements ShopCartDAO_interface{
 		+ "f_mem_id,"
 		+ "cart_qty,"
 		+ "cart_unit_price "
-		+ "FROM SHOP_CART"
-		+ "order by F_MEM_ID";
+		+ "FROM SHOP_CART";
+//		+ "order by f_mem_id";
 	
 	private static final String GET_ONE_STMT = 
 		"SELECT mem_id,"
@@ -282,7 +282,7 @@ public class ShopCartJDBCDAO implements ShopCartDAO_interface{
 				shopcartVO = new ShopCartVO();
 				shopcartVO.setMem_id(rs.getInt("mem_id"));
 				shopcartVO.setProd_id(rs.getInt("prod_id"));
-				shopcartVO.setProd_id(rs.getInt("f_mem_id"));
+				shopcartVO.setF_mem_id(rs.getInt("f_mem_id"));
 				shopcartVO.setCart_qty(rs.getInt("cart_qty"));
 				shopcartVO.setCart_unit_price(rs.getInt("cart_unit_price"));
 				list.add(shopcartVO);
