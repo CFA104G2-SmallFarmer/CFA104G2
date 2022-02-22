@@ -13,6 +13,14 @@ ProjPicService projPicSvc = new ProjPicService();
 List<ProjPicVO> list = projPicSvc.getAllSameProjPic(proj_id);
 pageContext.setAttribute("list", list);
 %>
+
+
+<%
+Integer picNum = 0;
+request.setAttribute("eight", new Integer[]{1, 2, 3, 4, 5, 6, 7, 8});
+%>
+
+
 <jsp:useBean id="projectSvc" scope="page"
 	class="com.project.model.ProjectService" />
 <jsp:useBean id="projPicSvc1" scope="page"
@@ -43,124 +51,111 @@ pageContext.setAttribute("list", list);
 <style>
 /*****************************/
 .wrap {
-    max-width: 960px;
-    margin: 0 auto;
+	max-width: 960px;
+	margin: 0 auto;
 }
 
 .header {
-padding_top:10px;
-    height: 78px;
- 
-    position: relative;
+	padding_top: 10px;
+	height: 78px;
+	position: relative;
 }
 
 .logo {
-    float: left;
-    width: 250px;
-    height: 76px;
-    padding: 5px;
-    /* background: #ffffff; */
-    /* border: 3px solid rgb(255, 216, 157); */
+	float: left;
+	width: 250px;
+	height: 76px;
+	padding: 5px;
+	/* background: #ffffff; */
+	/* border: 3px solid rgb(255, 216, 157); */
 }
 
 .menu {
-    float: right;
-    font-size: 24px;
-
+	float: right;
+	font-size: 24px;
 }
 
 .menu li {
-    list-style-type: none;
-    float: left;
-    display: inline-block;
-    height: 60px;
-
+	list-style-type: none;
+	float: left;
+	display: inline-block;
+	height: 60px;
 }
 
 .menu li a {
-    display: block;
-    color: #717d34;
-    text-decoration: none;
-    padding-left: 1em;
-    padding-right: 0em;
-    padding-top: 0.4em;
-
+	display: block;
+	color: #717d34;
+	text-decoration: none;
+	padding-left: 1em;
+	padding-right: 0em;
+	padding-top: 0.4em;
 }
 
 .menu li a:hover {
-    /* background: #8ca27e; */
-    color: #8ca27e;
+	/* background: #8ca27e; */
+	color: #8ca27e;
 }
 
 /*在pc隱藏漢堡選單,showmenu右上角點擊按鈕*/
-
 .showmenu {
-    display: none;
-    color: #FFCCCC;
+	display: none;
+	color: #FFCCCC;
 }
 
 /*在手機瀏覽漢堡選單*/
 .div1 {
-    width: 35px;
-    height: 5px;
-    background-color: #aaba8b;
-    margin: 6px 0;
+	width: 35px;
+	height: 5px;
+	background-color: #aaba8b;
+	margin: 6px 0;
 }
 
-@media (max-width: 767px) {
-    .menu {
-        /*隱藏選單開始*/
-        max-height: 0px;
-        overflow: hidden;
-        /*隱藏選單結束*/
-        transition: max-height 2.3s;
-        margin-top: 1px;
-        /*絕對定位疊在網頁上*/
-        position: absolute;
-        z-index: 100;
-        /*header 80px+1px boder 線條*/
-        top: 81px;
-        left: 0;
-        right: 0;
-        background: #d4e1bb;
-    }
+@media ( max-width : 767px) {
+	.menu {
+		/*隱藏選單開始*/
+		max-height: 0px;
+		overflow: hidden;
+		/*隱藏選單結束*/
+		transition: max-height 2.3s;
+		margin-top: 1px;
+		/*絕對定位疊在網頁上*/
+		position: absolute;
+		z-index: 100;
+		/*header 80px+1px boder 線條*/
+		top: 81px;
+		left: 0;
+		right: 0;
+		background: #d4e1bb;
+	}
+	.menu li {
+		list-style-type: none;
+		float: none;
+		border-bottom: 1px dashed #919191;
+		display: inline;
+	}
+	.menu li a {
+		transition: all 0.2s;
+		padding-left: 0em;
+		padding-right: 0em;
+		padding-top: 0.7em;
+		padding-bottom: 0.7em;
+	}
+	.menu li a:hover {
+		background: #8ca27e;
+		color: #fff;
+	}
+	.showmenu {
+		/* transition: all 0.2s; */
+		display: block;
+		float: right;
+		padding: 20px;
+	}
 
-    .menu li {
-
-        list-style-type: none;
-        float: none;
-        border-bottom: 1px dashed #919191;
-        display: inline;
-    }
-
-
-
-    .menu li a {
-        transition: all 0.2s;
-        padding-left: 0em;
-        padding-right: 0em;
-        padding-top: 0.7em;
-        padding-bottom: 0.7em;
-    }
-
-    .menu li a:hover {
-        background: #8ca27e;
-        color: #fff;
-    }
-
-    .showmenu {
-        /* transition: all 0.2s; */
-        display: block;
-        float: right;
-        padding: 20px;
-
-
-    }
-
-    /*jQ點擊後動態在 body 加上 class */
-    .menu-show .menu {
-        max-height: 500px
-    }
+	/*jQ點擊後動態在 body 加上 class */
+	.menu-show .menu {
+		max-height: 500px
+	}
+}
 </style>
 
 </head>
@@ -171,125 +166,196 @@ padding_top:10px;
 	</header>
 	<header style="padding-bottom: 5px"
 		class="relative z-2 bb pv2 ph3 ph0-l b--near-white"></header> --%>
-<header>
-<script>
-    $(document).ready(function () {
-        $('.showmenu').on('click', function (e) {
-            e.preventDefault();
-            $('body').toggleClass('menu-show');
-          }
+	<header>
+		<script>
+			$(document).ready(function() {
+				$('.showmenu').on('click', function(e) {
+					e.preventDefault();
+					$('body').toggleClass('menu-show');
+				}
 
-        );
-      }
+				);
+			}
 
-    );
-  </script>
-  <div class="wrap">
-    <div class="header">
-      <div class="logo"><img style="margin-top:5px"src="<%=request.getContextPath()%>/front-end/home/images/farmerManage-Final.png">
-      </div>
-      <ul class="menu">
-        <li><a href="#">認養專案管理&nbsp;</a></li>
+			);
+		</script>
+		<div class="wrap">
+			<div class="header">
+				<div class="logo">
+					<img style="margin-top: 5px"
+						src="<%=request.getContextPath()%>/front-end/home/images/farmerManage-Final.png">
+				</div>
+				<ul class="menu">
+					<li><a href="#">認養專案管理&nbsp;</a></li>
 
-        <li><a href="#">認養訂單管理&nbsp;</a></li>
+					<li><a href="#">認養訂單管理&nbsp;</a></li>
 
-        <li><a href="#">回到首頁 &nbsp;</a></li>
-        <!-- <li><a href="#"><i class="material-icons" style="font-size:27px">mail_outline</i> &nbsp;</a></li> 這行顯示不出來-->
-      </ul>
-      <div class="div0 showmenu">
-        <!-- <a href="#" >menu</a> -->
-        <div class="div1"></div>
-        <div class="div1"></div>
-        <div class="div1"></div>
-      </div>
+					<li><a href="#">回到首頁 &nbsp;</a></li>
+					<!-- <li><a href="#"><i class="material-icons" style="font-size:27px">mail_outline</i> &nbsp;</a></li> 這行顯示不出來-->
+				</ul>
+				<div class="div0 showmenu">
+					<!-- <a href="#" >menu</a> -->
+					<div class="div1"></div>
+					<div class="div1"></div>
+					<div class="div1"></div>
+				</div>
 
-      <!-- <a href="#" class="showmenu">menu</a> -->
-    </div>
-     </div>
-</header>
+				<!-- <a href="#" class="showmenu">menu</a> -->
+			</div>
+		</div>
+	</header>
 
 
-<header style="padding-bottom: 5px"
+	<header style="padding-bottom: 5px"
 		class="relative z-2 bb pv2 ph3 ph0-l b--near-white"></header>
-
 
 	<div class="container">
 
 
 
-		<!--   FORM 在這裡 -->
+<FORM METHOD="post"
+			ACTION="<%=request.getContextPath()%>/projPic/projPic.do"
+			name="form1" enctype="multipart/form-data">
+			<input type="hidden" name="action" value="insertFromUpdate">
+			<input type="hidden" name="proj_id"
+				value="<%=projectVO.getProj_id()%>">
+
 
 
 		<div class="container ph3 ph0-l pv3 cf">
 
-			<FORM METHOD="post"
-				ACTION="<%=request.getContextPath()%>/projPic/projPic.do"
-				name="form1" enctype="multipart/form-data">
-				<input type="hidden" name="action" value="update">
-				<h2 style="display: inline-block;" class="flex mt0">修改認養專案內容圖片</h2>
+			<h2 style="display: inline-block;" class="flex mt0">修改認養專案內容圖片</h2>
 
-				<input type="hidden" name="proj_id"
-					value="<%=projectVO.getProj_id()%>">
 
-				<div style="float: right; display: inline-block;">
-					<input type="submit" value="確認修改"
-						class="button green b--green b mb3"> <input type="button"
-						onclick=history.back() value="回到上一頁"
-						class="button green b--green b mb3">
-				</div>
+
+			<div style="float: right; display: inline-block;">
+			 <input
+				style="float: right; display: inline;" type="submit" value="上傳"
+				class="button green b--green b mb3">
+				<input type="button" onclick=history.back() value="回到上一頁"
+					class="button green b--green b mb3">
+			</div>
 		</div>
-		<div class="container pb5">
-			<div class="flex gutter3-l">
-				<!-- 這裡是開始 -->
-				<c:forEach var="projPicVO" items="${list}">
-					<div class="w-25-l ph3 pv3 w-50-ns w-100">
-						<div class="cf">
-							<div class="for_all_img" style="position: relative;">
-								<div style="position: absolute; right: 0; top: 0;">
-									<a
-										href="${pageContext.request.contextPath}/projPic/projPic.do?proj_id=${projectVO.proj_id}&proj_pic_id=${projPicVO.proj_pic_id}&action=delete">
-										<img
-										src="<%=request.getContextPath()%>/front-end/projPic/addProjPic_css/Delete_icon.png"
-										style="left: 80%; transition: opacity 350ms; width: 20%; height: 20%; z-index: 999; position: relative;">
-									</a>
+
+		
+
+
+
+
+			<div class="container pb5">
+				<div class="flex gutter3-l">
+					<!-- 這裡是開始 -->
+					<c:forEach var="projPicVO" items="${list}">
+
+						<%
+						if (picNum < 8) {
+							picNum = picNum + 1;
+						}
+						%>
+
+						<div class="w-25-l ph3 pv3 w-50-ns w-100">
+							<div class="cf">
+								<div class="for_all_img" style="position: relative;">
+									<div style="position: absolute; right: 0; top: 0;">
+
+										<div style="display: inline-block;">
+
+											<a
+												href="${pageContext.request.contextPath}/projPic/projPic.do?proj_id=${projectVO.proj_id}&proj_pic_id=${projPicVO.proj_pic_id}&action=delete">
+												<img
+												src="<%=request.getContextPath()%>/front-end/projPic/addProjPic_css/Delete_icon.png"
+												style="left: 80%; transition: opacity 350ms; width: 20%; height: 20%; z-index: 999; position: relative;">
+											</a>
+
+										</div>
+
+									</div>
+									<img id="img10" class="w-100 mb3"
+										src="data:image/jpg;base64,${projPicVO.base64Image}" alt="">
+
 								</div>
 
-								<img id="img1" class="w-100 mb3"
-									src="data:image/jpg;base64,${projPicVO.base64Image}" alt="">
 
 							</div>
-							<label class="b">顯示圖片</label> <input id="upPic1"
-								onchange="pic1_change()" class="w-100 border-box mv3"
-								accept="image/*" type="file" name="proj_pic">
-							<script>
-								var file1;
-								var fileReader1;
-
-								function pic1_change() {
-									file1 = document.getElementById('upPic1').files[0];
-									if (file1) {
-										fileReader1 = new FileReader();
-										fileReader1.onload = openfile1;
-										readFileContent1();
-									}
-								}
-
-								function openfile1(event) {
-									document.getElementById('img1').src = event.target.result;
-								}
-
-								function readFileContent1() {
-									fileReader1.readAsDataURL(file1);
-								}
-							</script>
 						</div>
-					</div>
-				</c:forEach>
-				<!-- 這裡是結束 -->
-			</div>
-			</FORM>
-		</div>
+					</c:forEach>
+					<!-- 這裡是結束 -->
 
+
+
+
+
+
+
+					<!--   上傳專用  FORM 在這裡 -->
+					<!-- 這裡是開始 -->
+					<c:forEach var="pic" items="${eight}" begin="<%=picNum%>"
+						end="<%=7%>">
+
+
+						<div class="w-25-l ph3 pv3 w-50-ns w-100">
+							<div class="cf">
+
+								<div class="for_all_img" style="position: relative;">
+									<div style="position: absolute; right: 0%; top: 0;">
+
+										<div style="display: inline-block;"></div>
+
+
+									</div>
+									<div class="for_all_img">
+										<img id="img${pic}" class="w-100 mb3"
+											src="<%=request.getContextPath()%>/front-end/projPic/addProjPic_css/farmforUploadPic.png"
+											alt="">
+									</div>
+
+								</div>
+
+
+
+								<label class="b" for="2">在這新增圖片</label> <input id="upPic${pic}"
+									onchange="pic${pic}_change()" class="w-100 border-box mv3"
+									accept="image/*" type="file" name="${pic}">
+								<script>
+									var file${pic};
+									var fileReader${pic};
+
+									function pic${pic}_change() {
+										file${pic} = document
+												.getElementById('upPic${pic}').files[0];
+										if (file${pic}) {
+											fileReader${pic} = new FileReader();
+											fileReader${pic}.onload = openfile${pic};
+											readFileContent${pic}();
+										}
+									}
+
+									function openfile${pic}(event) {
+										document.getElementById('img${pic}').src = event.target.result;
+									}
+
+									function readFileContent${pic}() {
+										fileReader${pic}.readAsDataURL(file${pic});
+									}
+								</script>
+
+							</div>
+
+						</div>
+
+					</c:forEach>
+					<!-- 這裡是結束 -->
+
+				</div>
+
+
+
+
+
+
+
+			</div>
+		
 
 		<script>
 			$("#div_id").hide();
@@ -349,7 +415,16 @@ padding_top:10px;
 			}
 			// ]]>
 		</script>
+		
+		
+		
+		</FORM>
+		
 	</div>
+	
+	
+	
+	
 	<div id="draggable-live-region" aria-relevant="additions"
 		aria-atomic="true" aria-live="assertive" role="log"
 		style="position: fixed; width: 1px; height: 1px; top: -1px; overflow: hidden;"></div>
@@ -367,9 +442,9 @@ padding_top:10px;
 		document.body.onpaste = null;
 	</script>
 
-    <footer>
-         <jsp:include page="/front-end/home/footer_for_Proj_Fmem.jsp" />
-</footer>
+	<footer>
+		<jsp:include page="/front-end/home/footer_for_Proj_Fmem.jsp" />
+	</footer>
 
 
 </body>
