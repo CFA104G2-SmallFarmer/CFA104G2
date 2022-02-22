@@ -20,8 +20,8 @@ Integer f_mem_id = fMemVO.getF_mem_id();
 	
 <%
 ProjOrderService projOrderSvc = new ProjOrderService();
-List<ProjOrderVO> projOrderVO = projOrderSvc.getAllFmemOrder(f_mem_id);  
-pageContext.setAttribute("list",projOrderVO); 
+List<ProjOrderVO> list = projOrderSvc.getAllFmemOrder(f_mem_id);  
+pageContext.setAttribute("list",list); 
 %>
 	
 <!--     String f_mem_id = request.getParameter("f_mem_id"); -->
@@ -29,10 +29,7 @@ pageContext.setAttribute("list",projOrderVO);
 
 
 <!-- 用傳list<某物件>的方式寫，讓servlet那邊先做完projOrderSvc.getAllFmemOrder(Integer f_mem_id) -->
-<%-- <% --%>
-<!-- // 	List<ProjOrderVO> list2 = (List<ProjOrderVO>) request.getAttribute("projOrderVO"); -->
-<!-- //     pageContext.setAttribute("list",list2); -->
-<%-- %> --%>
+
 
 
 
@@ -417,12 +414,12 @@ margin-top:20px;
       <div class="logo"><img style="margin-top:5px;width:210px"src="<%=request.getContextPath()%>/front-end/home/images/farmerManage-Final.png">
       </div>
       <ul class="menu">
-        <li><a href="#">認養專案管理&nbsp;</a></li>
+               <li><a href="<%=request.getContextPath()%>/front-end/project/listAllProjByFmem.jsp">小農認養專案管理&nbsp;</a></li>
 
-        <li><a href="#">認養訂單管理&nbsp;</a></li>
+        <li><a href="<%=request.getContextPath()%>/front-end/projOrder/listAllOrderByFmem.jsp">小農認養訂單管理&nbsp;</a></li>
 
         <li><a href="#">回到首頁 &nbsp;</a></li>
-        <li><a href="#"><i class="material-icons" style="font-size:27px">mail_outline</i> &nbsp;</a></li>
+        <li><a href="#"><span class="material-icons" style="font-size:27px">mail_outline</span></a></li>
       </ul>
       <div class="div0 showmenu">
         <!-- <a href="#" >menu</a> -->
@@ -606,13 +603,12 @@ margin-top:20px;
                   <div data-v-1eaa89e5="" data-v-a414b804="" class="order-list-body"><a data-v-1eaa89e5=""
                       target="_blank" class="order-item">
                       
-                     <%--  <%@ include file="page1.file" %>  --%>
-<%--                       <c:forEach var="projOrderVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>"> --%>
+                   
                        
-                       
-                       
-                       
-                       <c:forEach var="projOrderVO" items="${list}">
+
+                      <%@ include file="/front-end/projOrder/page1.file" %>
+                                             
+                       <c:forEach var="projOrderVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
                   
 
                       <!-- 這邊是開始 -->
@@ -744,7 +740,7 @@ margin-top:20px;
                                     取消時間：<br>${projOrderVO.order_cancel_time}
                                   </span>
                                   <br>原因：<br>
-							       ${projOrderVO.order_cancel_reason}
+							      <%--  ${projOrderVO.order_cancel_reason} --%>
 							    </c:otherwise>
 								</c:choose>
                                   
@@ -962,7 +958,8 @@ margin-top:20px;
                       </div>
                       <!-- 這邊是結束 -->
                       </c:forEach>
-<%--                       <%@ include file="page2.file" %> --%>
+                      <%@ include file="/front-end/projOrder/page2.file" %>
+
 
                     </a></div><a data-v-1eaa89e5="" target="_blank" class="order-item">
                   </a>

@@ -362,13 +362,13 @@ ProjOrderVO projOrderVO = (ProjOrderVO) request.getAttribute("projOrderVO");
                   <i class="material-icons v-mid f6 mr1">help_outline</i>
                   金額細節
                 </a>
-                <p style="font-size: 14px;" class="f7 gray mt2 lh-title">
+                <p style="font-size: 16px;" class="f7  mt2 lh-title">
                   募資結束前，都可以修改訂單收件資料。
                   <br>
                   <br>
                   提案人有權決定是否接受認養訂單。
                   <br>
-                  如提案人因故決定不接受認養訂單，將會取消訂單並主動退還訂單款項。${projPerkVO.perk_id}
+                  如提案人因故決定不接受認養訂單，將會取消訂單並主動退還訂單款項。
                 </p>
 
 <%--  <p> mem_id= <%=memVO.getMem_id()%></p> --%>
