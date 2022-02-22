@@ -1,0 +1,83 @@
+留言
+    1. table 建立
+    2. 前台頁面
+        新增留言 / listOneArticle.jsp
+            add:
+                1. 給發送紐設置點擊事件
+                2. 獲取客戶端資料
+                3. 判斷表單 留言內容是否為空值
+                    如果是空值 提示客戶端(span標籤給值),並且return /listOneArticle.jsp
+                4. 如果都不為空值，submit前往servlet
+                5. servlet判斷action，如果為新增文章，進入取值階段
+                6. 如果沒有發生錯誤，進行service.add操作，成功時跳轉回lostOneArticle
+
+
+        顯示留言  / listOneArticle.jsp
+            listAll :
+
+
+        delet :(none)
+            刪除留言 / listOneArticle.jsp
+                1. 給發送紐設置點擊事件
+                2. 獲取客戶端資料
+                3. 比對會員ID 是否符合 mem_id == mem_id
+                       如果不符合 提示客戶端(span標籤給值) 無法刪除
+                4. 如果符合，手動提交表單update (狀態碼)
+
+
+
+        update :
+            隱藏留言 / listOneArticle.jsp
+                1. 給發送紐 設置點擊事件
+                2. 獲取客戶端資料
+                3. 比對是否為文章作著 mem_id == mem_id
+                    如果不符合 ,提示客戶端(span標籤給值) 無法隱藏
+                4. 如果符合，手動提交表單update (狀態碼)
+
+
+
+        listOne :(none)
+
+        =============================================
+        add
+        listAll
+        listOne     可參考listAll取值
+        update      可參考add
+        delete
+
+        =============================================
+        判斷會員是否為小農
+            mem_id_STATE
+                0:只有一般會員身份(default 0)
+                1:有小農會員身份
+                // 當會員登入時，若成功，在session 有一個 memVO
+            1. 先獲取留言者 mem_id
+            // 從MemVO mem = (MemVO)session.getAttribute("memVo");
+            // Integer mem_id = mem.getMem_id;  //會員ID
+            // Integer mem_id_state = (Integer) mem.getMem_id_state  //會員身分別
+
+            2. 如果mem_id_state 值value=1
+                    顯示 (小農圖示)
+            3. 如果mem_id_state 值value=0
+                    顯示 (會員圖示)
+
+            //小圖片存在論壇資料夾
+            <c:if test="${sessionScope.memVO.mem_id_state eq 1}">    //eq 等於 == 等於 equals
+                <img src="<%=request.getContextPath%>/front-end/article/images/小農會員圖片">
+            </c:if>
+            <c:if test="${sessionScope.memVO.mem_id_state eq 0}">    //eq 等於 == 等於 equals
+                <img src="<%=request.getContextPath%>/front-end/article/images/會員圖片">
+            </c:if>
+
+        =============================================
+                { Key   : Value }
+                { Name  : Value }
+                { action: 'delete'}
+
+                   {冬瓜: '狗'}
+                <input type="類型" name="冬瓜" value="狗">
+
+
+                String action = 'delete';
+
+                system.out.print(action);  -> 'delete'

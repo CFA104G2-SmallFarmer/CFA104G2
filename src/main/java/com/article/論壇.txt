@@ -1,0 +1,43 @@
+論壇
+    1. table建立
+    2. 前台頁面
+            新增文章 addArticle.jsp
+
+                檢查輸入資料內容是否符合規範
+                1. 給發送紐 設定點擊事件
+                2. 獲取客戶端發送資料內容
+                3. 判斷表單文章類別是否為空值
+                            如果是空值 提示客戶端(span標籤給值),並且return
+                4. 判斷表單 文章內容是否為空值
+                            如果是空值 提示客戶端(span標籤給值),並且return
+                5. 如果都不為空值，手動提交表單
+
+
+            所有文章 listAllArticle.jsp
+
+            文章管理 listOneArticle.jsp
+
+1. Service 完成
+2. 創建jsp(view)並建立form表單來輸入資料
+<表單 方法=post 目標=servlet>
+    <選擇器>
+        <選項>
+    <選擇器>
+
+    <文章標題>
+
+    <文章內容>
+    KindEditor
+    <送出>
+<表單>
+
+3. 創建Servlet(controller)處理前端傳過來的請求 (request)
+    request.getParameter("name")
+    判斷前端傳來的資料是否為空或不符合規則(自訂)，如果不符合，在ErrorMsgList加入錯誤訊息
+
+0201新刪修查建立順序
+add
+listAll
+listOne     可參考listAll取值
+update      可參考add
+delete
