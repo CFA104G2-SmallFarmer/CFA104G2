@@ -1,0 +1,224 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.administrator.model.*"%>
+
+<%
+  AdministratorVO administratorVO = (AdministratorVO) request.getAttribute("administratorVO");
+%>
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link rel="stylesheet" href="./css/contact.css">
+</head>
+<body>
+  <header class="header">
+    <a href="<%=request.getContextPath()%>/back-end/administrator/listOneAdmin_s.jsp" class="logo_img"><img src="./images/logo_img2.png"></a>
+    <nav class="nav">
+      <ul class="link_list">
+        <li><a href="./index.html" class="-on">最新消息</a></li>
+        <li><a href="<%=request.getContextPath()%>/front-end/Product/shop.jsp">小農商城</a></li>
+        <li><a href="<%=request.getContextPath()%>/front-end/farmTravel/listAllFarmTravelByMem.jsp">農場旅遊</a></li>
+        <li><a href="<%=request.getContextPath()%>/front-end/project/listAllProjByMem.jsp">農產認養</a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+  <div class="banner_bg"></div>
+
+  <main class="main">
+    <h1 class="title1">新增管理員</h1>
+
+    <form class="the_form" method="post"  action="<%=request.getContextPath()%>/back-end/administrator/administrator.do" name="form1" enctype="multipart/form-data">
+
+      <div class="item_block">
+        <label>姓名：</label>
+        <input type="text" name="admin_name" 
+        value="<%= (administratorVO==null)? "" : administratorVO.getAdmin_name()%>" placeholder="請輸入 姓名">
+      </div>
+      <div class="item_block">
+        <label>帳號：</label>
+        <input type="text" name="admin_acc"
+        value="<%= (administratorVO==null)? "" : administratorVO.getAdmin_acc()%>" placeholder="請輸入 帳號">
+      </div>
+      <div class="item_block">
+        <label>密碼：</label>
+        <input type="text" name="admin_pwd"
+        value="<%= (administratorVO==null)? "" : administratorVO.getAdmin_pwd()%>" placeholder="請輸入 密碼">
+      </div>
+      <div class="item_block">
+        <label>手機：</label>
+        <input type="text" name="admin_mobile"
+        value="<%= (administratorVO==null)? "" : administratorVO.getAdmin_mobile()%>" placeholder="請輸入 手機">
+      </div>
+      <div class="item_block">
+        <label>Email：</label>
+        <input type="text" name="admin_email"
+        value="<%= (administratorVO==null)? "" : administratorVO.getAdmin_email()%>" placeholder="請輸入 Email">
+      </div>
+      <div class="item_block">
+        <label>郵遞區號：</label>
+        <input type="text" name="admin_zipcode"
+        value="<%= (administratorVO==null)? "" : administratorVO.getAdmin_zipcode()%>" placeholder="請輸入 郵遞區號">
+      </div>
+      <div class="item_block" id="t">
+        <label>縣市：</label>
+        <input type="text" name="admin_city"
+        value="<%= (administratorVO==null)? "" : administratorVO.getAdmin_city()%>" placeholder="請輸入 縣市">
+      </div>
+      <div class="item_block" id="t">
+        <label>地區：</label>
+        <input type="text" name="admin_dist"
+        value="<%= (administratorVO==null)? "" : administratorVO.getAdmin_dist()%>" placeholder="請輸入 地區">
+      </div>
+      <div class="item_block">
+        <label>地址：</label>
+        <input type="text" name="admin_addr"
+        value="<%= (administratorVO==null)? "" : administratorVO.getAdmin_addr()%>"placeholder="請輸入 地址">
+      </div>
+      
+      <table class="table_p">
+        <tr>
+          <td>
+           <img src="images/頭貼.png" >
+           <span><strong>請上傳圖片</strong></span>
+         </td>
+        </tr>
+        <tr>
+          <td>
+           <input class="input_p" type="file" name="admin_pic" value="" >
+          </td>
+        </tr>
+      </table>
+
+      <div class="item_block">
+        <label>到職日：</label>
+        <input name="admin_hiredate" id="f_date1" type="text" >
+      </div>
+      
+      <div class="item_block">
+        <label>離職日：</label>
+        <input name="admin_leavedate" id="f_date2" type="text" >
+      </div>
+
+      <div class="item_block">
+        <label>管理員類別：</label>
+        <div class="reply_block">
+          <div class="radio_block">
+            <input type="radio" id="1" name="admin_type_id" value="1">
+            <label for="1">全站管理員</label>
+          </div>
+          <div class="radio_block">
+            <input type="radio" id="2" name="admin_type_id" value="2">
+            <label for="2">會員管理員</label>
+          </div>
+          <div class="radio_block">
+            <input type="radio" id="3" name="admin_type_id" value="3">
+            <label for="3">檢舉管理員</label>
+          </div>
+          <div class="radio_block">
+            <input type="radio" id="4" name="admin_type_id" value="4">
+            <label for="4">前台網頁管理</label>
+          </div>   
+        </div>
+       </div>
+
+      <div class="item_block">
+        <label>狀態：</label>
+        <div class="reply_block">
+          <div class="radio_block">
+            <input type="radio" id="on_the_job" name="admin_isdeleted" value="1" checked>
+            <label for="on_the_job">在職</label>
+          </div>
+          <div class="radio_block">
+            <input type="radio" id="leave" name="admin_isdeleted" value="0">
+            <label for="leave">離職</label>
+          </div>
+        </div>
+      </div>
+      
+      <input type="hidden" name="action" value="insert">
+      <div class="item_block">
+        <label></label>
+        <button type="submit" class="btn_submit">送出新增</button>
+      </div>
+    </form>
+    
+<table class="table_alert">
+  <c:if test="${not empty errorMsgs}"> 
+	<font style="color:red">請修正以下錯誤:</font>
+		<c:forEach var="message" items="${errorMsgs}">
+		<tr>
+			<td style="color:red">${message}</td>
+		</tr>
+			
+		</c:forEach>
+
+  </c:if>
+</table>
+
+  </main>
+  
+
+  <footer class="footer">
+    &copy; All Rights Reserved
+  </footer>
+
+</body>
+
+<!-- =========================================以下為 datetimepicker 之相關設定========================================== -->
+
+<% 
+  java.sql.Date hiredate = null;
+  try {
+      hiredate = administratorVO.getAdmin_hiredate();
+   } catch (Exception e) {
+      hiredate = new java.sql.Date(System.currentTimeMillis());
+   }
+%>
+<% 
+  java.sql.Date leavedate = null;
+  try {
+	    leavedate = administratorVO.getAdmin_leavedate();
+   } catch (Exception e) {
+	   leavedate = new java.sql.Date(System.currentTimeMillis());
+   }
+%>
+
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.css" />
+<script src="<%=request.getContextPath()%>/datetimepicker/jquery.js"></script>
+<script src="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.full.js"></script>
+
+<style>
+  .xdsoft_datetimepicker .xdsoft_datepicker {
+           width:  300px;   /* width:  300px; */
+  }
+  .xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box {
+           height: 151px;   /* height:  151px; */
+  }
+</style>
+
+<script>
+        $.datetimepicker.setLocale('zh');
+        $('#f_date1').datetimepicker({
+         theme: '',              //theme: 'dark',
+         timepicker:false,       //timepicker:true,
+         step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
+         format:'Y-m-d',         //format:'Y-m-d H:i:s',
+       value: '<%=hiredate%>', // value:   new Date(),
+        });
+        
+        $('#f_date2').datetimepicker({
+            theme: '',              //theme: 'dark',
+  	       timepicker:false,       //timepicker:true,
+  	       step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
+  	       format:'Y-m-d',         //format:'Y-m-d H:i:s',
+  		   value: '<%=leavedate%>', // value:   new Date(),
+         });
+        
+      
+</script>
+
+</html>
