@@ -489,14 +489,14 @@ invisible.style.display = "";
 <body style="" class="nt-s nl-l">
 	<jsp:include page="/front-end/home/header.jsp" flush="true"/>
 	<jsp:include page="/front-end/home/fmemindex.jsp" flush="true"/>
-	<div id="main" style="float:left; width: 1000px;">
+	<div id="main" style="float:left; width: 900px;">
 		<div>
 			<div class="shopee-progress-bar"></div>
 			<div class="_193wCc">
-				<div class="container _1QwuCJ" >
+				<div class="container _1QwuCJ" style="width: 900px;">
 					<div class="_3D9BVC">
-						<div class="h4QDlo" role="main">
-							<div class="_2YiVnW" style="width: 1100px; height:1180px;">
+						<div class="h4QDlo" role="main" >
+							<div class="_2YiVnW" style="width: 900px; height:1180px;">
 								<div class="_2w2H6X">
 									<h1 class="_3iiDCN">小農資料</h1>
 									<div class="TQG40c">顯示小農資料及頭貼</div>

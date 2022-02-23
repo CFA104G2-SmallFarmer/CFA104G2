@@ -1,13 +1,7 @@
 <%@page import="com.mem.model.MemVO"%>
 <%@page import="com.mem.model.MemService"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <!-- 剩版型修改 -->
-<html>
-<head>
 <!-- *****************************以下私訊用***************************** -->
-<link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/privateMessage/css/friendchat.css" type="text/css" />
-<link href="https://deo.shopeemobile.com/shopee/shopee-seller-live-tw/chateasy/styles.21833f8f.6faae855a24d979165aa.css" rel="stylesheet" type="text/css" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script>
 $(document).ready(function() {
@@ -17,16 +11,11 @@ $(document).ready(function() {
 });
 </script>
 <!-- *****************************以上私訊用***************************** -->
-</head>
-<body onload="connect();" onunload="disconnect();">
-<%-- 	<form action="<%=request.getContextPath() %>/front-end/privateMessage/privateMessage.do" method="POST"> --%>
-<%-- 		<input id="userName" name="mem_name"  type="hidden" value="${memVO.mem_name}" />  --%>
-<!-- 	</form> -->
 <%
-// 	request.setAttribute("mem_id", 70001); // 測試用，之後get方法要改成session.get...
+	request.setAttribute("mem_id", "70001"); // 測試用，之後get方法要改成session.get...
 %>
 <%
-	Integer mem_idChat = (Integer) session.getAttribute("mem_id");
+	Integer mem_idChat = (Integer) request.getAttribute("mem_id");
 	MemService memSvcChat = new MemService();
 	MemVO memVOChat = new MemVO();
 	memVOChat = memSvcChat.getOneMem(mem_idChat);
@@ -45,9 +34,11 @@ $(document).ready(function() {
 		<div class="src-pages-ChatWindow-index__container--1qoj1">
 			<div class="src-pages-ChatWindow-index__header--USXSl" style="background-color: #b9d4b3;">
 				<div class="src-pages-ChatWindow-index__logo-wrapper--1rM8W">
-					<i class="_3kEAcT1Mk5 src-pages-ChatWindow-index__logo--3ygfr">
-					<img src="<%=request.getContextPath() %>/front-end/privateMessage/images/comment.png" style=" font-size: 30px;color: #aaba8b; width:20px; height: 20px;">
-					</i>
+					<i class="_3kEAcT1Mk5 src-pages-ChatWindow-index__logo--3ygfr"><svg
+							xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 22"
+							class="chat-icon">
+							<path
+								d="M4.236 3.314h.016l.052.005h3.29l.05-.005.068.005h1.03c.365 0 .664.3.664.665 0 .332-.247.609-.566.657l-.098.007h-.408v8.837l1.04-.252.353 1.28-1.393.338v4.66H6.972v-4.33l-3.961.959a.666.666 0 01-.817-.464.667.667 0 01.371-.784l.092-.033.907-.22-.001-.012v-9.98h-.408a.666.666 0 01-.664-.663c0-.333.247-.61.567-.658l.097-.007h1.03l.05-.005zm20.7 0h.016l.05.005h3.291l.067-.005.052.005h1.03c.365 0 .664.3.664.665 0 .332-.248.609-.567.657l-.098.007h-.407v8.837l1.039-.252.354 1.28-1.393.338v4.66H27.67v-4.33l-3.96.959a.666.666 0 01-.818-.464.667.667 0 01.371-.784l.093-.033.906-.22-.001-.012v-9.98h-.407a.666.666 0 01-.665-.663c0-.333.247-.61.567-.658l.098-.007h1.03l.05-.005zm-5.142 0c.685 0 1.254.524 1.322 1.19l.007.135v8.27a2.662 2.662 0 01-2.474 2.643l-.185.007h-.231v-1.325h.231l.136-.007a1.333 1.333 0 001.187-1.183l.007-.135V5.301a.656.656 0 00-.566-.655l-.1-.007h-1.706v14.866h-1.33V4.109c0-.404.306-.74.698-.789l.1-.006h2.904zm20.699 0c.686 0 1.254.524 1.323 1.19l.007.135v8.27a2.662 2.662 0 01-2.475 2.643l-.184.007h-.232v-1.325h.232l.135-.007a1.333 1.333 0 001.187-1.183l.007-.135V5.302a.656.656 0 00-.565-.656l-.1-.007h-1.707v14.866h-1.33V4.109c0-.404.306-.74.699-.789l.1-.006h2.903zM14.566 2.48c.365 0 .664.3.664.664 0 .333-.247.61-.566.657l-.098.008-3.035.69v8.15l2.348-.575.014-.438c.005-.22.007-.392.007-.485V5.994a.665.665 0 011.323-.099l.007.1v5.429c-.04 2.16-.385 3.988-1.05 5.3-.608 1.125-1.657 1.95-2.994 2.605l-.29.138-.678-1.1c1.356-.65 2.313-1.51 2.871-2.57a8.875 8.875 0 00.518-1.612l.084-.38.04-.327-2.686.659a.666.666 0 01-.803-.487l-.015-.097-.015-9.57c0-.331.247-.609.567-.657l.098-.007 3.69-.839zm20.7 0c.365 0 .664.3.664.664 0 .333-.247.61-.567.657l-.098.008-3.035.69.001 8.15 2.347-.575.012-.348c.006-.216.008-.394.01-.51V5.994a.665.665 0 011.322-.099l.008.1v5.429c-.04 2.16-.386 3.988-1.05 5.3-.609 1.125-1.657 1.95-2.994 2.605l-.291.138-.678-1.1c1.356-.65 2.313-1.51 2.872-2.57a8.875 8.875 0 00.517-1.612l.084-.38.04-.327-2.686.659a.666.666 0 01-.803-.487l-.015-.097-.014-9.57c0-.331.247-.609.566-.657l.098-.007 3.69-.839zM6.971 11.569H4.926v2.741l2.046-.495v-2.246zm20.699 0h-2.046v2.741l2.046-.495v-2.246zm-20.7-3.46H4.927v2.131h2.046V8.108zm20.7 0h-2.046v2.131h2.046V8.108zM6.97 4.647H4.927V6.78h2.046V4.648zm20.7 0h-2.046V6.78h2.046V4.648z"></path></svg></i>
 				</div>
 				<div class="src-pages-ChatWindow-index__operator-wrapper--Wcn9j">
 					<div
@@ -94,7 +85,6 @@ $(document).ready(function() {
 		<div class="ReactModalPortal"></div>
 	</div>
 </div>	
-</body>
 <script>
 	var MyPoint = "/FriendWS/${mem_name}";
 	var host = window.location.host;
@@ -125,6 +115,7 @@ $(document).ready(function() {
 			} else if ("history" === jsonObj.type) {
 				messagesArea.innerHTML = '';
 				var ul = document.createElement('ul');
+				ul.setAttribute("class", "ulchat");
 				ul.id = "area";
 				messagesArea.appendChild(ul);
 				// 這行的jsonObj.message是從redis撈出跟好友的歷史訊息，再parse成JSON格式處理
@@ -219,4 +210,3 @@ $(document).ready(function() {
 	}
 	
 </script>
-</html>

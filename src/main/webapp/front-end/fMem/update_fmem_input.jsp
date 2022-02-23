@@ -495,14 +495,14 @@ invisible.style.display = "";
     
 </div>	
 
-	<div id="main" style="float:left; width: 1000px;">
+	<div id="main" style="float:left; width: 900px;">
 		<div>
 			<div class="shopee-progress-bar"></div>
 			<div class="_193wCc">
-				<div class="container _1QwuCJ" style="width: 1100px;">
+				<div class="container _1QwuCJ" style="width: 900px;">
 					<div class="_3D9BVC">
 						<div class="h4QDlo" role="main">
-							<div class="_2YiVnW" style="width: 1070px; height:1180px;">
+							<div class="_2YiVnW" style="width: 900px; height:1180px;">
 								<div class="_2w2H6X">
 									<h1 class="_3iiDCN">小農資料修改</h1>
 									<div class="TQG40c">修改資料及新增頭貼</div>
@@ -518,7 +518,7 @@ invisible.style.display = "";
 										</c:if>
 									</div>
 								</div>
-								<FORM METHOD="post" ACTION="fMem.do" name="form1" enctype="multipart/form-data" style="width:1000px;">
+								<FORM METHOD="post" ACTION="fMem.do" name="form1" enctype="multipart/form-data" style="width:800px;">
 									<div class="goiz2O">
 										<div class="pJout2">
 											<!-- 可更改form表單寬度 -->
@@ -895,7 +895,7 @@ invisible.style.display = "";
 											<input type="hidden" name="action" value="Update_FMem_Input"> 
 											<input type="hidden" name="f_mem_id" value="${fMemVO.f_mem_id}">
 											<div class="_31PFen">
-												<button type="submit"
+												<button style="background-color:#b9d4b3;" type="submit"
 													class="btn btn-solid-primary btn--m btn--inline"
 													aria-disabled="false">儲存</button>
 											</div>

@@ -476,19 +476,18 @@ invisible.style.display = "";
 </head>
 
 <body style="" class="nt-s nl-l">
+	<jsp:include page="/front-end/home/header.jsp" flush="true"/>
 <%-- 	<jsp:include page="/front-end/home/header.jsp" flush="true"/> --%>
-<%-- 	<jsp:include page="/front-end/home/header.jsp" flush="true"/> --%>
-        <iframe src="<%= request.getContextPath() %>/front-end/home/header.jsp" width="100%" height="100%" style="display: block;"></iframe>
-	
-	<div id="main">
+<%--         <iframe src="<%= request.getContextPath() %>/front-end/home/header.jsp" width="100%" height="100%" style="display: block;"></iframe> --%>
+		<jsp:include page="/front-end/home/memIndex.jsp" flush="true"/>
+	<div id="main" style="float:left; width: 900px;">
 		<div>
 			<div class="shopee-progress-bar"></div>
 			<div class="_193wCc">
-				<div class="container _1QwuCJ">
-					<div class="_36cLcR"></div>
+				<div class="container _1QwuCJ" style="width: 900px;">
 					<div class="_3D9BVC">
 						<div class="h4QDlo" role="main">
-							<div class="_2YiVnW">
+							<div class="_2YiVnW" style="width: 900px; height:1180px;">
 								<div class="_2w2H6X">
 									<h1 class="_3iiDCN">會員資料修改</h1>
 									<div class="TQG40c">修改資料及新增投貼</div>
@@ -504,7 +503,7 @@ invisible.style.display = "";
 										</c:if>
 									</div>
 								</div>
-								<FORM METHOD="post" ACTION="mem.do" name="form1" enctype="multipart/form-data">
+								<FORM METHOD="post" ACTION="mem.do" name="form1" enctype="multipart/form-data" style="width:800px;">
 									<div class="goiz2O">
 										<div class="pJout2">
 											<!-- 可更改form表單寬度 -->
@@ -880,7 +879,7 @@ invisible.style.display = "";
 											<input type="hidden" name="action" value="Update_Mem_Input"> 
 											<input type="hidden" name="mem_id" value="${memVO.mem_id}">
 											<div class="_31PFen">
-												<button type="submit"
+												<button style="background-color:#b9d4b3;" type="submit"
 													class="btn btn-solid-primary btn--m btn--inline"
 													aria-disabled="false">儲存</button>
 											</div>
@@ -909,6 +908,7 @@ invisible.style.display = "";
 										</div>
 								</Form>
 							</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -931,7 +931,8 @@ invisible.style.display = "";
 		<div class="shopee-modal-xbcA3dFx0Ck"></div>
 	</div>
 
-	<jsp:include page="/front-end/home/footer.jsp" flush="true"/>
+	<iframe src="<%= request.getContextPath() %>/front-end/home/footer.jsp" width="100%" height="100%" style="display: block;"></iframe>
+	
 
 
 	<script

@@ -6,10 +6,10 @@
 <!-- 有時間可接入信箱更改驗證  處理取的FMem物件 -->
 <!-- shopee-dropdown__entry--selected 更改框線顏色 -->
 <%
-request.setAttribute("mem_id", 77007); // 測試用，之後get方法要改成session.get...
+session.setAttribute("mem_id", 77007); // 測試用，之後get方法要改成session.get...
 %>
 <%
-Integer mem_id = (Integer) request.getAttribute("mem_id");
+Integer mem_id = (Integer) session.getAttribute("mem_id");
 
 FMemVO fMemVO = new FMemVO();
 MemService memSvc = new MemService();
@@ -493,12 +493,13 @@ invisible.style.display = "";
 <body style="" class="nt-s nl-l">
 	<jsp:include page="/front-end/home/header.jsp" flush="true"/>
 	<jsp:include page="/front-end/home/fmemindex.jsp" flush="true"/>
-	<div id="main">
+	<jsp:include page="/front-end//privateMessage/chat.jsp" flush="true"/>
+	<div id="main" style="float:left;">
 		<div>
 		<div>
 			<div class="shopee-progress-bar"></div>
 			<div class="_193wCc">
-				<div class="container _1QwuCJ" style="width:1100px;">
+				<div class="container _1QwuCJ" style="width:900px;">
 					<div class="_3D9BVC">
 						<div class="h4QDlo" role="main">
 							<div class="_2YiVnW" style="height:1180px;">
