@@ -176,7 +176,7 @@
       </section>
 
 
-      <div class="logo"><a href="#"><img src="<%=request.getContextPath()%>/front-end/home/header2/header_files/透明LOGO有字有框.png"></a></div>
+      <div class="logo"><a href="<%=request.getContextPath()%>/front-end/home/home.jsp"><img src="<%=request.getContextPath()%>/front-end/home/header2/header_files/透明LOGO有字有框.png"></a></div>
 
 
 
@@ -188,33 +188,32 @@
           <ul>
 
 
-            <li class="m-logo"><a href="#"><img src="<%=request.getContextPath()%>/front-end/home/header2/header_files/透明LOGO有字有框.png"></a>
+            <li class="m-logo"><a href="<%=request.getContextPath()%>/front-end/home/home.jsp"><img src="<%=request.getContextPath()%>/front-end/home/header2/header_files/透明LOGO有字有框.png"></a>
             </li>
 
             <!--desktop only-->
 
 
 
-            <li><a href="#">
-                <span class="hover WStdsong-B" style="font-size:14px;">
-                  來認識我們
-                </span>
+<!--             <li><a href="#"> -->
+<!--                 <span class="hover WStdsong-B" style="font-size:14px;"> -->
+<!--                   關於本站 -->
+<!--                 </span> -->
+<!--               </a></li> -->
+
+            <li style="margin-right:16px;"><a id="login_link" href="#">
+                <div class="account" >關於本站</div>
               </a></li>
-
-
-            <li id="qqq"><a href="<%=request.getContextPath()%>/front-end/article/listAllArticle.jsp">
-                <span class="hover WStdsong-B" style="font-size:14px;">
-                  小農論壇
-                </span>
+            <li style="margin-right:16px;"><a id="login_link" href="#">
+                <div class="account" >會員登出</div>
               </a></li>
-
-            <li><a id="login_link" href="<%=request.getContextPath()%>/front-end/login/loginByMem.jsp">
+            <li style="margin-right:16px;"><a id="login_link" href="<%=request.getContextPath()%>/front-end/login/loginByMem.jsp">
                 <div class="account">會員登入</div>
               </a></li>
-            <li><a id="login_link" href="<%=request.getContextPath()%>/front-end/mem/addMemByMem.jsp">
+            <li style="margin-right:16px;"><a id="login_link" href="<%=request.getContextPath()%>/front-end/mem/addMemByMem.jsp">
                 <div class="account">會員註冊</div>
               </a></li>
-            <li><a id="login_link" href="<%=request.getContextPath()%>/front-end/fMem/addFMem.jsp">
+            <li style="margin-right:16px;"><a id="login_link" href="<%=request.getContextPath()%>/front-end/fMem/addFMem.jsp">
                 <div class="account">註冊成為小農</div>
               </a></li>
             <li>
@@ -224,8 +223,7 @@
             </li>
             <li>
               <!-- <i class="material-icons" style="font-size:48px;color:red">mail_outline</i> -->
-              <a href="#"><svg class="svg-inline--fa fa-envelope fa-w-16" style="font-size: 30px;color: #aaba8b;" aria-hidden="true" data-fa-processed="" data-prefix="far" data-icon="envelope" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z"></path></svg><!-- <i class="far fa-envelope" style="font-size:30px;color: #aaba8b
-              "></i> --></a>
+				<img src="<%= request.getContextPath() %>/MemGifReader?mem_id=${memVO.mem_id}" class="svg-inline--fa fa-envelope fa-w-16" style="font-size: 30px;color: #aaba8b;">
             </li>
           </ul>
         </nav>
@@ -237,7 +235,7 @@
           </div>
 
 
-          <div class="m-logo"><a href="http://127.0.0.1:5500/%E5%89%8D%E5%8F%B0%E9%A6%96%E9%A0%812.html#"><img src="<%=request.getContextPath()%>/front-end/home/header2/header_files/透明LOGO有字有框.png"></a>
+          <div class="m-logo"><a href="<%=request.getContextPath()%>/front-end/home/home.jsp"><img src="<%=request.getContextPath()%>/front-end/home/header2/header_files/透明LOGO有字有框.png"></a>
           </div>
         </div>
 
@@ -305,7 +303,7 @@
 
               <li style="padding: 0;">
 					<div class="flip1">
-                      <a href="#" style="padding:3px 16px 0px 16px;">關於本站</a>
+                      <a href="<%=request.getContextPath()%>/front-end/article/listAllArticle.jsp" style="padding:3px 16px 0px 16px;">小農論壇</a>
                       
                       <!-- <div class="dropdown-menu toggle1" style="position:absolute; top:30px;">
                         <a class="dropdown-item" href="#" >最新消息</a>
@@ -317,12 +315,6 @@
 			  <li style="padding: 0;">
 					<div class="flip2">
                       <a href="<%=request.getContextPath()%>/front-end/Product/shop.jsp" style="padding:3px 16px 0px 16px;">小農商城</a>
-                     
-                     <!--  <div class="dropdown-menu toggle2" style="position:absolute; top:30px;">
-                        <a class="dropdown-item" href="https://www.facebook.com/BuyDirectlyFromFarmers" >Action</a>
-                        <a class="dropdown-item" href="#" >Another</a>
-                        <a class="dropdown-item" href="#" >Something</a>
-                      </div> -->
                       </div> 
               </li>              
               <li style="padding: 0;">
