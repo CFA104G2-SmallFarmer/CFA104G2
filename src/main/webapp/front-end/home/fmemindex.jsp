@@ -74,53 +74,52 @@ aside {
 
 .touch {position: absolute; opacity: 0; height: 0px;}    
 
-#touch1:checked + #slide1 {height: 300px;} 
-#touch2:checked + #slide2 {height: 300px;} 
-#touch3:checked + #slide3 {height: 300px;} 
-#touch4:checked + #slide4 {height: 300px;} 
+#touch1:checked + #slide1 {height: 100px;} 
+#touch2:checked + #slide2 {height: 100px;} 
+#touch3:checked + #slide3 {height: 100px;} 
+#touch4:checked + #slide4 {height: 100px;} 
 </style>
 </head>
 <body>
 <aside style="float:left;">
 
-  <label for="touch1"><span class="asidesp">titre</span></label>               
+  <label for="touch1"><span class="asidesp">小農專區</span></label>               
   <input type="checkbox" id="touch1" class="touch"> 
 
   <ul class="show" id="slide1">
-    <li><a href="#">小農專區</a></li> 
-    <li><a href="#">小農資料</a></li>
-    <li><a href="#">Lorem Ipsum</a></li>
-    <li><a href="#">Lorem Ipsum</a></li>
+    <li><a href="<%= request.getContextPath() %>/front-end/fMem/fMemberInfom.jsp">小農資料</a></li> 
+    <li><a href="<%= request.getContextPath() %>/front-end/fMem/update_fmem_input.jsp">小農資料修改</a></li>
+    <li><a href="<%= request.getContextPath() %>/front-end/fMem/fMemAccreditationVerify.jsp">認證審核</a></li>
   </ul>
   
-  <label for="touch2"><span class="asidesp">titre</span></label>               
-  <input type="checkbox" id="touch2" class="touch"> 
+  <a href="<%=request.getContextPath()%>/front-end/farmTravel/listAllFarmTravelByFMem.jsp"><label for="touch2"><span class="asidesp">農場旅遊行程管理</span></label>               
+  <input type="checkbox" id="" class="touch"></a>
 
-  <ul class="show" id="slide2">
-    <li><a href="#">小農資料管理</a></li> 
-    <li><a href="#">Lorem Ipsum</a></li>
-    <li><a href="#">Lorem Ipsum</a></li>
-    <li><a href="#">Lorem Ipsum</a></li>
-  </ul>
+<!--   <ul class="show" id="slide2"> -->
+<!--     <li><a href="#">小農資料管理</a></li>  -->
+<!--     <li><a href="#">Lorem Ipsum</a></li> -->
+<!--     <li><a href="#">Lorem Ipsum</a></li> -->
+<!--     <li><a href="#">Lorem Ipsum</a></li> -->
+<!--   </ul> -->
   
-  <label for="touch3"><span class="asidesp">titre</span></label>               
+  <label for="touch3"><span class="asidesp">商城管理</span></label>               
   <input type="checkbox" id="touch3" class="touch"> 
 
   <ul class="show" id="slide3" >
-    <li><a href="#">小農資料管理</a></li> 
-    <li><a href="#">Lorem Ipsum</a></li>
-    <li><a href="#">Lorem Ipsum</a></li>
-    <li><a href="#">Lorem Ipsum</a></li>
+    <li><a href="#">商城商品管理</a></li> 
+    <li><a href="#">商城訂單管理</a></li>
+<!--     <li><a href="#">Lorem Ipsum</a></li> -->
+<!--     <li><a href="#">Lorem Ipsum</a></li> -->
   </ul>
   
-  <label for="touch4"><span class="asidesp">titre</span></label>               
+  <label for="touch4"><span class="asidesp">農產認養管理</span></label>               
   <input type="checkbox" id="touch4" class="touch"> 
 
   <ul class="show" id="slide4">
-    <li><a href="#">小農資料管理</a></li> 
-    <li><a href="#">Lorem Ipsum</a></li>
-    <li><a href="#">Lorem Ipsum</a></li>
-    <li><a href="#">Lorem Ipsum</a></li>
+    <li><a href="#">認養專案管理</a></li> 
+    <li><a href="#">認養訂單管理</a></li>
+<!--     <li><a href="#">Lorem Ipsum</a></li> -->
+<!--     <li><a href="#">Lorem Ipsum</a></li> -->
   </ul>
 </aside>
 </body>
