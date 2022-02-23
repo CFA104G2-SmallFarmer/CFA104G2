@@ -345,7 +345,7 @@
 		<url-pattern>/front-end/Product/addProductByFmem.jsp</url-pattern>
 		<url-pattern>/front-end/Product/listAllProductByFmem.jsp</url-pattern>
 		<url-pattern>/front-end/Product/listOneProductByFmem.jsp</url-pattern>
-		<url-pattern>/front-end/Product/update_ProductByFmem_input.jsp
+		<url-pattern>/front-end/Product/update_ProductByFmem_input.jsp</url-pattern>
 		<!--************************* 以上商城filter ************************* -->
 		<!--************************ 以上小農會員filter ************************ -->
 		
