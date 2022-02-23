@@ -10,8 +10,6 @@
 <%FMemVO fMemVO = (FMemVO) session.getAttribute("fMemVO");%>
 <%MemVO memVO = (MemVO) session.getAttribute("memVO");%>
 <%
-MemService memSvc = new MemService();
-Integer mem_id = memVO.getMem_id();
 pageContext.setAttribute("memVO", memVO);
 %>
 
