@@ -28,15 +28,19 @@ public class fMemLoginFilter implements Filter {
 		HttpSession session = req.getSession();
 		
 		MemVO memVO = (MemVO)session.getAttribute("memVO");
-		
+		String message;
 		try {
 			Integer mem_id_state = memVO.getMem_id_state();
 			// 判斷是否註冊過小農
 			if (mem_id_state == 0) {
-				String message="請先註冊小農!!";
+				message="請先註冊小農!!";
 			    session.setAttribute("message", message);
 				res.sendRedirect(req.getContextPath() + "/front-end/home/home.jsp"); 
 				return;
+			} else if(mem_id_state == 1) {
+				message="";
+				session.setAttribute("message", message);
+				chain.doFilter(request, response);
 			} else {
 				chain.doFilter(request, response);
 			}
