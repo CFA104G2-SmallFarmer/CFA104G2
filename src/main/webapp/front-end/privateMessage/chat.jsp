@@ -26,14 +26,14 @@ $(document).ready(function() {
 // 	request.setAttribute("mem_id", 70001); // 測試用，之後get方法要改成session.get...
 %>
 <%
-	Integer mem_idChat = (Integer) session.getAttribute("mem_id");
+	MemVO memVOChat = (MemVO) session.getAttribute("memVO");
+	Integer mem_idChat = memVOChat.getMem_id();
 	MemService memSvcChat = new MemService();
-	MemVO memVOChat = new MemVO();
 	memVOChat = memSvcChat.getOneMem(mem_idChat);
 	String mem_name = memVOChat.getMem_name();
 	pageContext.setAttribute("mem_name", mem_name);
 %>
-    <a id="clickpri" style="width:48px; height: 48px;cursor: pointer; z-index:999999; position:fixed; right:5%; top:85%;">
+    <a id="clickpri" style="width:48px; height: 48px;cursor: pointer; z-index:999999; position:fixed; right:5%; top:20%;">
 	<img src="<%=request.getContextPath() %>/front-end/privateMessage/images/comment.png" style=" font-size: 30px;color: #aaba8b; width:48px; height: 48px;">
 <!--     <svg onclick="sendName();" class="svg-inline--fa fa-envelope fa-w-16" style=" font-size: 30px;color: #aaba8b;" aria-hidden="true" data-fa-processed="" data-prefix="far" data-icon="envelope" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z"></path></svg> -->
     </a>
@@ -41,7 +41,7 @@ $(document).ready(function() {
 
 <div>	
 	<div id="showpri"
-		style=" display:none; position: fixed; right:5%; top:35%; z-index: 99999;">
+		style=" display:none; position: fixed; right:5%; top:20%; z-index: 99999;">
 		<div class="src-pages-ChatWindow-index__container--1qoj1">
 			<div class="src-pages-ChatWindow-index__header--USXSl" style="background-color: #b9d4b3;">
 				<div class="src-pages-ChatWindow-index__logo-wrapper--1rM8W">
@@ -125,6 +125,7 @@ $(document).ready(function() {
 			} else if ("history" === jsonObj.type) {
 				messagesArea.innerHTML = '';
 				var ul = document.createElement('ul');
+				ul.setAttribute('class','ulchat');
 				ul.id = "area";
 				messagesArea.appendChild(ul);
 				// 這行的jsonObj.message是從redis撈出跟好友的歷史訊息，再parse成JSON格式處理
@@ -187,7 +188,7 @@ $(document).ready(function() {
 		row.innerHTML = '';
 		for (var i = 0; i < friends.length; i++) {
 			if (friends[i] === self) { continue; }
-			row.innerHTML +='<div id=' + i + ' class="column" name="friendName" value=' + friends[i] + ' ><h2>' + friends[i] + '</h2></div>';
+			row.innerHTML +='<div id=' + i + ' class="column" name="friendName" value=' + friends[i] + ' ><h2 class="h2Chat">' + friends[i] + '</h2></div>';
 		}
 		addListener();
 	}

@@ -63,8 +63,11 @@
   margin-bottom: 5px;
   background-color: #b9d4b3;
 }
+.h2Chat {
+	margin:0;
+}
 
-ul .ulchat{
+.ulchat{
   list-style: none;
   margin: 0;
   padding: 0;
