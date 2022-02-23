@@ -78,7 +78,20 @@
   <script src="chrome-extension://jhffgcfmcckgmioipfnmbannkpncfipo/util.js"></script>
   <script src="chrome-extension://jhffgcfmcckgmioipfnmbannkpncfipo/pagejs.js"></script>
 <script src="chrome-extension://jhffgcfmcckgmioipfnmbannkpncfipo/util.js"></script><script src="chrome-extension://jhffgcfmcckgmioipfnmbannkpncfipo/pagejs.js"></script><style type="text/css">* {<br>		-webkit-user-select: text !important;<br>		-moz-user-select: text !important;<br>		-ms-user-select: text !important;<br>		 user-select: text !important;<br>	}</style><style type="text/css">* {<br>        -webkit-user-select: text !important;<br>        -moz-user-select: text !important;<br>        -ms-user-select: text !important;<br>         user-select: text !important;<br>    }</style></head>
+<!-- 當點選小農專區，印出未成為小農提示訊息，並跳轉回首頁 -->
+<%
+	String mess= (String) session.getAttribute("message");
 
+	if("".equals(mess)  || mess==null){
+	}
+else{%>
+
+<script type="text/javascript">
+alert("<%=mess%>");
+</script>
+session.setAttribute("message", "");
+
+<% }%>
 <body id="default" class="default" style="">
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P3M896W" height="0" width="0"
       style="display:none;visibility:hidden"></iframe></noscript>
