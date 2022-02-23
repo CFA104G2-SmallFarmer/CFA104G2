@@ -20,16 +20,6 @@
 
 
 <!-- 這段給emoji的 -->
-<!-- <link rel="stylesheet"
-	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-	integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
-	crossorigin="anonymous" /> -->
-
-
-
-<!--  <link rel="icon" href="favicon.ico"> -->
- <!--  <link rel="stylesheet"
-    href=" https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css "> -->
   <link rel="stylesheet"
     href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"> 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/home/header2/header_files/header2.css">
@@ -288,10 +278,10 @@
             <li class="qa"><a href="<%=request.getContextPath()%>/front-end/article/listAllArticle.jsp">小農論壇</a></li>
 
 
-            <li class="qa"><a href="#">小農專區</a></li>
+            <li class="qa"><a href="<%=request.getContextPath()%>/front-end/fMem/fMemberInfom.jsp">小農專區</a></li>
 
 
-            <li><a href="#">會員專區</a></li>
+            <li><a href="<%=request.getContextPath()%>/front-end/mem/memberInfom.jsp">會員專區</a></li>
             <li><a href="<%=request.getContextPath()%>/front-end/login/loginByMem.jsp">登入</a></li>
             <li><a href="<%=request.getContextPath()%>/front-end/mem/addMemByMem.jsp">註冊</a></li>
 
@@ -357,7 +347,7 @@
                     </div>
               </li>
 
-                <a href="#" style="color:#000;">
+                <a href="<%=request.getContextPath()%>/front-end/mem/memberInfom.jsp" style="color:#000;">
 
                   <span class="hover" style="color:#000;">
                     <svg class="svg-inline--fa fa-user fa-w-16" style="color: #aaba8b;font-size: 20px;" 
@@ -374,7 +364,7 @@
 
               <li>
 
-                <a href="#" style="color:#000;">
+                <a href="<%=request.getContextPath()%>/front-end/fMem/fMemberInfom.jsp"" style="color:#000;">
 
                   <span class="hover" style="color:#000;">
                     <svg class="svg-inline--fa fa-smile fa-w-16" style="color: #aaba8b;font-size: 20px;" aria-hidden="true" data-fa-processed="" data-prefix="far" data-icon="smile" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 56c110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200-110.532 0-200-89.451-200-200 0-110.532 89.451-200 200-200m0-48C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm64 136c-9.535 0-18.512 2.386-26.37 6.589h.017c12.735 0 23.059 10.324 23.059 23.059 0 12.735-10.324 23.059-23.059 23.059s-23.059-10.324-23.059-23.059v-.017C266.386 181.488 264 190.465 264 200c0 30.928 25.072 56 56 56s56-25.072 56-56-25.072-56-56-56zm-128 0c-9.535 0-18.512 2.386-26.37 6.589h.017c12.735 0 23.059 10.324 23.059 23.059 0 12.735-10.324 23.059-23.059 23.059-12.735 0-23.059-10.324-23.059-23.059v-.017C138.386 181.488 136 190.465 136 200c0 30.928 25.072 56 56 56s56-25.072 56-56-25.072-56-56-56zm195.372 182.219c18.819-25.592-19.856-54.017-38.67-28.438-50.135 68.177-135.229 68.18-185.367 0-18.828-25.601-57.478 2.861-38.67 28.438 69.298 94.231 193.323 94.351 262.707 0z"></path></svg><!-- <i class="far fa-smile" style="color:#aaba8b;font-size: 20px;"></i> -->
