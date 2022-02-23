@@ -2,15 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.fMem.model.*"%>
+<%@ page import="com.mem.model.*"%>
 <!-- 有時間可接入信箱更改驗證 -->
 <!-- shopee-dropdown__entry--selected 更改框線顏色 -->
-<%
-request.setAttribute("mem_id", 77007); // 測試用，之後get方法要改成session.get...
-%>
-<%
-Integer mem_id = (Integer) request.getAttribute("mem_id");
-FMemVO fMemVO = (FMemVO) request.getAttribute("fMemVO");
-%>
+<%FMemVO fMemVO = (FMemVO) session.getAttribute("fMemVO");%>
+<%MemVO memVO = (MemVO) session.getAttribute("memVO");%>
 <!DOCTYPE html>
 <html lang="zh-Hant">
 
@@ -474,7 +470,7 @@ invisible.style.display = "";
 </head>
 
 <body style="" class="nt-s nl-l">
-	<jsp:include page="/front-end/home/header.jsp" flush="true"/>
+	<jsp:include page="/front-end/home/header2/header2.jsp" flush="true"/>
 	<jsp:include page="/front-end/home/memIndex.jsp" flush="true"/>
 	<div id="main" style="float:left;">
 		<div>
@@ -512,8 +508,8 @@ invisible.style.display = "";
 													</div>
 													<div class="_2_JugQ">
 														<div class="_2bdFDW">
-															<div class="_3S9myJ"><%=mem_id%></div>
-															<input type="hidden" name="mem_id" value="<%=mem_id%>">
+															<div class="_3S9myJ"><%=memVO.getMem_id()%></div>
+															<input type="hidden" name="mem_id" value="<%=memVO.getMem_id()%>">
 														</div>
 													</div>
 												</div>

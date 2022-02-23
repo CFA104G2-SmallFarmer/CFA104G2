@@ -3,23 +3,23 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.mem.model.*"%>
 <%@ page import="com.fMem.model.*"%>
-<%
-request.setAttribute("mem_id", 77003); // 測試用，之後get方法要改成session.get...
-%>
-<%
-Integer mem_id = (Integer) request.getAttribute("mem_id");
 
-FMemVO fMemVO = new FMemVO();
-MemService memSvc = new MemService();
+<%-- <% --%>
+<!-- request.setAttribute("mem_id", 77003); // 測試用，之後get方法要改成session.get... -->
+<%-- %> --%>
+<%FMemVO fMemVO = (FMemVO) session.getAttribute("fMemVO");%>
+<%MemVO memVO = (MemVO) session.getAttribute("memVO");%>
+<%
+// Integer mem_id = MemVOLog.getMem_id();
+
 FMemService fMSvc = new FMemService();
 
-MemVO memVO = memSvc.getOneMem(mem_id);
 List<FMemVO> list = fMSvc.getAll();
 // pageContext.setAttribute("list",list);
 for(FMemVO fMemVO2 : list) {
 	int mem_id2 = (Integer) fMemVO2.getMem_id();
 	int f_mem_id = (Integer) fMemVO2.getF_mem_id();
-	if(mem_id2 == mem_id){
+	if(mem_id2 == memVO.getMem_id()){
 		fMemVO = fMSvc.getOneFMem(f_mem_id);
 	}
 }
@@ -487,7 +487,7 @@ invisible.style.display = "";
 </head>
 
 <body style="" class="nt-s nl-l">
-	<jsp:include page="/front-end/home/header.jsp" flush="true"/>
+	<jsp:include page="/front-end/home/header2/header2.jsp" flush="true"/>
 	<jsp:include page="/front-end/home/fmemindex.jsp" flush="true"/>
 	<div id="main" style="float:left; width: 900px;">
 		<div>

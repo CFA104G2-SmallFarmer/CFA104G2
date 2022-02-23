@@ -5,17 +5,13 @@
 <%@ page import="com.mem.model.*"%>
 <!-- 有時間可接入信箱更改驗證  處理取的FMem物件 -->
 <!-- shopee-dropdown__entry--selected 更改框線顏色 -->
+<%FMemVO fMemVO = (FMemVO) session.getAttribute("fMemVO");%>
+<%MemVO memVO = (MemVO) session.getAttribute("memVO");%>
 <%
-session.setAttribute("mem_id", 77007); // 測試用，之後get方法要改成session.get...
-%>
-<%
-Integer mem_id = (Integer) session.getAttribute("mem_id");
-
-FMemVO fMemVO = new FMemVO();
+Integer mem_id = memVO.getMem_id();
 MemService memSvc = new MemService();
 FMemService fMSvc = new FMemService();
 
-MemVO memVO = memSvc.getOneMem(mem_id);
 List<FMemVO> list = fMSvc.getAll();
 pageContext.setAttribute("list",list);
 for(FMemVO fMemVO2 : list) {
@@ -491,7 +487,7 @@ invisible.style.display = "";
 </head>
 
 <body style="" class="nt-s nl-l">
-	<jsp:include page="/front-end/home/header.jsp" flush="true"/>
+	<jsp:include page="/front-end/home/header2/header2.jsp" flush="true"/>
 	<jsp:include page="/front-end/home/fmemindex.jsp" flush="true"/>
 	<jsp:include page="/front-end//privateMessage/chat.jsp" flush="true"/>
 	<div id="main" style="float:left;">
