@@ -36,6 +36,11 @@
 		<servlet-name>MemServlet</servlet-name>
 		<url-pattern>/front-end/mem/mem.do</url-pattern>
 	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>MemServlet</servlet-name>
+		<url-pattern>/mem/mem.do</url-pattern>
+	</servlet-mapping>
 
 	<servlet>
 		<servlet-name>MemGifReader</servlet-name>
