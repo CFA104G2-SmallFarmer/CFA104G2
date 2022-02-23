@@ -496,8 +496,8 @@ rotate(
 	width: auto
 }
 </style>
-<link rel="shortcut icon"
-	href="https://www.buydirectlyfromfarmers.tw/static/ico/favicon.png">
+<link rel="icon" href="<%=request.getContextPath()%>/front-end/assets/images/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="<%=request.getContextPath()%>/front-end/assets/images/favicon.ico" type="image/x-icon" />
 
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/front-end/home/home_files/style.css">
@@ -591,6 +591,7 @@ rotate(
 				<%--         <jsp:include page="/front-end/home/header.jsp" flush="true"/> --%>
 				<%--         <%@ include file="header.jsp" %> --%>
 				<jsp:include page="/front-end/home/header2/header2.jsp" flush="true"/>
+				<jsp:include page="/front-end/privateMessage/chat.jsp" flush="true"/>
 
 			</header>
 
