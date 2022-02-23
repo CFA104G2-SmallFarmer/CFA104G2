@@ -129,16 +129,16 @@ pageContext.setAttribute("memVO", memVO);
             <img src="<%=basePath%>/front-end/home/header_files/透明LOGO有字有框.png"></a>
             </li>
 
-            <li><a href="https://www.buydirectlyfromfarmers.tw/about-bdff/">
+            <li><a href="#">
                 <span class="hover WStdsong-B" style="font-size:14px;">
                   來認識我們
                 </span>
               </a></li>
 
 
-            <li id="qqq"><a href="https://www.buydirectlyfromfarmers.tw/faq/">
+            <li id="qqq"><a href="<%=request.getContextPath()%>/front-end/article/listAllArticle.jsp">
                 <span class="hover WStdsong-B" style="font-size:14px;">
-                  常見問答
+                 小農論壇
                 </span>
               </a></li>
 
