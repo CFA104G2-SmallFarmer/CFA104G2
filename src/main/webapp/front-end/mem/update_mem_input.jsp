@@ -2,15 +2,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.mem.model.*"%>
+<%@ page import="com.fMem.model.*"%>
 <!-- 有時間可接入信箱更改驗證 -->
 <!-- shopee-dropdown__entry--selected 更改框線顏色 -->
-<%
-request.setAttribute("mem_id", 77001); // 測試用，之後get方法要改成session.get...
-%>
+<%FMemVO fMemVO = (FMemVO) session.getAttribute("fMemVO");%>
+<%MemVO memVO = (MemVO) session.getAttribute("memVO");%>
 <%
 MemService memSvc = new MemService();
 Integer mem_id = (Integer) request.getAttribute("mem_id");
-MemVO memVO = memSvc.getOneMem(mem_id);
 pageContext.setAttribute("memVO", memVO);
 %>
 <!-- 445行無法選擇後貼上selected -->
@@ -476,7 +475,7 @@ invisible.style.display = "";
 </head>
 
 <body style="" class="nt-s nl-l">
-	<jsp:include page="/front-end/home/header.jsp" flush="true"/>
+	<jsp:include page="/front-end/home/header2/header2.jsp" flush="true"/>
 <%-- 	<jsp:include page="/front-end/home/header.jsp" flush="true"/> --%>
 <%--         <iframe src="<%= request.getContextPath() %>/front-end/home/header.jsp" width="100%" height="100%" style="display: block;"></iframe> --%>
 		<jsp:include page="/front-end/home/memIndex.jsp" flush="true"/>

@@ -2,13 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.mem.model.*"%>
-<%
-request.setAttribute("mem_id", 77001); // 測試用，之後get方法要改成session.get...
-%>
+<%@ page import="com.fMem.model.*"%>
+<%FMemVO fMemVO = (FMemVO) session.getAttribute("fMemVO");%>
+<%MemVO memVO = (MemVO) session.getAttribute("memVO");%>
 <%
 MemService memSvc = new MemService();
 Integer mem_id = (Integer) request.getAttribute("mem_id");
-MemVO memVO = memSvc.getOneMem(mem_id);
 pageContext.setAttribute("memVO", memVO);
 %>
 <!-- 445行無法選擇後貼上selected -->
@@ -474,7 +473,7 @@ invisible.style.display = "";
 </head>
 
 <body style="" class="nt-s nl-l">
-	<jsp:include page="/front-end/home/header.jsp" flush="true"/>
+	<jsp:include page="/front-end/home/header2/header2.jsp" flush="true"/>
 	<jsp:include page="/front-end/home/memIndex.jsp" flush="true"/>
 	
 	<div id="main" style="float:left; width: 900px;">
