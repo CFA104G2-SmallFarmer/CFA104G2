@@ -219,6 +219,14 @@ public class ProjectServlet extends HttpServlet {
 					errorMsgs.add("認養專案名稱: 只能是中、英文字母、數字和_ , 且長度必需在2到50之間");
 				}
 
+				proj_name=proj_name.replace("\n", "&nbsp;");
+				proj_name=proj_name.replace("\r", "&nbsp;");
+				proj_name=proj_name.replace("<", "&lt;");
+				proj_name=proj_name.replace(">", "&gt;");
+				proj_name=proj_name.replace("\"", "&quot;");
+				proj_name=proj_name.replace("\'", "&quot;");
+				
+				
 				Integer proj_state = new Integer(req.getParameter("proj_state").trim());
 
 //				------------------處理圖片--------------------
@@ -251,7 +259,15 @@ public class ProjectServlet extends HttpServlet {
 				if (proj_abstract == null || proj_abstract.trim().length() == 0) {
 					errorMsgs.add("專案摘要請勿空白");
 				}
-
+				
+				proj_abstract=proj_abstract.replace("\n", "&nbsp;");
+				proj_abstract=proj_abstract.replace("\r", "&nbsp;");
+				proj_abstract=proj_abstract.replace("<", "&lt;");
+				proj_abstract=proj_abstract.replace(">", "&gt;");
+				proj_abstract=proj_abstract.replace("\"", "&quot;");
+				proj_abstract=proj_abstract.replace("\'", "&quot;");
+				
+				
 				Integer proj_goal = new Integer(req.getParameter("proj_goal").trim());
 
 				java.sql.Date expected_end_date = null;
@@ -282,6 +298,15 @@ public class ProjectServlet extends HttpServlet {
 					errorMsgs.add("專案風險請勿空白");
 				}
 
+				proj_risk=proj_risk.replace("\n", "&nbsp;");
+				proj_risk=proj_risk.replace("\r", "&nbsp;");
+				proj_risk=proj_risk.replace("<", "&lt;");
+				proj_risk=proj_risk.replace(">", "&gt;");
+				proj_risk=proj_risk.replace("\"", "&quot;");
+				proj_risk=proj_risk.replace("\'", "&quot;");
+				
+				
+				
 				Integer proj_total_count = new Integer(req.getParameter("proj_total_count").trim());
 
 				String proj_video = req.getParameter("proj_video");
@@ -360,6 +385,14 @@ public class ProjectServlet extends HttpServlet {
 					errorMsgs.add("認養專案名稱: 只能是中、英文字母、數字和_(不包含「-」) , 且長度必需在2到50之間");
 				}
 
+				proj_name=proj_name.replace("\n", "&nbsp;");
+				proj_name=proj_name.replace("\r", "&nbsp;");
+				proj_name=proj_name.replace("<", "&lt;");
+				proj_name=proj_name.replace(">", "&gt;");
+				proj_name=proj_name.replace("\"", "&quot;");
+				proj_name=proj_name.replace("\'", "&quot;");
+				
+				
 //				------------------處理圖片--------------------
 				InputStream inputStream = null; // input stream of the upload file
 				byte[] proj_main_pic = null;
@@ -381,6 +414,15 @@ public class ProjectServlet extends HttpServlet {
 				if (proj_abstract == null || proj_abstract.trim().length() == 0) {
 					errorMsgs.add("專案摘要請勿空白");
 				}
+				
+				proj_abstract=proj_abstract.replace("\n", "&nbsp;");
+				proj_abstract=proj_abstract.replace("\r", "&nbsp;");
+				proj_abstract=proj_abstract.replace("<", "&lt;");
+				proj_abstract=proj_abstract.replace(">", "&gt;");
+				proj_abstract=proj_abstract.replace("\"", "&quot;");
+				proj_abstract=proj_abstract.replace("\'", "&quot;");
+				
+				
 
 				Integer proj_goal = new Integer(req.getParameter("proj_goal").trim());
 
@@ -401,6 +443,15 @@ public class ProjectServlet extends HttpServlet {
 				if (proj_abstract == null || proj_abstract.trim().length() == 0) {
 					errorMsgs.add("專案風險請勿空白");
 				}
+				
+				proj_risk=proj_risk.replace("\n", "&nbsp;");
+				proj_risk=proj_risk.replace("\r", "&nbsp;");
+				proj_risk=proj_risk.replace("<", "&lt;");
+				proj_risk=proj_risk.replace(">", "&gt;");
+				proj_risk=proj_risk.replace("\"", "&quot;");
+				proj_risk=proj_risk.replace("\'", "&quot;");
+				
+				
 
 				String proj_video = req.getParameter("proj_video");
 				// 空白沒差 沒有要用proj_video了

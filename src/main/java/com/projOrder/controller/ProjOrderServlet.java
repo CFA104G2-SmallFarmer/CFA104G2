@@ -461,6 +461,17 @@ public class ProjOrderServlet extends HttpServlet{
 					
 					// ---------------order_zipcode驗證----------------//
 					String order_addr = (req.getParameter("order_addr").trim());
+					
+					order_addr=order_addr.replace("\n", "&nbsp;");
+					order_addr=order_addr.replace("\r", "&nbsp;");
+					order_addr=order_addr.replace("<", "&lt;");
+					order_addr=order_addr.replace(">", "&gt;");
+					order_addr=order_addr.replace("\"", "&quot;");
+					order_addr=order_addr.replace("\'", "&quot;");
+					
+					
+					
+					
 					String order_addrReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,40}$";
 					if (order_addr == null || order_addr.trim().length() == 0) {
 						errorMsgs.add("地址: 請勿空白");
@@ -1737,6 +1748,16 @@ public class ProjOrderServlet extends HttpServlet{
 				
 				// ---------------order_zipcode驗證----------------//
 				String order_addr = (req.getParameter("order_addr").trim());
+				
+				
+				order_addr=order_addr.replace("\n", "&nbsp;");
+				order_addr=order_addr.replace("\r", "&nbsp;");
+				order_addr=order_addr.replace("<", "&lt;");
+				order_addr=order_addr.replace(">", "&gt;");
+				order_addr=order_addr.replace("\"", "&quot;");
+				order_addr=order_addr.replace("\'", "&quot;");
+				
+				
 				String order_addrReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,40}$";
 				if (order_addr == null || order_addr.trim().length() == 0) {
 					errorMsgs.add("地址: 請勿空白");

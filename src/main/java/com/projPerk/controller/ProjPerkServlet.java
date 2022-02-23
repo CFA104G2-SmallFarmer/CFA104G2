@@ -244,10 +244,30 @@ public class ProjPerkServlet extends HttpServlet {
 					errorMsgs.add("方案簡稱請勿空白");
 				}
 
+				perk_abbr_name=perk_abbr_name.replace("\n", "&nbsp;");
+				perk_abbr_name=perk_abbr_name.replace("\r", "&nbsp;");
+				perk_abbr_name=perk_abbr_name.replace("<", "&lt;");
+				perk_abbr_name=perk_abbr_name.replace(">", "&gt;");
+				perk_abbr_name=perk_abbr_name.replace("\"", "&quot;");
+				perk_abbr_name=perk_abbr_name.replace("\'", "&quot;");
+				
+				
+				
 				String perk_intro = req.getParameter("perk_intro").trim();
 				if (perk_intro == null || perk_intro.trim().length() == 0) {
 					errorMsgs.add("方案回饋內容請勿空白");
 				}
+				
+				perk_intro=perk_intro.replace("\n", "&nbsp;");
+				perk_intro=perk_intro.replace("\r", "&nbsp;");
+				perk_intro=perk_intro.replace("<", "&lt;");
+				perk_intro=perk_intro.replace(">", "&gt;");
+				perk_intro=perk_intro.replace("\"", "&quot;");
+				perk_intro=perk_intro.replace("\'", "&quot;");
+				
+				
+				
+				
 				// ---------------金額驗證----------------//
 				Integer perk_fund = null;
 				try {
@@ -466,6 +486,15 @@ public class ProjPerkServlet extends HttpServlet {
 					errorMsgs.add("方案簡稱請勿空白");
 				}
 
+				perk_abbr_name=perk_abbr_name.replace("\n", "&nbsp;");
+				perk_abbr_name=perk_abbr_name.replace("\r", "&nbsp;");
+				perk_abbr_name=perk_abbr_name.replace("<", "&lt;");
+				perk_abbr_name=perk_abbr_name.replace(">", "&gt;");
+				perk_abbr_name=perk_abbr_name.replace("\"", "&quot;");
+				perk_abbr_name=perk_abbr_name.replace("\'", "&quot;");
+				
+				
+				
 				InputStream in = req.getPart("perk_pic").getInputStream();
 				byte[] perk_pic = null;
 				if (in.available() != 0) {
@@ -480,6 +509,16 @@ public class ProjPerkServlet extends HttpServlet {
 				if (perk_intro == null || perk_intro.trim().length() == 0) {
 					errorMsgs.add("方案回饋內容請勿空白");
 				}
+				
+				perk_intro=perk_intro.replace("\n", "&nbsp;");
+				perk_intro=perk_intro.replace("\r", "&nbsp;");
+				perk_intro=perk_intro.replace("<", "&lt;");
+				perk_intro=perk_intro.replace(">", "&gt;");
+				perk_intro=perk_intro.replace("\"", "&quot;");
+				perk_intro=perk_intro.replace("\'", "&quot;");
+				
+				
+				
 				// ---------------金額驗證----------------//
 				Integer perk_fund = null;
 				try {
