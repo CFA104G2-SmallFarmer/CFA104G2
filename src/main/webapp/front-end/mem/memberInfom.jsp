@@ -7,7 +7,6 @@
 <%MemVO memVO = (MemVO) session.getAttribute("memVO");%>
 <%
 MemService memSvc = new MemService();
-Integer mem_id = (Integer) request.getAttribute("mem_id");
 pageContext.setAttribute("memVO", memVO);
 %>
 <!-- 445行無法選擇後貼上selected -->
@@ -475,6 +474,7 @@ invisible.style.display = "";
 <body style="" class="nt-s nl-l">
 	<jsp:include page="/front-end/home/header2/header2.jsp" flush="true"/>
 	<jsp:include page="/front-end/home/memIndex.jsp" flush="true"/>
+	<jsp:include page="/front-end/privateMessage/chat.jsp" flush="true"/>
 	
 	<div id="main" style="float:left; width: 900px;">
 		<div>
