@@ -29,7 +29,6 @@ public class LoginHandler extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 
-		
 //		-----------------------------------------------小農登入-----------------------------------------------
 		if ("fmem_login".equals(action)) {
 
@@ -56,15 +55,14 @@ public class LoginHandler extends HttpServlet {
 				/*************************** 2.開始查詢資料 *****************************************/
 				FMemService fmemSvc = new FMemService();
 				FMemVO fMemVO = fmemSvc.findUserByFMem_acc(account);
-				
+
 				// 【檢查使用者輸入的帳號(account) 是否有效】
 				if (fMemVO == null) {
 					errorMsgs.add("帳號未註冊");
+				} else {
+					System.out.println("帳號有註冊");
 				}
 
-				System.out.println("帳號有註冊");
-
-				
 				// 【檢查使用者輸入的密碼(password)是否有效】
 				String passwordForValidate = fMemVO.getF_mem_pwd();
 				if (passwordForValidate.equals(password)) {
@@ -74,15 +72,14 @@ public class LoginHandler extends HttpServlet {
 					allowUser = false;
 					errorMsgs.add("密碼不正確");
 				}
-				
-				
+
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/login/loginByFmem.jsp");
 					failureView.forward(req, res);
 					return;// 帳密無效重回登入頁面
 				}
-				
+
 				// 會員物件也查出來供轉交
 				Integer mem_id = fMemVO.getMem_id();
 				MemService memSvc = new MemService();
@@ -101,8 +98,8 @@ public class LoginHandler extends HttpServlet {
 					String location = (String) session.getAttribute("location");
 					if (location != null) {
 						session.removeAttribute("location"); // *工作2: 看看有無來源網頁 (-->如有來源網頁:則重導至來源網頁)
-				        res.sendRedirect(location);  
-						return;	
+						res.sendRedirect(location);
+						return;
 					}
 				} catch (Exception ignored) {
 				}
@@ -122,8 +119,6 @@ public class LoginHandler extends HttpServlet {
 			}
 		}
 
-		
-		
 //		-----------------------------------------------會員登入-----------------------------------------------
 		if ("mem_login".equals(action)) {
 
@@ -150,14 +145,13 @@ public class LoginHandler extends HttpServlet {
 				/*************************** 2.開始查詢資料 *****************************************/
 				MemService memSvc = new MemService();
 				MemVO memVO = memSvc.findUserByMem_acc(account);
-				
+
 				// 【檢查使用者輸入的帳號(account) 是否有效】
 				if (memVO == null) {
 					errorMsgs.add("帳號未註冊");
+				} else {
+					System.out.println("帳號有註冊");
 				}
-
-				System.out.println("帳號有註冊");
-				
 				// 【檢查使用者輸入的密碼(password)是否有效】
 				String passwordForValidate = memVO.getMem_pwd();
 				if (passwordForValidate.equals(password)) {
@@ -168,17 +162,16 @@ public class LoginHandler extends HttpServlet {
 					errorMsgs.add("密碼不正確");
 				}
 
-				
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/login/loginByMem.jsp");
 					failureView.forward(req, res);
 					return;// 帳密無效重回登入頁面
 				}
-				
+
 				// 查出mem_id供未來識別是否登入過
 				Integer mem_id = memVO.getMem_id();
-				
+
 				// 查出FMemVO供轉交
 				FMemService fMemSvc = new FMemService();
 				FMemVO fMemVO = fMemSvc.findUserByFMem_acc(account);
@@ -195,12 +188,19 @@ public class LoginHandler extends HttpServlet {
 				// 會員VO也一併轉交
 				session.setAttribute("memVO", memVO);
 				session.setAttribute("fMemVO", fMemVO);
-				
+
 				try {
 					String location = (String) session.getAttribute("location");
 					if (location != null) {
+						
+						if((location.contains("Fmem") || location.contains("FMem"))&&(fMemVO == null)) {
+							 errorMsgs.add("訪問小農頁面需先有小農帳號");
+							 RequestDispatcher failureView = req.getRequestDispatcher("/front-end/login/loginByMem.jsp");
+								failureView.forward(req, res);
+						};
+						
 						session.removeAttribute("location"); // *工作2: 看看有無來源網頁 (-->如有來源網頁:則重導至來源網頁)
-				        res.sendRedirect(location);  
+						res.sendRedirect(location);
 						return;
 					}
 				} catch (Exception ignored) {
@@ -220,7 +220,6 @@ public class LoginHandler extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		
-		
+
 	}
 }
