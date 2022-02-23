@@ -142,13 +142,13 @@
 
 	<!--************************** 農遊專區 ************************** -->
 	<servlet>
-		<servlet-name>ScheduleServlet</servlet-name>
-		<servlet-class>com.core.schedule.ScheduleServlet</servlet-class>
-		<load-on-startup>10</load-on-startup>
+	<servlet-name>ScheduleServlet</servlet-name>
+	<servlet-class>com.core.schedule.ScheduleServlet</servlet-class>
+	<load-on-startup>10</load-on-startup>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>ScheduleServlet</servlet-name>
-		<url-pattern>/ScheduleServlet</url-pattern>
+	<servlet-name>ScheduleServlet</servlet-name>
+	<url-pattern>/ScheduleServlet</url-pattern>
 	</servlet-mapping>
 	<!--************************** 以上農遊 ************************** -->
 
@@ -328,6 +328,8 @@
 		<url-pattern>/front-end/mem/memberInfom.jsp</url-pattern>
 
 		<url-pattern>/front-end/privateMessage/chat.jsp</url-pattern>
+		<!--************************ 以上小農會員filter ************************ -->
+
 		<!--************************** 商城filter ************************** -->
 		<!-- shopOrder -->
 		<url-pattern>/front-end/shopOrder/checkout.jsp</url-pattern>
@@ -347,26 +349,24 @@
 		<url-pattern>/front-end/Product/listOneProductByFmem.jsp</url-pattern>
 		<url-pattern>/front-end/Product/update_ProductByFmem_input.jsp</url-pattern>
 		<!--************************* 以上商城filter ************************* -->
-		<!--************************ 以上小農會員filter ************************ -->
-		
-		
 
 		<!-- ****** -->
-		<dispatcher>
-			REQUEST
-		</dispatcher>
-		<dispatcher>
-			FORWARD
-		</dispatcher>
-		<dispatcher>
-			INCLUDE
-		</dispatcher>
-		<dispatcher>
-			ERROR
-		</dispatcher>
-		<dispatcher>
-			ASYNC
-		</dispatcher>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>ERROR</dispatcher>
+		<dispatcher>ASYNC</dispatcher>
+	</filter-mapping>
+<!-- ********************* 判斷是否有小農會員 *********************-->
+	<filter>
+		<filter-name>fMemLoginFilter</filter-name>
+		<filter-class>com.filters.fMemLoginFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>fMemLoginFilter</filter-name>
+		<url-pattern>/front-end/fMem/fMemAccreditationVerify.jsp</url-pattern>
+		<url-pattern>/front-end/fMem/fMemberInfom.jsp</url-pattern>
+		<url-pattern>/front-end/fMem/update_fmem_input.jsp</url-pattern>
 	</filter-mapping>
 	<!--************************* 以上filter ************************* -->
 
