@@ -585,6 +585,23 @@ invisible.style.display = "";
 											<div class="_3BlbUs">
 												<div class="_1iNZU3">
 													<div class="_2PfA-y">
+														<label>確認密碼</label>
+													</div>
+													<div class="_2_JugQ">
+														<div class="_2bdFDW">
+															<div class="input-with-validator-wrapper">
+																<div class="input-with-validator">
+																	<input type="password" placeholder="" maxlength="255"
+																		name="f_mem_pwd2" value="<%=fMemVO.getF_mem_pwd()%>">
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="_3BlbUs">
+												<div class="_1iNZU3">
+													<div class="_2PfA-y">
 														<label>農場名稱</label>
 													</div>
 													<div class="_2_JugQ">
