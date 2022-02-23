@@ -153,6 +153,15 @@ public class ProjDisscussionServlet extends HttpServlet {
 				if (comment_content == null || comment_content.trim().length() == 0) {
 					errorMsgs.add("留言內容: 請勿空白");
 				} 
+				
+				comment_content=comment_content.replace("\n", "&nbsp;");
+				comment_content=comment_content.replace("\r", "&nbsp;");
+				comment_content=comment_content.replace("<", "&lt;");
+				comment_content=comment_content.replace(">", "&gt;");
+				comment_content=comment_content.replace("\"", "&quot;");
+				comment_content=comment_content.replace("\'", "&quot;");
+				
+				
 				System.out.println(comment_content);
 
 				ProjDiscussionVO projDiscussionVO = new ProjDiscussionVO();
