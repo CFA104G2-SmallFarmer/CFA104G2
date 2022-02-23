@@ -6,7 +6,7 @@
 <%@ page import="com.projDiscussion.model.*"%>
 <%@ page
 	import="java.time.LocalDate,java.sql.Timestamp,java.util.Vector"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <%
 ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
@@ -105,6 +105,7 @@ pageContext.setAttribute("list", list);
 					<div class="item clearfix">
 						<!-- 迭代區 -->
 						<c:forEach var="projDiscussionVO" items="${list}">
+			
 							<c:choose>
 								<c:when
 									test="${projDiscussionVO.comment_id==projDiscussionVO.discussion_id}">
@@ -167,7 +168,7 @@ pageContext.setAttribute("list", list);
 																		class="report-btn text-gray" role="button"
 																		title="回覆留言"
 																		data-bind="visible:boardViewModel.isEnabled, click:toggleReplyBox,text:replyBtnText"
-																		onclick='insert("<%= request.getContextPath() %>","${projectVO.proj_id}","${projDiscussionVO.comment_id}","${projectVO.f_mem_id}","${projDiscussionVO.comment_content}")'>回覆</a>
+																		onclick='insert("<%= request.getContextPath() %>","${projectVO.proj_id}","${projDiscussionVO.comment_id}","${projectVO.f_mem_id}","${fn:escapeXml(projDiscussionVO.comment_content)}")'>回覆</a>
 																</div>
 															</div>
 														</div>

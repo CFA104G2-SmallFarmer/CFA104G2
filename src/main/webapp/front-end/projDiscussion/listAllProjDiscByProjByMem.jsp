@@ -6,6 +6,7 @@
 <%@ page import="com.projDiscussion.model.*"%>
 <%@ page
 	import="java.time.LocalDate,java.sql.Timestamp,java.util.Vector"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <%@ page import="com.fMem.model.*"%>
 <%@ page import="com.mem.model.*"%>

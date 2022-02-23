@@ -8,6 +8,7 @@
 	import="java.time.LocalDate,java.sql.Timestamp,java.util.Vector"%>
 <%@ page import="com.fMem.model.*"%>
 <%@ page import="com.mem.model.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <%	FMemVO fMemVO = (FMemVO) session.getAttribute("fMemVO");%>
 <%	MemVO MemVO = (MemVO) session.getAttribute("memVO");%>

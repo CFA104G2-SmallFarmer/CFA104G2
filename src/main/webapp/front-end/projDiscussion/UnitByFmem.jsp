@@ -6,7 +6,7 @@
 <%@ page import="com.projDiscussion.model.*"%>
 <%@ page
 	import="java.time.LocalDate,java.sql.Timestamp,java.util.Vector"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <%
 List<ProjDiscussionVO> list = (List<ProjDiscussionVO>) request.getAttribute("list");
@@ -100,7 +100,7 @@ pageContext.setAttribute("parentComment_id", parentComment_id);
 													data-bind="visible:canOpenModifyBox, click:removeAction"
 													style="display: none;">刪除</a> <a
 													class="report-btn text-gray" role="button" title="回覆留言"
-													onclick='insert("<%= request.getContextPath() %>","${projectVO.proj_id}","${projDiscussionVO.comment_id}","${projectVO.f_mem_id}","${projDiscussionVO.comment_content}")'>回覆</a>
+													onclick='insert("<%= request.getContextPath() %>","${projectVO.proj_id}","${projDiscussionVO.comment_id}","${projectVO.f_mem_id}","${fn:escapeXml(projDiscussionVO.comment_content)}")'>回覆</a>
 											</div>
 										</div>
 									</div>
