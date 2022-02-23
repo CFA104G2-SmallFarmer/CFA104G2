@@ -9,4 +9,5 @@ public interface FarmTravelOrderDAO {
     FarmTravelOrderVO findByPK(Connection con, Integer order_ID);
     List<FarmTravelOrderVO> getAllByMem(Connection con, Integer mem_ID);
     List<FarmTravelOrderVO> getAllByFMem(Connection con, Integer f_mem_ID);
+    Integer travelCompleted(Connection con);
 }

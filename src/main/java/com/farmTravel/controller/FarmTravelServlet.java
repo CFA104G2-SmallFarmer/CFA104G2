@@ -3,6 +3,7 @@ package com.farmTravel.controller;
 import com.fMem.model.FMemVO;
 import com.farmTravel.model.FarmTravelService;
 import com.farmTravel.model.FarmTravelVO;
+import com.farmTravelOrder.model.FarmTravelOrderService;
 import com.farmTravelTag.model.FarmTravelTagService;
 import com.farmTravelTag.model.FarmTravelTagVO;
 import com.farmTravelTagDetails.model.FarmTravelTagDetailsService;
@@ -100,6 +101,16 @@ public class FarmTravelServlet extends HttpServlet {
                     farm_travel_fee = Integer.valueOf(request.getParameter("farm_travel_fee"));
                 }catch (Exception e) { errorMsgs.add("請確認農遊報名費用"); }
 
+                java.sql.Timestamp  travel_apply_start = null;
+                try {
+                    travel_apply_start = java.sql.Timestamp.valueOf(request.getParameter("travel_apply_start")+" 00:00:00");
+                }catch (Exception e) { errorMsgs.add("請確認報名起日"); }
+
+                java.sql.Timestamp  travel_apply_end = null;
+                try {
+                    travel_apply_end = java.sql.Timestamp.valueOf(request.getParameter("travel_apply_end")+" 23:59:59");
+                }catch (Exception e) { errorMsgs.add("請確認報名迄日"); }
+
                 Integer farm_travel_min = null;
                 try {
                     farm_travel_min = Integer.valueOf(request.getParameter("farm_travel_min"));
@@ -122,6 +133,8 @@ public class FarmTravelServlet extends HttpServlet {
                 farmTravel.setFarm_travel_start(farm_travel_start);
                 farmTravel.setFarm_travel_end(farm_travel_end);
                 farmTravel.setFarm_travel_fee(farm_travel_fee);
+                farmTravel.setTravel_apply_start(travel_apply_start);
+                farmTravel.setTravel_apply_end(travel_apply_end);
                 farmTravel.setFarm_travel_min(farm_travel_min);
                 farmTravel.setFarm_travel_max(farm_travel_max);
 
@@ -133,7 +146,7 @@ public class FarmTravelServlet extends HttpServlet {
                 }
                 try{  // 嘗試新增資料，若發生錯誤返回add頁面
                     FarmTravelService farmTravelService = new FarmTravelService();
-                    farmTravel = farmTravelService.addFarmTravel(mem_ID, f_mem_ID, farm_travel_title, farm_travel_img, farm_travel_info, farm_travel_start, farm_travel_end, farm_travel_fee, farm_travel_min, farm_travel_max, tag_names);
+                    farmTravel = farmTravelService.addFarmTravel(mem_ID, f_mem_ID, farm_travel_title, farm_travel_img, farm_travel_info, farm_travel_start, farm_travel_end, farm_travel_fee, travel_apply_start, travel_apply_end, farm_travel_min, farm_travel_max, tag_names);
                 }catch(Exception e){
                     e.printStackTrace(System.err);
                     errorMsgs.add("新增失敗");
@@ -258,6 +271,18 @@ public class FarmTravelServlet extends HttpServlet {
                     farmTravel.setFarm_travel_fee(farm_travel_fee);
                 }catch (Exception e) { errorMsgs.add("請確認農遊報名費用"); }
 
+                java.sql.Timestamp  travel_apply_start = null;
+                try {
+                    travel_apply_start = java.sql.Timestamp.valueOf(request.getParameter("travel_apply_start")+" 00:00:00");
+                    farmTravel.setTravel_apply_start(travel_apply_start);
+                }catch (Exception e) { errorMsgs.add("請確認報名起日"); }
+
+                java.sql.Timestamp  travel_apply_end = null;
+                try {
+                    travel_apply_end = java.sql.Timestamp.valueOf(request.getParameter("travel_apply_end")+" 23:59:59");
+                    farmTravel.setTravel_apply_end(travel_apply_end);
+                }catch (Exception e) { errorMsgs.add("請確認報名迄日"); }
+
                 Integer farm_travel_min = null;
                 try {
                     farm_travel_min = Integer.valueOf(request.getParameter("farm_travel_min"));
@@ -280,7 +305,8 @@ public class FarmTravelServlet extends HttpServlet {
                 try{  // 嘗試更新資料，若發生錯誤返回update頁面
                     farmTravelService = new FarmTravelService();
                     farmTravel = farmTravelService.updateFarmTravel(
-                            farm_travel_title, farm_travel_img, farm_travel_info, farm_travel_start, farm_travel_end, farm_travel_fee, farm_travel_min, farm_travel_max, farmTravel.getFarm_travel_now(), farmTravel.getFarm_travel_state(), farmTravel.getFarm_travel_ID());
+                            farm_travel_title, farm_travel_img, farm_travel_info, farm_travel_start, farm_travel_end, farm_travel_fee, travel_apply_start, travel_apply_end,
+                            farm_travel_min, farm_travel_max, farmTravel.getFarm_travel_now(), farmTravel.getFarm_travel_state(), farmTravel.getFarm_travel_ID());
                 }catch(Exception e){
                     e.printStackTrace(System.err);
                     errorMsgs.add("更新失敗");
@@ -321,7 +347,7 @@ public class FarmTravelServlet extends HttpServlet {
                 errView.forward(request, response);
             }
         }
-        if("delete".equals(action)) {
+        if("delete".equals(action)) {  // 非真正刪除，變更狀態碼為 9
             List<String> errorMsgs = new LinkedList<String>();
             request.setAttribute("errorMsgs", errorMsgs);
 

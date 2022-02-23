@@ -45,11 +45,6 @@
                     </c:if>
                 </c:forEach>
             </td>
-            <td>
-                <c:if test="${farmTravelOrder.order_state eq 1}">
-                    <button type="button" class="completed btn btn-outline-primary" value="${farmTravelOrder.order_ID}">活動已結束</button>
-                </c:if>
-            </td>
         </tr>
     </c:forEach>
     </tbody>

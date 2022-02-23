@@ -22,7 +22,7 @@ public class FarmTravelService {
     Connection con = connectionFactory.getConnection();
 
     public FarmTravelVO addFarmTravel(Integer mem_ID, Integer f_mem_ID, String farm_travel_title, byte[] farm_travel_img, String farm_travel_info, java.sql.Timestamp farm_travel_start, java.sql.Timestamp farm_travel_end, Integer farm_travel_fee,
-                                      Integer farm_travel_min, Integer farm_travel_max, String[] tag_names) {
+                                      java.sql.Timestamp travel_apply_start, java.sql.Timestamp travel_apply_end, Integer farm_travel_min, Integer farm_travel_max, String[] tag_names) {
         FarmTravelVO farm_travel = new FarmTravelVO();
         farm_travel.setMem_ID(mem_ID);
         farm_travel.setF_mem_ID(f_mem_ID);
@@ -32,6 +32,8 @@ public class FarmTravelService {
         farm_travel.setFarm_travel_start(farm_travel_start);
         farm_travel.setFarm_travel_end(farm_travel_end);
         farm_travel.setFarm_travel_fee(farm_travel_fee);
+        farm_travel.setTravel_apply_start(travel_apply_start);
+        farm_travel.setTravel_apply_end(travel_apply_end);
         farm_travel.setFarm_travel_min(farm_travel_min);
         farm_travel.setFarm_travel_max(farm_travel_max);
 
@@ -70,7 +72,7 @@ public class FarmTravelService {
     }
 
     public FarmTravelVO updateFarmTravel(String farm_travel_title, byte[] farm_travel_img, String farm_travel_info, java.sql.Timestamp farm_travel_start, java.sql.Timestamp farm_travel_end, Integer farm_travel_fee,
-                                         Integer farm_travel_min, Integer farm_travel_max, Integer farm_travel_now, Integer farm_travel_state, Integer farm_travel_ID) {
+                                         java.sql.Timestamp travel_apply_start, java.sql.Timestamp travel_apply_end, Integer farm_travel_min, Integer farm_travel_max, Integer farm_travel_now, Integer farm_travel_state, Integer farm_travel_ID) {
 
         FarmTravelVO farm_travel = new FarmTravelVO();
         farm_travel.setFarm_travel_title(farm_travel_title);
@@ -79,6 +81,8 @@ public class FarmTravelService {
         farm_travel.setFarm_travel_start(farm_travel_start);
         farm_travel.setFarm_travel_end(farm_travel_end);
         farm_travel.setFarm_travel_fee(farm_travel_fee);
+        farm_travel.setTravel_apply_start(travel_apply_start);
+        farm_travel.setTravel_apply_end(travel_apply_end);
         farm_travel.setFarm_travel_min(farm_travel_min);
         farm_travel.setFarm_travel_max(farm_travel_max);
         farm_travel.setFarm_travel_now(farm_travel_now);
@@ -112,5 +116,9 @@ public class FarmTravelService {
             farmTravelList.add(farmTravel);
         }
         return farmTravelList;
+    }
+    public void applyChange (){
+        System.out.println(dao.openFarmTravelApply(con)+"筆農遊開放報名");
+        System.out.println(dao.closeFarmTravelApply(con)+"筆農遊關閉報名");
     }
 }

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="com.farmTravelOrder.model.FarmTravelOrderService" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.farmTravelOrder.model.FarmTravelOrderVO" %>
@@ -9,6 +10,8 @@
     List<FarmTravelOrderVO> farmTravelOrderList = farmTravelOrderService.getAllFarmTravelOrderByMem(((MemVO)session.getAttribute("mem")).getMem_id());
     pageContext.setAttribute("farmTravelOrderList",farmTravelOrderList);
 %>
+<jsp:useBean id="farmTravelService" scope="page" class="com.farmTravel.model.FarmTravelService"/>
+<jsp:useBean id="farmTravelPartnerService" scope="page" class="com.farmTravelPartner.model.FarmTravelPartnerService"/>
 <html>
 <head>
     <!-- Required meta tags -->
@@ -46,10 +49,6 @@
         .container{
             background-color: white;
             border-radius: 10px;
-        }
-        .orderState{
-            text-align: center;
-            padding: 15px;
         }
         .orderTitle{
             border: 1px solid #dddddd;
@@ -91,6 +90,43 @@
             color: #606060;
             background-color: #eff8ec;
         }
+        .btn-toggle{
+            font-size: 22px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .nav-link{
+            font-size: 18px;
+            width: 100%;
+            background-color: #b9d4b3;
+        }
+        .text-white:hover{
+            background-color: #aaba8b;
+        }
+        .menu{
+            background-color: #b9d4b3;
+        }
+        .menuBtn{
+            position: sticky;
+            top: 0;
+        }
+        .menuBtn:hover{
+            background-color: #b9d4b3;
+        }
+        .leftBarText{
+            color: #434217;
+            font-weight: bolder;
+            font-size: 20px;
+        }
+        .offcanvas-body, .offcanvas-header{
+            background-color: #eeeeee;
+        }
+        .offcanvas-title{
+            font-weight: bolder;
+        }
+        .nav{
+            padding: 0;
+        }
     </style>
 </head>
 <body>
@@ -98,7 +134,47 @@
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
         crossorigin="anonymous"></script>
 
-<!-- 標籤分頁未完成 -->
+<%-- Menu按鈕 --%>
+<button class="menuBtn btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuBtn" aria-controls="offcanvasWithBothOptions">
+    <img src="<%=request.getContextPath()%>/front-end/farmTravel/images/menuBtn.png">
+</button>
+<%-- Menu內容 --%>
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="menuBtn" aria-labelledby="menuLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="menuLabel">功能導航</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li class="mb-1">
+                <button class="menu btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#farmTravel-collapse" aria-expanded="false">
+                    農旅行程
+                </button>
+                <div class="collapse" id="farmTravel-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <li><a href="<%=request.getContextPath()%>/front-end/farmTravel/listAllFarmTravelByMem.jsp" class="nav-link roundedwhite leftBarText">查看所有行程</a></li>
+                        <li><a href="<%=request.getContextPath()%>/front-end/farmTravelCollection/listAllMyFarmTravelCollection.jsp" class="nav-link rounded leftBarText">我收藏的行程</a></li>
+                        <li><a href="#" class="nav-link rounded leftBarText">我檢舉的行程(未完成)</a></li>
+                        <li><a href="#" class="nav-link rounded leftBarText">已報名的行程(?)</a></li>
+                        <li><a href="#" class="nav-link rounded leftBarText">曾參加過的行程(?)</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="mb-1">
+                <button class="menu btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+                    訂單管理
+                </button>
+                <div class="collapse" id="orders-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <li><a href="<%=request.getContextPath()%>/front-end/farmTravelOrder/listAllFarmTravelOrderByMem.jsp" class="nav-link rounded leftBarText">查看所有訂單</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<%-- 訂單內容 --%>
 <div class="container">
     <div class="row">
         <ul class="nav nav-pills mb-3" id="order-tab" role="tablist">
@@ -108,21 +184,26 @@
             <li class="nav-item col-3" role="presentation">
                 <button class="nav-link" id="order-tab-2" data-bs-toggle="pill" data-bs-target="#order-contact-2" type="button" role="tab" aria-controls="order-contact-2" aria-selected="false">未付款</button>
             </li>
-
             <li class="nav-item col-3" role="presentation">
-                <button class="nav-link" id="order-tab-3" data-bs-toggle="pill" data-bs-target="#order-contact-3" type="button" role="tab" aria-controls="order-contact-3" aria-selected="false">等待活動開始</button>
+                <button class="nav-link" id="order-tab-3" data-bs-toggle="pill" data-bs-target="#order-contact-3" type="button" role="tab" aria-controls="order-contact-3" aria-selected="false">等待行程開始</button>
             </li>
-
             <li class="nav-item col-3" role="presentation">
-                <button class="nav-link" id="order-tab-4" data-bs-toggle="pill" data-bs-target="#order-contact-4" type="button" role="tab" aria-controls="order-contact-4" aria-selected="false">活動已結束</button>
+                <button class="nav-link" id="order-tab-4" data-bs-toggle="pill" data-bs-target="#order-contact-4" type="button" role="tab" aria-controls="order-contact-4" aria-selected="false">行程已結束</button>
             </li>
         </ul>
     </div>
     <div class="row orderTitle mb-2">
         <div class="col-3">農遊名稱</div>
-        <div class="col-2">人數</div>
+        <div class="col-2">
+            <div class="row">行程開始日期</div>
+        </div>
+        <div class="col-1">
+            <div class="row">人數</div>
+        </div>
         <div class="col-2">金額</div>
-        <div class="col-3">訂單狀態</div>
+        <div class="col-2">
+            <div class="row">訂單狀態</div>
+        </div>
         <div class="col-2">訂單時間</div>
     </div>
     <div class="row">
@@ -134,10 +215,31 @@
                         <div class="col-5 orderNo">訂單編號：${farmTravelOrder.order_ID}</div>
                         <div class="col-7 orderNo"></div>
                         <div class="row mb-3 mt-1">
-                            <div class="col-3">來去鄉下農場住一晚兩晚三晚四晚五晚-${farmTravelOrder.farm_travel_ID}</div>
-                            <div class="col-2">${farmTravelOrder.people_num}人</div>
-                            <div class="col-2">NT$：${farmTravelOrder.order_fee}</div>
                             <div class="col-3">
+                                ${farmTravelService.getOneFarmTravel(farmTravelOrder.farm_travel_ID).farm_travel_title}
+                            </div>
+                            <div class="col-2">
+                                <div class="row"><fmt:formatDate value="${farmTravelOrder.farm_travel_start}" pattern="yyyy/MM/dd HH:mm"/></div>
+                                <div class="row">　　　至</div>
+                                <div class="row"><fmt:formatDate value="${farmTravelOrder.farm_travel_end}" pattern="yyyy/MM/dd HH:mm"/></div>
+                            </div>
+                            <div class="col-1">
+                                ${farmTravelOrder.people_num}人
+                                <div class="row">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                            名單
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <c:forEach var="farmTravelPartner" items="${farmTravelPartnerService.getAllFarmTravelPartner(farmTravelOrder.order_ID)}">
+                                                <li class="dropdown-item">${farmTravelPartner.partner_name}</li>
+                                            </c:forEach>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">NT$：${farmTravelOrder.order_fee}</div>
+                            <div class="col-2">
                                 <div class="row">
                                     <div class="col-12 mb-2">
                                         <c:forEach var="farmTravelOrderState" items="${farmTravelOrderStatusByMem}">
@@ -187,7 +289,7 @@
                                 </div>
                             </div>
                             <div class="col-2">
-                                <div class="row">${farmTravelOrder.order_time}</div>
+                                <div class="row"><fmt:formatDate value="${farmTravelOrder.order_time}" pattern="yyyy/MM/dd HH:mm"/></div>
                             </div>
                         </div>
                     </div>
@@ -201,10 +303,31 @@
                         <div class="col-5 orderNo">訂單編號：${farmTravelOrder.order_ID}</div>
                         <div class="col-7 orderNo"></div>
                         <div class="row mb-3 mt-1">
-                            <div class="col-3">來去鄉下農場住一晚兩晚三晚四晚五晚-${farmTravelOrder.farm_travel_ID}</div>
-                            <div class="col-2">${farmTravelOrder.people_num}人</div>
-                            <div class="col-2">NT$：${farmTravelOrder.order_fee}</div>
                             <div class="col-3">
+                                    ${farmTravelService.getOneFarmTravel(farmTravelOrder.farm_travel_ID).farm_travel_title}
+                            </div>
+                            <div class="col-2">
+                                <div class="row"><fmt:formatDate value="${farmTravelOrder.farm_travel_start}" pattern="yyyy/MM/dd HH:mm"/></div>
+                                <div class="row">　　　至</div>
+                                <div class="row"><fmt:formatDate value="${farmTravelOrder.farm_travel_end}" pattern="yyyy/MM/dd HH:mm"/></div>
+                            </div>
+                            <div class="col-1">
+                                    ${farmTravelOrder.people_num}人
+                                <div class="row">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                            名單
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <c:forEach var="farmTravelPartner" items="${farmTravelPartnerService.getAllFarmTravelPartner(farmTravelOrder.order_ID)}">
+                                                <li class="dropdown-item">${farmTravelPartner.partner_name}</li>
+                                            </c:forEach>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">NT$：${farmTravelOrder.order_fee}</div>
+                            <div class="col-2">
                                 <div class="row">
                                     <div class="col-12 mb-2">
                                         <c:forEach var="farmTravelOrderState" items="${farmTravelOrderStatusByMem}">
@@ -221,7 +344,7 @@
                                 </div>
                             </div>
                             <div class="col-2">
-                                <div class="row">${farmTravelOrder.order_time}</div>
+                                <div class="row"><fmt:formatDate value="${farmTravelOrder.order_time}" pattern="yyyy/MM/dd HH:mm"/></div>
                             </div>
                         </div>
                     </div>
@@ -236,10 +359,31 @@
                             <div class="col-5 orderNo">訂單編號：${farmTravelOrder.order_ID}</div>
                             <div class="col-7 orderNo"></div>
                         <div class="row mb-3 mt-1">
-                            <div class="col-3">來去鄉下農場住一晚兩晚三晚四晚五晚-${farmTravelOrder.farm_travel_ID}</div>
-                            <div class="col-2">${farmTravelOrder.people_num}人</div>
-                            <div class="col-2">NT$：${farmTravelOrder.order_fee}</div>
                             <div class="col-3">
+                                    ${farmTravelService.getOneFarmTravel(farmTravelOrder.farm_travel_ID).farm_travel_title}
+                            </div>
+                            <div class="col-2">
+                                <div class="row"><fmt:formatDate value="${farmTravelOrder.farm_travel_start}" pattern="yyyy/MM/dd HH:mm"/></div>
+                                <div class="row">　　　至</div>
+                                <div class="row"><fmt:formatDate value="${farmTravelOrder.farm_travel_end}" pattern="yyyy/MM/dd HH:mm"/></div>
+                            </div>
+                            <div class="col-1">
+                                    ${farmTravelOrder.people_num}人
+                                <div class="row">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                            名單
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <c:forEach var="farmTravelPartner" items="${farmTravelPartnerService.getAllFarmTravelPartner(farmTravelOrder.order_ID)}">
+                                                <li class="dropdown-item">${farmTravelPartner.partner_name}</li>
+                                            </c:forEach>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">NT$：${farmTravelOrder.order_fee}</div>
+                            <div class="col-2">
                                 <div class="row">
                                     <div class="col-12 mb-2">
                                         <c:forEach var="farmTravelOrderState" items="${farmTravelOrderStatusByMem}">
@@ -251,7 +395,7 @@
                                 </div>
                             </div>
                             <div class="col-2">
-                                <div class="row">${farmTravelOrder.order_time}</div>
+                                <div class="row"><fmt:formatDate value="${farmTravelOrder.order_time}" pattern="yyyy/MM/dd HH:mm"/></div>
                             </div>
                         </div>
                     </div>
@@ -266,10 +410,31 @@
                             <div class="col-5 orderNo">訂單編號：${farmTravelOrder.order_ID}</div>
                             <div class="col-7 orderNo"></div>
                             <div class="row mb-3 mt-1">
-                                <div class="col-3">來去鄉下農場住一晚兩晚三晚四晚五晚-${farmTravelOrder.farm_travel_ID}</div>
-                                <div class="col-2">${farmTravelOrder.people_num}人</div>
-                                <div class="col-2">NT$：${farmTravelOrder.order_fee}</div>
                                 <div class="col-3">
+                                        ${farmTravelService.getOneFarmTravel(farmTravelOrder.farm_travel_ID).farm_travel_title}
+                                </div>
+                                <div class="col-2">
+                                    <div class="row"><fmt:formatDate value="${farmTravelOrder.farm_travel_start}" pattern="yyyy/MM/dd HH:mm"/></div>
+                                    <div class="row">　　　至</div>
+                                    <div class="row"><fmt:formatDate value="${farmTravelOrder.farm_travel_end}" pattern="yyyy/MM/dd HH:mm"/></div>
+                                </div>
+                                <div class="col-1">
+                                        ${farmTravelOrder.people_num}人
+                                    <div class="row">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                名單
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <c:forEach var="farmTravelPartner" items="${farmTravelPartnerService.getAllFarmTravelPartner(farmTravelOrder.order_ID)}">
+                                                    <li class="dropdown-item">${farmTravelPartner.partner_name}</li>
+                                                </c:forEach>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-2">NT$：${farmTravelOrder.order_fee}</div>
+                                <div class="col-2">
                                     <div class="row">
                                         <div class="col-12 mb-2">
                                             <c:forEach var="farmTravelOrderState" items="${farmTravelOrderStatusByMem}">
@@ -319,7 +484,7 @@
                                     </div>
                                 </div>
                                 <div class="col-2">
-                                    <div class="row">${farmTravelOrder.order_time}</div>
+                                    <div class="row"><fmt:formatDate value="${farmTravelOrder.order_time}" pattern="yyyy/MM/dd HH:mm"/></div>
                                 </div>
                             </div>
                         </div>

@@ -6,12 +6,14 @@ import java.util.List;
 
 public class FarmTravelJDBCDAO implements FarmTravelDAO{
 
-    public static final String INSERT_STMT = "INSERT INTO FARM_TRAVEL ( MEM_ID, F_MEM_ID, FARM_TRAVEL_TITLE, FARM_TRAVEL_IMG, FARM_TRAVEL_INFO, FARM_TRAVEL_START, FARM_TRAVEL_END, FARM_TRAVEL_FEE, FARM_TRAVEL_MIN, FARM_TRAVEL_MAX, FARM_TRAVEL_NOW, FARM_TRAVEL_STATE ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, '0', '0' );";
-    public static final String UPDATE_STMT = "UPDATE FARM_TRAVEL SET FARM_TRAVEL_TITLE = ?, FARM_TRAVEL_IMG = ?, FARM_TRAVEL_INFO = ?, FARM_TRAVEL_START = ?, FARM_TRAVEL_END = ?, FARM_TRAVEL_FEE = ?, FARM_TRAVEL_MIN = ?, FARM_TRAVEL_MAX = ?, FARM_TRAVEL_NOW = ?, FARM_TRAVEL_STATE = ? WHERE FARM_TRAVEL_ID = ?;";
-    public static final String DELETE_STMT = "DELETE FROM FARM_TRAVEL WHERE FARM_TRAVEL_ID = ?;";
+    public static final String INSERT_STMT = "INSERT INTO FARM_TRAVEL ( MEM_ID, F_MEM_ID, FARM_TRAVEL_TITLE, FARM_TRAVEL_IMG, FARM_TRAVEL_INFO, FARM_TRAVEL_START, FARM_TRAVEL_END, FARM_TRAVEL_FEE, TRAVEL_APPLY_START, TRAVEL_APPLY_END, FARM_TRAVEL_MIN, FARM_TRAVEL_MAX, FARM_TRAVEL_NOW, FARM_TRAVEL_STATE ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, '0', '0' );";
+    public static final String UPDATE_STMT = "UPDATE FARM_TRAVEL SET FARM_TRAVEL_TITLE = ?, FARM_TRAVEL_IMG = ?, FARM_TRAVEL_INFO = ?, FARM_TRAVEL_START = ?, FARM_TRAVEL_END = ?, FARM_TRAVEL_FEE = ?, TRAVEL_APPLY_START = ?, TRAVEL_APPLY_END = ?, FARM_TRAVEL_MIN = ?, FARM_TRAVEL_MAX = ?, FARM_TRAVEL_NOW = ?, FARM_TRAVEL_STATE = ? WHERE FARM_TRAVEL_ID = ?;";
+    public static final String DELETE_STMT = "UPDATE FARM_TRAVEL SET FARM_TRAVEL_STATE = 9 WHERE FARM_TRAVEL_ID = ?;";
     public static final String GET_ONE_STMT = "SELECT * FROM FARM_TRAVEL WHERE FARM_TRAVEL_ID = ?;";
     public static final String GET_ALL_FROM_FARMER_STMT = "SELECT * FROM FARM_TRAVEL WHERE F_MEM_ID = ? ORDER BY FARM_TRAVEL_ID DESC;";
-    public static final String GET_ALL_MEM_CAN_APPLY = "SELECT * FROM FARM_TRAVEL WHERE FARM_TRAVEL_STATE IN ('1','2') AND  NOW() < FARM_TRAVEL_START AND (FARM_TRAVEL_MAX - FARM_TRAVEL_NOW) > 0;  ";
+    public static final String GET_ALL_MEM_CAN_APPLY = "SELECT * FROM FARM_TRAVEL WHERE FARM_TRAVEL_STATE IN ('1','2') AND TRAVEL_APPLY_START < NOW() and TRAVEL_APPLY_END > NOW()  AND (FARM_TRAVEL_MAX - FARM_TRAVEL_NOW) > 0;  ";
+    public static final String OPEN_APPLY_STMT = "UPDATE FARM_TRAVEL SET FARM_TRAVEL_STATE = 1 WHERE TRAVEL_APPLY_START < NOW() and TRAVEL_APPLY_END > NOW() AND FARM_TRAVEL_STATE = 0;";
+    public static final String CLOSE_APPLY_STMT = "UPDATE FARM_TRAVEL SET FARM_TRAVEL_STATE = 0 WHERE TRAVEL_APPLY_END < NOW() AND FARM_TRAVEL_STATE = 1;";
 
     PreparedStatement pstmt = null;
     ResultSet rs = null;
@@ -33,8 +35,10 @@ public class FarmTravelJDBCDAO implements FarmTravelDAO{
             pstmt.setTimestamp(6, farm_travel.getFarm_travel_start());
             pstmt.setTimestamp(7, farm_travel.getFarm_travel_end());
             pstmt.setInt(8, farm_travel.getFarm_travel_fee());
-            pstmt.setInt(9, farm_travel.getFarm_travel_min());
-            pstmt.setInt(10, farm_travel.getFarm_travel_max());
+            pstmt.setTimestamp(9, farm_travel.getTravel_apply_start());
+            pstmt.setTimestamp(10, farm_travel.getTravel_apply_end());
+            pstmt.setInt(11, farm_travel.getFarm_travel_min());
+            pstmt.setInt(12, farm_travel.getFarm_travel_max());
 
             pstmt.executeUpdate();
 
@@ -68,11 +72,13 @@ public class FarmTravelJDBCDAO implements FarmTravelDAO{
             pstmt.setTimestamp(4, farm_travel.getFarm_travel_start());
             pstmt.setTimestamp(5, farm_travel.getFarm_travel_end());
             pstmt.setInt(6, farm_travel.getFarm_travel_fee());
-            pstmt.setInt(7, farm_travel.getFarm_travel_min());
-            pstmt.setInt(8, farm_travel.getFarm_travel_max());
-            pstmt.setInt(9, farm_travel.getFarm_travel_now());
-            pstmt.setInt(10, farm_travel.getFarm_travel_state());
-            pstmt.setInt(11, farm_travel.getFarm_travel_ID());
+            pstmt.setTimestamp(7, farm_travel.getTravel_apply_start());
+            pstmt.setTimestamp(8, farm_travel.getTravel_apply_end());
+            pstmt.setInt(9, farm_travel.getFarm_travel_min());
+            pstmt.setInt(10, farm_travel.getFarm_travel_max());
+            pstmt.setInt(11, farm_travel.getFarm_travel_now());
+            pstmt.setInt(12, farm_travel.getFarm_travel_state());
+            pstmt.setInt(13, farm_travel.getFarm_travel_ID());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace(System.err);
@@ -130,6 +136,8 @@ public class FarmTravelJDBCDAO implements FarmTravelDAO{
                 farm_travel.setFarm_travel_start(rs.getTimestamp("FARM_TRAVEL_START"));
                 farm_travel.setFarm_travel_end(rs.getTimestamp("FARM_TRAVEL_END"));
                 farm_travel.setFarm_travel_fee(rs.getInt("FARM_TRAVEL_FEE"));
+                farm_travel.setTravel_apply_start(rs.getTimestamp("TRAVEL_APPLY_START"));
+                farm_travel.setTravel_apply_end(rs.getTimestamp("TRAVEL_APPLY_END"));
                 farm_travel.setFarm_travel_min(rs.getInt("FARM_TRAVEL_MIN"));
                 farm_travel.setFarm_travel_max(rs.getInt("FARM_TRAVEL_MAX"));
                 farm_travel.setFarm_travel_now(rs.getInt("FARM_TRAVEL_NOW"));
@@ -177,6 +185,8 @@ public class FarmTravelJDBCDAO implements FarmTravelDAO{
                 farm_travel.setFarm_travel_start(rs.getTimestamp("FARM_TRAVEL_START"));
                 farm_travel.setFarm_travel_end(rs.getTimestamp("FARM_TRAVEL_END"));
                 farm_travel.setFarm_travel_fee(rs.getInt("FARM_TRAVEL_FEE"));
+                farm_travel.setTravel_apply_start(rs.getTimestamp("TRAVEL_APPLY_START"));
+                farm_travel.setTravel_apply_end(rs.getTimestamp("TRAVEL_APPLY_END"));
                 farm_travel.setFarm_travel_min(rs.getInt("FARM_TRAVEL_MIN"));
                 farm_travel.setFarm_travel_max(rs.getInt("FARM_TRAVEL_MAX"));
                 farm_travel.setFarm_travel_now(rs.getInt("FARM_TRAVEL_NOW"));
@@ -224,6 +234,8 @@ public class FarmTravelJDBCDAO implements FarmTravelDAO{
                 farm_travel.setFarm_travel_start(rs.getTimestamp("FARM_TRAVEL_START"));
                 farm_travel.setFarm_travel_end(rs.getTimestamp("FARM_TRAVEL_END"));
                 farm_travel.setFarm_travel_fee(rs.getInt("FARM_TRAVEL_FEE"));
+                farm_travel.setTravel_apply_start(rs.getTimestamp("TRAVEL_APPLY_START"));
+                farm_travel.setTravel_apply_end(rs.getTimestamp("TRAVEL_APPLY_END"));
                 farm_travel.setFarm_travel_min(rs.getInt("FARM_TRAVEL_MIN"));
                 farm_travel.setFarm_travel_max(rs.getInt("FARM_TRAVEL_MAX"));
                 farm_travel.setFarm_travel_now(rs.getInt("FARM_TRAVEL_NOW"));
@@ -249,5 +261,45 @@ public class FarmTravelJDBCDAO implements FarmTravelDAO{
             }
         }
         return farm_travel_list;
+    }
+
+    @Override
+    public Integer openFarmTravelApply(Connection con) {
+        try {
+            pstmt = con.prepareStatement(OPEN_APPLY_STMT);
+
+            return pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace(System.err);
+            return 0;
+        }finally {
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+        }
+    }
+
+    @Override
+    public Integer closeFarmTravelApply(Connection con) {
+        try {
+            pstmt = con.prepareStatement(CLOSE_APPLY_STMT);
+
+            return pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace(System.err);
+            return 0;
+        } finally {
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+        }
     }
 }

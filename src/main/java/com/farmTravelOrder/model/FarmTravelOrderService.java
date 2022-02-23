@@ -84,4 +84,8 @@ public class FarmTravelOrderService {
     }
 
     public List<FarmTravelOrderVO> getAllFarmTravelOrderByFMem(Integer f_mem_ID) { return dao.getAllByFMem(con, f_mem_ID); }
+
+    public void travelCompleted(){
+        System.out.println(dao.travelCompleted(con)+"筆行程已結束");
+    }
 }

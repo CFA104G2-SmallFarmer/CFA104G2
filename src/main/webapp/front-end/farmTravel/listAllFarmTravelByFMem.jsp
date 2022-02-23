@@ -166,98 +166,110 @@
             <div class="row accordion accordion-flush farmTravelList" id="accordionFlushExample">
 
                 <c:forEach var="farmTravel" items="${list}">
-                    <div class="row accordion-item farmTravelItem">
-                        <div class="col-12 orderNo">農遊編號：${farmTravel.farm_travel_ID}</div>
-                        <button class="showFarmTravelBtn" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#flush-collapse_${farmTravel.farm_travel_ID}">
+                    <c:if test="${farmTravel.farm_travel_state ne 9}">
+                        <div class="row accordion-item farmTravelItem">
+                            <div class="col-12 orderNo">農遊編號：${farmTravel.farm_travel_ID}</div>
+                            <button class="showFarmTravelBtn" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapse_${farmTravel.farm_travel_ID}">
 
-                            <div class="row">
-                                <div class="col-3">
-                                    <c:if test="${not empty farmTravel.farm_travel_img}">
-                                        <img src="<%=request.getContextPath()%>/getImage.do?farm_travel_ID=${farmTravel.farm_travel_ID}"
-                                             width="100%" height="150">
-                                    </c:if>
-                                    <c:if test="${empty farmTravel.farm_travel_img}">
-                                        <img src="<%=request.getContextPath()%>/front-end/farmTravel/images/NoImage.png"
-                                             width="100%" height="150">
-                                    </c:if>
-                                </div>
-                                <div class="itemTitle col-3">
-                                        ${farmTravel.farm_travel_title}
-                                </div>
-                                <div class="col-2">
-                                    <div class="row">
-                                        <span style="text-align: center">
-                                            <fmt:formatDate value="${farmTravel.farm_travel_start}" pattern="yyyy/MM/dd HH:mm"/>
-                                        </span>
-                                    </div>
-                                    <div class="row"><span style="text-align: center">｜</span></div>
-                                    <div class="row">
-                                        <span style="text-align: center">
-                                            <fmt:formatDate value="${farmTravel.farm_travel_end}" pattern="yyyy/MM/dd HH:mm"/>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-2">${farmTravel.farm_travel_now}/${farmTravel.farm_travel_max}</div>
-                                <div class="col-2">
-                                    <div class="row">
-                                        <div class="col-2"></div>
-                                        <c:forEach var="farmTravelState" items="${farmTravelStatus}">
-                                            <c:if test="${farmTravel.farm_travel_state == farmTravelState.key}">
-                                                ${farmTravelState.value}
-                                            </c:if>
-                                        </c:forEach>
-                                    </div>
-                                </div>
-                            </div>
-                        </button>
-                        <div id="flush-collapse_${farmTravel.farm_travel_ID}" class="farmTravelInfo collapse"
-                             aria-labelledby="flush-heading_${farmTravel.farm_travel_ID}" data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body">
                                 <div class="row">
-                                    <div class="col-6">
-                                        <div class="row">行程資訊：</div>
-                                        <div class="row">${farmTravel.farm_travel_info}</div>
+                                    <div class="col-3">
+                                        <c:if test="${not empty farmTravel.farm_travel_img}">
+                                            <img src="<%=request.getContextPath()%>/getImage.do?farm_travel_ID=${farmTravel.farm_travel_ID}"
+                                                 width="100%" height="150">
+                                        </c:if>
+                                        <c:if test="${empty farmTravel.farm_travel_img}">
+                                            <img src="<%=request.getContextPath()%>/front-end/farmTravel/images/NoImage.png"
+                                                 width="100%" height="150">
+                                        </c:if>
                                     </div>
-                                    <div class="col-2">
-                                    </div>
-                                    <div class="col-2">
-                                        <div class="row">
-                                            <div class="col-4"></div>
-                                            <div class="col-8">NT$：</div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-4"></div>
-                                            <div class="col-8">${farmTravel.farm_travel_fee}</div>
-                                        </div>
+                                    <div class="itemTitle col-3">
+                                            ${farmTravel.farm_travel_title}
                                     </div>
                                     <div class="col-2">
                                         <div class="row">
-                                            <c:if test="${farmTravel.farm_travel_state eq 0 && farmTravel.farm_travel_now eq 0}">
-                                                <form method="post"
-                                                      action="<%=request.getContextPath()%>/farmTravel.do" class="formBtn">
-                                                    <input type="hidden" name="action" value="getOneForUpdate">
-                                                    <input type="hidden" name="farm_travel_ID"
-                                                           value="${farmTravel.farm_travel_ID}">
-                                                    <button type="submit" class="btnRow btn btn-outline-secondary">修改</button>
-                                                </form>
-                                            </c:if>
+                                            <span style="text-align: center">
+                                                <fmt:formatDate value="${farmTravel.farm_travel_start}" pattern="yyyy/MM/dd HH:mm"/>
+                                            </span>
                                         </div>
+                                        <div class="row"><span style="text-align: center">｜</span></div>
                                         <div class="row">
-                                            <c:if test="${farmTravel.farm_travel_state eq 0 && farmTravel.farm_travel_now eq 0}">
-                                                <button type="button" class="btnRow delete btn btn-outline-danger"
-                                                        value="${farmTravel.farm_travel_ID}">刪除
-                                                </button>
-                                            </c:if>
+                                            <span style="text-align: center">
+                                                <fmt:formatDate value="${farmTravel.farm_travel_end}" pattern="yyyy/MM/dd HH:mm"/>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-2">${farmTravel.farm_travel_now}/${farmTravel.farm_travel_max}</div>
+                                    <div class="col-2">
+                                        <div class="row">
+                                            <div class="col-2"></div>
+                                            <c:forEach var="farmTravelState" items="${farmTravelStatus}">
+                                                <c:if test="${farmTravel.farm_travel_state == farmTravelState.key}">
+                                                    ${farmTravelState.value}
+                                                </c:if>
+                                            </c:forEach>
+                                        </div>
+                                    </div>
+                                </div>
+                            </button>
+                            <div id="flush-collapse_${farmTravel.farm_travel_ID}" class="farmTravelInfo collapse"
+                                 aria-labelledby="flush-heading_${farmTravel.farm_travel_ID}" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="row">行程資訊：</div>
+                                            <div class="row">${farmTravel.farm_travel_info}</div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="row">可報名日期：</div>
+                                            <div class="row">
+                                            <span style="text-align: center">
+                                                <fmt:formatDate value="${farmTravel.travel_apply_start}" pattern="yyyy/MM/dd HH:mm"/>
+                                            </span>
+                                            </div>
+                                            <div class="row"><span style="text-align: center">｜</span></div>
+                                            <div class="row">
+                                            <span style="text-align: center">
+                                                <fmt:formatDate value="${farmTravel.travel_apply_end}" pattern="yyyy/MM/dd HH:mm"/>
+                                            </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="row">
+                                                <div class="col-4"></div>
+                                                <div class="col-8">NT$：</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-4"></div>
+                                                <div class="col-8">${farmTravel.farm_travel_fee}</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="row">
+                                                <c:if test="${farmTravel.farm_travel_now eq 0}">
+                                                    <form method="post"
+                                                          action="<%=request.getContextPath()%>/farmTravel.do" class="formBtn">
+                                                        <input type="hidden" name="action" value="getOneForUpdate">
+                                                        <input type="hidden" name="farm_travel_ID"
+                                                               value="${farmTravel.farm_travel_ID}">
+                                                        <button type="submit" class="btnRow btn btn-outline-secondary">修改</button>
+                                                    </form>
+                                                </c:if>
+                                            </div>
+                                            <div class="row">
+                                                <c:if test="${farmTravel.farm_travel_now eq 0}">
+                                                    <button type="button" class="btnRow delete btn btn-outline-danger"
+                                                            value="${farmTravel.farm_travel_ID}">刪除
+                                                    </button>
+                                                </c:if>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
+                    </c:if>
                 </c:forEach>
-
             </div>
         </div>
     </div>

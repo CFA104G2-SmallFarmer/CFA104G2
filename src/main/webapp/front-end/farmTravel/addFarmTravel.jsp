@@ -66,6 +66,8 @@
                 minDate: 0,
                 onClose: travelStartDate=>{
                     $("#farm_travel_end").datepicker("option", "minDate", travelStartDate);
+                    $("#travel_apply_start").datepicker("option", "maxDate", travelStartDate);
+                    $("#travel_apply_end").datepicker("option", "maxDate", travelStartDate);
                 }
             });
             $("#farm_travel_end").datepicker({
@@ -79,6 +81,16 @@
                 dynamic: false,
                 dropdown: true,
                 scrollbar: true
+            });
+            $("#travel_apply_start").datepicker({
+                dateFormat:"yy-mm-dd",
+                minDate: 0,
+                onClose: startDate=>$("#travel_apply_end").datepicker("option", "minDate", startDate)
+            });
+            $("#travel_apply_end").datepicker({
+                dateFormat:"yy-mm-dd",
+                minDate: 0,
+                onClose: endDate=>$("#travel_apply_start").datepicker("option", "maxDate", endDate)
             });
         });
     </script>
@@ -138,6 +150,14 @@
             <div class="input-group mb-3">
                 <input type="number" class="form-control" id="farm_travel_fee" min="0" autocomplete="off" name="farm_travel_fee" value="<%=(farmTravel == null) ? "" : farmTravel.getFarm_travel_fee()%>">
                 <span class="input-group-text">元</span>
+            </div>
+            <div class="mb-3">
+                <label for="travel_apply_start" class="form-label">報名起日</label>
+                <input type="text" class="form-control" id="travel_apply_start" autocomplete="off" name="travel_apply_start" value="<%=(farmTravel == null) ? "" : (farmTravel.getTravel_apply_start() == null) ? "" : new SimpleDateFormat("yyyy-MM-dd").format(farmTravel.getTravel_apply_start())%>">
+            </div>
+            <div class="mb-3">
+                <label for="travel_apply_end" class="form-label">報名迄日</label>
+                <input type="text" class="form-control" id="travel_apply_end" autocomplete="off" name="travel_apply_end" value="<%=(farmTravel == null) ? "" : (farmTravel.getTravel_apply_end() == null) ? "" : new SimpleDateFormat("yyyy-MM-dd").format(farmTravel.getTravel_apply_end())%>">
             </div>
             <label for="farm_travel_min" class="form-label">最少成團人數</label>
             <div class="input-group mb-3">
@@ -220,6 +240,8 @@
         addForm.farm_travel_end_date.value="2022-03-09";
         addForm.farm_travel_end_time.value="15:00:00";
         addForm.farm_travel_fee.value="3000";
+        addForm.travel_apply_start.value="2022-02-08";
+        addForm.travel_apply_end.value="2022-02-28";
         addForm.farm_travel_min.value="3";
         addForm.farm_travel_max.value="10";
     };

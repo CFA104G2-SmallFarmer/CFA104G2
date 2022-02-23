@@ -84,9 +84,9 @@ public class FarmTravelOrderServlet extends HttpServlet {
                     FarmTravelOrderService farmTravelOrderService = new FarmTravelOrderService();
                     farmTravelOrder =  farmTravelOrderService.addFarmTravelOrder(mem_ID, farm_travel_ID, f_mem_ID, people_num, order_fee, farm_travel_start, farm_travel_end, order_memo, partner_name_list, partner_phone_list, guardian_name_list, guardian_phone_list);
                     if (farmTravel.getFarm_travel_max() == farmTravel.getFarm_travel_now()+people_num){
-                        farmTravelService.updateFarmTravel(farmTravel.getFarm_travel_title(),farmTravel.getFarm_travel_img(),farmTravel.getFarm_travel_info(),farmTravel.getFarm_travel_start(),farmTravel.getFarm_travel_end(),farmTravel.getFarm_travel_fee(),farmTravel.getFarm_travel_min(),farmTravel.getFarm_travel_max(),farmTravel.getFarm_travel_now()+people_num,3,farmTravel.getFarm_travel_ID());
+                        farmTravelService.updateFarmTravel(farmTravel.getFarm_travel_title(),farmTravel.getFarm_travel_img(),farmTravel.getFarm_travel_info(),farmTravel.getFarm_travel_start(),farmTravel.getFarm_travel_end(),farmTravel.getFarm_travel_fee(),farmTravel.getTravel_apply_start(),farmTravel.getTravel_apply_end(),farmTravel.getFarm_travel_min(),farmTravel.getFarm_travel_max(),farmTravel.getFarm_travel_now()+people_num,3,farmTravel.getFarm_travel_ID());
                     }else{
-                        farmTravelService.updateFarmTravel(farmTravel.getFarm_travel_title(),farmTravel.getFarm_travel_img(),farmTravel.getFarm_travel_info(),farmTravel.getFarm_travel_start(),farmTravel.getFarm_travel_end(),farmTravel.getFarm_travel_fee(),farmTravel.getFarm_travel_min(),farmTravel.getFarm_travel_max(),farmTravel.getFarm_travel_now()+people_num,farmTravel.getFarm_travel_state(),farmTravel.getFarm_travel_ID());
+                        farmTravelService.updateFarmTravel(farmTravel.getFarm_travel_title(),farmTravel.getFarm_travel_img(),farmTravel.getFarm_travel_info(),farmTravel.getFarm_travel_start(),farmTravel.getFarm_travel_end(),farmTravel.getFarm_travel_fee(),farmTravel.getTravel_apply_start(),farmTravel.getTravel_apply_end(),farmTravel.getFarm_travel_min(),farmTravel.getFarm_travel_max(),farmTravel.getFarm_travel_now()+people_num,farmTravel.getFarm_travel_state(),farmTravel.getFarm_travel_ID());
                     }
                 }catch(Exception e){
                     e.printStackTrace(System.err);
@@ -132,7 +132,7 @@ public class FarmTravelOrderServlet extends HttpServlet {
                     FarmTravelOrderService farmTravelOrderService = new FarmTravelOrderService();
                     farmTravelOrder = farmTravelOrderService.getOneFarmTravelOrder(order_ID);
                     farmTravelOrderService.updateFarmTravelOrder(2, farmTravelOrder.getRefund_time(), farmTravelOrder.getFarm_travel_stars(), farmTravelOrder.getMem_ID_stars(), farmTravelOrder.getOrder_memo(), order_ID);
-                    out.print("活動已完成");
+                    out.print("行程已結束");
                 }catch(Exception e){
                     e.printStackTrace(System.err);
                     out.print("發生意外的錯誤");

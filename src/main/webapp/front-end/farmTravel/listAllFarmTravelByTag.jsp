@@ -64,6 +64,8 @@
                             <td>${farmTravel.farm_travel_start}</td>
                             <td>${farmTravel.farm_travel_end}</td>
                             <td>${farmTravel.farm_travel_fee}</td>
+                            <td>${farmTravel.travel_apply_start}</td>
+                            <td>${farmTravel.travel_apply_end}</td>
                             <td>${farmTravel.farm_travel_min}</td>
                             <td>${farmTravel.farm_travel_max}</td>
                             <td>${farmTravel.farm_travel_now}</td>

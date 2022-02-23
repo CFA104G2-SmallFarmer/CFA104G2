@@ -10,4 +10,6 @@ public interface FarmTravelDAO {
     FarmTravelVO findByPK(Connection con, Integer farm_travel_ID);
     List<FarmTravelVO> getAllFromFMem(Connection con, Integer f_mem_ID);
     List<FarmTravelVO> getAllMemCanApply(Connection con);
+    Integer openFarmTravelApply(Connection con);
+    Integer closeFarmTravelApply(Connection con);
 }

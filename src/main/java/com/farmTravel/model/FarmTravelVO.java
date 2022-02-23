@@ -13,6 +13,8 @@ public class FarmTravelVO {
     private Timestamp farm_travel_start;
     private Timestamp farm_travel_end;
     private Integer farm_travel_fee;
+    private Timestamp travel_apply_start;
+    private Timestamp travel_apply_end;
     private Integer farm_travel_min;
     private Integer farm_travel_max;
     private Integer farm_travel_now;
@@ -88,6 +90,22 @@ public class FarmTravelVO {
 
     public void setFarm_travel_fee(Integer farm_travel_fee) {
         this.farm_travel_fee = farm_travel_fee;
+    }
+
+    public Timestamp getTravel_apply_start() {
+        return travel_apply_start;
+    }
+
+    public void setTravel_apply_start(Timestamp travel_apply_start) {
+        this.travel_apply_start = travel_apply_start;
+    }
+
+    public Timestamp getTravel_apply_end() {
+        return travel_apply_end;
+    }
+
+    public void setTravel_apply_end(Timestamp travel_apply_end) {
+        this.travel_apply_end = travel_apply_end;
     }
 
     public Integer getFarm_travel_min() {

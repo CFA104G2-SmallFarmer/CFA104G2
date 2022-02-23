@@ -132,15 +132,17 @@
             <div>星期7　08:00~18:00</div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-12">
-            <form method="post" action="/CFA104G2/farmTravel.do">
-                <input type="hidden" name="action" value="getOneForApply">
-                <input type="hidden" name="farm_travel_ID" value="${farmTravel.farm_travel_ID}">
-                <button type="submit" class="submitBtn btn">手　刀　報　名</button>
-            </form>
+    <c:if test="${farmTravel.farm_travel_state eq 1 || farmTravel.farm_travel_state eq 2}">
+        <div class="row">
+            <div class="col-12">
+                <form method="post" action="/CFA104G2/farmTravel.do">
+                    <input type="hidden" name="action" value="getOneForApply">
+                    <input type="hidden" name="farm_travel_ID" value="${farmTravel.farm_travel_ID}">
+                    <button type="submit" class="submitBtn btn">手　刀　報　名</button>
+                </form>
+            </div>
         </div>
-    </div>
+    </c:if>
 </div>
 
 </body>
