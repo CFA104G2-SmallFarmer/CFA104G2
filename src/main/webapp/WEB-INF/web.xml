@@ -36,7 +36,7 @@
 		<servlet-name>MemServlet</servlet-name>
 		<url-pattern>/front-end/mem/mem.do</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet-mapping>
 		<servlet-name>MemServlet</servlet-name>
 		<url-pattern>/mem/mem.do</url-pattern>
@@ -74,6 +74,14 @@
 
 	<!--************************** 商城專區 ************************** -->
 	<servlet>
+		<servlet-name>ShopProductDBGifReader4</servlet-name>
+		<servlet-class>com.shopProduct.controller.ShopProductDBGifReader4</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ShopProductDBGifReader4</servlet-name>
+		<url-pattern>/front-end/Product/ShopProductDBGifReader4</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>ShopProductServlet</servlet-name>
 		<servlet-class>com.shopProduct.controller.ShopProductServlet</servlet-class>
 	</servlet>
@@ -99,7 +107,6 @@
 		<servlet-name>ShopOrderDetailsServlet</servlet-name>
 		<url-pattern>/shopOrderDetails/shopOrderDetails.do</url-pattern>
 	</servlet-mapping>
-
 	<servlet>
 		<servlet-name>ShopCartServlet</servlet-name>
 		<servlet-class>com.shopCart.controller.ShopCartServlet</servlet-class>
@@ -108,7 +115,6 @@
 		<servlet-name>ShopCartServlet</servlet-name>
 		<url-pattern>/shopCart/shopCart.do</url-pattern>
 	</servlet-mapping>
-
 	<servlet>
 		<servlet-name>ShopHashtagServlet</servlet-name>
 		<servlet-class>com.shopHashtag.controller.ShopHashtagServlet</servlet-class>
@@ -135,6 +141,15 @@
 
 
 	<!--************************** 農遊專區 ************************** -->
+	<servlet>
+		<servlet-name>ScheduleServlet</servlet-name>
+		<servlet-class>com.core.schedule.ScheduleServlet</servlet-class>
+		<load-on-startup>10</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ScheduleServlet</servlet-name>
+		<url-pattern>/ScheduleServlet</url-pattern>
+	</servlet-mapping>
 	<!--************************** 以上農遊 ************************** -->
 
 
@@ -217,6 +232,31 @@
 
 	<!--************************* 管理員專區 ************************* -->
 	<servlet>
+		<servlet-name>AdminLogin</servlet-name>
+		<servlet-class>com.administrator.controller.AdminLogin</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AdminLogin</servlet-name>
+		<url-pattern>/back-end/administrator/adminLogin.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>HssImgReader</servlet-name>
+		<servlet-class>com.homeSlideShow.controller.HssImgReader</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HssImgReader</servlet-name>
+		<url-pattern>/back-end/homeSlideShow/hssImgReader.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>HomeSlideShowServlet</servlet-name>
+		<servlet-class>com.homeSlideShow.controller.HomeSlideShowServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HomeSlideShowServlet</servlet-name>
+		<url-pattern>/back-end/homeSlideShow/homeSlideShow.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>MessageServlet</servlet-name>
 		<servlet-class>com.message.controller.MessageServlet</servlet-class>
 	</servlet>
@@ -224,25 +264,30 @@
 		<servlet-name>MessageServlet</servlet-name>
 		<url-pattern>/back-end/message/message.do</url-pattern>
 	</servlet-mapping>
-
 	<servlet>
 		<servlet-name>AnnouncementServlet</servlet-name>
 		<servlet-class>com.announcement.controller.AnnouncementServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>AnnouncementServlet</servlet-name>
-		<url-pattern>/announcement/announcement.do</url-pattern>
+		<url-pattern>/back-end/announcement/announcement.do</url-pattern>
 	</servlet-mapping>
-
+	<servlet>
+		<servlet-name>AdminImgReader</servlet-name>
+		<servlet-class>com.administrator.controller.AdminImgReader</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AdminImgReader</servlet-name>
+		<url-pattern>/back-end/administrator/adminImgReader.do</url-pattern>
+	</servlet-mapping>
 	<servlet>
 		<servlet-name>AdministratorServlet</servlet-name>
 		<servlet-class>com.administrator.controller.AdministratorServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>AdministratorServlet</servlet-name>
-		<url-pattern>/administrator/administrator.do</url-pattern>
+		<url-pattern>/back-end/administrator/administrator.do</url-pattern>
 	</servlet-mapping>
-
 	<!--************************* 以上管理員 ************************* -->
 
 	<!--************************ filter區 ************************ -->
@@ -273,11 +318,55 @@
 		<url-pattern>/front-end/projPic/addProjPic.jsp</url-pattern>
 		<url-pattern>/front-end/projPic/update_proj_pic_input.jsp</url-pattern>
 
-		<dispatcher>REQUEST</dispatcher>
-		<dispatcher>FORWARD</dispatcher>
-		<dispatcher>INCLUDE</dispatcher>
-		<dispatcher>ERROR</dispatcher>
-		<dispatcher>ASYNC</dispatcher>
+		<!--************************* 小農會員filter ************************* -->
+		<url-pattern>/front-end/fMem/addFMem.jsp</url-pattern>
+		<url-pattern>/front-end/fMem/fMemAccreditationVerify.jsp</url-pattern>
+		<url-pattern>/front-end/fMem/fMemberInfom.jsp</url-pattern>
+		<url-pattern>/front-end/fMem/update_fmem_input.jsp</url-pattern>
+
+		<url-pattern>/front-end/mem/update_mem_input.jsp</url-pattern>
+		<url-pattern>/front-end/mem/memberInfom.jsp</url-pattern>
+
+		<url-pattern>/front-end/privateMessage/chat.jsp</url-pattern>
+		<!--************************** 商城filter ************************** -->
+		<!-- shopOrder -->
+		<url-pattern>/front-end/shopOrder/checkout.jsp</url-pattern>
+		<url-pattern>/front-end/shopOrder/listAllOrderByFMem.jsp</url-pattern>
+		<url-pattern>/front-end/shopOrder/listAllOrderByMem.jsp</url-pattern>
+		<url-pattern>/front-end/shopOrder/listOneOrder.jsp</url-pattern>
+		<url-pattern>/front-end/shopOrder/searchOrder.jsp</url-pattern>
+		<url-pattern>/front-end/shopOrder/searchOrderByFMem.jsp</url-pattern>
+		<url-pattern>/front-end/shopOrder/update_order_input.jsp</url-pattern>
+		<!-- shopOrderDetails -->
+		<url-pattern>/front-end/shopOrderDetails/listPKALLShopOrderDetails.jsp</url-pattern>
+		<!-- shopCart -->
+		<url-pattern>/front-end/shopCart/shopCart.jsp</url-pattern>
+		<!-- product -->
+		<url-pattern>/front-end/Product/addProductByFmem.jsp</url-pattern>
+		<url-pattern>/front-end/Product/listAllProductByFmem.jsp</url-pattern>
+		<url-pattern>/front-end/Product/listOneProductByFmem.jsp</url-pattern>
+		<url-pattern>/front-end/Product/update_ProductByFmem_input.jsp
+		<!--************************* 以上商城filter ************************* -->
+		<!--************************ 以上小農會員filter ************************ -->
+		
+		
+
+		<!-- ****** -->
+		<dispatcher>
+			REQUEST
+		</dispatcher>
+		<dispatcher>
+			FORWARD
+		</dispatcher>
+		<dispatcher>
+			INCLUDE
+		</dispatcher>
+		<dispatcher>
+			ERROR
+		</dispatcher>
+		<dispatcher>
+			ASYNC
+		</dispatcher>
 	</filter-mapping>
 	<!--************************* 以上filter ************************* -->
 
