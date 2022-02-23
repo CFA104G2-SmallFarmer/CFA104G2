@@ -140,6 +140,16 @@ public class MemService {
 		dao.updateAccState(memVO);
 		return memVO;
 	}
+	
+		// 專門修改身分別
+	public MemVO updateMemIDAccState(Integer mem_id, Integer mem_id_state) {
+
+		MemVO memVO = new MemVO();
+		memVO.setMem_id(mem_id);
+		memVO.setMem_id_state(mem_id_state);
+		dao.updateIDAccState(memVO);
+		return memVO;
+	}
 
 	public void deleteMem(Integer mem_id) {
 		dao.delete(mem_id);
