@@ -472,6 +472,7 @@ invisible.style.display = "";
 <body style="" class="nt-s nl-l">
 	<jsp:include page="/front-end/home/header2/header2.jsp" flush="true"/>
 	<jsp:include page="/front-end/home/memIndex.jsp" flush="true"/>
+	<jsp:include page="/front-end/privateMessage/chat.jsp" flush="true"/>
 	<div id="main" style="float:left;">
 		<div>
 		<div>
