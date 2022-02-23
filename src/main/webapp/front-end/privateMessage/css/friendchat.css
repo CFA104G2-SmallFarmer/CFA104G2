@@ -91,15 +91,7 @@
   float: right;
   background: #b9d4b3;
   color: #fff;
-}
-
-.friend + .me{
-  border-bottom-right-radius: 5px;
-}
-
-.me + .me{
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
+  margin:0;
 }
 
 .me:last-of-type {
