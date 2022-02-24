@@ -186,11 +186,11 @@ request.setAttribute("eight", new Integer[]{1, 2, 3, 4, 5, 6, 7, 8});
 						src="<%=request.getContextPath()%>/front-end/home/images/farmerManage-Final.png">
 				</div>
 				<ul class="menu">
-					<li><a href="#">認養專案管理&nbsp;</a></li>
+					 <li><a href="<%=request.getContextPath()%>/front-end/project/listAllProjByFmem.jsp">認養專案管理&nbsp;</a></li>
 
-					<li><a href="#">認養訂單管理&nbsp;</a></li>
+        <li><a href="<%=request.getContextPath()%>/front-end/projOrder/listAllOrderByFmem.jsp">小農認養訂單管理&nbsp;</a></li>
 
-					<li><a href="#">回到首頁 &nbsp;</a></li>
+        <li><a href="<%=request.getContextPath()%>/front-end/home/home.jsp"">回到首頁 &nbsp;</a></li>
 					<!-- <li><a href="#"><i class="material-icons" style="font-size:27px">mail_outline</i> &nbsp;</a></li> 這行顯示不出來-->
 				</ul>
 				<div class="div0 showmenu">
