@@ -298,8 +298,8 @@ ShopCartVO shopCartVO = (ShopCartVO) request.getAttribute("shopCartVO"); //EmpSe
 			<td></td>
 <!-- 			上一頁 -->
 			<td>
-<%-- 			<button class="btn btn-warning" type="button"type="button"name="back" class="gree" value="上一頁"onClick="location.href='<%=request.getContextPath()%>/front-end/Product/shop.jsp';">上一頁</button> --%>
-			<button class="btn btn-warning" type="button"type="button"name="back" class="gree" value="上一頁"onClick="location.href='javascript:history.back()';">上一頁</button>
+			<button class="btn btn-warning" type="button"type="button"name="back" class="gree" value="上一頁"onClick="location.href='<%=request.getContextPath()%>/front-end/Product/shop.jsp';">繼續購物</button>
+<!-- 			<button class="btn btn-warning" type="button"type="button"name="back" class="gree" value="上一頁"onClick="location.href='javascript:history.back()';">上一頁</button> -->
 			</td>
 			<td>
 			
