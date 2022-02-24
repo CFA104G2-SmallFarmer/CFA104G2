@@ -211,10 +211,10 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
 										【${projPerkVO.perk_abbr_name}】 <br>${projPerkVO.perk_intro}
 										<%-- 【${projPerkVO.perk_abbr_name}】 <br>NT$${projPerkVO.perk_fund} --%>
 									</p>
-									<br>
-									<p>
+								
+									<span>
 											寄送地區：${projPerkVO.perk_ship_area}
-									</p>
+									</span>
 								</div>
 								<div class="mt3 gray tc ph2 f7 ba">預計於${projPerkVO.perk_ship_date}實現</div> 
 <!-- 								</a> -->
@@ -265,7 +265,7 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
               function printAlert() {
                 window.alert('專案上架五日後，不能修改或刪除回饋方案');
               }
-</script>
+</script> 
 	
 	
 <!-- 	<script type="text/javascript"> -->

@@ -66,6 +66,7 @@ pageContext.setAttribute("list",list);
 .buya :hover {
 	background-color: #f7f6e4;
 	color: deepgray;
+	cursor: pointer;
 }
 
 </style>
@@ -177,14 +178,19 @@ pageContext.setAttribute("list",list);
 								<div class="mt3 gray tc ph2 f7 ba">預計於${projPerkVO.perk_ship_date}實現</div> 
 															<div style="margin-top: 10px; margin-bottom: 20px; height: 17px;"
 								class="w-100-l w-50-ns ph3 ph0-l flex-none self-start">
-								<a class="buya"
-									href="${pageContext.request.contextPath}/projPerk/projPerk.do?proj_id=${projectVO.proj_id}&mem_id=${memVO.mem_id}&perk_id=${projPerkVO.perk_id}&action=go_to_addOrderByMem">
-									<div
-										style="color: #8f7e5d; font-size: 16px; border-radius: 0px; text-align: center; border: solid #aaba8b 1.5px; padding: 4px;"
-										class="w-100 ph3 ph0-l flex-none self-start buyy">
+<!-- 								/*0224新增*/ -->
+								<FORM id="search_form6" METHOD="post" ACTION="<%=request.getContextPath()%>/projPerk/projPerk.do">	
+							
+									<div onClick="document.forms['search_form6'].submit();" style="color: #8f7e5d; font-size: 16px; border-radius: 0px; text-align: center; border: solid #aaba8b 1.5px; padding: 4px;"
+										class="w-100 ph3 ph0-l flex-none self-start buyy buya">
 										<strong>認購此專案</strong>
 									</div>
-								</a>
+							
+								<input type="hidden" name="proj_id"  value="${projectVO.proj_id}">
+ 								<input type="hidden" name="perk_id"  value="${projPerkVO.perk_id}">
+                      		    <input type="hidden" name="action" value="go_to_addOrderByMem">	 
+								   </FORM>
+								   
 							</div>
 						</div>
 					</c:forEach>
