@@ -3,20 +3,23 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.shopOrder.model.*"%>
 <%@ page import="java.util.*"%>
+<%@ page import="com.fMem.model.*"%>
+<%@ page import="com.mem.model.*"%>
+
+<%-- <%FMemVO fMemVO = (FMemVO) session.getAttribute("fMemVO");%> --%>
+<%MemVO MemVO = (MemVO) session.getAttribute("memVO");%>
+<%Integer mem_id = MemVO.getMem_id();%>
+<%-- <%Integer f_mem_id = fMemVO.getF_mem_id();%> --%>
 
 
-<!-- 用傳list<某物件>的方式寫，讓servlet那邊先做完projOrderSvc.getAllMemOrder(mem_id) -->
-<%-- <%	List<ShopOrderVO> list = (List<ShopOrderVO>) request.getAttribute("shopOrderVO"); --%>
-<%--     pageContext.setAttribute("list",list);%> --%>
 
 <%
   ShopOrderService shopOrderSvc = new ShopOrderService(); 
-  List<ShopOrderVO> list = shopOrderSvc.getAllMemOrder(77003);
+  List<ShopOrderVO> list = shopOrderSvc.getAllMemOrder(mem_id);
   pageContext.setAttribute("list",list);	 
 %>
 
 <%
-    String mem_id = request.getParameter("mem_id");
 	String membership= "buyer";
 %>
 
@@ -38,7 +41,7 @@ request.setAttribute("order_pay_arr", new String[]{"信用卡","銀行轉帳"});
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-  <link href="./farmer_order_css/icon" rel="stylesheet">
+  <link href="<%=request.getContextPath()%>/front-end/shopOrder/farmer_order_css/icon" rel="stylesheet">
 
   <title>會員商城訂單管理</title>
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -62,20 +65,20 @@ request.setAttribute("order_pay_arr", new String[]{"信用卡","銀行轉帳"});
       margin: 1px;
     }
   </style>
-  <link href="./farmer_order_css/index.f923077f35fa95f6d6ec.css" data-module="vendor" rel="stylesheet">
-  <link href="./farmer_order_css/index.2b1612d1a8fda6896c22.css" data-module="framework" rel="stylesheet">
+  <link href="<%=request.getContextPath()%>/front-end/shopOrder/farmer_order_css/index.f923077f35fa95f6d6ec.css" data-module="vendor" rel="stylesheet">
+  <link href="<%=request.getContextPath()%>/front-end/shopOrder/farmer_order_css/index.2b1612d1a8fda6896c22.css" data-module="framework" rel="stylesheet">
 
   <link data-module="fulfillment-root" rel="stylesheet" type="text/css"
-    href="./farmer_order_css/FulfillmentVendorCommon.0816a35613b0a49a6edb.css">
+    href="<%=request.getContextPath()%>/front-end/shopOrder/farmer_order_css/FulfillmentVendorCommon.0816a35613b0a49a6edb.css">
   <link data-module="fulfillment-root" rel="stylesheet" type="text/css"
-    href="./farmer_order_css/FulfillmentBase.dc3ce97257813a5408ff.css">
-  <link data-module="order" rel="stylesheet" type="text/css" href="./farmer_order_css/331.155057b0fc3b98ce38f8.css">
+    href="<%=request.getContextPath()%>/front-end/shopOrder/farmer_order_css/FulfillmentBase.dc3ce97257813a5408ff.css">
+  <link data-module="order" rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/front-end/shopOrder/farmer_order_css/331.155057b0fc3b98ce38f8.css">
   <link data-module="order" rel="stylesheet" type="text/css"
-    href="./farmer_order_css/old-order-list.3167532992dc830110e3.css">
+    href="<%=request.getContextPath()%>/front-end/shopOrder/farmer_order_css/old-order-list.3167532992dc830110e3.css">
 
   <script src="chrome-extension://jhffgcfmcckgmioipfnmbannkpncfipo/util.js"></script>
   <script src="chrome-extension://jhffgcfmcckgmioipfnmbannkpncfipo/pagejs.js"></script>
-  <link href="./farmer_order_css/icon(1)" rel="stylesheet">
+  <link href="<%=request.getContextPath()%>/front-end/shopOrder/farmer_order_css/icon(1)" rel="stylesheet">
   <style type="text/css">
     * {
       <br>-webkit-user-select: text !important;
@@ -95,7 +98,7 @@ request.setAttribute("order_pay_arr", new String[]{"信用卡","銀行轉帳"});
     }
   </style>
   
- <jsp:include page="/front-end/home/header.jsp" flush="true"/>
+<jsp:include page="/front-end/home/header2/header2.jsp" flush="true"/>
   
   
 </head>
@@ -320,146 +323,11 @@ request.setAttribute("order_pay_arr", new String[]{"信用卡","銀行轉帳"});
     							<input type="hidden" name="order_id"  value="${shopOrderVO.order_id}">	
 			     				<input type="hidden" name="action" value="grtOne_For_Update">
 
-<%--     							<input type="hidden" name="order_id"  value="${shopOrderVO.order_id}">	 --%>
-<%--     							<input type="hidden" name="order_add"  value="${shopOrderVO.order_add}">	 --%>
-<%--     							<input type="hidden" name="order_receiver"  value="${shopOrderVO.order_receiver}">	 --%>
-<%--     							<input type="hidden" name="order_tel"  value="${shopOrderVO.order_tel}">	 --%>
-<%--     							<input type="hidden" name="order_memo"  value="${shopOrderVO.order_memo}">	 --%>
-<%--     							<input type="hidden" name="order_state"  value="${shopOrderVO.order_state}">	 --%>
-<%--     							<input type="hidden" name="order_ship_date"  value="${shopOrderVO.order_ship_date}">	 --%>
-<%--     							<input type="hidden" name="order_finish_date"  value="${shopOrderVO.order_finish_date}"> --%>
-<%--     							<input type="hidden" name="order_cancel_date"  value="${shopOrderVO.order_cancel_date}">		 			   --%>
-			     				
-    							
-<%--     							<input type="hidden" name="mem_id" value="${shopOrderVO.mem_id}"> --%>
     							<input type="hidden" name="membership" value="buyer">
     							
                                  </FORM>
                                      <br>
     							
-<%--                                 <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/shopOrder/shopOrder.do">	 --%>
-<%--     							<input type="hidden" name="order_id"  value="${shopOrderVO.order_id}">	 --%>
-<%--     							<input type="hidden" name="order_add"  value="${shopOrderVO.order_add}">	 --%>
-<%--     							<input type="hidden" name="order_receiver"  value="${shopOrderVO.order_receiver}">	 --%>
-<%--     							<input type="hidden" name="order_tel"  value="${shopOrderVO.order_tel}">	 --%>
-<%--     							<input type="hidden" name="order_memo"  value="${shopOrderVO.order_memo}">	 --%>
-<%--     							<input type="hidden" name="order_state"  value="${shopOrderVO.order_state}">	 --%>
-<%--     							<input type="hidden" name="order_ship_date"  value="${shopOrderVO.order_ship_date}">	 --%>
-<%--     							<input type="hidden" name="order_finish_date"  value="${shopOrderVO.order_finish_date}"> --%>
-<%--     							<input type="hidden" name="order_cancel_date"  value="${shopOrderVO.order_cancel_date}">	 --%>
-			     				
-<!-- 			     				<input type="hidden" name="action" value="update_state_to_4_and_then_show_All">	 			   -->
-			
-<%-- 			    				<input type="hidden" name="mem_id" value="${order.mem_id}"> --%>
-<!--     							<input type="hidden" name="membership" value="buyer"> -->
-			
-<!--                                   <button data-v-4325ccd1=""  -->
-<!--                                     class="shopee-button shopee-button--normal" type="submit"><span> -->
-<!--                                       取消訂單 -->
-<!--                                     </span> -->
-<!--                                   </button>  -->
-<!--                                   </FORM> -->
-<%--    							 </c:when> --%>
-<%--    							 	<c:when test="${shopOrderVO.order_state ==1}"> --%>
-<%--    							  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/shopOrder/shopOrder.do">	 --%>
-<%--     							<input type="hidden" name="order_id"  value="${shopOrderVO.order_id}">	 --%>
-<%--     							<input type="hidden" name="order_add"  value="${shopOrderVO.order_add}">	 --%>
-<%--     							<input type="hidden" name="order_receiver"  value="${shopOrderVO.order_receiver}">	 --%>
-<%--     							<input type="hidden" name="order_tel"  value="${shopOrderVO.order_tel}">	 --%>
-<%--     							<input type="hidden" name="order_memo"  value="${shopOrderVO.order_memo}">	 --%>
-<%--     							<input type="hidden" name="order_state"  value="${shopOrderVO.order_state}">	 --%>
-<%--     							<input type="hidden" name="order_ship_date"  value="${shopOrderVO.order_ship_date}">	 --%>
-<%--     							<input type="hidden" name="order_finish_date"  value="${shopOrderVO.order_finish_date}"> --%>
-<%--     							<input type="hidden" name="order_cancel_date"  value="${shopOrderVO.order_cancel_date}">	 --%>
-			     				
-<!-- 			     				<input type="hidden" name="action" value="update_state_to_3_and_then_show_All">	 			   -->
-			
-<%-- 						    	<input type="hidden" name="mem_id" value="${order.mem_id}"> --%>
-<!--     							<input type="hidden" name="membership" value="buyer"> -->
-			
-<!--                                   <button data-v-4325ccd1=""  -->
-<!--                                     class="shopee-button shopee-button--normal" type="submit"><span> -->
-<!--                                       已出貨 -->
-<!--                                     </span> -->
-<!--                                   </button>  -->
-<!--                                   </FORM> -->
-                                    
-<!--                                     <br> -->
-                                    
-<%--                                 <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/shopOrder/shopOrder.do">	 --%>
-<%--     							<input type="hidden" name="order_id"  value="${shopOrderVO.order_id}">	 --%>
-<%--     							<input type="hidden" name="order_add"  value="${shopOrderVO.order_add}">	 --%>
-<%--     							<input type="hidden" name="order_receiver"  value="${shopOrderVO.order_receiver}">	 --%>
-<%--     							<input type="hidden" name="order_tel"  value="${shopOrderVO.order_tel}">	 --%>
-<%--     							<input type="hidden" name="order_memo"  value="${shopOrderVO.order_memo}">	 --%>
-<%--     							<input type="hidden" name="order_state"  value="${shopOrderVO.order_state}">	 --%>
-<%--     							<input type="hidden" name="order_ship_date"  value="${shopOrderVO.order_ship_date}">	 --%>
-<%--     							<input type="hidden" name="order_finish_date"  value="${shopOrderVO.order_finish_date}"> --%>
-<%--     							<input type="hidden" name="order_cancel_date"  value="${shopOrderVO.order_cancel_date}">	 --%>
-<!-- 			     				<input type="hidden" name="action" value="update_state_to_4_and_then_show_All">	 			   -->
-			
-<%-- 								<input type="hidden" name="mem_id" value="${order.mem_id}"> --%>
-<!--     							<input type="hidden" name="membership" value="buyer"> -->
-			
-			
-<!--                                   <button data-v-4325ccd1=""  -->
-<!--                                     class="shopee-button shopee-button--normal" type="submit"><span> -->
-<!--                                       取消訂單 -->
-<!--                                     </span> -->
-<!--                                   </button>  -->
-<!--                                   </FORM> -->
-<%--    							 </c:when> --%>
-<%--     							<c:when test="${projOrderVO.order_state ==2}"> --%>
-<%--     							<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/shopOrder/shopOrder.do">	 --%>
-<%--     							<input type="hidden" name="order_id"  value="${shopOrderVO.order_id}">	 --%>
-<%--     							<input type="hidden" name="order_add"  value="${shopOrderVO.order_add}">	 --%>
-<%--     							<input type="hidden" name="order_receiver"  value="${shopOrderVO.order_receiver}">	 --%>
-<%--     							<input type="hidden" name="order_tel"  value="${shopOrderVO.order_tel}">	 --%>
-<%--     							<input type="hidden" name="order_memo"  value="${shopOrderVO.order_memo}">	 --%>
-<%--     							<input type="hidden" name="order_state"  value="${shopOrderVO.order_state}">	 --%>
-<%--     							<input type="hidden" name="order_ship_date"  value="${shopOrderVO.order_ship_date}">	 --%>
-<%--     							<input type="hidden" name="order_finish_date"  value="${shopOrderVO.order_finish_date}"> --%>
-<%--     							<input type="hidden" name="order_cancel_date"  value="${shopOrderVO.order_cancel_date}">	 --%>
-    								
-<!-- 			     				<input type="hidden" name="action" value="update_state_to_3_and_then_show_All">	 			   -->
-			
-<%-- 								<input type="hidden" name="mem_id" value="${order.mem_id}"> --%>
-<!--     							<input type="hidden" name="membership" value="buyer"> -->
-			
-			
-<!--                                   <button data-v-4325ccd1=""  -->
-<!--                                     class="shopee-button shopee-button--normal" type="submit"><span> -->
-<!--                                       完成訂單 -->
-<!--                                     </span> -->
-<!--                                   </button>  -->
-<!--                                   </FORM> -->
-<%--    							 </c:when> --%>
-<%--    							   	<c:when test="${shopOrderVO.order_state ==3}"> --%>
-    							
-<%--    							 </c:when> --%>
-<%--    							  	<c:when test="${shopOrderVO.order_state ==4}"> --%>
-<%--     							<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/shopOrder/shopOrder.do">	 --%>
-<%--     							<input type="hidden" name="order_id"  value="${shopOrderVO.order_id}">	 --%>
-<%--     							<input type="hidden" name="order_add"  value="${shopOrderVO.order_add}">	 --%>
-<%--     							<input type="hidden" name="order_receiver"  value="${shopOrderVO.order_receiver}">	 --%>
-<%--     							<input type="hidden" name="order_tel"  value="${shopOrderVO.order_tel}">	 --%>
-<%--     							<input type="hidden" name="order_memo"  value="${shopOrderVO.order_memo}">	 --%>
-<%--     							<input type="hidden" name="order_state"  value="${shopOrderVO.order_state}">	 --%>
-<%--     							<input type="hidden" name="order_ship_date"  value="${shopOrderVO.order_ship_date}">	 --%>
-<%--     							<input type="hidden" name="order_finish_date"  value="${shopOrderVO.finish_date}"> --%>
-<%--     							<input type="hidden" name="order_cancel_date"  value="${shopOrderVO.order_cancel_date}"> --%>
-    								
-<!-- 			     				<input type="hidden" name="action" value="update_state_to_5_and_then_show_All">	 			   -->
-			
-<%-- 								<input type="hidden" name="mem_id" value="${order.mem_id}"> --%>
-<!--     							<input type="hidden" name="membership" value="buyer"> -->
-			
-<!--                                   <button data-v-4325ccd1=""  -->
-<!--                                     class="shopee-button shopee-button--normal" type="submit"><span> -->
-<!--                                       確認退款 -->
-<!--                                     </span> -->
-<!--                                   </button>  -->
-<!--                                   </FORM> -->
    							 </c:when>
    						
   						  	  <c:otherwise>

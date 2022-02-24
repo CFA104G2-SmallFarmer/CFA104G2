@@ -1,14 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="com.shopCart.model.*"%>
 <%@ page import="java.util.*"%>
+<%@ page import="com.shopCart.model.*"%>
+<%@ page import="com.fMem.model.*"%>
+<%@ page import="com.mem.model.*"%>
+
+<%FMemVO fMemVO = (FMemVO) session.getAttribute("fMemVO");%>
+<%MemVO MemVO = (MemVO) session.getAttribute("memVO");%>
+
 
 <%
 ShopCartService shopCartSvc = new ShopCartService();
+Integer mem_id = Integer.valueOf(MemVO.getMem_id());
 
 //  Integer mem_id = Integer.valueOf(request.getParameter("mem_id"));
-Integer mem_id = 77003;
+// Integer mem_id = 77003;
 // session.getAttribute("mem_id",77003);
 
 List<ShopCartVO> list = shopCartSvc.getOneList(mem_id);
@@ -56,16 +63,6 @@ ShopCartVO shopCartVO = (ShopCartVO) request.getAttribute("shopCartVO"); //EmpSe
     .totalprice{
       size: 200px;
     }
-/*      .menu { */
-/*       flex: 0 1 80px; */
-/*       background-color: #EAF0ED; */
-/*       color: #3F5D45; */
-/*       display: flex; */
-/*       flex-direction: column; */
-/*       align-items: center; */
-/*       justify-content: space-between; */
-/*       padding: 100px 0; */
-/*     } */
 
     .all {
       display: flex;
@@ -108,16 +105,41 @@ ShopCartVO shopCartVO = (ShopCartVO) request.getAttribute("shopCartVO"); //EmpSe
             position: absolute;
             border-radius: 100%;
             bottom: 10px;
-            background-color: orange;
+            background-color: blue;
             z-index: 2;
         }
+ /* bookstrap */
+.color-btn{
+  /**定義一串顏色，8個顏色，1|2號顏色和最後的7|8號顏色要相同，才能銜接上，看不出迴圈間斷*/
+  background: linear-gradient(to right, #5adeff, #2ff598, #FFE419, #A2FF00, #31FFEE, #297BFF, #DC5AFF, #7D4DFF);
+  /**動畫的寬度，8個顏色，寬度就是8-1=7*100%，最後一個顏色用來迴圈迴歸的。*/
+  background-size: 700% 100%;
+  /**動畫使用，線性移動，速率20秒*/
+  animation: mymove 20s linear infinite;
+  /**適配不同瀏覽器*/
+  -webkit-animation: mymove 20s linear infinite;
+  -moz-animation: mymove 20s linear infinite;
+}
+/**定義過度動畫*/
+@-webkit-keyframes mymove {
+        0% {background-position: 0% 0%;}
+        100% {background-position: 100% 0%;}
+}
+	
+.border-img{
+       -moz-border-image: -moz-linear-gradient(top left, #3acfd5 0%, #3a4ed5 100%);
+	  -webkit-border-image: -webkit-linear-gradient(top left, #3acfd5 0%, #3a4ed5 100%);
+	          border-image: linear-gradient(to bottom right, #3acfd5 0%, #3a4ed5 100%);
+	  border-image-slice: 1;
+}
+
   </style>
   
   
 <!--   頁首 -->
 
-<%-- <jsp:include page="/front-end/home/header2/header2.jsp" flush="true"/> --%>
-<jsp:include page="/front-end/home/header.jsp" flush="true"/>
+<jsp:include page="/front-end/home/header2/header2.jsp" flush="true"/>
+<%-- <jsp:include page="/front-end/home/header.jsp" flush="true"/> --%>
 <%-- <iframe src="<%= request.getContextPath() %>/front-end/home/header.jsp" width="100%" height="100%" style="display: block;"></iframe> --%>
 
 <%-- <jsp:include page="/front-end/home/header_for_Proj_Mem.jsp" flush="true"/> --%>
@@ -155,7 +177,7 @@ ShopCartVO shopCartVO = (ShopCartVO) request.getAttribute("shopCartVO"); //EmpSe
 <!--     <div id="background" class="pt-5 pb-5" style="background-color: white; border-radius:100px;"> -->
     
     <!-- 購物車明細背景 -->
-    <div class="container" style="border:10px solid #b9d4b3 ;box-shadow:3px 3px 5px 6px #cccccc;border-radius:60px">
+    <div class="container border-img" style="border:10px solid #b9d4b3 ;box-shadow:3px 3px 5px 6px #cccccc;border-radius:60px">
       <!-- <div class="col-lg-12 col-md-12 col-12" style="background-color: rgb(247, 239, 239);"> -->
 <br>
       <div class="bubbles"><span>
@@ -168,12 +190,12 @@ ShopCartVO shopCartVO = (ShopCartVO) request.getAttribute("shopCartVO"); //EmpSe
           <thead class="">
             <tr id="tablehender" style="background-color: #dfdcb3;">
               
-              <th>0小農id</th>
-              <th>1商品</th>
-              <th>2價格</th>
-              <th>3數量</th>
-              <th>4小記</th>
-              <th>5刪除</th>
+              <th>照片</th>
+              <th>商品</th>
+              <th>價格</th>
+              <th>數量</th>
+              <th>小記</th>
+              <th>刪除</th>
             </tr>
           </thead>
           <tbody style="background-color: #ffffff;">
@@ -207,7 +229,7 @@ ShopCartVO shopCartVO = (ShopCartVO) request.getAttribute("shopCartVO"); //EmpSe
 <!--               減號鍵 -->
               <td class="up">
  			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/shopCart/shopCart.do" style="margin-bottom: 0px;">
-                <button class="btn btn-sm  btn-minus" type="submit" style="background-color:#dfdcb3">
+                <button class="btn btn-sm color-btn  btn-minus" type="submit" style="background-color:#dfdcb3">
                   <i class="fa fa-minus"></i>
                 </button>
                  <input type="hidden" name="mem_id"  value="<%=mem_id%>">
@@ -223,7 +245,7 @@ ShopCartVO shopCartVO = (ShopCartVO) request.getAttribute("shopCartVO"); //EmpSe
                 
 <!--                 加號鍵 -->
 		<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/shopCart/shopCart.do" style="width:10px;">	
-                <button class="btn btn-sm  btn-plus" style="background-color:#dfdcb3">
+                <button class="btn btn-sm  btn-plus color-btn" style="background-color:#dfdcb3">
                   <i class="fa fa-plus"></i>
                 </button>
                 <input type="hidden" name="mem_id"  value="${shopCartVO.mem_id}">

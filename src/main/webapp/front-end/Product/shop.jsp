@@ -4,12 +4,19 @@
 <%@ page import="com.shopProduct.model.*"%>
 <%@ page import="com.shopProductType.model.*"%>
 <%@ page import="com.shopCart.model.*"%>
-<%-- 此頁練習採用 EL 的寫法取值 --%>
+<%@ page import="com.fMem.model.*"%>
+<%@ page import="com.mem.model.*"%>
+
+<%FMemVO fMemVO = (FMemVO) session.getAttribute("fMemVO");%>
+<%MemVO MemVO = (MemVO) session.getAttribute("memVO");%>
+<%Integer mem_id = MemVO.getMem_id();%>
 
 <%
-	ShopProductService prodServiceSvc = new ShopProductService();
-    List<ShopProductVO> list = prodServiceSvc.getAll();
-    pageContext.setAttribute("list",list);  
+Integer prod_status =(Integer)request.getAttribute("prod_status");
+ShopProductService prodServiceSvc = new ShopProductService();
+Map<Integer, List<ShopProductVO>> list2 =prodServiceSvc.getAll_groupingBy_Prod_stataus();
+List<ShopProductVO> list =list2.get(1);
+pageContext.setAttribute("list", list);
 %>
 
 
@@ -27,18 +34,11 @@
     <!-- Template Stylesheet -->
     <link href="css/style1.css" rel="stylesheet">
     
- <!-- 這段給emoji的 -->
-          <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-            integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
-            crossorigin="anonymous" />
-            <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <!-- 這段給emoji的 -->
+<meta name='viewport' content='width=device-width, initial-scale=1'>
 <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
             
-    <!-- product img -->
-    <!-- .img-fluid w-100{
-        height:100%;
-    object-fit:cover;
-    } -->
     
     <style>
 
@@ -87,6 +87,24 @@ a{
   right:-9px;
   top:-8px;
 }
+/* bookstrap */
+.color-btn{
+  /**定義一串顏色，8個顏色，1|2號顏色和最後的7|8號顏色要相同，才能銜接上，看不出迴圈間斷*/
+  background: linear-gradient(to right, #5adeff, #2ff598, #FFE419, #A2FF00, #31FFEE, #297BFF, #DC5AFF, #7D4DFF);
+  /**動畫的寬度，8個顏色，寬度就是8-1=7*100%，最後一個顏色用來迴圈迴歸的。*/
+  background-size: 700% 100%;
+  /**動畫使用，線性移動，速率20秒*/
+  animation: mymove 20s linear infinite;
+  /**適配不同瀏覽器*/
+  -webkit-animation: mymove 20s linear infinite;
+  -moz-animation: mymove 20s linear infinite;
+}
+/**定義過度動畫*/
+@-webkit-keyframes mymove {
+        0% {background-position: 0% 0%;}
+        100% {background-position: 100% 0%;}
+}
+
 /*     /////////////////購物車/////////// */
     
     </style>
@@ -107,19 +125,19 @@ a{
             <!-- Shop Sidebar Start -->
             <div class="col-lg-3 col-md-4"><br>
                 <!-- Price Start -->
-                <h5 class="section-title position-relative text-uppercase mb-3">類別搜尋</h5><br>
+                <h5 class="col-lg-7 h-auto mb-40" >類別搜尋</h5><br>
                 
                 <div class="bg-light p-4 mb-30">
                  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/Product/shop.jsp" style="margin-bottom: 0px;">
                         <div class="custom-control  d-flex align-items-center justify-content-between mb-3 ">
-                           <button style='font-size:20px' class="btn btn-outline-grey btn-square" type="submit"> 全部 <i class='fas fa-sync'></i></button>
+                           <button style='font-size:20px' class="btn-sm btn-warning" type="submit"><i class='fas fa-leaf'></i> 全部 </button>
                             <input type="hidden"  name="prod_id">
                              <input  type="hidden" name="action">
                         </div>
                     </FORM>
                     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/Product/product.do" style="margin-bottom: 0px;">
                         <div class="custom-control  d-flex align-items-center justify-content-between mb-3">
-                       <button style='font-size:20px' class="btn " type="submit"> 蔬菜 <i class="fas fa-carrot"></i></button>
+                       <button style='font-size:20px' class="btn-sm btn-success" type="submit"><i class='fas fa-leaf'></i> 蔬菜 </button>
                             <input type="hidden"  value="2"  name="prod_type_id">
                             <input type="hidden"  value="2"  name="prod_type_id">
                              <input type="hidden" name="action"	value="getAll_By_Type_For_DisplayByMem">
@@ -129,7 +147,7 @@ a{
                     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/Product/product.do" style="margin-bottom: 0px;">
                        
                         <div class="custom-control  d-flex align-items-center justify-content-between mb-3">
-                            <button style='font-size:20px' class="btn btn-outline-grey btn-square"  type="submit"> 水果 <i class='fas fa-apple-alt'></i></button>
+                            <button style='font-size:20px' class="btn-sm btn-danger"  type="submit"><i class='fas fa-leaf'></i> 水果 </button>
                             <input type="hidden"  value="1"  name="prod_type_id">
                              <input type="hidden" name="action"	value="getAll_By_Type_For_DisplayByMem">
                            
@@ -228,16 +246,16 @@ a{
                             <div class="product-img position-relative overflow-hidden">
                                 <img class="img-fluid w-100" src="<%=request.getContextPath()%>/front-end/Product/ShopProductDBGifReader4?id=${shopProductVO.prod_id}" alt="">
                                 <div class="product-action">
-                                  <!--              購物車     /////////////////////////////////////////////////////////////////////////////////////////// -->
+        <!--              購物車     /////////////////////////////////////////////////////////////////////////////////////////// -->
 <!--                   購物車小圖 -->
 <div class="shopcart">
-                  <div onclick="location.href='<%=request.getContextPath()%>/front-end/shopCart/shopCart.jsp?mem_id=77000&action=getOneList';" class="point point-flicker">
+                  <div onclick="location.href='<%=request.getContextPath()%>/front-end/shopCart/shopCart.jsp?mem_id=<%=mem_id%>&action=getOneList';" class="point point-flicker">
                    <img class="shopcart" 
             src="<%=request.getContextPath()%>/front-end/Product/images/shopcart.png" style="cursor: pointer;" width="50" height="50">
 					<div class="container pt-5">
     					<span class="cartQuantity text-white bg-warning" >
     					<%ShopCartService sc = new  ShopCartService();
-    					List<ShopCartVO> li = sc.getALL();	
+    					List<ShopCartVO> li = sc.getOneList(mem_id);	
     					int count = 0;
     					for(ShopCartVO a : li){
     						int b = a.getCart_qty();
@@ -247,45 +265,42 @@ a{
     					<%=count %>
     					
     					</span>
-<!--   				<a class="position-relative" href="#"> -->
-<!--     			<i class="fas fa-shopping-cart fa-3x"></i> -->
-<!--   							</a> -->
 						</div>
 					</div>
 </div>
 <!--                   購物車小圖 -->
-					
-					
-<!--                                     <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a> -->
                                     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/shopCart/shopCart.do" style="margin-bottom: 0px;">
-<%-- 			    					<input type="hidden" name="mem_id" value="${shopProductVO.mem_id}"> --%>
+			    					<input type="hidden" name="mem_id" value="<%=mem_id %>">
 			    					<input type="hidden" name="f_mem_id" value="${shopProductVO.f_mem_id}">
 			     					<input type="hidden" name="prod_id" value="${shopProductVO.prod_id}">	
 			     					<input type="hidden" name="prod_price" value="${shopProductVO.prod_price}">	
 			     					<input type="hidden" name="cart_qty" value=1>	
 			     					
-<!--                                     <a class="btn btn-outline-dark btn-square" > -->
                                     <input type="hidden" name="action" value="addShopCart" >
-                                    <button class="btn btn-outline-dark btn-square" type="submit" value="加入購物車" id="btn1">
+                                    <button class="btn btn-outline-dark btn-square color-btn" type="button" value="加入購物車" id="btn${shopProductVO.prod_id}">
                                     <i class="fa fa-shopping-cart"></i>
                                     </button>
 			     					
-<!-- 			     					原本按鈕 -->
-<!--                                     <a class="btn btn-outline-dark btn-square" type="submit"> -->
-<!--                                      <input type="submit" value="加入購物車" > -->
-                                    
-<!-- 			     					<i class="fa fa-shopping-cart"><input type="submit"></i> -->
 			    					
+                                    <a class="btn btn-outline-dark btn-square" href="<%=request.getContextPath()%>/front-end/Product/product.do?prod_id=${shopProductVO.prod_id}&action=getOne_list_For_DisplayByMem"><i class="fa fa-search"></i></a>
+                                 </FORM>
+                                </div>
+                            </div>
+			    			 <script>
+   var btn${shopProductVO.prod_id} = document.getElementById('btn${shopProductVO.prod_id}');
+		btn${shopProductVO.prod_id}.addEventListener('click', function(e) {
+		e.preventDefault(); // 阻擋瀏覽器預設行為
+	            swal("完成!", "成功加入購物車~~ ", "success")
+	            	.then(function(result1){
+	            		btn${shopProductVO.prod_id}.parentElement.submit(); // 返回當前節點的父元素節點 ,也就是上一層的form
+	            	}).catch(swal.noop);
+								});
+							</script>
 			    					
 
                                     
 <!--                 /////////////////////////////////////////////////////////////////////////////////////////// -->
                                 
-<!--                                     <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a> -->
-                                    <a class="btn btn-outline-dark btn-square" href="<%=request.getContextPath()%>/front-end/Product/product.do?prod_id=${shopProductVO.prod_id}&action=getOne_list_For_DisplayByMem"><i class="fa fa-search"></i></a>
-                                 </FORM>
-                                </div>
-                            </div>
 
                             <div class="text-center py-4">
                                 <a class="h6 text-decoration-none text-truncate" href="">${shopProductVO.prod_name}</a>
@@ -309,34 +324,18 @@ a{
             </div>
         </div>
        
-            <!-- Shop Product End -->
         </div>
-    </div>
-    <!-- Shop End -->
     
        <!-- ////////////////購物車js////////////////////// -->
 
- <script>
-   
-    var btn1 = document.getElementById('btn1');
 
-    btn1.addEventListener('click', function() {
-        swal('干得漂亮！', '你点击了按钮！', 'success');
-        alter('干得漂亮！', '你点击了按钮！', 'success');
-    });
-    $('#sweetBtnPreview').click(function (e) {
-        e.preventDefault(); //will stop the link href to call the blog page
-
-        setTimeout(function () {
-            window.location.href = "http://localhost:8081/CFA104G3/front_end/activity/appearActPage.jsp"; //will redirect to your blog page (an ex: blog.html)
-        }, 200000); //will call the function after 2 secs.
-
-    });
-	</script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.js" type="text/javascript"></script>
 <!-- ////////////////購物車js////////////////////// -->
  <!-- 頁尾 -->
 <footer class="pt5 pb6 f6 bt light-gray relative">
-  <iframe src="<%= request.getContextPath() %>/front-end/home/footer.jsp" width="100%" height="100%" style="display: block;"></iframe>
+<%--   <iframe src="<%= request.getContextPath() %>/front-end/home/footer.jsp" width="100%" height="100%" style="display: block;"></iframe> --%>
+  <jsp:include page="/front-end/home/footer.jsp" flush="true"/>
   </footer>
 
 

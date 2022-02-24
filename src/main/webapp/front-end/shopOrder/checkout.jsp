@@ -1,15 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.*"%>
 <%@ page import="com.shopOrder.model.*"%>
+<%@ page import="com.shopCart.model.*"%>
+<%@ page import="com.fMem.model.*"%>
+<%@ page import="com.mem.model.*"%>
+
+<%FMemVO fMemVO = (FMemVO) session.getAttribute("fMemVO");%>
+<%MemVO MemVO = (MemVO) session.getAttribute("memVO");%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-
+<%-- <%Integer mem_id =  MemVO.getMem_id();%> --%>
+<%-- <%Integer f_mem_id =  fMemVO.getF_mem_id();%> --%>
 
 <%
 ShopOrderVO shopOrderVO = (ShopOrderVO) request.getAttribute("shopOrderVO"); //EmpServlet.java(Concroller), 存入req的empVO物件
+Integer mem_id = shopOrderVO.getMem_id();
+Integer f_mem_id = shopOrderVO.getF_mem_id();
+
+ShopCartService scSVC = new ShopCartService();
+List<ShopCartVO> list1 = scSVC.getBreakeList(mem_id, f_mem_id);
+pageContext.setAttribute("list1", list1);
 %>
 
 <jsp:useBean id="fmemSvc" scope="page" class="com.fMem.model.FMemService" />
@@ -124,7 +139,9 @@ ShopOrderVO shopOrderVO = (ShopOrderVO) request.getAttribute("shopOrderVO"); //E
 				<div class="bg-light p-30 mb-5">
 				<input type ="hidden" name="f_mem_id" value="${shopOrderVO.f_mem_id}">
 				<input type ="hidden" name="order_amount" value="${shopOrderVO.order_amount}">
-				<h4>${fmemSvc.getOneFMem(shopOrderVO.f_mem_id).f_mem_fname} Total:<font style="color:red" size="4"> $${shopOrderVO.order_amount}</font></h4>
+				<div></div>
+				<h4>${fmemSvc.getOneFMem(shopOrderVO.f_mem_id).f_mem_fname} Total:
+				<font style="color:red" size="4"> $${shopOrderVO.order_amount}</font></h4>
 				</div>
 				<!-- 付款方式 -->
 				<div class="mb-5">

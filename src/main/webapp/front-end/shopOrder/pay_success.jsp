@@ -2,11 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
+<%@ page import="com.fMem.model.*"%>
+<%@ page import="com.mem.model.*"%>
 
-<%-- <%-- <% --%>
-<!-- // ProjPerkVO projPerkVO = (ProjPerkVO) request.getAttribute("projPerkVO"); //EmpServlet.java(Concroller), 存入req的empVO物件  -->
-<!-- // ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO"); -->
-<%-- <%-- %> --%>
+<%-- <%FMemVO fMemVO = (FMemVO) session.getAttribute("fMemVO");%> --%>
+<%MemVO MemVO = (MemVO) session.getAttribute("memVO");%>
+<%Integer mem_id = MemVO.getMem_id();%>
 
 <!DOCTYPE html>
 <html lang="en" class="js no-touch mdl-js">
@@ -25,16 +26,33 @@
 
     <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/shopOrder/addMemByMem_css/all-19a228fd40.css">
 </head>
-<%-- <%@ include file="/header/header.jsp" %>  --%>
+<jsp:include page="/front-end/home/header2/header2.jsp" flush="true"/>
 <style>
 .header-wrapper{
 height:120px;
 margin-bottom:0px;
 margin-top:10px;
 }
-
+/* bookstrap */
+.color-btn{
+  /**定義一串顏色，8個顏色，1|2號顏色和最後的7|8號顏色要相同，才能銜接上，看不出迴圈間斷*/
+  background: linear-gradient(to right, #5adeff, #2ff598, #FFE419, #A2FF00, #31FFEE, #297BFF, #DC5AFF, #7D4DFF);
+  /**動畫的寬度，8個顏色，寬度就是8-1=7*100%，最後一個顏色用來迴圈迴歸的。*/
+  background-size: 700% 100%;
+  /**動畫使用，線性移動，速率20秒*/
+  animation: mymove 20s linear infinite;
+  /**適配不同瀏覽器*/
+  -webkit-animation: mymove 20s linear infinite;
+  -moz-animation: mymove 20s linear infinite;
+}
+/**定義過度動畫*/
+@-webkit-keyframes mymove {
+        0% {background-position: 0% 0%;}
+        100% {background-position: 100% 0%;}
+}
 </style>
-<jsp:include page="/front-end/home/header.jsp" flush="true"/>
+
+
 <body>
 <!--  style="position:relative" -->
 <!-- <iframe src="./header.jsp" width="100%"  scrolling="no" frameborder="0" style="z-index:999;position:relative" >
@@ -78,12 +96,15 @@ margin-top:10px;
 </c:if>
 
 
-                <div class="login-block flex-display space-between">
-                    <span class="dark"></span>
-                    <a href="<%=request.getContextPath()%>/front-end/shopOrder/listAllOrderByMem.jsp" class="btn fGhostred">
-                    <font size="1">查看訂單</font>
-                    </a>
-                </div>
+<!--                 <div class="login-block flex-display space-between "> -->
+<%--                     <a href="<%=request.getContextPath()%>/front-end/shopOrder/listAllOrderByMem.jsp?mem_id=<%=mem_id%>&action=getAllMemOrder" class="btn fGhostred"> --%>
+<!--                     <font size="1" class="color-btn">查看訂單</font> -->
+<!--                     </a> -->
+<!--                 </div> -->
+                
+                <div onclick="location.href='<%=request.getContextPath()%>/front-end/shopOrder/listAllOrderByMem.jsp?mem_id=<%=mem_id%>&action=getAllMemOrder'"  style="text-align:center;">
+				<button class="color-btn btn btn-sm ">查看訂單</button>
+				</div>            
             </div>
         </div>
     </div>

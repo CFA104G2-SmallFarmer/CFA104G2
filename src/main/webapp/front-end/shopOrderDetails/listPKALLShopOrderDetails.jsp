@@ -140,7 +140,7 @@ thead {
 						<table class="table">
 							<thead>
 								<tr>
-									<th class="text-center">pic</th>
+									<th class="text-center">商品照片</th>
 									<th>商品名稱</th>
 									<th>單價</th>
 									<th>數量</th>

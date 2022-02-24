@@ -1,5 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.shopOrder.model.*"%>
+<%@ page import="com.shopOrderDetails.model.*"%>
+<%@ page import="java.util.*"%>
+
+<%@ page import="com.fMem.model.*"%>
+<%@ page import="com.mem.model.*"%>
+
+<%FMemVO fMemVO = (FMemVO) session.getAttribute("fMemVO");%>
+<%MemVO MemVO = (MemVO) session.getAttribute("memVO");%>
+<%-- <%Integer mem_id = MemVO.getMem_id();%> --%>
+<%Integer f_mem_id = fMemVO.getF_mem_id();%>
+
+<%	String membership= "seller"; %>
+
+<%
+request.setAttribute("order_state_arr", new String[]{"待付款","待出貨","運送中","已完成","已取消"});
+request.setAttribute("order_pay_arr", new String[]{"信用卡","銀行轉帳"});
+%>
+
+<!-- join要用的usebean -->
+<jsp:useBean id="memSvc" scope="page" class="com.mem.model.MemService" />
+
 <!DOCTYPE html>
 <html class="TW" style="overflow: scroll;">
 
@@ -9,9 +31,9 @@
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-  <link href="./farmer_order_css/icon" rel="stylesheet">
+  <link href="<%=request.getContextPath()%>/front-end/shopOrder/farmer_order_css/icon" rel="stylesheet">
 
-  <title>小農認養訂單管理</title>
+  <title>小農商城訂單管理</title>
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
@@ -33,20 +55,20 @@
       margin: 1px;
     }
   </style>
-  <link href="./farmer_order_css/index.f923077f35fa95f6d6ec.css" data-module="vendor" rel="stylesheet">
-  <link href="./farmer_order_css/index.2b1612d1a8fda6896c22.css" data-module="framework" rel="stylesheet">
+  <link href="<%=request.getContextPath()%>/front-end/shopOrder/farmer_order_css/index.f923077f35fa95f6d6ec.css" data-module="vendor" rel="stylesheet">
+  <link href="<%=request.getContextPath()%>/front-end/shopOrder/farmer_order_css/index.2b1612d1a8fda6896c22.css" data-module="framework" rel="stylesheet">
 
   <link data-module="fulfillment-root" rel="stylesheet" type="text/css"
-    href="./farmer_order_css/FulfillmentVendorCommon.0816a35613b0a49a6edb.css">
+    href="<%=request.getContextPath()%>/front-end/shopOrder/farmer_order_css/FulfillmentVendorCommon.0816a35613b0a49a6edb.css">
   <link data-module="fulfillment-root" rel="stylesheet" type="text/css"
-    href="./farmer_order_css/FulfillmentBase.dc3ce97257813a5408ff.css">
-  <link data-module="order" rel="stylesheet" type="text/css" href="./farmer_order_css/331.155057b0fc3b98ce38f8.css">
+    href="<%=request.getContextPath()%>/front-end/shopOrder/farmer_order_css/FulfillmentBase.dc3ce97257813a5408ff.css">
+  <link data-module="order" rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/front-end/shopOrder/farmer_order_css/331.155057b0fc3b98ce38f8.css">
   <link data-module="order" rel="stylesheet" type="text/css"
-    href="./farmer_order_css/old-order-list.3167532992dc830110e3.css">
+    href="<%=request.getContextPath()%>/front-end/shopOrder/farmer_order_css/old-order-list.3167532992dc830110e3.css">
 
   <script src="chrome-extension://jhffgcfmcckgmioipfnmbannkpncfipo/util.js"></script>
   <script src="chrome-extension://jhffgcfmcckgmioipfnmbannkpncfipo/pagejs.js"></script>
-  <link href="./farmer_order_css/icon(1)" rel="stylesheet">
+  <link href="<%=request.getContextPath()%>/front-end/shopOrder/farmer_order_css/icon(1)" rel="stylesheet">
   <style type="text/css">
     * {
       <br>-webkit-user-select: text !important;
@@ -65,7 +87,7 @@
       <br>
     }
   </style>
-  
+<jsp:include page="/front-end/home/header2/header2.jsp" flush="true"/> 
 </head>
 
 <body class=" route-index route-portal-sale route-portal-sale-order route-portal-sale-order">
@@ -81,35 +103,14 @@
                     <div class="shopee-tabs__nav-warp">
                       <div class="shopee-tabs__nav-tabs" style="transform: translateX(0px);">
                         <div class="shopee-tabs__nav-tab active" style="white-space: normal;">
-                          <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">查詢</span>
+                          <div data-v-ddf12cca="" class="tab-label">
+                          <span data-v-ddf12cca="">查詢</span>
                           </div>
                         </div>
-                        <div class="shopee-tabs__nav-tab" style="white-space: normal;">
-                          <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">全部</span>
-                          </div>
-                        </div>
-                        <div class="shopee-tabs__nav-tab" style="white-space: normal;">
-                          <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">尚未付款</span>
-                          </div>
-                        </div>
-                        <div class="shopee-tabs__nav-tab" style="white-space: normal;">
-                          <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">待出貨</span>
-                          </div>
-                        </div>
-                        <div class="shopee-tabs__nav-tab" style="white-space: normal;">
-                          <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">運送中</span>
-                          </div>
-                        </div>
-                        <div class="shopee-tabs__nav-tab" style="white-space: normal;">
-                          <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">已完成</span>
-                          </div>
-                        </div>
-                        <div class="shopee-tabs__nav-tab" style="white-space: normal;">
-                          <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">不成立(未處理)</span>
-                          </div>
-                        </div>
-                        <div class="shopee-tabs__nav-tab" style="white-space: normal;">
-                          <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">不成立(已解決)</span>
+                        <div class="shopee-tabs__nav-tab" style="transform: translateX(0px);"
+                      		 onclick="location.href='<%=request.getContextPath()%>/front-end/shopOrder/listAllOrderByFMem.jsp';">
+                          <div data-v-ddf12cca="" class="tab-label">
+                          <span data-v-ddf12cca="">全部</span>
                           </div>
                         </div>
 
@@ -126,7 +127,7 @@
               <div data-v-acb72a84="" data-v-550e8c91="" class="order-list">
                 <div data-v-acb72a84="" class="padding-wrap">
                <!--  form開始 -->
-                  <form method="post" action="projOrder.do">
+                  <form method="post" action="${pageContext.request.contextPath}/shopOrder/shopOrder.do">
                     <div data-v-54562b84="" data-v-acb72a84=""
                       class="order-search-pannel order-search-panel order-search-pannel-inline order-search-improve">
                       <div data-v-4325ccd1="" data-v-54562b84="" class="order-search-container">
@@ -157,6 +158,7 @@
                                   <input type="text" placeholder="請輸入訂單編號" clearable="true" resize="vertical" rows="2"
                                     minrows="2" maxlength="50" restrictiontype="input" max="Infinity" min="-Infinity"
                                     class="shopee-input__input" name="order_id" >
+                                    <input type="hidden" name="f_mem_id" value="${fMemVO.f_mem_id}">
                                     <input type="hidden" name="action" value="getOneByFMem">
                       <!-- name在這裡 -->
                                   <div class="shopee-input__suffix">
@@ -209,14 +211,13 @@
                     <div data-v-dff31658="" data-v-a414b804="" class="shopee-fixed-top-card">
                       <div data-v-dff31658="" class="fixed-container" style="top: 112px; z-index: 999;">
                         <div data-v-a414b804="" data-v-dff31658="" class="order-list-header">
-                          <span data-v-a414b804="" data-v-dff31658="" class="item-product" min-width:80px;="">認養專案 /
-                            收件地址</span>
-                          <span data-v-a414b804="" data-v-dff31658="" class="item-total">金額</span>
-                          <span data-v-a414b804="" data-v-dff31658="" class="item-total">回饋方案</span>
-                          <span data-v-a414b804="" data-v-dff31658="" class="item-total">訂單狀態</span>
-                          <span data-v-a414b804="" data-v-dff31658="" class="item-total">訂單時間</span>
-                          <span data-v-a414b804="" data-v-dff31658="" class="item-action"
-                            style="padding-left:80px;">操作</span></div>
+                           <span data-v-a414b804="" data-v-dff31658="" class="item-product" min-width:80px;="">會員資料</span>
+                        <span data-v-a414b804="" data-v-dff31658="" class="item-total">金額</span>
+                        <span data-v-a414b804="" data-v-dff31658="" class="item-total">付款方式</span>
+                        <span data-v-a414b804="" data-v-dff31658="" class="item-total">運送方式</span>
+                        <span data-v-a414b804="" data-v-dff31658="" class="item-total">訂單日期</span>
+<!--                           <span data-v-a414b804="" data-v-dff31658="" class="item-action" -->
+<!--                             style="padding-left:80px;">操作</span></div> -->
                       </div>
                     </div>
 

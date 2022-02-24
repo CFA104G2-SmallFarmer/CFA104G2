@@ -22,7 +22,7 @@ ShopOrderVO shopOrderVO = (ShopOrderVO) request.getAttribute("shopOrderVO"); //E
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-  <link href="./farmer_order_css/icon" rel="stylesheet">
+  <link href="<%=request.getContextPath()%>/farmer_order_css/icon" rel="stylesheet">
 
   <title>小農商城訂單管理查詢單一頁面</title>
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -43,20 +43,20 @@ ShopOrderVO shopOrderVO = (ShopOrderVO) request.getAttribute("shopOrderVO"); //E
       margin: 1px;
     }
   </style>
-  <link href="./farmer_order_css/index.f923077f35fa95f6d6ec.css" data-module="vendor" rel="stylesheet">
-  <link href="./farmer_order_css/index.2b1612d1a8fda6896c22.css" data-module="framework" rel="stylesheet">
+  <link href="<%=request.getContextPath()%>/farmer_order_css/index.f923077f35fa95f6d6ec.css" data-module="vendor" rel="stylesheet">
+  <link href="<%=request.getContextPath()%>/farmer_order_css/index.2b1612d1a8fda6896c22.css" data-module="framework" rel="stylesheet">
 
   <link data-module="fulfillment-root" rel="stylesheet" type="text/css"
-    href="./farmer_order_css/FulfillmentVendorCommon.0816a35613b0a49a6edb.css">
+    href="<%=request.getContextPath()%>/farmer_order_css/FulfillmentVendorCommon.0816a35613b0a49a6edb.css">
   <link data-module="fulfillment-root" rel="stylesheet" type="text/css"
-    href="./farmer_order_css/FulfillmentBase.dc3ce97257813a5408ff.css">
-  <link data-module="order" rel="stylesheet" type="text/css" href="./farmer_order_css/331.155057b0fc3b98ce38f8.css">
+    href="<%=request.getContextPath()%>/farmer_order_css/FulfillmentBase.dc3ce97257813a5408ff.css">
+  <link data-module="order" rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/farmer_order_css/331.155057b0fc3b98ce38f8.css">
   <link data-module="order" rel="stylesheet" type="text/css"
-    href="./farmer_order_css/old-order-list.3167532992dc830110e3.css">
+    href="<%=request.getContextPath()%>/farmer_order_css/old-order-list.3167532992dc830110e3.css">
 
   <script src="chrome-extension://jhffgcfmcckgmioipfnmbannkpncfipo/util.js"></script>
   <script src="chrome-extension://jhffgcfmcckgmioipfnmbannkpncfipo/pagejs.js"></script>
-  <link href="./farmer_order_css/icon(1)" rel="stylesheet">
+  <link href="<%=request.getContextPath()%>/farmer_order_css/icon(1)" rel="stylesheet">
   <style type="text/css">
     * {
       <br>-webkit-user-select: text !important;
@@ -75,22 +75,16 @@ ShopOrderVO shopOrderVO = (ShopOrderVO) request.getAttribute("shopOrderVO"); //E
       <br>
     }
   </style>
-<jsp:include page="/front-end/home/header.jsp" flush="true"/>
+<jsp:include page="/front-end/home/header2/header2.jsp" flush="true"/>
   
 </head>
 
 <body class=" route-index route-portal-sale route-portal-sale-order route-portal-sale-order">
-<%--                     <%=shopOrderVO==null%> --%>
-<%--                     <%=projPerkVO==null%> --%>
-<%--                     <%=projectVO==null%> --%>
-                    
-<%--                     <%=shopOrderVO.getOrder_id()%> --%>
-<%--                        <%=projPerkVO.getPerk_abbr_name()%> --%>
-<%--                     <%=projectVO.getProj_name()%> --%>
   <div class="app-container">
     <div class="page-content-wrapper">
       <div data-v-6de0ecc3="" class="portal-sale-root">
         <div data-v-6de0ecc3="" class="portal-sale-container">
+          
           <div data-v-dff31658="" class="fixed-container ">
             <div data-v-6de0ecc3="" data-v-dff31658="" class="portal-panel">
               <div data-v-ddf12cca="" data-v-6de0ecc3="" class="list-tabs" data-v-dff31658="">
@@ -98,11 +92,13 @@ ShopOrderVO shopOrderVO = (ShopOrderVO) request.getAttribute("shopOrderVO"); //E
                   <div class="shopee-tabs__nav">
                     <div class="shopee-tabs__nav-warp">
                       <div class="shopee-tabs__nav-tabs" style="transform: translateX(0px);">
+                       
                         <div class="shopee-tabs__nav-tab active" style="white-space: normal;">
                           <div data-v-ddf12cca="" class="tab-label">
                           <span data-v-ddf12cca="">查詢</span>
                           </div>
                         </div>
+                        
                         <div class="shopee-tabs__nav-tab" style="white-space: normal;"" 
                         	onclick="location.href='http://localhost:8081/CFA104G2_MVC/front-end/shopOrder/listAllOrderByFMem.jsp';">
                           <div data-v-ddf12cca="" class="tab-label">
@@ -244,6 +240,7 @@ ShopOrderVO shopOrderVO = (ShopOrderVO) request.getAttribute("shopOrderVO"); //E
                             <i class="material-icons" style="color: #aaba8b;display: inline;">sms</i>
                           </div>
                         </div>
+                        
                         <div data-v-1eaa89e5="" class="id-btn">
                         	<span data-v-1eaa89e5="" class="orderid" style="color: red; font-size: 18px">
                         	<b>
@@ -267,7 +264,7 @@ ShopOrderVO shopOrderVO = (ShopOrderVO) request.getAttribute("shopOrderVO"); //E
                                         <div data-v-3eef092e="" class="ct-item-product-inner">
                                           <div data-v-3eef092e="" class="ct-item-product-info">
                                             <div style="color:#717d34;font-size: 16px;">
-                                            	 <!--                                        ///////////////////////////////////////////////// -->
+<!--                                        ///////////////////////////////////////////////// -->
 <!-- 											放入連結到訂單明細 -->
                                             
                                             <div onclick="location.href='<%=request.getContextPath()%>/front-end/shopOrderDetails/listPKALLShopOrderDetails.jsp?order_id=${shopOrderVO.order_id}&action=getPkALL';" 

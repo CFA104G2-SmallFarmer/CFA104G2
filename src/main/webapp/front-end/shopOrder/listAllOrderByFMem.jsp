@@ -5,27 +5,19 @@
 <%@ page import="com.shopOrderDetails.model.*"%>
 <%@ page import="java.util.*"%>
 
-<!-- getAllFmemOrder(Integer f_mem_id) -->
-<%-- <% --%>
-<!-- // session.setAttribute("f_mem_id",70003); -->
-<%-- %> --%>
+<%@ page import="com.fMem.model.*"%>
+<%@ page import="com.mem.model.*"%>
 
+<%FMemVO fMemVO = (FMemVO) session.getAttribute("fMemVO");%>
+<%MemVO MemVO = (MemVO) session.getAttribute("memVO");%>
+<%Integer f_mem_id = fMemVO.getF_mem_id();%>
 
-<!-- 用傳list<某物件>的方式寫，讓servlet那邊先做完shopOrderSvc.getAllFmemOrder(Integer f_mem_id) -->
-<%-- <% --%>
-<!--  	List<ShopOrderVO> list = (List<ShopOrderVO>) request.getAttribute("shopOrderVO"); -->
-<!--  	pageContext.setAttribute("list",list); -->
-<%-- %> --%>
-
-<%
-    String f_mem_id = request.getParameter("f_mem_id");
-	String membership= "seller";
-%>
+<%String membership= "seller";%>
 
 
 <%
   ShopOrderService shopOrderSvc = new ShopOrderService(); 
-  List<ShopOrderVO> list = shopOrderSvc.getAllFmemOrder(70001);
+  List<ShopOrderVO> list = shopOrderSvc.getAllFmemOrder(f_mem_id);
    pageContext.setAttribute("list",list);	 
 %>
 
@@ -46,7 +38,7 @@ request.setAttribute("order_pay_arr", new String[]{"信用卡","銀行轉帳"});
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-  <link href="./farmer_order_css/icon" rel="stylesheet">
+  <link href="<%=request.getContextPath()%>/front-end/shopOrder/farmer_order_css/icon" rel="stylesheet">
 
   <title>小農商城訂單管理</title>
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -70,20 +62,20 @@ request.setAttribute("order_pay_arr", new String[]{"信用卡","銀行轉帳"});
       margin: 1px;
     }
   </style>
-  <link href="./farmer_order_css/index.f923077f35fa95f6d6ec.css" data-module="vendor" rel="stylesheet">
-  <link href="./farmer_order_css/index.2b1612d1a8fda6896c22.css" data-module="framework" rel="stylesheet">
+  <link href="<%=request.getContextPath()%>/front-end/shopOrder/farmer_order_css/index.f923077f35fa95f6d6ec.css" data-module="vendor" rel="stylesheet">
+  <link href="<%=request.getContextPath()%>/front-end/shopOrder/farmer_order_css/index.2b1612d1a8fda6896c22.css" data-module="framework" rel="stylesheet">
 
   <link data-module="fulfillment-root" rel="stylesheet" type="text/css"
-    href="./farmer_order_css/FulfillmentVendorCommon.0816a35613b0a49a6edb.css">
+    href="<%=request.getContextPath()%>/front-end/shopOrder/farmer_order_css/FulfillmentVendorCommon.0816a35613b0a49a6edb.css">
   <link data-module="fulfillment-root" rel="stylesheet" type="text/css"
-    href="./farmer_order_css/FulfillmentBase.dc3ce97257813a5408ff.css">
-  <link data-module="order" rel="stylesheet" type="text/css" href="./farmer_order_css/331.155057b0fc3b98ce38f8.css">
+    href="<%=request.getContextPath()%>/front-end/shopOrder/farmer_order_css/FulfillmentBase.dc3ce97257813a5408ff.css">
+  <link data-module="order" rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/front-end/shopOrder/farmer_order_css/331.155057b0fc3b98ce38f8.css">
   <link data-module="order" rel="stylesheet" type="text/css"
-    href="./farmer_order_css/old-order-list.3167532992dc830110e3.css">
+    href="<%=request.getContextPath()%>/front-end/shopOrder/farmer_order_css/old-order-list.3167532992dc830110e3.css">
 
   <script src="chrome-extension://jhffgcfmcckgmioipfnmbannkpncfipo/util.js"></script>
   <script src="chrome-extension://jhffgcfmcckgmioipfnmbannkpncfipo/pagejs.js"></script>
-  <link href="./farmer_order_css/icon(1)" rel="stylesheet">
+  <link href="<%=request.getContextPath()%>/front-end/shopOrder/farmer_order_css/icon(1)" rel="stylesheet">
   <style type="text/css">
     * {
       <br>-webkit-user-select: text !important;
@@ -102,11 +94,8 @@ request.setAttribute("order_pay_arr", new String[]{"信用卡","銀行轉帳"});
       <br>
     }
   </style>
-  <style>
   
-  </style>
-  
-<jsp:include page="/front-end/home/header.jsp" flush="true"/>
+<jsp:include page="/front-end/home/header2/header2.jsp" flush="true"/>
 
 </head>
 
@@ -128,7 +117,7 @@ request.setAttribute("order_pay_arr", new String[]{"信用卡","銀行轉帳"});
           				<div class="shopee-tabs__nav-tab " style="white-space: normal;">
           
                       	<div class="shopee-tabs__nav-tab" style="transform: translateX(0px);"
-                      		 onclick="location.href='http://localhost:8081/CFA104G2_MVC/front-end/shopOrder/listOneOrder.jsp';">
+                      		 onclick="location.href='<%=request.getContextPath()%>/front-end/shopOrder/searchOrderByFMem.jsp';">
                           <div data-v-ddf12cca="" class="tab-label">
                           <span data-v-ddf12cca="">查詢</span>
                           </div>
@@ -187,7 +176,8 @@ request.setAttribute("order_pay_arr", new String[]{"信用卡","銀行轉帳"});
                                   <input type="text" placeholder="請輸入訂單編號" clearable="true" resize="vertical" rows="2"
                                     minrows="2" maxlength="50" restrictiontype="input" max="Infinity" min="-Infinity"
                                     class="shopee-input__input" name="order_id" >
-                                    <input type="hidden" name="action" value="getOne_For_Display">
+                      <input type="hidden" name="f_mem_id" value="${fMemVO.f_mem_id}">
+                                    <input type="hidden" name="action" value="getOneByFMem">
                       <!-- name在這裡 -->
                                   <div class="shopee-input__suffix">
                                   </div>
@@ -381,10 +371,6 @@ request.setAttribute("order_pay_arr", new String[]{"信用卡","銀行轉帳"});
                               </div>
                               <div data-v-1274329c="" class="item-action">
                               
-<%--                               <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/projOrder/projOrder.do">		 			   --%>
-<%-- 			    				<input type="hidden" name="order_id"  value="${projOrderVO.order_id}">	 --%>
-<!-- 			     				<input type="hidden" name="action" value="delete"> -->
-<!-- 			  				   </FORM> -->
                             
                          <c:choose>
     							<c:when test="${shopOrderVO.order_state ==0}">

@@ -4,14 +4,17 @@
 <%@ page import="com.shopProduct.model.*"%>
 <%@ page import="com.shopProductCollection.model.*"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
+<%@ page import="com.fMem.model.*"%>
+<%@ page import="com.mem.model.*"%>
 
+<%FMemVO fMemVO = (FMemVO) session.getAttribute("fMemVO");%>
+<%MemVO MemVO = (MemVO) session.getAttribute("memVO");%>
+<%Integer mem_id = MemVO.getMem_id();%>
 <%
 
 	ShopProductCollectionService prodServiceSvc = new ShopProductCollectionService();
     List<ShopProductCollectionVO> list = prodServiceSvc.getAll();
     pageContext.setAttribute("list",list);
-    
-    
     
 %>
 

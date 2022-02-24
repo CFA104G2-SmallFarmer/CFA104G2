@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.shopOrder.model.*"%>
+<%@ page import="com.mem.model.*"%>
 
 <%
   ShopOrderVO shopOrderVO = (ShopOrderVO) request.getAttribute("shopOrderVO"); //EmpServlet.java (Concroller) 存入req的empVO物件 (包括幫忙取出的empVO, 也包括輸入資料錯誤時的empVO物件)
@@ -49,12 +50,33 @@
 	text-align: center; 
 	background-color:#dfdcb3; 
   }
+  /* bookstrap */
+.color-btn{
+  /**定義一串顏色，8個顏色，1|2號顏色和最後的7|8號顏色要相同，才能銜接上，看不出迴圈間斷*/
+  background: linear-gradient(to right, #5adeff, #2ff598, #FFE419, #A2FF00, #31FFEE, #297BFF, #DC5AFF, #7D4DFF);
+  /**動畫的寬度，8個顏色，寬度就是8-1=7*100%，最後一個顏色用來迴圈迴歸的。*/
+  background-size: 700% 100%;
+  /**動畫使用，線性移動，速率20秒*/
+  animation: mymove 20s linear infinite;
+  /**適配不同瀏覽器*/
+  -webkit-animation: mymove 20s linear infinite;
+  -moz-animation: mymove 20s linear infinite;
+}
+/**定義過度動畫*/
+@-webkit-keyframes mymove {
+        0% {background-position: 0% 0%;}
+        100% {background-position: 100% 0%;}
+}
 </style>
 
 </head>
 <body bgcolor='tan'>
-<jsp:include page="/front-end/home/header.jsp" flush="true"/>
+<header>
+<jsp:include page="/front-end/home/header2/header2.jsp" flush="true"/>
+</header>
 
+<!-- join要用的usebean -->
+<jsp:useBean id="memSvc" scope="page" class="com.mem.model.MemService" />
 <br>
 <div class="updateform">
 <img alt="" src="<%=request.getContextPath()%>/front-end/shopCart/images/透明小小農.png " width="50" height="50">
@@ -78,8 +100,10 @@
 		<td><%=shopOrderVO.getOrder_id()%></td>
 	</tr>
 	<tr>
-		<td>訂單日期:<font color=red><b>*</b></font></td>
-		<td><%=shopOrderVO.getOrder_date()%></td>
+<!-- 		<td>會員名稱:<font color=red><b>*</b></font></td> -->
+<%-- 		<td>${shopOrderVO.mem_id}</td> --%>
+<%-- 		<td>${memSvc.getOneMem(shopOrderVO.mem_id).mem_name}</td> --%>
+		<td>
 	</tr>
 	<tr>
 		<td>收件人姓名:</td>
@@ -107,7 +131,7 @@
 <input type="hidden" name="order_id" value="<%=shopOrderVO.getOrder_id()%>">
 <input type="hidden" name="order_state" value="<%=shopOrderVO.getOrder_state()%>">
 <!-- <input type="submit" value="送出修改"> -->
-<button class="btn btn-success" type="submit" value="送出修改">送出修改</button>
+<button class="btn  color-btn" type="submit" value="送出修改">送出修改</button>
 </FORM>
 </div>
 <br>
