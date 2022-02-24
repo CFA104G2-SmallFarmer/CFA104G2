@@ -7,13 +7,15 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.project.model.*"%>
 <%@ page import="com.projPerk.model.*"%>
-<%@ page
-	import="java.time.LocalDate,java.sql.Timestamp,java.util.Vector"%>
+<%@ page import="java.time.LocalDate,java.sql.Timestamp,java.util.Vector"%>
+<%@ page import="com.mem.model.*"%>
+<%MemVO memVO = (MemVO) session.getAttribute("memVO");%>
 
 <%
+pageContext.setAttribute("memVO",memVO);
 ProjPerkVO projPerkVO = (ProjPerkVO) request.getAttribute("projPerkVO"); //EmpServlet.java(Concroller), 存入req的empVO物件 
 ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
-MemVO memVO = (MemVO) request.getAttribute("memVO");
+/* MemVO memVO = (MemVO) request.getAttribute("memVO"); */
 ProjOrderVO projOrderVO = (ProjOrderVO) request.getAttribute("projOrderVO");
 %>
 
