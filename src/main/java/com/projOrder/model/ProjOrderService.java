@@ -2,10 +2,11 @@ package com.projOrder.model;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
-import com.projPerk.model.ProjPerkVO;
-import com.project.model.ProjectVO;
 
 
 public class ProjOrderService {
@@ -108,9 +109,34 @@ public class ProjOrderService {
 	public List<ProjOrderVO> getAllFmemOrder(Integer f_mem_id) {
 		return dao.getAllFmemOrder(f_mem_id);
 	}
-
+	
+	public Map<Integer, List<ProjOrderVO>> getAll_groupingBy_order_state(Integer f_mem_id){
+		List<ProjOrderVO> projOrderList = dao.getAllFmemOrder(f_mem_id);
+		Map<Integer, List<ProjOrderVO>> groupMap = new HashMap<>();
+		groupMap = projOrderList.stream().collect(Collectors.groupingBy(ProjOrderVO::getOrder_state));
+	
+		return groupMap;
+	}
+	
 	public List<ProjOrderVO> getAll() {
 		return dao.getAll();
 	}
+	
+	
+	public static void main(String[] args) {
+	ProjOrderJDBCDAO dao = new ProjOrderJDBCDAO();
+	List<ProjOrderVO> projOrderList = dao.getAllFmemOrder(70003);
+	Map<Integer, List<ProjOrderVO>> groupMap = new HashMap<>();
+
+	// Collect CO Executives
+	groupMap = projOrderList.stream().collect(Collectors.groupingBy(ProjOrderVO::getOrder_state));
+
+	System.out.println("\n== ProjOrders by Order_state ==");
+	groupMap.forEach((k, v) -> {
+		System.out.println("\nOrder_state: " + k);
+		System.out.println(v);
+//		v.forEach(Employee::printSummary);
+	});
+}
 
 }
