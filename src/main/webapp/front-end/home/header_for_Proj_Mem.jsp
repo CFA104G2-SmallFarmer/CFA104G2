@@ -41,11 +41,11 @@ crossorigin="anonymous" /> -->
                   
         <a href="<%=request.getContextPath()%>/front-end/projOrder/listAllOrderByMem.jsp">我的認養訂單</a>
        
-          			</form>
+          			
                   <!-- form結束 -->
         </li>
 
-        <li><a href="#">回到首頁 </a></li>
+       <li><a href="<%=request.getContextPath()%>/front-end/home/home.jsp"">回到首頁 &nbsp;</a></li>
         <li><a href="#"><i class="material-icons" style="font-size:27px">mail_outline</i></a></li>
  		  <li><a href="#"><i class="material-icons" style="font-size:27px">person</i> </a></li>
       </ul>
