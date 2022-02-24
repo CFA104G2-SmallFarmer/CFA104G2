@@ -13,8 +13,13 @@
 
 <%
 pageContext.setAttribute("memVO",memVO);
-ProjPerkVO projPerkVO = (ProjPerkVO) request.getAttribute("projPerkVO"); //EmpServlet.java(Concroller), 存入req的empVO物件 
-ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
+ProjPerkVO projPerkVO = (ProjPerkVO) session.getAttribute("projPerkVO"); //EmpServlet.java(Concroller), 存入req的empVO物件 
+ProjectVO projectVO = (ProjectVO) session.getAttribute("projectVO");
+pageContext.setAttribute("projPerkVO",projPerkVO);
+pageContext.setAttribute("projectVO",projectVO);
+
+/* ProjPerkVO projPerkVO = (ProjPerkVO) request.getAttribute("projPerkVO"); //EmpServlet.java(Concroller), 存入req的empVO物件 
+ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO"); */
 /* MemVO memVO = (MemVO) request.getAttribute("memVO"); */
 ProjOrderVO projOrderVO = (ProjOrderVO) request.getAttribute("projOrderVO");
 %>
