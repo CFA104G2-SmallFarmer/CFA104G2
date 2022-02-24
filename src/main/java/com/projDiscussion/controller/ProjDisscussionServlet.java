@@ -89,9 +89,15 @@ public class ProjDisscussionServlet extends HttpServlet {
 				}
 				System.out.println("查詢完成,準備轉交");
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
-				req.setAttribute("projectVO", projectVO); // 資料庫取出的projPerkVO物件,存入req
+//				req.setAttribute("projectVO", projectVO); // 資料庫取出的projPerkVO物件,存入req
 //				req.setAttribute("projPerkVO", projPerkVO); // 資料庫取出的projPerkVO物件,存入req
 
+				
+				 HttpSession session=req.getSession();
+			       session.setAttribute("projectVO", projectVO);
+				
+				
+				
 				String url = "/front-end/projDiscussion/listAllProjDiscByProjByFmem.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 perkoverview.jsp
 				successView.forward(req, res);
@@ -198,7 +204,11 @@ public class ProjDisscussionServlet extends HttpServlet {
 				ProjectService projectSvc = new ProjectService();
 				ProjectVO projectVO = projectSvc.getOneProject(proj_id);
 				
-				req.setAttribute("projectVO", projectVO); // 資料庫update成功後,正確的的projectVO物件,存入req
+				 HttpSession session=req.getSession();
+			       session.setAttribute("projectVO", projectVO);
+				
+				
+//				req.setAttribute("projectVO", projectVO); // 資料庫update成功後,正確的的projectVO物件,存入req
 				String url = "/front-end/projDiscussion/listAllProjDiscByProjByFmem.jsp";
 				// 轉跳至專案圖片上傳頁面
 				// 因為取不到autoincrement的proj_id，沒辦法透過getOne做base64，要做只能在這支servlet裡面做，乾脆就listallbyfmem，感覺也不錯
@@ -282,8 +292,13 @@ public class ProjDisscussionServlet extends HttpServlet {
 				}
 				System.out.println("3");
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
-				req.setAttribute("projectVO", projectVO); // 資料庫取出的projPerkVO物件,存入req
+//				req.setAttribute("projectVO", projectVO); // 資料庫取出的projPerkVO物件,存入req
 //				req.setAttribute("projPerkVO", projPerkVO); // 資料庫取出的projPerkVO物件,存入req
+				
+				 HttpSession session=req.getSession();
+			       session.setAttribute("projectVO", projectVO);
+				
+				
 				
 				String url = "/front-end/projDiscussion/listAllProjDiscByProjByMem.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 perkoverview.jsp
@@ -390,7 +405,12 @@ public class ProjDisscussionServlet extends HttpServlet {
 				ProjectService projectSvc = new ProjectService();
 				ProjectVO projectVO = projectSvc.getOneProject(proj_id);
 				
-				req.setAttribute("mem_id",mem_id); 
+				
+				 HttpSession session=req.getSession();
+			       session.setAttribute("projectVO", projectVO);
+			       session.setAttribute("mem_id", mem_id);
+				
+//				req.setAttribute("mem_id",mem_id); 
 				
 				req.setAttribute("projectVO", projectVO); // 資料庫update成功後,正確的的projectVO物件,存入req
 				String url = "/front-end/projDiscussion/listAllProjDiscByProjByMem.jsp";
