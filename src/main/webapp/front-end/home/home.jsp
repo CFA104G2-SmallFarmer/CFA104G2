@@ -89,9 +89,8 @@ else{%>
 <script type="text/javascript">
 alert("<%=mess%>");
 </script>
-session.setAttribute("message", "");
 
-<% }%>
+<% session.setAttribute("message", ""); }%>
 <body id="default" class="default" style="">
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P3M896W" height="0" width="0"
       style="display:none;visibility:hidden"></iframe></noscript>
@@ -119,173 +118,13 @@ session.setAttribute("message", "");
     <section id="content" style="opacity: 1;" class="">
       <div id="mobile-indicator"></div>
       <div class="index-banner">
-        <div class="scroll-btn"><i class="arrow-down arrow animated infinite fadeOutDown2"></i></div>
-        <div id="index-silde" class="swiper-container swiper-container-horizontal swiper-container-fade">
-          <div class="swiper-wrapper" style="transition-duration: 0ms;"><div class="swiper-slide slide-item swiper-slide-duplicate" data-swiper-slide-index="5" style="width: 1107px; transform: translate3d(0px, 0px, 0px); opacity: 1; transition-duration: 0ms;">
-              <div class="bg" style="background-image: url(&#39;/media/uploads/images/promotions/%E4%BA%94%E5%80%8D%E5%8D%B7_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F_1_2.jpg&#39;)">
-                <a href="https://www.buydirectlyfromfarmers.tw/catalogue/5000-quintuple-stimulus-voucher_4104/">
-                  <div style="width:100%; height:100%; diplay:none; "></div>
-                </a>
-              </div>
-              <div class="container">
-                <a href="https://www.buydirectlyfromfarmers.tw/catalogue/5000-quintuple-stimulus-voucher_4104/">
-                  <h2 class="ani     " swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.8s" swiper-animate-delay="0s" style="visibility: hidden;" swiper-animate-style-cache="visibility: hidden;"></h2>
-                  <h1 class="ani     " swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.8s" swiper-animate-delay="0.3s" style="visibility: hidden;" swiper-animate-style-cache="visibility: hidden;"> </h1>
-                  <hr class="ani     " swiper-animate-effect="width130" swiper-animate-duration="0.8s" swiper-animate-delay="0.6s" style="visibility: hidden;" swiper-animate-style-cache="visibility: hidden;">
-                  <h3 class="ani     " swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.8s" swiper-animate-delay="0.8s" style="visibility: hidden;" swiper-animate-style-cache="visibility: hidden;">
-                    詳情<i class="arrow-right arrow"></i>
-                  </h3>
-                </a>
-              </div>
-            </div>
-            
-
-
-
-            <div class="swiper-slide slide-item" data-swiper-slide-index="0" style="width: 1107px; transform: translate3d(-1107px, 0px, 0px); opacity: 1; transition-duration: 0ms;">
-              <div class="bg" style="background-image: url(&#39;/media/uploads/images/products/2022/01/FV-415-slides2.jpg&#39;)">
-                <a href="https://www.buydirectlyfromfarmers.tw/catalogue/Yunlin_alusu_wu_4386/">
-                  <div style="width:100%; height:100%; diplay:none; z-index:99;"></div>
-                </a>
-              </div>
-              <div class="container">
-                <a href="https://www.buydirectlyfromfarmers.tw/catalogue/Yunlin_alusu_wu_4386/">
-                  <h2 class="ani                    " swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.8s" swiper-animate-delay="0s" style="visibility: hidden; animation-duration: 0.8s; animation-delay: 0s;" swiper-animate-style-cache="visibility: visible; animation-duration: 0.8s; animation-delay: 0s;animation-duration:0.8s;-webkit-animation-duration:0.8s;animation-delay:0s;-webkit-animation-delay:0s;">
-                    市面極稀有「特大果」，春節前限定！</h2>
-                  <h1 class="ani                    " swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.8s" swiper-animate-delay="0.3s" style="visibility: hidden; animation-duration: 0.8s; animation-delay: 0.3s;" swiper-animate-style-cache="visibility: visible; animation-duration: 0.8s; animation-delay: 0.3s;animation-duration:0.8s;-webkit-animation-duration:0.8s;animation-delay:0.3s;-webkit-animation-delay:0.3s;">
-                    日本網紋瓜之王　阿露斯哈密瓜</h1>
-                  <hr class="ani                    " swiper-animate-effect="width130" swiper-animate-duration="0.8s" swiper-animate-delay="0.6s" style="visibility: hidden; animation-duration: 0.8s; animation-delay: 0.6s;" swiper-animate-style-cache="visibility: visible; animation-duration: 0.8s; animation-delay: 0.6s;animation-duration:0.8s;-webkit-animation-duration:0.8s;animation-delay:0.6s;-webkit-animation-delay:0.6s;">
-                  <h3 class="ani                    " swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.8s" swiper-animate-delay="0.8s" style="visibility: hidden; animation-duration: 0.8s; animation-delay: 0.8s;" swiper-animate-style-cache="visibility: visible; animation-duration: 0.8s; animation-delay: 0.8s;animation-duration:0.8s;-webkit-animation-duration:0.8s;animation-delay:0.8s;-webkit-animation-delay:0.8s;">
-                    產品詳情<i class="arrow-right arrow"></i>
-                  </h3>
-                </a>
-              </div>
-            </div>
-
-
-
-
-            <div class="swiper-slide slide-item" data-swiper-slide-index="1" style="width: 1107px; transform: translate3d(-2214px, 0px, 0px); opacity: 1; transition-duration: 0ms;">
-              <div class="bg" style="background-image: url(&#39;/media/uploads/images/products/2021/12/slides2_12.jpg&#39;)">
-                <a href="https://www.buydirectlyfromfarmers.tw/catalogue/gift-tankan-2018_2022/">
-                  <div style="width:100%; height:100%; diplay:none; z-index:99;"></div>
-                </a>
-              </div>
-              <div class="container">
-                <a href="https://www.buydirectlyfromfarmers.tw/catalogue/gift-tankan-2018_2022/">
-                  <h2 class="ani               " swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.8s" swiper-animate-delay="0s" style="visibility: hidden;" swiper-animate-style-cache="visibility: hidden;">自然完熟、酸甜夠味的果實，以金色提繩紅禮盒傳喜氣</h2>
-                  <h1 class="ani               " swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.8s" swiper-animate-delay="0.3s" style="visibility: hidden;" swiper-animate-style-cache="visibility: hidden;">有機桶柑 精美禮盒</h1>
-                  <hr class="ani               " swiper-animate-effect="width130" swiper-animate-duration="0.8s" swiper-animate-delay="0.6s" style="visibility: hidden;" swiper-animate-style-cache="visibility: hidden;">
-                  <h3 class="ani               " swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.8s" swiper-animate-delay="0.8s" style="visibility: hidden;" swiper-animate-style-cache="visibility: hidden;">
-                    產品詳情<i class="arrow-right arrow"></i>
-                  </h3>
-                </a>
-              </div>
-            </div>
-
-
-
-
-            <div class="swiper-slide slide-item" data-swiper-slide-index="2" style="width: 1107px; transform: translate3d(-3321px, 0px, 0px); opacity: 1; transition-duration: 0ms;">
-              <div class="bg" style="background-image: url(&#39;/media/uploads/images/products/2021/01/slide-sanjeou-braised-pork-knuckle.jpg&#39;)">
-                <a href="https://www.buydirectlyfromfarmers.tw/catalogue/sanjeou-braised-pork-knuckle_3361/">
-                  <div style="width:100%; height:100%; diplay:none; z-index:99;"></div>
-                </a>
-              </div>
-              <div class="container">
-                <a href="https://www.buydirectlyfromfarmers.tw/catalogue/sanjeou-braised-pork-knuckle_3361/">
-                  <h2 class="ani               " swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.8s" swiper-animate-delay="0s" style="visibility: hidden;" swiper-animate-style-cache="visibility: hidden;">脂肪甜美、醬香濃郁，膠質黏上嘴唇的瞬間，幸福滿滿～ </h2>
-                  <h1 class="ani               " swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.8s" swiper-animate-delay="0.3s" style="visibility: hidden;" swiper-animate-style-cache="visibility: hidden;">古早味滷蹄膀</h1>
-                  <hr class="ani               " swiper-animate-effect="width130" swiper-animate-duration="0.8s" swiper-animate-delay="0.6s" style="visibility: hidden;" swiper-animate-style-cache="visibility: hidden;">
-                  <h3 class="ani               " swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.8s" swiper-animate-delay="0.8s" style="visibility: hidden;" swiper-animate-style-cache="visibility: hidden;">
-                    產品詳情<i class="arrow-right arrow"></i>
-                  </h3>
-                </a>
-              </div>
-            </div>
-
-
-
-
-            <div class="swiper-slide slide-item swiper-slide-prev" data-swiper-slide-index="3" style="width: 1107px; transform: translate3d(-4428px, 0px, 0px); opacity: 1; transition-duration: 0ms;">
-              <div class="bg" style="background-image: url(&#39;/media/uploads/images/products/2022/01/FV-412-slides2.jpg&#39;)">
-                <a href="https://www.buydirectlyfromfarmers.tw/catalogue/Miaoli_Strawberry_Lan_4365/">
-                  <div style="width:100%; height:100%; diplay:none; z-index:99;"></div>
-                </a>
-              </div>
-              <div class="container">
-                <a href="https://www.buydirectlyfromfarmers.tw/catalogue/Miaoli_Strawberry_Lan_4365/">
-                  <h2 class="ani          " swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.8s" swiper-animate-delay="0s" style="visibility: hidden;" swiper-animate-style-cache="visibility: hidden;">不分品種混裝，每一盒都是獨一無二的草莓百寶盒，每一口都是驚喜！</h2>
-                  <h1 class="ani          " swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.8s" swiper-animate-delay="0.3s" style="visibility: hidden;" swiper-animate-style-cache="visibility: hidden;">綜合紅草莓百寶盒</h1>
-                  <hr class="ani          " swiper-animate-effect="width130" swiper-animate-duration="0.8s" swiper-animate-delay="0.6s" style="visibility: hidden;" swiper-animate-style-cache="visibility: hidden;">
-                  <h3 class="ani          " swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.8s" swiper-animate-delay="0.8s" style="visibility: hidden;" swiper-animate-style-cache="visibility: hidden;">
-                    產品詳情<i class="arrow-right arrow"></i>
-                  </h3>
-                </a>
-              </div>
-            </div>
-
-            <div class="swiper-slide slide-item swiper-slide-active" data-swiper-slide-index="4" style="width: 1107px; transform: translate3d(-5535px, 0px, 0px); opacity: 1; transition-duration: 0ms;">
-              <div class="bg" style="background-image: url(&#39;/media/uploads/images/products/2021/01/FV-343_slides2.jpg&#39;)">
-                <a href="https://www.buydirectlyfromfarmers.tw/catalogue/ling-jiao-sweet-potato-Taixi-Wu_3438/">
-                  <div style="width:100%; height:100%; diplay:none; z-index:99;"></div>
-                </a>
-              </div>
-              <div class="container">
-                <a href="https://www.buydirectlyfromfarmers.tw/catalogue/ling-jiao-sweet-potato-Taixi-Wu_3438/">
-                  <h2 class="ani            fadeInLeft animated" swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.8s" swiper-animate-delay="0s" style="visibility: visible;animation-duration:0.8s;-webkit-animation-duration:0.8s;animation-delay:0s;-webkit-animation-delay:0s;" swiper-animate-style-cache="visibility: hidden;">口感鬆軟，帶有淡淡的菱角和牛奶香氣</h2>
-                  <h1 class="ani            fadeInLeft animated" swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.8s" swiper-animate-delay="0.3s" style="visibility: visible;animation-duration:0.8s;-webkit-animation-duration:0.8s;animation-delay:0.3s;-webkit-animation-delay:0.3s;" swiper-animate-style-cache="visibility: hidden;">又香又鬆 有機轉型期菱角地瓜</h1>
-                  <hr class="ani            width130 animated" swiper-animate-effect="width130" swiper-animate-duration="0.8s" swiper-animate-delay="0.6s" style="visibility: visible;animation-duration:0.8s;-webkit-animation-duration:0.8s;animation-delay:0.6s;-webkit-animation-delay:0.6s;" swiper-animate-style-cache="visibility: hidden;">
-                  <h3 class="ani            fadeInLeft animated" swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.8s" swiper-animate-delay="0.8s" style="visibility: visible;animation-duration:0.8s;-webkit-animation-duration:0.8s;animation-delay:0.8s;-webkit-animation-delay:0.8s;" swiper-animate-style-cache="visibility: hidden;">
-                    產品詳情<i class="arrow-right arrow"></i>
-                  </h3>
-                </a>
-              </div>
-            </div>
-
-            <div class="swiper-slide slide-item swiper-slide-next" data-swiper-slide-index="5" style="width: 1107px; transform: translate3d(-6642px, 0px, 0px); opacity: 0; transition-duration: 0ms;">
-              <div class="bg" style="background-image: url(&#39;/media/uploads/images/promotions/%E4%BA%94%E5%80%8D%E5%8D%B7_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F_1_2.jpg&#39;)">
-                <a href="https://www.buydirectlyfromfarmers.tw/catalogue/5000-quintuple-stimulus-voucher_4104/">
-                  <div style="width:100%; height:100%; diplay:none; "></div>
-                </a>
-              </div>
-              <div class="container">
-                <a href="https://www.buydirectlyfromfarmers.tw/catalogue/5000-quintuple-stimulus-voucher_4104/">
-                  <h2 class="ani     " swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.8s" swiper-animate-delay="0s" style="visibility: hidden;" swiper-animate-style-cache="visibility: hidden;"></h2>
-                  <h1 class="ani     " swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.8s" swiper-animate-delay="0.3s" style="visibility: hidden;" swiper-animate-style-cache="visibility: hidden;"> </h1>
-                  <hr class="ani     " swiper-animate-effect="width130" swiper-animate-duration="0.8s" swiper-animate-delay="0.6s" style="visibility: hidden;" swiper-animate-style-cache="visibility: hidden;">
-                  <h3 class="ani     " swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.8s" swiper-animate-delay="0.8s" style="visibility: hidden;" swiper-animate-style-cache="visibility: hidden;">
-                    詳情<i class="arrow-right arrow"></i>
-                  </h3>
-                </a>
-              </div>
-            </div>
-            
-          <div class="swiper-slide slide-item swiper-slide-duplicate" data-swiper-slide-index="0" style="width: 1107px; transform: translate3d(-7749px, 0px, 0px); opacity: 0; transition-duration: 0ms;">
-              <div class="bg" style="background-image: url(&#39;/media/uploads/images/products/2022/01/FV-415-slides2.jpg&#39;)">
-                <a href="https://www.buydirectlyfromfarmers.tw/catalogue/Yunlin_alusu_wu_4386/">
-                  <div style="width:100%; height:100%; diplay:none; z-index:99;"></div>
-                </a>
-              </div>
-              <div class="container">
-                <a href="https://www.buydirectlyfromfarmers.tw/catalogue/Yunlin_alusu_wu_4386/">
-                  <h2 class="ani          " swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.8s" swiper-animate-delay="0s" style="visibility: hidden; animation-duration: 0.8s; animation-delay: 0s;" swiper-animate-style-cache="visibility: hidden; animation-duration: 0.8s; animation-delay: 0s;">
-                    市面極稀有「特大果」，春節前限定！</h2>
-                  <h1 class="ani          " swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.8s" swiper-animate-delay="0.3s" style="visibility: hidden; animation-duration: 0.8s; animation-delay: 0.3s;" swiper-animate-style-cache="visibility: hidden; animation-duration: 0.8s; animation-delay: 0.3s;">
-                    日本網紋瓜之王　阿露斯哈密瓜</h1>
-                  <hr class="ani          " swiper-animate-effect="width130" swiper-animate-duration="0.8s" swiper-animate-delay="0.6s" style="visibility: hidden; animation-duration: 0.8s; animation-delay: 0.6s;" swiper-animate-style-cache="visibility: hidden; animation-duration: 0.8s; animation-delay: 0.6s;">
-                  <h3 class="ani          " swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.8s" swiper-animate-delay="0.8s" style="visibility: hidden; animation-duration: 0.8s; animation-delay: 0.8s;" swiper-animate-style-cache="visibility: hidden; animation-duration: 0.8s; animation-delay: 0.8s;">
-                    產品詳情<i class="arrow-right arrow"></i>
-                  </h3>
-                </a>
-              </div>
-            </div></div>
-        </div>
-      </div>
-      <div class="index-silde-circle swiper-pagination-clickable"><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span></div>
-      <div class="container">
-
+		<iframe
+				src="<%=request.getContextPath()%>/front-end/home/homeSlideShow.jsp"
+				width="1410" height="590" frameborder="0" style="display: block;"></iframe>
         <section class="block">
+      </div>
+      <div class="container">
+<!-- 接入點 -->
           <div class="title">
             <span class="block-titlefont WStdsong-B">人氣很旺的</span>
             <h5 style="line-height: 30px;margin-top: 16px;">看看其他朋友在關注什麼</h5>

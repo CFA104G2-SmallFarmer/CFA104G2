@@ -97,9 +97,9 @@ aside {
   <input type="checkbox" id="touch4" class="touch"> 
 
   <ul class="show" id="slide4">
-    <li><a href="#">商城訂單管理</a></li> 
-    <li><a href="#">認養訂單管理</a></li>
-    <li><a href="#">旅遊行程訂單</a></li>
+    <li><a href="<%=request.getContextPath()%>/front-end/shopOrder/listAllOrderByMem.jsp">商城訂單管理</a></li> 
+    <li><a href="<%=request.getContextPath()%>/front-end/projOrder/listAllOrderByMem.jsp">認養訂單管理</a></li>
+    <li><a href="<%=request.getContextPath()%>/front-end/farmTravel/listAllFarmTravelByMem.jsp">旅遊行程訂單</a></li>
   </ul>
 </aside>
 </body>

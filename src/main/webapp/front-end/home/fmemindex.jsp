@@ -106,8 +106,8 @@ aside {
   <input type="checkbox" id="touch3" class="touch"> 
 
   <ul class="show" id="slide3" >
-    <li><a href="#">商城商品管理</a></li> 
-    <li><a href="#">商城訂單管理</a></li>
+    <li><a href="<%=request.getContextPath()%>/front-end/Product/listAllProductByFmem.jsp">商城商品管理</a></li> 
+    <li><a href="<%=request.getContextPath()%>/front-end/projOrder/listAllOrderByFmem.jsp">商城訂單管理</a></li>
 <!--     <li><a href="#">Lorem Ipsum</a></li> -->
 <!--     <li><a href="#">Lorem Ipsum</a></li> -->
   </ul>
@@ -116,8 +116,8 @@ aside {
   <input type="checkbox" id="touch4" class="touch"> 
 
   <ul class="show" id="slide4">
-    <li><a href="#">認養專案管理</a></li> 
-    <li><a href="#">認養訂單管理</a></li>
+    <li><a href="<%=request.getContextPath()%>/front-end/project/listAllProjByFmem.jsp">認養專案管理</a></li> 
+    <li><a href="<%=request.getContextPath()%>/front-end/projOrder/listAllOrderByFmem.jsp">認養訂單管理</a></li>
 <!--     <li><a href="#">Lorem Ipsum</a></li> -->
 <!--     <li><a href="#">Lorem Ipsum</a></li> -->
   </ul>

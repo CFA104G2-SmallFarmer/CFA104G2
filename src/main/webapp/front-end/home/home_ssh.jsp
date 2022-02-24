@@ -39,7 +39,19 @@
 <meta name="author" content="">
 
 
+<!-- 當點選小農專區，印出未成為小農提示訊息，並跳轉回首頁 -->
+<%
+	String mess= (String) session.getAttribute("message");
 
+	if("".equals(mess)  || mess==null){
+	}
+else{%>
+
+<script type="text/javascript">
+alert("<%=mess%>");
+</script>
+
+<% session.setAttribute("message", ""); }%>
 
 <style type="text/css">
 svg:not(:root).svg-inline--fa {
@@ -596,7 +608,7 @@ rotate(
 			</header>
 
 		</section>
-
+<!-- 幻燈片 -->
 		<div id="uiLockId"
 			style="display: none; position: fixed; top: 0; left: 0; z-index: 5; opacity: 0.6; width: 100%; height: 200%; color: white; background-color: #666666; text-align: center">
 			<div style="position: fixed; z-index: 100; top: 200px; left: 50%">
@@ -605,12 +617,12 @@ rotate(
 					alt="Farmer running">
 			</div>
 		</div>
-<!-- 		<section id="content" style="opacity: 1;" class=""> -->
+		<section id="content" style="opacity: 1;" class="">
 <!-- 			<iframe -->
 <%-- 				src="<%=request.getContextPath()%>/front-end/home/homeSlideShow.jsp" --%>
 <!-- 				width="1410" height="590" frameborder="0" style="display: block;"></iframe> -->
-
-<!-- 		</section> -->
+<!-- 幻燈片 -->
+		</section>
 				<div class="index-banner">
 				<div class="scroll-btn">
 					<i class="arrow-down arrow animated infinite fadeOutDown2"></i>
