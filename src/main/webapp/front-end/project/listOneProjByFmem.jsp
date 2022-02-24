@@ -49,7 +49,7 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 <meta content="zh_TW" property="og:locale">
 <meta content="zh_TW" property="og:locale:alternate">
 
-<title>認養專案管理 | ${projectVO.proj_name} </title>
+<title>小農認養專案管理 | ${projectVO.proj_name} </title>
 <link href="<%=request.getContextPath()%>/front-end/project/listOneProj_files/css"
 	rel="stylesheet" type="text/css">
 <link rel="stylesheet" media="all"
@@ -95,10 +95,10 @@ footer:hover .logo-safari-fix {
 					</ul>
 				</c:if>
 				<a class="db"
-					href="https://www.zeczec.com/projects/paradisepet2022zeczecnewyear"><h2
+					href="#"><h2
 						class="f4 mt2 mb1">${projectVO.proj_name}</h2> </a><span
 					class="f6 mr1">提案人</span><a class="b f6"
-					href="https://www.zeczec.com/users/Pet-Paradise0507">${fmemSvc.getOneFMem(projectSvc.getOneProject(projectVO.proj_id).f_mem_id).f_mem_fname}</a>
+					href="#">${fmemSvc.getOneFMem(projectSvc.getOneProject(projectVO.proj_id).f_mem_id).f_mem_fname}</a>
 				<p class="f6 gray mv3">${projectVO.proj_abstract}</p>
 				<div class="mv3 relative flex items-center flex-nowrap">
 					<svg class="progress mr3 succeeded sprint">

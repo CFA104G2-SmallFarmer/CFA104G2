@@ -34,7 +34,7 @@
 <meta name="viewport"
 	content="width=device-width,
     initial-scale=1.0">
-<title>瀏覽認養專案</title>
+<title>小農認養專案管理</title>
 
 
 <link rel="stylesheet"
@@ -477,7 +477,7 @@ margin-top:20px;
 
         <li><a href="<%=request.getContextPath()%>/front-end/projOrder/listAllOrderByFmem.jsp">小農認養訂單管理&nbsp;</a></li>
 
-        <li><a href="#">回到首頁 &nbsp;</a></li>
+         <li><a href="<%=request.getContextPath()%>/front-end/home/home.jsp"">回到首頁 &nbsp;</a></li>
         <li><a href="#"><i class="material-icons" style="font-size:27px">mail_outline</i> &nbsp;</a></li>
       </ul>
       <div class="div0 showmenu">
