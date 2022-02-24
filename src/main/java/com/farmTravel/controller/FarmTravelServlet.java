@@ -369,5 +369,29 @@ public class FarmTravelServlet extends HttpServlet {
                 errView.forward(request, response);
             }
         }
+        if("search".equals(action)) {  // 非真正刪除，變更狀態碼為 9
+            List<String> errorMsgs = new LinkedList<String>();
+            request.setAttribute("errorMsgs", errorMsgs);
+
+            try {
+                // 接收參數
+                String searchFarmTravel = "%"+request.getParameter("searchFarmTravel")+"%";
+
+                // 準備刪除
+                FarmTravelService farmTravelService = new FarmTravelService();
+                List<FarmTravelVO> list = farmTravelService.farmTravelBySearch(searchFarmTravel);
+
+                request.setAttribute("list",list);
+
+                // 查詢完成，準備轉交
+                RequestDispatcher sucessView = request.getRequestDispatcher("/front-end/farmTravel/listAllFarmTravelByMem.jsp");
+                sucessView.forward(request, response);
+
+            }catch(Exception e){  // 發生其他Error時
+                errorMsgs.add("查無資料:"+e.getMessage());
+                RequestDispatcher errView = request.getRequestDispatcher("/front-end/farmTravel/listAllFarmTravelByMem.jsp");
+                errView.forward(request, response);
+            }
+        }
     }
 }

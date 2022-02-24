@@ -7,7 +7,7 @@
 <%@ page import="java.util.List" %>
 <%
     FarmTravelService farmTravelService = new FarmTravelService();
-    List<FarmTravelVO> list = farmTravelService.getAllFarmTravelFromFMem(((FMemVO) session.getAttribute("fMem")).getF_mem_id());
+    List<FarmTravelVO> list = farmTravelService.listAllFarmTravelSetUp(((FMemVO) session.getAttribute("fMem")).getF_mem_id());
     pageContext.setAttribute("list", list);
 %>
 
@@ -124,7 +124,7 @@
                         <div class="collapse" id="farmTravel-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                 <li><a href="<%=request.getContextPath()%>/front-end/farmTravel/addFarmTravel.jsp" class="nav-link rounded leftBarText">新增行程</a></li>
-                                <li><a href="<%=request.getContextPath()%>/front-end/farmTravel/listAllFarmTravelByFMem.jsp" class="nav-link rounded leftBarText">我建立的行程</a></li>
+                                <li><a href="<%=request.getContextPath()%>/front-end/farmTravel/listAllFarmTravelByFMem.jsp" class="nav-link rounded leftBarText">查看所有行程</a></li>
                                 <li><a href="<%=request.getContextPath()%>/front-end/farmTravel/listMyFarmTravelSetUp.jsp" class="nav-link rounded leftBarText">我已成團的行程</a></li>
                             </ul>
                         </div>

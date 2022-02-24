@@ -14,12 +14,13 @@ public class ScheduleServlet extends HttpServlet {
 
     public void init() throws ServletException {
         timer = new Timer();
-        Calendar cal = new GregorianCalendar(2022, Calendar.FEBRUARY, 23, 21, 0, 0);
+        Calendar cal = new GregorianCalendar(2022, Calendar.FEBRUARY, 24, 0, 0, 0);
         TimerTask task = new TimerTask(){
 
             public void run() {
                 FarmTravelService farmTravelService = new FarmTravelService();
                 farmTravelService.applyChange();
+                farmTravelService.farmTravelSetUp();
                 FarmTravelOrderService farmTravelOrderService = new FarmTravelOrderService();
                 farmTravelOrderService.travelCompleted();
             }

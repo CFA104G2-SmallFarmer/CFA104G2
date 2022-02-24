@@ -12,4 +12,7 @@ public interface FarmTravelDAO {
     List<FarmTravelVO> getAllMemCanApply(Connection con);
     Integer openFarmTravelApply(Connection con);
     Integer closeFarmTravelApply(Connection con);
+    Integer farmTravelSetUp(Connection con);
+    List<FarmTravelVO> farmTravelBySearch(Connection con, String searchFarmTravel);
+    List<FarmTravelVO> listAllFarmTravelSetUp(Connection con, Integer f_mem_ID);
 }

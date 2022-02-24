@@ -4,15 +4,21 @@
 <%@ page import="com.farmTravel.model.*"%>
 <%@ page import="com.farmTravelTag.model.FarmTravelTagService" %>
 <%@ page import="com.farmTravelTag.model.FarmTravelTagVO" %>
-<%@ page import="com.farmTravelTagDetails.model.FarmTravelTagDetailsService" %>
-<%@ page import="com.farmTravelTagDetails.model.FarmTravelTagDetailsVO" %>
 <%
-    FarmTravelService farmTravelService = new FarmTravelService();
-    List<FarmTravelVO> list = farmTravelService.getAllMemCanApply();
-    pageContext.setAttribute("list",list);
-    FarmTravelTagService farmTravelTagService = new FarmTravelTagService();
-    List<FarmTravelTagVO> farmTravelTagList = farmTravelTagService.getTopThreeFarmTravelTag();
-    pageContext.setAttribute("farmTravelTagList", farmTravelTagList);
+    List<FarmTravelVO> list = (List<FarmTravelVO>)request.getAttribute("list");
+    if (list==null){
+        FarmTravelService farmTravelService = new FarmTravelService();
+        list = farmTravelService.getAllMemCanApply();
+        pageContext.setAttribute("list",list);
+        FarmTravelTagService farmTravelTagService = new FarmTravelTagService();
+        List<FarmTravelTagVO> farmTravelTagList = farmTravelTagService.getTopThreeFarmTravelTag();
+        pageContext.setAttribute("farmTravelTagList", farmTravelTagList);
+    }else{
+        pageContext.setAttribute("list",list);
+        FarmTravelTagService farmTravelTagService = new FarmTravelTagService();
+        List<FarmTravelTagVO> farmTravelTagList = farmTravelTagService.getTopThreeFarmTravelTag();
+        pageContext.setAttribute("farmTravelTagList", farmTravelTagList);
+    }
 %>
 <html>
 <head>
@@ -127,53 +133,61 @@
 </head>
 <body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-<%-- Menu按鈕 --%>
-<button class="menuBtn btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuBtn" aria-controls="offcanvasWithBothOptions">
-    <img src="<%=request.getContextPath()%>/front-end/farmTravel/images/menuBtn.png">
-</button>
-<%-- Menu內容 --%>
-<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="menuBtn" aria-labelledby="menuLabel">
-    <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="menuLabel">功能導航</h5>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+<header>
+<%--    <jsp:include page="farmHeader.jsp"/>--%>
+</header>
+<c:if test="${not empty mem}">
+    <%-- Menu按鈕 --%>
+    <button class="menuBtn btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuBtn" aria-controls="offcanvasWithBothOptions">
+        <img src="<%=request.getContextPath()%>/front-end/farmTravel/images/menuBtn.png">
+    </button>
+    <%-- Menu內容 --%>
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="menuBtn" aria-labelledby="menuLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="menuLabel">功能導航</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="mb-1">
+                    <button class="menu btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#farmTravel-collapse" aria-expanded="true">
+                        農旅行程
+                    </button>
+                    <div class="collapse show" id="farmTravel-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li><a href="<%=request.getContextPath()%>/front-end/farmTravel/listAllFarmTravelByMem.jsp" class="nav-link roundedwhite leftBarText">查看所有行程</a></li>
+                            <li><a href="<%=request.getContextPath()%>/front-end/farmTravelCollection/listAllMyFarmTravelCollection.jsp" class="nav-link rounded leftBarText">我收藏的行程</a></li>
+                            <li><a href="#" class="nav-link rounded leftBarText">我檢舉的行程(未完成)</a></li>
+                            <li><a href="#" class="nav-link rounded leftBarText">已報名的行程(?)</a></li>
+                            <li><a href="#" class="nav-link rounded leftBarText">曾參加過的行程(?)</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="mb-1">
+                    <button class="menu btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="true">
+                        訂單管理
+                    </button>
+                    <div class="collapse show" id="orders-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li><a href="<%=request.getContextPath()%>/front-end/farmTravelOrder/listAllFarmTravelOrderByMem.jsp" class="nav-link rounded leftBarText">查看所有訂單</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
-    <div class="offcanvas-body">
-        <ul class="nav nav-pills flex-column mb-auto">
-            <li class="mb-1">
-                <button class="menu btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#farmTravel-collapse" aria-expanded="false">
-                    農旅行程
-                </button>
-                <div class="collapse" id="farmTravel-collapse">
-                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a href="<%=request.getContextPath()%>/front-end/farmTravel/listAllFarmTravelByMem.jsp" class="nav-link roundedwhite leftBarText">查看所有行程</a></li>
-                        <li><a href="<%=request.getContextPath()%>/front-end/farmTravelCollection/listAllMyFarmTravelCollection.jsp" class="nav-link rounded leftBarText">我收藏的行程</a></li>
-                        <li><a href="#" class="nav-link rounded leftBarText">我檢舉的行程(未完成)</a></li>
-                        <li><a href="#" class="nav-link rounded leftBarText">已報名的行程(?)</a></li>
-                        <li><a href="#" class="nav-link rounded leftBarText">曾參加過的行程(?)</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="mb-1">
-                <button class="menu btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-                    訂單管理
-                </button>
-                <div class="collapse" id="orders-collapse">
-                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a href="<%=request.getContextPath()%>/front-end/farmTravelOrder/listAllFarmTravelOrderByMem.jsp" class="nav-link rounded leftBarText">查看所有訂單</a></li>
-                    </ul>
-                </div>
-            </li>
-        </ul>
-    </div>
-</div>
+</c:if>
 
 <div class="container">
     <div class="row">
         <div class="col">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Search..." aria-label="Recipient's username" aria-describedby="searchBar">
-                <button class="btn btn-outline-success" type="button" id="searchBar">Search</button>
-            </div>
+            <form method="post" action="<%=request.getContextPath()%>/farmTravel.do">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search..." aria-describedby="searchBar" name="searchFarmTravel">
+                    <input type="hidden" name="action" value="search">
+                    <button class="btn btn-outline-success" type="submit" id="searchBar">Search</button>
+                </div>
+            </form>
         </div>
     </div>
     <div class="row tagRow">
@@ -205,6 +219,9 @@
                             </h6>
                             <div class="row">
                                 <div class="col-6">
+                                    <c:if test="${farmTravel.farm_travel_state eq 1}">
+                                        距離成團還差<strong>${farmTravel.farm_travel_min-farmTravel.farm_travel_now}</strong>人
+                                    </c:if>
                                     <c:if test="${farmTravel.farm_travel_state eq 2}">
                                         <span style='border:3px solid #a8dba8;border-radius:10px;padding: 1px'>已成團</span>
                                     </c:if>
@@ -215,9 +232,11 @@
                             </div>
                             <div class="row">
                                 <div class="col-3">
-                                    <button type="button" class="btn btn-outline-light" value="${farmTravel.farm_travel_ID}">
-                                        <img src="<%=request.getContextPath()%>/farmTravelCollection.do?action=collection&mem_ID=${mem.mem_id}&farm_travel_ID=${farmTravel.farm_travel_ID}" class="collection">
-                                    </button>
+                                    <c:if test="${not empty mem}">
+                                        <button type="button" class="btn btn-outline-light" value="${farmTravel.farm_travel_ID}">
+                                            <img src="<%=request.getContextPath()%>/farmTravelCollection.do?action=collection&mem_ID=${mem.mem_id}&farm_travel_ID=${farmTravel.farm_travel_ID}" class="collection">
+                                        </button>
+                                    </c:if>
                                 </div>
                                 <div class="col-4"></div>
                                 <div class="col-5 getOneDiv">

@@ -14,6 +14,9 @@ public class FarmTravelJDBCDAO implements FarmTravelDAO{
     public static final String GET_ALL_MEM_CAN_APPLY = "SELECT * FROM FARM_TRAVEL WHERE FARM_TRAVEL_STATE IN ('1','2') AND TRAVEL_APPLY_START < NOW() and TRAVEL_APPLY_END > NOW()  AND (FARM_TRAVEL_MAX - FARM_TRAVEL_NOW) > 0;  ";
     public static final String OPEN_APPLY_STMT = "UPDATE FARM_TRAVEL SET FARM_TRAVEL_STATE = 1 WHERE TRAVEL_APPLY_START < NOW() and TRAVEL_APPLY_END > NOW() AND FARM_TRAVEL_STATE = 0;";
     public static final String CLOSE_APPLY_STMT = "UPDATE FARM_TRAVEL SET FARM_TRAVEL_STATE = 0 WHERE TRAVEL_APPLY_END < NOW() AND FARM_TRAVEL_STATE = 1;";
+    public static final String FARM_TRAVEL_SET_UP_STMT = "UPDATE FARM_TRAVEL SET FARM_TRAVEL_STATE = 2 WHERE FARM_TRAVEL_NOW >= FARM_TRAVEL_MIN AND FARM_TRAVEL_STATE = 1;";
+    public static final String SEARCH_FARM_TRAVEL_STMT = "SELECT * FROM FARM_TRAVEL WHERE FARM_TRAVEL_TITLE LIKE ? OR FARM_TRAVEL_INFO LIKE ?";
+    public static final String GET_MY_FARM_TRAVEL_SET_UP_STMT = "SELECT * FROM FARM_TRAVEL WHERE FARM_TRAVEL_STATE = 2 AND F_MEM_ID = ?";
 
     PreparedStatement pstmt = null;
     ResultSet rs = null;
@@ -269,6 +272,7 @@ public class FarmTravelJDBCDAO implements FarmTravelDAO{
             pstmt = con.prepareStatement(OPEN_APPLY_STMT);
 
             return pstmt.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace(System.err);
             return 0;
@@ -289,6 +293,7 @@ public class FarmTravelJDBCDAO implements FarmTravelDAO{
             pstmt = con.prepareStatement(CLOSE_APPLY_STMT);
 
             return pstmt.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace(System.err);
             return 0;
@@ -301,5 +306,129 @@ public class FarmTravelJDBCDAO implements FarmTravelDAO{
                 }
             }
         }
+    }
+
+    @Override
+    public Integer farmTravelSetUp(Connection con) {
+        try {
+            pstmt = con.prepareStatement(FARM_TRAVEL_SET_UP_STMT);
+
+            return pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace(System.err);
+            return 0;
+        } finally {
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+        }
+    }
+
+    @Override
+    public List<FarmTravelVO> farmTravelBySearch(Connection con, String searchFarmTravel) {
+        List<FarmTravelVO> farm_travel_list = new ArrayList<>();
+        FarmTravelVO farm_travel;
+        try {
+            pstmt = con.prepareStatement(SEARCH_FARM_TRAVEL_STMT);
+
+            pstmt.setString(1,searchFarmTravel);
+            pstmt.setString(2,searchFarmTravel);
+
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                farm_travel = new FarmTravelVO();
+                farm_travel.setFarm_travel_ID(rs.getInt("FARM_TRAVEL_ID"));
+                farm_travel.setMem_ID(rs.getInt("MEM_ID"));
+                farm_travel.setF_mem_ID(rs.getInt("F_MEM_ID"));
+                farm_travel.setFarm_travel_title(rs.getString("FARM_TRAVEL_TITLE"));
+                farm_travel.setFarm_travel_img(rs.getBytes("FARM_TRAVEL_IMG"));
+                farm_travel.setFarm_travel_info(rs.getString("FARM_TRAVEL_INFO"));
+                farm_travel.setFarm_travel_start(rs.getTimestamp("FARM_TRAVEL_START"));
+                farm_travel.setFarm_travel_end(rs.getTimestamp("FARM_TRAVEL_END"));
+                farm_travel.setFarm_travel_fee(rs.getInt("FARM_TRAVEL_FEE"));
+                farm_travel.setTravel_apply_start(rs.getTimestamp("TRAVEL_APPLY_START"));
+                farm_travel.setTravel_apply_end(rs.getTimestamp("TRAVEL_APPLY_END"));
+                farm_travel.setFarm_travel_min(rs.getInt("FARM_TRAVEL_MIN"));
+                farm_travel.setFarm_travel_max(rs.getInt("FARM_TRAVEL_MAX"));
+                farm_travel.setFarm_travel_now(rs.getInt("FARM_TRAVEL_NOW"));
+                farm_travel.setFarm_travel_state(rs.getInt("FARM_TRAVEL_STATE"));
+                farm_travel_list.add(farm_travel);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(System.err);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+        }
+        return farm_travel_list;
+    }
+
+    @Override
+    public List<FarmTravelVO> listAllFarmTravelSetUp(Connection con, Integer f_mem_ID) {
+        List<FarmTravelVO> farm_travel_list = new ArrayList<>();
+        FarmTravelVO farm_travel;
+        try {
+            pstmt = con.prepareStatement(GET_MY_FARM_TRAVEL_SET_UP_STMT);
+
+            pstmt.setInt(1, f_mem_ID);
+
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                farm_travel = new FarmTravelVO();
+                farm_travel.setFarm_travel_ID(rs.getInt("FARM_TRAVEL_ID"));
+                farm_travel.setMem_ID(rs.getInt("MEM_ID"));
+                farm_travel.setF_mem_ID(rs.getInt("F_MEM_ID"));
+                farm_travel.setFarm_travel_title(rs.getString("FARM_TRAVEL_TITLE"));
+                farm_travel.setFarm_travel_img(rs.getBytes("FARM_TRAVEL_IMG"));
+                farm_travel.setFarm_travel_info(rs.getString("FARM_TRAVEL_INFO"));
+                farm_travel.setFarm_travel_start(rs.getTimestamp("FARM_TRAVEL_START"));
+                farm_travel.setFarm_travel_end(rs.getTimestamp("FARM_TRAVEL_END"));
+                farm_travel.setFarm_travel_fee(rs.getInt("FARM_TRAVEL_FEE"));
+                farm_travel.setTravel_apply_start(rs.getTimestamp("TRAVEL_APPLY_START"));
+                farm_travel.setTravel_apply_end(rs.getTimestamp("TRAVEL_APPLY_END"));
+                farm_travel.setFarm_travel_min(rs.getInt("FARM_TRAVEL_MIN"));
+                farm_travel.setFarm_travel_max(rs.getInt("FARM_TRAVEL_MAX"));
+                farm_travel.setFarm_travel_now(rs.getInt("FARM_TRAVEL_NOW"));
+                farm_travel.setFarm_travel_state(rs.getInt("FARM_TRAVEL_STATE"));
+                farm_travel_list.add(farm_travel);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(System.err);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+        }
+        return farm_travel_list;
     }
 }

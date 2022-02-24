@@ -244,6 +244,7 @@ public class FarmTravelOrderJDBCDAO implements FarmTravelOrderDAO{
             pstmt = con.prepareStatement(TRAVEL_COMPLETED_STMT);
 
             return pstmt.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace(System.err);
             return 0;

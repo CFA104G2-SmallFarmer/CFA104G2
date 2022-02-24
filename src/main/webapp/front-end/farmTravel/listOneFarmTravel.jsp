@@ -118,11 +118,11 @@
 
         <div class="row">
             <div class="col-12 mb-2"><h4>▏地點</h4></div>
-            <div class="col-12 mb-4"><h5>目的地資訊</h5></div>
-            <div class="col-12">google地圖...</div>
-            <div class="col-12 mb-4"><h5>電話</h5></div>
-            <div class="col-12">0123456789</div>
-            <div class="col-12 mb-4"><h5>營業時間</h5></div>
+            <div class="col-12"><h5>目的地資訊</h5></div>
+            <div class="col-12 mb-4">google地圖...</div>
+            <div class="col-12"><h5>電話</h5></div>
+            <div class="col-12 mb-4">0123456789</div>
+            <div class="col-12"><h5>營業時間</h5></div>
             <div>星期1　09:00~17:00</div>
             <div>星期2　09:00~17:00</div>
             <div>星期3　09:00~17:00</div>

@@ -91,20 +91,88 @@
         .submitBtn{
             float: right;
         }
+
+        .btn-toggle{
+            font-size: 22px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .nav-link{
+            font-size: 18px;
+            width: 100%;
+            background-color: #b9d4b3;
+        }
+        .text-white:hover{
+            background-color: #aaba8b;
+        }
+        .menu{
+            background-color: #b9d4b3;
+        }
+        .menuBtn{
+            position: sticky;
+            top: 0;
+        }
+        .menuBtn:hover{
+            background-color: #b9d4b3;
+        }
+        .leftBarText{
+            color: #434217;
+            font-weight: bolder;
+            font-size: 20px;
+        }
+        .offcanvas-body, .offcanvas-header{
+            background-color: #eeeeee;
+        }
+        .offcanvas-title{
+            font-weight: bolder;
+        }
     </style>
 </head>
 <body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Search..." aria-label="Recipient's username" aria-describedby="searchBar">
-                <button class="btn btn-outline-success" type="button" id="searchBar">Search</button>
-            </div>
-        </div>
+
+<%-- Menu按鈕 --%>
+<button class="menuBtn btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuBtn" aria-controls="offcanvasWithBothOptions">
+    <img src="<%=request.getContextPath()%>/front-end/farmTravel/images/menuBtn.png">
+</button>
+<%-- Menu內容 --%>
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="menuBtn" aria-labelledby="menuLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="menuLabel">功能導航</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
+    <div class="offcanvas-body">
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li class="mb-1">
+                <button class="menu btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#farmTravel-collapse" aria-expanded="true">
+                    農旅行程
+                </button>
+                <div class="collapse show" id="farmTravel-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <li><a href="<%=request.getContextPath()%>/front-end/farmTravel/listAllFarmTravelByMem.jsp" class="nav-link roundedwhite leftBarText">查看所有行程</a></li>
+                        <li><a href="<%=request.getContextPath()%>/front-end/farmTravelCollection/listAllMyFarmTravelCollection.jsp" class="nav-link rounded leftBarText">我收藏的行程</a></li>
+                        <li><a href="#" class="nav-link rounded leftBarText">我檢舉的行程(未完成)</a></li>
+                        <li><a href="#" class="nav-link rounded leftBarText">已報名的行程(?)</a></li>
+                        <li><a href="#" class="nav-link rounded leftBarText">曾參加過的行程(?)</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="mb-1">
+                <button class="menu btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="true">
+                    訂單管理
+                </button>
+                <div class="collapse show" id="orders-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <li><a href="<%=request.getContextPath()%>/front-end/farmTravelOrder/listAllFarmTravelOrderByMem.jsp" class="nav-link rounded leftBarText">查看所有訂單</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="container">
     <div class="row tagRow">
         <c:forEach var="farmTravelTag" items="${farmTravelTagList}">
             <div class="col-auto tagItemArea">

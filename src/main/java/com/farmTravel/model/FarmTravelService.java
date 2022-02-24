@@ -121,4 +121,13 @@ public class FarmTravelService {
         System.out.println(dao.openFarmTravelApply(con)+"筆農遊開放報名");
         System.out.println(dao.closeFarmTravelApply(con)+"筆農遊關閉報名");
     }
+    public void farmTravelSetUp(){
+        System.out.println(dao.farmTravelSetUp(con)+"筆農遊已成團");
+    }
+    public List<FarmTravelVO> farmTravelBySearch(String searchFarmTravel){
+        return dao.farmTravelBySearch(con, searchFarmTravel);
+    }
+    public List<FarmTravelVO> listAllFarmTravelSetUp(Integer f_mem_ID){
+        return dao.listAllFarmTravelSetUp(con, f_mem_ID);
+    }
 }
