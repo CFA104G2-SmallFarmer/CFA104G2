@@ -1,0 +1,105 @@
+header.header{
+  width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  left: 130px;
+  font-size: 0;
+}
+header.header a.logo_img{
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 20px;
+}
+header.header a.logo_img img{
+  height: 80px;
+  margin-top: 40px;
+}
+header.header nav.nav{
+  display: inline-block;
+  vertical-align: middle;
+}
+header.header nav.nav ul.link_list{
+  list-style: none;
+  
+  padding:0;
+  
+}
+header.header nav.nav ul.link_list > li{
+  display: inline-block;
+  position: relative;
+  top:20px;
+  
+}
+header.header nav.nav ul.link_list > li > a{
+  display: inline-block;
+  font-size: 1.2rem;
+  text-decoration: none;
+  padding: 14px 10px;
+  min-width: 100px;
+  text-align: center;
+  font-weight: bold;
+
+  color: darkgreen;
+  
+}
+
+header.header nav.nav ul.link_list > li > a:hover{
+  background-color: rgb(235, 243, 237);
+  color: darkgreen;
+}
+
+header.header nav.nav ul.link_list > li div.social_block{
+  font-size: 1.2rem;
+  position: relative;
+  padding: 13px 0;
+  box-sizing: border-box;
+  min-width: 100px;
+  font-weight: bold;
+  text-align: center;
+  
+  color: darkgreen;
+}
+header.header nav.nav ul.link_list > li div.social_block:hover ul.social_list{
+  display: block;
+}
+header.header nav.nav ul.link_list > li div.social_block ul.social_list{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: absolute;
+  right: 0;
+  top: 48px;
+  background-color: white;
+  min-width: 100%;
+  display: none;
+  
+}
+
+
+header.header nav.nav ul.link_list > li div.social_block ul.social_list > li a{
+  font-size: 0.9rem;
+  text-decoration: none;
+  display: inline-block;
+  width: 100%;
+  padding: 10px 0;
+  background-color:#f5f5f5;
+  position: relative;
+  font-weight: normal;
+}
+header.header nav.nav ul.link_list > li div.social_block ul.social_list > li a::after{
+  content: "";
+  position: absolute;
+  width: 80%;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  height: 1px;
+  background-color: darkgreen;
+}
+header.header nav.nav ul.link_list > li div.social_block ul.social_list > li:last-child a::after{
+  height: 0;
+}
+header.header nav.nav ul.link_list > li div.social_block ul.social_list > li a:hover{
+  background-color: rgb(235, 243, 237);
+  color: darkgreen;
+}
