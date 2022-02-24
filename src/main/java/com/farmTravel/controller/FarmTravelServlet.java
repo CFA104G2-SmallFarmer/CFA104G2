@@ -68,7 +68,7 @@ public class FarmTravelServlet extends HttpServlet {
             List<String> errorMsgs = new LinkedList<String>();
             request.setAttribute("errorMsgs", errorMsgs);
             try {  // 接收參數並嘗試做錯誤判斷
-                Integer mem_ID = ((FMemVO)(session.getAttribute("fMem"))).getMem_id();
+                Integer mem_ID = ((FMemVO)(session.getAttribute("fMemVO"))).getMem_id();
                 Integer f_mem_ID = Integer.valueOf(request.getParameter("f_mem_ID"));
 
                 String farm_travel_title = request.getParameter("farm_travel_title");

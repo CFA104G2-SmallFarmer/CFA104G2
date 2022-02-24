@@ -20,7 +20,7 @@ public class FarmTravelCollectionServlet extends HttpServlet {
         boolean collection ;
 
         if ("collection".equals(action)){
-            Integer mem_ID = ((MemVO)(session.getAttribute("mem"))).getMem_id();
+            Integer mem_ID = ((MemVO)(session.getAttribute("memVO"))).getMem_id();
             Integer farm_travel_ID = Integer.valueOf(request.getParameter("farm_travel_ID"));
 
             FarmTravelCollectionService farmTravelCollectionService = new FarmTravelCollectionService();
@@ -53,7 +53,7 @@ public class FarmTravelCollectionServlet extends HttpServlet {
 
         if ("collection".equals(action)){
 
-            Integer mem_ID = ((MemVO)(session.getAttribute("mem"))).getMem_id();
+            Integer mem_ID = ((MemVO)(session.getAttribute("memVO"))).getMem_id();
             Integer farm_travel_ID = Integer.valueOf(request.getParameter("farm_travel_ID"));
 
             FarmTravelCollectionService farmTravelCollectionService = new FarmTravelCollectionService();

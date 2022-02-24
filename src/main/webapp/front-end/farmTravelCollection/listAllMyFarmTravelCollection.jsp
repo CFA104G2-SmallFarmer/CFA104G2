@@ -8,7 +8,7 @@
 <%@ page import="com.farmTravel.model.FarmTravelVO" %>
 <%
     FarmTravelCollectionService farmTravelCollectionService = new FarmTravelCollectionService();
-    List<FarmTravelCollectionVO> collectionList = farmTravelCollectionService.getAllFarmTravelCollection(((MemVO) session.getAttribute("mem")).getMem_id());
+    List<FarmTravelCollectionVO> collectionList = farmTravelCollectionService.getAllFarmTravelCollection(((MemVO) session.getAttribute("memVO")).getMem_id());
     FarmTravelService farmTravelService = new FarmTravelService();
     List<FarmTravelVO> list = farmTravelService.getAllFromCollection(collectionList);
     pageContext.setAttribute("list",list);

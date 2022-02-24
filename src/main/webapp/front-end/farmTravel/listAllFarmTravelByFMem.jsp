@@ -7,7 +7,7 @@
 <%@ page import="java.util.List" %>
 <%
     FarmTravelService farmTravelService = new FarmTravelService();
-    List<FarmTravelVO> list = farmTravelService.getAllFarmTravelFromFMem(((FMemVO) session.getAttribute("fMem")).getF_mem_id());
+    List<FarmTravelVO> list = farmTravelService.getAllFarmTravelFromFMem(((FMemVO) session.getAttribute("fMemVO")).getF_mem_id());
     pageContext.setAttribute("list", list);
 %>
 

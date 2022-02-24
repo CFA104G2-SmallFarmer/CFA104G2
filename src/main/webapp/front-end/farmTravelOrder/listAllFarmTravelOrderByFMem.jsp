@@ -7,7 +7,7 @@
 <%@ page import="com.farmTravelOrder.model.FarmTravelOrderVO" %>
 <%
     FarmTravelOrderService farmTravelOrderService = new FarmTravelOrderService();
-    List<FarmTravelOrderVO> farmTravelOrderList = farmTravelOrderService.getAllFarmTravelOrderByFMem(((FMemVO)session.getAttribute("fMem")).getF_mem_id());
+    List<FarmTravelOrderVO> farmTravelOrderList = farmTravelOrderService.getAllFarmTravelOrderByFMem(((FMemVO)session.getAttribute("fMemVO")).getF_mem_id());
     pageContext.setAttribute("farmTravelOrderList",farmTravelOrderList);
 %>
 <jsp:useBean id="farmTravelService" scope="page" class="com.farmTravel.model.FarmTravelService"/>

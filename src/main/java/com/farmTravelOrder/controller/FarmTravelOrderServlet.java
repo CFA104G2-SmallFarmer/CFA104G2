@@ -34,7 +34,7 @@ public class FarmTravelOrderServlet extends HttpServlet {
             List<String> errorMsgs = new LinkedList<String>();
             request.setAttribute("errorMsgs", errorMsgs);
             try{
-                Integer mem_ID = ((MemVO)(session.getAttribute("mem"))).getMem_id();
+                Integer mem_ID = ((MemVO)(session.getAttribute("memVO"))).getMem_id();
                 Integer farm_travel_ID = Integer.valueOf(request.getParameter("farm_travel_ID"));
 
                 FarmTravelService farmTravelService = new FarmTravelService();

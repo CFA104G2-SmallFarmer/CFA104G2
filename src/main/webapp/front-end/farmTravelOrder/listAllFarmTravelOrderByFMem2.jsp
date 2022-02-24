@@ -6,7 +6,7 @@
 <%@ page import="com.fMem.model.FMemVO" %>
 <%
     FarmTravelOrderService farmTravelOrderService = new FarmTravelOrderService();
-    List<FarmTravelOrderVO> farmTravelOrderList = farmTravelOrderService.getAllFarmTravelOrderByFMem(((FMemVO)session.getAttribute("fMem")).getF_mem_id());
+    List<FarmTravelOrderVO> farmTravelOrderList = farmTravelOrderService.getAllFarmTravelOrderByFMem(((FMemVO)session.getAttribute("fMemVO")).getF_mem_id());
     pageContext.setAttribute("farmTravelOrderList",farmTravelOrderList);
 %>
 <html>

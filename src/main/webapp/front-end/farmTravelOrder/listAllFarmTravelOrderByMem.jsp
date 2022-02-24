@@ -7,7 +7,7 @@
 <%@ page import="com.mem.model.MemVO" %>
 <%
     FarmTravelOrderService farmTravelOrderService = new FarmTravelOrderService();
-    List<FarmTravelOrderVO> farmTravelOrderList = farmTravelOrderService.getAllFarmTravelOrderByMem(((MemVO)session.getAttribute("mem")).getMem_id());
+    List<FarmTravelOrderVO> farmTravelOrderList = farmTravelOrderService.getAllFarmTravelOrderByMem(((MemVO)session.getAttribute("memVO")).getMem_id());
     pageContext.setAttribute("farmTravelOrderList",farmTravelOrderList);
 %>
 <jsp:useBean id="farmTravelService" scope="page" class="com.farmTravel.model.FarmTravelService"/>

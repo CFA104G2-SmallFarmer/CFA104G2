@@ -132,6 +132,7 @@
             <div>星期7　08:00~18:00</div>
         </div>
     </div>
+    <c:if test="${not empty mem}">
     <c:if test="${farmTravel.farm_travel_state eq 1 || farmTravel.farm_travel_state eq 2}">
         <div class="row">
             <div class="col-12">
@@ -142,6 +143,7 @@
                 </form>
             </div>
         </div>
+    </c:if>
     </c:if>
 </div>
 
