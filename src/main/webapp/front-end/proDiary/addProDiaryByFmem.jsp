@@ -82,9 +82,7 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 
 
 
-<link
-	href="https://www.zeczec.com/assets/fav-69601a279a66f2e6e31e508900d4f057559d3affcae42730d045b17d281107a6.png"
-	rel="shortcut icon" type="image/x-icon">
+
 <link
 	href="<%=request.getContextPath()%>/front-end/projPerk/addPerk_css/css"
 	rel="stylesheet" type="text/css">
@@ -242,10 +240,11 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 									value="<%=projectVO.getProj_id()%>">
 								<%-- <%=projPerkVO.getProj_id()%> --%>
 
-								<label class="b" for="dir_upload_date">日誌日期</label> <input
-									class="w-60" type="text" placeholder="請選擇日期"
+								<label class="b" for="dir_upload_date">日誌日期</label>
+								 <input class="w-60" type="date" placeholder="請選擇日期"
 									name="dir_upload_date" value="${proDiaryVO.dir_upload_date}"
-									id="datepicker"> <label class="b" for="dir_procedure">生產過程</label>
+									> 
+									<label class="b" for="dir_procedure">生產過程</label>
 								<select class="mb0 w-100" name="dir_procedure"
 									id="dir_procedure">
 

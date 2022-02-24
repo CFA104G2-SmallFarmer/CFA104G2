@@ -379,7 +379,7 @@ footer:hover .logo-safari-fix {
 															<%-- 心情：${proDiaryVO.dir_emoji}<br>  --%>
 															心情筆記：
 														<div
-															style="font-size: 17px; border: #d0d1d2 solid 2px; margin: 0px; height: auto">
+															style="font-size: 17px;  margin: 0px; height: auto">
 															${proDiaryVO.dir_notes}</div>
 
 
@@ -438,7 +438,7 @@ footer:hover .logo-safari-fix {
 				<div style="margin-bottom: 20px;"
 					class="w-100-l w-50-ns ph3 ph0-l flex-none self-start">
 					<a
-						href="${pageContext.request.contextPath}/proDiary/proDiary.do?proj_id=${projectVO.proj_id}&action=go_to_listAll_ProDiary_from_listOneProjByMem">
+						href="${pageContext.request.contextPath}/proDiary/proDiary.do?proj_id=${projectVO.proj_id}&action=go_to_listAll_ProDiary_from_listOneProjByFmem">
 						<div
 							style="font-size: 20px; color: #3f3f3f; text-align: center; border-radius: 10px; background-color: #e0ffd8; border: solid white 2px; padding: 15px; padding: 10px;"
 							class="w-100-l ph3 ph0-l flex-none self-start">
@@ -450,7 +450,7 @@ footer:hover .logo-safari-fix {
 					<c:forEach var="list3" items="${list3}">
 						<div style="margin-bottom: 30px; height: 28px;"
 							class="w-100-l w-50-ns ph3 ph0-l flex-none self-start">
-							<a href="<%=request.getContextPath()%>/proDiary/proDiary.do?proj_id=${projectVO.proj_id}&dir_upload_date=${list3.key}&action=go_to_listAll_ProDiary_ByDate_from_listOneProjByMem">
+							<a href="<%=request.getContextPath()%>/proDiary/proDiary.do?proj_id=${projectVO.proj_id}&dir_upload_date=${list3.key}&action=go_to_listAll_ProDiary_ByDate_from_listOneProjByFmem">
 								<div
 									style="color: #aaba8b; font-size: 20px; border-radius: 10px; text-align: center; border: solid #aaba8b 2px; padding: 15px; padding: 10px;"
 									class="w-60 ph3 ph0-l flex-none self-start">${list3.key}</div>

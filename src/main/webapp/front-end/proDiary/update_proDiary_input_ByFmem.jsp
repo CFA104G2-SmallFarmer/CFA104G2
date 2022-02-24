@@ -164,7 +164,7 @@ ${projectSvc.getOneProject(proDiarySvc.getOneProDiary(proDiaryVO.dir_id).proj_id
           </a> -->
           <span class="order-0 flex-auto black w-100 w-auto-l" href="https://www.zeczec.com/account/cancelled">
             <i class="material-icons v-mid dark-gray f3">error</i>
-            新增日誌
+            修改日誌
              <span style="font-size:18px;color:gray;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;認養專案:${projectSvc.getOneProject(proDiarySvc.getOneProDiary(proDiaryVO.dir_id).proj_id).proj_name}</span>
           </span> 
           </span>

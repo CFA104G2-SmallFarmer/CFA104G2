@@ -366,7 +366,7 @@ footer:hover .logo-safari-fix {
 															<%-- 心情：${proDiaryVO.dir_emoji}<br>  --%>
 															心情筆記：
 														<div
-															style="font-size: 17px; border: #d0d1d2 solid 2px; margin: 0px; height: auto">
+															style="font-size: 17px;  margin: 0px; height: auto">
 															${proDiaryVO.dir_notes}</div>
 
 
