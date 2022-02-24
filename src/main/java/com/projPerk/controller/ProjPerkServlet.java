@@ -258,12 +258,12 @@ public class ProjPerkServlet extends HttpServlet {
 					errorMsgs.add("方案回饋內容請勿空白");
 				}
 				
-				perk_intro=perk_intro.replace("\n", "&nbsp;");
-				perk_intro=perk_intro.replace("\r", "&nbsp;");
-				perk_intro=perk_intro.replace("<", "&lt;");
-				perk_intro=perk_intro.replace(">", "&gt;");
-				perk_intro=perk_intro.replace("\"", "&quot;");
-				perk_intro=perk_intro.replace("\'", "&quot;");
+//				perk_intro=perk_intro.replace("\n", "&nbsp;");
+//				perk_intro=perk_intro.replace("\r", "&nbsp;");
+//				perk_intro=perk_intro.replace("<", "&lt;");
+//				perk_intro=perk_intro.replace(">", "&gt;");
+//				perk_intro=perk_intro.replace("\"", "&quot;");
+//				perk_intro=perk_intro.replace("\'", "&quot;");
 				
 				
 				
@@ -510,12 +510,12 @@ public class ProjPerkServlet extends HttpServlet {
 					errorMsgs.add("方案回饋內容請勿空白");
 				}
 				
-				perk_intro=perk_intro.replace("\n", "&nbsp;");
-				perk_intro=perk_intro.replace("\r", "&nbsp;");
-				perk_intro=perk_intro.replace("<", "&lt;");
-				perk_intro=perk_intro.replace(">", "&gt;");
-				perk_intro=perk_intro.replace("\"", "&quot;");
-				perk_intro=perk_intro.replace("\'", "&quot;");
+//				perk_intro=perk_intro.replace("\n", "&nbsp;");
+//				perk_intro=perk_intro.replace("\r", "&nbsp;");
+//				perk_intro=perk_intro.replace("<", "&lt;");
+//				perk_intro=perk_intro.replace(">", "&gt;");
+//				perk_intro=perk_intro.replace("\"", "&quot;");
+//				perk_intro=perk_intro.replace("\'", "&quot;");
 				
 				
 				
@@ -639,31 +639,43 @@ public class ProjPerkServlet extends HttpServlet {
 		
 		/* 0212 18:00新增 */
 		if ("go_to_addOrderByMem".equals(action)) {
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
 			
-			Integer mem_id = new Integer(req.getParameter("mem_id").trim());
-			System.out.println(mem_id);
+try {
+//			Integer mem_id = new Integer(req.getParameter("mem_id").trim());
+//			System.out.println(mem_id);
 			Integer proj_id = new Integer(req.getParameter("proj_id").trim());
 			System.out.println(proj_id);
 			Integer perk_id = new Integer(req.getParameter("perk_id").trim());
 			System.out.println(perk_id);
 			
 			ProjectService projectSvc = new ProjectService();
-			ProjectVO projectVO = projectSvc.getOneProject(proj_id);
-			req.setAttribute("projectVO", projectVO);
+			ProjectVO projectVO1 = projectSvc.getOneProject(proj_id);
+			req.setAttribute("projectVO", projectVO1);
 			
 			ProjPerkService projPerkSvc = new ProjPerkService();  
 			ProjPerkVO projPerkVO = projPerkSvc.getOneProjPerk(perk_id);  
 			req.setAttribute("projPerkVO",projPerkVO);  
 			
-			MemService memSvc3 = new MemService();  
-			MemVO memVO3 = memSvc3.getOneMem(mem_id);  
-			req.setAttribute("memVO",memVO3); 
+//			MemService memSvc3 = new MemService();  
+//			MemVO memVO3 = memSvc3.getOneMem(mem_id);  
+//			req.setAttribute("memVO",memVO3); 
 
 			String url = "/front-end/projOrder/addOrderByMem.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 			successView.forward(req, res);
 			System.out.println("go_to_addOrderByMem.jsp done");
-
+			/*************************** 其他可能的錯誤處理 **********************************/
+		} catch (Exception e) {
+			errorMsgs.add(e.getMessage());
+			RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listOneProjByMem.jsp");
+			failureView.forward(req, res);
+		}
+			
+			
 		}
 
 		if ("delete".equals(action)) { // 來自listAllEmp.jsp
