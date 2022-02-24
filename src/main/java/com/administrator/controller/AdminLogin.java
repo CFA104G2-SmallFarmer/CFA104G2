@@ -61,14 +61,6 @@ public class AdminLogin extends HttpServlet {
 			} else {
 				session.setAttribute("account", account);
 				session.setAttribute("adminLoginVO", adminLoginVO);
-				try {
-					String location = (String) session.getAttribute("location");
-					if (location != null) {
-						session.removeAttribute("location");
-						res.sendRedirect(location);
-						return;
-					}
-				} catch (Exception ignored) {}
 				res.sendRedirect(req.getContextPath() + "/back-end/administrator/listOneAdmin_s.jsp");
 			}
 		}
