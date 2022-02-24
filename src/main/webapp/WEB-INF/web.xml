@@ -74,23 +74,6 @@
 
 	<!--************************** 商城專區 ************************** -->
 	<servlet>
-		<servlet-name>ShopProductDBGifReader4</servlet-name>
-		<servlet-class>com.shopProduct.controller.ShopProductDBGifReader4</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>ShopProductDBGifReader4</servlet-name>
-		<url-pattern>/front-end/Product/ShopProductDBGifReader4</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<servlet-name>ShopProductServlet</servlet-name>
-		<servlet-class>com.shopProduct.controller.ShopProductServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>ShopProductServlet</servlet-name>
-		<url-pattern>/Product/product.do</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
 		<servlet-name>ShopOrderServlet</servlet-name>
 		<servlet-class>com.shopOrder.controller.ShopOrderServlet</servlet-class>
 	</servlet>
@@ -107,6 +90,7 @@
 		<servlet-name>ShopOrderDetailsServlet</servlet-name>
 		<url-pattern>/shopOrderDetails/shopOrderDetails.do</url-pattern>
 	</servlet-mapping>
+
 	<servlet>
 		<servlet-name>ShopCartServlet</servlet-name>
 		<servlet-class>com.shopCart.controller.ShopCartServlet</servlet-class>
@@ -115,6 +99,7 @@
 		<servlet-name>ShopCartServlet</servlet-name>
 		<url-pattern>/shopCart/shopCart.do</url-pattern>
 	</servlet-mapping>
+
 	<servlet>
 		<servlet-name>ShopHashtagServlet</servlet-name>
 		<servlet-class>com.shopHashtag.controller.ShopHashtagServlet</servlet-class>
@@ -133,6 +118,32 @@
 		<url-pattern>/shopHashtagDetails/shopHashtagDetails.do</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>ShopProductServlet</servlet-name>
+		<servlet-class>com.shopProduct.controller.ShopProductServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ShopProductServlet</servlet-name>
+		<url-pattern>/front-end/Product/product.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ShopProductDBGifReader4</servlet-name>
+		<servlet-class>com.shopProduct.controller.ShopProductDBGifReader4</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ShopProductDBGifReader4</servlet-name>
+		<url-pattern>/front-end/Product/ShopProductDBGifReader4</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ShopProductCollectionServlet</servlet-name>
+		<servlet-class>com.shopProductCollection.controller.ShopProductCollectionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ShopProductCollectionServlet</servlet-name>
+		<url-pattern>/front-end/productCollection/collection.do</url-pattern>
+	</servlet-mapping>
 	<!--************************** 以上商城 ************************** -->
 
 
