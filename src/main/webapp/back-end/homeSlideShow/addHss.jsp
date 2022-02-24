@@ -90,7 +90,7 @@
       <table class="table_p">
         <tr>
           <td>
-           <img src="<%=request.getContextPath()%>/back-end/homeSlideShow/hssImgReader.do?id=${homeSlideShowVO.hss_id}"
+           <img src=""
            style="width:625px;">
            <span><strong>請上傳圖片</strong></span>
          </td>

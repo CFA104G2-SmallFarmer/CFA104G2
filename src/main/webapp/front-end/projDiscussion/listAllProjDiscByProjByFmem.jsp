@@ -16,12 +16,13 @@
 
 
 <%
-ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
+ProjectVO projectVO = (ProjectVO) session.getAttribute("projectVO");
 Integer proj_id = projectVO.getProj_id();
 ProjDiscussionService projDiscSvc = new ProjDiscussionService();
 List<ProjDiscussionVO> updateFirst=projDiscSvc.updateFirstLayerProjDiscussion(proj_id);
 List<ProjDiscussionVO> list = projDiscSvc.getAllSameProjDiscussion(proj_id);
 pageContext.setAttribute("list", list);
+pageContext.setAttribute("projectVO", projectVO);
 %>
 
 

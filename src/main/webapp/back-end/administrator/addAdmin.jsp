@@ -82,7 +82,7 @@
       <table class="table_p">
         <tr>
           <td>
-           <img src="images/no_admin.jpg" >
+           <img src="" >
            <span><strong>請上傳圖片</strong></span>
          </td>
         </tr>
@@ -210,7 +210,7 @@
   	       timepicker:false,       //timepicker:true,
   	       step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
   	       format:'Y-m-d',         //format:'Y-m-d H:i:s',
-  		   value: '<%=leavedate%>', // value:   new Date(),
+  		   value: '', // value:   new Date(),
          });
         
       
