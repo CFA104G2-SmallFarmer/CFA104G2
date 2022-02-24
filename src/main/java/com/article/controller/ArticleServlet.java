@@ -175,7 +175,29 @@ public class ArticleServlet extends HttpServlet {
             }
 
         }
+        if ("search".equals(action)) {
 
+
+            try{
+                // 接收請求參數，並做錯誤判斷
+                String searchArticle = "%"+request.getParameter("searchArticle")+"%";
+
+                // 開始
+                ArticleService articleService = new ArticleService();
+                List<ArticleVO> articleList = articleService.articleBySearch(searchArticle);
+
+                // 查詢完成，準備轉交
+                request.setAttribute("articleList", articleList);
+                System.out.println(articleList);
+                RequestDispatcher successView = request.getRequestDispatcher("/front-end/article/listArticleBySearch.jsp");
+                successView.forward(request, response);
+
+            }catch(Exception e){  // 發生其他Error時
+                e.printStackTrace(System.err);
+                RequestDispatcher errView = request.getRequestDispatcher("/front-end/article/listAllArticle.jsp");
+                errView.forward(request, response);
+            }
+        }
 
 
 

@@ -75,5 +75,9 @@ public class ArticleService {
         }
         return articleList;
     }
+    public List<ArticleVO> articleBySearch(String searchArticle) {
+        return dao.articleBySearch(con, searchArticle);
+    }
+
 	
 }

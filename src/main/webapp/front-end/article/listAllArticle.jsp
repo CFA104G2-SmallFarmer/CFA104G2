@@ -12,59 +12,42 @@
     memVO.setMem_id(77000);
     memVO.setMem_id_state(0);
     session.setAttribute("memVO", memVO);
+
 %>
 <html>
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no , user-scalable=yes">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <title>小農論壇</title>
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.ico"/>
+    <link rel="stylesheet" href=" https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"/>
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/article/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-popRpmFF9JQgExhfw5tZT4I9/CI5e2QcuUZPOVXb1m7qUmeR2b50u+YFEYe1wgzy"
+            crossorigin="anonymous"></script>
 
-    <title>查看行程詳情</title>
-
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        :root {
+            --header-height: 60px;
+            /*--aside-width: 240px;*/
+        }
+
         body {
-            font-family: 'Noto Sans TC', sans-serif;
-            font-size: 17px;
-            color: #606060;
+            margin: 0;
         }
 
-        h2, h4, h5 {
-            font-weight: normal;
-        }
-
-        .tag {
-            background-color: #eeeeee;
-            padding: 5px;
-            border-radius: 5px;
-            color: #606060;
-        }
-
-        .submitBtn {
-            width: 100%;
-            height: 50px;
-            background-color: #4a7246;
-            color: white;
-            font-weight: bolder;
-            font-size: 18px;
-        }
-
-        #containArea {
-            background-color: #eeeeee;
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 16px;
+        img {
+            max-width: 100%;
         }
 
         /* ==================== header 區域 ==================== */
@@ -74,32 +57,132 @@
             position: sticky;
             top: 0;
             height: var(--header-height);
-
-            /*background-color: rgb(238, 231, 231);*/
+            background-color: rgb(238, 231, 231);
         }
 
         header.header button.btn_hamburger {
             display: none;
         }
 
-        .btn-outline-secondary:hover {
-            color: #FFF;
-            background-color: #6C753F;
-            border-color: #6c757d;
-        }
+        /* ==================== aside 區域 ==================== */
+        /*aside.aside {*/
+        /*    !*border: 1px solid blue;*!*/
+        /*    position: fixed;*/
+        /*    top: var(--header-height);*/
+        /*    left: 0;*/
+        /*    height: calc(100% - var(--header-height));*/
+        /*    width: var(--aside-width);*/
+        /*    background-color: #efefef;*/
+        /*    overflow-y: auto;*/
+        /*    padding: 20px 0;*/
+        /*    transition: all 1s;*/
+        /*}*/
 
-        .post-container {
-            width: 100%;
-            background: #fff;
-            border-radius: 6px;
+        /*aside.aside button.btn_hamburger {*/
+        /*    display: none;*/
+        /*}*/
+
+        /*@media screen and (max-width: 767px) {*/
+        /*    aside.aside {*/
+        /*        top: 0;*/
+        /*        height: 100%;*/
+        /*        transform: translateX(-100%);*/
+        /*    }*/
+
+        /*    aside.aside.-on {*/
+        /*        transform: translateX(0%);*/
+        /*    }*/
+
+        /*    header.header button.btn_hamburger, aside.aside button.btn_hamburger {*/
+        /*        display: inline-block;*/
+        /*    }*/
+        /*}*/
+
+        /*aside.aside > nav.nav > ul.nav_list {*/
+        /*    margin: 0;*/
+        /*    padding: 0;*/
+        /*    list-style: none;*/
+        /*}*/
+
+        /*aside.aside > nav.nav > ul.nav_list > li > a {*/
+        /*    display: inline-block;*/
+        /*    !*border: 1px solid lightblue;*!*/
+        /*    width: 100%;*/
+        /*    padding: 3px 10px;*/
+        /*}*/
+
+        /* ==================== main 區域 ==================== */
+        main.main {
+            /*border: 1px solid red;*/
+            margin-left: var(--aside-width);
+            width: calc(100% - var(--aside-width));
             padding: 20px;
-            color: #626262;
-            margin: 20px 0;
+            background-color: hsl(0, 14%, 99%);
+            min-height: calc(100vh - var(--header-height));
+            transition: all 1s;
         }
 
-        .row {
-            --bs-gutter-x: -0.5rem;
-            --bs-gutter-y: 0;
+        @media screen and (max-width: 767px) {
+            main.main {
+                width: 100%;
+                margin-left: 0;
+            }
+        }
+
+        main.main ul.item_list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        main.main ul.item_list > li {
+            width: calc((100% - 60px) / 4);
+            margin-bottom: 20px;
+            margin-right: 20px;
+        }
+
+        @media screen and (max-width: 767px) {
+            main.main ul.item_list > li {
+                width: calc((100% - 20px) / 2);
+            }
+        }
+
+        main.main ul.item_list > li:nth-child(4n) {
+            margin-right: 0;
+        }
+
+        @media screen and (max-width: 767px) {
+            main.main ul.item_list > li:nth-child(2n) {
+                margin-right: 0;
+            }
+        }
+
+        main.main ul.item_list > li > a {
+            display: inline-block;
+            /*border: 1px solid red;*/
+            text-decoration: none;
+            width: 100%;
+        }
+
+        main.main ul.item_list > li > a div.img_block {
+            /*border: 1px solid blue;*/
+            font-size: 0;
+        }
+
+        main.main ul.item_list > li > a span.item_text {
+            /*border: 1px solid blue;*/
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: block;
+            width: 100%;
+        }
+
+        .lead {
+            font-size: 10px;
+            background: #dddddd;
         }
 
         .aArticle {
@@ -107,462 +190,277 @@
             border-radius: 24px;
         }
 
-        /*.aArticle {*/
-        /*    border: 2px solid lightslategrey;*/
-        /*    border-radius: 5px;*/
-        /*}*/
+        .widged {
+            background: #fff;
+            padding: 10px;
+            border: 1px solid #eee;
+            -webkit-box-shadow: 0 1px 1px rgb(0 0 0 / 10%);
+            box-shadow: 0 1px 1px rgb(0 0 0 / 10%);
+        }
 
+        .row {
+            --bs-gutter-x: 0rem;
+            --bs-gutter-y: 0;
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: calc(var(--bs-gutter-y) * -1);
+            margin-right: calc(var(--bs-gutter-x) / -2);
+            margin-left: calc(var(--bs-gutter-x) / -2);
+        }
+
+        .bg-dark {
+            background-color: #434217 !important;
+        }
+
+        img {
+            max-width: 250%;
+        }
     </style>
+
 </head>
+
 <body>
 <%--Header--%>
-
-<header class="header">
-    <jsp:include page="articleHeader.jsp"></jsp:include>
-
-    <%--header2--%>
-    <div class="row">
-        <div class="col-3" style="background: #efefef;"></div>
-        <div class="col-6">
-            <header class="header" style="background-color:  rgb(200, 200, 200);">
-
-                <nav class="navbar navbar-light bg-light">
-                    <form class="container-fluid justify-content-start">
-                        <button class="btn btn-sm btn-outline-secondary" type="button">收藏文章</button>
-                        <button class="btn btn-sm btn-outline-secondary" type="button">熱門話題</button>
-                    </form>
-                </nav>
-                <%--                <hr style="filter: alpha(opacity=100,finishopacity=0,style=3)"/>--%>
-
-                <%--                <button type="button" class="btn_hamburger">按鈕</button>--%>
-
-            </header>
-        </div>
-        <div class="col-3" style="background: #efefef;"></div>
-    </div>
-    <%--header2--%>
-
-</header>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
-        crossorigin="anonymous"></script>
-<!-- 文章區塊 -->
-<div class="row">
-    <div class="col-3" style="background: #efefef;"></div>
-    <div class="col-6 " style="background: #efefef;">
-
-        <c:forEach var="article" items="${list}">
-            <%--            <div class="aArticle"></div>--%>
-            <div class="aArticle row" style="background: #F5F5F7">
-                <div class="col-4">
-                    <div class="row mb-2">
-                        <c:if test="${not empty article.article_img}">
-                            <img src="<%=request.getContextPath()%>/article.do?article_ID=${article.article_ID}" class="rounded mx-auto d-block" width='200' height='150'>
-<%--                            <img src='<%=request.getContextPath()%>/article.do?article_ID=${article.article_ID}'--%>
-<%--                                 width='100%' height='150px'>--%>
-                        </c:if>
-                        <c:if test="${empty article.article_img}">
-                            <img src='<%=request.getContextPath()%>/front-end/article/images/透明小小農.png'
-                                 width='100%'
-                                 height='150px'>
-                        </c:if>
-                    </div>
-                    <div class="row mb-2">
-                            <%-- 收藏 --%>
-                        <div class="col-8">
-                            <button type="button" class="btn btn-outline-light"
-                                    value="${article.article_ID}">
-                                <img src="<%=request.getContextPath()%>/articleCollection.do?action=collection&mem_id=${memVO.mem_id}&article_ID=${article.article_ID}"
-                                     class="collection" width="25px" height="25px">
-                            </button>
-                        </div>
-                        <!-- 查看詳情 -->
-                        <div class="col-4">
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-8 row">
-                    <div class="row mb-2">
-                        <h3>
-                                <%--                                    ${article.article_ID}--%>
-                            [類別：
-                            <jsp:useBean id="articleTypeService" scope="page"
-                                         class="com.articleType.model.ArticleTypeService"/>
-                            <c:forEach items="${articleTypeService.allArticleType}" var="article_type">
-                                <c:if test="${article.article_type_ID == article_type.article_type_ID}">
-                                    ${article_type.article_type_text}
-                                </c:if>
-                            </c:forEach>
-                                ${article.article_title}--<p>${article.mem_id}</p>
-                        </h3>
-                        發文時間：${article.article_time}<br>
-                        <c:if test="${not empty article.article_update_time}">
-                            最後修改時間：${article.article_update_time}<br/>
-                        </c:if>
-                    </div>
-                        <%-- 第二行 --%>
-
-                    <div class="row mb-2">
-                            <%--                            文章內文--%>
-                            <%--                                ${article.article_content}--%>
-                    </div>
-                        <%-- 第三行 --%>
-                    <hr style="filter: alpha(opacity=100,finishopacity=0,style=3)"/>
-                    <div class="row mb-2">
-                        <div class="col-4">
-                            <%--按讚數：--%>
-                            <img src='<%=request.getContextPath()%>/front-end/article/images/thumbs-up.png' width='30px' height='30px'>
-                            ${article.article_like}</div>
-                        <div class="col-4">
-                            <%--留言數：--%>
-                            <img src='<%=request.getContextPath()%>/front-end/article/images/comment.png' width='30px' height='30px'>
-                                ${article.comments_num}</div>
-                        <div class="col-4">
-                                <%-- 狀態碼：${article.article_state}--%>
-                                    <form method="post" action="<%=request.getContextPath()%>/article.do">
-                                        <input type="hidden" name="action" value="getOne">
-                                        <input type="hidden" name="article_ID"
-                                               value="${article.article_ID}">
-                                        <button type="submit" class="btn btn-outline-primary">查看詳情</button>
-                                    </form>
-                        </div>
-                    </div>
-<%--                    <div class="row mb-2">--%>
-<%--                        <div class="col-6"></div>--%>
-<%--                        <div class="col-6"></div>--%>
-<%--                        <div class="col-6">--%>
-<%--                            <form method="post" action="<%=request.getContextPath()%>/article.do">--%>
-<%--                                <input type="hidden" name="action" value="getOneForUpdate">--%>
-<%--                                <input type="hidden" name="article_ID"--%>
-<%--                                       value="${article.article_ID}">--%>
-<%--                                    &lt;%&ndash;<button type="submit" class="btn btn-outline-secondary">修改</button>&ndash;%&gt;--%>
-<%--                            </form>--%>
-<%--                        </div>--%>
-<%--                        <div class="col-6">--%>
-<%--                                &lt;%&ndash;                                <button type='button' class='delete btn btn-outline-danger'&ndash;%&gt;--%>
-<%--                                &lt;%&ndash;                                        value='${article.article_ID}'>&ndash;%&gt;--%>
-<%--                                &lt;%&ndash;                                    刪除&ndash;%&gt;--%>
-<%--                                &lt;%&ndash;                                </button>&ndash;%&gt;--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-                </div>
-            </div>
-            <hr style="filter: alpha(opacity=100,finishopacity=0,style=3)"/>
-
-        </c:forEach>
-
-    </div>
-    <div class="col-3" style="background: #efefef;"></div>
-</div>
-</div>
-
-<!-- 輪播播標題 -->
-
-<section class="pt-5 pb-5">
+<nav class="navbar navbar-expand-lg navbar-dark border border-dark bg-dark" style="font-size: x-large;">
     <div class="container">
-        <div class="row">
-            <div class="col-6">
-                <h3 class="mb-3">
-                    <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;">
-                                <font style="vertical-align: inherit;">活動花絮照片 </font>
-                            </font>
-                        </font>
-                    </font>
-                </h3>
-            </div>
-            <div class="col-6 text-md-end">
-                <a class="btn btn-primary mb-3 me-1"
-                   href="#carouselExampleIndicators2" role="button"
-                   data-slide="prev">
-                    <i class="fa fa-arrow-left"></i>
-                </a>
-                <a class="btn btn-primary mb-3 " href="#carouselExampleIndicators2"
-                   role="button" data-slide="next">
-                    <i class="fa fa-arrow-right"></i>
-                </a>
-            </div>
-            <div class="col-12">
-                <div id="carouselExampleIndicators2" class="carousel slide"
-                     data-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item">
-                            <div class="row">
-                                <div class="col-md-4 mb-3">
-                                    <div class="card">
-                                        <img alt="100%x280" src='<%=request.getContextPath()%>/front-end/article/images/damoPhoto/salad-g8bdb7f991_1920.jpg'>
-                                        <div class="card-body">
-                                            <h4 class="card-title">
-                                                <font style="vertical-align: inherit;">
-                                                    <font style="vertical-align: inherit;">
-                                                        <font style="vertical-align: inherit;">
-                                                            <font style="vertical-align: inherit;">農場拍到月亮
-                                                            </font>
-                                                        </font>
-                                                    </font>
-                                                </font>
-                                            </h4>
-                                            <p class="card-text">
-                                                <font style="vertical-align: inherit;">
-                                                    <font style="vertical-align: inherit;">
-                                                        <font style="vertical-align: inherit;">
-                                                            <font style="vertical-align: inherit;">閱讀文章..</font>
-                                                        </font>
-                                                    </font>
-                                                </font>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <div class="card">
-                                        <img class="img-fluid" alt="100%x280"
-                                             src="https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=42b2d9ae6feb9c4ff98b9133addfb698">
-                                        <div class="card-body">
-                                            <h4 class="card-title">
-                                                <font style="vertical-align: inherit;">
-                                                    <font style="vertical-align: inherit;">
-                                                        <font style="vertical-align: inherit;">
-                                                            <font style="vertical-align: inherit;">墾丁椰子園
-                                                            </font>
-                                                        </font>
-                                                    </font>
-                                                </font>
-                                            </h4>
-                                            <p class="card-text">
-                                                <font style="vertical-align: inherit;">
-                                                    <font style="vertical-align: inherit;">
-                                                        <font style="vertical-align: inherit;">
-                                                            <font style="vertical-align: inherit;">
-                                                                閱讀文章..</font>
-                                                        </font>
-                                                    </font>
-                                                </font>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <div class="card">
-                                        <img class="img-fluid" alt="100%x280"
-                                             src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3d2e8a2039c06dd26db977fe6ac6186a">
-                                        <div class="card-body">
-                                            <h4 class="card-title">
-                                                <font style="vertical-align: inherit;">
-                                                    <font style="vertical-align: inherit;">
-                                                        <font style="vertical-align: inherit;">
-                                                            <font style="vertical-align: inherit;">特殊職稱處理
-                                                            </font>
-                                                        </font>
-                                                    </font>
-                                                </font>
-                                            </h4>
-                                            <p class="card-text">
-                                                <font style="vertical-align: inherit;">
-                                                    <font style="vertical-align: inherit;">
-                                                        <font style="vertical-align: inherit;">
-                                                            <font style="vertical-align: inherit;">
-                                                                閱讀文章..</font>
-                                                        </font>
-                                                    </font>
-                                                </font>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item active">
-                            <div class="row">
-                                <div class="col-md-4 mb-3">
-                                    <div class="card">
-                                        <img class="img-fluid" alt="100%x280"
-                                             src="https://images.unsplash.com/photo-1532771098148-525cefe10c23?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3f317c1f7a16116dec454fbc267dd8e4">
-                                        <div class="card-body">
-                                            <h4 class="card-title">
-                                                <font style="vertical-align: inherit;">
-                                                    <font style="vertical-align: inherit;">
-                                                        <font style="vertical-align: inherit;">
-                                                            <font style="vertical-align: inherit;">特殊職稱處理
-                                                            </font>
-                                                        </font>
-                                                    </font>
-                                                </font>
-                                            </h4>
-                                            <p class="card-text">
-                                                <font style="vertical-align: inherit;">
-                                                    <font style="vertical-align: inherit;">
-                                                        <font style="vertical-align: inherit;">
-                                                            <font style="vertical-align: inherit;">
-                                                                閱讀文章..</font>
-                                                        </font>
-                                                    </font>
-                                                </font>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <div class="card">
-                                        <img class="img-fluid" alt="100%x280"
-                                             src="https://images.unsplash.com/photo-1532715088550-62f09305f765?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=ebadb044b374504ef8e81bdec4d0e840">
-                                        <div class="card-body">
-                                            <h4 class="card-title">
-                                                <font style="vertical-align: inherit;">
-                                                    <font style="vertical-align: inherit;">
-                                                        <font style="vertical-align: inherit;">
-                                                            <font style="vertical-align: inherit;">特殊職稱處理
-                                                            </font>
-                                                        </font>
-                                                    </font>
-                                                </font>
-                                            </h4>
-                                            <p class="card-text">
-                                                <font style="vertical-align: inherit;">
-                                                    <font style="vertical-align: inherit;">
-                                                        <font style="vertical-align: inherit;">
-                                                            <font style="vertical-align: inherit;">
-                                                                閱讀文章..</font>
-                                                        </font>
-                                                    </font>
-                                                </font>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <div class="card">
-                                        <img class="img-fluid" alt="100%x280"
-                                             src="https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=0754ab085804ae8a3b562548e6b4aa2e">
-                                        <div class="card-body">
-                                            <h4 class="card-title">
-                                                <font style="vertical-align: inherit;">
-                                                    <font style="vertical-align: inherit;">
-                                                        <font style="vertical-align: inherit;">
-                                                            <font style="vertical-align: inherit;">特殊職稱處理
-                                                            </font>
-                                                        </font>
-                                                    </font>
-                                                </font>
-                                            </h4>
-                                            <p class="card-text">
-                                                <font style="vertical-align: inherit;">
-                                                    <font style="vertical-align: inherit;">
-                                                        <font style="vertical-align: inherit;">
-                                                            <font style="vertical-align: inherit;">
-                                                                閱讀文章..</font>
-                                                        </font>
-                                                    </font>
-                                                </font>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="row">
-                                <div class="col-md-4 mb-3">
-                                    <div class="card">
-                                        <img class="img-fluid" alt="100%x280"
-                                             src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=ee8417f0ea2a50d53a12665820b54e23">
-                                        <div class="card-body">
-                                            <h4 class="card-title">
-                                                <font style="vertical-align: inherit;">
-                                                    <font style="vertical-align: inherit;">
-                                                        <font style="vertical-align: inherit;">
-                                                            <font style="vertical-align: inherit;">特殊職稱處理
-                                                            </font>
-                                                        </font>
-                                                    </font>
-                                                </font>
-                                            </h4>
-                                            <p class="card-text">
-                                                <font style="vertical-align: inherit;">
-                                                    <font style="vertical-align: inherit;">
-                                                        <font style="vertical-align: inherit;">
-                                                            <font style="vertical-align: inherit;">
-                                                                閱讀文章..</font>
-                                                        </font>
-                                                    </font>
-                                                </font>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <div class="card">
-                                        <img class="img-fluid" alt="100%x280"
-                                             src="https://images.unsplash.com/photo-1532777946373-b6783242f211?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=8ac55cf3a68785643998730839663129">
-                                        <div class="card-body">
-                                            <h4 class="card-title">
-                                                <font style="vertical-align: inherit;">
-                                                    <font style="vertical-align: inherit;">
-                                                        <font style="vertical-align: inherit;">
-                                                            <font style="vertical-align: inherit;">特殊職稱處理
-                                                            </font>
-                                                        </font>
-                                                    </font>
-                                                </font>
-                                            </h4>
-                                            <p class="card-text">
-                                                <font style="vertical-align: inherit;">
-                                                    <font style="vertical-align: inherit;">
-                                                        <font style="vertical-align: inherit;">
-                                                            <font style="vertical-align: inherit;">
-                                                                閱讀文章..</font>
-                                                        </font>
-                                                    </font>
-                                                </font>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <div class="card">
-                                        <img class="img-fluid" alt="100%x280"
-                                             src="https://images.unsplash.com/photo-1532763303805-529d595877c5?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=5ee4fd5d19b40f93eadb21871757eda6">
-                                        <div class="card-body">
-                                            <h4 class="card-title">
-                                                <font style="vertical-align: inherit;">
-                                                    <font style="vertical-align: inherit;">
-                                                        <font style="vertical-align: inherit;">
-                                                            <font style="vertical-align: inherit;">特殊職稱處理
-                                                            </font>
-                                                        </font>
-                                                    </font>
-                                                </font>
-                                            </h4>
-                                            <p class="card-text">
-                                                <font style="vertical-align: inherit;">
-                                                    <font style="vertical-align: inherit;">
-                                                        <font style="vertical-align: inherit;">
-                                                            <font style="vertical-align: inherit;">
-                                                                閱讀文章..</font>
-                                                        </font>
-                                                    </font>
-                                                </font>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <a class="navbar-brand" href="<%=request.getContextPath()%>/front-end/article/listAllArticle.jsp">
+            <div class="logo"><img style="height:100px"
+                                   src="<%=request.getContextPath()%>/front-end/article/images/調整後白小農logo.png"></div>
+            <%--            <h4>小農論壇</h4>--%>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+                aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto me-sm-2 mt-2 mt-lg-0">
+                <li class="nav-item active me-3">
+                    <a class="nav-link" href="#">
+                        <span style="vertical-align: inherit;">
+                            <span style="vertical-align: inherit;">回到首頁</span>
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item me-3">
+                    <a class="nav-link" href="#">
+                        <span style="vertical-align: inherit;">
+                            <span style="vertical-align: inherit;">小農商城</span>
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item me-3">
+                    <a class="nav-link" href="<%=request.getContextPath()%>/front-end/farmTravel/listAllFarmTravel.jsp">
+                        <span style="vertical-align: inherit;">
+                            <span style="vertical-align: inherit;">農場旅遊</span>
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item me-3">
+                    <a class="nav-link"
+                       href="<%=request.getContextPath()%>/front-end/articleCollection/articleCollection.jsp">
+                        <span style="vertical-align: inherit;">
+                            <span style="vertical-align: inherit;">農產認養</span>
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item me-3">
+                    <a class="nav-link" href="#">
+                        <span style="vertical-align: inherit;">
+                            <span style="vertical-align: inherit;">會員專區</span>
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item me-3">
+                    <a class="nav-link" href='<%=request.getContextPath()%>/front-end/article/addArticle.jsp'>
+                        <span style="vertical-align: inherit;">
+                            <span style="vertical-align: inherit;">註冊/登入</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
-</section>
+</nav>
+<%--header2--%>
+<header class="header">
+    <nav class="navbar navbar-expand-lg navbar-dark border border-dark bg-dark" style="color: #efefef">
+        <h4>小農論壇</h4>
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <%--首頁--%>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+                    aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul class="navbar-nav ms-auto me-sm-2 mt-2 mt-lg-0">
+                    <li class="nav-item active me-3">
+                        <a class="nav-link" href='<%=request.getContextPath()%>/front-end/article/listAllArticle.jsp'>
+                        <span style="vertical-align: inherit;">
+                            <span style="vertical-align: inherit;">所有文章</span>
+                        </span>
+                        </a>
+                    </li>
+                    <li class="nav-item me-3">
+                        <a class="nav-link" href='<%=request.getContextPath()%>/front-end/article/addArticle.jsp'>
+                        <span style="vertical-align: inherit;">
+                            <span style="vertical-align: inherit;">新增文章</span>
+                        </span>
+                        </a>
+                    </li>
+                    <li class="nav-item me-3">
+                        <a class="nav-link" href='<%=request.getContextPath()%>/front-end/article/listAllMyArticle.jsp'>
+                        <span style="vertical-align: inherit;">
+                            <span style="vertical-align: inherit;">我的文章</span>
+                        </span>
+                        </a>
+                    </li>
 
+                    <li>
+                        <div class="nav-right">
 
+                            <div class="search-box">
+                                <form class="d-flex" method="post" action="<%=request.getContextPath()%>/article.do">
+                                    <input class="form-control me-2" type="search" placeholder="Search"
+                                           aria-label="Search" name="searchArticle">
+                                    <input type="hidden" name="action" value="search">
+                                    <button type="submit"><img
+                                            src="<%=request.getContextPath()%>/front-end/article/images/search.svg">Search
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="nav-user-icon online">
+                                <c:if test="${empty farmTravel.farm_travel_img}">
+                                    <img src="<%=request.getContextPath()%>/front-end/article/images/dogcoco.png">
+                                </c:if>
+                            </div>
+                        </div>
+                    </li>
+
+                    <%--                    收尋功能--%>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" id="navbarDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false">
+                            <span style="vertical-align: inherit;">
+                            <span style="vertical-align: inherit;">${memVO.mem_id}</span>
+                        </span><i class="fa fa-angle-down   "></i>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Profile</a>
+                            <a class="dropdown-item" href="#">Account Settings</a>
+                            <a class="dropdown-item" href="#">Newsletter</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Sign Out</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <%--    <button type="button" class="btn_hamburger">按鈕</button>--%>
+</header>
+<%--左側邊欄--%>
+<div class="left-sidebar">
+
+</div>
+<%--主內容--%>
+<div class="main-content">
+    <main class="main">
+        <div class="post-container">
+            <div class="row">
+                <div class="col-3" style="background: #efefef;"></div>
+                <div class="col-6 " style="background: #efefef;">
+                    <c:forEach var="article" items="${list}">
+                        <div class="aArticle row widged " style="background: #F5F5F7">
+                            <div class="col-4">
+                                <div class="row mb-2">
+                                    <c:if test="${not empty article.article_img}">
+                                        <img src="<%=request.getContextPath()%>/article.do?article_ID=${article.article_ID}"
+                                             class="rounded mx-auto d-block" width='200' height='150'>
+                                    </c:if>
+                                    <c:if test="${empty article.article_img}">
+                                        <img src='<%=request.getContextPath()%>/front-end/article/images/透明小小農.png'
+                                             width='100%'
+                                             height='150px'>
+                                    </c:if>
+                                </div>
+                                <div class="row mb-2">
+                                        <%-- 收藏 --%>
+                                    <div class="col-8">
+                                        <button type="button" class="btn btn-outline-light"
+                                                value="${article.article_ID}">
+                                            <img src="<%=request.getContextPath()%>/articleCollection.do?action=collection&mem_id=${memVO.mem_id}&article_ID=${article.article_ID}"
+                                                 class="collection" width="25px" height="25px">
+                                        </button>
+                                    </div>
+                                    <div class="col-4"></div>
+                                </div>
+                            </div>
+                            <div class="col-8 row">
+                                <div class="row mb-2">
+                                    <h3>類別： #
+                                        <jsp:useBean id="articleTypeService" scope="page"
+                                                     class="com.articleType.model.ArticleTypeService"/>
+                                        <c:forEach items="${articleTypeService.allArticleType}" var="article_type">
+                                            <c:if test="${article.article_type_ID == article_type.article_type_ID}">
+                                                ${article_type.article_type_text}
+                                            </c:if>
+                                        </c:forEach>
+                                            ${article.article_title}--<p>${article.mem_id}</p>
+                                    </h3>
+                                    發文時間：${article.article_time}<br>
+                                    <c:if test="${not empty article.article_update_time}">
+                                        最後修改時間：${article.article_update_time}<br/>
+                                    </c:if>
+                                </div>
+                                    <%-- 第二行 --%>
+                                <div class="row mb-2"></div>
+                                    <%-- 第三行 --%>
+                                <hr style="filter: alpha(opacity=100,finishopacity=0,style=3)"/>
+                                <div class="row mb-2">
+                                    <div class="col-4">
+                                            <%--按讚數：--%>
+                                        <img src='<%=request.getContextPath()%>/front-end/article/images/thumbs-up.png'
+                                             width='30px' height='30px'>
+                                            ${article.article_like}</div>
+                                    <div class="col-4">
+                                            <%--留言數：--%>
+                                        <img src='<%=request.getContextPath()%>/front-end/article/images/comment.png'
+                                             width='30px' height='30px'>
+                                            ${article.comments_num}</div>
+                                    <div class="col-4">
+                                            <%-- 狀態碼：${article.article_state}--%>
+                                            <%--查詳情--%>
+                                        <form method="post" action="<%=request.getContextPath()%>/article.do">
+                                            <input type="hidden" name="action" value="getOne">
+                                            <input type="hidden" name="article_ID"
+                                                   value="${article.article_ID}">
+                                            <button type="submit" class="btn btn-outline-primary">查看詳情</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr style="filter: alpha(opacity=100,finishopacity=0,style=3)"/>
+                    </c:forEach>
+                </div>
+                <div class="col-3" style="background: #efefef;"></div>
+            </div>
+        </div>
+    </main>
+</div>
 </body>
 <script>
+    $(function () {
 
+        $("button.btn_hamburger").on("click", function () {
+            $("aside.aside").toggleClass("-on");
+        });
+
+    });
     $('.delete').click(function () {
         $.post(
             '<%=request.getContextPath()%>/article.do',
@@ -582,10 +480,10 @@
             data => {
                 if (data == 0) {
                     alert("移除收藏");
-                    $(this).attr("src", "<%=request.getContextPath()%>/front-end/farmTravel/images/Heart.png");
+                    $(this).attr("src", "<%=request.getContextPath()%>/front-end/article/images/bookmark.png");
                 } else if (data == 1) {
                     alert("收藏成功");
-                    $(this).attr("src", "<%=request.getContextPath()%>/front-end/farmTravel/images/Hearted.png");
+                    $(this).attr("src", "<%=request.getContextPath()%>/front-end/article/images/bookmarked.png");
                 }
             }
         );

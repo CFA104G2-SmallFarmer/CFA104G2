@@ -79,13 +79,30 @@
             margin-right: 15px;
         }
 
+        .row {
+            --bs-gutter-x: -0.5rem;
+            --bs-gutter-y: 0;
+        }
+
+        .aArticle {
+            border: 2px solid lightslategrey;
+            border-radius: 24px;
+        }
+        .widged {
+            background: #fff;
+            padding: 10px;
+            border: 1px solid #eee;
+            -webkit-box-shadow: 0 1px 1px rgb(0 0 0 / 10%);
+            box-shadow: 0 1px 1px rgb(0 0 0 / 10%);
+        }
+
     </style>
 
 </head>
 <body>
 <%--Header--%>
 <header>
-    <jsp:include page="articleHeader.jsp"></jsp:include>
+    <jsp:include page="articleHeader2.jsp"></jsp:include>
 </header>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
@@ -104,13 +121,14 @@
                 <img src="<%=request.getContextPath()%>/front-end/article/images/people/1.jpg" style=" width: 150px;
                       border-radius: 50%; cursor: pointer ">
             </div>
-            <div class="col-7 User-profile">
-                <h1> 文章標題:${article.article_title}</h1>
+            <div class="col-7 User-profile" style="color: #516560">
+                <h3> 文章標題:${article.article_title}</h3>
                 <%--文章封面照片--%>
-                <img src="<%=request.getContextPath()%>/article.do?article_ID=${article.article_ID}" class="rounded mx-auto d-block" width='200' height='150'>
-<%--                <img src="<%=request.getContextPath()%>/article.do?article_ID=${article.article_ID}" class="img-fluid" alt="...">--%>
-<%--                <img src='<%=request.getContextPath()%>/article.do?article_ID=${article.article_ID}' width='200'--%>
-<%--                     height='150'>--%>
+                <img src="<%=request.getContextPath()%>/article.do?article_ID=${article.article_ID}"
+                     class="rounded mx-auto d-block" width='400' height='300'>
+                <%--                <img src="<%=request.getContextPath()%>/article.do?article_ID=${article.article_ID}" class="img-fluid" alt="...">--%>
+                <%--                <img src='<%=request.getContextPath()%>/article.do?article_ID=${article.article_ID}' width='200'--%>
+                <%--                     height='150'>--%>
             </div>
             <div class="col-2">天氣</div>
         </div>
@@ -136,15 +154,26 @@
                 </h6>
                 <p>作者:${article.mem_id}
                     <c:if test="${sessionScope.memVO.mem_id_state eq 1}">
-                        <img src="<%=request.getContextPath()%>/front-end/article/images/透明小小農.png" width="30px" height="30px">
+                        <img src="<%=request.getContextPath()%>/front-end/article/images/透明小小農.png" width="30px"
+                             height="30px">
                     </c:if>
                     <c:if test="${sessionScope.memVO.mem_id_state eq 0}">
-                        <img src="<%=request.getContextPath()%>/front-end/article/images/user.png" width="30px" height="30px">
+                        <img src="<%=request.getContextPath()%>/front-end/article/images/user.png" width="30px"
+                             height="30px">
                     </c:if>
                 </p>
             </div>
             <div class="col-7">
-                <p class="post-text">文章內容 歡迎分享跟小農購買的心得${article.article_content}<span>@sisi</span><a href="#"># 雲林茶葉</a>
+                <p class="post-text">文章內容 歡迎分享跟小農購買的心得${article.article_content}
+                    <span>@冬瓜</span>
+                    <a href="#">
+                        #
+                        <c:forEach items="${articleTypeService.allArticleType}" var="article_type">
+                        <c:if test="${article.article_type_ID == article_type.article_type_ID}">
+                            ${article_type.article_type_text}
+                        </c:if>
+                    </c:forEach>
+                    </a>
 
                 </p>
                 <p>文章發表時間:${article.article_time}</p>
@@ -152,20 +181,22 @@
                     <div class="col-3">
                         <img src='<%=request.getContextPath()%>/front-end/article/images/comment.png' width='30px'
                              height='30px'>
-                        ${article.article_like}
+                        ${article.comments_num}
                     </div>
                     <div class="col-3">
                         <p scope="row">
                             <%--讚:--%>
                             <%--                            <img src='<%=request.getContextPath()%>/front-end/article/images/thumbs-up.png' width='30px' height='30px'>--%>
-                            <button type="button" id="addOneLike" class="btn btn-outline-light" value="${article.article_ID}">
-                                <img src='<%=request.getContextPath()%>/front-end/article/images/thumbs-up.png' width='30px' height='30px'>
+                            <button type="button" id="addOneLike" class="btn btn-outline-light"
+                                    value="${article.article_ID}">
+                                <img src='<%=request.getContextPath()%>/front-end/article/images/thumbs-up.png'
+                                     width='30px' height='30px'>
                             </button>
                             <span id="article_like">${article.article_like}</span>
                         </p>
                     </div>
                     <div class="col-3">
-                        文章狀態:${article.comments_num}
+                        文章狀態:公開
                     </div>
                     <div class="col-3">
                         <c:if test="${article.article_update_time != null}">
@@ -188,9 +219,8 @@
 <div class="container">
     <div class="row">
         <div class="col-1"></div>
-        <div class="col-10">
-            <table class="table">
-                <caption>留言</caption>
+        <div class="col-10 row aArticle widged">
+            <table class="table ">
                 <thead>
                 <tr>
                     <th>NO.</th>
@@ -198,7 +228,7 @@
                     <th>COMMENTS</th>
                     <th>USER</th>
                     <th>LIKE</th>
-<%--                    <th>留言狀態</th>--%>
+                    <%--                    <th>留言狀態</th>--%>
                     <th>TIME</th>
                     <th>UPDATE</th>
                 </tr>
@@ -220,10 +250,12 @@
                         <td>${comments.mem_id}
 
                             <c:if test="${sessionScope.memVO.mem_id_state eq 1}">
-                                <img src="<%=request.getContextPath()%>/front-end/article/images/透明小小農.png" width="30px" height="30px">
+                                <img src="<%=request.getContextPath()%>/front-end/article/images/透明小小農.png" width="30px"
+                                     height="30px">
                             </c:if>
                             <c:if test="${sessionScope.memVO.mem_id_state eq 0}">
-                                <img src="<%=request.getContextPath()%>/front-end/article/images/user.png" width="30px" height="30px">
+                                <img src="<%=request.getContextPath()%>/front-end/article/images/user.png" width="30px"
+                                     height="30px">
                             </c:if>
 
                         </td>
@@ -239,7 +271,7 @@
                             </p>
 
                         </td>
-<%--                        <td>${comments.comments_state}</td>--%>
+                            <%--                        <td>${comments.comments_state}</td>--%>
                         <td>${comments.comments_time}</td>
                         <td>${comments.comments_update_time}</td>
                     </tr>

@@ -11,8 +11,10 @@ public class ArticleJDBCDAO implements ArticleDAO {
     public static final String UPDATE_STMT = "UPDATE ARTICLE SET ARTICLE_TITLE = ?, ARTICLE_CONTENT= ?, ARTICLE_IMG= ?, ARTICLE_LIKE= ?, COMMENTS_NUM= ?, ARTICLE_STATE= ?, ARTICLE_UPDATE_TIME= NOW() WHERE ARTICLE_ID = ?;";
     public static final String DELETE_STMT = "DELETE FROM ARTICLE WHERE ARTICLE_ID = ?;";
     public static final String GET_ONE_STMT = "SELECT * FROM ARTICLE WHERE ARTICLE_ID = ?;";
-    public static final String GET_ALL_STMT = "SELECT * FROM ARTICLE;";
+    public static final String GET_ALL_STMT = "SELECT * FROM ARTICLE ORDER BY ARTICLE_TIME DESC;";
     public static final String GET_ALL_BY_MEMID = "SELECT * FROM ARTICLE WHERE MEM_ID =?;";
+    public static final String ARTICLE_BY_SEARCH = "SELECT * FROM ARTICLE WHERE ARTICLE_TITLE LIKE ? OR ARTICLE_CONTENT LIKE ?;";
+
 
     PreparedStatement pstmt = null;
     ResultSet rs = null;
@@ -195,6 +197,54 @@ public class ArticleJDBCDAO implements ArticleDAO {
             pstmt = con.prepareStatement(GET_ALL_BY_MEMID);
 
             pstmt.setInt(1, mem_id);
+
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                article = new ArticleVO();
+                article.setArticle_ID(rs.getInt("ARTICLE_ID"));
+                article.setArticle_title(rs.getString("ARTICLE_TITLE"));
+                article.setMem_id(rs.getInt("MEM_ID"));
+                article.setArticle_type_ID(rs.getInt("ARTICLE_TYPE_ID"));
+                article.setArticle_time(rs.getTimestamp("ARTICLE_TIME"));
+                article.setArticle_content(rs.getString("ARTICLE_CONTENT"));
+                article.setArticle_img(rs.getBytes("ARTICLE_IMG"));
+                article.setArticle_like(rs.getInt("ARTICLE_LIKE"));
+                article.setComments_num(rs.getInt("COMMENTS_NUM"));
+                article.setArticle_state(rs.getInt("ARTICLE_STATE"));
+                article.setArticle_update_time(rs.getTimestamp("ARTICLE_UPDATE_TIME"));
+                articlel_list.add(article);
+            }
+        } catch (SQLException se) {
+            se.printStackTrace();
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+        }
+        return articlel_list;
+    }
+
+    @Override
+    public List<ArticleVO> articleBySearch(Connection con, String searchArticle) {
+        List<ArticleVO> articlel_list = new ArrayList<>();
+        ArticleVO article = null;
+        try {
+            pstmt = con.prepareStatement(ARTICLE_BY_SEARCH);
+
+            pstmt.setString(1, searchArticle);
+            pstmt.setString(2, searchArticle);
 
             rs = pstmt.executeQuery();
 

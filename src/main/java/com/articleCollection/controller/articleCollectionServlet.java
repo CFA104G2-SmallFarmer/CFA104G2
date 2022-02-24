@@ -27,12 +27,12 @@ public class articleCollectionServlet extends HttpServlet {
             InputStream inputStream;
 
             if (collection){
-                inputStream = getServletContext().getResourceAsStream("/front-end/farmTravel/images/Hearted.png");
+                inputStream = getServletContext().getResourceAsStream("/front-end/article/images/bookmarked.png");
                 byte[] image = new byte[inputStream.available()];
                 inputStream.read(image);
                 out.write(image);
             }else{
-                inputStream = getServletContext().getResourceAsStream("/front-end/farmTravel/images/Heart.png");
+                inputStream = getServletContext().getResourceAsStream("/front-end/article/images/bookmark.png");
                 byte[] image = new byte[inputStream.available()];
                 inputStream.read(image);
                 out.write(image);

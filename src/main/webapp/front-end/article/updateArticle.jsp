@@ -35,6 +35,28 @@
             float: right;
             width: 40%;
         }
+        /* CKEditor 高度設置 */
+        .ck-editor__editable_inline {
+            min-height: 200px;
+        }
+
+
+        .row {
+            --bs-gutter-x: -0.5rem;
+            --bs-gutter-y: 0;
+        }
+
+        .aArticle {
+            border: 2px solid lightslategrey;
+            border-radius: 24px;
+        }
+        .widged {
+            background: #fff;
+            padding: 10px;
+            border: 1px solid #eee;
+            -webkit-box-shadow: 0 1px 1px rgb(0 0 0 / 10%);
+            box-shadow: 0 1px 1px rgb(0 0 0 / 10%);
+        }
     </style>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' href='//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css'>
@@ -43,12 +65,13 @@
     <script src='https://code.jquery.com/jquery-3.6.0.js'></script>
     <script src='https://code.jquery.com/ui/1.13.1/jquery-ui.js'></script>
     <script src='//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js'></script>
-    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/decoupled-document/ckeditor.js"></script>
+    <!-- 引入 CKEditor的script -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
 </head>
-<body>
+<body style="background: #dfdcb3">
 <%--Header--%>
 <header>
-    <jsp:include page="articleHeader.jsp"></jsp:include>
+    <jsp:include page="articleHeader2.jsp"></jsp:include>
 </header>
 <main>
     <h3>修改文章</h3>
@@ -67,20 +90,20 @@
             </ul>
         </c:if>
     </div>
-    <div id="right">                <!-- java請求 -->
+    <div id="right" class="row aArticle widged">                <!-- java請求 -->
         <form METHOD="POST" ACTION="<%=request.getContextPath()%>/article.do" enctype="multipart/form-data" name="addForm">
 
             <div class="mb-3">
-                <label for="article_img" class="form-label">文章封面</label>     <!-- 收照片資料 -->
+                <label for="article_img" class="form-label">修改文章封面</label>     <!-- 收照片資料 -->
                 <input type="file" class="form-control" id="article_img" accept="image/*" name="article_img">
             </div>
             <div class="mb-3">
-                <label for="article_title" class="form-label">文章標題</label>        <!-- 資料 -->
+                <label for="article_title" class="form-label">修改文章標題</label>        <!-- 資料 -->
                 <input type="text" class="form-control" id="article_title" placeholder="Ex：第一次種稻米~ 農家生活體驗~"
                        name="article_title">
             </div>
             <div class="mb-3">
-                <label for="article_type_ID" class="form-label">文章類別</label>
+                <label for="article_type_ID" class="form-label">修改文章類別</label>
 
                 <div class="col-md-10">
                     <select class="form-control"id="article_type_ID" placeholder="Ex：第一次種稻米~ 農家生活體驗~"
@@ -93,26 +116,19 @@
             </div>
 
             <!--文字框1 -->
-            <div class="mb-3">
-                <label for="article_content" class="form-label">內文</label>
-                <textarea class="form-control" id="article_content" rows="3" name="article_content"
-                          placeholder="Ex：參加了一個很特別的活動我們在農遊超市看到飛牛牧場有個農村廚房的體驗會有專業的主廚帶著你更深入當地的文化~"></textarea>
-            </div>
+<%--            <div class="mb-3">--%>
+<%--                <label for="article_content" class="form-label">內文</label>--%>
+<%--                <textarea class="form-control" id="article_content" rows="3" name="article_content"--%>
+<%--                          placeholder="Ex：參加了一個很特別的活動我們在農遊超市看到飛牛牧場有個農村廚房的體驗會有專業的主廚帶著你更深入當地的文化~"></textarea>--%>
+<%--            </div>--%>
             <!--文字框1 -->
 
             <!--文字框2 -->
-            <h1>文章內容</h1>
+            <h6>修改文章內容</h6>
+            <textarea name="article_content" id="editor" rows="5"  placeholder="Ex：參加了一個很特別的活動我們在農遊超市看到飛牛牧場有個農村廚房的體驗會有專業的主廚帶著你更深入當地的文化~"></textarea>
+            <!--文字框2end -->
 
-            <!-- The toolbar will be rendered in this container. -->
-            <div id="toolbar-container"></div>
 
-            <!-- This container will become the editable. -->
-            <div id="editor">
-
-                <label for="article_content" class="form-label">內文</label>
-                <textarea class="form-control" id="article_contentxxx" rows="3" name="article_content"
-                          placeholder="Ex：參加了一個很特別的活動我們在農遊超市看到飛牛牧場有個農村廚房的體驗會有專業的主廚帶著你更深入當地的文化~"></textarea>
-            </div>
 
             <script>
                 DecoupledEditor
@@ -126,7 +142,7 @@
                         console.error( error );
                     } );
             </script>
-            <!--文字框2end -->
+
             <div class="mb-3 form-check">
                 <input type="checkbox" class="checkAgree form-check-input" id="exampleCheck1">
                 <label class="form-check-label" for="exampleCheck1">已詳讀並同意遵守<a>發文相關規定</a></label>
@@ -134,7 +150,7 @@
             <!-- 需確認輸入資料按鈕 -->
             <input type="hidden" name="article_ID" value='${article.article_ID}'>
             <input type='hidden' name='action' value='update'>
-            <button type="submit" class="submit btn btn-primary" disabled='disabled'>送出</button>
+            <button type="submit" class="submit btn btn-primary" disabled='disabled'>修改文章</button>
             <img src='<%=request.getContextPath()%>/front-end/farmTravel/images/LittleFammer.jpg' height='30' width='30' onClick='autoAdd(this)'>
         </form>
     </div>
@@ -157,6 +173,14 @@
         addForm.article_content.value='參加了一個很特別的活動我們每天吃的稻米 可以帶著小朋友們一同體驗種植過程是很棒的經驗 謝謝農場主熱心款待';
 
     }
+</script>
+<!-- CK Editor 初始化 -->
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor'))
+        .catch(error => {
+            console.error(error);
+        });
 </script>
 </body>
 </html>

@@ -15,4 +15,6 @@ public interface ArticleDAO {
     List<ArticleVO> getAll(Connection con);
 
     List<ArticleVO> getAllByMemID(Connection con, Integer mem_id);
+
+    List<ArticleVO> articleBySearch(Connection con, String searchArticle);
 }

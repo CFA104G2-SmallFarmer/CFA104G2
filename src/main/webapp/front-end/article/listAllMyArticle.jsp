@@ -10,6 +10,7 @@
     memVO.setMem_id(77004);
     memVO.setMem_id_state(0);
     session.setAttribute("memVO", memVO);
+   // MemVO memVO = (MemVO)session.getAttribute("memVO");
 
     ArticleService articleService = new ArticleService();
     List<ArticleVO> list = articleService.getAllArticleByMemID(memVO.getMem_id());
@@ -39,7 +40,7 @@
 
         :root {
             --header-height: 60px;
-            --aside-width: 240px;
+            /*--aside-width: 240px;*/
         }
 
         body {
@@ -185,57 +186,128 @@
             background: #dddddd;
         }
 
+        .row {
+            --bs-gutter-x: -0.5rem;
+            --bs-gutter-y: 0;
+        }
+
         .aArticle {
             border: 2px solid lightslategrey;
-            border-radius: 5px;
+            border-radius: 24px;
         }
+
+        .widged {
+            background: #fff;
+            padding: 10px;
+            border: 1px solid #eee;
+            -webkit-box-shadow: 0 1px 1px rgb(0 0 0 / 10%);
+            box-shadow: 0 1px 1px rgb(0 0 0 / 10%);
+        }
+
+
     </style>
 
 </head>
 
 <body>
 <header>
-    <jsp:include page="articleHeader.jsp"></jsp:include>
+    <jsp:include page="articleHeader2.jsp"></jsp:include>
 </header>
 
 <%--主內容--%>
 <main class="main">
-    <div class="post-container">
+    <%--    <div class="post-container">--%>
+    <div class="row">
+        <div class="col-3" style="background: #efefef;">
+            <div class="row">
+                <div class="col-12">
+                    <div class="aArticle row widged">
+                    <%--會員照片--%>
+                    <img src="<%=request.getContextPath()%>/front-end/article/images/people/1.jpg" style=" width: 150px;
+                      border-radius: 50%; cursor: pointer ">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="aArticle row widged">
 
-        <%-- 文章 --%>
-        <div class="margin-top-20">
+                        <p>會員帳號:${memVO.mem_id}</p>
+                        <p>身分:
+                            <c:if test="${sessionScope.memVO.mem_id_state eq 1}">
+                                <img src="<%=request.getContextPath()%>/front-end/article/images/透明小小農.png" width="30px"
+                                     height="30px">我是小農
+                            </c:if>
+                            <c:if test="${sessionScope.memVO.mem_id_state eq 0}">
+                                <img src="<%=request.getContextPath()%>/front-end/article/images/user.png" width="30px"
+                                     height="30px">一般會員
+                            </c:if>
+                        </p>
+                        <a class="nav-link"
+                           href="<%=request.getContextPath()%>/front-end/articleCollection/articleCollection.jsp">
+                        <span style="vertical-align: inherit;">
+                            <span style="vertical-align: inherit;">我的收藏</span>
+                        </span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-8" style="background: #efefef;">
+            <%-- 文章 --%>
             <div class="margin-top-20">
-                <c:forEach var="article" items="${list}">
-                    <div class="aArticle row">
-                        <div class="col-4 col-md-4 col-lg-4 col-xl-4">
-                            <c:if test="${not empty article.article_img}">
-                                <img src='<%=request.getContextPath()%>/article.do?article_ID=${article.article_ID}'
-                                     width='200' height='150'>
-                            </c:if>
-                            <c:if test="${empty article.article_img}">
-                                <img src='<%=request.getContextPath()%>/front-end/article/images/透明小小農.png' width='200'
-                                     height='150'>
-                            </c:if>
+                <div class="margin-top-20">
+                    <c:forEach var="article" items="${list}">
+                        <div class="aArticle row widged">
+                            <div class="col-4 col-md-4 col-lg-4 col-xl-4">
+                                <c:if test="${not empty article.article_img}">
+                                    <img src='<%=request.getContextPath()%>/article.do?article_ID=${article.article_ID}'
+                                         width='300' height='200'>
+                                </c:if>
+                                <c:if test="${empty article.article_img}">
+                                    <img src='<%=request.getContextPath()%>/front-end/article/images/透明小小農.png'
+                                         width='300'
+                                         height='200'>
+                                </c:if>
 
-                            <form method="post" action="<%=request.getContextPath()%>/article.do">
-                                <input type="hidden" name="action" value="getOne">
-                                <input type="hidden" name="article_ID" value="${article.article_ID}">
-                                <button type="submit" class="btn btn-outline-primary">查看詳情</button>
-                            </form>
-                        </div>
-                        <div class="col-8 col-md-8 col-lg-8 col-xl-8">
-                            <h3>
+                                <form method="post" action="<%=request.getContextPath()%>/article.do">
+                                    <input type="hidden" name="action" value="getOne">
+                                    <input type="hidden" name="article_ID" value="${article.article_ID}">
+                                    <button type="submit" class="btn btn-outline-secondary">
+                                        <img src='<%=request.getContextPath()%>/front-end/article/images/eye.png'
+                                             width='30px' height='30px'>
+                                        查看詳情
+                                    </button>
+                                </form>
+
+                                <button type='button' class='delete btn btn-outline-secondary'
+                                        value='${article.article_ID}'>
+                                    <img src='<%=request.getContextPath()%>/front-end/article/images/trash.png'
+                                         width='30px' height='30px'>
+                                    刪除
+                                </button>
+                                <form method="post" action="<%=request.getContextPath()%>/article.do">
+                                    <input type="hidden" name="action" value="getOneForUpdate">
+                                    <input type="hidden" name="article_ID" value="${article.article_ID}">
+                                    <button type="submit" class="btn btn-outline-secondary">
+                                        <img src='<%=request.getContextPath()%>/front-end/article/images/refresh.png'
+                                             width='30px' height='30px'>
+                                        修改文章
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="col-8 col-md-8 col-lg-8 col-xl-8">
+                                <h3>
                                 <span style="vertical-align: inherit;">
                                     <span style="vertical-align: inherit;">
                                         <span style="vertical-align: inherit;">
                                             <span style="vertical-align: inherit;">
-                                                    ${article.article_ID}
+                                                    <%--                                                    ${article.article_ID}--%>
                                             </span>
                                         </span>
                                     </span>
                                     <span style="vertical-align: inherit;">
                                         <span style="vertical-align: inherit;">
-                                            <span style="vertical-align: inherit;"><span>[類別：
+                                            <span style="vertical-align: inherit;"><span>類別：
                                                 <jsp:useBean id="articleTypeService" scope="page"
                                                              class="com.articleType.model.ArticleTypeService"/>
                                                 <c:forEach items="${articleTypeService.allArticleType}"
@@ -244,13 +316,13 @@
                                                         ${article_type.article_type_text}
                                                     </c:if>
                                                 </c:forEach>
-                                                ]</span> ${article.article_title}--<sub>${article.mem_id}</sub>
+                                                </span> ${article.article_title}
                                             </span>
                                         </span>
                                     </span>
                                 </span>
-                            </h3>
-                            <p class="lead">
+                                </h3>
+                                <p class="lead">
                                 <span style="vertical-align: inherit;">
                                     <span style="vertical-align: inherit;">
                                         <span style="vertical-align: inherit;">
@@ -272,26 +344,16 @@
                                         </span>
                                     </span>
                                 </span>
-                            </p>
-                            <button type='button' class='delete btn btn-outline-danger' value='${article.article_ID}'>
-                                刪除
-                            </button>
-
-                            <form method="post" action="<%=request.getContextPath()%>/article.do">
-                                <input type="hidden" name="action" value="getOneForUpdate">
-                                <input type="hidden" name="article_ID" value="${article.article_ID}">
-                                <button type="submit" class="btn btn-outline-secondary">修改</button>
-                            </form>
-
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                </c:forEach>
+                    </c:forEach>
+                </div>
             </div>
         </div>
+        <div class="col-1" style="background: #efefef;"></div>
     </div>
 </main>
-</main>
-
 <script>
     $(function () {
 
@@ -307,7 +369,7 @@
             {action: 'delete', article_ID: $(this).val()},
             () => {
                 alert('刪除成功');
-                window.location.href = '<%=request.getContextPath()%>/front-end/article/listAllArticle.jsp';
+                window.location.href = '<%=request.getContextPath()%>/front-end/article/listAllMyArticle.jsp';
             }
         );
     });
