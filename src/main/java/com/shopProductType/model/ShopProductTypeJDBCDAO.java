@@ -318,8 +318,8 @@ public class ShopProductTypeJDBCDAO implements ShopProductTypeDAO_interface {
 				Class.forName(driver);
 				con = DriverManager.getConnection(url, userid, passwd);
 				pstmt = con.prepareStatement(GET_Product_ByTypeid_STMT);
-				pstmt.setInt(1, prod_type_id);
-				rs = pstmt.executeQuery();
+				pstmt.setInt(1, prod_type_id);   
+				rs = pstmt.executeQuery();  //游標
 				
 				while(rs.next()) {
 					shopProductVO = new ShopProductVO();

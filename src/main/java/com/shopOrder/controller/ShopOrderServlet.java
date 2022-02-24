@@ -80,7 +80,7 @@ public class ShopOrderServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
 							// 連結到商城查詢網頁
-							.getRequestDispatcher("/front-end/shopOrder/searchOrder.jsp");/// ***我還沒改
+							.getRequestDispatcher("/front-end/shopOrder/listAllOrderByFMem.jsp");/// ***我還沒改
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -98,7 +98,7 @@ public class ShopOrderServlet extends HttpServlet {
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/shopOrder/searchOrder.jsp");/// ***我還沒改
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/shopOrder/listAllOrderByFMem.jsp");/// ***我還沒改
 				failureView.forward(req, res);
 			}
 		}
@@ -113,6 +113,20 @@ public class ShopOrderServlet extends HttpServlet {
 
 			try {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
+				String str1 = req.getParameter("f_mem_id");
+//				System.out.println(str1);//////////////////////
+				if (str1 == null || (str1.trim()).length() == 0) {
+//					System.out.println(str1);
+					errorMsgs.add("請輸入訂單編號");
+//					System.out.println(str1);
+				}
+				Integer f_mem_id = null;
+				try {
+					f_mem_id = new Integer(str1);
+				} catch (Exception e) {
+					errorMsgs.add("訂單編號格式不正確");
+				}
+				
 				String str = req.getParameter("order_id");
 				if (str == null || (str.trim()).length() == 0) {// 當訂單是null或去空白後長度為0
 					errorMsgs.add("請輸入訂單編號");
@@ -121,7 +135,7 @@ public class ShopOrderServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
 							// 連結到小農查詢網頁
-							.getRequestDispatcher("/front-end/shopOrder/searchOrderByFMem.jsp");
+							.getRequestDispatcher("/front-end/shopOrder/listAllOrderByFMem.jsp");
 					failureView.forward(req, res);
 					return;// 程式回到原點
 				}
@@ -134,8 +148,7 @@ public class ShopOrderServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = 
-														// 連結到小農查詢網頁
-							req.getRequestDispatcher("/front-end/shopOrder/searchOrderByFMem.jsp");
+							req.getRequestDispatcher("/front-end/shopOrder/listAllOrderByFMem.jsp");
 					failureView.forward(req, res);
 					return;// 程式回到原點
 				}
@@ -143,35 +156,37 @@ public class ShopOrderServlet extends HttpServlet {
 				/*************************** 2.開始查詢資料 *****************************************/
 
 				ShopOrderService shopOrderSvc = new ShopOrderService();
-				ShopOrderVO shopOrderVO = shopOrderSvc.getOneShopOrder(order_id);
+				try {
+				ShopOrderVO shopOrderVO = shopOrderSvc.getOneShopOrderByFMem(order_id, f_mem_id);
+				
+				req.setAttribute("shopOrderVO", shopOrderVO);
 
-				if (shopOrderVO == null) {
-					errorMsgs.add("查無資料");
-				}
-				// Send the use back to the form, if there were errors
-				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = 
-														// 連結到小農查詢網頁
-							req.getRequestDispatcher("/front-end/shopOrder/searchOrderByFMem.jsp");/// 
-					failureView.forward(req, res);
-					return;// 程式中斷
-				}
-
+				
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
-				req.setAttribute("shopOrderVO", shopOrderVO); // 資料庫取出的empVO物件,存入req
-//				增加部分
+//				
 				req.setAttribute("order_state", new String[] { "待付款", "待出貨", "已出貨", "已完成", "已取消" });
 				req.setAttribute("order_payment", new String[] { "信用卡", "銀行轉帳" });
-
-				String url = "listOneOrderByFMem.jsp";/// ***我還沒改
+				System.out.println("成功跳轉listone");
+				String url = "/front-end/shopOrder/listOneOrderByFMem.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
+				System.out.println("進入listone");
 
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
-				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/shopOrder/searchOrderByFMem.jsp");/// ***我還沒改
+				errorMsgs.add("查無資料");
+			}
+			if (!errorMsgs.isEmpty()) {
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/front-end/shopOrder/listAllOrderByFMem.jsp");
 				failureView.forward(req, res);
+				return;//程式中斷
+			}
+		} catch (Exception e) {
+			errorMsgs.add("該筆訂單不存在");
+			RequestDispatcher failureView = req
+						.getRequestDispatcher("/front-end/shopOrder/listAllOrderByFMem.jsp");
+			failureView.forward(req, res);
 			}
 		}
 /***<<給會員修改用的>>**/
@@ -186,6 +201,7 @@ public class ShopOrderServlet extends HttpServlet {
 			try {
 				/***************************1.接收請求參數****************************************/
 				Integer order_id = new Integer(req.getParameter("order_id"));
+				
 				
 				/***************************2.開始查詢資料****************************************/
 				ShopOrderService shopOrderSvc = new ShopOrderService();
@@ -310,7 +326,7 @@ public class ShopOrderServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("update_order_input.jsp");
+						.getRequestDispatcher("/front-end/shopOrder/update_order_input.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -550,7 +566,7 @@ public class ShopOrderServlet extends HttpServlet {
 		}
 		/************* 我增加的部分，按按鈕改變訂單狀態變成 1 待出貨，END *****************/
 
-		/************* 我增加的部分，按按鈕改變訂單狀態變成 2 : 運送中* START ****************/
+		/************* 我增加的部分，按按鈕改變訂單狀態變成 2 : 已出貨 START ****************/
 		if ("update_satate_to_2".equals(action)) { // 來自update_emp_input.jsp的請求
 
 			List<String> errorMsgs = new LinkedList<String>();
@@ -620,7 +636,7 @@ public class ShopOrderServlet extends HttpServlet {
 				failureView.forward(req, res);
 			}
 		}
-		/************* 我增加的部分，按按鈕改變訂單狀態變成 2 運送中，END *****************/
+		/************* 我增加的部分，按按鈕改變訂單狀態變成 2 已出貨，END *****************/
 
 		/************* 我增加的部分，按按鈕改變訂單狀態變成3 訂單已完成* START ****************/
 		if ("update_satate_to_3".equals(action)) { // 來自update_emp_input.jsp的請求
@@ -991,11 +1007,11 @@ public class ShopOrderServlet extends HttpServlet {
 						
 						if (membership.equals("seller")) {
 							req.setAttribute("f_mem_id", f_mem_id);
-							url = "listAllOrderByFMem.jsp";	
+							url = "/front-end/shopOrder/listAllOrderByFMem.jsp";	
 							System.out.println(f_mem_id);
 						}else if(membership.equals("buyer")) {
 							req.setAttribute("mem_id", mem_id);
-							url = "listAllOrderByMem.jsp";
+							url = "/front-end/shopOrder/listAllOrderByMem.jsp";
 							System.out.println(mem_id);
 						}
 						req.setAttribute("membership", membership);

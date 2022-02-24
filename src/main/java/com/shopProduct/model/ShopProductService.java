@@ -1,7 +1,14 @@
 package com.shopProduct.model;
 
+import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
+import com.core.connectionFactory.ConnectionFactory;
+import com.shopProductCollection.model.ShopProductCollectionVO;
 
 
 
@@ -13,6 +20,9 @@ public class ShopProductService {
 	public  ShopProductService() {
 		dao = new ShopProductJDBCDAO();
 	}
+	ConnectionFactory connectionFactory = new ConnectionFactory();
+    Connection con = connectionFactory.getConnection();
+	
 	public ShopProductVO addProductVO(Integer f_mem_id,byte[] prod_pic,String prod_name,Integer prod_type_id,Integer prod_status,
 					Integer prod_price,String prod_unit,Integer prod_qty,java.sql.Date  prod_reg_date,String prod_intro) {
 		
@@ -69,10 +79,48 @@ public class ShopProductService {
 	 public List<ShopProductVO> getAllByFmem(Integer f_mem_id){
 		 return dao.getAllByFmem(f_mem_id);
 	 }
+	 
+	 public List<ShopProductVO> getAllCollection(List<ShopProductCollectionVO> collectionList) {
+	        List<ShopProductVO> List = new ArrayList<>();
+	        ShopProductVO product;
+	        for (ShopProductCollectionVO collection : collectionList){
+	            product = dao.findByCollectionPrimaryKey(con, collection.getProd_id());
+	            List.add(product);
+	        }
+	        return List;
+	    }
+	 
+	 
 	public List<ShopProductVO> getAll(Map<String, String[]> map) {
 		return dao.getAll(map);
 	}
 	public List<ShopProductVO> getPriceByFmem(Integer price1,Integer price2){
 		return dao.getPriceByFmem(price1,price2);
 	}
+	
+	
+	public Map<Integer, List<ShopProductVO>> getAll_groupingBy_Prod_stataus(){
+		  List<ShopProductVO> shopProductList = dao.getAll();
+		  Map<Integer, List<ShopProductVO>> groupMap = new HashMap<>();
+		  groupMap = shopProductList.stream().collect(Collectors.groupingBy(ShopProductVO::getProd_status));
+		 
+		  return groupMap;
+		 }
+
+		 
+		 public static void main(String[] args) {
+			 ShopProductJDBCDAO dao = new ShopProductJDBCDAO();
+		 List<ShopProductVO> shopProductList = dao.getAll();
+		 Map<Integer, List<ShopProductVO>> groupMap = new HashMap<>();
+
+		 // Collect CO Executives
+		 groupMap = shopProductList.stream().collect(Collectors.groupingBy(ShopProductVO::getProd_status));
+		 
+		 System.out.println("\n== ProjOrders by Order_state ==");
+		 groupMap.forEach((k, v) -> {
+		  System.out.println("\nOrder_state: " + k);
+		  System.out.println(v);
+		//  v.forEach(Employee::printSummary);
+		 });
+		}
 }

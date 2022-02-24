@@ -47,17 +47,31 @@ public class ShopOrderService {
 		shopOrderVO.setOrder_id(order_id);
 		
 		dao.update(shopOrderVO);
-		return  shopOrderVO;
+		return  getOneOrder(order_id);
 	}
 	
 	public void deleteShopOrder(Integer order_id) {
 		dao.delete(order_id);
 	}
-	
+	//getOne 區域
 	public ShopOrderVO getOneShopOrder(Integer order_id) {
 		return dao.findByPrimaryKey(order_id);
 	}
-	
+	public ShopOrderVO getOneShopOrderByFMem(Integer order_id,Integer f_mem_id) {
+		System.out.println(order_id+"JDBC");
+		System.out.println(f_mem_id+"JDBC");
+		List<ShopOrderVO> list = dao.getAllFmemOrder(f_mem_id);
+		ShopOrderVO oneResult = new ShopOrderVO();
+		
+		for (int i=0; i<list.size(); i++) {
+//			System.out.println(list.get(i).getOrder_id());
+			if(list.get(i).getOrder_id().equals(order_id)) {
+				oneResult=list.get(i);
+//				System.out.println(list.get(i).getOrder_id());
+			}
+		}
+		return oneResult;
+	}
 	
 	//拿到訂單的集合
 	public List<ShopOrderVO> getAll() {

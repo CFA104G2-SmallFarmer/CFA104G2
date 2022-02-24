@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
 
-import org.junit.Test;
+//import org.junit.Test;
 
 
 public class ShopProductPic_test {

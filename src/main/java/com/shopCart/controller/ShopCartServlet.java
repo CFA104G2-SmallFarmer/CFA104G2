@@ -250,8 +250,11 @@ public class ShopCartServlet extends HttpServlet {
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
 
-			Integer mem_id = 77003;
-//			Integer mem_id = new Integer(req.getParameter("mem_id").trim());
+			System.out.println("111");
+			Integer mem_id = new Integer(req.getParameter("mem_id").trim());
+			System.out.println(mem_id);
+			System.out.println("111");
+			//			Integer mem_id = 77003;
 			Integer f_mem_id = new Integer(req.getParameter("f_mem_id").trim());
 			Integer prod_id = new Integer(req.getParameter("prod_id").trim());
 			Integer cart_unit_price = new Integer(req.getParameter("prod_price").trim());

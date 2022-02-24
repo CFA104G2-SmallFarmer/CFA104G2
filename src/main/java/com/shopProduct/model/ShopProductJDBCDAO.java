@@ -527,6 +527,12 @@ public class ShopProductJDBCDAO implements ShopProductDAO_interface {
 
 		return list;
 	}
+
+	@Override
+	public ShopProductVO findByCollectionPrimaryKey(Connection con, Integer prod_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }
