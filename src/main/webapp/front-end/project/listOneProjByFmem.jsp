@@ -282,7 +282,7 @@ footer:hover .logo-safari-fix {
 											<div class="pt6" id="project_return"></div>
 										</div>
 										<h3 class="mt4">退換貨規則</h3>
-										<p>如需售後服務／退換貨服務，請私信小農${projectVO.f_mem_id}。</p>
+										<p>如需售後服務／退換貨服務，請私信：${fmemSvc.getOneFMem(projectSvc.getOneProject(projectVO.proj_id).f_mem_id).f_mem_fname}。</p>
 										<div class="nt6">
 											<div class="pt6" id="project_contact"></div>
 										</div>

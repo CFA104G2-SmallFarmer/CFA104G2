@@ -4,6 +4,7 @@
 
 <%
 ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
+pageContext.setAttribute("projectVO",projectVO); 
 %>
 
 <jsp:useBean id="memSvc" scope="page" class="com.mem.model.MemService" />
@@ -94,10 +95,24 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 
     </div>
   </div>
+  
+  
   <div class="container"></div>
   <div class="container mv4">
     <div class="gutter3-l flex">
       <div class="w-100 ph3 mb4 mb0">
+
+
+				<%-- 錯誤表列 --%>
+				<c:if test="${not empty errorMsgs}">
+					<font style="color: red">請修正以下錯誤:</font>
+					<ul>
+						<c:forEach var="message" items="${errorMsgs}">
+							<li style="color: red">${message}</li>
+						</c:forEach>
+					</ul>
+				</c:if>
+
 
 	<!--   form開始 -->
         <form  class="js-previewable-sum" id="new_order"

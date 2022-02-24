@@ -180,7 +180,7 @@ crossorigin="anonymous" />
 					href="https://www.zeczec.com/projects/paradisepet2022zeczecnewyear"><h2
 						class="f4 mt2 mb1">${projectVO.proj_name}</h2> </a><span
 					class="f6 mr1">提案人</span><a class="b f6"
-					href="https://www.zeczec.com/users/Pet-Paradise0507">${fmemSvc.getOneFMem(projectSvc.getOneProject(projectVO.proj_id).f_mem_id).f_mem_fname}</a>
+					href="#">${fmemSvc.getOneFMem(projectSvc.getOneProject(projectVO.proj_id).f_mem_id).f_mem_fname}</a>
 				<p class="f6 gray mv3">${projectVO.proj_abstract}</p>
 				<div class="mv3 relative flex items-center flex-nowrap">
 					<svg class="progress mr3 succeeded sprint">
@@ -342,7 +342,7 @@ crossorigin="anonymous" />
 											<div class="pt6" id="project_return"></div>
 										</div>
 										<h3 class="mt4">退換貨規則</h3>
-										<p>如需售後服務／退換貨服務，請私信小農${projectVO.f_mem_id}。</p>
+										<p>如需售後服務／退換貨服務，請私信：${fmemSvc.getOneFMem(projectSvc.getOneProject(projectVO.proj_id).f_mem_id).f_mem_fname}。</p>
 										<div class="nt6">
 											<div class="pt6" id="project_contact"></div>
 										</div>
