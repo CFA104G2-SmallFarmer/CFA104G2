@@ -1743,7 +1743,10 @@ public class ProjOrderServlet extends HttpServlet{
 			req.setAttribute("errorMsgs", errorMsgs);
 
 			try {
-				Integer mem_id = new Integer(req.getParameter("mem_id").trim());
+				System.out.println("projOrderServlet insert in");
+
+				
+			Integer mem_id = new Integer(req.getParameter("mem_id").trim());
 				Integer perk_id = new Integer(req.getParameter("perk_id").trim());
 				
 				// ---------------order_zipcode驗證----------------//
@@ -1822,7 +1825,7 @@ public class ProjOrderServlet extends HttpServlet{
 					
 					ProjectService projectSvc3 = new ProjectService();
 					ProjectVO projectVO3 = projectSvc3.getOneProject(projPerkVO3.getProj_id());
-					
+					System.out.println("insert projPerkVO3.getProj_id()="+projPerkVO3.getProj_id());
 					MemService memSvc3 = new MemService();  
 					MemVO memVO3 = memSvc3.getOneMem(mem_id); 
 					
@@ -1865,10 +1868,36 @@ public class ProjOrderServlet extends HttpServlet{
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/front-end/projOrder/addOrderByMem.jsp");
+						.getRequestDispatcher("/front-end/project/listAllProjByMem.jsp");
 				failureView.forward(req, res);
 			}
 		}
+        
+        
+        
+if ("logout_By_Proj".equals(action)) { // 來自addEmp.jsp的請求  
+			
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+
+			try {
+        
+     // 取得session，若session為null，不建立新的session
+        HttpSession session = req.getSession(false);
+
+        // 若session不為空，讓此session失效
+        if (session != null) {
+            session.invalidate();
+            session = null;
+        }
+			}catch (Exception e) {
+				// TODO: handle exception
+			}
+}
+        
+        
 //		
 //		//***********************我不會用到刪除訂單這個功能**********************/
 //		if ("delete".equals(action)) { // 來自listAllEmp.jsp 
