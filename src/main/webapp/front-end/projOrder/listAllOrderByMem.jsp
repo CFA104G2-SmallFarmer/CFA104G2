@@ -477,7 +477,7 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
 								<c:set
 									var="prefix" value="還剩" /> <c:set var="suffix" value="天" />
 								   <c:choose>
-									<c:when test="${interval<=0}">
+									<c:when test="${interval>=0}">
 											
 									<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/projOrder/projOrder.do">	
  											<input type="hidden" name="order_id"  value="${projOrderVO.order_id}">	
@@ -573,7 +573,7 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
 								<c:set
 									var="prefix" value="還剩" /> <c:set var="suffix" value="天" />
 								   <c:choose>
-									<c:when test="${interval<=0}">
+									<c:when test="${interval>=0}">
 											
 									<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/projOrder/projOrder.do">	
  											<input type="hidden" name="order_id"  value="${projOrderVO.order_id}">	
