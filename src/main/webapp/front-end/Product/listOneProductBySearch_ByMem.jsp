@@ -327,7 +327,8 @@ a{
    <!-- 頁尾 -->
 
 <footer class="pt5 pb6 f6 bt light-gray relative">
-  <iframe src="<%= request.getContextPath() %>/front-end/footer/footer.jsp" width="100%" height="100%" style="display: block;"></iframe>
+<%--   <iframe src="<%= request.getContextPath() %>/front-end/home/footer.jsp" width="100%" height="100%" style="display: block;"></iframe> --%>
+  <jsp:include page="/front-end/home/footer.jsp" flush="true"/>
   </footer>
 </body>
 </html>
