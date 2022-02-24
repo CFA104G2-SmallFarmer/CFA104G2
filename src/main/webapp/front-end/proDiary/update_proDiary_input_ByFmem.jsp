@@ -448,7 +448,7 @@ ${projectSvc.getOneProject(proDiarySvc.getOneProDiary(proDiaryVO.dir_id).proj_id
 
 </body>
     <footer>
-         <jsp:include page="/front-end/home/footer_for_Proj_Fmem.jsp" />
+    <%--      <jsp:include page="/front-end/home/footer_for_Proj_Fmem.jsp" /> --%>
 </footer>
 
 

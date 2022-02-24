@@ -106,7 +106,7 @@ footer:hover .logo-safari-fix {
 					</ul>
 				</c:if>
 				<a class="db"
-					href="https://www.zeczec.com/projects/paradisepet2022zeczecnewyear"><h2
+					href="#"><h2
 						class="f4 mt2 mb1">${projectVO.proj_name}</h2> </a><span
 					class="f6 mr1">提案人</span><a class="b f6"
 					href="#">${fmemSvc.getOneFMem(projectSvc.getOneProject(projectVO.proj_id).f_mem_id).f_mem_fname}</a>

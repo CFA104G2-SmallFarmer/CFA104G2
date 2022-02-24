@@ -42,8 +42,12 @@ pageContext.setAttribute("list3", list3);
 <!DOCTYPE html>
 <!-- saved from url=(0060)https://www.zeczec.com/projects/paradisepet2022zeczecnewyear -->
 <html lang="zh-Hant-TW">
-<head
-	prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# zeczec-com: http://ogp.me/ns/fb/zeczec-com#">
+<head>
+<!-- 這段給emoji的 -->
+<link rel="stylesheet"
+	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+	integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+	crossorigin="anonymous" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="csrf-param" content="authenticity_token">
 <%-- <meta name="csrf-token"
@@ -327,7 +331,8 @@ font-size:23px;
 															 <c:otherwise>
         什么都没有。
     </c:otherwise>
-														</c:choose> --%>
+														</c:choose> --%><!-- 這段給emoji的 -->
+
 
 
 														<div style="position: relative;" class="for_all_img">
