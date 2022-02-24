@@ -42,7 +42,7 @@
     <a href="<%=request.getContextPath()%>/back-end/administrator/listOneAdmin_s.jsp" class="logo_img"><img src="./images/logo_img2.png"></a>
     <nav class="nav">
       <ul class="link_list">
-        <li><a href="./index.html" class="-on">最新消息</a></li>
+        <li><a href="<%=request.getContextPath()%>/front-end/announcement/listAllAnnounce.jsp" class="-on">最新消息</a></li>
         <li><a href="<%=request.getContextPath()%>/front-end/Product/shop.jsp">小農商城</a></li>
         <li><a href="<%=request.getContextPath()%>/front-end/farmTravel/listAllFarmTravelByMem.jsp">農場旅遊</a></li>
         <li><a href="<%=request.getContextPath()%>/front-end/project/listAllProjByMem.jsp">農產認養</a></li>
