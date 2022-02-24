@@ -25,7 +25,7 @@ ProjPerkVO projPerkVO = projPerkSvc.getOneProjPerk(9);
   <link rel="stylesheet" href="/resources/demos/style.css">
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
-  
+  <title>修改回饋方案</title>
   <script>
     $(function () {
       $("#datepicker").datepicker({
@@ -87,7 +87,15 @@ ProjPerkVO projPerkVO = projPerkSvc.getOneProjPerk(9);
             <i class="material-icons v-mid dark-gray f3">error</i>
             修改回饋方案
           </span>
-          <p><%-- 錯誤表列 --%>
+         
+          <!-- <span class="order-3 f6 ml4-l black w-100 w-auto-l" href="https://www.zeczec.com/account/atm"><i
+              class="material-icons v-mid dark-gray f4">timer</i>
+            等待付款記錄
+          </span> -->
+        </h2>
+
+      </div>
+ <p><%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
 	<font style="color:red">請修正以下錯誤:</font>
 	<ul>
@@ -96,14 +104,6 @@ ProjPerkVO projPerkVO = projPerkSvc.getOneProjPerk(9);
 		</c:forEach>
 	</ul>
 </c:if></p>
-          <!-- <span class="order-3 f6 ml4-l black w-100 w-auto-l" href="https://www.zeczec.com/account/atm"><i
-              class="material-icons v-mid dark-gray f4">timer</i>
-            等待付款記錄
-          </span> -->
-        </h2>
-
-      </div>
-
     </div>
   </div>
   <div class="container"></div>
@@ -175,8 +175,8 @@ ProjPerkVO projPerkVO = projPerkSvc.getOneProjPerk(9);
               <textarea maxlength="200" placeholder="文長不得超過200個字" maxlength="600" class="w-100" name="perk_intro"
                 id="perk_intro" style="width: 250px; height: 250px;"><%=(projPerkVO==null)? "" :projPerkVO.getPerk_intro()%></textarea>
               <label class="b" for="perk_ship_date">預計寄送時間</label>
-              <input  class="w-60" type="text" placeholder="請選擇日期" name="perk_ship_date" value="<%=(projPerkVO==null)? "" :projPerkVO.getPerk_ship_date()%>"
-                id="datepicker">
+              <input  class="w-60" type="date" placeholder="請選擇日期" name="perk_ship_date" value="<%=(projPerkVO==null)? "" :projPerkVO.getPerk_ship_date()%>"
+                >
               <!-- <input type="text" id="datepicker"> -->
               <label class="b" for="perk_ship_area">可寄送區域</label>
               <select  class="mb0 w-100" name="perk_ship_area" id="order_country">       														

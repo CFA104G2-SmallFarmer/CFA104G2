@@ -106,7 +106,7 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
 						style="background-image: url(&#39;data:image/jpg;base64,${projectVO.base64Image}&#39;)"></div>
 				<!-- 圖片待抽換 -->
 				</div>
-				<div class="pv2 ph0-l ph3">					<a href="https://www.zeczec.com/projects/ICHR">
+				<div class="pv2 ph0-l ph3">					<a href="#">
 						<h2 class="f5 mb0 dib mt1 f5 b">${projectVO.proj_name}</h2>
 					</a>
 					<div class="gray f7 mb3">
@@ -171,7 +171,7 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
 						<div style="border: solid lightgray 2px;padding: 15px;margin: 7px;"
 							class="w-100 w-50-ns flex-none-ns ws-normal mr3-ns pt3-ns w-30-l">
 							
-							perk_id=${projPerkVO.perk_id}
+							<%-- perk_id=${projPerkVO.perk_id} --%>
 							
 							<FORM style="display: inline-block" METHOD="post" ACTION="<%=request.getContextPath()%>/projPerk/projPerk.do" name="form5">
 			<button type="submit" style="margin-bottom: 10px;" class="button-s b-ns ph2 ph3-ns button dark-gray bg-near-white bn ml1"
@@ -240,7 +240,7 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
 	</script>
 	
 	
-<script type="text/javascript">
+<!-- <script type="text/javascript">
               $(function () {
                 var projectStartDay = new Date('${projectVO.start_date}'); /*募資開始日*/
                 var thisDay = new Date(); /*今天*/
@@ -265,7 +265,7 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
               function printAlert() {
                 window.alert('專案上架五日後，不能修改或刪除回饋方案');
               }
-</script> 
+</script>  -->
 	
 	
 <!-- 	<script type="text/javascript"> -->
