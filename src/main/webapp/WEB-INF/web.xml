@@ -308,9 +308,9 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>loginFilter</filter-name>
-		<url-pattern>/front-end/projDiary/addProDiaryByFmem.jsp</url-pattern>
-		<url-pattern>/front-end/projDiary/listAllProDiaryByFmem.jsp</url-pattern>
-		<url-pattern>/front-end/projDiary/update_proDiary_input_ByFmem.jsp</url-pattern>
+		<url-pattern>/front-end/proDiary/addProDiaryByFmem.jsp</url-pattern>
+		<url-pattern>/front-end/proDiary/listAllProDiaryByFmem.jsp</url-pattern>
+		<url-pattern>/front-end/proDiary/update_proDiary_input_ByFmem.jsp</url-pattern>
 		<url-pattern>/front-end/projDiscussion/discussionByFmem.jsp</url-pattern>
 		<url-pattern>/front-end/projDiscussion/listAllProjDiscByProjByFmem.jsp</url-pattern>
 		<url-pattern>/front-end/projDiscussion/listAllProjDiscByProjByMem.jsp</url-pattern>
