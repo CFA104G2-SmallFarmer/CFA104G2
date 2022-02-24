@@ -1826,15 +1826,18 @@ public class ProjOrderServlet extends HttpServlet{
 					ProjectService projectSvc3 = new ProjectService();
 					ProjectVO projectVO3 = projectSvc3.getOneProject(projPerkVO3.getProj_id());
 					System.out.println("insert projPerkVO3.getProj_id()="+projPerkVO3.getProj_id());
-					MemService memSvc3 = new MemService();  
-					MemVO memVO3 = memSvc3.getOneMem(mem_id); 
+//					MemService memSvc3 = new MemService();  
+//					MemVO memVO3 = memSvc3.getOneMem(mem_id); 
 					
+
+				
 					if (!errorMsgs.isEmpty()) { //錯誤回去
 /**備註：為了測試，MemVO暫時用req帶過去*******/
 						req.setAttribute("projOrderVO", projOrderVO);
-						req.setAttribute("projectVO", projectVO3);
-						req.setAttribute("projPerkVO",projPerkVO3);
-						req.setAttribute("memVO",memVO3);
+						
+//						req.setAttribute("projectVO", projectVO3);
+//						req.setAttribute("projPerkVO",projPerkVO3);
+//						req.setAttribute("memVO",memVO3);
 //	req.setAttribute("projOrderVO", projOrderVO); // 含有輸入格式錯誤的empVO物件,也存入req
 						RequestDispatcher failureView = req
 								.getRequestDispatcher("/front-end/projOrder/addOrderByMem.jsp");
@@ -1858,7 +1861,7 @@ public class ProjOrderServlet extends HttpServlet{
 					
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
 /**備註：為了測試，MemVO暫時用req帶過去*******/
-				req.setAttribute("memVO",memVO3);
+//				req.setAttribute("memVO",memVO3);
 				req.setAttribute("projectVO", projectVO3);
 				String url = "/front-end/projOrder/success_addOrderByMem.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp

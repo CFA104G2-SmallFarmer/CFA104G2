@@ -654,11 +654,16 @@ try {
 			
 			ProjectService projectSvc = new ProjectService();
 			ProjectVO projectVO1 = projectSvc.getOneProject(proj_id);
-			req.setAttribute("projectVO", projectVO1);
+//			req.setAttribute("projectVO", projectVO1);
 			
 			ProjPerkService projPerkSvc = new ProjPerkService();  
 			ProjPerkVO projPerkVO = projPerkSvc.getOneProjPerk(perk_id);  
-			req.setAttribute("projPerkVO",projPerkVO);  
+//			req.setAttribute("projPerkVO",projPerkVO);  
+			
+		 HttpSession session=req.getSession();
+	       session.setAttribute("projectVO", projectVO1);
+	       session.setAttribute("projPerkVO",projPerkVO);  
+		//   Integer f_mem_id = fMemVO.getF_mem_id();
 			
 //			MemService memSvc3 = new MemService();  
 //			MemVO memVO3 = memSvc3.getOneMem(mem_id);  

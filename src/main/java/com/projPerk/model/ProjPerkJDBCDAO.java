@@ -46,7 +46,7 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface {
 //			"SELECT COUNT(*) FROM PROJ_ORDER WHERE PERK_ID=? AND ORDER_STATE !=4;";
 
 	private static final String UPDATE_PERK_TOTAL_COUNT = // 更新目前回饋方案總人數
-			"UPDATE PROJ_PERK SET PERK_TOTAL_COUNT =(SELECT COUNT(*) FROM PROJ_ORDER WHERE PERK_ID=? AND ORDER_STATE !=4) WHERE PERK_ID=?;";
+			"UPDATE PROJ_PERK SET PERK_TOTAL_COUNT =(SELECT COUNT(*) FROM PROJ_ORDER WHERE PERK_ID=? AND ORDER_STATE !=5) WHERE PERK_ID=?;";
 
 	@Override
 	public void autoUpdatePerkTotalCount(Integer perk_id) {
