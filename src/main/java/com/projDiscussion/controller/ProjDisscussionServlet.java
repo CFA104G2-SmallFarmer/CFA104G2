@@ -160,14 +160,14 @@ public class ProjDisscussionServlet extends HttpServlet {
 					errorMsgs.add("留言內容: 請勿空白");
 				} 
 				
-				comment_content=comment_content.replace("\n", "&nbsp;");
-				comment_content=comment_content.replace("\r", "&nbsp;");
+				comment_content=comment_content.replace("\r\n", "<br>");
 				comment_content=comment_content.replace("<", "&lt;");
 				comment_content=comment_content.replace(">", "&gt;");
 				comment_content=comment_content.replace("\"", "&quot;");
 				comment_content=comment_content.replace("\'", "&quot;");
+				comment_content=comment_content.replace("&lt;br&gt;", "<br>");
 				
-				
+
 				System.out.println(comment_content);
 
 				ProjDiscussionVO projDiscussionVO = new ProjDiscussionVO();
@@ -362,12 +362,12 @@ public class ProjDisscussionServlet extends HttpServlet {
 					errorMsgs.add("留言內容: 請勿空白");
 				} 
 				
-				comment_content=comment_content.replace("\n", "&nbsp;");
-				comment_content=comment_content.replace("\r", "&nbsp;");
+				comment_content=comment_content.replace("\r\n", "<br>");
 				comment_content=comment_content.replace("<", "&lt;");
 				comment_content=comment_content.replace(">", "&gt;");
 				comment_content=comment_content.replace("\"", "&quot;");
 				comment_content=comment_content.replace("\'", "&quot;");
+				comment_content=comment_content.replace("&lt;br&gt;", "<br>");
 				
 				System.out.println(comment_content);
 
