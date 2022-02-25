@@ -201,11 +201,11 @@
 <!--                 </span> -->
 <!--               </a></li> -->
 
-            <li style="margin-right:16px;"><a id="login_link" href="#">
+            <li style="margin-right:16px;"><a id="login_link" href="<%=request.getContextPath()%>/front-end/announcement/listAllAnnounce.jsp">
                 <div class="account" >關於本站</div>
               </a></li>
-            <li style="margin-right:16px;"><a id="login_link" href="#">
-                <div class="account" >會員登出</div>
+            <li style="margin-right:16px;"><a id="login_link" href="${pageContext.request.contextPath}/projOrder/projOrder.do?action=logout_By_Proj">
+                <div class="account" id="logoutmem" >會員登出</div>
               </a></li>
             <li style="margin-right:16px;"><a id="login_link" href="<%=request.getContextPath()%>/front-end/login/loginByMem.jsp">
                 <div class="account">會員登入</div>
