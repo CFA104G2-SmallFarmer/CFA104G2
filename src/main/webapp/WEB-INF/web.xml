@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns="http://xmlns.jcp.org/xml/ns/JAVAEE"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
 	id="WebApp_ID" version="4.0">
 	<display-name>CFA104G2</display-name>
@@ -153,13 +153,13 @@
 
 	<!--************************** 農遊專區 ************************** -->
 	<servlet>
-	<servlet-name>ScheduleServlet</servlet-name>
-	<servlet-class>com.core.schedule.ScheduleServlet</servlet-class>
-	<load-on-startup>10</load-on-startup>
+		<servlet-name>ScheduleServlet</servlet-name>>
+		<servlet-class>com.core.schedule.ScheduleServlet</servlet-class>
+		<load-on-startup>10</load-on-startup>
 	</servlet>
 	<servlet-mapping>
-	<servlet-name>ScheduleServlet</servlet-name>
-	<url-pattern>/ScheduleServlet</url-pattern>
+		<servlet-name>ScheduleServlet</servlet-name>
+		<url-pattern>/ScheduleServlet</url-pattern>
 	</servlet-mapping>
 	<!--************************** 以上農遊 ************************** -->
 
@@ -359,6 +359,12 @@
 		<url-pattern>/front-end/Product/listAllProductByFmem.jsp</url-pattern>
 		<url-pattern>/front-end/Product/listOneProductByFmem.jsp</url-pattern>
 		<url-pattern>/front-end/Product/update_ProductByFmem_input.jsp</url-pattern>
+
+		<url-pattern>/front-end/Product/shop.jsp</url-pattern>
+		<url-pattern>/front-end/Product/select_pageProdlistByMem.jsp</url-pattern>
+		<url-pattern>/front-end/Product/listAllProdByPrice_ByMem.jsp</url-pattern>
+		<url-pattern>/front-end/Product/listAllProdByType_ByMem.jsp</url-pattern>
+		<url-pattern>/front-end/Product/listOneProductBySearch_ByMem.jsp</url-pattern>
 		<!--************************* 以上商城filter ************************* -->
 
 		<!-- ****** -->
@@ -368,7 +374,7 @@
 		<dispatcher>ERROR</dispatcher>
 		<dispatcher>ASYNC</dispatcher>
 	</filter-mapping>
-<!-- ********************* 判斷是否有小農會員 *********************-->
+	<!-- ********************* 判斷是否有小農會員 ********************* -->
 	<filter>
 		<filter-name>fMemLoginFilter</filter-name>
 		<filter-class>com.filters.fMemLoginFilter</filter-class>
