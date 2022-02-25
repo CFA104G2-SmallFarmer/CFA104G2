@@ -101,36 +101,41 @@ Integer f_mem_id = fMemVO.getF_mem_id();
 '<%=request.getContextPath()%>/front-end/projOrder/searchOrderByFmem.jsp';" data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">查詢</span>
                           </div>
                         </div>
-                        <div onclick="location.href=
+                                               <div onclick="location.href=
 '<%=request.getContextPath()%>/front-end/projOrder/listAllOrderByFmem.jsp';" class="shopee-tabs__nav-tab" style="white-space: normal;">
                           <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">全部</span>
                           </div>
                         </div>
-                        <div class="shopee-tabs__nav-tab" style="white-space: normal;">
-                          <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">尚未付款</span>
+                        <div onclick="location.href=
+'<%=request.getContextPath()%>/front-end/projOrder/listAllOrder_State_0_ByFmem.jsp';" class="shopee-tabs__nav-tab " style="white-space: normal;">
+                          <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">待付款</span>
                           </div>
                         </div>
-                        <div class="shopee-tabs__nav-tab" style="white-space: normal;">
+                        <div onclick="location.href=
+'<%=request.getContextPath()%>/front-end/projOrder/listAllOrder_State_1_ByFmem.jsp';" class="shopee-tabs__nav-tab" style="white-space: normal;">
                           <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">待出貨</span>
                           </div>
                         </div>
-                        <div class="shopee-tabs__nav-tab" style="white-space: normal;">
+                           <div onclick="location.href=
+'<%=request.getContextPath()%>/front-end/projOrder/listAllOrder_State_2_ByFmem.jsp';" class="shopee-tabs__nav-tab" style="white-space: normal;">
                           <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">運送中</span>
                           </div>
                         </div>
-                        <div class="shopee-tabs__nav-tab" style="white-space: normal;">
+                        <div onclick="location.href=
+'<%=request.getContextPath()%>/front-end/projOrder/listAllOrder_State_3_ByFmem.jsp';" class="shopee-tabs__nav-tab" style="white-space: normal;">
                           <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">已完成</span>
                           </div>
                         </div>
-                        <div class="shopee-tabs__nav-tab" style="white-space: normal;">
+                        <div onclick="location.href=
+'<%=request.getContextPath()%>/front-end/projOrder/listAllOrder_State_4_ByFmem.jsp';" class="shopee-tabs__nav-tab" style="white-space: normal;">
                           <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">不成立(未處理)</span>
                           </div>
                         </div>
-                        <div class="shopee-tabs__nav-tab" style="white-space: normal;">
+                        <div onclick="location.href=
+'<%=request.getContextPath()%>/front-end/projOrder/listAllOrder_State_5_ByFmem.jsp';" class="shopee-tabs__nav-tab active" style="white-space: normal;">
                           <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">不成立(已解決)</span>
                           </div>
                         </div>
-
                       </div>
                       <div class="shopee-tabs__ink-bar" style="width: 60px; transform: translateX(0px);"></div>
                     </div>
