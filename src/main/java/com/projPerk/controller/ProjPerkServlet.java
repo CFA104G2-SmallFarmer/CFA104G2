@@ -244,12 +244,12 @@ public class ProjPerkServlet extends HttpServlet {
 					errorMsgs.add("方案簡稱請勿空白");
 				}
 
-				perk_abbr_name=perk_abbr_name.replace("\n", "&nbsp;");
-				perk_abbr_name=perk_abbr_name.replace("\r", "&nbsp;");
-				perk_abbr_name=perk_abbr_name.replace("<", "&lt;");
-				perk_abbr_name=perk_abbr_name.replace(">", "&gt;");
-				perk_abbr_name=perk_abbr_name.replace("\"", "&quot;");
-				perk_abbr_name=perk_abbr_name.replace("\'", "&quot;");
+				perk_abbr_name=perk_abbr_name.replace("\r\n", "<br>");
+//				perk_abbr_name=perk_abbr_name.replace("\r", "<br>");
+//				perk_abbr_name=perk_abbr_name.replace("<", "&lt;");
+//				perk_abbr_name=perk_abbr_name.replace(">", "&gt;");
+//				perk_abbr_name=perk_abbr_name.replace("\"", "&quot;");
+//				perk_abbr_name=perk_abbr_name.replace("\'", "&quot;");
 				
 				
 				
@@ -258,12 +258,12 @@ public class ProjPerkServlet extends HttpServlet {
 					errorMsgs.add("方案回饋內容請勿空白");
 				}
 				
-//				perk_intro=perk_intro.replace("\n", "&nbsp;");
-//				perk_intro=perk_intro.replace("\r", "&nbsp;");
-//				perk_intro=perk_intro.replace("<", "&lt;");
-//				perk_intro=perk_intro.replace(">", "&gt;");
-//				perk_intro=perk_intro.replace("\"", "&quot;");
-//				perk_intro=perk_intro.replace("\'", "&quot;");
+				perk_intro=perk_intro.replace("\r\n", "<br>");
+//				perk_intro=perk_intro.replace("\r", "<br>");
+//				perk_intro=perk_intro.replace("<", "<br>");
+//				perk_intro=perk_intro.replace(">", "<br>");
+//				perk_intro=perk_intro.replace("\"", "<br>");
+//				perk_intro=perk_intro.replace("\'", "<br>");
 				
 				
 				
@@ -447,10 +447,16 @@ public class ProjPerkServlet extends HttpServlet {
 				/*************************** 1.接收請求參數 ****************************************/
 				Integer proj_id = new Integer(req.getParameter("proj_id").trim());
 				Integer perk_id = new Integer(req.getParameter("perk_id"));
+				
 
 				/*************************** 2.開始查詢資料 ****************************************/
 				ProjPerkService projPerkSvc = new ProjPerkService();
 				ProjPerkVO projPerkVO = projPerkSvc.getOneProjPerk(perk_id);
+				String perk_intro1=projPerkVO.getPerk_intro();
+				String perk_intro2=perk_intro1.replace("<br>", "\r\n");
+				
+
+				projPerkVO.setPerk_intro(perk_intro2);
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
 				ProjectService projectSvc = new ProjectService();
@@ -486,12 +492,13 @@ public class ProjPerkServlet extends HttpServlet {
 					errorMsgs.add("方案簡稱請勿空白");
 				}
 
-				perk_abbr_name=perk_abbr_name.replace("\n", "&nbsp;");
-				perk_abbr_name=perk_abbr_name.replace("\r", "&nbsp;");
-				perk_abbr_name=perk_abbr_name.replace("<", "&lt;");
-				perk_abbr_name=perk_abbr_name.replace(">", "&gt;");
-				perk_abbr_name=perk_abbr_name.replace("\"", "&quot;");
-				perk_abbr_name=perk_abbr_name.replace("\'", "&quot;");
+				perk_abbr_name=perk_abbr_name.replace("\r\n", "<br>");
+//				perk_abbr_name=perk_abbr_name.replace("\r", "<br>");
+//				perk_abbr_name=perk_abbr_name.replace("<br><br>", "<br>");				
+//				perk_abbr_name=perk_abbr_name.replace("<", "&lt;");
+//				perk_abbr_name=perk_abbr_name.replace(">", "&gt;");
+//				perk_abbr_name=perk_abbr_name.replace("\"", "&quot;");
+//				perk_abbr_name=perk_abbr_name.replace("\'", "&quot;");
 				
 				
 				
@@ -510,8 +517,8 @@ public class ProjPerkServlet extends HttpServlet {
 					errorMsgs.add("方案回饋內容請勿空白");
 				}
 				
-//				perk_intro=perk_intro.replace("\n", "&nbsp;");
-//				perk_intro=perk_intro.replace("\r", "&nbsp;");
+				perk_intro=perk_intro.replace("\r\n", "<br>");
+//				perk_intro=perk_intro.replace("\r", "<br>");
 //				perk_intro=perk_intro.replace("<", "&lt;");
 //				perk_intro=perk_intro.replace(">", "&gt;");
 //				perk_intro=perk_intro.replace("\"", "&quot;");
