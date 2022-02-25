@@ -223,16 +223,16 @@ String f_mem_fname = req.getParameter("f_mem_fname").trim();
 				
 //				寄送郵件寫這
 				
-				String to = f_mem_acc;
-				      
-				String subject = "密碼通知";
-				      
-				String ch_name = memVO.getMem_name();
-				String passRandom = "111";
-				String messageText = "親愛的會員 " + ch_name + " 請謹記此密碼: " + passRandom + "\n" +" (已經啟用)"; 
-				       
-				MailService mailService = new MailService();
-				mailService.sendMail(to, subject, messageText);
+//				String to = f_mem_acc;
+//				      
+//				String subject = "密碼通知";
+//				      
+//				String ch_name = memVO.getMem_name();
+//				String passRandom = "111";
+//				String messageText = "親愛的會員 " + ch_name + " 請謹記此密碼: " + passRandom + "\n" +" (已經啟用)"; 
+//				       
+//				MailService mailService = new MailService();
+//				mailService.sendMail(to, subject, messageText);
 
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
@@ -412,12 +412,12 @@ String f_mem_pwd = req.getParameter("f_mem_pwd").trim();
 				errorMsgs.add("至少8個字符，至少1個大寫字母，1個小寫字母和1個數字");
 			}
 		
-//String f_mem_pwd2 = req.getParameter("f_mem_pwd2").trim();
-//		if (f_mem_pwd2 == null || f_mem_pwd2.trim().length() == 0) {
-//			errorMsgs.add("請輸入密碼");
-//		} else if (f_mem_pwd2 != null && !f_mem_pwd2.equals(f_mem_pwd)) {
-//			errorMsgs.add("兩次輸入的密碼不一致!");
-//		}
+String f_mem_pwd2 = req.getParameter("f_mem_pwd2").trim();
+		if (f_mem_pwd2 == null || f_mem_pwd2.trim().length() == 0) {
+			errorMsgs.add("請輸入密碼");
+		} else if (f_mem_pwd2 != null && !f_mem_pwd2.equals(f_mem_pwd)) {
+			errorMsgs.add("兩次輸入的密碼不一致!");
+		}
 
 String f_mem_fname = req.getParameter("f_mem_fname").trim();
 			if (f_mem_fname == null || f_mem_fname.trim().length() == 0) {
@@ -504,7 +504,7 @@ req.setAttribute("fMemVO", fMemVO); // 含有輸入格式錯誤的memVO物件,�
 		
 		/***************************3.修改完成,準備轉交(Send the Success view)*************/
 		req.setAttribute("fMemVO", fMemVO); // 資料庫update成功後,正確的的memVO物件,存入req
-		String url = "/front-end/mem/update_mem_input.jsp";
+		String url = "/front-end/fMem/update_fmem_input.jsp";
 		RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交"/front-end/mem/update_mem_input.jsp"
 		successView.forward(req, res);
 
@@ -512,7 +512,7 @@ req.setAttribute("fMemVO", fMemVO); // 含有輸入格式錯誤的memVO物件,�
 	} catch (Exception e) {
 		errorMsgs.add("修改資料失敗:"+e.getMessage());
 		RequestDispatcher failureView = req
-				.getRequestDispatcher("/front-end/mem/update_mem_input.jsp");
+				.getRequestDispatcher("/front-end/fMem/update_mem_input.jsp");
 		failureView.forward(req, res);
 	}
 }
