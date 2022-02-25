@@ -8,8 +8,7 @@
 <%FMemVO fMemVO = (FMemVO) session.getAttribute("fMemVO");%>
 <%MemVO memVO = (MemVO) session.getAttribute("memVO");%>
 <%
-Integer mem_id = (Integer) request.getAttribute("mem_id");
-
+Integer mem_id = memVO.getMem_id();
 MemService memSvc = new MemService();
 FMemService fMSvc = new FMemService();
 
@@ -625,10 +624,7 @@ invisible.style.display = "";
 													<div class="_2_JugQ">
 														<div class="_2bdFDW">
 															<div class="input-with-validator-wrapper">
-																<div class="input-with-validator">
-																	<input type="text" placeholder="" maxlength="255"
-																		name="f_mem_info" value="<%=(fMemVO.getF_mem_info()==null)? "" : fMemVO.getF_mem_info()%>">
-																</div>
+																	<textarea style="width: 213px; height: 250px; resize: none;" wrap="hard"  placeholder="" maxlength="255" name="f_mem_info" value=""><%=(fMemVO.getF_mem_info()==null)? "" : fMemVO.getF_mem_info()%></textarea>
 															</div>
 														</div>
 													</div>
@@ -919,7 +915,7 @@ invisible.style.display = "";
 											<div class="X1SONv">
 												<div class="_1FzaUZ">
 													<div class="TgSfgo"
-														style="background-image: url(<%= request.getContextPath() %>/FMemGifReader?f_mem_id=${fMemVO.f_mem_id}); position:absolute;top:10px;left:10px;">
+														style="background-image: url(<%= request.getContextPath() %>/FMemGifReader?f_mem_id=${fMemVO.f_mem_id}&actionpic=f_mem_pic); position:absolute;top:10px;left:10px;">
 														<div id="wrapper"></div>
 													</div>
 												</div>
