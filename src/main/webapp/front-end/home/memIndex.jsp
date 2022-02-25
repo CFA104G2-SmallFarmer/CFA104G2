@@ -89,7 +89,6 @@ aside {
   <ul class="show" id="slide1">
     <li><a href="<%= request.getContextPath() %>/front-end/mem/memberInfom.jsp">會員資料</a></li> 
     <li><a href="<%= request.getContextPath() %>/front-end/mem/update_mem_input.jsp">會員資料修改</a></li>
-    <li><a href="<%= request.getContextPath() %>">查看訊息通知</a></li>
     <li><a href="<%= request.getContextPath() %>/front-end/fMem/addFMem.jsp">註冊成為小農</a></li>
   </ul>
   

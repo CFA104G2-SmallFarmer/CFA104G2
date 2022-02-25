@@ -107,7 +107,7 @@ aside {
 
   <ul class="show" id="slide3" >
     <li><a href="<%=request.getContextPath()%>/front-end/Product/listAllProductByFmem.jsp">商城商品管理</a></li> 
-    <li><a href="<%=request.getContextPath()%>/front-end/projOrder/listAllOrderByFmem.jsp">商城訂單管理</a></li>
+    <li><a href="<%=request.getContextPath()%>/front-end/shopOrder/listAllOrderByFMem.jsp">商城訂單管理</a></li>
 <!--     <li><a href="#">Lorem Ipsum</a></li> -->
 <!--     <li><a href="#">Lorem Ipsum</a></li> -->
   </ul>
