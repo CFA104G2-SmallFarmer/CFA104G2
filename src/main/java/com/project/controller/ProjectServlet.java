@@ -361,6 +361,10 @@ public class ProjectServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("請再試一次");
 				e.printStackTrace();
+				Integer proj_id = new Integer(req.getParameter("proj_id").trim());
+				ProjectService projSvc = new ProjectService();
+				ProjectVO projectVO1 = projSvc.getOneProject(proj_id);
+				req.setAttribute("projectVO", projectVO1);
 				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/update_proj_input.jsp");
 				failureView.forward(req, res);
 			}
