@@ -1,9 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
+<header>
+    <jsp:include page="farmHeader.jsp"/>
+</header>
 <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
@@ -54,19 +57,18 @@
 <body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 
+<jsp:useBean id="travelTagDetailsService" scope="page" class="com.farmTravelTagDetails.model.FarmTravelTagDetailsService" />
+<jsp:useBean id="travelTagService" scope="page" class="com.farmTravelTag.model.FarmTravelTagService" />
 <form method="post" action="<%=request.getContextPath()%>/farmTravelOrder.do" id="applyForm">
     <div class="container">
 
         <div class="row">
             <div class="col mb-2"><h2>${farmTravel.farm_travel_title}</h2></div>
         </div>
-
         <div class="row">
-            <div class="col-auto"><span class="tag">#為王的誕生獻上禮炮1</span></div>
-            <div class="col-auto"><span class="tag">#為王的誕生獻上禮炮2</span></div>
-            <div class="col-auto"><span class="tag">#為王的誕生獻上禮炮3</span></div>
-            <div class="col-auto"><span class="tag">#為王的誕生獻上禮炮4</span></div>
-            <div class="col-auto"><span class="tag">#為王的誕生獻上禮炮5</span></div>
+            <c:forEach var="farmTagDetailsList" items="${travelTagDetailsService.getTagByFarmTravelID(farmTravel.farm_travel_ID)}">
+                <div class="col-auto"><span class="tag">#${travelTagService.getOneFarmTravelTag(farmTagDetailsList.tag_ID).tag_name}</span></div>
+            </c:forEach>
         </div>
         <hr style="filter: alpha(opacity=100,finishopacity=0,style=3)"/>
 
@@ -126,12 +128,11 @@
         <input type="hidden" name="action" value="insert">
         <div class="row">
             <div class="col-12">
-                <button type="button" id="submitBtn" class="submitBtn btn btn-outline-secondary">結帳</button>
+                <button type="button" id="submitBtn" class="submitBtn btn btn-outline-secondary">送 出 報 名</button>
             </div>
         </div>
     </div>
 </form>
-
 
 </body>
 <script>

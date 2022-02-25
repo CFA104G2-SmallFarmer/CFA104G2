@@ -14,9 +14,12 @@
     pageContext.setAttribute("list",list);
 %>
 <html>
+<header>
+    <jsp:include page="../farmTravel/farmHeader.jsp"/>
+</header>
 <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
@@ -152,9 +155,9 @@
                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                         <li><a href="<%=request.getContextPath()%>/front-end/farmTravel/listAllFarmTravelByMem.jsp" class="nav-link roundedwhite leftBarText">查看所有行程</a></li>
                         <li><a href="<%=request.getContextPath()%>/front-end/farmTravelCollection/listAllMyFarmTravelCollection.jsp" class="nav-link rounded leftBarText">我收藏的行程</a></li>
-                        <li><a href="#" class="nav-link rounded leftBarText">我檢舉的行程(未完成)</a></li>
-                        <li><a href="#" class="nav-link rounded leftBarText">已報名的行程(?)</a></li>
-                        <li><a href="#" class="nav-link rounded leftBarText">曾參加過的行程(?)</a></li>
+<%--                        <li><a href="#" class="nav-link rounded leftBarText">我檢舉的行程(未完成)</a></li>--%>
+<%--                        <li><a href="#" class="nav-link rounded leftBarText">已報名的行程(?)</a></li>--%>
+<%--                        <li><a href="#" class="nav-link rounded leftBarText">曾參加過的行程(?)</a></li>--%>
                     </ul>
                 </div>
             </li>

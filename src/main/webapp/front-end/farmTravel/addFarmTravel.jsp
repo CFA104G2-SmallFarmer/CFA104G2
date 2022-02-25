@@ -7,9 +7,12 @@
 %>
 
 <html>
+<header>
+    <jsp:include page="farmHeader.jsp"/>
+</header>
 <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
@@ -34,6 +37,9 @@
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!-- 引入 CKEditor的script -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
 
     <!-- CSS 寫在這 -->
     <style>
@@ -95,6 +101,10 @@
         .menu{
             background-color: #b9d4b3;
         }
+        /*!* CKEditor 高度設置 *!*/
+        /*.ck-editor__editable_inline {*/
+        /*    min-height: 200px;*/
+        /*}*/
     </style>
 
     <%-- date & time picker 設定 --%>
@@ -259,6 +269,9 @@
                         <div class="mb-3">
                             <label for="farm_travel_info" class="form-label">行程資訊</label>
                             <textarea class="form-control" id="farm_travel_info" rows="3" autocomplete="off" name="farm_travel_info" placeholder="Ex：從採草莓開始，一步一步開始製作草莓醬吧~"><%=(farmTravel == null) ? "" : farmTravel.getFarm_travel_info()%></textarea>
+                            <%--                            <textarea name="getCKEditorValue" id="editor" name="farm_travel_info">--%>
+                            <%--                                <%=(farmTravel == null) ? "" : farmTravel.getFarm_travel_info()%>--%>
+                            <%--                            </textarea>--%>
                         </div>
                         <div class="mb-3 form-check">
                             <input type="checkbox" class="checkAgree form-check-input" id="exampleCheck1">
@@ -340,6 +353,12 @@
         addForm.farm_travel_max.value="10";
     };
 </script>
-
-</script>
+<!-- CK Editor 初始化 -->
+<%--<script>--%>
+<%--    ClassicEditor--%>
+<%--        .create(document.querySelector('#editor'))--%>
+<%--        .catch(error => {--%>
+<%--            console.error(error);--%>
+<%--        });--%>
+<%--</script>--%>
 </html>

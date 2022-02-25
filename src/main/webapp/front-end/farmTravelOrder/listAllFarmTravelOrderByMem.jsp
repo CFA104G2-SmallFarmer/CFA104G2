@@ -13,9 +13,12 @@
 <jsp:useBean id="farmTravelService" scope="page" class="com.farmTravel.model.FarmTravelService"/>
 <jsp:useBean id="farmTravelPartnerService" scope="page" class="com.farmTravelPartner.model.FarmTravelPartnerService"/>
 <html>
+<%--<header>--%>
+<%--    <jsp:include page="../farmTravel/farmHeader.jsp"/>--%>
+<%--</header>--%>
 <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
@@ -108,7 +111,7 @@
         }
         .menuBtn{
             position: sticky;
-            top: 0;
+            top: 50px;
         }
         .menuBtn:hover{
             background-color: #b9d4b3;
@@ -127,12 +130,76 @@
         .nav{
             padding: 0;
         }
+        .headerBgColor{
+            background-color: #434217;
+        }
+        .headerImg{
+            width: 100%;
+            margin: 10px;
+        }
+        .headerTextBox{
+            color: #d9d9d9;
+            font-size: 22px;
+            line-height: 100px;
+            margin: auto;
+        }
+        .headerBtn{
+            text-decoration:none;
+            color: #aaba8b;
+            padding: 15px 20px;
+            width: 100%;
+        }
+        .headerBtn:hover{
+            background-color: #aaba8b;
+            color: black;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
         crossorigin="anonymous"></script>
+<div class="row headerBgColor mb-2">
+    <div class="col-1"></div>
+    <div class="col-2">
+        <a href="<%=request.getContextPath()%>/front-end/home/home.jsp">
+            <img src="<%=request.getContextPath()%>/front-end/farmTravel/images/調整後白小農logo.png" alt="" class="headerImg">
+        </a>
+    </div>
+    <div class="col-1"></div>
+    <div class="col-6 headerTextBox">
+        <div class="row">
+            <div class="col-2">
+                <a href="<%=request.getContextPath()%>/front-end/article/listAllArticle.jsp" class="headerBtn">小農論壇</a>
+            </div>
+            <div class="col-2">
+                <a href="<%=request.getContextPath()%>/front-end/Product/shop.jsp" class="headerBtn">小農商城</a>
+            </div>
+            <div class="col-2">
+                <a href="<%=request.getContextPath()%>/front-end/farmTravel/listAllFarmTravelByMem.jsp" class="headerBtn">農場旅遊</a>
+            </div>
+            <div class="col-2">
+                <a href="<%=request.getContextPath()%>/front-end/project/listAllProjByMem.jsp" class="headerBtn">農產認養</a>
+            </div>
+            <div class="col-2">
+                <a href="<%=request.getContextPath()%>/front-end/fMem/fMemberInfom.jsp" class="headerBtn">小農專區</a>
+            </div>
+            <div class="col-2">
+                <a href="<%=request.getContextPath()%>/front-end/mem/memberInfom.jsp" class="headerBtn">會員專區</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-1"></div>
+    <div class="col-1 headerTextBox">
+        <!--        <div class="row">-->
+        <!--            張三李四-->
+        <!--        </div>-->
+        <!--        <div class="row">-->
+        <!--            logout-->
+        <!--        </div>-->
+    </div>
+</div>
 
 <%-- Menu按鈕 --%>
 <button class="menuBtn btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuBtn" aria-controls="offcanvasWithBothOptions">
@@ -154,9 +221,9 @@
                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                         <li><a href="<%=request.getContextPath()%>/front-end/farmTravel/listAllFarmTravelByMem.jsp" class="nav-link roundedwhite leftBarText">查看所有行程</a></li>
                         <li><a href="<%=request.getContextPath()%>/front-end/farmTravelCollection/listAllMyFarmTravelCollection.jsp" class="nav-link rounded leftBarText">我收藏的行程</a></li>
-                        <li><a href="#" class="nav-link rounded leftBarText">我檢舉的行程(未完成)</a></li>
-                        <li><a href="#" class="nav-link rounded leftBarText">已報名的行程(?)</a></li>
-                        <li><a href="#" class="nav-link rounded leftBarText">曾參加過的行程(?)</a></li>
+<%--                        <li><a href="#" class="nav-link rounded leftBarText">我檢舉的行程(未完成)</a></li>--%>
+<%--                        <li><a href="#" class="nav-link rounded leftBarText">已報名的行程(?)</a></li>--%>
+<%--                        <li><a href="#" class="nav-link rounded leftBarText">曾參加過的行程(?)</a></li>--%>
                     </ul>
                 </div>
             </li>
@@ -252,6 +319,9 @@
                                         <c:if test="${farmTravelOrder.order_state eq 0}">
                                             <button type="button" class="pay btn btn-outline-success" value="${farmTravelOrder.order_ID}">前往付款</button>
                                         </c:if>
+                                        <c:if test="${farmTravelOrder.order_state eq 1}">
+                                            <button type="button" class="cancelApply btn btn-outline-danger" value="${farmTravelOrder.order_ID}">取消報名</button>
+                                        </c:if>
                                         <c:if test="${farmTravelOrder.order_state eq 2}">
 
                                             <!-- 評價按鈕 -->
@@ -284,6 +354,11 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                        </c:if>
+                                        <c:if test="${farmTravelOrder.order_state eq 3}">
+                                            <c:forEach var="ratingStar" begin="1" end="${farmTravelOrder.farm_travel_stars}">
+                                                <img src="<%=request.getContextPath()%>/front-end/farmTravelOrder/images/ratingStar.png" width="25px">
+                                            </c:forEach>
                                         </c:if>
                                     </div>
                                 </div>
@@ -337,9 +412,8 @@
                                         </c:forEach>
                                     </div>
                                     <div class="col-12">
-                                        <c:if test="${farmTravelOrder.order_state eq 0}">
-                                            <button type="button" class="pay btn btn-outline-success" value="${farmTravelOrder.order_ID}">前往付款</button>
-                                        </c:if>
+                                        <button type="button" class="pay btn btn-outline-success" value="${farmTravelOrder.order_ID}">前往付款</button>
+                                        <button type="button" class="cancelApply btn btn-outline-danger" value="${farmTravelOrder.order_ID}">取消報名</button>
                                     </div>
                                 </div>
                             </div>
@@ -391,6 +465,7 @@
                                                 ${farmTravelOrderState.value}
                                             </c:if>
                                         </c:forEach>
+                                        <button type="button" class="cancelApply btn btn-outline-danger" value="${farmTravelOrder.order_ID}">取消報名</button>
                                     </div>
                                 </div>
                             </div>
@@ -444,11 +519,7 @@
                                             </c:forEach>
                                         </div>
                                         <div class="col-12">
-                                            <c:if test="${farmTravelOrder.order_state eq 0}">
-                                                <button type="button" class="pay btn btn-outline-success" value="${farmTravelOrder.order_ID}">前往付款</button>
-                                            </c:if>
                                             <c:if test="${farmTravelOrder.order_state eq 2}">
-
                                                 <!-- 評價按鈕 -->
                                                 <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal__${farmTravelOrder.order_ID}">
                                                     給予評價
@@ -480,6 +551,11 @@
                                                     </div>
                                                 </div>
                                             </c:if>
+                                            <c:if test="${farmTravelOrder.order_state eq 3}">
+                                                <c:forEach var="ratingStar" begin="1" end="${farmTravelOrder.farm_travel_stars}">
+                                                    <img src="<%=request.getContextPath()%>/front-end/farmTravelOrder/images/ratingStar.png" width="25px">
+                                                </c:forEach>
+                                            </c:if>
                                         </div>
                                     </div>
                                 </div>
@@ -509,6 +585,17 @@
             }
         )
     });
+    $('.cancelApply').click(function (){
+        $.post(
+            "<%=request.getContextPath()%>/farmTravelOrder.do",
+            { action:'cancelApply', order_ID: $(this).val()},
+            (data)=>{
+                alert(data);
+                window.location.href="<%=request.getContextPath()%>/front-end/farmTravelOrder/listAllFarmTravelOrderByMem.jsp"
+            }
+        )
+    });
+
 
     var $star_rating = $('.star-rating .fa');
 

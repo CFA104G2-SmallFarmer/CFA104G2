@@ -3,9 +3,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
+<header>
+    <jsp:include page="farmHeader.jsp"/>
+</header>
 <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
@@ -57,7 +60,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col mb-2"><h2>${farmTravel.farm_travel_title}</h2></div>
+        <div class="col mb-2"><h3>${farmTravel.farm_travel_title}</h3></div>
     </div>
     <div class="row">
         <c:forEach var="tag" items="${tagList}">
@@ -73,10 +76,10 @@
     <div class="row">
         <div class="col-12">
             <c:if test="${not empty farmTravel.farm_travel_img}">
-                <img src="<%=request.getContextPath()%>/getImage.do?farm_travel_ID=${farmTravel.farm_travel_ID}" width="100%" height="760px">
+                <img src="<%=request.getContextPath()%>/getImage.do?farm_travel_ID=${farmTravel.farm_travel_ID}" width="100%" height="540px">
             </c:if>
             <c:if test="${empty farmTravel.farm_travel_img}" >
-                <img src="<%=request.getContextPath()%>/front-end/farmTravel/images/NoImage.png" width="100%" height="760px">
+                <img src="<%=request.getContextPath()%>/front-end/farmTravel/images/NoImage.png" width="100%" height="540px">
             </c:if>
         </div>
     </div>
@@ -132,7 +135,7 @@
             <div>星期7　08:00~18:00</div>
         </div>
     </div>
-    <c:if test="${not empty mem}">
+    <c:if test="${not empty memVO}">
     <c:if test="${farmTravel.farm_travel_state eq 1 || farmTravel.farm_travel_state eq 2}">
         <div class="row">
             <div class="col-12">

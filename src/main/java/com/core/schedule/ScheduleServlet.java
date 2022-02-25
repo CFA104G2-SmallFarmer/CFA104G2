@@ -14,7 +14,7 @@ public class ScheduleServlet extends HttpServlet {
 
     public void init() throws ServletException {
         timer = new Timer();
-        Calendar cal = new GregorianCalendar(2022, Calendar.FEBRUARY, 24, 0, 0, 0);
+        Calendar cal = new GregorianCalendar(2022, Calendar.FEBRUARY, 25, 22, 0, 0);
         TimerTask task = new TimerTask(){
 
             public void run() {
@@ -25,7 +25,7 @@ public class ScheduleServlet extends HttpServlet {
                 farmTravelOrderService.travelCompleted();
             }
         };
-        timer.scheduleAtFixedRate(task, cal.getTime(), 10*60*1000);
+        timer.scheduleAtFixedRate(task, cal.getTime(), 30*60*1000);
     }
 
     public void doGet(HttpServletRequest req, HttpServletResponse res)

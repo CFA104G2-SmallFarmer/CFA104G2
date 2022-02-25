@@ -67,7 +67,6 @@ public class FarmTravelService {
                 }
             }
         }
-
         return farm_travel;
     }
 
@@ -129,5 +128,8 @@ public class FarmTravelService {
     }
     public List<FarmTravelVO> listAllFarmTravelSetUp(Integer f_mem_ID){
         return dao.listAllFarmTravelSetUp(con, f_mem_ID);
+    }
+    public void orderCancel(Integer people_num, Integer farm_travel_ID){
+        dao.orderCancel(con, people_num, farm_travel_ID);
     }
 }

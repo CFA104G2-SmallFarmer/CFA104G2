@@ -15,4 +15,5 @@ public interface FarmTravelDAO {
     Integer farmTravelSetUp(Connection con);
     List<FarmTravelVO> farmTravelBySearch(Connection con, String searchFarmTravel);
     List<FarmTravelVO> listAllFarmTravelSetUp(Connection con, Integer f_mem_ID);
+    void orderCancel(Connection con, Integer farm_travel_now, Integer farm_travel_ID);
 }

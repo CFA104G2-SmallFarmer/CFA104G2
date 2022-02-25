@@ -11,19 +11,22 @@
         list = farmTravelService.getAllMemCanApply();
         pageContext.setAttribute("list",list);
         FarmTravelTagService farmTravelTagService = new FarmTravelTagService();
-        List<FarmTravelTagVO> farmTravelTagList = farmTravelTagService.getTopThreeFarmTravelTag();
+        List<FarmTravelTagVO> farmTravelTagList = farmTravelTagService.getTopFiveFarmTravelTag();
         pageContext.setAttribute("farmTravelTagList", farmTravelTagList);
     }else{
         pageContext.setAttribute("list",list);
         FarmTravelTagService farmTravelTagService = new FarmTravelTagService();
-        List<FarmTravelTagVO> farmTravelTagList = farmTravelTagService.getTopThreeFarmTravelTag();
+        List<FarmTravelTagVO> farmTravelTagList = farmTravelTagService.getTopFiveFarmTravelTag();
         pageContext.setAttribute("farmTravelTagList", farmTravelTagList);
     }
 %>
 <html>
+<header>
+    <jsp:include page="farmHeader.jsp"/>
+</header>
 <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
@@ -133,10 +136,8 @@
 </head>
 <body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-<header>
-<%--    <jsp:include page="farmHeader.jsp"/>--%>
-</header>
-<c:if test="${not empty mem}">
+
+<c:if test="${not empty memVO}">
     <%-- Menu按鈕 --%>
     <button class="menuBtn btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuBtn" aria-controls="offcanvasWithBothOptions">
         <img src="<%=request.getContextPath()%>/front-end/farmTravel/images/menuBtn.png">
@@ -157,9 +158,9 @@
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                             <li><a href="<%=request.getContextPath()%>/front-end/farmTravel/listAllFarmTravelByMem.jsp" class="nav-link roundedwhite leftBarText">查看所有行程</a></li>
                             <li><a href="<%=request.getContextPath()%>/front-end/farmTravelCollection/listAllMyFarmTravelCollection.jsp" class="nav-link rounded leftBarText">我收藏的行程</a></li>
-                            <li><a href="#" class="nav-link rounded leftBarText">我檢舉的行程(未完成)</a></li>
-                            <li><a href="#" class="nav-link rounded leftBarText">已報名的行程(?)</a></li>
-                            <li><a href="#" class="nav-link rounded leftBarText">曾參加過的行程(?)</a></li>
+<%--                            <li><a href="#" class="nav-link rounded leftBarText">我檢舉的行程(未完成)</a></li>--%>
+<%--                            <li><a href="#" class="nav-link rounded leftBarText">已報名的行程(?)</a></li>--%>
+<%--                            <li><a href="#" class="nav-link rounded leftBarText">曾參加過的行程(?)</a></li>--%>
                         </ul>
                     </div>
                 </li>
@@ -180,17 +181,15 @@
 
 <div class="container">
     <div class="row">
-        <div class="col">
             <form method="post" action="<%=request.getContextPath()%>/farmTravel.do">
-                <div class="input-group mb-3">
+                <div class="input-group mb-1">
                     <input type="text" class="form-control" placeholder="Search..." aria-describedby="searchBar" name="searchFarmTravel">
                     <input type="hidden" name="action" value="search">
                     <button class="btn btn-outline-success" type="submit" id="searchBar">Search</button>
                 </div>
             </form>
-        </div>
     </div>
-    <div class="row tagRow">
+    <div class="row tagRow mb-2">
         <c:forEach var="farmTravelTag" items="${farmTravelTagList}">
             <div class="col-auto tagItemArea">
                 <a class="tagItem" href="<%=request.getContextPath()%>/farmTravelTag.do?tag_ID=${farmTravelTag.tag_ID}"># ${farmTravelTag.tag_name}</a>
@@ -232,7 +231,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-3">
-                                    <c:if test="${not empty mem}">
+                                    <c:if test="${not empty memVO}">
                                         <button type="button" class="btn btn-outline-light" value="${farmTravel.farm_travel_ID}">
                                             <img src="<%=request.getContextPath()%>/farmTravelCollection.do?action=collection&mem_ID=${mem.mem_id}&farm_travel_ID=${farmTravel.farm_travel_ID}" class="collection">
                                         </button>

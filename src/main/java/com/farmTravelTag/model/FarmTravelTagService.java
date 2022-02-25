@@ -39,7 +39,7 @@ public class FarmTravelTagService {
         return dao.getAll(con);
     }
 
-    public List<FarmTravelTagVO> getTopThreeFarmTravelTag() {
+    public List<FarmTravelTagVO> getTopFiveFarmTravelTag() {
         return dao.getTopThree(con);
     }
 }

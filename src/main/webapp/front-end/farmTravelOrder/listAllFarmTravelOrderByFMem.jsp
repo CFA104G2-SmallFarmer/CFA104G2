@@ -13,9 +13,12 @@
 <jsp:useBean id="farmTravelService" scope="page" class="com.farmTravel.model.FarmTravelService"/>
 <jsp:useBean id="farmTravelPartnerService" scope="page" class="com.farmTravelPartner.model.FarmTravelPartnerService"/>
 <html>
+<header>
+    <jsp:include page="../farmTravel/farmHeader.jsp"/>
+</header>
 <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
@@ -226,6 +229,15 @@
                                                     </c:if>
                                                 </c:forEach>
                                             </div>
+                                            <div class="col-12">
+                                                <c:if test="${farmTravelOrder.order_state eq 3}">
+                                                    <c:forEach var="ratingStar" begin="1"
+                                                               end="${farmTravelOrder.farm_travel_stars}">
+                                                        <img src="<%=request.getContextPath()%>/front-end/farmTravelOrder/images/ratingStar.png"
+                                                             width="20px">
+                                                    </c:forEach>
+                                                </c:if>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-2">
@@ -374,6 +386,15 @@
                                                             ${farmTravelOrderState.value}
                                                         </c:if>
                                                     </c:forEach>
+                                                    <div class="col-12">
+                                                        <c:if test="${farmTravelOrder.order_state eq 3}">
+                                                            <c:forEach var="ratingStar" begin="1"
+                                                                       end="${farmTravelOrder.farm_travel_stars}">
+                                                                <img src="<%=request.getContextPath()%>/front-end/farmTravelOrder/images/ratingStar.png"
+                                                                     width="20px">
+                                                            </c:forEach>
+                                                        </c:if>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

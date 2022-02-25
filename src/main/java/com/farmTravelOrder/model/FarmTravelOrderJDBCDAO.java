@@ -20,6 +20,7 @@ public class FarmTravelOrderJDBCDAO implements FarmTravelOrderDAO{
     public static final String GET_ALL_BY_MEM_STMT = "SELECT * FROM FARM_TRAVEL_ORDER WHERE MEM_ID = ? ORDER BY ORDER_TIME DESC;";
     public static final String GET_ALL_BY_FMEM_STMT = "SELECT * FROM FARM_TRAVEL_ORDER WHERE F_MEM_ID = ? ORDER BY ORDER_TIME DESC;";
     public static final String TRAVEL_COMPLETED_STMT = "UPDATE FARM_TRAVEL_ORDER SET ORDER_STATE = 2 WHERE FARM_TRAVEL_END < NOW() AND ORDER_STATE = 1;";
+    public static final String CANCEL_APPLY_STMT = "UPDATE FARM_TRAVEL_ORDER SET ORDER_STATE = 5 WHERE ORDER_ID = ?;";
 
     PreparedStatement pstmt = null;
     ResultSet rs = null;
@@ -249,6 +250,28 @@ public class FarmTravelOrderJDBCDAO implements FarmTravelOrderDAO{
             e.printStackTrace(System.err);
             return 0;
         } finally {
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void cancelApply(Connection con, Integer order_ID) {
+        try {
+            pstmt = con.prepareStatement(CANCEL_APPLY_STMT);
+
+            pstmt.setInt(1, order_ID);
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace(System.err);
+        }finally {
             if (pstmt != null) {
                 try {
                     pstmt.close();

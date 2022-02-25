@@ -142,7 +142,8 @@ public class FarmTravelOrderServlet extends HttpServlet {
                 e.printStackTrace();
                 out.print("發生意外的錯誤");
             }
-        }if ("mem_rating".equals(action)){
+        }
+        if ("mem_rating".equals(action)){
             try{
                 Integer order_ID = Integer.valueOf(request.getParameter("order_ID"));
                 Integer farm_travel_stars = Integer.valueOf(request.getParameter("farm_travel_stars"));
@@ -160,6 +161,25 @@ public class FarmTravelOrderServlet extends HttpServlet {
             }catch (Exception e){
                 e.printStackTrace();
                 out.print("評價失敗");
+            }
+        }
+        if ("cancelApply".equals(action)){
+            try{
+                Integer order_ID = Integer.valueOf(request.getParameter("order_ID"));
+
+                try{
+                    FarmTravelOrderService farmTravelOrderService = new FarmTravelOrderService();
+                    farmTravelOrder = farmTravelOrderService.getOneFarmTravelOrder(order_ID);
+                    farmTravelOrderService.cancelApply(farmTravelOrder);
+                    out.print("已取消報名");
+                }catch(Exception e){
+                    e.printStackTrace(System.err);
+                    out.print("取消報名失敗");
+                    return;
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+                out.print("取消報名失敗");
             }
         }
     }

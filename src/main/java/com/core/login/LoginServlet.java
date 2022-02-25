@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
         farmTravelOrderStatusByFMem.put("2", "行程已結束 / 待會員評價");  // 活動結束後給小農按結束
         farmTravelOrderStatusByFMem.put("3", "會員已評價");  // 活動結束後會員可以評價
         farmTravelOrderStatusByFMem.put("4", "已完成");
-        farmTravelOrderStatusByFMem.put("5", "已取消");
+        farmTravelOrderStatusByFMem.put("5", "報名已取消");
 
         session.setAttribute("farmTravelStatus", farmTravelStatus);
         session.setAttribute("farmTravelOrderStatusByMem", farmTravelOrderStatusByMem);

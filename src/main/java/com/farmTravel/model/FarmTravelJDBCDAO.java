@@ -17,14 +17,13 @@ public class FarmTravelJDBCDAO implements FarmTravelDAO{
     public static final String FARM_TRAVEL_SET_UP_STMT = "UPDATE FARM_TRAVEL SET FARM_TRAVEL_STATE = 2 WHERE FARM_TRAVEL_NOW >= FARM_TRAVEL_MIN AND FARM_TRAVEL_STATE = 1;";
     public static final String SEARCH_FARM_TRAVEL_STMT = "SELECT * FROM FARM_TRAVEL WHERE FARM_TRAVEL_TITLE LIKE ? OR FARM_TRAVEL_INFO LIKE ?";
     public static final String GET_MY_FARM_TRAVEL_SET_UP_STMT = "SELECT * FROM FARM_TRAVEL WHERE FARM_TRAVEL_STATE = 2 AND F_MEM_ID = ?";
+    public static final String ORDER_CANCEL_STMT = "UPDATE FARM_TRAVEL SET FARM_TRAVEL_NOW = ? WHERE FARM_TRAVEL_ID = ?;";
 
     PreparedStatement pstmt = null;
     ResultSet rs = null;
 
     @Override
     public Integer add(Connection con, FarmTravelVO farm_travel) {
-
-        
 
         Integer next_farm_travel_ID = null;
         try {
@@ -430,5 +429,28 @@ public class FarmTravelJDBCDAO implements FarmTravelDAO{
             }
         }
         return farm_travel_list;
+    }
+
+    @Override
+    public void orderCancel(Connection con, Integer farm_travel_now, Integer farm_travel_ID) {
+        try {
+            pstmt = con.prepareStatement(ORDER_CANCEL_STMT);
+
+            pstmt.setInt(1, farm_travel_now);
+            pstmt.setInt(2, farm_travel_ID);
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace(System.err);
+        }finally {
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+        }
     }
 }

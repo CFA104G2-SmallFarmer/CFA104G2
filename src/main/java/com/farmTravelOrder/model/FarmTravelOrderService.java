@@ -1,6 +1,9 @@
 package com.farmTravelOrder.model;
 
 import com.core.connectionFactory.ConnectionFactory;
+import com.farmTravel.model.FarmTravelJDBCDAO;
+import com.farmTravel.model.FarmTravelService;
+import com.farmTravel.model.FarmTravelVO;
 import com.farmTravelPartner.model.FarmTravelPartnerDAO;
 import com.farmTravelPartner.model.FarmTravelPartnerJDBCDAO;
 import com.farmTravelPartner.model.FarmTravelPartnerVO;
@@ -12,7 +15,7 @@ import java.util.List;
 public class FarmTravelOrderService {
     private FarmTravelOrderDAO dao;
 
-    public FarmTravelOrderService(){
+    public FarmTravelOrderService() {
         dao = new FarmTravelOrderJDBCDAO();
     }
 
@@ -36,7 +39,7 @@ public class FarmTravelOrderService {
             con.setAutoCommit(false);
             Integer next_farm_travel_order_ID = dao.add(con, farm_travel_order);
             FarmTravelPartnerDAO farmTravelPartnerDAO;
-            for (int i = 0 ; i < farm_travel_order.getPeople_num() ; i++){
+            for (int i = 0; i < farm_travel_order.getPeople_num(); i++) {
                 farmTravelPartnerDAO = new FarmTravelPartnerJDBCDAO();
                 FarmTravelPartnerVO farmTravelPartner = new FarmTravelPartnerVO();
                 farmTravelPartner.setOrder_ID(next_farm_travel_order_ID);
@@ -83,9 +86,36 @@ public class FarmTravelOrderService {
         return dao.getAllByMem(con, mem_ID);
     }
 
-    public List<FarmTravelOrderVO> getAllFarmTravelOrderByFMem(Integer f_mem_ID) { return dao.getAllByFMem(con, f_mem_ID); }
+    public List<FarmTravelOrderVO> getAllFarmTravelOrderByFMem(Integer f_mem_ID) {
+        return dao.getAllByFMem(con, f_mem_ID);
+    }
 
-    public void travelCompleted(){
-        System.out.println(dao.travelCompleted(con)+"筆行程已結束");
+    public void travelCompleted() {
+        System.out.println(dao.travelCompleted(con) + "筆行程已結束");
+    }
+
+    public void cancelApply(FarmTravelOrderVO farmTravelOrder) {
+
+        try {
+            con.setAutoCommit(false);
+
+            dao.cancelApply(con, farmTravelOrder.getOrder_ID());
+
+            FarmTravelJDBCDAO farmTravelDAO = new FarmTravelJDBCDAO();
+            FarmTravelVO farmTravel = farmTravelDAO.findByPK(con, farmTravelOrder.getFarm_travel_ID());
+            farmTravelDAO.orderCancel(con, farmTravel.getFarm_travel_now() - farmTravelOrder.getPeople_num(), farmTravelOrder.getFarm_travel_ID());
+
+            con.commit();
+            con.setAutoCommit(true);
+        } catch (Exception e) {
+            if (con != null) {
+                try {
+                    con.rollback();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+
+        }
     }
 }
