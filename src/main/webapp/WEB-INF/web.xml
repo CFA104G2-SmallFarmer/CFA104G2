@@ -60,9 +60,24 @@
 		<url-pattern>/front-end/fMem/fMem.do</url-pattern>
 	</servlet-mapping>
 
+	<servlet-mapping>
+		<servlet-name>FMemServlet</servlet-name>
+		<url-pattern>/back-end/fMem/fMem.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>FMemGifReader</servlet-name>
+		<servlet-class>com.fMem.controller.FMemGifReader</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FMemGifReader</servlet-name>
+		<url-pattern>/FMemGifReader</url-pattern>
+	</servlet-mapping>
+
 	<servlet>
 		<servlet-name>PrivateMessageServlet</servlet-name>
-		<servlet-class>com.privateMessage.controller.PrivateMessageServlet</servlet-class>
+		<servlet-class>com.privateMessage.controller.PrivateMessageServlet
+		</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>PrivateMessageServlet</servlet-name>
@@ -75,7 +90,8 @@
 	<!--************************** 商城專區 ************************** -->
 	<servlet>
 		<servlet-name>ShopOrderServlet</servlet-name>
-		<servlet-class>com.shopOrder.controller.ShopOrderServlet</servlet-class>
+		<servlet-class>com.shopOrder.controller.ShopOrderServlet
+		</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ShopOrderServlet</servlet-name>
@@ -84,7 +100,8 @@
 
 	<servlet>
 		<servlet-name>ShopOrderDetailsServlet</servlet-name>
-		<servlet-class>com.shopOrderDetails.controller.ShopOrderDetailsServlet</servlet-class>
+		<servlet-class>com.shopOrderDetails.controller.ShopOrderDetailsServlet
+		</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ShopOrderDetailsServlet</servlet-name>
@@ -102,7 +119,8 @@
 
 	<servlet>
 		<servlet-name>ShopHashtagServlet</servlet-name>
-		<servlet-class>com.shopHashtag.controller.ShopHashtagServlet</servlet-class>
+		<servlet-class>com.shopHashtag.controller.ShopHashtagServlet
+		</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ShopHashtagServlet</servlet-name>
@@ -111,7 +129,8 @@
 
 	<servlet>
 		<servlet-name>ShopHashtagDetailsServlet</servlet-name>
-		<servlet-class>com.shopHashtagDetails.controller.ShopHashtagDetailsServlet</servlet-class>
+		<servlet-class>com.shopHashtagDetails.controller.ShopHashtagDetailsServlet
+		</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ShopHashtagDetailsServlet</servlet-name>
@@ -120,7 +139,8 @@
 
 	<servlet>
 		<servlet-name>ShopProductServlet</servlet-name>
-		<servlet-class>com.shopProduct.controller.ShopProductServlet</servlet-class>
+		<servlet-class>com.shopProduct.controller.ShopProductServlet
+		</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ShopProductServlet</servlet-name>
@@ -129,7 +149,8 @@
 
 	<servlet>
 		<servlet-name>ShopProductDBGifReader4</servlet-name>
-		<servlet-class>com.shopProduct.controller.ShopProductDBGifReader4</servlet-class>
+		<servlet-class>com.shopProduct.controller.ShopProductDBGifReader4
+		</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ShopProductDBGifReader4</servlet-name>
@@ -138,7 +159,8 @@
 
 	<servlet>
 		<servlet-name>ShopProductCollectionServlet</servlet-name>
-		<servlet-class>com.shopProductCollection.controller.ShopProductCollectionServlet</servlet-class>
+		<servlet-class>com.shopProductCollection.controller.ShopProductCollectionServlet
+		</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ShopProductCollectionServlet</servlet-name>
@@ -153,7 +175,8 @@
 
 	<!--************************** 農遊專區 ************************** -->
 	<servlet>
-		<servlet-name>ScheduleServlet</servlet-name>>
+		<servlet-name>ScheduleServlet</servlet-name>
+		>
 		<servlet-class>com.core.schedule.ScheduleServlet</servlet-class>
 		<load-on-startup>10</load-on-startup>
 	</servlet>
@@ -175,7 +198,8 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>ProjOrderServlet</servlet-name>
-		<servlet-class>com.projOrder.controller.ProjOrderServlet</servlet-class>
+		<servlet-class>com.projOrder.controller.ProjOrderServlet
+		</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ProjOrderServlet</servlet-name>
@@ -209,7 +233,8 @@
 
 	<servlet>
 		<servlet-name>ProjPicServletInsert</servlet-name>
-		<servlet-class>com.projPic.controller.ProjPicServletInsert</servlet-class>
+		<servlet-class>com.projPic.controller.ProjPicServletInsert
+		</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ProjPicServletInsert</servlet-name>
@@ -226,7 +251,8 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>ProDiaryDBGifReader4</servlet-name>
-		<servlet-class>com.proDiary.controller.ProDiaryDBGifReader4</servlet-class>
+		<servlet-class>com.proDiary.controller.ProDiaryDBGifReader4
+		</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ProDiaryDBGifReader4</servlet-name>
@@ -253,7 +279,8 @@
 
 	<servlet>
 		<servlet-name>HssImgReader</servlet-name>
-		<servlet-class>com.homeSlideShow.controller.HssImgReader</servlet-class>
+		<servlet-class>com.homeSlideShow.controller.HssImgReader
+		</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>HssImgReader</servlet-name>
@@ -261,7 +288,8 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>HomeSlideShowServlet</servlet-name>
-		<servlet-class>com.homeSlideShow.controller.HomeSlideShowServlet</servlet-class>
+		<servlet-class>com.homeSlideShow.controller.HomeSlideShowServlet
+		</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>HomeSlideShowServlet</servlet-name>
@@ -277,7 +305,8 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>AnnouncementServlet</servlet-name>
-		<servlet-class>com.announcement.controller.AnnouncementServlet</servlet-class>
+		<servlet-class>com.announcement.controller.AnnouncementServlet
+		</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>AnnouncementServlet</servlet-name>
@@ -285,7 +314,8 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>AdminImgReader</servlet-name>
-		<servlet-class>com.administrator.controller.AdminImgReader</servlet-class>
+		<servlet-class>com.administrator.controller.AdminImgReader
+		</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>AdminImgReader</servlet-name>
@@ -293,7 +323,8 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>AdministratorServlet</servlet-name>
-		<servlet-class>com.administrator.controller.AdministratorServlet</servlet-class>
+		<servlet-class>com.administrator.controller.AdministratorServlet
+		</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>AdministratorServlet</servlet-name>
@@ -309,11 +340,16 @@
 	<filter-mapping>
 		<filter-name>loginFilter</filter-name>
 		<url-pattern>/front-end/proDiary/addProDiaryByFmem.jsp</url-pattern>
-		<url-pattern>/front-end/proDiary/listAllProDiaryByFmem.jsp</url-pattern>
-		<url-pattern>/front-end/proDiary/update_proDiary_input_ByFmem.jsp</url-pattern>
-		<url-pattern>/front-end/projDiscussion/discussionByFmem.jsp</url-pattern>
-		<url-pattern>/front-end/projDiscussion/listAllProjDiscByProjByFmem.jsp</url-pattern>
-		<url-pattern>/front-end/projDiscussion/listAllProjDiscByProjByMem.jsp</url-pattern>
+		<url-pattern>/front-end/proDiary/listAllProDiaryByFmem.jsp
+		</url-pattern>
+		<url-pattern>/front-end/proDiary/update_proDiary_input_ByFmem.jsp
+		</url-pattern>
+		<url-pattern>/front-end/projDiscussion/discussionByFmem.jsp
+		</url-pattern>
+		<url-pattern>/front-end/projDiscussion/listAllProjDiscByProjByFmem.jsp
+		</url-pattern>
+		<url-pattern>/front-end/projDiscussion/listAllProjDiscByProjByMem.jsp
+		</url-pattern>
 		<url-pattern>/front-end/projDiscussion/UnitByFmem.jsp</url-pattern>
 		<url-pattern>/front-end/project/addProj.jsp</url-pattern>
 		<url-pattern>/front-end/project/listAllProjByFmem.jsp</url-pattern>
@@ -327,7 +363,8 @@
 		<url-pattern>/front-end/projPerk/listAllPerkByFmem.jsp</url-pattern>
 		<url-pattern>/front-end/projPerk/update_perk_input.jsp</url-pattern>
 		<url-pattern>/front-end/projPic/addProjPic.jsp</url-pattern>
-		<url-pattern>/front-end/projPic/update_proj_pic_input.jsp</url-pattern>
+		<url-pattern>/front-end/projPic/update_proj_pic_input.jsp
+		</url-pattern>
 
 		<!--************************* 小農會員filter ************************* -->
 		<url-pattern>/front-end/fMem/addFMem.jsp</url-pattern>
@@ -351,20 +388,26 @@
 		<url-pattern>/front-end/shopOrder/searchOrderByFMem.jsp</url-pattern>
 		<url-pattern>/front-end/shopOrder/update_order_input.jsp</url-pattern>
 		<!-- shopOrderDetails -->
-		<url-pattern>/front-end/shopOrderDetails/listPKALLShopOrderDetails.jsp</url-pattern>
+		<url-pattern>/front-end/shopOrderDetails/listPKALLShopOrderDetails.jsp
+		</url-pattern>
 		<!-- shopCart -->
 		<url-pattern>/front-end/shopCart/shopCart.jsp</url-pattern>
 		<!-- product -->
 		<url-pattern>/front-end/Product/addProductByFmem.jsp</url-pattern>
 		<url-pattern>/front-end/Product/listAllProductByFmem.jsp</url-pattern>
 		<url-pattern>/front-end/Product/listOneProductByFmem.jsp</url-pattern>
-		<url-pattern>/front-end/Product/update_ProductByFmem_input.jsp</url-pattern>
+		<url-pattern>/front-end/Product/update_ProductByFmem_input.jsp
+		</url-pattern>
 
 		<url-pattern>/front-end/Product/shop.jsp</url-pattern>
-		<url-pattern>/front-end/Product/select_pageProdlistByMem.jsp</url-pattern>
-		<url-pattern>/front-end/Product/listAllProdByPrice_ByMem.jsp</url-pattern>
-		<url-pattern>/front-end/Product/listAllProdByType_ByMem.jsp</url-pattern>
-		<url-pattern>/front-end/Product/listOneProductBySearch_ByMem.jsp</url-pattern>
+		<url-pattern>/front-end/Product/select_pageProdlistByMem.jsp
+		</url-pattern>
+		<url-pattern>/front-end/Product/listAllProdByPrice_ByMem.jsp
+		</url-pattern>
+		<url-pattern>/front-end/Product/listAllProdByType_ByMem.jsp
+		</url-pattern>
+		<url-pattern>/front-end/Product/listOneProductBySearch_ByMem.jsp
+		</url-pattern>
 		<!--************************* 以上商城filter ************************* -->
 
 		<!-- ****** -->
