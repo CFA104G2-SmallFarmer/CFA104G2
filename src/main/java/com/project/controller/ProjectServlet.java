@@ -63,6 +63,7 @@ public class ProjectServlet extends HttpServlet {
 				/*************************** 2.開始查詢資料 *****************************************/
 				ProjectService projectSvc = new ProjectService();
 				ProjectVO projectVO = projectSvc.getOneProject(proj_id);
+				
 				if (projectVO == null) {
 					errorMsgs.add("查無資料");
 				}
@@ -73,6 +74,7 @@ public class ProjectServlet extends HttpServlet {
 					return;// 程式中斷
 				}
 
+				
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("projectVO", projectVO); // 資料庫取出的projectVO物件,存入req
 				String url = "/front-end/project/listOneProjByMem.jsp";
@@ -185,6 +187,23 @@ public class ProjectServlet extends HttpServlet {
 				ProjectService projectSvc = new ProjectService();
 				ProjectVO projectVO = projectSvc.getOneProject(proj_id);
 
+				
+				
+				String proj_name=projectVO.getProj_name();
+				proj_name=proj_name.replace("<br>", "\r\n");
+				projectVO.setProj_name(proj_name);
+				
+				String proj_abstract=projectVO.getProj_abstract();
+				proj_abstract=proj_abstract.replace("<br>", "\r\n");		
+				projectVO.setProj_abstract(proj_abstract);	
+				
+				String proj_risk=projectVO.getProj_risk();
+				proj_risk=proj_risk.replace("<br>", "\r\n");		
+				projectVO.setProj_risk(proj_risk);	
+				
+				
+				
+				
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
 				req.setAttribute("projectVO", projectVO); // 資料庫取出的projectVO物件,存入req
 				String url = "/front-end/project/update_proj_input.jsp";///
@@ -219,12 +238,12 @@ public class ProjectServlet extends HttpServlet {
 					errorMsgs.add("認養專案名稱: 只能是中、英文字母、數字和_ , 且長度必需在2到50之間");
 				}
 
-				proj_name=proj_name.replace("\n", "&nbsp;");
-				proj_name=proj_name.replace("\r", "&nbsp;");
+				proj_name=proj_name.replace("\r\n", "<br>");
 				proj_name=proj_name.replace("<", "&lt;");
 				proj_name=proj_name.replace(">", "&gt;");
 				proj_name=proj_name.replace("\"", "&quot;");
 				proj_name=proj_name.replace("\'", "&quot;");
+				proj_name=proj_name.replace("&lt;br&gt;", "<br>");
 				
 				
 				Integer proj_state = new Integer(req.getParameter("proj_state").trim());
@@ -260,12 +279,12 @@ public class ProjectServlet extends HttpServlet {
 					errorMsgs.add("專案摘要請勿空白");
 				}
 				
-				proj_abstract=proj_abstract.replace("\n", "&nbsp;");
-				proj_abstract=proj_abstract.replace("\r", "&nbsp;");
+				proj_abstract=proj_abstract.replace("\r\n", "<br>");
 				proj_abstract=proj_abstract.replace("<", "&lt;");
 				proj_abstract=proj_abstract.replace(">", "&gt;");
 				proj_abstract=proj_abstract.replace("\"", "&quot;");
 				proj_abstract=proj_abstract.replace("\'", "&quot;");
+				proj_abstract=proj_abstract.replace("&lt;br&gt;", "<br>");
 				
 				
 				Integer proj_goal = new Integer(req.getParameter("proj_goal").trim());
@@ -298,12 +317,12 @@ public class ProjectServlet extends HttpServlet {
 					errorMsgs.add("專案風險請勿空白");
 				}
 
-				proj_risk=proj_risk.replace("\n", "&nbsp;");
-				proj_risk=proj_risk.replace("\r", "&nbsp;");
+				proj_risk=proj_risk.replace("\r\n", "<br>");
 				proj_risk=proj_risk.replace("<", "&lt;");
 				proj_risk=proj_risk.replace(">", "&gt;");
 				proj_risk=proj_risk.replace("\"", "&quot;");
 				proj_risk=proj_risk.replace("\'", "&quot;");
+				proj_risk=proj_risk.replace("&lt;br&gt;", "<br>");
 				
 				
 				
@@ -389,12 +408,13 @@ public class ProjectServlet extends HttpServlet {
 					errorMsgs.add("認養專案名稱: 只能是中、英文字母、數字和_(不包含「-」) , 且長度必需在2到50之間");
 				}
 
-				proj_name=proj_name.replace("\n", "&nbsp;");
-				proj_name=proj_name.replace("\r", "&nbsp;");
+				proj_name=proj_name.replace("\r\n", "<br>");
 				proj_name=proj_name.replace("<", "&lt;");
 				proj_name=proj_name.replace(">", "&gt;");
 				proj_name=proj_name.replace("\"", "&quot;");
 				proj_name=proj_name.replace("\'", "&quot;");
+				proj_name=proj_name.replace("&lt;br&gt;", "<br>");
+				
 				
 				
 //				------------------處理圖片--------------------
@@ -419,14 +439,14 @@ public class ProjectServlet extends HttpServlet {
 					errorMsgs.add("專案摘要請勿空白");
 				}
 				
-				proj_abstract=proj_abstract.replace("\n", "&nbsp;");
-				proj_abstract=proj_abstract.replace("\r", "&nbsp;");
+				proj_abstract=proj_abstract.replace("\r\n", "<br>");
 				proj_abstract=proj_abstract.replace("<", "&lt;");
 				proj_abstract=proj_abstract.replace(">", "&gt;");
 				proj_abstract=proj_abstract.replace("\"", "&quot;");
 				proj_abstract=proj_abstract.replace("\'", "&quot;");
-				
-				
+				proj_abstract=proj_abstract.replace("&lt;br&gt;", "<br>");
+//				
+
 
 				Integer proj_goal = new Integer(req.getParameter("proj_goal").trim());
 
@@ -448,15 +468,15 @@ public class ProjectServlet extends HttpServlet {
 					errorMsgs.add("專案風險請勿空白");
 				}
 				
-				proj_risk=proj_risk.replace("\n", "&nbsp;");
-				proj_risk=proj_risk.replace("\r", "&nbsp;");
+
+				proj_risk=proj_risk.replace("\r\n", "<br>");
 				proj_risk=proj_risk.replace("<", "&lt;");
 				proj_risk=proj_risk.replace(">", "&gt;");
 				proj_risk=proj_risk.replace("\"", "&quot;");
 				proj_risk=proj_risk.replace("\'", "&quot;");
-				
-				
+				proj_risk=proj_risk.replace("&lt;br&gt;", "<br>");
 
+				
 				String proj_video = req.getParameter("proj_video");
 				// 空白沒差 沒有要用proj_video了
 
