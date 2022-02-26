@@ -1,8 +1,10 @@
 <%@page import="javax.naming.Context"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<!-- 已完成頁首頁尾的引入，內文尚未修改 動態路徑尚未完成-->
+<!--               本網站由緯育(Tibame)Java雲端服務開發技術養成班-第93期-第二組製作， -->
+<!--               非營利用途，僅為學習交流使用。如有不當使用之內容,請向https://www.tibame.com/聯繋。 -->
+<!-- 參考網站https://shopee.tw/  https://www.zeczec.com/  https://www.buydirectlyfromfarmers.tw/ -->
+<!-- saved from url=(0038)https://shopee.tw/user/account/profile -->
 <!DOCTYPE html>
 <html lang="zh-tw"
 	class="no-js fontawesome-i2svg-active fontawesome-i2svg-complete arwf-inactive">

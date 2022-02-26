@@ -1,10 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=BIG5"
-    pageEncoding="BIG5"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!--               本網站由緯育(Tibame)Java雲端服務開發技術養成班-第93期-第二組製作， -->
+<!--               非營利用途，僅為學習交流使用。如有不當使用之內容,請向https://www.tibame.com/聯繋。 -->
+<!-- 參考網站https://shopee.tw/  https://www.zeczec.com/  https://www.buydirectlyfromfarmers.tw/ -->
+<!-- saved from url=(0038)https://shopee.tw/user/account/profile -->
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="BIG5">
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<title>我家門前有塊地</title>
 
 <style>
 
@@ -83,22 +87,22 @@ aside {
 <body>
 <aside style="float:left;">
 
-  <label for="touch1"><span class="asidesp">�|���M��</span></label>               
+  <label for="touch1"><span class="asidesp">會員專區</span></label>               
   <input type="checkbox" id="touch1" class="touch"> 
 
   <ul class="show" id="slide1">
-    <li><a href="<%= request.getContextPath() %>/front-end/mem/memberInfom.jsp">�|�����</a></li> 
-    <li><a href="<%= request.getContextPath() %>/front-end/mem/update_mem_input.jsp">�|����ƭק�</a></li>
-    <li><a href="<%= request.getContextPath() %>/front-end/fMem/addFMem.jsp">���U�����p�A</a></li>
+    <li><a href="<%= request.getContextPath() %>/front-end/mem/memberInfom.jsp">會員資料</a></li> 
+    <li><a href="<%= request.getContextPath() %>/front-end/mem/update_mem_input.jsp">會員資料修改</a></li>
+    <li><a href="<%= request.getContextPath() %>/front-end/fMem/addFMem.jsp">註冊成為小農</a></li>
   </ul>
   
-  <label for="touch4"><span class="asidesp">�q��޲z</span></label>               
+  <label for="touch4"><span class="asidesp">訂單管理</span></label>               
   <input type="checkbox" id="touch4" class="touch"> 
 
   <ul class="show" id="slide4">
-    <li><a href="<%=request.getContextPath()%>/front-end/shopOrder/listAllOrderByMem.jsp">�ӫ��q��޲z</a></li> 
-    <li><a href="<%=request.getContextPath()%>/front-end/projOrder/listAllOrderByMem.jsp">�{�i�q��޲z</a></li>
-    <li><a href="<%=request.getContextPath()%>/front-end/farmTravel/listAllFarmTravelByMem.jsp">�ȹC��{�q��</a></li>
+    <li><a href="<%=request.getContextPath()%>/front-end/shopOrder/listAllOrderByMem.jsp">商城訂單管理</a></li> 
+    <li><a href="<%=request.getContextPath()%>/front-end/projOrder/listAllOrderByMem.jsp">認養訂單管理</a></li>
+    <li><a href="<%=request.getContextPath()%>/front-end/farmTravel/listAllFarmTravelByMem.jsp">旅遊行程訂單</a></li>
   </ul>
 </aside>
 </body>
