@@ -38,8 +38,7 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
 <!DOCTYPE html>
 
 <html lang="zh-Hant-TW">
-<head
-	prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# zeczec-com: http://ogp.me/ns/fb/zeczec-com#">
+<head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="csrf-param" content="authenticity_token">
 
@@ -79,18 +78,12 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
 
       <div class="container ph3 ph0-l pt3 cf">
         <h2 class="flex mt0">
-          <!-- <a class="order-1 f6 ml4-l black w-100 w-auto-l" href="https://www.zeczec.com/account"><i
-              class="material-icons v-mid dark-gray f4">check</i>
-            成功贊助記錄
-          </a> -->
-          <span class="order-0 flex-auto black w-100 w-auto-l" href="https://www.zeczec.com/account/cancelled">
-            <i class="material-icons v-mid dark-gray f3">error</i>
+        
+          <span class="order-0 flex-auto black w-100 w-auto-l" href="#">
+         
             查看回饋方案
           </span>
-          <!-- <span class="order-3 f6 ml4-l black w-100 w-auto-l" href="https://www.zeczec.com/account/atm"><i
-              class="material-icons v-mid dark-gray f4">timer</i>
-            等待付款記錄
-          </span> -->
+        
         </h2>
 
       </div>
@@ -110,9 +103,9 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
 						<h2 class="f5 mb0 dib mt1 f5 b">${projectVO.proj_name}</h2>
 					</a>
 					<div class="gray f7 mb3">
-						<span>由</span> <a class="b"
+						<span></span> <a class="b"
 							href="#">${fmemSvc.getOneFMem(projectSvc.getOneProject(projectVO.proj_id).f_mem_id).f_mem_fname}</a><span
-							class="mh2">發起</span>
+							class="mh2"></span>
 					</div>
 					<span class="b">目前總認養金額 NT$${projectVO.proj_total_fund}</span> <span class="f7 dark-gray">
 						/ 目標 NT$${projectVO.proj_goal} </span>				</div>
@@ -240,7 +233,7 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
 	</script>
 	
 	
-<!-- <script type="text/javascript">
+<script type="text/javascript">
               $(function () {
                 var projectStartDay = new Date('${projectVO.start_date}'); /*募資開始日*/
                 var thisDay = new Date(); /*今天*/
@@ -265,33 +258,12 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
               function printAlert() {
                 window.alert('專案上架五日後，不能修改或刪除回饋方案');
               }
-</script>  -->
-	
-	
-<!-- 	<script type="text/javascript"> -->
-<!-- //   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod? -->
-<!-- //   n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n; -->
-<!-- //   n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0; -->
-<!-- //   t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, -->
-<!-- //   document,'script','//connect.facebook.net/en_US/fbevents.js'); -->
-<!-- </script> -->
-<!-- 	<script type="text/javascript"> -->
-<!-- //   fbq('init', '465239610292033'); -->
-<!-- //   fbq('track', 'PageView'); -->
 </script>
-<!-- 	<noscript> -->
-<!-- 		<img height='1' width='1' alt='' class='pixel' -->
-<!-- 			style='visibility: hidden' -->
-<!-- 			src='https://www.facebook.com/tr?id=465239610292033&amp;ev=PageView&amp;noscript=1&amp;cd[value]=0&amp;cd[currency]=TWD' /> -->
-<!-- 	</noscript> -->
-<!-- 	<script defer="" -->
-<%-- 		src="<%=request.getContextPath()%>/front-end/projPerk/perkoverview_files/v652eace1692a40cfa3763df669d7439c1639079717194" --%>
-<!-- 		integrity="sha512-Gi7xpJR8tSkrpF7aordPZQlW2DLtzUlZcumS8dMQjwDHEnw9I7ZLyiOj/6tZStRBGtGgN6ceN6cMH8z7etPGlw==" -->
-<!-- 		data-cf-beacon="{&quot;rayId&quot;:&quot;6d631de9aa976a96&quot;,&quot;token&quot;:&quot;e0311a1880d54b88ab9f48eac7540091&quot;,&quot;version&quot;:&quot;2021.12.0&quot;,&quot;si&quot;:100}" -->
-<!-- 		crossorigin="anonymous"></script> -->
-<!-- 	<div id="draggable-live-region" aria-relevant="additions" -->
-<!-- 		aria-atomic="true" aria-live="assertive" role="log" -->
-<!-- 		style="position: fixed; width: 1px; height: 1px; top: -1px; overflow: hidden;"></div> -->
+	
+	
+
+</script>
+
 
     <footer>
          <jsp:include page="/front-end/home/footer_for_Proj_Fmem.jsp" />
