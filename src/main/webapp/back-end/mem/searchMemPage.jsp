@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<!--               本網站由緯育(Tibame)Java雲端服務開發技術養成班-第93期-第二組製作， -->
+<!--               非營利用途，僅為學習交流使用。如有不當使用之內容,請向https://www.tibame.com/聯繋。 -->
+<!-- 參考網站https://shopee.tw/  https://www.zeczec.com/  https://www.buydirectlyfromfarmers.tw/ -->
 <html class="TW" style="overflow: scroll;">
 
 <head>
@@ -79,14 +81,14 @@
 															<div class="shopee-tabs__nav-tab active"
 																style="white-space: normal;">
 																<div data-v-ddf12cca="" class="tab-label">
-																	<span data-v-ddf12cca="" style="color:#717d34; font-size:20px">一般會員</span>
+																	<a href="<%= request.getContextPath() %>/back-end/mem/listAllMem.jsp"><span data-v-ddf12cca="" style="color:#717d34; font-size:20px">一般會員</span></a>
 																</div>
 															</div>
 															
 															<div class="shopee-tabs__nav-tab"
 																style="white-space: normal;">
 																<div data-v-ddf12cca="" class="tab-label" style="font-size:20px;">
-																	<span data-v-ddf12cca="">小農會員</span>
+																	<a href="<%= request.getContextPath() %>/back-end/fMem/listAllFMem.jsp" style="color: black;"><span data-v-ddf12cca="">小農會員</span></a>
 																</div>
 															</div>
 															
