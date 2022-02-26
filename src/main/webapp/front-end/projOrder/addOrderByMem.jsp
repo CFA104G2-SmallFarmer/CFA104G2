@@ -54,30 +54,14 @@ ProjOrderVO projOrderVO = (ProjOrderVO) request.getAttribute("projOrderVO");
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
 
-<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# zeczec-com: http://ogp.me/ns/fb/zeczec-com#">
+<head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!--   <meta name="csrf-param" content="authenticity_token">
-  <meta name="csrf-token"
-    content="XfQ6/GUeBRCsyWWhQ/mzg2ON3cgatwEvKqQzWUj85zaF7O87XzpQUXBkVDfU751V2glEku851UeOMIO/8C4Z9g==">
 
- <%--  <script async="" src="<%=request.getContextPath()%>/front-end/projOrder/addOrderByMem_css/clarity.js"></script>
-  <script type="text/javascript" src="<%=request.getContextPath()%>/front-end/projOrder/addOrderByMem_css/6df56d3465"></script>
-  <script src="<%=request.getContextPath()%>/front-end/projOrder/addOrderByMem_css/nr-1215.min.js"></script>
-  <script src="<%=request.getContextPath()%>/front-end/projOrder/addOrderByMem_css/465239610292033" async=""></script>
-  <script async="" src="<%=request.getContextPath()%>/front-end/projOrder/addOrderByMem_css/fbevents.js"></script>
-  <script src="<%=request.getContextPath()%>/front-end/projOrder/addOrderByMem_css/sdk.js" async="" crossorigin="anonymous"></script>
-  <script id="facebook-jssdk" src="<%=request.getContextPath()%>/front-end/projOrder/addOrderByMem_css/sdk(1).js"></script>
-  <script async="" src="<%=request.getContextPath()%>/front-end/projOrder/addOrderByMem_css/analytics.js"></script>
-  <script async="" src="<%=request.getContextPath()%>/front-end/projOrder/addOrderByMem_css/9ve6cixxpl"></script> --%>
 
-  <meta content="width=device-width, initial-scale=1" name="viewport"> -->
+  <meta content="width=device-width, initial-scale=1" name="viewport"> 
   <meta content="zh_TW" property="og:locale">
   <meta content="zh_TW" property="og:locale:alternate">
- <!--  <link
-    href="https://www.zeczec.com/assets/logo-square-04c45286e84ea49d07c97c86625fbf3a75f4f32dd02da3ad3ca70a9a68fd0395.png"
-    rel="apple-touch-icon">
-  <link href="https://www.zeczec.com/assets/fav-69601a279a66f2e6e31e508900d4f057559d3affcae42730d045b17d281107a6.png"
-    rel="shortcut icon" type="image/x-icon"> -->
+ 
 <title>我家門前有塊地 | ${projectVO.proj_name} |</title>
   <link href="<%=request.getContextPath()%>/front-end/projOrder/addOrderByMem_css/css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" media="all"
@@ -195,9 +179,9 @@ font-size=20px;
             <h2 class="f5 mb0 dib mt1 f5 b">${projectVO.proj_name}</h2>
           </a>
           <div class="gray f7 mb3">
-            <span>由</span> <a class="b"
+            <span></span> <a class="b"
               href="#">${fmemSvc.getOneFMem(projectSvc.getOneProject(projectVO.proj_id).f_mem_id).f_mem_fname}</a><span
-              class="mh2">發起</span>
+              class="mh2"></span>
           </div>
           <span class="b">目前總認養金額 NT$${projectVO.proj_total_fund}</span> <span class="f7 dark-gray">
             / 目標 NT$${projectVO.proj_goal} </span>
@@ -399,7 +383,7 @@ font-size=20px;
                   <br>
                   提案人有權決定是否接受認養訂單。
                   <br>
-                  如提案人因故決定不接受認養訂單，將會取消訂單並主動退還訂單款項。${projPerkVO.perk_id}
+                  如提案人因故決定不接受認養訂單，將會取消訂單並主動退還訂單款項。
                 </p>
 
 <%--  <p> mem_id= <%=memVO.getMem_id()%></p> --%>
@@ -440,13 +424,13 @@ font-size=20px;
     fbq('init', '465239610292033');
     fbq('track', 'PageView');
   </script>
-  <noscript><img height='1' width='1' alt='' class='pixel' style='visibility:hidden'
+<%--   <noscript><img height='1' width='1' alt='' class='pixel' style='visibility:hidden'
       src='https://www.facebook.com/tr?id=465239610292033&amp;ev=PageView&amp;noscript=1&amp;cd[value]=0&amp;cd[currency]=TWD' /></noscript>
 
   <script defer="" src="<%=request.getContextPath()%>/front-end/projOrder/addOrderByMem_css/v652eace1692a40cfa3763df669d7439c1639079717194"
     integrity="sha512-Gi7xpJR8tSkrpF7aordPZQlW2DLtzUlZcumS8dMQjwDHEnw9I7ZLyiOj/6tZStRBGtGgN6ceN6cMH8z7etPGlw=="
     data-cf-beacon="{&quot;rayId&quot;:&quot;6cb4dc8208c10734&quot;,&quot;token&quot;:&quot;e0311a1880d54b88ab9f48eac7540091&quot;,&quot;version&quot;:&quot;2021.12.0&quot;,&quot;si&quot;:100}"
-    crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script> --%>
 
 
   <div id="draggable-live-region" aria-relevant="additions" aria-atomic="true" aria-live="assertive" role="log"
