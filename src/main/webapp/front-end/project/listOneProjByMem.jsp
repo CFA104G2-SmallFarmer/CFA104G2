@@ -395,7 +395,7 @@ crossorigin="anonymous" />
 							<div style="margin-top: 10px; margin-bottom: 20px; height: 17px;"
 								class="w-100-l w-50-ns ph3 ph0-l flex-none self-start">
 							
-							<FORM id="search_form6" METHOD="post" ACTION="<%=request.getContextPath()%>/projPerk/projPerk.do">	
+						<%-- 	<FORM id="search_form6" METHOD="post" ACTION="<%=request.getContextPath()%>/projPerk/projPerk.do">	
 							
 									<div onClick="document.forms['search_form6'].submit();" style="color: #8f7e5d; font-size: 16px; border-radius: 0px; text-align: center; border: solid #aaba8b 1.5px; padding: 4px;"
 										class="w-100 ph3 ph0-l flex-none self-start buyy buya">
@@ -405,15 +405,15 @@ crossorigin="anonymous" />
 								<input type="hidden" name="proj_id"  value="${projectVO.proj_id}">
  								<input type="hidden" name="perk_id"  value="${projPerkVO.perk_id}">
                       		    <input type="hidden" name="action" value="go_to_addOrderByMem">	 
-								   </FORM>
-								<%-- <a class="buya"
+								   </FORM> --%>
+								 <a class="buya"
 									href="${pageContext.request.contextPath}/projPerk/projPerk.do?proj_id=${projectVO.proj_id}&mem_id=${memVO.mem_id}&perk_id=${projPerkVO.perk_id}&action=go_to_addOrderByMem">
 									<div
 										style="color: #8f7e5d; font-size: 16px; border-radius: 0px; text-align: center; border: solid #aaba8b 1.5px; padding: 4px;"
 										class="w-100 ph3 ph0-l flex-none self-start buyy">
 										<strong>認購此專案</strong>
 									</div>
-								</a> --%>
+								</a>
 								
 							</div>
 							<!-- </a> -->
