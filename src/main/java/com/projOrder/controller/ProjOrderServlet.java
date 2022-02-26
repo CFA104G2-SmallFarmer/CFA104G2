@@ -1898,6 +1898,11 @@ if ("logout_By_Proj".equals(action)) { // 來自addEmp.jsp的請求
 			}catch (Exception e) {
 				// TODO: handle exception
 			}
+		
+			String url = "/front-end/home/home.jsp";
+			RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
+			successView.forward(req, res);
+
 }
         
         
