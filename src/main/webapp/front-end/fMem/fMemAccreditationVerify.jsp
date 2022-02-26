@@ -3,8 +3,10 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.fMem.model.*"%>
 <%@ page import="com.mem.model.*"%>
-<!-- 有時間可接入信箱更改驗證  處理取的FMem物件 -->
-<!-- shopee-dropdown__entry--selected 更改框線顏色 -->
+<!--               本網站由緯育(Tibame)Java雲端服務開發技術養成班-第93期-第二組製作， -->
+<!--               非營利用途，僅為學習交流使用。如有不當使用之內容,請向https://www.tibame.com/聯繋。 -->
+<!-- 參考網站https://shopee.tw/  https://www.zeczec.com/  https://www.buydirectlyfromfarmers.tw/ -->
+<!-- saved from url=(0038)https://shopee.tw/user/account/profile -->
 <%FMemVO fMemVO = (FMemVO) session.getAttribute("fMemVO");%>
 <%MemVO memVO = (MemVO) session.getAttribute("memVO");%>
 <%
@@ -22,8 +24,6 @@ for(FMemVO fMemVO2 : list) {
 	}
 }
 %>
-<%-- <%= fMemVO==null %> --%>
-<%-- <%= fMemVO.getF_mem_id() %> --%>
 <!DOCTYPE html>
 <html lang="zh-Hant">
 
@@ -502,7 +502,7 @@ invisible.style.display = "";
 								<div class="_2w2H6X" >
 									<h1 class="_3iiDCN">認證審核</h1>
 									<div class="TQG40c">提交認證照片以供審核</div>
-									<div style="height: 36px;">
+									<div >
 										<%-- 錯誤表列 --%>
 										<c:if test="${not empty errorMsgs}">
 											<font style="color: red">請修正以下錯誤:</font>

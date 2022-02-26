@@ -3,10 +3,12 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.fMem.model.*"%>
 <%@ page import="com.mem.model.*"%>
-<!-- 有時間可接入信箱更改驗證 -->
-<!-- shopee-dropdown__entry--selected 更改框線顏色 -->
 <%FMemVO fMemVO = (FMemVO) session.getAttribute("fMemVO");%>
 <%MemVO memVO = (MemVO) session.getAttribute("memVO");%>
+<!--               本網站由緯育(Tibame)Java雲端服務開發技術養成班-第93期-第二組製作， -->
+<!--               非營利用途，僅為學習交流使用。如有不當使用之內容,請向https://www.tibame.com/聯繋。 -->
+<!-- 參考網站https://shopee.tw/  https://www.zeczec.com/  https://www.buydirectlyfromfarmers.tw/ -->
+<!-- saved from url=(0038)https://shopee.tw/user/account/profile -->
 <!DOCTYPE html>
 <html lang="zh-Hant">
 
@@ -22,19 +24,7 @@
 <script>
 	dataLayer = []
 </script>
-<script>
-	!function(e, t, a, n, r) {
-		e[n] = e[n] || [], e[n].push({
-			"gtm.start" : (new Date).getTime(),
-			event : "gtm.js",
-			country : "tw"
-		});
-		var g = t.getElementsByTagName(a)[0], m = t.createElement(a);
-				m.async = !0,
-				m.src = "https://www.googletagmanager.com/gtm.js?id=GTM-WJZQSJF",
-				g.parentNode.insertBefore(m, g)
-	}(window, document, "script", "dataLayer")
-</script>
+
 <link href="./fMem_files/bundle.57fe1e2ad5aca5e20f23.css"
 	rel="stylesheet">
 <style
@@ -461,9 +451,35 @@ invisible.style.display = "";
 }
 </script>
 
+<script>
+// var btnSubmit = document.getElementById('btnSubmit');
+// var formSubmit = document.getElementById('formSubmit');
+// btnSubmit.addEventListener('click', function(e) {
+//   e.preventDefault();
+// Swal.fire({
+// 	  title: '確定要送出?',
+// 	  icon: 'warning',
+// 	  showCancelButton: true,
+// 	  confirmButtonColor: '#3085d6',
+// 	  cancelButtonColor: '#d33',
+// 	  confirmButtonText: '確定'
+// 	}).then((result) => {
+// 	  if (result) {
+// 	    Swal.fire(
+// 	      '已成功註冊',
+// 	      '點按會員登入重新登入!'
+// 	    ).then((result) => {
+// 	    	formSubmit.submit();
+// 	    }).catch(swal.noop);
+// 	  }
+// 	});
+// });
+</script>
+
 <script src="chrome-extension://jhffgcfmcckgmioipfnmbannkpncfipo/pagejs.js"></script>
-<!-- sweet alert -->
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!-- sweetalert -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.js" type="text/javascript"></script> -->
+<!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
 
 <link rel="stylesheet" type="text/css"
 	href="./fMem_files/2825.51680d86fe84cd4ddf65.css">
@@ -485,7 +501,7 @@ invisible.style.display = "";
 								<div class="_2w2H6X">
 									<h1 class="_3iiDCN">小農註冊</h1>
 									<div class="TQG40c">提交資料以供審核</div>
-									<div style="height: 36px;">
+									<div style="height:;">
 										<%-- 錯誤表列 --%>
 										<c:if test="${not empty errorMsgs}">
 											<font style="color: red">請修正以下錯誤:</font>
@@ -497,7 +513,7 @@ invisible.style.display = "";
 										</c:if>
 									</div>
 								</div>
-								<FORM METHOD="post" ACTION="fMem.do" name="form1" enctype="multipart/form-data" style="width:587px;">
+								<FORM METHOD="post" ACTION="fMem.do" name="form1"  id="formSubmit" enctype="multipart/form-data" style="width:587px;">
 									<div class="goiz2O">
 										<div class="pJout2">
 											<!-- 可更改form表單寬度 -->
@@ -732,7 +748,7 @@ invisible.style.display = "";
 											<!-- 這邊控制傳送至Servlet -->
 											<input type="hidden" name="action" value="insert"> 
 											<div class="_31PFen">
-												<button style="background-color:#b9d4b3;" type="submit" id="demo4"
+												<button style="background-color:#b9d4b3;" type="submit" 
 													class="btn btn-solid-primary btn--m btn--inline"
 													aria-disabled="false">送出申請</button>
 											</div>
@@ -769,6 +785,32 @@ invisible.style.display = "";
 	<script
 		src="./fMem_files/back-7b8325ae78ca7c794fdc8c2ff6c2ef5676fc24748e3a262866e67978e98c4561.js"
 		type="text/javascript"></script>
+		
+<script>
+var btnSubmit = document.getElementById('btnSubmit');
+var formSubmit = document.getElementById('formSubmit');
+btnSubmit.addEventListener('click', function(e) {
+  e.preventDefault();
+Swal.fire({
+	  title: '確定要送出?',
+	  icon: 'warning',
+	  showCancelButton: true,
+	  confirmButtonColor: '#3085d6',
+	  cancelButtonColor: '#d33',
+	  confirmButtonText: '確定'
+	}).then((result) => {
+	  if (result) {
+	    Swal.fire(
+	      '已成功註冊',
+	      '點按會員登入重新登入!'
+	    ).then((result) => {
+	    	formSubmit.submit();
+	    }).catch(swal.noop);
+	  }
+	});
+});
+</script>
+		
 </body>
 
 </html>

@@ -3,8 +3,10 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.mem.model.*"%>
 <%@ page import="com.fMem.model.*"%>
-<!-- 有時間可接入信箱更改驗證 -->
-<!-- shopee-dropdown__entry--selected 更改框線顏色 -->
+<!--               本網站由緯育(Tibame)Java雲端服務開發技術養成班-第93期-第二組製作， -->
+<!--               非營利用途，僅為學習交流使用。如有不當使用之內容,請向https://www.tibame.com/聯繋。 -->
+<!-- 參考網站https://shopee.tw/  https://www.zeczec.com/  https://www.buydirectlyfromfarmers.tw/ -->
+<!-- saved from url=(0038)https://shopee.tw/user/account/profile -->
 <%FMemVO fMemVO = (FMemVO) session.getAttribute("fMemVO");%>
 <%MemVO memVO = (MemVO) session.getAttribute("memVO");%>
 <%
@@ -442,7 +444,6 @@ to {
 	cursor: pointer;
 }
 
-/*# sourceMappingURL=https://shopee.sg/assets/1714.97be9cb79641e5619edf.css.map*/
 </style>
 
 <!-- 我加的 -->
@@ -503,7 +504,7 @@ invisible.style.display = "";
 								<div class="_2w2H6X">
 									<h1 class="_3iiDCN">小農資料修改</h1>
 									<div class="TQG40c">修改資料及新增頭貼</div>
-									<div style="height: 36px;">
+									<div>
 										<%-- 錯誤表列 --%>
 										<c:if test="${not empty errorMsgs}">
 											<font style="color: red">請修正以下錯誤:</font>
@@ -821,86 +822,6 @@ invisible.style.display = "";
 													</div>
 												</div>
 											</div>
-											<!-- 											<div class="_3BlbUs"> -->
-											<!-- 												<div class="_1iNZU3"> -->
-											<!-- 													<div class="_2PfA-y"> -->
-											<!-- 														<label>賣場名稱</label> -->
-											<!-- 													</div> -->
-											<!-- 													<div class="_2_JugQ"> -->
-											<!-- 														<div class="input-with-validator-wrapper"> -->
-											<!-- 															<div class="input-with-validator"> -->
-											<!-- 																<input type="text" placeholder="" maxlength="255" -->
-											<!-- 																	value="seansu411"> -->
-											<!-- 															</div> -->
-											<!-- 														</div> -->
-											<!-- 													</div> -->
-											<!-- 												</div> -->
-											<!-- 											</div> -->
-											<!-- 											<div class="_3BlbUs"> -->
-											<!-- 												<div class="_1iNZU3"> -->
-											<!-- 													<div class="_2PfA-y"> -->
-											<!-- 														<label>性別</label> -->
-											<!-- 													</div> -->
-											<!-- 													<div class="_2_JugQ"> -->
-											<!-- 														<div class="_119wWy"> -->
-											<!-- 															<div class="stardust-radio-group" role="radiogroup"> -->
-											<!-- 																<div class="stardust-radio stardust-radio--checked" -->
-											<!-- 																	tabindex="0" role="radio" aria-checked="true"> -->
-											<!-- 																	<div -->
-											<!-- 																		class="stardust-radio-button stardust-radio-button--checked"> -->
-											<!-- 																		<div class="stardust-radio-button__outer-circle"> -->
-											<!-- 																			<div class="stardust-radio-button__inner-circle"> -->
-											<!-- 																			</div> -->
-											<!-- 																		</div> -->
-											<!-- 																	</div> -->
-											<!-- 																	<div class="stardust-radio__content"> -->
-											<!-- 																		<div class="stardust-radio__label">男性</div> -->
-											<!-- 																	</div> -->
-											<!-- 																</div> -->
-											<!-- 																<div class="stardust-radio" tabindex="0" role="radio" -->
-											<!-- 																	aria-checked="false"> -->
-											<!-- 																	<div class="stardust-radio-button"> -->
-											<!-- 																		<div class="stardust-radio-button__outer-circle"> -->
-											<!-- 																			<div class="stardust-radio-button__inner-circle"> -->
-											<!-- 																			</div> -->
-											<!-- 																		</div> -->
-											<!-- 																	</div> -->
-											<!-- 																	<div class="stardust-radio__content"> -->
-											<!-- 																		<div class="stardust-radio__label">女性</div> -->
-											<!-- 																	</div> -->
-											<!-- 																</div> -->
-											<!-- 																<div class="stardust-radio" tabindex="0" role="radio" -->
-											<!-- 																	aria-checked="false"> -->
-											<!-- 																	<div class="stardust-radio-button"> -->
-											<!-- 																		<div class="stardust-radio-button__outer-circle"> -->
-											<!-- 																			<div class="stardust-radio-button__inner-circle"> -->
-											<!-- 																			</div> -->
-											<!-- 																		</div> -->
-											<!-- 																	</div> -->
-											<!-- 																	<div class="stardust-radio__content"> -->
-											<!-- 																		<div class="stardust-radio__label">其他</div> -->
-											<!-- 																	</div> -->
-											<!-- 																</div> -->
-											<!-- 															</div> -->
-											<!-- 														</div> -->
-											<!-- 													</div> -->
-											<!-- 												</div> -->
-											<!-- 											</div> -->
-											<!--
-<div class="_3BlbUs"></div> 用於下padding
-用於下方的模板 
-<div class="_1iNZU3">
-	放置label處
-	<div class="_2_JugQ">
-		<div class="_2w5iZe">
-			放置input或select處
-		</div>
-	</div>
-</div>
-
-<div class="flex"></div> 將兩個區塊div併在一行
--->
-
 
 											<!-- 這邊控制傳送至Servlet -->
 											<input type="hidden" name="action" value="Update_FMem_Input"> 
@@ -921,15 +842,10 @@ invisible.style.display = "";
 												</div>
 
 												<input class="_2xS5eV" type="file" accept=".jpg,.jpeg,.png">
-												<!-- <button type="button" -->
-												<!-- class="btn btn-light btn--m btn--inline">選擇圖片</button> -->
 												<input class="btn btn-light btn--m btn--inline selectimg"
 													type="file" accept="image/*" style="display: block;"
 													name="f_mem_pic" value="<%=fMemVO.getF_mem_pic()%>">
 												<div class="_3Jd4Zu">
-<%-- 												<c:if test="${!empty memVO.mem_pic}"><c:set var="mem_pic" value="${context_root}/MemGifReader?mem_id=${memVO.mem_id}"/></c:if> --%>
-<!-- 													<div class="_3UgHT6">檔案大小:最大1MB</div> -->
-<!-- 													<div class="_3UgHT6">檔案限制: .JPEG, .PNG</div> -->
 												</div>
 											</div>
 										</div>
