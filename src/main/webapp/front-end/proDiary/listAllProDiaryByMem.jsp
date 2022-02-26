@@ -12,10 +12,21 @@
 <%
 ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 
-ProDiaryService proDiarySvc = new ProDiaryService();
+
+/* ProDiaryService proDiarySvc = new ProDiaryService();
 List<ProDiaryVO> list2 = proDiarySvc.getAll(projectVO.getProj_id());
 pageContext.setAttribute("list2", list2);
-/* ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO"); */
+
+getAll_groupingBy_dir_upload_state */
+
+ProDiaryService proDiarySvc = new ProDiaryService();
+Map<Integer, List<ProDiaryVO>> list1 = proDiarySvc.getAll_groupingBy_dir_upload_state(projectVO.getProj_id());
+
+
+Integer dir_upload_state =1;
+List<ProDiaryVO> list2 =list1.get(dir_upload_state);
+pageContext.setAttribute("list2", list2);
+
 
 Map<Date, List<ProDiaryVO>>  list3 = proDiarySvc.getAll_groupingBy_date(projectVO.getProj_id());
 pageContext.setAttribute("list3", list3);		

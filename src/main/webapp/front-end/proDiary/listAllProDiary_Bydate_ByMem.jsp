@@ -13,12 +13,12 @@
 ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 
 ProDiaryService proDiarySvc = new ProDiaryService();
-List<ProDiaryVO> list2 = proDiarySvc.getAll(projectVO.getProj_id());
-pageContext.setAttribute("list2", list2);
+/* List<ProDiaryVO> list2 = proDiarySvc.getAll(projectVO.getProj_id());
+pageContext.setAttribute("list2", list2); */
 /* ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO"); */
 
-Map<Date, List<ProDiaryVO>>  list3 = proDiarySvc.getAll_groupingBy_date(projectVO.getProj_id());
-pageContext.setAttribute("list3", list3);		
+Map<Date, List<ProDiaryVO>>  list3 = proDiarySvc.getAll_groupingBy_dir_upload_state_By_State1(projectVO.getProj_id());
+pageContext.setAttribute("list3", list3);	
 java.sql.Date dir_upload_date =(java.sql.Date)request.getAttribute("dir_upload_date");
 pageContext.setAttribute("dir_upload_date3", dir_upload_date);	
 %>
