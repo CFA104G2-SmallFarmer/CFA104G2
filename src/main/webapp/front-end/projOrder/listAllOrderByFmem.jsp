@@ -430,7 +430,7 @@ margin-top:20px;
 
         <li><a href="<%=request.getContextPath()%>/front-end/projOrder/listAllOrderByFmem.jsp">小農認養訂單管理&nbsp;</a></li>
 
-        <li><a href="#">回到首頁 &nbsp;</a></li>
+           <li><a href="<%=request.getContextPath()%>/front-end/home/home.jsp">回到首頁 &nbsp;</a></li>
         <li><a href="#"><span class="material-icons" style="font-size:27px">mail_outline</span></a></li>
       </ul>
       <div class="div0 showmenu">
