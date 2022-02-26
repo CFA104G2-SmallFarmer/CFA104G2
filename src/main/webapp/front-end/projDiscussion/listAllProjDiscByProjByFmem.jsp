@@ -468,8 +468,8 @@ margin-top:20px;
 						<h2 class="f5 mb0 dib mt1 f5 b">${projectVO.proj_name}</h2>
 					</a>
 					<div class="gray f7 mb3">
-						<span>由</span> <a class="b" href="#">${fmemSvc.getOneFMem(projectSvc.getOneProject(projectVO.proj_id).f_mem_id).f_mem_fname}</a><span
-							class="mh2">發起</span>
+						<span></span> <a class="b" href="#">${fmemSvc.getOneFMem(projectSvc.getOneProject(projectVO.proj_id).f_mem_id).f_mem_fname}</a><span
+							class="mh2"></span>
 					</div>
 					<span class="b">目前總認養金額 NT$${projectVO.proj_total_fund}</span> <span
 						class="f7 dark-gray"> / 目標 NT$${projectVO.proj_goal} </span>

@@ -115,8 +115,7 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
             成功贊助記錄
           </a> -->
 					<span class="order-0 flex-auto black w-100 w-auto-l"
-						href="https://www.zeczec.com/account/cancelled"> <i
-						class="material-icons v-mid dark-gray f3">error</i> 查看回饋方案
+						href="https://www.zeczec.com/account/cancelled"> <i class="material-icons" style="font-size:26px">sms</i>留言區
 					</span>
 					<!-- <span class="order-3 f6 ml4-l black w-100 w-auto-l" href="https://www.zeczec.com/account/atm"><i
               class="material-icons v-mid dark-gray f4">timer</i>
@@ -142,8 +141,8 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
 						<h2 class="f5 mb0 dib mt1 f5 b">${projectVO.proj_name}</h2>
 					</a>
 					<div class="gray f7 mb3">
-						<span>由</span> <a class="b" href="#">${fmemSvc.getOneFMem(projectSvc.getOneProject(projectVO.proj_id).f_mem_id).f_mem_fname}</a><span
-							class="mh2">發起</span>
+						<span></span> <a class="b" href="#">${fmemSvc.getOneFMem(projectSvc.getOneProject(projectVO.proj_id).f_mem_id).f_mem_fname}</a><span
+							class="mh2"></span>
 					</div>
 					<span class="b">目前總認養金額 NT$${projectVO.proj_total_fund}</span> <span
 						class="f7 dark-gray"> / 目標 NT$${projectVO.proj_goal} </span>

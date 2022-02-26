@@ -299,9 +299,7 @@ ul.pagination {
 											</p>
 										</div>
 										<div class="downMeta">
-											<div class="progressbar  goal ">
-												<div class="bar" style="width: 100%;"></div>
-											</div>
+											
 											<span class="goalMoney">${projectVO.proj_total_fund}</span>&nbsp;
 											<span class="hidden-md goalpercent goal"> <c:out
 													value="${Math.round(projectVO.proj_total_fund/projectVO.proj_goal*100)}" />

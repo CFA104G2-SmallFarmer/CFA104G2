@@ -107,23 +107,11 @@ footer:hover .logo-safari-fix {
 				</c:if>
 				<a class="db"
 					href="#"><h2
-						class="f4 mt2 mb1">${projectVO.proj_name}</h2> </a><span
-					class="f6 mr1">提案人</span><a class="b f6"
+						class="f4 mt2 mb1">${projectVO.proj_name}</h2> </a><a class="b f6"
 					href="#">${fmemSvc.getOneFMem(projectSvc.getOneProject(projectVO.proj_id).f_mem_id).f_mem_fname}</a>
 				<p class="f6 gray mv3">${projectVO.proj_abstract}</p>
 				<div class="mv3 relative flex items-center flex-nowrap">
-					<svg class="progress mr3 succeeded sprint">
-					<circle class="progress-run js-percentage-circle" cx="32" cy="32"
-							r="32" style="stroke-dasharray: 201 200"></circle>
-					<text class="stroke js-percentage-raised" text-anchor="middle"
-							transform="rotate(90)" x="32" y="-27">
-					${Math.round(projectVO.proj_total_fund/projectVO.proj_goal*100)}%
-					</text>
-					<text class="js-percentage-raised" text-anchor="middle"
-							transform="rotate(90)" x="32" y="-27">
-					${Math.round(projectVO.proj_total_fund/projectVO.proj_goal*100)}%
-					</text>
-					</svg>
+					
 					<div class="flex-auto">
 						<div class="f3 b js-sum-raised nowrap">NT$${projectVO.proj_total_fund}</div>
 						<div class="f7">目標 NT$${projectVO.proj_goal}</div>

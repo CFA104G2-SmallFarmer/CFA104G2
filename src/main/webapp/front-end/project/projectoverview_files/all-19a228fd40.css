@@ -16177,16 +16177,16 @@ body.lobibox-open {
 }
 
 .lobibox.lobibox-error {
-    border: 1px solid #CA2121
+    border: 1px solid #717d34
 }
 
 .lobibox.lobibox-error .lobibox-header {
     color: #eee;
-    background-color: #CA2121
+    background-color: #717d34
 }
 
 .lobibox.lobibox-error .lobibox-body .lobibox-icon {
-    color: #CA2121
+    color: #717d34
 }
 
 .lobibox.lobibox-error .lobibox-footer {
@@ -16361,8 +16361,8 @@ body.lobibox-open {
 
 .lobibox .lobibox-btn.lobibox-btn-cancel {
     color: #FFF;
-    background-color: #CA2121;
-    border-color: #CA2121
+    background-color: #717d34;
+    border-color: #717d34
 }
 
 .lobibox .lobibox-btn.lobibox-btn-cancel.active, .lobibox .lobibox-btn.lobibox-btn-cancel.focus, .lobibox .lobibox-btn.lobibox-btn-cancel:active, .lobibox .lobibox-btn.lobibox-btn-cancel:focus, .lobibox .lobibox-btn.lobibox-btn-cancel:hover, .open>.dropdown-toggle.lobibox .lobibox-btn.lobibox-btn-cancel {
@@ -16372,12 +16372,12 @@ body.lobibox-open {
 }
 
 .lobibox .lobibox-btn.lobibox-btn-cancel.disabled, .lobibox .lobibox-btn.lobibox-btn-cancel.disabled.active, .lobibox .lobibox-btn.lobibox-btn-cancel.disabled.focus, .lobibox .lobibox-btn.lobibox-btn-cancel.disabled:active, .lobibox .lobibox-btn.lobibox-btn-cancel.disabled:focus, .lobibox .lobibox-btn.lobibox-btn-cancel.disabled:hover, .lobibox .lobibox-btn.lobibox-btn-cancel[disabled], .lobibox .lobibox-btn.lobibox-btn-cancel[disabled].active, .lobibox .lobibox-btn.lobibox-btn-cancel[disabled].focus, .lobibox .lobibox-btn.lobibox-btn-cancel[disabled]:active, .lobibox .lobibox-btn.lobibox-btn-cancel[disabled]:focus, .lobibox .lobibox-btn.lobibox-btn-cancel[disabled]:hover, fieldset[disabled] .lobibox .lobibox-btn.lobibox-btn-cancel, fieldset[disabled] .lobibox .lobibox-btn.lobibox-btn-cancel.active, fieldset[disabled] .lobibox .lobibox-btn.lobibox-btn-cancel.focus, fieldset[disabled] .lobibox .lobibox-btn.lobibox-btn-cancel:active, fieldset[disabled] .lobibox .lobibox-btn.lobibox-btn-cancel:focus, fieldset[disabled] .lobibox .lobibox-btn.lobibox-btn-cancel:hover {
-    background-color: #CA2121;
-    border-color: #CA2121
+    background-color: #717d34;
+    border-color: #717d34
 }
 
 .lobibox .lobibox-btn.lobibox-btn-cancel .badge {
-    color: #CA2121;
+    color: #717d34;
     background-color: #FFF
 }
 
@@ -16575,8 +16575,8 @@ body.lobibox-open {
 }
 
 .lobibox-notify-wrapper-large .lb-notify-tabs>li.lobibox-notify-error>a:hover {
-    background-color: #CA2121;
-    border-color: #b41d1d
+    background-color: #717d34;
+    border-color: #717d34
 }
 
 .lobibox-notify-wrapper-large .lb-notify-tabs>li.lobibox-notify-success>a {
@@ -16756,13 +16756,13 @@ a, a svg path {
 }
 
 .lobibox-notify.lobibox-notify-error {
-    border-color: #b41d1d;
-    background-color: #CA2121;
+    border-color: #717d34;
+    background-color: #717d34;
     color: #FFF
 }
 
 .lobibox-notify.lobibox-notify-error:hover {
-    background-color: #CA2121;
+    background-color: #717d34;
     border-color: #FFF
 }
 
@@ -16972,7 +16972,7 @@ body, html {
 }
 
 body {
-    font-family: "Noto Sans TC", "Helvetica Neue", "Heiti TC", "Microsoft JhengHei", Arial, sans-serif;
+    font-family: "Noto Sans TC", "Helvetica Neue", "Heiti TC", "Microsoft JhengHei";
     letter-spacing: 1.6px;
     color: #212121
 }
@@ -16997,7 +16997,7 @@ p {
 }
 
 a {
-    color: #f8414a;
+    color: #717d34;
     text-decoration: none;
     cursor: pointer;
     outline: 0
@@ -17005,7 +17005,7 @@ a {
 
 a:active, a:hover, a:link, a:visited {
     text-decoration: none;
-    color: #f8414a
+    color: #717d34
 }
 
 small {
@@ -17067,7 +17067,7 @@ section {
 }
 
 .flyingRed {
-    color: #f8414a !important
+    color: #717d34 !important
 }
 
 .flyingBlue {
@@ -17118,7 +17118,7 @@ section {
 }
 
 .btn.fRed {
-    background: #f8414a;
+    background: #717d34;
     color: #fff
 }
 
@@ -17127,13 +17127,13 @@ section {
 }
 
 .btn.fGhostred {
-    color: #f8414a;
-    border-color: #f8414a;
+    color: #717d34;
+    border-color: #717d34;
     background-color: transparent
 }
 
 .btn.fGhostred:hover {
-    background: #f8414a;
+    background: #717d34;
     color: #fff
 }
 
@@ -17163,7 +17163,7 @@ section {
 }
 
 .blue, .btn-alike {
-    color: #f8414a
+    color: #717d34
 }
 
 .btn-alike:hover, .btn.fDark {
@@ -17391,7 +17391,7 @@ section {
 }
 
 .form-control:focus, .uneditable-input:focus, input[type=date]:focus, input[type=time]:focus, input[type=datetime-local]:focus, input[type=month]:focus, input[type=text]:focus, input[type=password]:focus, input[type=datetime]:focus, input[type=week]:focus, input[type=email]:focus, input[type=url]:focus, input[type=tel]:focus, input[type=color]:focus, input[type=number]:focus, input[type=search]:focus {
-    border-color: #f8414a;
+    border-color: #717d34;
     box-shadow: none;
     outline: 0
 }
@@ -17418,7 +17418,7 @@ section {
     content: "";
     height: 12px;
     width: 8px;
-    background: #f8414a
+    background: #717d34
 }
 
 h1.bluequote:before {
@@ -17451,7 +17451,7 @@ h2.bluequote:before {
 }
 
 .mdl-button--fab.mdl-button--colored {
-    background: #f8414a
+    background: #717d34
 }
 
 .flyingLightbox {
@@ -17547,9 +17547,9 @@ h2.bluequote:before {
 }
 
 .infoTitle {
-    color: #f8414a;
+    color: #717d34;
     padding-left: 15px;
-    border-left: 3px solid #f8414a;
+    border-left: 3px solid #717d34;
     margin-bottom: 15px
 }
 
@@ -17597,7 +17597,7 @@ h2.bluequote:before {
 }
 
 .flyingUpload {
-    color: #f8414a;
+    color: #717d34;
     font-size: 12px;
     border: 1px dashed #cdcdcd;
     display: block;
@@ -17742,7 +17742,7 @@ h2.bluequote:before {
 }
 
 .pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus, .pagination>li>span:hover {
-    color: #f8414a
+    color: #717d34
 }
 
 .fullscreenHeader {
@@ -17859,7 +17859,7 @@ h2.bluequote:before {
     font-size: 16px;
     font-weight: 700;
     letter-spacing: 2px;
-    color: #f8414a
+    color: #717d34
 }
 
 .mainBlock a.more span {
@@ -17896,12 +17896,12 @@ h2.bluequote:before {
 }
 
 .mainBlock .catNav li.active, .mainBlock .catNav li:hover {
-    color: #f8414a;
-    border-bottom-color: #f8414a
+    color: #717d34;
+    border-bottom-color: #717d34
 }
 
 .mainBlock .catNav li a:hover {
-    color: #f8414a
+    color: #717d34
 }
 
 @media (max-width:768px) {
@@ -18032,11 +18032,11 @@ h2.bluequote:before {
 }
 
 .mainBlock#siteCategory .category-wrapper .category-item a.active, .mainBlock#siteCategory .category-wrapper .category-item a:hover {
-    color: #f8414a
+    color: #717d34
 }
 
 .mainBlock#siteCategory .category-wrapper .category-item a.active .category-circle svg path, .mainBlock#siteCategory .category-wrapper .category-item a:hover .category-circle svg path {
-    fill: #f8414a
+    fill: #717d34
 }
 
 .mainBlock#siteCategory .category-wrapper .category-circle {
@@ -18094,7 +18094,7 @@ h2.bluequote:before {
 }
 
 .mainBlock#siteCategory .category-wrapper .owl-dots .owl-dot.active span {
-    background: #f8414a
+    background: #717d34
 }
 
 @media (min-width:680px) {
@@ -18186,7 +18186,7 @@ h2.bluequote:before {
 }
 
 .mainBlock#curatorPad .curator-wrapper .curator-projects .curator-project:hover p {
-    color: #f8414a
+    color: #717d34
 }
 
 .mainBlock#curatorPad .curator-wrapper .curator-projects .curator-project:hover .image>div {
@@ -18272,7 +18272,7 @@ h2.bluequote:before {
 
 .pushnote:before {
     font-family: FontAwesome;
-    background: #f8414a;
+    background: #717d34;
     position: absolute;
     width: 6px;
     height: 6px;
@@ -18308,7 +18308,7 @@ h2.bluequote:before {
 
 .paperBlock h2 {
     font-size: 18px;
-    color: #f8414a;
+    color: #717d34;
     margin: 15px 0
 }
 
@@ -18483,7 +18483,7 @@ h2.bluequote:before {
     left: 80px;
     top: -5px;
     width: 100px;
-    color: #f8414a;
+    color: #717d34;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     border-radius: 10px
@@ -18528,10 +18528,10 @@ h2.bluequote:before {
 
 .gradientBk {
     background: #ef7070;
-    background: -moz-radial-gradient(center, ellipse cover, #ef7070 0, #eb4b4b 100%);
-    background: -webkit-radial-gradient(center, ellipse cover, #ef7070 0, #eb4b4b 100%);
-    background: radial-gradient(ellipse at center, #ef7070 0, #eb4b4b 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ef7070', endColorstr='#eb4b4b', GradientType=1);
+    background: -moz-radial-gradient(center, ellipse cover, #ef7070 0, #717d34 100%);
+    background: -webkit-radial-gradient(center, ellipse cover, #ef7070 0, #717d34 100%);
+    background: radial-gradient(ellipse at center, #ef7070 0, #717d34 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ef7070', endColorstr='#717d34', GradientType=1);
     color: #fff
 }
 
@@ -18815,7 +18815,7 @@ h2.bluequote:before {
 }
 
 .progressbar.goal .bar:after {
-    background: #f8414a
+    background: #717d34
 }
 
 .progressbar.end .bar:after {
@@ -18839,7 +18839,7 @@ h2.bluequote:before {
 }
 
 .fundProgressBar.success .progressBar {
-    background-color: #f8414a
+    background-color: #717d34
 }
 
 .fundProgressBar i.fa-chevron-right {
@@ -18855,7 +18855,7 @@ h2.bluequote:before {
     top: 0;
     left: 0;
     border-radius: 4px;
-    background-color: #f8414a;
+    background-color: #717d34;
     height: 4px
 }
 
@@ -18894,7 +18894,7 @@ h2.bluequote:before {
 }
 
 .fundProgressBar .progressPoints .progressSection.progressSuccess:not(:nth-of-type(1)) .progressPoint {
-    border-color: #f8414a
+    border-color: #717d34
 }
 
 .fundProgressBar .progressPoints .progressSection:nth-of-type(1) .progressPoint {
@@ -18923,7 +18923,7 @@ h2.bluequote:before {
     font-weight: 700;
     top: 0;
     left: 0;
-    color: #f8414a
+    color: #717d34
 }
 
 .fundProgressBar .progressPoints .progressSection .progressTitle {
@@ -19048,7 +19048,7 @@ h2.bluequote:before {
 }
 
 .fv-dropdown>a:hover {
-    color: #f8414a
+    color: #717d34
 }
 
 .fv-dropdown>a:hover>span {
@@ -19081,7 +19081,7 @@ h2.bluequote:before {
 }
 
 .fv-dropdown .fv-dropdown-menu a:hover {
-    color: #f8414a
+    color: #717d34
 }
 
 @media (max-width:600px) {
@@ -19160,7 +19160,7 @@ h2.bluequote:before {
     position: absolute;
     width: 26px;
     height: 4px;
-    background: #f8414a
+    background: #717d34
 }
 
 .flyingHeader .hamburger-menu span {
@@ -19189,7 +19189,7 @@ h2.bluequote:before {
 }
 
 .flyingHeader .leftmenu li:hover {
-    border-bottom-color: #f8414a
+    border-bottom-color: #717d34
 }
 
 .flyingHeader ul {
@@ -19216,7 +19216,7 @@ h2.bluequote:before {
 }
 
 .flyingHeader li a:hover {
-    color: #f8414a
+    color: #717d34
 }
 
 .flyingHeader .usermenu {
@@ -19309,7 +19309,7 @@ h2.bluequote:before {
 }
 
 .flyingHeader .usermenu #activityDropdown .noteBell .badge {
-    background-color: #f8414a;
+    background-color: #717d34;
     width: 16px;
     height: 16px;
     font-size: 9px;
@@ -19427,7 +19427,7 @@ h2.bluequote:before {
 
 .flyingHeader .usermenu #activityDropdown #activityMenu .seeall {
     display: block;
-    color: #f8414a;
+    color: #717d34;
     font-weight: 700;
     padding: 12px 16px;
     transition: .2s all
@@ -19478,7 +19478,7 @@ h2.bluequote:before {
 }
 
 .flyingHeader .usermenu #userDropdown #menu a:hover {
-    color: #f8414a
+    color: #717d34
 }
 
 .flyingHeader .usermenu #userDropdown #menu a:first-child {
@@ -19642,7 +19642,7 @@ h2.bluequote:before {
 
 .flyingHeader .searchfield #liveSearchMenu .acitem.seeall {
     height: 50px;
-    color: #f8414a;
+    color: #717d34;
     position: absolute;
     bottom: 0;
     display: flex;
@@ -19749,7 +19749,7 @@ h2.bluequote:before {
 }
 
 .flyingSidebar .sidebar-menu li a:hover {
-    color: #f8414a
+    color: #717d34
 }
 
 .flyingSidebar #mobileLanguageDropdown {
@@ -19776,7 +19776,7 @@ h2.bluequote:before {
 }
 
 .flyingSidebar #mobileLanguageDropdown a:hover {
-    color: #f8414a
+    color: #717d34
 }
 
 .flyingSidebar #mobileLanguageDropdown #mobileLanguageMenu {
@@ -19816,7 +19816,7 @@ h2.bluequote:before {
 }
 
 .flyingSidebar #mobileActivityDropdown .badge {
-    background-color: #f8414a;
+    background-color: #717d34;
     width: 14px;
     height: 14px;
     font-size: 8px;
@@ -19922,7 +19922,7 @@ h2.bluequote:before {
 
 .flyingSidebar #mobileActivityDropdown #mobileActivityMenu .seeall {
     display: block;
-    color: #f8414a;
+    color: #717d34;
     font-weight: 700;
     padding: 12px 16px;
     transition: .2s all
@@ -20054,7 +20054,7 @@ h2.bluequote:before {
 }
 
 #billboard.red-board {
-    color: #eb4b4b !important
+    color: #717d34 !important
 }
 
 #billboard p {
@@ -20077,7 +20077,7 @@ h2.bluequote:before {
 
 #momenu #searchMobile {
     border: 0;
-    border-bottom: 1px solid #f8414a;
+    border-bottom: 1px solid #717d34;
     background: 0 0;
     width: 100%
 }
@@ -20162,7 +20162,7 @@ h2.bluequote:before {
 }
 
 .greyTitleBox .projectShare .projectShareBtn:hover, .projectAdmin .projectShare .projectShareBtn:hover, .projectContentUpper .projectShare .projectShareBtn:hover, .projectRewardContent .projectShare .projectShareBtn:hover {
-    background-color: #eb4b4b
+    background-color: #717d34
 }
 
 .greyTitleBox .projectShare .projectShareBtn#projectFbShare:hover, .projectAdmin .projectShare .projectShareBtn#projectFbShare:hover, .projectContentUpper .projectShare .projectShareBtn#projectFbShare:hover, .projectRewardContent .projectShare .projectShareBtn#projectFbShare:hover {
@@ -20367,7 +20367,7 @@ h2.bluequote:before {
 }
 
 .greyTitleBox .videoBlock .playbar:hover, .projectAdmin .videoBlock .playbar:hover, .projectContentUpper .videoBlock .playbar:hover, .projectRewardContent .videoBlock .playbar:hover {
-    color: #f8414a
+    color: #717d34
 }
 
 .greyTitleBox .videoBlock .playbar:hover .icon-playVideo, .projectAdmin .videoBlock .playbar:hover .icon-playVideo, .projectContentUpper .videoBlock .playbar:hover .icon-playVideo, .projectRewardContent .videoBlock .playbar:hover .icon-playVideo {
@@ -20475,7 +20475,7 @@ h2.bluequote:before {
 }
 
 .greyTitleBox .numberSidebar blockquote.success:before, .projectAdmin .numberSidebar blockquote.success:before, .projectContentUpper .numberSidebar blockquote.success:before, .projectRewardContent .numberSidebar blockquote.success:before {
-    background-color: #f8414a
+    background-color: #717d34
 }
 
 .greyTitleBox .creator-wrapper, .projectAdmin .creator-wrapper, .projectContentUpper .creator-wrapper, .projectRewardContent .creator-wrapper {
@@ -20503,7 +20503,7 @@ h2.bluequote:before {
 }
 
 .greyTitleBox .creatorFanpage:hover path, .greyTitleBox .creatorWebsite:hover path, .projectAdmin .creatorFanpage:hover path, .projectAdmin .creatorWebsite:hover path, .projectContentUpper .creatorFanpage:hover path, .projectContentUpper .creatorWebsite:hover path, .projectRewardContent .creatorFanpage:hover path, .projectRewardContent .creatorWebsite:hover path {
-    fill: #f8414a
+    fill: #717d34
 }
 
 .greyTitleBox .creatorFanpage svg:hover path, .projectAdmin .creatorFanpage svg:hover path, .projectContentUpper .creatorFanpage svg:hover path, .projectRewardContent .creatorFanpage svg:hover path {
@@ -20511,7 +20511,7 @@ h2.bluequote:before {
 }
 
 .footer .footer-top:hover svg path, .footer a:hover svg path, .footer svg:hover path, .projectContentdown .postWrapper .post:hover .post-meta svg path {
-    fill: #f8414a
+    fill: #717d34
 }
 
 .greyTitleBox .creatorName, .projectAdmin .creatorName, .projectContentUpper .creatorName, .projectRewardContent .creatorName {
@@ -20700,7 +20700,7 @@ h2.bluequote:before {
 }
 
 .greyTitleBox .projectMobileNav .nav-current:hover, .greyTitleBox .projectMobileNav .nav-item:hover, .projectAdmin .projectMobileNav .nav-current:hover, .projectAdmin .projectMobileNav .nav-item:hover, .projectContentUpper .projectMobileNav .nav-current:hover, .projectContentUpper .projectMobileNav .nav-item:hover, .projectRewardContent .projectMobileNav .nav-current:hover, .projectRewardContent .projectMobileNav .nav-item:hover {
-    color: #f8414a
+    color: #717d34
 }
 
 .greyTitleBox .projectMobileNav .nav-current, .projectAdmin .projectMobileNav .nav-current, .projectContentUpper .projectMobileNav .nav-current, .projectRewardContent .projectMobileNav .nav-current {
@@ -20913,7 +20913,7 @@ h2.bluequote:before {
     content: "";
     height: 24px;
     width: 8px;
-    background: #f8414a
+    background: #717d34
 }
 
 .projectContentdown #pjax_pageAnchor {
@@ -20948,7 +20948,7 @@ h2.bluequote:before {
     content: "";
     height: 24px;
     width: 8px;
-    background: #f8414a
+    background: #717d34
 }
 
 .projectContentdown .customWrapper {
@@ -21065,7 +21065,7 @@ h2.bluequote:before {
 }
 
 .projectContentdown .commentWrapper .comment-group .comment-content.reply .name {
-    color: #f8414a;
+    color: #717d34;
     margin-bottom: 10px
 }
 
@@ -21076,7 +21076,7 @@ h2.bluequote:before {
 }
 
 .projectContentdown .commentWrapper .comment-group .comment-content .replyform .reply-trigger+label {
-    color: #f8414a;
+    color: #717d34;
     cursor: pointer
 }
 
@@ -21108,11 +21108,11 @@ h2.bluequote:before {
 
 .projectContentdown .postWrapper .post:hover .post-more {
     font-weight: 700;
-    color: #f8414a
+    color: #717d34
 }
 
 .projectContentdown .postWrapper .post:hover .post-meta a {
-    color: #f8414a;
+    color: #717d34;
     font-weight: 700
 }
 
@@ -21138,7 +21138,7 @@ h2.bluequote:before {
 }
 
 .projectContentdown .postWrapper .post-label {
-    color: #f8414a;
+    color: #717d34;
     margin: 0 auto 12px
 }
 
@@ -21159,7 +21159,7 @@ h2.bluequote:before {
 }
 
 .projectContentdown .postBlock .post-edit:hover, .projectContentdown .postWrapper .post-meta a:hover {
-    color: #f8414a;
+    color: #717d34;
     font-weight: 700
 }
 
@@ -21918,12 +21918,12 @@ h2.bluequote:before {
 
 .createContentWrapper .fr-view h1 {
     font-size: 1.4rem;
-    border-bottom: 3px solid #f8414a
+    border-bottom: 3px solid #717d34
 }
 
 .createContentWrapper .fr-view h2 {
     font-size: 1.2rem;
-    border-bottom: 1px solid #f8414a
+    border-bottom: 1px solid #717d34
 }
 
 .hintwell, .projectCard .rightBlock {
@@ -21957,7 +21957,7 @@ h2.bluequote:before {
 .createContentWrapper .fr-view ul li:before {
     content: '';
     position: absolute;
-    background: #f8414a;
+    background: #717d34;
     width: 6px;
     height: 6px;
     top: 6px;
@@ -22025,7 +22025,7 @@ h2.bluequote:before {
 }
 
 .projectCard .pcontent .tag.red {
-    color: #f8414a;
+    color: #717d34;
     font-weight: 700
 }
 
@@ -22101,7 +22101,7 @@ h2.bluequote:before {
 }
 
 .projectCard:hover .pcontent .title {
-    color: #f8414a
+    color: #717d34
 }
 
 .projectCard:hover .projectCoverImg {
@@ -22180,7 +22180,7 @@ h2.bluequote:before {
 }
 
 .createSidebar .editReward:hover {
-    color: #f8414a
+    color: #717d34
 }
 
 .createSidebar .rewardItem {
@@ -22261,7 +22261,7 @@ h2.bluequote:before {
     font-size: 1.5rem;
     margin-bottom: 15px;
     font-weight: 700;
-    color: #f8414a;
+    color: #717d34;
     letter-spacing: 2.4px
 }
 
@@ -22280,18 +22280,18 @@ h2.bluequote:before {
 
 .rewardItem .nopay {
     color: #fff;
-    background: #f8414a;
+    background: #717d34;
     padding-left: 5px;
     padding-right: 5px;
     margin-right: 5px
 }
 
 .rewardItem .full {
-    color: #f8414a
+    color: #717d34
 }
 
 .rewardItem p.rewardTimeLimit {
-    color: #f8414a;
+    color: #717d34;
     font-size: 14px;
     font-weight: 700;
     letter-spacing: 1.2px;
@@ -22370,7 +22370,7 @@ h2.bluequote:before {
 
 .rewardItem.onlive:hover .btn-submit {
     color: #fff;
-    background-color: #f8414a
+    background-color: #717d34
 }
 
 .rewardItem.offline .pledgeLayer {
@@ -22443,7 +22443,7 @@ h2.bluequote:before {
 }
 
 .rewardItem .pledgeform .pledge-percent .pledge-red {
-    color: #f8414a
+    color: #717d34
 }
 
 .rewardItem .pledgeform .pledge-percent .pledge-red:after {
@@ -22475,7 +22475,7 @@ h2.bluequote:before {
 }
 
 .rewardItem.onPledge {
-    border-color: #f8414a
+    border-color: #717d34
 }
 
 .rewardItem.onPledge .pledgeform {
@@ -22495,7 +22495,7 @@ input[type=number].pledge-input {
 }
 
 input[type=number].pledge-input:focus {
-    border-color: #f8414a;
+    border-color: #717d34;
     box-shadow: 0 1px 1px rgba(0, 187, 214, .075) inset, 0 0 8px rgba(248, 65, 74, .6)
 }
 
@@ -22555,7 +22555,7 @@ input[type=number]::-webkit-input-placeholder {
     font-size: 16px;
     border: none;
     box-shadow: none;
-    border-bottom: 1px solid #f8414a;
+    border-bottom: 1px solid #717d34;
     border-radius: 0;
     text-align: left;
     padding: 0;
@@ -22660,7 +22660,7 @@ input[type=number]::-webkit-input-placeholder {
 
 .btnLabel {
     font-size: 1.2rem;
-    color: #f8414a
+    color: #717d34
 }
 
 .footer {
@@ -22709,7 +22709,7 @@ input[type=number]::-webkit-input-placeholder {
 }
 
 .footer a:hover {
-    color: #f8414a
+    color: #717d34
 }
 
 .footer svg {
@@ -22768,7 +22768,7 @@ input[type=number]::-webkit-input-placeholder {
 }
 
 .footer .footer-top:hover {
-    color: #f8414a
+    color: #717d34
 }
 
 @media (min-width:768px) {
@@ -22952,7 +22952,7 @@ input[type=number]::-webkit-input-placeholder {
     margin-right: -15px;
     padding: 28px;
     background: rgba(248, 65, 74, .07);
-    border: 2px solid #f8414a
+    border: 2px solid #717d34
 }
 
 .projectRewardContent .rewardSelection.online.active .rewardMeta {
@@ -23012,7 +23012,7 @@ input[type=number]::-webkit-input-placeholder {
 }
 
 .projectRewardContent .rewardData.row-eq-height .col-xs-7 .reward-edit-bot .col-xs-12 p.rewardTimeLimit {
-    color: #f8414a;
+    color: #717d34;
     font-size: 14px;
     font-weight: 700;
     letter-spacing: 1.2px;
@@ -23057,7 +23057,7 @@ input[type=number]::-webkit-input-placeholder {
 }
 
 .projectRewardContent .rewardMeta .pledge-percent .pledge-red {
-    color: #f8414a
+    color: #717d34
 }
 
 .projectRewardContent .rewardMeta .pledge-percent .pledge-red:after {
@@ -23090,7 +23090,7 @@ input[type=number]::-webkit-input-placeholder {
     margin-bottom: 0 !important;
     font-family: Roboto, sans-serif;
     font-weight: 700;
-    color: #eb4b4b;
+    color: #717d34;
     letter-spacing: .5px;
     font-size: 20px
 }
@@ -23136,7 +23136,7 @@ input[type=number]::-webkit-input-placeholder {
 
 .projectRewardContent .cardNum {
     font-size: 22px;
-    color: #f8414a
+    color: #717d34
 }
 
 .projectRewardContent .cardNum:before {
@@ -23815,7 +23815,7 @@ input[type=number]::-webkit-input-placeholder {
     left: .3em;
     font-size: 1.3em;
     line-height: .8;
-    color: #f8414a;
+    color: #717d34;
     transition: all .4s;
     font-family: FontAwesome;
     font-style: normal;
@@ -24008,7 +24008,7 @@ input[type=number]::-webkit-input-placeholder {
 }
 
 .successContainer .rewardDetail a svg path {
-    fill: #f8414a;
+    fill: #717d34;
     transition: .2s all ease
 }
 
@@ -24128,7 +24128,7 @@ input[type=number]::-webkit-input-placeholder {
 }
 
 #modalMessage .modal-success .modal-header h2.modal-title a, #modalPost .modal-success .modal-header h2.modal-title a {
-    color: #f8414a;
+    color: #717d34;
     transition: .2s all ease
 }
 
@@ -24154,7 +24154,7 @@ input[type=number]::-webkit-input-placeholder {
 }
 
 #modalMessage .modal-success .modal-header button:hover svg path, #modalPost .modal-success .modal-header button:hover svg path {
-    fill: #f8414a
+    fill: #717d34
 }
 
 #modalMessage .modal-success .modal-body, #modalPost .modal-success .modal-body {
@@ -24191,7 +24191,7 @@ input[type=number]::-webkit-input-placeholder {
 }
 
 #modalMessage .modal-success .modal-body .btn.fGhostred:hover, #modalPost .modal-success .modal-body .btn.fGhostred:hover {
-    background-color: #f8414a;
+    background-color: #717d34;
     color: #fff
 }
 
@@ -24249,8 +24249,8 @@ input[type=number]::-webkit-input-placeholder {
     height: 18px;
     box-sizing: border-box;
     border: 2px solid transparent;
-    border-top-color: #f8414a;
-    border-left-color: #f8414a;
+    border-top-color: #717d34;
+    border-left-color: #717d34;
     border-radius: 50%;
     -webkit-animation: ajax-loader .4s linear infinite;
     animation: ajax-loader .4s linear infinite
@@ -24432,8 +24432,8 @@ input[type=number]::-webkit-input-placeholder {
     -webkit-border-radius: 5px;
     border-radius: 5px;
     background: #ffe8e8;
-    color: #f8414a;
-    border: 1px solid #f8414a;
+    color: #717d34;
+    border: 1px solid #717d34;
     margin-bottom: 30px
 }
 
@@ -24546,7 +24546,7 @@ input[type=number]::-webkit-input-placeholder {
 }
 
 #messageModal .bioArea .upBio .bio-title .creatorWebsite:hover svg path {
-    fill: #f8414a
+    fill: #717d34
 }
 
 #messageModal .bioArea .dnBio>div {
@@ -24570,7 +24570,7 @@ input[type=number]::-webkit-input-placeholder {
 }
 
 #messageModal .bioArea .dnBio .more svg path {
-    fill: #f8414a;
+    fill: #717d34;
     transition: all .3s ease
 }
 
@@ -24626,7 +24626,7 @@ input[type=number]::-webkit-input-placeholder {
     }
 
     #messageModal .modal-header .close:hover svg path {
-        fill: #f8414a
+        fill: #717d34
     }
 }
 
@@ -24879,7 +24879,7 @@ input[type=number]::-webkit-input-placeholder {
 }
 
 .enable .sscontent, .sscontent:hover {
-    color: #f8414a
+    color: #717d34
 }
 
 .sscontent i {
@@ -25058,7 +25058,7 @@ input[type=number]::-webkit-input-placeholder {
 .surveyForm {
     display: none;
     width: 100%;
-    border-top: 2px solid #f8414a
+    border-top: 2px solid #717d34
 }
 
 .surveyForm label {
@@ -25203,7 +25203,7 @@ input[type=number]::-webkit-input-placeholder {
 }
 
 .rewardSurveyForm .addtoLib:hover {
-    background: #f8414a;
+    background: #717d34;
     color: #fff
 }
 
@@ -25314,19 +25314,19 @@ input[type=number]::-webkit-input-placeholder {
 .creatorMenuNotice p {
     font-size: 14px;
     text-align: justify;
-    color: #f8414a
+    color: #717d34
 }
 
 .creatorMenuNotice p a {
     padding: 1px;
     border-bottom: 1px solid transparent;
-    color: #f8414a;
+    color: #717d34;
     font-weight: 700;
     transition: .2s ease all
 }
 
 .creatorMenuNotice p a:hover {
-    border-bottom-color: #f8414a
+    border-bottom-color: #717d34
 }
 
 .limitedRes {
@@ -25352,7 +25352,7 @@ input[type=number]::-webkit-input-placeholder {
 
 .menu_redpill li a.mdl-badge[data-badge]:after {
     background: 0 0;
-    color: #f8414a;
+    color: #717d34;
     padding: 0;
     top: -4px;
     right: -17px
@@ -25361,7 +25361,7 @@ input[type=number]::-webkit-input-placeholder {
 .menu_redpill li a:hover, .menu_redpill li.active a {
     color: #fff;
     font-weight: 700;
-    border-bottom: 2px solid #f8414a
+    border-bottom: 2px solid #717d34
 }
 
 .menu_redpill li:first-child {
@@ -25453,7 +25453,7 @@ input[type=number]::-webkit-input-placeholder {
 }
 
 .profileContent .title a:hover svg path {
-    fill: #f8414a
+    fill: #717d34
 }
 
 .profileContent hr {
@@ -25606,7 +25606,7 @@ input[type=number]::-webkit-input-placeholder {
 }
 
 .activityItem.unread:before {
-    background: #f8414a
+    background: #717d34
 }
 
 .activityItem.userbase .thumb img {
@@ -25737,7 +25737,7 @@ input[type=number]::-webkit-input-placeholder {
 }
 
 .blogContent .blogTitle {
-    color: #f8414a;
+    color: #717d34;
     font-size: 20px
 }
 
@@ -25795,7 +25795,7 @@ input[type=number]::-webkit-input-placeholder {
 .customWrapper ol li:before, .customWrapper ul li:before {
     content: '';
     position: absolute;
-    background: #f8414a;
+    background: #717d34;
     width: 8px;
     height: 8px;
     top: 8px;
@@ -25833,7 +25833,7 @@ input[type=number]::-webkit-input-placeholder {
 }
 
 .errorWrap {
-    background: #f8414a;
+    background: #717d34;
     position: fixed;
     width: 100%;
     height: 100%;
@@ -25892,7 +25892,7 @@ input[type=number]::-webkit-input-placeholder {
 
 .turblock #sidebar li li:before, .turblock .tutorContent ul li:before {
     content: '';
-    background: #f8414a;
+    background: #717d34;
     width: 6px;
     height: 6px
 }
@@ -25992,7 +25992,7 @@ input[type=number]::-webkit-input-placeholder {
 }
 
 .turblock #sidebar li li a {
-    color: #f8414a
+    color: #717d34
 }
 
 .turblock #sidebar li a {
@@ -26001,7 +26001,7 @@ input[type=number]::-webkit-input-placeholder {
 }
 
 .turblock #sidebar li a:hover {
-    color: #f8414a
+    color: #717d34
 }
 
 .turblock .navitem {
@@ -26244,7 +26244,7 @@ input[type=number]::-webkit-input-placeholder {
 
 .vikiSection-two .viki-toc .toc-list li a:before {
     content: "• ";
-    color: #eb4b4b;
+    color: #717d34;
     font-size: 18px;
     position: relative;
     top: 2px;
@@ -26413,12 +26413,12 @@ input[type=number]::-webkit-input-placeholder {
     position: relative;
     padding: 1px;
     border-bottom: 1px solid transparent;
-    color: #f8414a;
+    color: #717d34;
     transition: .2s ease all
 }
 
 .v55-form label.input-label a:hover {
-    border-bottom-color: #f8414a
+    border-bottom-color: #717d34
 }
 
 .v55-form .small-gutter .col-xs-4 {
@@ -26454,7 +26454,7 @@ input[type=number]::-webkit-input-placeholder {
 }
 
 .v55-form input.form-control.focus-red:focus, .v55-form select.form-control.focus-red:focus, .v55-form textarea.focus-red:focus {
-    border-color: #f8414a;
+    border-color: #717d34;
     box-shadow: 0 1px 1px rgba(0, 187, 214, .075) inset, 0 0 8px rgba(248, 65, 74, .6)
 }
 
@@ -26608,7 +26608,7 @@ input[type=number]::-webkit-input-placeholder {
     top: 0;
     left: 0;
     line-height: normal;
-    color: #f8414a;
+    color: #717d34;
     transition: all .2s;
     background-image: url(/images/icon/icon-check.svg);
     width: 24px;
@@ -26818,7 +26818,7 @@ input[type=number]::-webkit-input-placeholder {
 .v55-project-content ol li:before, .v55-project-content ul li:before {
     content: '';
     position: absolute;
-    background: #f8414a;
+    background: #717d34;
     width: 8px;
     height: 8px;
     top: 8px;
@@ -27301,8 +27301,8 @@ input[type=number]::-webkit-input-placeholder {
 
 .projectContent.freebirdContent .bandHeader .bandTitle {
     font-size: 16px;
-    color: #f8414a;
-    border-bottom: 1px solid #f8414a;
+    color: #717d34;
+    border-bottom: 1px solid #717d34;
     padding-bottom: 15px;
     margin-bottom: 15px
 }
@@ -27380,11 +27380,11 @@ input[type=number]::-webkit-input-placeholder {
 }
 
 .projectContent.freebirdContent .bandHeader .musicplayer .mcloseBtn .back:hover {
-    color: #f8414a
+    color: #717d34
 }
 
 .projectContent.freebirdContent .bandHeader .musicplayer .mcloseBtn .back:hover svg path {
-    fill: #f8414a
+    fill: #717d34
 }
 
 .projectContent.freebirdContent .bandHeader .musicplayer .exterlink {
@@ -27440,11 +27440,11 @@ input[type=number]::-webkit-input-placeholder {
 }
 
 .projectContent.freebirdContent .playlist .artistToggle:hover {
-    color: #f8414a
+    color: #717d34
 }
 
 .projectContent.freebirdContent .playlist .artistToggle:hover svg path {
-    fill: #f8414a
+    fill: #717d34
 }
 
 .projectContent.freebirdContent .playlist .artistToggle .more {
@@ -27590,7 +27590,7 @@ a.sm2_button:focus {
 }
 
 a.sm2_button, a.sm2_button.sm2_paused {
-    background-color: #f8414a;
+    background-color: #717d34;
     background-image: url(/images/icon/icon-play.svg);
     background-repeat: no-repeat
 }
@@ -27642,7 +27642,7 @@ a.sm2_button.sm2_playing:hover {
     height: 1px;
     position: absolute;
     width: 0;
-    background: #f8414a;
+    background: #717d34;
     top: 0
 }
 
@@ -27665,7 +27665,7 @@ a.sm2_button.sm2_paused+.songtitle, a.sm2_button.sm2_playing+.songtitle {
 }
 
 .freebirdHeader a {
-    color: #f8414a
+    color: #717d34
 }
 
 .freebirdHeader a:hover {
@@ -27673,8 +27673,8 @@ a.sm2_button.sm2_paused+.songtitle, a.sm2_button.sm2_playing+.songtitle {
 }
 
 .freebirdHeader .fGhost {
-    border: 1px solid #f8414a;
-    color: #f8414a;
+    border: 1px solid #717d34;
+    color: #717d34;
     background: rgba(0, 0, 0, .5)
 }
 
@@ -27703,7 +27703,7 @@ a.sm2_button.sm2_paused+.songtitle, a.sm2_button.sm2_playing+.songtitle {
 }
 
 .freebirdHeader .playbackSection .songCol #projectname {
-    color: #f8414a
+    color: #717d34
 }
 
 .freebirdHeader .playbackSection .controllerBtns {
@@ -27797,7 +27797,7 @@ body#createBody {
     position: relative;
     padding: 1px;
     border-bottom: 1px solid transparent;
-    color: #f8414a;
+    color: #717d34;
     transition: .2s ease all
 }
 
@@ -27806,7 +27806,7 @@ body#createBody {
 }
 
 .createWrapper .createContainer.container-fluid a:hover {
-    border-bottom-color: #f8414a
+    border-bottom-color: #717d34
 }
 
 .createWrapper .createBackTop {
@@ -27922,7 +27922,7 @@ body#createBody {
 
 .btn.btn-red {
     color: #f7f7f7;
-    background-color: #f8414a
+    background-color: #717d34
 }
 
 .btn.btn-red svg path {
@@ -27930,7 +27930,7 @@ body#createBody {
 }
 
 .btn.btn-red-ghost svg path, .btn.btn-red:hover svg path {
-    fill: #f8414a
+    fill: #717d34
 }
 
 .btn.btn-red:hover {
@@ -27939,14 +27939,14 @@ body#createBody {
 }
 
 .btn.btn-red-ghost {
-    color: #f8414a;
+    color: #717d34;
     background-color: transparent;
-    border-color: #f8414a
+    border-color: #717d34
 }
 
 .btn.btn-red-ghost:hover {
     color: #fff;
-    background-color: #f8414a
+    background-color: #717d34
 }
 
 .btn.btn-red-ghost:hover svg path {
@@ -28057,12 +28057,12 @@ body#createBody .form-group .form-errors-block, section#interactiveWrapper .form
     margin-bottom: 15px;
     background-color: #ffe8e8;
     border-color: #ffe8e8;
-    color: #eb4b4b;
+    color: #717d34;
     display: none
 }
 
 body#createBody .form-group .form-errors-block.main-errors, section#interactiveWrapper .form-group .form-errors-block.main-errors, section#postCreateWrapper .form-group .form-errors-block.main-errors {
-    border: 1px solid #eb4b4b
+    border: 1px solid #717d34
 }
 
 body#createBody .form-group .form-errors-block.isSubmitted, section#interactiveWrapper .form-group .form-errors-block.isSubmitted, section#postCreateWrapper .form-group .form-errors-block.isSubmitted {
@@ -28497,7 +28497,7 @@ body#createBody .form-group .basicRestricted:before, section#interactiveWrapper 
 .reward-limit-wrapper .reward-limit-body .reward-limit-item div:nth-of-type(1) {
     font-weight: 900;
     text-align: left;
-    color: #f8414a
+    color: #717d34
 }
 
 .reward-limit-wrapper .reward-limit-body .reward-limit-item .reorder-icon {
@@ -28760,7 +28760,7 @@ body#createBody .form-group .basicRestricted:before, section#interactiveWrapper 
 .modal .modal-reorder .modal-reward-list .reward-list-item div:nth-of-type(1) {
     font-weight: 900;
     text-align: left;
-    color: #f8414a
+    color: #717d34
 }
 
 .modal .modal-reorder .modal-reward-list .reward-list-item .reorder-icon {
@@ -29064,7 +29064,7 @@ body#createBody .form-group .basicRestricted:before, section#interactiveWrapper 
 }
 
 .createMenu ul li.active:before {
-    background-color: #f8414a
+    background-color: #717d34
 }
 
 .createMenu ul li .createMenuIconHolder {
@@ -29080,7 +29080,7 @@ body#createBody .form-group .basicRestricted:before, section#interactiveWrapper 
 }
 
 .createMenu ul li .createMenuIconHolder i.fa-exclamation {
-    color: #eb4b4b
+    color: #717d34
 }
 
 .createMenu.isfreebird ul li {
@@ -29583,7 +29583,7 @@ body#createBody .form-group .basicRestricted:before, section#interactiveWrapper 
     font-family: Barlow, sans-serif;
     margin-bottom: 15px;
     font-weight: 700;
-    color: #f8414a;
+    color: #717d34;
     letter-spacing: .5px
 }
 
@@ -30260,7 +30260,7 @@ input[type=text].multiselect__input::placeholder, input[type=text].multiselect__
     top: 0;
     left: 0;
     border-radius: 4px;
-    background-color: #f8414a;
+    background-color: #717d34;
     height: 4px;
     width: 50%
 }
@@ -30313,8 +30313,8 @@ input[type=text].multiselect__input::placeholder, input[type=text].multiselect__
 }
 
 #lightWrapper .lightBarWrapper .createProgressBar .progressPoints .progressSection.progressSuccess .progressPoint {
-    border-color: #f8414a;
-    color: #f8414a
+    border-color: #717d34;
+    color: #717d34
 }
 
 #lightWrapper .lightSubmitWrapper {
@@ -30568,7 +30568,7 @@ body#rolla .rolla-backtotop:active, body#rolla .rolla-backtotop:focus, body#roll
 }
 
 #billboardRolla.red-board {
-    color: #eb4b4b !important
+    color: #717d34 !important
 }
 
 .rolla-home_main-header {
@@ -31769,7 +31769,7 @@ section.section-aboutFaqContent .rolla-about_nav-section .rolla-about-btn:hover 
 }
 
 .subscribeWrapper section .subscribe-list-wrapper .sub-reward-wrapper .sub-reward-title p.sub-reward-full {
-    color: #f8414a
+    color: #717d34
 }
 
 .subscribeWrapper section .subscribe-list-wrapper .sub-reward-wrapper .sub-reward-content {
@@ -32153,7 +32153,7 @@ section.post-item-section .main-content-wrapper .draft-remind-wrapper .draft-rem
 section.post-item-section .main-content-wrapper .draft-remind-wrapper .draft-remind-content a, section.section-projectContent .main-content-wrapper .draft-remind-wrapper .draft-remind-content a {
     font-weight: 700;
     letter-spacing: 3px;
-    color: #eb4b4b
+    color: #717d34
 }
 
 div.section-post-header, div.section-reward-header {
@@ -32434,7 +32434,7 @@ section.section-post-creator .subscriberSaveButtons .saveContainer .btn:not(:las
 }
 
 .reward-card-preview-component .sub-reward-selection p.pledge-percent span {
-    color: #f8414a
+    color: #717d34
 }
 
 .reward-card-preview-component .sub-reward-selection .reward-select-body {
@@ -32960,7 +32960,7 @@ section.section-transactionSuccess .transaction-table-view .table-row .table-dat
 }
 
 #curator .hidden-xs.goal .bar .bb, #curator .hidden-xs.goal .bar:after {
-    background: #f8414a
+    background: #717d34
 }
 
 #curator h3 {
@@ -33783,23 +33783,23 @@ section.section-transactionSuccess .transaction-table-view .table-row .table-dat
 }
 
 #nprogress .bar {
-    background: #f8414a !important
+    background: #717d34 !important
 }
 
 #nprogress .peg {
-    box-shadow: 0 0 10px #f8414a, 0 0 5px #f8414a !important
+    box-shadow: 0 0 10px #717d34, 0 0 5px #717d34 !important
 }
 
 #nprogress .spinner-icon {
     border: 3px solid transparent;
-    border-top-color: #f8414a !important;
-    border-left-color: #f8414a !important
+    border-top-color: #717d34 !important;
+    border-left-color: #717d34 !important
 }
 
 .mdl-textfield__label .mdl-textfield--floating-label.is-focused {
-    color: #f8414a !important
+    color: #717d34 !important
 }
 
 .mdl-textfield__label:after {
-    background-color: #f8414a !important
+    background-color: #717d34 !important
 }
