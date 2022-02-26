@@ -3,7 +3,9 @@
 <%@ page import="com.mem.model.*"%>
 <%@ page import="com.fMem.model.*"%>
 <%@ page import="com.administrator.model.*"%>
-
+<!--               本網站由緯育(Tibame)Java雲端服務開發技術養成班-第93期-第二組製作， -->
+<!--               非營利用途，僅為學習交流使用。如有不當使用之內容,請向https://www.tibame.com/聯繋。 -->
+<!-- 參考網站https://shopee.tw/  https://www.zeczec.com/  https://www.buydirectlyfromfarmers.tw/ -->
 
 <%
     Object account = session.getAttribute("account");                  
@@ -187,14 +189,14 @@
 															<div class="shopee-tabs__nav-tab"
 																style="white-space: normal;">
 																<div data-v-ddf12cca="" class="tab-label">
-																	<span data-v-ddf12cca="" class="tab-label" style="font-size:20px;">一般會員</span>
+																	<a href="<%= request.getContextPath() %>/back-end/mem/listAllMem.jsp" style="color: black;"><span data-v-ddf12cca="" class="tab-label" style="font-size:20px;">一般會員</span></a>
 																</div>
 															</div>
 															
 															<div class=" shopee-tabs__nav-tab active"
 																style="white-space: normal;">
 																<div data-v-ddf12cca="" >
-																	<span data-v-ddf12cca="" style="color:#717d34; font-size:20px">小農會員</span>
+																	<a href="<%= request.getContextPath() %>/back-end/fMem/listAllFMem.jsp" ><span data-v-ddf12cca="" style="color:#717d34; font-size:20px">小農會員</span></a>
 																</div>
 															</div>
 															
@@ -338,12 +340,6 @@
 																</div>
 															</span>
 						<!--確認後待刪除 -->
-<!-- 															<div data-v-4325ccd1="" class="order-search-buttons" > -->
-<!-- 																<button data-v-4325ccd1="" type="button" class="search-btn shopee-button shopee-button--primary shopee-button--normal"  -->
-<!-- 																	style="background-color:#64A600 ;border:#64A600"> -->
-<!-- 																	<span> 儲存 </span> -->
-<!-- 																</button> -->
-<!-- 															</div> -->
 																<span class="_2CLMxo showhand" id="changeadd${fMemVO.f_mem_id}">查看</span>
 			     												<input data-v-4325ccd1="" type="submit" value="送出修改" class="search-btn shopee-button shopee-button--primary shopee-button--normal" style="background-color:#64A600 ;border:#64A600">
 	
