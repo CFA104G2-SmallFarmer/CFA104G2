@@ -36,8 +36,8 @@ public class ProDiaryJDBCDAO implements ProDiaryDAO_interface {
 			"SELECT DIR_ID,PROJ_ID,DIR_UPLOAD_DATE,DIR_PROCEDURE,DIR_PRODUCT,DIR_EMOJI,DIR_NOTES,DIR_UPLOAD_STATE,DIR_PIC FROM PROJ_DIARY WHERE PROJ_ID=? ORDER BY DIR_UPLOAD_DATE";
 //	private static final String GET_ALL_STMT = //列出這個專案的所有未發佈日誌
 //			"SELECT DIR_ID,PROJ_ID,DIR_UPLOAD_DATE,DIR_PROCEDURE,DIR_PRODUCT,DIR_EMOJI,DIR_NOTES,DIR_UPLOAD_STATE,DIR_PIC FROM PROJ_DIARY WHERE PROJ_ID=? ORDER BY DIR_UPLOAD_DATE";
-//	private static final String GET_ALL_STMT = //列出這個專案的所有已發佈日誌
-//			"SELECT DIR_ID,PROJ_ID,DIR_UPLOAD_DATE,DIR_PROCEDURE,DIR_PRODUCT,DIR_EMOJI,DIR_NOTES,DIR_UPLOAD_STATE,DIR_PIC FROM PROJ_DIARY WHERE PROJ_ID=? ORDER BY DIR_UPLOAD_DATE";
+	private static final String GET_ALL_STMT_STATE_1 = //列出這個專案的所有已發佈日誌
+			"SELECT DIR_ID,PROJ_ID,DIR_UPLOAD_DATE,DIR_PROCEDURE,DIR_PRODUCT,DIR_EMOJI,DIR_NOTES,DIR_UPLOAD_STATE,DIR_PIC FROM PROJ_DIARY WHERE PROJ_ID=? AND DIR_UPLOAD_STATE =1 ORDER BY DIR_UPLOAD_DATE";
 	
 	//	TODO
 //	GET_ALL_STMT要desc排列
@@ -330,6 +330,91 @@ public class ProDiaryJDBCDAO implements ProDiaryDAO_interface {
 		}
 		return list;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@Override
+	public List<ProDiaryVO> getAllByState1(Integer proj_id) {
+	
+			List<ProDiaryVO> list = new ArrayList<ProDiaryVO>();
+			ProDiaryVO proDiaryVO = null;
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+
+			try {
+			
+
+				Class.forName(driver);
+				con = DriverManager.getConnection(url, userid, passwd);
+				pstmt = con.prepareStatement(GET_ALL_STMT_STATE_1);
+				/*=====列出這個專案的所有日誌======*/
+				pstmt.setInt(1, proj_id);
+				/*=============================*/
+				
+				rs = pstmt.executeQuery();
+
+				while (rs.next()) {
+					// proDiaryVO 也稱為 Domain objects
+					proDiaryVO = new ProDiaryVO();
+					proDiaryVO.setDir_id(rs.getInt("dir_id"));
+					proDiaryVO.setProj_id(rs.getInt("proj_id"));
+					proDiaryVO.setDir_upload_date(rs.getDate("dir_upload_date"));
+					proDiaryVO.setDir_procedure(rs.getString("dir_procedure"));
+					proDiaryVO.setDir_product(rs.getString("dir_product"));
+//					proDiaryVO.setDir_equipment(rs.getString("dir_equipment"));
+//					proDiaryVO.setDir_material(rs.getString("dir_material"));
+					proDiaryVO.setDir_emoji(rs.getString("dir_emoji"));
+					proDiaryVO.setDir_notes(rs.getString("dir_notes"));
+					proDiaryVO.setDir_upload_state(rs.getInt("dir_upload_state"));
+					proDiaryVO.setDir_pic(rs.getBytes("dir_pic"));
+					list.add(proDiaryVO); // Store the row in the list
+				}
+
+				// Handle any driver errors
+			} catch (ClassNotFoundException e) {
+				throw new RuntimeException("Couldn't load database driver. "
+						+ e.getMessage());
+				// Handle any SQL errors
+			} catch (SQLException se) {
+				throw new RuntimeException("A database error occured. "
+						+ se.getMessage());
+				// Clean up JDBC resources
+			} finally {
+				if (rs != null) {
+					try {
+						rs.close();
+					} catch (SQLException se) {
+						se.printStackTrace(System.err);
+					}
+				}
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (SQLException se) {
+						se.printStackTrace(System.err);
+					}
+				}
+				if (con != null) {
+					try {
+						con.close();
+					} catch (Exception e) {
+						e.printStackTrace(System.err);
+					}
+				}
+			}
+			return list;
+		}
+		
+		
 	@Override
 	public List<ProDiaryVO> getAll(Integer proj_id) {
 		List<ProDiaryVO> list = new ArrayList<ProDiaryVO>();

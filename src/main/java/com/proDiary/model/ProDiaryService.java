@@ -77,6 +77,11 @@ public class ProDiaryService {
 	public List<ProDiaryVO> getAll(Integer proj_id) {
 		return dao.getAll(proj_id);
 	}
+	public List<ProDiaryVO> getAllByState1(Integer proj_id) {
+		return dao.getAllByState1(proj_id);
+	}
+	
+	
 	
 	public Map<Date, List<ProDiaryVO>> getAll_groupingBy_date(Integer proj_id){
 		List<ProDiaryVO> proDiaryList = dao.getAll(proj_id);
@@ -87,6 +92,33 @@ public class ProDiaryService {
 		return groupMap;
 	}
 	
+	public Map<Integer, List<ProDiaryVO>> getAll_groupingBy_dir_upload_state(Integer proj_id){
+		List<ProDiaryVO> proDiaryList = dao.getAll(proj_id);
+		Map<Integer, List<ProDiaryVO>> groupMap = new HashMap<>();
+		groupMap = proDiaryList.stream().collect(Collectors.groupingBy(ProDiaryVO::getDir_upload_state));
+		
+		
+		return groupMap;
+	}
+	
+	public Map<Date, List<ProDiaryVO>> getAll_groupingBy_dir_upload_state_By_State1(Integer proj_id){
+		List<ProDiaryVO> proDiaryList = dao.getAllByState1(proj_id);
+		Map<Date, List<ProDiaryVO>> groupMap = new HashMap<>();
+		groupMap = proDiaryList.stream().collect(Collectors.groupingBy(ProDiaryVO::getDir_upload_date));
+		
+		
+		return groupMap;
+	}
+
+
+	
+//	Map<String, List<ProDiaryVO>> prodMap= proDiaryList.stream().collect(Collectors.groupingBy(item -> {
+//	    if(item.getNum() < 3) {
+//	        return "3";
+//	    }else {
+//	        return "other";
+//	    }
+//	}));
 	
 //	public static void main(String[] args) {
 //		ProDiaryJDBCDAO dao = new ProDiaryJDBCDAO();
@@ -103,6 +135,21 @@ public class ProDiaryService {
 ////			v.forEach(Employee::printSummary);
 //		});
 //	}
+//	public static void main(String[] args) {
+//	ProDiaryJDBCDAO dao = new ProDiaryJDBCDAO();
+//	List<ProDiaryVO> proDiaryList = dao.getAllByState1(1004);
+//	Map<Integer, List<ProDiaryVO>> groupMap = new HashMap<>();
+//
+//	// Collect CO Executives
+//	groupMap = proDiaryList.stream().collect(Collectors.groupingBy(ProDiaryVO::getDir_upload_state));
+//
+//	System.out.println("\n== ProDiaryVOs by dir_upload_state ==");
+//	groupMap.forEach((k, v) -> {
+//		System.out.println("\ndir_upload_state: " + k);
+//		System.out.println(v);
+////		v.forEach(Employee::printSummary);
+//	});
+//}
 	
 
 	
