@@ -260,7 +260,6 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
               }
 </script>
 	
-	
 
 </script>
 

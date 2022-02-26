@@ -171,8 +171,7 @@ pageContext.setAttribute("list",list);
 										<strong>認購此專案</strong>
 									</div>
 								</a> --%>
-								
-								
+													
 <!-- 								/*0224新增*/ -->
 								<FORM id="search_form6" METHOD="post" ACTION="<%=request.getContextPath()%>/projPerk/projPerk.do">	
 							
