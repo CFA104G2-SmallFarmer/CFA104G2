@@ -132,8 +132,7 @@ ProjPerkVO projPerkVO = projPerkSvc.getOneProjPerk(9);
                 </div>
                 
                 <label class="b" for="user_avatar">顯示圖片</label>
-                <%=projPerkVO.getPerk_pic()%>
-                ${projPerkVO.perk_pic}
+              
                 
                 <input id="upPic" class="w-100 border-box mv3" accept="image/*" type="file" name="perk_pic" >
                 <script>
