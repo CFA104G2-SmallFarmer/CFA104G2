@@ -344,6 +344,11 @@ public class ProjPerkServlet extends HttpServlet {
 
 					// Send the use back to the form, if there were errors
 					if (!errorMsgs.isEmpty()) {
+						
+						String perk_intro2=projPerkVO.getPerk_intro().replace("<br>", "\r\n");
+						
+
+						projPerkVO.setPerk_intro(perk_intro2);
 
 						req.setAttribute("projPerkVO", projPerkVO); // 含有輸入格式錯誤的projPerkVO物件,也存入req
 
@@ -392,7 +397,10 @@ public class ProjPerkServlet extends HttpServlet {
 
 					// Send the use back to the form, if there were errors
 					if (!errorMsgs.isEmpty()) {
-//					
+					String perk_intro2=projPerkVO.getPerk_intro().replace("<br>", "\r\n");
+						
+
+						projPerkVO.setPerk_intro(perk_intro2);
 						req.setAttribute("projPerkVO", projPerkVO); // 含有輸入格式錯誤的projPerkVO物件,也存入req
 
 						ProjectService projectSvc = new ProjectService();
