@@ -13,7 +13,7 @@ public class MemPicInput {
 	public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 	public static final String URL = "jdbc:mysql://localhost:3306/CFA104G2?serverTimezone=Asia/Taipei";
 	public static final String USERID = "root";
-	public static final String PASSWD = "password";
+	public static final String PASSWD = "53434976";
 
 	private static final String SQL = "UPDATE mem set mem_pic = ? where mem_id = ?";
 

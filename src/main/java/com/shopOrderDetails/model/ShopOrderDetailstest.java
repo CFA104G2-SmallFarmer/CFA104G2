@@ -1,10 +1,8 @@
 package com.shopOrderDetails.model;
 
-import java.time.chrono.MinguoChronology;
-import java.util.List;
-
-import org.eclipse.jdt.internal.compiler.batch.Main;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 public class ShopOrderDetailstest {
 

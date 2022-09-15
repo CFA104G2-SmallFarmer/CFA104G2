@@ -13,7 +13,7 @@ public class AdminTypeFuncListJDBCDAO implements AdminTypeFuncListDAO_Interface 
 	String driver = "com.mysql.cj.jdbc.Driver";
 	String url = "jdbc:mysql://localhost:3306/cfa104g2?serverTimezone=Asia/Taipei";
 	String userid = "root";
-	String passwd = "password";
+	String passwd = "53434976";
 
 	private static final String INSERT_STMT = "INSERT INTO admin_type_func_list (admin_type_id,admin_func_id) VALUES (?, ?)";
 	private static final String GET_ALL_STMT = "SELECT admin_type_id , admin_func_id FROM admin_type_func_list ORDER BY admin_type_id";

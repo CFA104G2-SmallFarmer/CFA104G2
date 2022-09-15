@@ -1,23 +1,14 @@
 package com.projCollection.model;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.proDiary.model.ProDairyJDBCDAO;
-import com.proDiary.model.ProDairyVO;
 
 public class ProjCollectionJDBCDAO implements ProjCollectionDAO_interface{
 	String driver = "com.mysql.cj.jdbc.Driver";
 	String url = "jdbc:mysql://localhost:3306/cfa104g2?serverTimezone=Asia/Taipei";
 	String userid = "root";
-	String passwd = "aaaa";
+	String passwd = "53434976";
 
 	private static final String INSERT_STMT = //2個問號
 			"INSERT INTO `PROJ_COLLECTION`(`PROJ_ID`,`MEM_ID`)VALUES(?,?);"; 

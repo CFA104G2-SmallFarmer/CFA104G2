@@ -15,7 +15,7 @@ public class FMemJDBCDAO implements FMemDAO_interface {
 	String driver = "com.mysql.cj.jdbc.Driver";
 	String url = "jdbc:mysql://localhost:3306/CFA104G2?serverTimezone=Asia/Taipei";
 	String userid = "root";
-	String passwd = "password";
+	String passwd = "53434976";
 
 	private static final String INSERT_STMT = "INSERT INTO f_mem ("
 			+ "	mem_id, f_mem_acc, f_mem_pwd, f_mem_fname, "

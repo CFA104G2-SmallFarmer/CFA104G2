@@ -1,21 +1,21 @@
 package com.projDiscussion.controller;
 
-import java.io.*;
-import java.sql.Date;
-import java.util.*;
-
-import javax.servlet.*;
-import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
-
-import org.apache.tomcat.util.http.fileupload.IOUtils;
-
 import com.projDiscussion.model.ProjDiscussionService;
 import com.projDiscussion.model.ProjDiscussionVO;
-import com.projPerk.model.ProjPerkVO;
 import com.project.model.ProjectService;
 import com.project.model.ProjectVO;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 @WebServlet("/projDiscussion/projDiscussion.do")
 @MultipartConfig(maxFileSize = 16177215)

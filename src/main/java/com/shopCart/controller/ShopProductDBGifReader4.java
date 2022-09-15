@@ -77,7 +77,7 @@ public class ShopProductDBGifReader4 extends HttpServlet {
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/CFA104G2?serverTimezone=Asia/Taipei", "root", "password");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/CFA104G2?serverTimezone=Asia/Taipei", "root", "53434976");
 		} catch (ClassNotFoundException e) {
 			throw new UnavailableException("Couldn't load JdbcOdbcDriver");
 		} catch (SQLException e) {

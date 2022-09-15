@@ -17,7 +17,7 @@ public class AdministratorJDBCDAO implements AdministratorDAO_Interface {
 	String driver = "com.mysql.cj.jdbc.Driver";
 	String url = "jdbc:mysql://localhost:3306/cfa104g2?serverTimezone=Asia/Taipei";
 	String userid = "root";
-	String passwd = "password";
+	String passwd = "53434976";
 
 	private static final String INSERT_STMT = "INSERT INTO administrator (admin_type_id,admin_acc,admin_pwd,admin_isdeleted,admin_name,admin_email,admin_mobile,admin_zipcode,admin_city,admin_dist,admin_addr,admin_hiredate,admin_leavedate,admin_pic) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	private static final String GET_ALL_STMT = "SELECT admin_id,admin_type_id,admin_acc,admin_pwd,admin_isdeleted,admin_name,admin_email,admin_mobile,admin_zipcode,admin_city,admin_dist,admin_addr,admin_hiredate,admin_leavedate,admin_pic FROM administrator ORDER BY admin_id";

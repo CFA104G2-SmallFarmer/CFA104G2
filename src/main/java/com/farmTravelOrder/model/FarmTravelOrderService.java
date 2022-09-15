@@ -91,7 +91,7 @@ public class FarmTravelOrderService {
     }
 
     public void travelCompleted() {
-        System.out.println(dao.travelCompleted(con) + "筆行程已結束");
+//        System.out.println(dao.travelCompleted(con) + "筆行程已結束");
     }
 
     public void cancelApply(FarmTravelOrderVO farmTravelOrder) {

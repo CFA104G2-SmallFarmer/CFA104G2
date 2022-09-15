@@ -9,7 +9,7 @@ public class CommentsJDBCDAO implements CommentsDAO {
     public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     public static final String URL = "jdbc:mysql://localhost:3306/CFA104G2?serverTimezone=Asia/Taipei";
     public static final String USER = "root";
-    public static final String PASSWORD = "password";
+    public static final String PASSWORD = "53434976";
 
     public static final String INSERT_STMT = "INSERT INTO COMMENTS ( ARTICLE_ID, mem_id, COMMENTS_TIME, COMMENTS_CONTENT, COMMENTS_IMG,  COMMENTS_LIKE, COMMENTS_STATE) VALUES ( ?, ?, NOW(), ?, ?, '0', '0');";
     public static final String UPDATE_STMT = "UPDATE COMMENTS SET COMMENTS_CONTENT = ?, COMMENTS_LIKE = ?, COMMENTS_IMG= ?, COMMENTS_STATE= ?, COMMENTS_UPDATE_TIME = NOW() WHERE COMMENTS_ID = ?;";

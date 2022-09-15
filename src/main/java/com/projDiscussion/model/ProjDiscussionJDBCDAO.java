@@ -8,7 +8,7 @@ public class ProjDiscussionJDBCDAO implements ProjDiscussionDAO_interface {
 	String driver = "com.mysql.cj.jdbc.Driver";
 	String url = "jdbc:mysql://localhost:3306/CFA104G2?serverTimezone=Asia/Taipei";
 	String userid = "root";
-	String passwd = "password";
+	String passwd = "53434976";
 	// COMMENT_ID是自增主鍵不用打
 	private static final String INSERT_STMT = "INSERT INTO PROJ_DISCUSSION (PROJ_ID,DISCUSSION_ID,MEM_ID,F_MEM_ID,COMMENT_DATE,COMMENT_CONTENT)"
 			+ "VALUES (?, ?, ?, ?, NOW(), ?)";

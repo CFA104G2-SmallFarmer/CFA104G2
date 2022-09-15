@@ -8,8 +8,8 @@ public class ShopCartlistJDBCDAO implements ShopCartlistDAO_interface{
 
 	String driver = "com.mysql.cj.jdbc.Driver";
 	String url = "jdbc:mysql://localhost:3306/CFA104G2?serverTimezone=Asia/Taipei";
-	String userid = "OSPER";
-	String passwd = "123456";
+	String userid = "root";
+	String passwd = "53434976";
 
 	private static final String INSERT_STMT = 
 		"INSERT INTO shop_cartlist (mem_id,prod_id,cartlist_qty,cartlist_unit_price) VALUES (?, ?, ?, ?)";
@@ -79,7 +79,7 @@ public class ShopCartlistJDBCDAO implements ShopCartlistDAO_interface{
 
 			pstmt.setInt(1, shopcarlistVO.getCartlist_qty());
 			pstmt.setInt(2, shopcarlistVO.getCartlist_unit_price());
-			//where ¸Ì­±ªº?
+			//where ï¿½Ì­ï¿½ï¿½ï¿½?
 			pstmt.setInt(3, shopcarlistVO.getMem_id());
 			pstmt.setInt(4, shopcarlistVO.getProd_id());
 			
@@ -175,7 +175,7 @@ public class ShopCartlistJDBCDAO implements ShopCartlistDAO_interface{
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVo ¤]ºÙ¬° Domain objects
+				// empVo ï¿½]ï¿½Ù¬ï¿½ Domain objects
 				shopcartlistVO = new ShopCartlistVO();
 				shopcartlistVO.setMem_id(rs.getInt("mem_id"));
 				shopcartlistVO.setProd_id(rs.getInt("prod_id"));
@@ -233,7 +233,7 @@ public class ShopCartlistJDBCDAO implements ShopCartlistDAO_interface{
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
-				// empVo ¤]ºÙ¬° Domain objects
+				// empVo ï¿½]ï¿½Ù¬ï¿½ Domain objects
 				shopcartlistVO = new ShopCartlistVO();
 				shopcartlistVO.setMem_id(rs.getInt("mem_id"));
 				shopcartlistVO.setProd_id(rs.getInt("prod_id"));

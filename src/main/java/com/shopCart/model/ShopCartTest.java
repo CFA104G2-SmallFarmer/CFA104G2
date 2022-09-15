@@ -1,13 +1,10 @@
 package com.shopCart.model;
 
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
+import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.jasper.tagplugins.jstl.core.ForEach;
-import org.junit.jupiter.api.Test;
+import static org.junit.Assert.assertTrue;
 
 public class ShopCartTest {
 

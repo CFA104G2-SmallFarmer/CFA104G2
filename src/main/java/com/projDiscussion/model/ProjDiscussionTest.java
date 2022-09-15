@@ -1,6 +1,5 @@
 package com.projDiscussion.model;
 
-import java.util.List;
 import org.junit.jupiter.api.Test;
 
 public class ProjDiscussionTest {

@@ -13,7 +13,7 @@ public class AdminFunctionJDBCDAO implements AdminFunctionDAO_Interface {
 	String driver = "com.mysql.cj.jdbc.Driver";
 	String url = "jdbc:mysql://localhost:3306/cfa104g2?serverTimezone=Asia/Taipei";
 	String userid = "root";
-	String passwd = "0000";
+	String passwd = "53434976";
 
 	private static final String INSERT_STMT = "INSERT INTO admin_function (admin_func_id,admin_func_name,admin_func_des) VALUES (?, ?, ?)";
 	private static final String GET_ALL_STMT = "SELECT admin_func_id, admin_func_name ,admin_func_des FROM admin_function";

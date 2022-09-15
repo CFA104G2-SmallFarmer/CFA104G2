@@ -2,8 +2,6 @@ package com.shopProductCollection.model;
 
 import java.util.List;
 
-import com.shopProductPic.model.ShopProductPicVO;
-
 public interface ShopProductCollectionDAO_interface {
 	 public void insert(ShopProductCollectionVO shopProductCollectionVO);     
  //    public void update(ShopProductCollectionVO shopProductCollectionVO);     

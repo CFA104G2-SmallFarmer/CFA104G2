@@ -8,7 +8,6 @@ import javax.servlet.*;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.*;
 
-import org.apache.tomcat.util.http.fileupload.IOUtils;
 
 import com.projPic.model.ProjPicService;
 import com.projPic.model.ProjPicVO;

@@ -15,7 +15,7 @@ public class MessageJDBCDAO implements MessageDAO_Interface {
 	String driver = "com.mysql.cj.jdbc.Driver";
 	String url = "jdbc:mysql://localhost:3306/cfa104g2?serverTimezone=Asia/Taipei";
 	String userid = "root";
-	String passwd = "password";
+	String passwd = "53434976";
 
 	private static final String INSERT_STMT = "INSERT INTO message (mem_id, mem_id_send, msg_time, msg, read_state) VALUES (?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = "SELECT msg_no, mem_id, mem_id_send, msg_time, msg, read_state FROM message";

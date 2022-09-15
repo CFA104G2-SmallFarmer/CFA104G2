@@ -9,7 +9,7 @@ public class ShopCartJDBCDAO implements ShopCartDAO_interface{
 	String driver = "com.mysql.cj.jdbc.Driver";
 	String url = "jdbc:mysql://localhost:3306/CFA104G2?serverTimezone=Asia/Taipei";
 	String userid = "root";
-	String passwd = "password";
+	String passwd = "53434976";
 
 	private static final String INSERT_STMT = 
 		"INSERT INTO SHOP_CART"

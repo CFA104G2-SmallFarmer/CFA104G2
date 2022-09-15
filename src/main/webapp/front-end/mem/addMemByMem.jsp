@@ -75,7 +75,7 @@ margin-top:10px;
                                 value="">
                         </div>
 
-                        <div style="margin-bottom: 16px;"class="form-group"> <span>.<span id="a3" style="line-height:32px;font-size:15px;"></span></span>
+                        <div style="margin-bottom: 16px;"class="form-group"><span id="a3" style="line-height:32px;font-size:15px;"></span>
                             <input id="check_password" class="form-control" placeholder="確認密碼" required="" name="password_confirmation"
                                 type="password" value="">
                         </div>

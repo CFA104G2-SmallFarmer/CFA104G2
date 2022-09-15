@@ -18,7 +18,7 @@ public class HomeSlideShowJDBCDAO implements HomeSlideShowDAO_Interface {
 	String driver = "com.mysql.cj.jdbc.Driver";
 	String url = "jdbc:mysql://localhost:3306/cfa104g2?serverTimezone=Asia/Taipei";
 	String userid = "root";
-	String passwd = "password";
+	String passwd = "53434976";
 
 	private static final String INSERT_STMT = "INSERT INTO home_slideshow (admin_id, hss_img, hss_text, hss_time, hss_state, hss_on_shelf, hss_off_shelf) VALUES (?, ?, ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = "SELECT hss_id, admin_id, hss_img, hss_text, hss_time, hss_state, hss_on_shelf, hss_off_shelf FROM home_slideshow";

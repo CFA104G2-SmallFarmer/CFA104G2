@@ -9,7 +9,7 @@ public class ArticlePicJDBCDAO implements ArticlePicDAO {
     public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     public static final String URL = "jdbc:mysql://localhost:3306/CFA104G2?serverTimezone=Asia/Taipei";
     public static final String USER = "root";
-    public static final String PASSWORD = "password";
+    public static final String PASSWORD = "53434976";
 
     public static final String INSERT_STMT = "INSERT INTO ARTICLE_PIC ( ARTICLE_ID, ARTICLE_PIC) VALUES ( ?, ?);";
     // public static final String UPDATE_STMT = "";

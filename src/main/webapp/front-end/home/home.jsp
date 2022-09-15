@@ -622,9 +622,9 @@ rotate(
    <section id="content" style="opacity: 1;" class="">
       <div id="mobile-indicator"></div>
       <div class="index-banner">
-		<iframe
-				src="<%=request.getContextPath()%>/front-end/home/homeSlideShow.jsp"
-				width="1410" height="590" frameborder="0" style="display: block;"></iframe>
+		<img
+				src="https://www.besthealthmag.ca/wp-content/uploads/2019/03/Strawberry-Benefits.jpg"
+				width="1410" height="590" frameborder="0" style="display: block;"></img>
         <section class="block">
       </div>
       <div class="container">

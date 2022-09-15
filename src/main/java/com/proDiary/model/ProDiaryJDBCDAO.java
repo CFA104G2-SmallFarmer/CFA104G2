@@ -26,7 +26,7 @@ public class ProDiaryJDBCDAO implements ProDiaryDAO_interface {
 	String driver = "com.mysql.cj.jdbc.Driver";
 	String url = "jdbc:mysql://localhost:3306/cfa104g2?serverTimezone=Asia/Taipei";
 	String userid = "root";
-	String passwd = "password";
+	String passwd = "53434976";
 
 	private static final String INSERT_STMT = //8個問號//DIR_ID是自增主鍵不用打
 			"INSERT INTO PROJ_DIARY (PROJ_ID,DIR_UPLOAD_DATE,DIR_PROCEDURE,DIR_PRODUCT,DIR_EMOJI,DIR_NOTES,DIR_UPLOAD_STATE,DIR_PIC) VALUES (?, ?, ?, ?, ?, ?, ?,  ?)"; 

@@ -1,10 +1,8 @@
 package com.carlist.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.testng.annotations.Test;
 
-import org.apache.jasper.tagplugins.jstl.core.ForEach;
-import org.junit.jupiter.api.Test;
+import java.util.List;
 
 public class ShopCartlistTest {
 	

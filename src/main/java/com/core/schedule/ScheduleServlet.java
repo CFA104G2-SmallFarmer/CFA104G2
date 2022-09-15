@@ -18,14 +18,14 @@ public class ScheduleServlet extends HttpServlet {
         TimerTask task = new TimerTask(){
 
             public void run() {
-                FarmTravelService farmTravelService = new FarmTravelService();
-                farmTravelService.applyChange();
-                farmTravelService.farmTravelSetUp();
-                FarmTravelOrderService farmTravelOrderService = new FarmTravelOrderService();
-                farmTravelOrderService.travelCompleted();
+//                FarmTravelService farmTravelService = new FarmTravelService();
+//                farmTravelService.applyChange();
+//                farmTravelService.farmTravelSetUp();
+//                FarmTravelOrderService farmTravelOrderService = new FarmTravelOrderService();
+//                farmTravelOrderService.travelCompleted();
             }
         };
-        timer.scheduleAtFixedRate(task, cal.getTime(), 30*60*1000);
+        timer.scheduleAtFixedRate(task, cal.getTime(), 30*60*100000);
     }
 
     public void doGet(HttpServletRequest req, HttpServletResponse res)
