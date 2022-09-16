@@ -383,26 +383,13 @@ svg:not(:root).svg-inline--fa {
 }
 
 @
--webkit-keyframes fa-spin { 0%{
+-webkit-keyframes fa-spin {0%{
 	-webkit-transform: rotate(0);
-	transform: rotate(0)
-}
+	transform: rotate(0) } 100%
+{-webkit-transform:
+rotate(360deg);transform:rotate(360deg)}}
 
-100
-%
-{
--webkit-transform
-:
-rotate(
-360deg
-);
-transform
-:
-rotate(
-360deg
-)
-}
-}
+
 @
 keyframes fa-spin { 0%{
 	-webkit-transform: rotate(0);
@@ -575,7 +562,7 @@ rotate(
 	src="chrome-extension://jhffgcfmcckgmioipfnmbannkpncfipo/pagejs.js"></script>
 <style type="text/css">
 * { <br > -webkit-user-select:text!important; <br > -moz-user-select:text!important;
-	<br > -ms-user-select:text!important; <br > user-select:text!important;
+	<br > -ms-user-select:text!important; <br >; user-select:text!important;
 	<br >
 	
 }
@@ -624,14 +611,14 @@ rotate(
       <div class="index-banner">
 		<img
 				src="https://www.besthealthmag.ca/wp-content/uploads/2019/03/Strawberry-Benefits.jpg"
-				width="1410" height="590" frameborder="0" style="display: block;"></img>
+				width="1410" height="590" frameborder="0" style="display: block;"/>
         <section class="block">
       </div>
       <div class="container">
         <section class="block">
       </div>
       <div class="container">
-	<script type="text/javascript" id="">(function(a,e,b,f,g,c,d){a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)};c=e.createElement(f);c.async=1;c.src="https://www.clarity.ms/tag/"+g+"?ref\x3dgtm2";d=e.getElementsByTagName(f)[0];d.parentNode.insertBefore(c,d)})(window,document,"clarity","script","8frlty15ix");</script>
+	<script type="text/javascript" >(function(a,e,b,f,g,c,d){a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)};c=e.createElement(f);c.async=1;c.src="https://www.clarity.ms/tag/"+g+"?ref\x3dgtm2";d=e.getElementsByTagName(f)[0];d.parentNode.insertBefore(c,d)})(window,document,"clarity","script","8frlty15ix");</script>
 	<!-- container -->
 	<!-- content -->
 
