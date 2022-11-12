@@ -275,7 +275,7 @@
             <li class="about-us"><a href="<%=request.getContextPath()%>/front-end/project/listAllProjByMem.jsp">農產認養</a></li>
             
             
-            <li class="qa"><a href="<%=request.getContextPath()%>/front-end/article/listAllArticle.jsp">小農論壇</a></li>
+            <li class="qa"><a href="<%=request.getContextPath()%>/front-end/article/listAllArticle.jsp" >小農論壇</a></li>
 
 
             <li class="qa"><a href="<%=request.getContextPath()%>/front-end/fMem/fMemberInfom.jsp">小農專區</a></li>
