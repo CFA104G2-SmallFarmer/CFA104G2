@@ -13,22 +13,22 @@ public class ProjPicJDBCDAO implements ProjPicDAO_interface {
 	String userid = com.sysconfig.SysConfig.getUserid();
 	String passwd = com.sysconfig.SysConfig.getPasswd();;
 
-//	PROJ_PIC_ID is AI
-	private static final String INSERT_STMT = "INSERT INTO PROJ_PIC (PROJ_ID,PROJ_PIC)" + "VALUES (?, ?)";
+//	proj_pic_ID is AI
+	private static final String INSERT_STMT = "INSERT INTO proj_pic (PROJ_ID,proj_pic)" + "VALUES (?, ?)";
 
-	private static final String DELETE = "DELETE FROM PROJ_PIC WHERE PROJ_PIC_ID = ? ";
+	private static final String DELETE = "DELETE FROM proj_pic WHERE proj_pic_ID = ? ";
 
 //	只會有某專案換圖的情況，不會有圖片在專案間互換的情況
-	private static final String UPDATE = "UPDATE PROJ_PIC SET PROJ_PIC=? WHERE PROJ_PIC_ID = ? ";
+	private static final String UPDATE = "UPDATE proj_pic SET proj_pic=? WHERE proj_pic_ID = ? ";
 
 //	呈現某圖
-	private static final String GET_ONE_STMT = "SELECT PROJ_PIC_ID,PROJ_ID,PROJ_PIC FROM PROJ_PIC WHERE PROJ_PIC_ID = ? ;";
+	private static final String GET_ONE_STMT = "SELECT proj_pic_ID,PROJ_ID,proj_pic FROM proj_pic WHERE proj_pic_ID = ? ;";
 
 //	呈現某專案的所有圖片
-	private static final String GET_ALl_SAME_PROJ = "SELECT PROJ_PIC_ID,PROJ_ID,PROJ_PIC FROM PROJ_PIC WHERE PROJ_ID = ?;";
+	private static final String GET_ALl_SAME_PROJ = "SELECT proj_pic_ID,PROJ_ID,proj_pic FROM proj_pic WHERE PROJ_ID = ?;";
 
 //	底下感覺不會用到
-//	private static final String GET_ALL_STMT = "SELECT PROJ_PIC_ID,PROJ_ID,PROJ_PIC FROM PROJPIC ORDER BY PROJ_ID";
+//	private static final String GET_ALL_STMT = "SELECT proj_pic_ID,PROJ_ID,proj_pic FROM PROJPIC ORDER BY PROJ_ID";
 
 	@Override
 	public void insert(ProjPicVO ProjPicVO) {

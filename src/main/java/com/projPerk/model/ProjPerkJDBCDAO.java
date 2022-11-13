@@ -24,21 +24,21 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface {
 
 	private static final String INSERT_STMT = // 7個問號//DIR_ID是自增主鍵不用打
 												// 不含PERK_TOTAL_COUNT
-			"INSERT INTO PROJ_PERK " + "(PROJ_ID," + "PERK_PIC," + "PERK_INTRO," + "PERK_FUND," + "PERK_LIMITED,"
+			"INSERT INTO proj_perk " + "(PROJ_ID," + "PERK_PIC," + "PERK_INTRO," + "PERK_FUND," + "PERK_LIMITED,"
 					+ "PERK_SHIP_DATE," + "PERK_SHIP_AREA," + "PERK_ABBR_NAME) " + "VALUES" + "(?,?,?,?,?,?,?,?)";
 
 	private static final String GET_ALL_STMT = //// 特定專案下的所有回饋方案
 			"SELECT `PERK_ID`," + "`PROJ_ID`," + "`PERK_PIC`," + "`PERK_INTRO`," + "`PERK_TOTAL_COUNT`,"
 					+ "`PERK_FUND`," + "`PERK_LIMITED`," + "`PERK_SHIP_DATE`," + "`PERK_SHIP_AREA`,"
-					+ "`PERK_ABBR_NAME`" + "FROM `PROJ_PERK` " + "WHERE `PROJ_ID`=?;";
+					+ "`PERK_ABBR_NAME`" + "FROM `proj_perk` " + "WHERE `PROJ_ID`=?;";
 
 	private static final String GET_ONE_STMT = // 找一回饋方案
 			"SELECT `PERK_ID`," + "`PROJ_ID`," + "`PERK_PIC`," + "`PERK_INTRO`," + "`PERK_TOTAL_COUNT`,"
 					+ "`PERK_FUND`," + "`PERK_LIMITED`," + "`PERK_SHIP_DATE`," + "`PERK_SHIP_AREA`,"
-					+ "`PERK_ABBR_NAME`" + "FROM `PROJ_PERK` " + "WHERE `PERK_ID`=?;";
-	private static final String DELETE = "DELETE FROM PROJ_PERK WHERE PERK_ID=?";
+					+ "`PERK_ABBR_NAME`" + "FROM `proj_perk` " + "WHERE `PERK_ID`=?;";
+	private static final String DELETE = "DELETE FROM proj_perk WHERE PERK_ID=?";
 	private static final String UPDATE = // 更新特定項目//7個問號//不含PERK_TOTAL_COUNT
-			"UPDATE `PROJ_PERK`" + "SET" + "`PERK_PIC` = ?," + "`PERK_INTRO` = ?," + "`PERK_FUND` = ?,"
+			"UPDATE `proj_perk`" + "SET" + "`PERK_PIC` = ?," + "`PERK_INTRO` = ?," + "`PERK_FUND` = ?,"
 					+ "`PERK_LIMITED` = ?," + "`PERK_SHIP_DATE` =?," + "`PERK_SHIP_AREA` =?," + "`PERK_ABBR_NAME` =? "
 					+ "WHERE `PERK_ID` = ?;";
 
@@ -46,7 +46,7 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface {
 //			"SELECT COUNT(*) FROM PROJ_ORDER WHERE PERK_ID=? AND ORDER_STATE !=4;";
 
 	private static final String UPDATE_PERK_TOTAL_COUNT = // 更新目前回饋方案總人數
-			"UPDATE PROJ_PERK SET PERK_TOTAL_COUNT =(SELECT COUNT(*) FROM PROJ_ORDER WHERE PERK_ID=? AND ORDER_STATE !=5) WHERE PERK_ID=?;";
+			"UPDATE proj_perk SET PERK_TOTAL_COUNT =(SELECT COUNT(*) FROM PROJ_ORDER WHERE PERK_ID=? AND ORDER_STATE !=5) WHERE PERK_ID=?;";
 
 	@Override
 	public void autoUpdatePerkTotalCount(Integer perk_id) {

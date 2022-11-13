@@ -7,13 +7,13 @@ import java.util.List;
 
 public class ArticleJDBCDAO implements ArticleDAO {
 
-    public static final String INSERT_STMT = "INSERT INTO ARTICLE (ARTICLE_TITLE, mem_id, ARTICLE_TYPE_ID, ARTICLE_TIME, ARTICLE_CONTENT, ARTICLE_IMG, ARTICLE_LIKE, COMMENTS_NUM, ARTICLE_STATE) VALUES (  ?, ?, ?, NOW(), ?, ?,'0','0','0');";
-    public static final String UPDATE_STMT = "UPDATE ARTICLE SET ARTICLE_TITLE = ?, ARTICLE_CONTENT= ?, ARTICLE_IMG= ?, ARTICLE_LIKE= ?, COMMENTS_NUM= ?, ARTICLE_STATE= ?, ARTICLE_UPDATE_TIME= NOW() WHERE ARTICLE_ID = ?;";
-    public static final String DELETE_STMT = "DELETE FROM ARTICLE WHERE ARTICLE_ID = ?;";
-    public static final String GET_ONE_STMT = "SELECT * FROM ARTICLE WHERE ARTICLE_ID = ?;";
-    public static final String GET_ALL_STMT = "SELECT * FROM ARTICLE ORDER BY ARTICLE_TIME DESC;";
-    public static final String GET_ALL_BY_MEMID = "SELECT * FROM ARTICLE WHERE MEM_ID =?;";
-    public static final String ARTICLE_BY_SEARCH = "SELECT * FROM ARTICLE WHERE ARTICLE_TITLE LIKE ? OR ARTICLE_CONTENT LIKE ?;";
+    public static final String INSERT_STMT = "INSERT INTO article (ARTICLE_TITLE, mem_id, ARTICLE_TYPE_ID, ARTICLE_TIME, ARTICLE_CONTENT, ARTICLE_IMG, ARTICLE_LIKE, COMMENTS_NUM, ARTICLE_STATE) VALUES (  ?, ?, ?, NOW(), ?, ?,'0','0','0');";
+    public static final String UPDATE_STMT = "UPDATE article SET ARTICLE_TITLE = ?, ARTICLE_CONTENT= ?, ARTICLE_IMG= ?, ARTICLE_LIKE= ?, COMMENTS_NUM= ?, ARTICLE_STATE= ?, ARTICLE_UPDATE_TIME= NOW() WHERE ARTICLE_ID = ?;";
+    public static final String DELETE_STMT = "DELETE FROM article WHERE ARTICLE_ID = ?;";
+    public static final String GET_ONE_STMT = "SELECT * FROM article WHERE ARTICLE_ID = ?;";
+    public static final String GET_ALL_STMT = "SELECT * FROM article ORDER BY ARTICLE_TIME DESC;";
+    public static final String GET_ALL_BY_MEMID = "SELECT * FROM article WHERE MEM_ID =?;";
+    public static final String ARTICLE_BY_SEARCH = "SELECT * FROM article WHERE ARTICLE_TITLE LIKE ? OR ARTICLE_CONTENT LIKE ?;";
 
 
     PreparedStatement pstmt = null;

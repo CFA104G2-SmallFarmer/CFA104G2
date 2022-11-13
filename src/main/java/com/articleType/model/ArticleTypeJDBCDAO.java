@@ -13,11 +13,11 @@ public class ArticleTypeJDBCDAO implements ArticleTypeDAO {
     public static final String USER = com.sysconfig.SysConfig.getUserid();
     public static final String PASSWORD = com.sysconfig.SysConfig.getPasswd();;
 
-    public static final String INSERT_STMT = "INSERT INTO ARTICLE_TYPE (ARTICLE_TYPE_IMG, AC_TYPE_TEXT) VALUES ( ?, ?);";
-    public static final String UPDATE_STMT = "UPDATE ARTICLE_TYPE SET ARTICLE_TYPE_IMG = ?, AC_TYPE_TEXT = ? WHERE ARTICLE_TYPE_ID = ?;";
-    public static final String DELETE_STMT = "DELETE FROM ARTICLE_TYPE WHERE ARTICLE_TYPE_ID = ?;";
-    public static final String GET_ONE_STMT = "SELECT * FROM ARTICLE_TYPE WHERE ARTICLE_TYPE_ID = ?;";
-    public static final String GET_ALL_STMT = "SELECT * FROM ARTICLE_TYPE;";
+    public static final String INSERT_STMT = "INSERT INTO article_type (ARTICLE_TYPE_IMG, AC_TYPE_TEXT) VALUES ( ?, ?);";
+    public static final String UPDATE_STMT = "UPDATE article_type SET ARTICLE_TYPE_IMG = ?, AC_TYPE_TEXT = ? WHERE ARTICLE_TYPE_ID = ?;";
+    public static final String DELETE_STMT = "DELETE FROM article_type WHERE ARTICLE_TYPE_ID = ?;";
+    public static final String GET_ONE_STMT = "SELECT * FROM article_type WHERE ARTICLE_TYPE_ID = ?;";
+    public static final String GET_ALL_STMT = "SELECT * FROM article_type;";
 
     static {
         try {

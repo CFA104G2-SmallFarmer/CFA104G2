@@ -26,7 +26,7 @@ public class ShopProductJDBCDAO implements ShopProductDAO_interface {
 	private static final String GET_ALLByFmem_STMT = 
 			"SELECT * FROM shop_product WHERE f_mem_id = ?";
 	private static final String GET_PriceByFmem_STMT = 
-			"SELECT * FROM CFA104G2.SHOP_PRODUCT WHERE PROD_PRICE >? AND PROD_PRICE <=?";
+			"SELECT * FROM cfa104g2.shop_produc WHERE PROD_PRICE >? AND PROD_PRICE <=?";
 	
 
 	@Override

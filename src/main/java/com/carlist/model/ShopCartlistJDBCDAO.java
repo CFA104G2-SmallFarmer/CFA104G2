@@ -14,7 +14,7 @@ public class ShopCartlistJDBCDAO implements ShopCartlistDAO_interface{
 	private static final String INSERT_STMT = 
 		"INSERT INTO shop_cartlist (mem_id,prod_id,cartlist_qty,cartlist_unit_price) VALUES (?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = 
-		"SELECT * FROM CFA104G2.shop_cartlist";
+		"SELECT * FROM cfa104g2.shop_cartlist";
 	private static final String GET_ONE_STMT = 
 		"SELECT mem_id,prod_id,cartlist_qty,cartlist_unit_price FROM shop_cartlist where mem_id = ? and prod_id = ?";
 	private static final String DELETE = 

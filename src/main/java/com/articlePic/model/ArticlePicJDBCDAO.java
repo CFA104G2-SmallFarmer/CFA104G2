@@ -11,10 +11,10 @@ public class ArticlePicJDBCDAO implements ArticlePicDAO {
     public static final String USER = com.sysconfig.SysConfig.getUserid();
     public static final String PASSWORD = com.sysconfig.SysConfig.getPasswd();
 
-    public static final String INSERT_STMT = "INSERT INTO ARTICLE_PIC ( ARTICLE_ID, ARTICLE_PIC) VALUES ( ?, ?);";
+    public static final String INSERT_STMT = "INSERT INTO article_pic ( ARTICLE_ID, ARTICLE_PIC) VALUES ( ?, ?);";
     // public static final String UPDATE_STMT = "";
-    public static final String DELETE_STMT = "DELETE FROM ARTICLE_PIC WHERE ARTICLE_PIC_ID = ?;";
-    public static final String GET_ONE_STMT = "SELECT * FROM ARTICLE_PIC WHERE ARTICLE_PIC_ID = ?;";
+    public static final String DELETE_STMT = "DELETE FROM article_pic WHERE ARTICLE_PIC_ID = ?;";
+    public static final String GET_ONE_STMT = "SELECT * FROM article_pic WHERE ARTICLE_PIC_ID = ?;";
     public static final String GET_ALL_STMT = "SELECT * FROM ARTICLE_PIC;";
 
     @Override

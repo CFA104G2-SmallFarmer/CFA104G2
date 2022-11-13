@@ -8,10 +8,10 @@ import java.util.List;
 
 public class ArticleCollectionJDBCDAO implements ArticleCollectionDAO {
 
-    public static final String INSERT_STMT = "INSERT INTO ARTICLE_COLLECTION (ARTICLE_ID, mem_id,ARTICLE_FOLLOW_DATE) VALUES ( ?, ?, NOW());";
-    public static final String DELETE_STMT = "DELETE FROM ARTICLE_COLLECTION WHERE mem_id  = ? AND ARTICLE_ID= ?;";
-    public static final String GET_ONE_STMT = "SELECT * FROM ARTICLE_COLLECTION WHERE mem_id = ? AND ARTICLE_ID = ?;";
-    public static final String GET_ALL_STMT = "SELECT * FROM ARTICLE_COLLECTION WHERE mem_id = ?;";
+    public static final String INSERT_STMT = "INSERT INTO article_collection (ARTICLE_ID, mem_id,ARTICLE_FOLLOW_DATE) VALUES ( ?, ?, NOW());";
+    public static final String DELETE_STMT = "DELETE FROM article_collection WHERE mem_id  = ? AND ARTICLE_ID= ?;";
+    public static final String GET_ONE_STMT = "SELECT * FROM article_collection WHERE mem_id = ? AND ARTICLE_ID = ?;";
+    public static final String GET_ALL_STMT = "SELECT * FROM article_collection WHERE mem_id = ?;";
 
     PreparedStatement pstmt = null;
     ResultSet rs = null;

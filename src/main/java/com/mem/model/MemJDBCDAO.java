@@ -19,7 +19,7 @@ public class MemJDBCDAO implements MemDAO_interface {
 			"UPDATE mem set mem_pwd=? WHERE mem_acc = ?";
 	
 	private static final String FIND_USER_BY_MEM_ACC=
-			"SELECT* FROM MEM WHERE MEM_ACC=?";
+			"SELECT* FROM mem WHERE MEM_ACC=?";
 	
 	private static final String REGISTER_STMT = 
 			"INSERT INTO mem (mem_acc, mem_pwd, mem_nickname,reg_date) VALUES( ?, ?, ?,NOW())";

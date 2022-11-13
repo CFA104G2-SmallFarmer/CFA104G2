@@ -11,11 +11,11 @@ public class ArticleReportJDBCDAO implements ArticleReportDAO {
     public static final String USER = com.sysconfig.SysConfig.getUserid();
     public static final String PASSWORD = com.sysconfig.SysConfig.getPasswd();
 
-    public static final String INSERT_STMT = "INSERT INTO ARTICLE_REPORT ( mem_id, ARTICLE_ID, REPORT_TIME, REPORT_REASON, REPORT_STATE,) VALUES ( ?, ?, NOW(), ?, '0');";
-    public static final String UPDATE_STMT = "UPDATE ARTICLE_REPORT SET REPORT_STATE=?, REPORT_NOTE=?, REVIEW_TIME= NOW() WHERE ARTICLE_REPORT_ID = ?;";
-    // public static final String DELETE_STMT = "DELETE FROM ARTICLE_REPORT WHERE
-    public static final String GET_ONE_STMT = "SELECT * FROM ARTICLE_REPORT WHERE ARTICLE_REPORT_ID = ?;";
-    public static final String GET_ALL_STMT = "SELECT * FROM ARTICLE_REPORT;";
+    public static final String INSERT_STMT = "INSERT INTO article_report ( mem_id, ARTICLE_ID, REPORT_TIME, REPORT_REASON, REPORT_STATE,) VALUES ( ?, ?, NOW(), ?, '0');";
+    public static final String UPDATE_STMT = "UPDATE article_report SET REPORT_STATE=?, REPORT_NOTE=?, REVIEW_TIME= NOW() WHERE ARTICLE_REPORT_ID = ?;";
+    // public static final String DELETE_STMT = "DELETE FROM article_report WHERE
+    public static final String GET_ONE_STMT = "SELECT * FROM article_report WHERE ARTICLE_REPORT_ID = ?;";
+    public static final String GET_ALL_STMT = "SELECT * FROM article_report;";
 
     static {
         try {

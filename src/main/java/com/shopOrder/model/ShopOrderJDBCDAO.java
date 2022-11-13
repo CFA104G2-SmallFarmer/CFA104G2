@@ -14,7 +14,7 @@ public class ShopOrderJDBCDAO implements ShopOrderDAO_interface {
 	String passwd = com.sysconfig.SysConfig.getPasswd();
 
 	private static final String INSERT_STMT = 
-	"INSERT INTO `SHOP_ORDER`"
+	"INSERT INTO `shop_order`"
 	+"(`MEM_ID`, "
 	+"`F_MEM_ID`,"
 	+"`ORDER_ADD`,"
@@ -42,7 +42,7 @@ public class ShopOrderJDBCDAO implements ShopOrderDAO_interface {
 	+ "`ORDER_SHIP_DATE`,"
 	+ "`ORDER_FINISH_DATE`,"
 	+ "`ORDER_CANCEL_DATE`"
-	+ "FROM `SHOP_ORDER`";
+	+ "FROM `shop_order`";
 	
 	
 	private static final String GET_ONE_STMT = 
@@ -60,7 +60,7 @@ public class ShopOrderJDBCDAO implements ShopOrderDAO_interface {
 	+ "`ORDER_SHIP_DATE`,"
 	+ "`ORDER_FINISH_DATE`,"
 	+ "`ORDER_CANCEL_DATE`"
-	+ "FROM `SHOP_ORDER` WHERE ORDER_ID = ?";
+	+ "FROM `shop_order` WHERE ORDER_ID = ?";
 	
 	private static final String DELETE = 
 			"DELETE FROM shop_order where order_id = ?";
@@ -69,7 +69,7 @@ public class ShopOrderJDBCDAO implements ShopOrderDAO_interface {
 //	"UPDATE shop_order "
 //	+ "set mem_id=?, order_date=?, order_ship_fee=?, order_add=?, order_amount=?, order_memo=?, order_ship_date=?,order_payment=?, order_state=? ,order_finish_date=? where order_id = ?";
 //	
-	"UPDATE `SHOP_ORDER`"
+	"UPDATE `shop_order`"
 	+ "SET"
 	+"`ORDER_ADD` = ?,"
 	+"`ORDER_RECEIVER` = ?,"
@@ -87,7 +87,7 @@ public class ShopOrderJDBCDAO implements ShopOrderDAO_interface {
 //			2 : 運送中
 //			3 : 已完成
 //			4 : 已取消
-	"UPDATE `SHOP_ORDER`"
+	"UPDATE `shop_order`"
 	+ "SET"
 	+"`ORDER_STATE` = ?,"
 	+"`ORDER_SHIP_DATE` = ?," 
@@ -113,7 +113,7 @@ public class ShopOrderJDBCDAO implements ShopOrderDAO_interface {
 						+ "`ORDER_SHIP_DATE`,"
 						+ "`ORDER_FINISH_DATE`,"
 						+ "`ORDER_CANCEL_DATE`"
-						+ "FROM `SHOP_ORDER` WHERE `MEM_ID` = ? ORDER BY `ORDER_ID` DESC;";
+						+ "FROM `shop_order` WHERE `MEM_ID` = ? ORDER BY `ORDER_ID` DESC;";
 	
 		// 列出小農的所有訂單(因為訂單裡沒有小農編號，所以要JOIN兩次才抓得到)
 		private static final String GET_All_FMEM_ORDER_STMT = 
@@ -131,7 +131,7 @@ public class ShopOrderJDBCDAO implements ShopOrderDAO_interface {
 						+ "`ORDER_SHIP_DATE`,"
 						+ "`ORDER_FINISH_DATE`,"
 						+ "`ORDER_CANCEL_DATE`"
-						+ "FROM `SHOP_ORDER` WHERE `F_MEM_ID` = ? ORDER BY `ORDER_ID` DESC;";
+						+ "FROM `shop_order` WHERE `F_MEM_ID` = ? ORDER BY `ORDER_ID` DESC;";
 		
 	
 	@Override
@@ -147,7 +147,7 @@ public class ShopOrderJDBCDAO implements ShopOrderDAO_interface {
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			
-//			"INSERT INTO `SHOP_ORDER`"
+//			"INSERT INTO `shop_order`"
 //			+"(`MEM_ID`, "
 //			+"`F_MEM_ID`,"
 //			+"`ORDER_ADD`,"
@@ -210,7 +210,7 @@ public class ShopOrderJDBCDAO implements ShopOrderDAO_interface {
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(UPDATE);
 
-//			"UPDATE `SHOP_ORDER`"
+//			"UPDATE `shop_order`"
 //			+ "SET"
 //			1+"`ORDER_ADD` = ?,"
 //			2+"`ORDER_RECEIVER` = ?,"
@@ -335,7 +335,7 @@ public class ShopOrderJDBCDAO implements ShopOrderDAO_interface {
 //						+ "`ORDER_SHIP_DATE`, "
 //						+ "`ORDER_FINISH_DATE`, "
 //						+ "`ORDER_CANCEL_DATE`, "
-//						+ "FROM `SHOP_ORDER` WHERE `ORDER_ID` = ?";
+//						+ "FROM `shop_order` WHERE `ORDER_ID` = ?";
 				
 				shoporderVO = new ShopOrderVO();
 				shoporderVO.setOrder_id(rs.getInt("order_id"));
@@ -418,7 +418,7 @@ public class ShopOrderJDBCDAO implements ShopOrderDAO_interface {
 //		+ "`ORDER_SHIP_DATE`, "
 //		+ "`ORDER_FINISH_DATE`, "
 //		+ "`ORDER_CANCEL_DATE`, "
-//		+ "FROM `SHOP_ORDER`";
+//		+ "FROM `shop_order`";
 	
 				shoporderVO = new ShopOrderVO();
 				shoporderVO.setOrder_id(rs.getInt("order_id"));
@@ -505,7 +505,7 @@ public class ShopOrderJDBCDAO implements ShopOrderDAO_interface {
 //						+ "`ORDER_SHIP_DATE`,"
 //						+ "`ORDER_FINISH_DATE`,"
 //						+ "`ORDER_CANCEL_DATE`,"
-//						+ "FROM `SHOP_ORDER` WHERE `MEM_ID` = ?";
+//						+ "FROM `shop_order` WHERE `MEM_ID` = ?";
 				
 				shoporderVO = new ShopOrderVO();
 				shoporderVO.setOrder_id(rs.getInt("order_id"));
@@ -595,7 +595,7 @@ public class ShopOrderJDBCDAO implements ShopOrderDAO_interface {
 //						+ "`ORDER_SHIP_DATE`,"
 //						+ "`ORDER_FINISH_DATE`,"
 //						+ "`ORDER_CANCEL_DATE`"
-//						+ "FROM `SHOP_ORDER` WHERE `F_MEM_ID` = ?";
+//						+ "FROM `shop_order` WHERE `F_MEM_ID` = ?";
 				
 				shoporderVO = new ShopOrderVO();
 				shoporderVO.setOrder_id(rs.getInt("order_id"));

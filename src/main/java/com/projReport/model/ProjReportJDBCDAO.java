@@ -12,18 +12,18 @@ public class ProjReportJDBCDAO implements ProjReportDAO_interface {
 	String passwd = com.sysconfig.SysConfig.getPasswd();
 	
 //	PROJ_REPORT_ID is auto increment，REPORT_NOTE是留給管理員處理完該檢舉單後填的
-	private static final String INSERT_STMT = "INSERT INTO Proj_Report (PROJ_ID,MEM_ID,REPORT_REASON,REPORT_TIME,REPORT_STATE)"
+	private static final String INSERT_STMT = "INSERT INTO proj_report (PROJ_ID,MEM_ID,REPORT_REASON,REPORT_TIME,REPORT_STATE)"
 			+ "VALUES ( ?, ?, ?, NOW(), 0)";
-	private static final String GET_ALL_STMT = "SELECT PROJ_REPORT_ID,PROJ_ID,MEM_ID,REPORT_REASON,REPORT_TIME,REPORT_STATE,REPORT_NOTE FROM Proj_Report ORDER BY PROJ_REPORT_ID";
+	private static final String GET_ALL_STMT = "SELECT PROJ_REPORT_ID,PROJ_ID,MEM_ID,REPORT_REASON,REPORT_TIME,REPORT_STATE,REPORT_NOTE FROM proj_report ORDER BY PROJ_REPORT_ID";
 
 //	有時間再加列出某使用者的所有檢舉清單
-//	private static final String GET_ONE_STMT = "SELECT PROJ_REPORT_ID,PROJ_ID,MEM_ID,REPORT_REASON,REPORT_TIME,REPORT_STATE,REPORT_NOTE FROM Proj_Report WHERE MEM_ID = ?";
+//	private static final String GET_ONE_STMT = "SELECT PROJ_REPORT_ID,PROJ_ID,MEM_ID,REPORT_REASON,REPORT_TIME,REPORT_STATE,REPORT_NOTE FROM proj_report WHERE MEM_ID = ?";
 
 //	檢舉單沒必要刪掉
 	//	private static final String DELETE = "DELETE FROM ProjReport WHERE PROJ_REPORT_ID = ?";
 	
 //	只有管理員會針對狀態碼(REPORT_STATE)及處理結果(REPORT_NOTE)去改，其他不會有機會update
-	private static final String UPDATE = "UPDATE Proj_Report SET REPORT_STATE=?,REPORT_NOTE=? WHERE PROJ_REPORT_ID = ?";
+	private static final String UPDATE = "UPDATE proj_report SET REPORT_STATE=?,REPORT_NOTE=? WHERE PROJ_REPORT_ID = ?";
 //	0: 未處理
 //	1: 檢舉通過
 //	2: 檢舉未通過

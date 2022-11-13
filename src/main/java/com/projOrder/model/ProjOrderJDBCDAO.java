@@ -23,10 +23,10 @@ public class ProjOrderJDBCDAO implements ProjOrderDAO_interface {
 	
 //	ORDER_ID流水號，ORDER_TIME使用NOW()，新建單時不會有ORDER_CANCEL_TIME，ORDER_STATE預設為0
 	private static final String INSERT_STMT = 
-//			"INSERT INTO PROJ_ORDER (MEM_ID,PERK_ID,ORDER_TIME,ORDER_ADDR,ORDER_STATE)"
+//			"INSERT INTO proj_order (MEM_ID,PERK_ID,ORDER_TIME,ORDER_ADDR,ORDER_STATE)"
 //			+ "VALUES ( ?, ?, NOW(), ?, 0)";
 	
-	"INSERT INTO `PROJ_ORDER`"
+	"INSERT INTO `proj_order`"
 	+ "(`MEM_ID`,"
 	+ "`PERK_ID`,"
 	+ "`ORDER_TIME`,"
@@ -40,7 +40,7 @@ public class ProjOrderJDBCDAO implements ProjOrderDAO_interface {
 	+ "(?,?,NOW(),?,?,?,?,?,0)";
 	
 	private static final String GET_ALL_STMT = 
-//			"SELECT ORDER_ID,MEM_ID,PERK_ID,ORDER_TIME,ORDER_ADDR,ORDER_STATE,ORDER_CANCEL_TIME FROM PROJ_ORDER ORDER BY ORDER_ID";
+//			"SELECT ORDER_ID,MEM_ID,PERK_ID,ORDER_TIME,ORDER_ADDR,ORDER_STATE,ORDER_CANCEL_TIME FROM proj_order ORDER BY ORDER_ID";
 	
 	"SELECT `ORDER_ID`,"
 	+ "`MEM_ID`,"
@@ -56,10 +56,10 @@ public class ProjOrderJDBCDAO implements ProjOrderDAO_interface {
 	+ "`ORDER_COMPLETION_TIME`,"
 	+ "`ORDER_CANCEL_TIME`,"
 	+ "`ORDER_CANCEL_REASON`"
-	+ "FROM `PROJ_ORDER`";
+	+ "FROM `proj_order`";
 	
 	private static final String GET_ONE_STMT = 
-//			"SELECT ORDER_ID,MEM_ID,PERK_ID,ORDER_TIME,ORDER_ADDR,ORDER_STATE,ORDER_CANCEL_TIME FROM PROJ_ORDER WHERE ORDER_ID = ?";
+//			"SELECT ORDER_ID,MEM_ID,PERK_ID,ORDER_TIME,ORDER_ADDR,ORDER_STATE,ORDER_CANCEL_TIME FROM proj_order WHERE ORDER_ID = ?";
 	"SELECT `ORDER_ID`,"
 	+ "`MEM_ID`,"
 	+ "`PERK_ID`,"
@@ -74,14 +74,14 @@ public class ProjOrderJDBCDAO implements ProjOrderDAO_interface {
 	+ "`ORDER_COMPLETION_TIME`,"
 	+ "`ORDER_CANCEL_TIME`,"
 	+ "`ORDER_CANCEL_REASON`"
-	+ "FROM `PROJ_ORDER` WHERE `ORDER_ID` = ?";
+	+ "FROM `proj_order` WHERE `ORDER_ID` = ?";
 	
-	private static final String DELETE = "DELETE FROM PROJ_ORDER WHERE ORDER_ID = ?";
+	private static final String DELETE = "DELETE FROM proj_order WHERE ORDER_ID = ?";
 	
 
 	private static final String UPDATE = 
-//			"UPDATE PROJ_ORDER SET ORDER_STATE=?,ORDER_CANCEL_TIME=? WHERE ORDER_ID = ?";
-	"UPDATE `PROJ_ORDER`"
+//			"UPDATE proj_order SET ORDER_STATE=?,ORDER_CANCEL_TIME=? WHERE ORDER_ID = ?";
+	"UPDATE `proj_order`"
 	+ "SET"
 	+ "`ORDER_ZIPCODE` = ?,"
 	+ "`ORDER_ADDR` = ?,"
@@ -95,7 +95,7 @@ public class ProjOrderJDBCDAO implements ProjOrderDAO_interface {
 	+ " WHERE `ORDER_ID` = ?";
 	
 	private static final String CHANGE_STATE =
-			"UPDATE `PROJ_ORDER`"
+			"UPDATE `proj_order`"
 					+ "SET"
 					+ "`ORDER_STATE` = ?,"
 					+ "`ORDER_SHIP_TIME` = ?,"
@@ -106,7 +106,7 @@ public class ProjOrderJDBCDAO implements ProjOrderDAO_interface {
 	
 	// 列出會員的所有訂單
 	private static final String GET_All_MEM_ORDER_STMT = 
-//			"SELECT ORDER_ID,MEM_ID,PERK_ID,ORDER_TIME,ORDER_ADDR,ORDER_STATE,ORDER_CANCEL_TIME FROM PROJ_ORDER WHERE MEM_ID = ?";
+//			"SELECT ORDER_ID,MEM_ID,PERK_ID,ORDER_TIME,ORDER_ADDR,ORDER_STATE,ORDER_CANCEL_TIME FROM proj_order WHERE MEM_ID = ?";
 			
 			"SELECT `ORDER_ID`,"
 			+ "`MEM_ID`,"
@@ -122,12 +122,12 @@ public class ProjOrderJDBCDAO implements ProjOrderDAO_interface {
 			+ "`ORDER_COMPLETION_TIME`,"
 			+ "`ORDER_CANCEL_TIME`,"
 			+ "`ORDER_CANCEL_REASON`"
-			+ "FROM `PROJ_ORDER` WHERE `MEM_ID` = ? ORDER BY ORDER_ID DESC";
+			+ "FROM `proj_order` WHERE `MEM_ID` = ? ORDER BY ORDER_ID DESC";
 	
 	
 	// 列出小農的所有訂單(因為訂單裡沒有小農編號，所以要JOIN兩次才抓得到)
 	private static final String GET_All_FMEM_ORDER_STMT = "SELECT A.* , B.PROJ_ID, C.F_MEM_ID "
-			+"FROM (PROJ_ORDER AS A LEFT JOIN PROJ_PERK AS B ON A.PERK_ID = B.PERK_ID) " 
+			+"FROM (proj_order AS A LEFT JOIN PROJ_PERK AS B ON A.PERK_ID = B.PERK_ID) " 
 			+"LEFT JOIN PROJECT AS C ON B.PROJ_ID=C.PROJ_ID "
 			+"WHERE F_MEM_ID = ? ORDER BY ORDER_ID DESC";
 
@@ -149,7 +149,7 @@ public class ProjOrderJDBCDAO implements ProjOrderDAO_interface {
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(INSERT_STMT);
 			
-//			"INSERT INTO `PROJ_ORDER`"
+//			"INSERT INTO `proj_order`"
 //			1+ "(`MEM_ID`,"
 //			2+ "`PERK_ID`,"
 //			+ "`ORDER_TIME`,"
@@ -205,7 +205,7 @@ public class ProjOrderJDBCDAO implements ProjOrderDAO_interface {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(UPDATE);
-//			"UPDATE `PROJ_ORDER`"
+//			"UPDATE `proj_order`"
 //			+ "SET"
 //			1+ "`ORDER_ZIPCODE` = ?,"
 //			2+ "`ORDER_ADDR` = ?,"
@@ -328,7 +328,7 @@ public class ProjOrderJDBCDAO implements ProjOrderDAO_interface {
 //			+ "`ORDER_COMPLETION_TIME`,"
 //			+ "`ORDER_CANCEL_TIME`,"
 //			+ "`ORDER_CANCEL_REASON`"
-//			+ "FROM `PROJ_ORDER` WHERE `ORDER_ID` = ?";
+//			+ "FROM `proj_order` WHERE `ORDER_ID` = ?";
 			while (rs.next()) {
 
 				ProjOrderVO = new ProjOrderVO();
