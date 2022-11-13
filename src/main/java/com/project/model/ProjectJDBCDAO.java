@@ -7,10 +7,10 @@ import java.sql.*;
 
 public class ProjectJDBCDAO implements ProjectDAO_interface {
 
-	String driver = "com.mysql.cj.jdbc.Driver";
-	String url = "jdbc:mysql://localhost:3306/CFA104G2?serverTimezone=Asia/Taipei";
-	String userid = "root";
-	String passwd = "53434976";
+	String driver = com.sysconfig.SysConfig.getDriver();
+	String url = com.sysconfig.SysConfig.getUrl();
+	String userid = com.sysconfig.SysConfig.getUserid();
+	String passwd = com.sysconfig.SysConfig.getPasswd();
 
 //	PROJ_ID is AI, PROJ_STATE df=0, START_DATE is NOW(), 
 //	ACTUAL_END_DATE 結束才有 PROJ_TOTAL_FUND df=0, PROJ_TOTAL_COUNT df=0, MEM_REPORT_COUNT 檢舉才有

@@ -14,10 +14,10 @@ import java.util.List;
 
 public class AdministratorJDBCDAO implements AdministratorDAO_Interface {
 
-	String driver = "com.mysql.cj.jdbc.Driver";
-	String url = "jdbc:mysql://localhost:3306/cfa104g2?serverTimezone=Asia/Taipei";
-	String userid = "root";
-	String passwd = "53434976";
+	String driver = com.sysconfig.SysConfig.getDriver();
+	String url = com.sysconfig.SysConfig.getUrl();
+	String userid = com.sysconfig.SysConfig.getUserid();
+	String passwd = com.sysconfig.SysConfig.getPasswd();
 
 	private static final String INSERT_STMT = "INSERT INTO administrator (admin_type_id,admin_acc,admin_pwd,admin_isdeleted,admin_name,admin_email,admin_mobile,admin_zipcode,admin_city,admin_dist,admin_addr,admin_hiredate,admin_leavedate,admin_pic) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	private static final String GET_ALL_STMT = "SELECT admin_id,admin_type_id,admin_acc,admin_pwd,admin_isdeleted,admin_name,admin_email,admin_mobile,admin_zipcode,admin_city,admin_dist,admin_addr,admin_hiredate,admin_leavedate,admin_pic FROM administrator ORDER BY admin_id";

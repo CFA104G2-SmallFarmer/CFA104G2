@@ -12,10 +12,10 @@ import java.util.Map;
 import com.mem.model.MemVO;
 
 public class FMemJDBCDAO implements FMemDAO_interface {
-	String driver = "com.mysql.cj.jdbc.Driver";
-	String url = "jdbc:mysql://localhost:3306/CFA104G2?serverTimezone=Asia/Taipei";
-	String userid = "root";
-	String passwd = "53434976";
+	String driver = com.sysconfig.SysConfig.getDriver();
+	String url = com.sysconfig.SysConfig.getUrl();
+	String userid = com.sysconfig.SysConfig.getUserid();
+	String passwd = com.sysconfig.SysConfig.getPasswd();
 
 	private static final String INSERT_STMT = "INSERT INTO f_mem ("
 			+ "	mem_id, f_mem_acc, f_mem_pwd, f_mem_fname, "

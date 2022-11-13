@@ -8,10 +8,10 @@ import java.util.List;
 
 public class ArticleTypeJDBCDAO implements ArticleTypeDAO {
 
-    public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    public static final String URL = "jdbc:mysql://localhost:3306/CFA104G2?serverTimezone=Asia/Taipei";
-    public static final String USER = "root";
-    public static final String PASSWORD = "53434976";
+    public static final String DRIVER = com.sysconfig.SysConfig.getDriver();
+    public static final String URL = com.sysconfig.SysConfig.getUrl();
+    public static final String USER = com.sysconfig.SysConfig.getUserid();
+    public static final String PASSWORD = com.sysconfig.SysConfig.getPasswd();;
 
     public static final String INSERT_STMT = "INSERT INTO ARTICLE_TYPE (ARTICLE_TYPE_IMG, AC_TYPE_TEXT) VALUES ( ?, ?);";
     public static final String UPDATE_STMT = "UPDATE ARTICLE_TYPE SET ARTICLE_TYPE_IMG = ?, AC_TYPE_TEXT = ? WHERE ARTICLE_TYPE_ID = ?;";

@@ -6,10 +6,10 @@ import java.util.List;
 
 public class CommentsReportJDBCDAO implements CommentReportDAO {
 
-    public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    public static final String URL = "jdbc:mysql://localhost:3306/CFA104G2?serverTimezone=Asia/Taipei";
-    public static final String USER = "root";
-    public static final String PASSWORD = "53434976";
+    public static final String DRIVER = com.sysconfig.SysConfig.getDriver();
+    public static final String URL = com.sysconfig.SysConfig.getUrl();
+    public static final String USER = com.sysconfig.SysConfig.getUserid();
+    public static final String PASSWORD = com.sysconfig.SysConfig.getPasswd();
 
     public static final String INSERT_STMT = "INSERT INTO COMMENTS_REPORT (COMMENTS_ID, mem_id, ARTICLE_ID, REPORT_REASON, REPORT_TIME, REPORT_STATE) VALUES ( ?, ?, ?, ?, NOW(), '0');";
     public static final String UPDATE_STMT = "UPDATE COMMENTS_REPORT SET REPORT_STATE = ?, REPORT_NOTE = ?, REVIEW_TIME = NOW() WHERE COMMENTS_REPORT_ID = ?;";

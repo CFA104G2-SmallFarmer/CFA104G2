@@ -6,10 +6,10 @@ import java.sql.*;
 
 public class ProjReportJDBCDAO implements ProjReportDAO_interface {
 
-	String driver = "com.mysql.cj.jdbc.Driver";
-	String url = "jdbc:mysql://localhost:3306/CFA104G2?serverTimezone=Asia/Taipei";
-	String userid = "David";
-	String passwd = "53434976";
+	String driver = com.sysconfig.SysConfig.getDriver();
+	String url = com.sysconfig.SysConfig.getUrl();
+	String userid = com.sysconfig.SysConfig.getUserid();
+	String passwd = com.sysconfig.SysConfig.getPasswd();
 	
 //	PROJ_REPORT_ID is auto increment，REPORT_NOTE是留給管理員處理完該檢舉單後填的
 	private static final String INSERT_STMT = "INSERT INTO Proj_Report (PROJ_ID,MEM_ID,REPORT_REASON,REPORT_TIME,REPORT_STATE)"

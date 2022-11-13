@@ -6,11 +6,11 @@ import java.sql.*;
 
 
 public class ShopProductCollectionJDBCDAO implements ShopProductCollectionDAO_interface {
-	
-		String driver = "com.mysql.cj.jdbc.Driver";
-		String url = "jdbc:mysql://localhost:3306/CFA104G2?serverTimezone=Asia/Taipei";
-		String userid = "root";
-		String passwd = "53434976";
+
+	String driver = com.sysconfig.SysConfig.getDriver();
+	String url = com.sysconfig.SysConfig.getUrl();
+	String userid = com.sysconfig.SysConfig.getUserid();
+	String passwd = com.sysconfig.SysConfig.getPasswd();
 
 		private static final String INSERT_STMT = 
 			"INSERT INTO  shop_product_collection(mem_id,prod_id,prod_fav_date) VALUES (?, ?, ?)";

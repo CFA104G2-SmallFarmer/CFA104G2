@@ -8,10 +8,10 @@ import com.shopProduct.controller.jdbcUtil_CompositeQuery_Emp2;
 import java.sql.*;
 
 public class ShopProductJDBCDAO implements ShopProductDAO_interface {
-	String driver = "com.mysql.cj.jdbc.Driver";
-	String url = "jdbc:mysql://localhost:3306/CFA104G2?serverTimezone=Asia/Taipei";
-	String userid = "root";
-	String passwd = "53434976";
+	String driver = com.sysconfig.SysConfig.getDriver();
+	String url = com.sysconfig.SysConfig.getUrl();
+	String userid = com.sysconfig.SysConfig.getUserid();
+	String passwd = com.sysconfig.SysConfig.getPasswd();
 
 	private static final String INSERT_STMT = 
 		"INSERT INTO  shop_product(prod_type_id,prod_name,f_mem_id,prod_status, prod_price,prod_qty,prod_intro,prod_reg_date,prod_unit,prod_pic) VALUES ( ?, ?, ?, ?, ?,?,?,?,?,?)";

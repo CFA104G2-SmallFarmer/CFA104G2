@@ -9,10 +9,10 @@ import java.util.List;
 import java.util.Map;
 
 public class MemJDBCDAO implements MemDAO_interface {
-	String driver = "com.mysql.cj.jdbc.Driver";
-	String url = "jdbc:mysql://localhost:3306/CFA104G2?serverTimezone=Asia/Taipei";
-	String userid = "root";
-	String passwd = "53434976";
+	String driver = com.sysconfig.SysConfig.getDriver();
+	String url = com.sysconfig.SysConfig.getUrl();
+	String userid = com.sysconfig.SysConfig.getUserid();
+	String passwd = com.sysconfig.SysConfig.getPasswd();
 	
 	/*=========   yupei 區域    ========*/
 	private static final String UPDATE_PWD_BY_MEM_ACC=

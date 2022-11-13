@@ -64,7 +64,7 @@ public class MemGifReader extends HttpServlet{
 
 	public void init() throws ServletException {
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName(com.sysconfig.SysConfig.getDriver());
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/CFA104G2?serverTimezone=Asia/Taipei" , "root", "password");
 		} catch (ClassNotFoundException e) {
 			throw new UnavailableException("Couldn't load JdbcOdbcDriver");

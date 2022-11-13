@@ -10,10 +10,10 @@ import java.sql.SQLException;
 
 // 不完整版,無法判斷讀到哪裡，僅用於新增會員用
 public class MemPicInput {
-	public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-	public static final String URL = "jdbc:mysql://localhost:3306/CFA104G2?serverTimezone=Asia/Taipei";
-	public static final String USERID = "root";
-	public static final String PASSWD = "53434976";
+	public static final String DRIVER = com.sysconfig.SysConfig.getDriver();
+	public static final String URL = com.sysconfig.SysConfig.getUrl();
+	public static final String USER = com.sysconfig.SysConfig.getUserid();
+	public static final String PASSWORD = com.sysconfig.SysConfig.getPasswd();
 
 	private static final String SQL = "UPDATE mem set mem_pic = ? where mem_id = ?";
 
@@ -22,7 +22,7 @@ public class MemPicInput {
 		PreparedStatement pstmt = null;
 		try {
 			Class.forName(DRIVER);
-			con = DriverManager.getConnection(URL, USERID, PASSWD);
+			con = DriverManager.getConnection(URL, USER, PASSWORD);
 			pstmt = con.prepareStatement(SQL);
 			int i = 0;
 			for (int j = 77000; j <= 77007; j++) {

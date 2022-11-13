@@ -76,8 +76,8 @@ public class ProDiaryDBGifReader4 extends HttpServlet {
 		
 		
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/CFA104G2?serverTimezone=Asia/Taipei", "root", "password");
+			Class.forName(com.sysconfig.SysConfig.getDriver());
+			con = DriverManager.getConnection(com.sysconfig.SysConfig.getUrl(), com.sysconfig.SysConfig.getPasswd(), com.sysconfig.SysConfig.getPasswd());
 		} catch (ClassNotFoundException e) {
 			throw new UnavailableException("Couldn't load JdbcOdbcDriver");
 		} catch (SQLException e) {

@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProjCollectionJDBCDAO implements ProjCollectionDAO_interface{
-	String driver = "com.mysql.cj.jdbc.Driver";
-	String url = "jdbc:mysql://localhost:3306/cfa104g2?serverTimezone=Asia/Taipei";
-	String userid = "root";
-	String passwd = "53434976";
+	String driver = com.sysconfig.SysConfig.getDriver();
+	String url = com.sysconfig.SysConfig.getUrl();
+	String userid = com.sysconfig.SysConfig.getUserid();
+	String passwd = com.sysconfig.SysConfig.getPasswd();
 
 	private static final String INSERT_STMT = //2個問號
 			"INSERT INTO `PROJ_COLLECTION`(`PROJ_ID`,`MEM_ID`)VALUES(?,?);"; 

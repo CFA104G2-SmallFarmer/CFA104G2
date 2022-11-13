@@ -11,10 +11,10 @@ import java.util.List;
 
 public class AnnouncementJDBCDAO implements AnnouncementDAO_Interface {
 
-	String driver = "com.mysql.cj.jdbc.Driver";
-	String url = "jdbc:mysql://localhost:3306/cfa104g2?serverTimezone=Asia/Taipei";
-	String userid = "root";
-	String passwd = "53434976";
+	String driver = com.sysconfig.SysConfig.getDriver();
+	String url = com.sysconfig.SysConfig.getUrl();
+	String userid = com.sysconfig.SysConfig.getUserid();
+	String passwd = com.sysconfig.SysConfig.getPasswd();
 
 	private static final String INSERT_STMT = "INSERT INTO announcement (announce_type, admin_id, edit_time, announce_title, announce_content) VALUES (?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = "SELECT announce_id, announce_type, admin_id, edit_time, announce_title, announce_content FROM announcement";

@@ -6,10 +6,10 @@ import java.sql.SQLException;
 
 public class ConnectionFactory {
 
-    public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    public static final String URL = "jdbc:mysql://localhost:3306/CFA104G2?serverTimezone=Asia/Taipei";
-    public static final String USER = "root";
-    public static final String PASSWORD = "53434976";
+    public static final String DRIVER = com.sysconfig.SysConfig.getDriver();
+    public static final String URL = com.sysconfig.SysConfig.getUrl();
+    public static final String USER = com.sysconfig.SysConfig.getUserid();
+    public static final String PASSWORD = com.sysconfig.SysConfig.getPasswd();
 
     private static Connection con = null;
 
