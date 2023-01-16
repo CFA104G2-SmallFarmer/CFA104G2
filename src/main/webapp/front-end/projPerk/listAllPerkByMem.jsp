@@ -137,10 +137,14 @@ pageContext.setAttribute("list",list);
 							<!-- <a
 								class="pa3 ba bw1 b--inherit round-s light-gray mb4 db border-rainbow "
 								href="https://www.zeczec.com/projects/ICHR/orders/back_project?selected_reward=72641#details"> -->
-								<img
+
+						<img
 								width="100%" class="mb2 round-s"
 								src="<%=request.getContextPath()%>/projPerk/ProjPerkDBGifReader4?id=${projPerkVO.perk_id}" alt="${projPerkVO.perk_intro}">
-							<div class="black b f4">NT$${projPerkVO.perk_fund}</div>
+<%--				<div width="100%" class="mb2 round-s"--%>
+<%--					style="background-image: url(&#39;data:image/jpg;base64,${projPerkVO.base64Image}&#39;)"></div>--%>
+
+						<div class="black b f4">NT$${projPerkVO.perk_fund}</div>
 <%-- 								<div class="black b f4">${projPerkVO.perk_intro}</div> --%>
 								<div class="f7 mv2">
 									<span style="background-color:#b35900 ;" class="f7 white ph2 bg-red b dib"> 剩餘 ${projPerkVO.perk_limited - projPerkVO.perk_total_count} 份 </span><span

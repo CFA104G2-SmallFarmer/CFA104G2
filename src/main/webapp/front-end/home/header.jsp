@@ -148,7 +148,11 @@ pageContext.setAttribute("memVO", memVO);
               </a>
             </li>
             <li>
-            <img src="<%= request.getContextPath() %>/MemGifReader?mem_id=${memVO.mem_id}" class="svg-inline--fa fa-envelope fa-w-16" style="font-size: 30px;color: #aaba8b;">
+
+<%--            <img src="<%= request.getContextPath() %>/MemGifReader?mem_id=${memVO.mem_id}" class="svg-inline--fa fa-envelope fa-w-16" style="font-size: 30px;color: #aaba8b;">--%>
+                <div class="svg-inline--fa fa-envelope fa-w-16"
+                     style="font-size: 30px;color: #aaba8b;background-image: url(&#39;data:image/jpg;base64,${pmemVO.base64Image}&#39;)"></div>
+
             </li>
           </ul>
         </nav>

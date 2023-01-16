@@ -77,7 +77,7 @@ public class ShopProductDBGifReader4 extends HttpServlet {
 		
 		try {
 			Class.forName(com.sysconfig.SysConfig.getDriver());
-			con = DriverManager.getConnection(com.sysconfig.SysConfig.getUrl(), com.sysconfig.SysConfig.getPasswd(), com.sysconfig.SysConfig.getPasswd());
+			con = DriverManager.getConnection(com.sysconfig.SysConfig.getUrl(), com.sysconfig.SysConfig.getUserid(), com.sysconfig.SysConfig.getPasswd());
 		} catch (ClassNotFoundException e) {
 			throw new UnavailableException("Couldn't load JdbcOdbcDriver");
 		} catch (SQLException e) {

@@ -127,8 +127,8 @@ public class ProjOrderJDBCDAO implements ProjOrderDAO_interface {
 	
 	// 列出小農的所有訂單(因為訂單裡沒有小農編號，所以要JOIN兩次才抓得到)
 	private static final String GET_All_FMEM_ORDER_STMT = "SELECT A.* , B.PROJ_ID, C.F_MEM_ID "
-			+"FROM (proj_order AS A LEFT JOIN PROJ_PERK AS B ON A.PERK_ID = B.PERK_ID) " 
-			+"LEFT JOIN PROJECT AS C ON B.PROJ_ID=C.PROJ_ID "
+			+"FROM (proj_order AS A LEFT JOIN proj_perk AS B ON A.PERK_ID = B.PERK_ID) "
+			+"LEFT JOIN project AS C ON B.PROJ_ID=C.PROJ_ID "
 			+"WHERE F_MEM_ID = ? ORDER BY ORDER_ID DESC";
 
 //	0 : 待付款

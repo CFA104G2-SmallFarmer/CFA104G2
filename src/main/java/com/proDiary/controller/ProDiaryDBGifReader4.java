@@ -7,9 +7,11 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.*;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.*;
 import javax.sql.DataSource;
 
+@MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 5 * 1024 * 1024, maxRequestSize = 5 * 5 * 1024 * 1024)
 public class ProDiaryDBGifReader4 extends HttpServlet {
 
 	Connection con;
@@ -26,7 +28,7 @@ public class ProDiaryDBGifReader4 extends HttpServlet {
 			String id = req.getParameter("id").trim();
 			ResultSet rs = stmt.executeQuery(
 //				"SELECT IMAGE FROM PICTURES WHERE PID = " + req.getParameter("PID"));
-			"SELECT DIR_PIC FROM PROJ_DIARY WHERE DIR_ID ="+id);
+			"SELECT DIR_PIC FROM proj_diary WHERE DIR_ID ="+id);
 
 			if (rs.next()) {  //有緩衝區優點是速度快，但沒有也能跑啦
 				BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream("DIR_PIC"));
@@ -42,7 +44,7 @@ public class ProDiaryDBGifReader4 extends HttpServlet {
 				in.close();
 			} else {
 //				res.sendError(HttpServletResponse.SC_NOT_FOUND);
-				InputStream in = getServletContext().getResourceAsStream("/projPerk/farmforUploadPic.png");
+				InputStream in = getServletContext().getResourceAsStream("/front-end/projPerk/farmforUploadPic.png");
 				byte[] b = new byte[in.available()];
 				in.read(b);
 				out.write(b);
@@ -52,7 +54,7 @@ public class ProDiaryDBGifReader4 extends HttpServlet {
 			stmt.close();
 		} catch (Exception e) {
 //			System.out.println(e);
-			InputStream in = getServletContext().getResourceAsStream("/projPerk/farmforUploadPic.png");
+			InputStream in = getServletContext().getResourceAsStream("/front-end/projPerk/farmforUploadPic.png");
 			byte[] b = new byte[in.available()];
 			in.read(b);
 			out.write(b);
@@ -66,18 +68,19 @@ public class ProDiaryDBGifReader4 extends HttpServlet {
 //			DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/David");
 //			con = ds.getConnection();
 //		} catch (NamingException e) {
-//		
+//
 //			e.printStackTrace();
 //		} catch (SQLException e) {
-//		
+//
 //			e.printStackTrace();
 //		}
-		
-		
-		
+
+
+
 		try {
 			Class.forName(com.sysconfig.SysConfig.getDriver());
-			con = DriverManager.getConnection(com.sysconfig.SysConfig.getUrl(), com.sysconfig.SysConfig.getPasswd(), com.sysconfig.SysConfig.getPasswd());
+			con = DriverManager.getConnection(com.sysconfig.SysConfig.getUrl(), com.sysconfig.SysConfig.getUserid(), com.sysconfig.SysConfig.getPasswd());
+			System.out.println("84");
 		} catch (ClassNotFoundException e) {
 			throw new UnavailableException("Couldn't load JdbcOdbcDriver");
 		} catch (SQLException e) {

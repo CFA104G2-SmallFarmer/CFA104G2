@@ -128,7 +128,11 @@ ProjPerkVO projPerkVO = projPerkSvc.getOneProjPerk(9);
 
               <div class="cf">
                 <div class="for_img1">
-                  <img id="img1" class="w-100 mb3" src="ProjPerkDBGifReader4?id=<%=projPerkVO.getPerk_id()%>" alt="<%=projPerkVO.getPerk_intro()%>">
+
+<%--                  <img id="img1" class="w-100 mb3" src="ProjPerkDBGifReader4?id=<%=projPerkVO.getPerk_id()%>" alt="<%=projPerkVO.getPerk_intro()%>">--%>
+                    <div id="img1" class="w-100 mb3"
+                         style="background-image: url(&#39;data:image/jpg;base64,${projPerkVO.base64Image}&#39;)"></div>
+
                 </div>
                 
                 <label class="b" for="user_avatar">顯示圖片</label>

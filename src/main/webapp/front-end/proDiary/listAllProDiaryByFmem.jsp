@@ -336,9 +336,13 @@ footer:hover .logo-safari-fix {
 
 															<!-- <img id="img2" class="w-100 mb3"
 															src="farmforUploadPic/farmforUploadPic.png" alt=""> -->
+
 															<img width="100%" class="mb2 round-s"
 																src="<%=request.getContextPath()%>/proDiary/ProDiaryDBGifReader4?id=${proDiaryVO.dir_id}"
 																alt="">
+<%--															<div width="100%" class="mb2 round-s"--%>
+<%--																 style="background-image: url(&#39;data:image/jpg;base64,${proDiaryVO.base64Image}&#39;)"></div>--%>
+
 															<!-- 圖片呈現成功 -->
 														</div>
 														<!-- <label class="b" for="2">顯示圖片</label> -->
