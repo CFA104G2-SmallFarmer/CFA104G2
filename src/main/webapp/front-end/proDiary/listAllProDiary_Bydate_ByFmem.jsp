@@ -60,12 +60,7 @@ pageContext.setAttribute("dir_upload_date3", dir_upload_date);
 <meta content="width=device-width, initial-scale=1" name="viewport">
 <meta content="zh_TW" property="og:locale">
 <meta content="zh_TW" property="og:locale:alternate">
-<!-- <link
-	href="https://www.zeczec.com/assets/logo-square-04c45286e84ea49d07c97c86625fbf3a75f4f32dd02da3ad3ca70a9a68fd0395.png"
-	rel="apple-touch-icon">
-<link
-	href="https://www.zeczec.com/assets/fav-69601a279a66f2e6e31e508900d4f057559d3affcae42730d045b17d281107a6.png"
-	rel="shortcut icon" type="image/x-icon"> -->
+
 <title>我家門前有塊地 | ${projectVO.proj_name}</title>
 <link
 	href="<%=request.getContextPath()%>/front-end/project/listOneProj_files/css"
@@ -111,7 +106,7 @@ footer:hover .logo-safari-fix {
 					</ul>
 				</c:if>
 				<a class="db"
-					href="https://www.zeczec.com/projects/paradisepet2022zeczecnewyear"><h2
+					href="#"><h2
 						class="f4 mt2 mb1">${projectVO.proj_name}</h2> </a><a class="b f6"
 					href="#">${fmemSvc.getOneFMem(projectSvc.getOneProject(projectVO.proj_id).f_mem_id).f_mem_fname}</a>
 				<p class="f6 gray mv3">${projectVO.proj_abstract}</p>
@@ -449,45 +444,6 @@ footer:hover .logo-safari-fix {
 						</div>
 					</c:forEach>
 				</c:if>
-				<%-- 				<%
-				Integer proj_id = projectVO.getProj_id();
-				ProjPerkService projSvc = new ProjPerkService();
-				List<ProjPerkVO> list = projSvc.getAll(proj_id);
-				pageContext.setAttribute("list", list);
-				%> --%>
-				<!-- @TODO -->
-				<!-- perk迭代區 -->
-				<%-- <c:forEach var="projPerkVO" items="${list}" begin="<%=0%>"
-					end="<%=10%>">
-					<div class="w-100-l w-50-ns ph3 ph0-l flex-none self-start">
-						<a
-							class="pa3 ba bw1 b--inherit round-s light-gray mb4 db border-rainbow "
-							href="https://www.zeczec.com/users/sign_in?return_to=%2Fprojects%2Fparadisepet2022zeczecnewyear%2Forders%2Fback_project%3Fselected_reward%3D72345%23details"><img
-							width="100%" class="mb2 round-s"
-							src="data:image/jpg;base64,${projPerkVO.base64Image}"
-							alt="72345 banner">
-							<div class="black b f4">NT$${projPerkVO.perk_fund}</div>
-							<div class="f7 mv2">
-								<span style="background-color: #717d34;"
-									class="f7 white ph2 bg-red b dib"> 剩餘
-									${projPerkVO.perk_limited - projPerkVO.perk_total_count} 份 </span><span
-									class="black ph2 bg-near-white dib"> 已被贊助 <span
-									class="b">${projPerkVO.perk_total_count}</span> /
-									${projPerkVO.perk_limited} 次
-								</span>
-							</div>
-							<div class="black f6 mv-child-0 maxh5 maxh-none-ns overflow-auto">
-								<br>【${projPerkVO.perk_abbr_name}】
-								<p>
-									${projPerkVO.perk_intro} <br>特惠價
-									${projPerkVO.perk_fund}（限量${projPerkVO.perk_limited}組）
-								</p>
-								<p>寄送地區：${projPerkVO.perk_ship_area}</p>
-							</div>
-							<div class="mt3 gray tc ph2 f7 ba">預計於${projPerkVO.perk_ship_date}實現</div>
-						</a>
-					</div>
-				</c:forEach> --%>
 			</div>
 		</div>
 	</div>

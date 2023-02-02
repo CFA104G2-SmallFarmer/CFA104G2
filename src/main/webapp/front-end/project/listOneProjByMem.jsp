@@ -22,7 +22,6 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 
 
 <!DOCTYPE html>
-<!-- saved from url=(0060)https://www.zeczec.com/projects/paradisepet2022zeczecnewyear -->
 <html lang="zh-Hant-TW">
 <head
 	prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# zeczec-com: http://ogp.me/ns/fb/zeczec-com#">
@@ -86,29 +85,6 @@ crossorigin="anonymous" />
         }
     }    setTimeout(tagClarity, 500);
 </script>
-<!-- <meta content="171735882933694" property="fb:app_id">
-<meta content="zeczec-com:project" property="og:type">
-<meta content="嘖嘖 | 林北是小農｜ 喵言汪語賀新年春聯套組" property="og:title">
-<meta
-	content="https://s3-ap-northeast-1.amazonaws.com/zeczec-prod/asset_423058_image_original.jpg?1641180138"
-	property="og:image">
-<meta
-	content="在世界的各個⾓落，總能見到小農的身影，他們⼀生孤單、飢餓的在街頭流浪， 而等待他們的終點，常常是像垃圾一樣被丟棄。 我們是林北是小農，我們希望小農也能好好走完最後⼀哩路，能有圓滿的善終。"
-	property="og:description">
-<meta
-	content="https://www.zeczec.com/projects/paradisepet2022zeczecnewyear"
-	property="og:url">
-<meta content="林北是小農" property="zeczec-com:creator">
-<meta content="summary_large_image" name="twitter:card">
-<meta content="@zeczec_com" name="twitter:site">
-<meta content="嘖嘖 | 林北是小農｜ 喵言汪語賀新年春聯套組" name="twitter:title">
-<meta
-	content="在世界的各個⾓落，總能見到小農的身影，他們⼀生孤單、飢餓的在街頭流浪， 而等待他們的終點，常常是像垃圾一樣被丟棄。 我們是林北是小農，我們希望小農也能好好走完最後⼀哩路，能有圓滿的善終。"
-	name="twitter:description">
-<meta
-	content="https://s3-ap-northeast-1.amazonaws.com/zeczec-prod/asset_423058_image_original.jpg?1641180138"
-	name="twitter:image">
-<meta content="zeczec.com" name="twitter:domain"> -->
 
 <style>
 .buya :hover {
@@ -177,7 +153,7 @@ crossorigin="anonymous" />
 					</ul>
 				</c:if>
 				<a class="db"
-					href="https://www.zeczec.com/projects/paradisepet2022zeczecnewyear"><h2
+					href="#"><h2
 						class="f4 mt2 mb1">${projectVO.proj_name}</h2> </a><a class="b f6"
 					href="#">${fmemSvc.getOneFMem(projectSvc.getOneProject(projectVO.proj_id).f_mem_id).f_mem_fname}</a>
 				<p class="f6 gray mv3">${projectVO.proj_abstract}</p>
@@ -366,9 +342,6 @@ crossorigin="anonymous" />
 						<div
 							style="border: solid lightgray 2px; padding: 15px; padding: 10px;"
 							class="w-100-l ph3 ph0-l flex-none self-start">
-							<!-- <a
-							class="pa3 ba bw1 b--inherit round-s light-gray mb4 db border-rainbow "
-							href="https://www.zeczec.com/users/sign_in?return_to=%2Fprojects%2Fparadisepet2022zeczecnewyear%2Forders%2Fback_project%3Fselected_reward%3D72345%23details"> -->
 							<img width="100%" class="mb2 round-s"
 								src="data:image/jpg;base64,${projPerkVO.base64Image}"
 								alt="72345 banner">
@@ -395,17 +368,7 @@ crossorigin="anonymous" />
 							<div style="margin-top: 10px; margin-bottom: 20px; height: 17px;"
 								class="w-100-l w-50-ns ph3 ph0-l flex-none self-start">
 							
-						<%-- 	<FORM id="search_form6" METHOD="post" ACTION="<%=request.getContextPath()%>/projPerk/projPerk.do">	
-							
-									<div onClick="document.forms['search_form6'].submit();" style="color: #8f7e5d; font-size: 16px; border-radius: 0px; text-align: center; border: solid #aaba8b 1.5px; padding: 4px;"
-										class="w-100 ph3 ph0-l flex-none self-start buyy buya">
-										<strong>認購此專案</strong>
-									</div>
-							
-								<input type="hidden" name="proj_id"  value="${projectVO.proj_id}">
- 								<input type="hidden" name="perk_id"  value="${projPerkVO.perk_id}">
-                      		    <input type="hidden" name="action" value="go_to_addOrderByMem">	 
-								   </FORM> --%>
+
 								 <a class="buya"
 									href="${pageContext.request.contextPath}/projPerk/projPerk.do?proj_id=${projectVO.proj_id}&mem_id=${memVO.mem_id}&perk_id=${projPerkVO.perk_id}&action=go_to_addOrderByMem">
 									<div

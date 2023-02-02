@@ -91,51 +91,7 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 </head>
 
 <body class="intent-mouse">
-	<!-- <header class="relative z-2 bb pv2 ph3 ph0-l b--near-white">
-    <div class="cf container">
-      <div class="f6 mv2 flex items-center justify-between">
-        <a clsas="dib order-0" href="https://www.zeczec.com/">
-        <h1 class="gray text-mono hover-logo ma0">
-          <div class="dib logo-safari-fix"><svg class="logo v-mid" style="height: 28px; width: 28px; "
-              viewBox="0 0 138 138" xmlns="http://www.w3.org/2000/svg">
-              <title>zeczec</title>
-              <path
-                d="M69 0a69 69 0 1 0 69 69A69 69 0 0 0 69 0zm38.7 75.53l-1.55 7.18c-.23 1.18-.81 1.54-1.82 1.49l-40.48-1.9a1.72 1.72 0 0 1-1.43-2.2l2.3-11.94a2.05 2.05 0 0 0-1.87-2.23l-31-2.09c-1 0-1.57-.66-1.57-1.82l1.16-6.81c.22-1.15.8-1.43 1.84-1.37l41.94 2.32a1.94 1.94 0 0 1 1.72 2.13l-2.19 12.13a1.88 1.88 0 0 0 1.87 2.1l30.06 1.39c.93 0 1.24.53 1.03 1.62z">
-              </path>
-            </svg>
-          </div>
-        </h1>
 
-        <div
-          class="mt0-ns mt3 pt2 ph2 nb1 nl3 nr3 tc tl-ns pa0-ns mh0-ns items-center db-ns bt bn-ns b--near-white flex-auto order-last order-1-ns w-100 w-auto-ns inline-flex">
-          <span style="color: #717d34;font-size: 20px;font-weight: 300;"
-            class="mr3-ns hover-fg-blue dark-gray flex-auto flex-none-ns" href="">&nbsp;&nbsp;小農認養管理專區</span>
-          <div class="divider dib-ns dn">&nbsp;</div>
-          <a style="color: #717d34;font-size: 19px;" class="mr3-ns hover-fg-blue dark-gray flex-auto flex-none-ns"
-            href="https://www.zeczec.com/categories">認養專案管理</a>
-          <div class="divider dib-ns dn">&nbsp;</div>
-          <a style="color: #717d34;font-size: 19px;" class="mr3-ns hover-fg-blue dark-gray flex-auto flex-none-ns"
-            href="https://www.zeczec.com/categories">認養訂單管理</a>
-          <div class="divider dib-ns dn">&nbsp;</div>
-          <a style="color: #717d34;font-size: 19px;" class="mr3-ns hover-fg-blue dark-gray flex-auto flex-none-ns"
-            href="https://www.zeczec.com/start_project">小農日誌管理</a>
-          <div class="divider dib-ns dn">&nbsp;</div>
-          <a style="color: #717d34;font-size: 19px;" class="mr3-ns hover-fg-blue dark-gray flex-auto flex-none-ns"
-            href="https://www.zeczec.com/start_project">回到首頁</a>
-        </div>
-        <div class="tr order-2">
-          <a aria-label="站內訊息" class="near-black dib gray pa2 mr3 v-mid tooltip tooltip-b"
-            href="https://www.zeczec.com/inbox">
-            <i class="material-icons f5 v-mid">
-              mail
-            </i>
-          </a>
-
-        </div>
-      </div>
-    </div>
-  </header>
- -->
 
 	<header style="height: 90px">
 		<jsp:include page="/front-end/home/header_for_Proj_Fmem.jsp" />
@@ -148,12 +104,9 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 
 				<div class="container ph3 ph0-l pt3 cf">
 					<h2 class="flex mt0">
-						<!-- <a class="order-1 f6 ml4-l black w-100 w-auto-l" href="https://www.zeczec.com/account"><i
-              class="material-icons v-mid dark-gray f4">check</i>
-            成功贊助記錄
-          </a> -->
+
 						<span class="order-0 flex-auto black w-100 w-auto-l"
-							href="https://www.zeczec.com/account/cancelled"> <i
+							href="#"> <i
 							class="material-icons v-mid dark-gray f3">error</i> 新增日誌 <span
 							style="font-size: 18px; color: gray;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;認養專案:${projectVO.proj_name}</span>
 						</span> </span>
@@ -168,10 +121,7 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 								</ul>
 							</c:if>
 						</p>
-						<!-- <span class="order-3 f6 ml4-l black w-100 w-auto-l" href="https://www.zeczec.com/account/atm"><i
-              class="material-icons v-mid dark-gray f4">timer</i>
-            等待付款記錄
-          </span> -->
+
 					</h2>
 
 				</div>

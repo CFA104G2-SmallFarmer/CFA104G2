@@ -13,12 +13,6 @@
 ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 
 
-/* ProDiaryService proDiarySvc = new ProDiaryService();
-List<ProDiaryVO> list2 = proDiarySvc.getAll(projectVO.getProj_id());
-pageContext.setAttribute("list2", list2);
-
-getAll_groupingBy_dir_upload_state */
-
 ProDiaryService proDiarySvc = new ProDiaryService();
 Map<Integer, List<ProDiaryVO>> list1 = proDiarySvc.getAll_groupingBy_dir_upload_state(projectVO.getProj_id());
 
@@ -38,20 +32,8 @@ pageContext.setAttribute("list3", list3);
 
 <jsp:useBean id="fmemSvc" scope="page" class="com.fMem.model.FMemService" />
 
-<%-- <% --%>
-<!-- // ProjectService projectSvc = new ProjectService(); -->
-<!-- // ProjectVO projectVO = projectSvc.getOneProject(1001);  -->
-<%-- %> --%>
-
-
-<!-- 待辦 -->
-<!-- 登入確認 -->
-<!-- 留言筆數 -->
-<!-- 917 perk迭代 -->
-
 
 <!DOCTYPE html>
-<!-- saved from url=(0060)https://www.zeczec.com/projects/paradisepet2022zeczecnewyear -->
 <html lang="zh-Hant-TW">
 <head>
 <!-- 這段給emoji的 -->
@@ -61,23 +43,6 @@ pageContext.setAttribute("list3", list3);
 	crossorigin="anonymous" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="csrf-param" content="authenticity_token">
-<%-- <meta name="csrf-token"
-	content="5+gyP059yldfSDrM1IhtsJpYSE663M3nCcO9K2QrgPoAHFunOIF+oaikpmNPaJ1IPFP0ZvFZM2oJr74gGvDGyQ==">
-<script
-	src="<%=request.getContextPath()%>/front-end/project/listOneProj_files/sdk.js.下載"
-	async="" crossorigin="anonymous"></script>
-<script
-	src="<%=request.getContextPath()%>/front-end/project/listOneProj_files/nr-1212.min.js.下載"></script>
-<script async=""
-	src="<%=request.getContextPath()%>/front-end/project/listOneProj_files/fbevents.js.下載"></script>
-<script id="facebook-jssdk"
-	src="<%=request.getContextPath()%>/front-end/project/listOneProj_files/sdk.js(1).下載"></script>
-<script async=""
-	src="<%=request.getContextPath()%>/front-end/project/listOneProj_files/analytics.js.下載"></script>
-<script async=""
-	src="<%=request.getContextPath()%>/front-end/project/listOneProj_files/9ve6cixxpl"></script>
-<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam-cell.nr-data.net","errorBeacon":"bam-cell.nr-data.net","licenseKey":"6df56d3465","applicationID":"2801605","transactionName":"JQpcTUVZXVhcF01GEwkPV1pDRR5HUQoV","queueTime":3,"applicationTime":269,"agent":""}</script>
-<script type="text/javascript">(window.NREUM||(NREUM={})).init={ajax:{deny_list:["bam-cell.nr-data.net"]}};(window.NREUM||(NREUM={})).loader_config={licenseKey:"6df56d3465",applicationID:"2801605"};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var i=e[n]={exports:{}};t[n][0].call(i.exports,function(e){var i=t[n][1][e];return r(i||e)},i,i.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var i=0;i<n.length;i++)r(n[i]);return r}({1:[function(t,e,n){function r(){}function i(t,e,n,r){return function(){return s.recordSupportability("API/"+e+"/called"),o(t+e,[u.now()].concat(c(arguments)),n?null:this,r),n?void 0:this}}var o=t("handle"),a=t(10),c=t(11),f=t("ee").get("tracer"),u=t("loader"),s=t(4),d=NREUM;"undefined"==typeof window.newrelic&&(newrelic=d);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],l="api-",v=l+"ixn-";a(p,function(t,e){d[e]=i(l,e,!0,"api")}),d.addPageAction=i(l,"addPageAction",!0),d.setCurrentRouteName=i(l,"routeName",!0),e.exports=newrelic,d.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(t,e){var n={},r=this,i="function"==typeof e;return o(v+"tracer",[u.now(),t,n],r),function(){if(f.emit((i?"":"no-")+"fn-start",[u.now(),r,i],n),i)try{return e.apply(this,arguments)}catch(t){throw f.emit("fn-err",[arguments,this,t],n),t}finally{f.emit("fn-end",[u.now()],n)}}}};a("actionText,setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(t,e){m[e]=i(v,e)}),newrelic.noticeError=function(t,e){"string"==typeof t&&(t=new Error(t)),s.recordSupportability("API/noticeError/called"),o("err",[t,u.now(),!1,e])}},{}],2:[function(t,e,n){function r(t){if(NREUM.init){for(var e=NREUM.init,n=t.split("."),r=0;r<n.length-1;r++)if(e=e[n[r]],"object"!=typeof e)return;return e=e[n[n.length-1]]}}e.exports={getConfiguration:r}},{}],3:[function(t,e,n){var r=!1;try{var i=Object.defineProperty({},"passive",{get:function(){r=!0}});window.addEventListener("testPassive",null,i),window.removeEventListener("testPassive",null,i)}catch(o){}e.exports=function(t){return r?{passive:!0,capture:!!t}:!!t}},{}],4:[function(t,e,n){function r(t,e){var n=[a,t,{name:t},e];return o("storeMetric",n,null,"api"),n}function i(t,e){var n=[c,t,{name:t},e];return o("storeEventMetrics",n,null,"api"),n}var o=t("handle"),a="sm",c="cm";e.exports={constants:{SUPPORTABILITY_METRIC:a,CUSTOM_METRIC:c},recordSupportability:r,recordCustom:i}},{}],5:[function(t,e,n){function r(){return c.exists&&performance.now?Math.round(performance.now()):(o=Math.max((new Date).getTime(),o))-a}function i(){return o}var o=(new Date).getTime(),a=o,c=t(12);e.exports=r,e.exports.offset=a,e.exports.getLastTimestamp=i},{}],6:[function(t,e,n){function r(t){return!(!t||!t.protocol||"file:"===t.protocol)}e.exports=r},{}],7:[function(t,e,n){function r(t,e){var n=t.getEntries();n.forEach(function(t){"first-paint"===t.name?p("timing",["fp",Math.floor(t.startTime)]):"first-contentful-paint"===t.name&&p("timing",["fcp",Math.floor(t.startTime)])})}function i(t,e){var n=t.getEntries();if(n.length>0){var r=n[n.length-1];if(f&&f<r.startTime)return;p("lcp",[r])}}function o(t){t.getEntries().forEach(function(t){t.hadRecentInput||p("cls",[t])})}function a(t){if(t instanceof g&&!y){var e=Math.round(t.timeStamp),n={type:t.type};e<=l.now()?n.fid=l.now()-e:e>l.offset&&e<=Date.now()?(e-=l.offset,n.fid=l.now()-e):e=l.now(),y=!0,p("timing",["fi",e,n])}}function c(t){"hidden"===t&&(f=l.now(),p("pageHide",[f]))}if(!("init"in NREUM&&"page_view_timing"in NREUM.init&&"enabled"in NREUM.init.page_view_timing&&NREUM.init.page_view_timing.enabled===!1)){var f,u,s,d,p=t("handle"),l=t("loader"),v=t(9),m=t(3),g=NREUM.o.EV;if("PerformanceObserver"in window&&"function"==typeof window.PerformanceObserver){u=new PerformanceObserver(r);try{u.observe({entryTypes:["paint"]})}catch(h){}s=new PerformanceObserver(i);try{s.observe({entryTypes:["largest-contentful-paint"]})}catch(h){}d=new PerformanceObserver(o);try{d.observe({type:"layout-shift",buffered:!0})}catch(h){}}if("addEventListener"in document){var y=!1,w=["click","keydown","mousedown","pointerdown","touchstart"];w.forEach(function(t){document.addEventListener(t,a,m(!1))})}v(c)}},{}],8:[function(t,e,n){function r(t,e){if(!i)return!1;if(t!==i)return!1;if(!e)return!0;if(!o)return!1;for(var n=o.split("."),r=e.split("."),a=0;a<r.length;a++)if(r[a]!==n[a])return!1;return!0}var i=null,o=null,a=/Version\/(\S+)\s+Safari/;if(navigator.userAgent){var c=navigator.userAgent,f=c.match(a);f&&c.indexOf("Chrome")===-1&&c.indexOf("Chromium")===-1&&(i="Safari",o=f[1])}e.exports={agent:i,version:o,match:r}},{}],9:[function(t,e,n){function r(t){function e(){t(c&&document[c]?document[c]:document[o]?"hidden":"visible")}"addEventListener"in document&&a&&document.addEventListener(a,e,i(!1))}var i=t(3);e.exports=r;var o,a,c;"undefined"!=typeof document.hidden?(o="hidden",a="visibilitychange",c="visibilityState"):"undefined"!=typeof document.msHidden?(o="msHidden",a="msvisibilitychange"):"undefined"!=typeof document.webkitHidden&&(o="webkitHidden",a="webkitvisibilitychange",c="webkitVisibilityState")},{}],10:[function(t,e,n){function r(t,e){var n=[],r="",o=0;for(r in t)i.call(t,r)&&(n[o]=e(r,t[r]),o+=1);return n}var i=Object.prototype.hasOwnProperty;e.exports=r},{}],11:[function(t,e,n){function r(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,i=n-e||0,o=Array(i<0?0:i);++r<i;)o[r]=t[e+r];return o}e.exports=r},{}],12:[function(t,e,n){e.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(t,e,n){function r(){}function i(t){function e(t){return t&&t instanceof r?t:t?u(t,f,a):a()}function n(n,r,i,o,a){if(a!==!1&&(a=!0),!l.aborted||o){t&&a&&t(n,r,i);for(var c=e(i),f=m(n),u=f.length,s=0;s<u;s++)f[s].apply(c,r);var p=d[w[n]];return p&&p.push([b,n,r,c]),c}}function o(t,e){y[t]=m(t).concat(e)}function v(t,e){var n=y[t];if(n)for(var r=0;r<n.length;r++)n[r]===e&&n.splice(r,1)}function m(t){return y[t]||[]}function g(t){return p[t]=p[t]||i(n)}function h(t,e){l.aborted||s(t,function(t,n){e=e||"feature",w[n]=e,e in d||(d[e]=[])})}var y={},w={},b={on:o,addEventListener:o,removeEventListener:v,emit:n,get:g,listeners:m,context:e,buffer:h,abort:c,aborted:!1};return b}function o(t){return u(t,f,a)}function a(){return new r}function c(){(d.api||d.feature)&&(l.aborted=!0,d=l.backlog={})}var f="nr@context",u=t("gos"),s=t(10),d={},p={},l=e.exports=i();e.exports.getOrSetContext=o,l.backlog=d},{}],gos:[function(t,e,n){function r(t,e,n){if(i.call(t,e))return t[e];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:r,writable:!0,enumerable:!1}),r}catch(o){}return t[e]=r,r}var i=Object.prototype.hasOwnProperty;e.exports=r},{}],handle:[function(t,e,n){function r(t,e,n,r){i.buffer([t],r),i.emit(t,e,n)}var i=t("ee").get("handle");e.exports=r,r.ee=i},{}],id:[function(t,e,n){function r(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:a(t,o,function(){return i++})}var i=1,o="nr@id",a=t("gos");e.exports=r},{}],loader:[function(t,e,n){function r(){if(!T++){var t=P.info=NREUM.info,e=g.getElementsByTagName("script")[0];if(setTimeout(u.abort,3e4),!(t&&t.licenseKey&&t.applicationID&&e))return u.abort();f(O,function(e,n){t[e]||(t[e]=n)});var n=a();c("mark",["onload",n+P.offset],null,"api"),c("timing",["load",n]);var r=g.createElement("script");0===t.agent.indexOf("http://")||0===t.agent.indexOf("https://")?r.src=t.agent:r.src=v+"://"+t.agent,e.parentNode.insertBefore(r,e)}}function i(){"complete"===g.readyState&&o()}function o(){c("mark",["domContent",a()+P.offset],null,"api")}var a=t(5),c=t("handle"),f=t(10),u=t("ee"),s=t(8),d=t(6),p=t(2),l=t(3),v=p.getConfiguration("ssl")===!1?"http":"https",m=window,g=m.document,h="addEventListener",y="attachEvent",w=m.XMLHttpRequest,b=w&&w.prototype,E=!d(m.location);NREUM.o={ST:setTimeout,SI:m.setImmediate,CT:clearTimeout,XHR:w,REQ:m.Request,EV:m.Event,PR:m.Promise,MO:m.MutationObserver};var x=""+location,O={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1212.min.js"},M=w&&b&&b[h]&&!/CriOS/.test(navigator.userAgent),P=e.exports={offset:a.getLastTimestamp(),now:a,origin:x,features:{},xhrWrappable:M,userAgent:s,disabled:E};if(!E){t(1),t(7),g[h]?(g[h]("DOMContentLoaded",o,l(!1)),m[h]("load",r,l(!1))):(g[y]("onreadystatechange",i),m[y]("onload",r)),c("mark",["firstbyte",a.getLastTimestamp()],null,"api");var T=0}},{}],"wrap-function":[function(t,e,n){function r(t,e){function n(e,n,r,f,u){function nrWrapper(){var o,a,s,p;try{a=this,o=d(arguments),s="function"==typeof r?r(o,a):r||{}}catch(l){i([l,"",[o,a,f],s],t)}c(n+"start",[o,a,f],s,u);try{return p=e.apply(a,o)}catch(v){throw c(n+"err",[o,a,v],s,u),v}finally{c(n+"end",[o,a,p],s,u)}}return a(e)?e:(n||(n=""),nrWrapper[p]=e,o(e,nrWrapper,t),nrWrapper)}function r(t,e,r,i,o){r||(r="");var c,f,u,s="-"===r.charAt(0);for(u=0;u<e.length;u++)f=e[u],c=t[f],a(c)||(t[f]=n(c,s?f+r:r,i,f,o))}function c(n,r,o,a){if(!v||e){var c=v;v=!0;try{t.emit(n,r,o,e,a)}catch(f){i([f,n,r,o],t)}v=c}}return t||(t=s),n.inPlace=r,n.flag=p,n}function i(t,e){e||(e=s);try{e.emit("internal-error",t)}catch(n){}}function o(t,e,n){if(Object.defineProperty&&Object.keys)try{var r=Object.keys(t);return r.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(o){i([o],n)}for(var a in t)l.call(t,a)&&(e[a]=t[a]);return e}function a(t){return!(t&&t instanceof Function&&t.apply&&!t[p])}function c(t,e){var n=e(t);return n[p]=t,o(t,n,s),n}function f(t,e,n){var r=t[e];t[e]=c(r,n)}function u(){for(var t=arguments.length,e=new Array(t),n=0;n<t;++n)e[n]=arguments[n];return e}var s=t("ee"),d=t(11),p="nr@original",l=Object.prototype.hasOwnProperty,v=!1;e.exports=r,e.exports.wrapFunction=c,e.exports.wrapInPlace=f,e.exports.argsToArray=u},{}]},{},["loader"]);</script> --%>
 <meta content="width=device-width, initial-scale=1" name="viewport">
 <meta content="zh_TW" property="og:locale">
 <meta content="zh_TW" property="og:locale:alternate">
@@ -103,29 +68,6 @@ pageContext.setAttribute("list3", list3);
         }
     }    setTimeout(tagClarity, 500);
 </script>
-<!-- <meta content="171735882933694" property="fb:app_id">
-<meta content="zeczec-com:project" property="og:type">
-<meta content="嘖嘖 | 林北是小農｜ 喵言汪語賀新年春聯套組" property="og:title">
-<meta
-	content="https://s3-ap-northeast-1.amazonaws.com/zeczec-prod/asset_423058_image_original.jpg?1641180138"
-	property="og:image">
-<meta
-	content="在世界的各個⾓落，總能見到小農的身影，他們⼀生孤單、飢餓的在街頭流浪， 而等待他們的終點，常常是像垃圾一樣被丟棄。 我們是林北是小農，我們希望小農也能好好走完最後⼀哩路，能有圓滿的善終。"
-	property="og:description">
-<meta
-	content="https://www.zeczec.com/projects/paradisepet2022zeczecnewyear"
-	property="og:url">
-<meta content="林北是小農" property="zeczec-com:creator">
-<meta content="summary_large_image" name="twitter:card">
-<meta content="@zeczec_com" name="twitter:site">
-<meta content="嘖嘖 | 林北是小農｜ 喵言汪語賀新年春聯套組" name="twitter:title">
-<meta
-	content="在世界的各個⾓落，總能見到小農的身影，他們⼀生孤單、飢餓的在街頭流浪， 而等待他們的終點，常常是像垃圾一樣被丟棄。 我們是林北是小農，我們希望小農也能好好走完最後⼀哩路，能有圓滿的善終。"
-	name="twitter:description">
-<meta
-	content="https://s3-ap-northeast-1.amazonaws.com/zeczec-prod/asset_423058_image_original.jpg?1641180138"
-	name="twitter:image">
-<meta content="zeczec.com" name="twitter:domain"> -->
 
 <style>
 .buya :hover{
@@ -135,10 +77,7 @@ background-color:#f7f6e4;
 color:deepgray;
 
 }
-/* .buya >.buy1 {
-font-weight:400;
-font-size:23px;
-} */
+
 
 </style>
 
@@ -176,7 +115,7 @@ font-size:23px;
 					</ul>
 				</c:if>
 				<a class="db"
-					href="https://www.zeczec.com/projects/paradisepet2022zeczecnewyear"><h2
+					href="#"><h2
 						class="f4 mt2 mb1">${projectVO.proj_name}</h2> </a><a class="b f6"
 					href="#">${fmemSvc.getOneFMem(projectSvc.getOneProject(projectVO.proj_id).f_mem_id).f_mem_fname}</a>
 				<p class="f6 gray mv3">${projectVO.proj_abstract}</p>
@@ -287,51 +226,6 @@ font-size:23px;
 												<!-- 這裡是開始 -->
 												<div class=" ph3 pv3 w-50-ns w-100">
 													<div class="cf" style="border:solid 1px lightgray;padding:10px">
-														<%-- <FORM style="display: inline-block" METHOD="post"
-															ACTION="<%=request.getContextPath()%>/proDiary/proDiary.do"
-															name="form5">
-															<button type="submit" style="margin-bottom: 10px;"
-																class="button-s b-ns ph2 ph3-ns button dark-gray bg-near-white bn ml1"
-																rel="nofollow" href="#">修改</button>
-															<input type="hidden" name="dir_id"
-																value="${proDiaryVO.dir_id}"> <input
-																type="hidden" name="action"
-																value="go_to_update_ProDiary_from_listOneProjByFmem">
-														</FORM>
-
-														<FORM style="display: inline-block" METHOD="post"
-															ACTION="<%=request.getContextPath()%>/proDiary/proDiary.do"
-															name="form6">
-															<button type="submit" style="margin-bottom: 10px;"
-																class="button-s b-ns ph2 ph3-ns button dark-gray bg-near-white bn ml1"
-																rel="nofollow" href="#">刪除</button>
-															<input type="hidden" name="dir_id"
-																value="${proDiaryVO.dir_id}"> <input
-																type="hidden" name="action" value="delete">
-														</FORM>
-
-														<c:choose>
-															<c:when test="${proDiaryVO.dir_upload_state==0}">
-																<FORM style="display: inline-block" METHOD="post"
-																	ACTION="<%=request.getContextPath()%>/proDiary/proDiary.do"
-																	name="form6">
-																	<button type="submit" style="background-color:#f7ffd4;margin-bottom: 10px;"
-																		class="button-s b-ns ph2 ph3-ns button dark-gray bg-near-white bn ml1"
-																		rel="nofollow" href="#">馬上發布</button>
-																	<input type="hidden" name="dir_id"
-																		value="${proDiaryVO.dir_id}"> <input
-																		type="hidden" name="action"
-																		value="change_dir_upload_state_to_1_from_listOneProjByFmem">
-																</FORM>
-															</c:when>
-															<c:when test="${proDiaryVO.dir_upload_state==1}">
-
-															</c:when>
-															 <c:otherwise>
-        什么都没有。
-    </c:otherwise>
-														</c:choose> --%><!-- 這段給emoji的 -->
-
 
 
 														<div style="position: relative;" class="for_all_img">
@@ -371,26 +265,14 @@ font-size:23px;
 </c:choose>
 															
 															
-															
-															<!-- <i class='fas fa-circle'
-																style='color: rgb(80, 80, 80); bottom: 2.5%; right: 2.3%; position: absolute; font-size: 34px; z-index: 0.1;'></i>
-															<i class='fas fa-grin'
-																style='color: rgb(255, 247, 0); bottom: 3%; right: 3%; position: absolute; font-size: 30px; z-index: 0;'></i> -->
 
-															<!-- <img id="img2" class="w-100 mb3"
-															src="farmforUploadPic/farmforUploadPic.png" alt=""> -->
 
 															<img width="100%" class="mb2 round-s"
 																src="<%=request.getContextPath()%>/proDiary/ProDiaryDBGifReader4?id=${proDiaryVO.dir_id}"
 																alt="">
-<%--															<div width="100%" class="mb2 round-s"--%>
-<%--																 style="background-image: url(&#39;data:image/jpg;base64,${proDiaryVO.base64Image}&#39;)"></div>--%>
 
-															<!-- 圖片呈現成功 -->
 														</div>
-														<!-- <label class="b" for="2">顯示圖片</label> -->
-														<!-- <input id="upPic2" onchange="pic2_change()" class="w-100 border-box mv3" accept="image/*" type="file"
-                  name="2"> -->
+
 
 														<p
 															style="font-size: 17px; margin-bottom: 4px; margin-top: 4px;">
@@ -406,27 +288,7 @@ font-size:23px;
 
 
 														</p>
-														<!-- 									<script>
-                  var file2;
-                  var fileReader2;
 
-                  function pic2_change() {
-                    file2 = document.getElementById('upPic2').files[0];
-                    if (file2) {
-                      fileReader2 = new FileReader();
-                      fileReader2.onload = openfile2;
-                      readFileContent2();
-                    }
-                  }
-
-                  function openfile2(event) {
-                    document.getElementById('img2').src = event.target.result;
-                  }
-
-                  function readFileContent2() {
-                    fileReader2.readAsDataURL(file2);
-                  }
-                </script> -->
 													</div>
 
 												</div>
@@ -446,14 +308,7 @@ font-size:23px;
 				</div>
 			</div>
 			<div class="w-30-l ph3-l ph0 flex-ns flex-wrap flex-column-l w-100">
-				<%-- <div style="margin-bottom: 20px;"
-					class="w-100-l w-50-ns ph3 ph0-l flex-none self-start">
-					<a href="${pageContext.request.contextPath}/proDiary/proDiary.do?proj_id=${projectVO.proj_id}&action=insert_ProDiary_from_listOneProjByFmem">
-						<div
-							style="font-size:20px;color:#3f3f3f;text-align:center;border-radius: 10px; background-color:#f7ffd4;border: solid white 2px; padding: 15px; padding: 10px;"
-							class="w-100-l ph3 ph0-l flex-none self-start"><strong>新增日誌</strong></div>
-					</a>
-				</div> --%>
+
 				<div style="margin-bottom: 20px;"
 					class="w-100-l w-50-ns ph3 ph0-l flex-none self-start">
 					<a href="${pageContext.request.contextPath}/proDiary/proDiary.do?proj_id=${projectVO.proj_id}&action=go_to_listAll_ProDiary_from_listOneProjByMem">
@@ -474,84 +329,11 @@ font-size:23px;
 				</div>
 	</c:forEach>
 	</c:if>
-				<%-- 				<%
-				Integer proj_id = projectVO.getProj_id();
-				ProjPerkService projSvc = new ProjPerkService();
-				List<ProjPerkVO> list = projSvc.getAll(proj_id);
-				pageContext.setAttribute("list", list);
-				%> --%>
-				<!-- @TODO -->
-				<!-- perk迭代區 -->
-				<%-- <c:forEach var="projPerkVO" items="${list}" begin="<%=0%>"
-					end="<%=10%>">
-					<div class="w-100-l w-50-ns ph3 ph0-l flex-none self-start">
-						<a
-							class="pa3 ba bw1 b--inherit round-s light-gray mb4 db border-rainbow "
-							href="https://www.zeczec.com/users/sign_in?return_to=%2Fprojects%2Fparadisepet2022zeczecnewyear%2Forders%2Fback_project%3Fselected_reward%3D72345%23details"><img
-							width="100%" class="mb2 round-s"
-							src="data:image/jpg;base64,${projPerkVO.base64Image}"
-							alt="72345 banner">
-							<div class="black b f4">NT$${projPerkVO.perk_fund}</div>
-							<div class="f7 mv2">
-								<span style="background-color: #717d34;"
-									class="f7 white ph2 bg-red b dib"> 剩餘
-									${projPerkVO.perk_limited - projPerkVO.perk_total_count} 份 </span><span
-									class="black ph2 bg-near-white dib"> 已被贊助 <span
-									class="b">${projPerkVO.perk_total_count}</span> /
-									${projPerkVO.perk_limited} 次
-								</span>
-							</div>
-							<div class="black f6 mv-child-0 maxh5 maxh-none-ns overflow-auto">
-								<br>【${projPerkVO.perk_abbr_name}】
-								<p>
-									${projPerkVO.perk_intro} <br>特惠價
-									${projPerkVO.perk_fund}（限量${projPerkVO.perk_limited}組）
-								</p>
-								<p>寄送地區：${projPerkVO.perk_ship_area}</p>
-							</div>
-							<div class="mt3 gray tc ph2 f7 ba">預計於${projPerkVO.perk_ship_date}實現</div>
-						</a>
-					</div>
-				</c:forEach> --%>
+
 			</div>
 		</div>
 	</div>
-	<%-- <footer class="pt5 pb6 f6 bt light-gray relative">
-		<div class="container dark-gray">
-			<div class="flex ph0-l ph3">
-				<div class="w-third-l w-100 mt-child-0 mb0-l mb4">
-					<h3>社群</h3>
-					<a class="db"
-						href="https://www.youtube.com/channel/UC_k_rE8ln6Q75tcC5uvqu8g">YouTube</a>
-					<a class="db" href="https://facebook.com/zeczec.com">Facebook</a> <a
-						class="db" href="https://instagram.com/zeczec_com">Instagram</a> <a
-						class="db" href="https://twitter.com/zeczec_com">Twitter</a>
-				</div>
-				<div class="w-third-l w-100 mt-child-0 mb0-l mb4">
-					<h3>幫助</h3>
-					<a class="db" href="https://www.zeczec.com/faq">常見問答</a> <a
-						class="db" href="https://www.zeczec.com/docs/terms_of_service">使用條款</a>
-					<a class="db" href="https://www.zeczec.com/docs/privacy">隱私權政策</a>
-				</div>
-				<div class="w-third-l w-100 mt-child-0 mb0-l mb4 relative">
-					<h3>關於</h3>
-					<a class="db" href="https://www.zeczec.com/about">關於我們</a> <a
-						class="db" href="https://www.zeczec.com/brand">商標資源</a>
-					<div class="f7 mt3">© 我家門前有塊地</div>
-					<!-- 旋轉logo在這裡logo-safari-fix -->
-					<a
-						class="absolute-l top-0 right-0 mt3 dib relative logo-safari-fix"
-						href="https://www.zeczec.com/"><img class="logo mr2 middle"
-						style="height: 100px; width: 100px;" viewBox="0 0 138 138"
-						src="<%=request.getContextPath()%>/project/listOneProj_files/透明LOGO小小農和手.png">
-						<!-- 旋轉logo在這裡logo-safari-fix -->
-						<title>zeczec</title> <path
-							src="<%=request.getContextPath()%>/project/listOneProj_files/透明LOGO小小農和手.png"></path>
-						</img> </a>
-				</div>
-			</div>
-		</div>
-	</footer> --%>
+
 	
 	    <footer>
          <jsp:include page="/front-end/home/footer_for_Proj_Fmem.jsp" />

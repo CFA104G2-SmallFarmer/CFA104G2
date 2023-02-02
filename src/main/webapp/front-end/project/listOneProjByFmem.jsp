@@ -305,9 +305,6 @@ footer:hover .logo-safari-fix {
 						<div
 							style="border: solid lightgray 2px; padding: 15px; padding: 10px;"
 							class="w-100-l ph3 ph0-l flex-none self-start">
-							<!-- <a
-								class="pa3 ba bw1 b--inherit round-s light-gray mb4 db border-rainbow "
-								href="https://www.zeczec.com/users/sign_in?return_to=%2Fprojects%2Fparadisepet2022zeczecnewyear%2Forders%2Fback_project%3Fselected_reward%3D72345%23details"> -->
 							<img width="100%" class="mb2 round-s"
 								src="data:image/jpg;base64,${projPerkVO.base64Image}"
 								alt="72345 banner">

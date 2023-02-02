@@ -33,46 +33,7 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
   
   <div class="container"></div>
   <div class="bb b--near-white">
-    <!-- <div class="container">
-      <ul class="list pa0 cf mb0 mh3 mh0-l mv0 nowrap overflow-auto">
-        <li class="dib">
-          <a class="pv3 mr4 dib grow hover-black dark-gray" href="https://www.zeczec.com/account">
-            <i class="icon-ok"></i>
-            認養訂單記錄
-          </a>
-        </li>
-        <li class="dib">
-          <a class="pv3 mr4 dib b black bb b--gray" href="https://www.zeczec.com/users/following">
-            <i class="icon-forward"></i>
-            認養收藏紀錄
-          </a>
-        </li>
-        <li class="dib">
-          <a class="pv3 mr4 dib grow hover-black dark-gray" href="https://www.zeczec.com/users/projects">
-            <i class="icon-lightbulb"></i>
-            提案記錄(要刪)
-          </a>
-        </li>
-        <li class="dib">
-          <a class="pv3 mr4 dib grow hover-black dark-gray" href="https://www.zeczec.com/settings">
-            <i class="icon-user"></i>
-            個人設定(要刪)
-          </a>
-        </li>
-        <li class="dib">
-          <a class="pv3 mr4 dib grow hover-black dark-gray" href="https://www.zeczec.com/memberships">
-            <i class="icon-user"></i>
-            團隊設定
-          </a>
-        </li>
-        <li class="dib">
-          <a class="pv3 mr4 dib grow hover-black dark-gray" href="https://www.zeczec.com/users/edit">
-            <i class="icon-lock"></i>
-            修改密碼
-          </a>
-        </li>
-      </ul>
-    </div> -->
+
   </div>
   <div class="container">
 

@@ -29,45 +29,7 @@
   <meta name="csrf-token"
     content="MTox+EBrRuwHIR0noSGsb2DvNE5yK9mN9yvfhUb5DU+8BoCotRpDcw+HJZiqMtaHV1h0lZRdUnXWNvNmpla3Cg==">
 <title>新增認養專案案</title>
-  <!-- <script type="text/javascript" src="<%= request.getContextPath() %>/front-end/project/addProj_files/6df56d3465"></script> -->
-  <!-- <script src="<%= request.getContextPath() %>/front-end/project/addProj_files/nr-1214.min.js"></script> -->
-  <!-- <script async="" src="<%= request.getContextPath() %>/front-end/project/addProj_files/clarity.js"></script>
-  <script async="" src="<%= request.getContextPath() %>/front-end/project/addProj_files/fbevents.js"></script>
-  <script async="" src="<%= request.getContextPath() %>/front-end/project/addProj_files/analytics.js"></script>
-  <script async="" src="<%= request.getContextPath() %>/front-end/project/addProj_files/9ve6cixxpl"></script> -->
-  
-  <!-- <script src="<%= request.getContextPath() %>/front-end/project/addProj_files/465239610292033" async=""></script>
-  <script src="<%= request.getContextPath() %>/front-end/project/addProj_files/sdk.js" async="" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="<%= request.getContextPath() %>/front-end/project/addProj_files/6df56d3465(1)"></script>
-  <script src="<%= request.getContextPath() %>/front-end/project/addProj_files/nr-1214.min(1).js"></script>
-  <script async="" src="<%= request.getContextPath() %>/front-end/project/addProj_files/clarity(1).js"></script>
-  <script async="" src="<%= request.getContextPath() %>/front-end/project/addProj_files/fbevents(1).js"></script>
-  <script async="" src="<%= request.getContextPath() %>/front-end/project/addProj_files/analytics(1).js"></script>
-  <script async="" src="<%= request.getContextPath() %>/front-end/project/addProj_files/9ve6cixxpl(1)"></script>
-  <script src="<%= request.getContextPath() %>/front-end/project/addProj_files/465239610292033(1)" async=""></script>
-  <script src="<%= request.getContextPath() %>/front-end/project/addProj_files/sdk(1).js" async="" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="<%= request.getContextPath() %>/front-end/project/addProj_files/6df56d3465(2)"></script>
-  <script src="<%= request.getContextPath() %>/front-end/project/addProj_files/nr-1214.min(2).js"></script>
-  <script async="" src="<%= request.getContextPath() %>/front-end/project/addProj_files/fbevents(2).js"></script>
-  <script async="" src="<%= request.getContextPath() %>/front-end/project/addProj_files/analytics(2).js"></script>
-  <script async="" src="<%= request.getContextPath() %>/front-end/project/addProj_files/9ve6cixxpl(2)"></script>
-  <script src="<%= request.getContextPath() %>/front-end/project/addProj_files/465239610292033(2)" async=""></script>
-  <script src="<%= request.getContextPath() %>/front-end/project/addProj_files/sdk(2).js" async="" crossorigin="anonymous"></script>
-  <script async="" src="<%= request.getContextPath() %>/front-end/project/addProj_files/clarity(2).js"></script>
-  <script type="text/javascript" src="<%= request.getContextPath() %>/front-end/project/addProj_files/6df56d3465(3)"></script>
-  <script src="<%= request.getContextPath() %>/front-end/project/addProj_files/465239610292033(3)" async=""></script>
-  <script src="<%= request.getContextPath() %>/front-end/project/addProj_files/sdk(3).js" async="" crossorigin="anonymous"></script>
-  <script src="<%= request.getContextPath() %>/front-end/project/addProj_files/nr-1214.min(3).js"></script>
-  <script async="" src="<%= request.getContextPath() %>/front-end/project/addProj_files/fbevents(3).js"></script>
-  <script id="facebook-jssdk" src="<%= request.getContextPath() %>/front-end/project/addProj_files/sdk(4).js"></script>
-  <script async="" src="<%= request.getContextPath() %>/front-end/project/addProj_files/analytics(3).js"></script>
-  <script async="" src="<%= request.getContextPath() %>/front-end/project/addProj_files/9ve6cixxpl(3)"></script> -->
 
-  <!-- <link
-    href="https://www.zeczec.com/assets/logo-square-04c45286e84ea49d07c97c86625fbf3a75f4f32dd02da3ad3ca70a9a68fd0395.png"
-    rel="apple-touch-icon"> -->
-<!--   <link href="https://www.zeczec.com/assets/fav-69601a279a66f2e6e31e508900d4f057559d3affcae42730d045b17d281107a6.png"
-    rel="shortcut icon" type="image/x-icon"> -->
   <link href="<%= request.getContextPath() %>/front-end/project/addProj_files/css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" media="all"
     href="<%= request.getContextPath() %>/front-end/project/addProj_files/zeczec-e9e0ba9825d4b970fff398209948a791b4d18185e43b929ef4ffa0e7e5346248.css">
@@ -85,18 +47,10 @@
 
       <div class="container ph3 ph0-l pt3 cf">
         <h2 class="flex mt0">
-          <!-- <a class="order-1 f6 ml4-l black w-100 w-auto-l" href="https://www.zeczec.com/account"><i
-              class="material-icons v-mid dark-gray f4">check</i>
-            成功贊助記錄
-          </a> -->
-          <span class="order-0 flex-auto black w-100 w-auto-l" href="https://www.zeczec.com/account/cancelled">
+          <span class="order-0 flex-auto black w-100 w-auto-l" href="#">
             <i class="material-icons v-mid dark-gray f3">error</i>
             新增認養專案
           </span>
-          <!-- <span class="order-3 f6 ml4-l black w-100 w-auto-l" href="https://www.zeczec.com/account/atm"><i
-              class="material-icons v-mid dark-gray f4">timer</i>
-            等待付款記錄
-          </span> -->
         </h2>
 
       </div>

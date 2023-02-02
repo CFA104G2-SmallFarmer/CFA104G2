@@ -13,16 +13,15 @@
 <!-- 704有圖要抽換 -->
 
 <!DOCTYPE html>
-<!-- saved from url=(0056)https://www.zeczec.com/projects/ICHR/orders/back_project -->
 <html lang="zh-Hant-TW">
 <meta content="width=device-width, initial-scale=1" name="viewport">
 <meta content="zh_TW" property="og:locale">
 <meta content="zh_TW" property="og:locale:alternate">
 <link
-	href="https://www.zeczec.com/assets/logo-square-04c45286e84ea49d07c97c86625fbf3a75f4f32dd02da3ad3ca70a9a68fd0395.png"
+	href="#"
 	rel="apple-touch-icon">
 <link
-	href="https://www.zeczec.com/assets/fav-69601a279a66f2e6e31e508900d4f057559d3affcae42730d045b17d281107a6.png"
+	href="#"
 	rel="shortcut icon" type="image/x-icon">
 <title>我家門前有塊地</title>
 <link href="<%=request.getContextPath()%>/front-end/projPerk/perkoverview_files/css" rel="stylesheet" type="text/css">
@@ -670,12 +669,12 @@ translateY
 						style="background-image: url(&#39;https://s3-ap-northeast-1.amazonaws.com/zeczec-prod/asset_431251_image_big.jpg?1643016084&#39;)"></div>
 				<!-- 圖片待抽換 -->
 				</div>
-				<div class="pv2 ph0-l ph3">					<a href="https://www.zeczec.com/projects/ICHR">
+				<div class="pv2 ph0-l ph3">					<a href="#">
 						<h2 class="f5 mb0 dib mt1 f5 b">${projectVO.proj_name}</h2>
 					</a>
 					<div class="gray f7 mb3">
 						<span>提案人</span> <a class="b"
-							href="https://www.zeczec.com/users/MOZTECH">${projectVO.f_mem_id} </a><span
+							href="#">${projectVO.f_mem_id} </a><span
 							class="mh2">|</span>
 					</div>
 					<span class="b">NT$${projectVO.proj_total_fund}</span> <span class="f7 dark-gray">
@@ -707,7 +706,7 @@ translateY
 							class="w-100 w-50-ns flex-none-ns ws-normal mr3-ns pt3-ns w-30-l">
 							<a
 								class="pa3 ba bw1 b--inherit round-s light-gray mb4 db border-rainbow "
-								href="https://www.zeczec.com/projects/ICHR/orders/back_project?selected_reward=72641#details"><img
+								href="#"><img
 								width="100%" class="mb2 round-s"
 								src="${projPerkVO.perk_pic}" alt="${projPerkVO.perk_intro}">
 							<div class="black b f4">NT$${projPerkVO.perk_fund}</div>

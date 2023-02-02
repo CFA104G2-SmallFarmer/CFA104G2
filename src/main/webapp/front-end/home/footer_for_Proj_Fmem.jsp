@@ -34,7 +34,7 @@
 					<!-- 旋轉logo在這裡logo-safari-fix -->
 					<a
 						class="absolute-l top-0 right-0 mt3 dib relative logo-safari-fix"
-						href="https://www.zeczec.com/"><img class="logo mr2 middle"
+						href="#"><img class="logo mr2 middle"
 						style="height: 100px; width: 100px;" viewBox="0 0 138 138"
 						src="<%=request.getContextPath()%>/front-end/project/listOneProj_files/透明LOGO小小農和手.png">
 						<!-- 旋轉logo在這裡logo-safari-fix -->

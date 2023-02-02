@@ -77,18 +77,10 @@ pageContext.setAttribute("projectVO",projectVO);
 
       <div class="container ph3 ph0-l pt3 cf">
         <h2 class="flex mt0">
-          <!-- <a class="order-1 f6 ml4-l black w-100 w-auto-l" href="https://www.zeczec.com/account"><i
-              class="material-icons v-mid dark-gray f4">check</i>
-            成功贊助記錄
-          </a> -->
-          <span class="order-0 flex-auto black w-100 w-auto-l" href="https://www.zeczec.com/account/cancelled">
+          <span class="order-0 flex-auto black w-100 w-auto-l" href="#">
             <i class="material-icons v-mid dark-gray f3">error</i>
             修改認養專案
           </span>
-          <!-- <span class="order-3 f6 ml4-l black w-100 w-auto-l" href="https://www.zeczec.com/account/atm"><i
-              class="material-icons v-mid dark-gray f4">timer</i>
-            等待付款記錄
-          </span> -->
         </h2>
 
       </div>

@@ -36,7 +36,7 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 	<header class="relative z-2 bb pv2 ph3 ph0-l b--near-white">
 		<div class="cf container">
 			<div class="f6 mv2 flex items-center justify-between">
-				<a clsas="dib order-0" href="https://www.zeczec.com/">
+				<a clsas="dib order-0" href="#">
 					<h1 class="gray text-mono hover-logo ma0">
 						<!-- <img style="display:inline-box" src="/logo/透明LOGO有字有框.png" alt="ok" width=13% height=10%> -->
 						<div class="dib logo-safari-fix">
@@ -65,14 +65,14 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 						alt="ok" width="140px" height="100%">
 					<div class="divider dib-ns dn">&nbsp;</div>
 					<a class="mr3-ns hover-fg-blue dark-gray flex-auto flex-none-ns"
-						href="https://www.zeczec.com/categories">探索</a> <a
+						href="#">探索</a> <a
 						class="mr3-ns hover-fg-blue dark-gray flex-auto flex-none-ns"
-						href="https://www.zeczec.com/start_project">提案</a>
+						href="#">提案</a>
 				</div>
 				<div class="tr order-2">
 					<a aria-label="站內訊息"
 						class="near-black dib gray pa2 mr3 v-mid tooltip tooltip-b"
-						href="https://www.zeczec.com/inbox"> <i
+						href="#"> <i
 						class="material-icons f5 v-mid"> mail </i>
 					</a>
 					<div class="js-activatable relative dib" data-userid="2046860">
@@ -88,27 +88,19 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 						</button>
 						<div class="dropdown r f6 tc w4">
 							<a class="near-black db ph3 pv2 hover-blue db dn-l"
-								href="https://www.zeczec.com/categories">探索</a> <a
+								href="#">探索</a> <a
 								class="near-black db ph3 pv2 hover-blue db dn-l"
-								href="https://www.zeczec.com/start_project">提案</a>
+								href="#">提案</a>
 							<div class="bt db dn-l mv2 b--light-gray"></div>
 							<a class="near-black db ph3 pv2 hover-blue bb b--light-gray"
-								href="https://www.zeczec.com/users/wu-yu-pei"> 個人頁面 </a> <a
+								href="#"> 個人頁面 </a> <a
 								class="near-black db ph3 pv2 hover-blue"
-								href="https://www.zeczec.com/account"> 贊助記錄 </a> <a
+								href="#"> 贊助記錄 </a> <a
 								class="near-black db ph3 pv2 hover-blue"
-								href="https://www.zeczec.com/users/following"> 追蹤計畫 </a>
-							<!-- <a class="near-black db ph3 pv2 hover-blue" href="https://www.zeczec.com/users/projects">
-                提案記錄
-              </a>
-              <a class="near-black db ph3 pv2 hover-blue bt b--light-gray" href="https://www.zeczec.com/settings">
-                帳號設定
-              </a>
-              <a class="near-black db ph3 pv2 hover-blue bb b--light-gray" href="https://www.zeczec.com/memberships">
-                團隊設定
-              </a> -->
+								href="#"> 追蹤計畫 </a>
+
 							<form class="db ma3" id="edit_user_2046860"
-								action="https://www.zeczec.com/users/sign_out"
+								action="#"
 								accept-charset="UTF-8" method="post">
 								<input name="utf8" type="hidden" value="✓"> <input
 									type="hidden" name="_method" value="delete"> <input

@@ -28,7 +28,6 @@ pageContext.setAttribute("list",list);
 <!-- 704有圖要抽換 -->
 
 <!DOCTYPE html>
-<!-- saved from url=(0056)https://www.zeczec.com/projects/ICHR/orders/back_project -->
 <html lang="zh-Hant-TW">
 <head
 	prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# zeczec-com: http://ogp.me/ns/fb/zeczec-com#">
@@ -36,12 +35,6 @@ pageContext.setAttribute("list",list);
 <meta content="width=device-width, initial-scale=1" name="viewport">
 <meta content="zh_TW" property="og:locale">
 <meta content="zh_TW" property="og:locale:alternate">
-<!-- <link
-	href="https://www.zeczec.com/assets/logo-square-04c45286e84ea49d07c97c86625fbf3a75f4f32dd02da3ad3ca70a9a68fd0395.png"
-	rel="apple-touch-icon">
-<link
-	href="https://www.zeczec.com/assets/fav-69601a279a66f2e6e31e508900d4f057559d3affcae42730d045b17d281107a6.png"
-	rel="shortcut icon" type="image/x-icon"> -->
 <title>我家門前有塊地 | ${projectVO.proj_name}</title>
 <link href="<%=request.getContextPath()%>/front-end/projPerk/perkoverview_files/css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" media="all"
@@ -134,9 +127,6 @@ pageContext.setAttribute("list",list);
 					<div style="border: solid lightgray 2px;padding: 15px;margin: 7px;"
 							class="w-100 w-50-ns flex-none-ns ws-normal mr3-ns pt3-ns w-30-l">
 						
-							<!-- <a
-								class="pa3 ba bw1 b--inherit round-s light-gray mb4 db border-rainbow "
-								href="https://www.zeczec.com/projects/ICHR/orders/back_project?selected_reward=72641#details"> -->
 
 						<img
 								width="100%" class="mb2 round-s"
@@ -167,27 +157,7 @@ pageContext.setAttribute("list",list);
 															<div style="margin-top: 10px; margin-bottom: 20px; height: 17px;"
 								class="w-100-l w-50-ns ph3 ph0-l flex-none self-start">
 								
-							<%-- 	<a class="buya"
-									href="${pageContext.request.contextPath}/projPerk/projPerk.do?proj_id=${projectVO.proj_id}&perk_id=${projPerkVO.perk_id}&action=go_to_addOrderByMem">
-									<div
-										style="color: #8f7e5d; font-size: 16px; border-radius: 0px; text-align: center; border: solid #aaba8b 1.5px; padding: 4px;"
-										class="w-100 ph3 ph0-l flex-none self-start buyy">
-										<strong>認購此專案</strong>
-									</div>
-								</a> --%>
-													
-<!-- 								/*0224新增*/ -->
-							<%-- 	<FORM id="search_form6" METHOD="post" ACTION="<%=request.getContextPath()%>/projPerk/projPerk.do">	
-							
-									<div onClick="document.forms['search_form6'].submit();" style="color: #8f7e5d; font-size: 16px; border-radius: 0px; text-align: center; border: solid #aaba8b 1.5px; padding: 4px;"
-										class="w-100 ph3 ph0-l flex-none self-start buyy buya">
-										<strong>認購此專案</strong>
-									</div>
-							
-								<input type="hidden" name="proj_id"  value="${projectVO.proj_id}">
- 								<input type="hidden" name="perk_id"  value="${projPerkVO.perk_id}">
-                      		    <input type="hidden" name="action" value="go_to_addOrderByMem">	 
-								   </FORM> --%>
+
 								   	 <a class="buya"
 									href="${pageContext.request.contextPath}/projPerk/projPerk.do?proj_id=${projectVO.proj_id}&mem_id=${memVO.mem_id}&perk_id=${projPerkVO.perk_id}&action=go_to_addOrderByMem">
 									<div
