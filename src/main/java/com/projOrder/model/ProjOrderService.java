@@ -1,5 +1,9 @@
 package com.projOrder.model;
 
+import com.projPerk.model.ProjPerkDAO_interface;
+import com.projPerk.model.ProjPerkJDBCDAO;
+import com.projPerk.model.ProjPerkVO;
+
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,12 +16,15 @@ import java.util.stream.Collectors;
 public class ProjOrderService {
 	private ProjOrderDAO_interface dao; //為了將來與框架作結合
 
+	private ProjPerkDAO_interface perk_dao; //為了將來與框架作結合
+
 	public ProjOrderService() {
 		dao = new ProjOrderJDBCDAO();
+		perk_dao = new ProjPerkJDBCDAO();
 	}
 
 	public ProjOrderVO addProjOrder(Integer mem_id,Integer perk_id, Integer order_zipcode,
-			String order_addr,String order_receiver,String order_tel, Integer order_pay) {
+			String order_addr,String order_receiver,String order_tel, Integer order_pay, String order_number_str) {
 
 		ProjOrderVO projOrderVO = new ProjOrderVO();
 		
@@ -29,6 +36,7 @@ public class ProjOrderService {
 		projOrderVO.setOrder_receiver(order_receiver);
 		projOrderVO.setOrder_tel(order_tel);
 		projOrderVO.setOrder_pay(order_pay);
+		projOrderVO.setOrder_number(order_number_str);
 		dao.insert(projOrderVO);
 
 		return projOrderVO;
@@ -64,10 +72,13 @@ public class ProjOrderService {
 	}
 
 	public ProjOrderVO getOneProjOrder(Integer order_id) {
-
 		return dao.findByPrimaryKey(order_id);
 	}
-	
+
+	public ProjOrderVO getOneProjOrderByOrderNumber(String order_number) {
+		return dao.findByOrderNumber(order_number);
+	}
+
 	public ProjOrderVO getOneProjOrderByMem(Integer order_id, Integer mem_id) {
 
 		List<ProjOrderVO> list = dao.getAllMemOrder(mem_id);
@@ -99,8 +110,8 @@ public class ProjOrderService {
 //		System.out.println(oneResult.getOrder_id());
 		return oneResult;
 	}
-	
-	
+
+
 	
 	//這裡對嗎？
 	public List<ProjOrderVO> getAllMemOrder(Integer mem_id) {
@@ -121,8 +132,21 @@ public class ProjOrderService {
 	public List<ProjOrderVO> getAll() {
 		return dao.getAll();
 	}
-	
-	
+
+
+	public Integer getOrder_price(ProjOrderVO projOrderVO){
+		Integer perk_id=projOrderVO.getPerk_id();
+		ProjPerkVO projPerkVO = perk_dao.findByPrimaryKey(perk_id);
+		return projPerkVO.getPerk_fund();
+	}
+
+	public String getPerk_name(ProjOrderVO projOrderVO){
+		Integer perk_id=projOrderVO.getPerk_id();
+		ProjPerkVO projPerkVO = perk_dao.findByPrimaryKey(perk_id);
+		return projPerkVO.getPerk_abbr_name();
+	}
+
+
 	public static void main(String[] args) {
 	ProjOrderJDBCDAO dao = new ProjOrderJDBCDAO();
 	List<ProjOrderVO> projOrderList = dao.getAllFmemOrder(70003);

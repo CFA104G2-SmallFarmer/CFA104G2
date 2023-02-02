@@ -33,5 +33,7 @@ public interface ProjOrderDAO_interface {
 // 可能管理員需要列出資料庫的所有訂單，先留著
     public List<ProjOrderVO> getAll();
 
+    ProjOrderVO findByOrderNumber(String order_number);
+
 //  public List<ProjOrderVO> getAll(Map<String, String[]> map); 
 }

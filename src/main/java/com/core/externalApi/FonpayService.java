@@ -7,14 +7,27 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import com.projOrder.model.ProjOrderService;
+import com.projOrder.model.ProjOrderVO;
 import com.sysconfig.SysConfig;
 
 public class FonpayService {
+
+    ProjOrderService projOrderService = new ProjOrderService();
+
     static String FONPAY_API_KEY = SysConfig.getFonpayApiKey();
     static String FONPAY_API_SECRET = SysConfig.getFonpayApiSecret();
     static String FONPAY_API_MERCHANT_CODE = SysConfig.getFonpayApiMerchantCode();
     static String PAYMENT_CREATE_ORDER = "PaymentCreateOrder";
-    public static String paymentCreateOrder(String paymentNo) throws IOException {
+    static String PAYMENT_CANCEL_ORDER = "paymentCancelOrder";
+    static String PAYMENT_REFUND_ORDER = "paymentRefundOrder";
+    static String PAYMENT_QUERY_ORDER = "paymentQueryOrder";
+    static String PAYMENT_REFUND_QUERY_ORDER = "paymentRefundQueryOrder";
+    static String PAYMENT_ACCOUNT_SUMMARY = "paymentAccountSummary";
+    static String PAYMENT_CREATE_MOBILE_PAY_ORDER = "paymentCreateMobilePayOrder";
+
+    public String paymentCreateOrder(ProjOrderVO projOrderVO) throws IOException {
         URL url = new URL ("https://test-api.fonpay.tw/api/payment/"+PAYMENT_CREATE_ORDER);
         HttpURLConnection con = (HttpURLConnection)url.openConnection();
         con.setRequestMethod("POST");
@@ -28,25 +41,22 @@ public class FonpayService {
         con.setDoOutput(true);
         String jsonInputString = "{ " +
                 "'request':{" +
-                "'note':'Test'," +
-                "'paymentNo':"+paymentNo+"," +
-                "'legacyId':'TS1234567'," +
-                "'totalPrice':100," +
-                "'paymentDueDate':'20230511153541'," +
-                "'itemName':'故宮普通參觀券'," +
-                "'memberName':'memberNo12'," +
+                "'paymentNo':"+projOrderVO.getOrder_number()+"," +
+                "'totalPrice':"+ projOrderService.getOrder_price(projOrderVO)+"," +
+                "'paymentDueDate':"+"20241212000000," + //TODO 改時間
+                "'itemName':"+projOrderService.getPerk_name(projOrderVO)+"," +
                 "'callbackUrl':'https://test-platform.wecometw.com/fonpay/payment/1'," +
                 "'redirectUrl':'https://test-fonticket.fonticket.com/callback/paidConfirm/1'," +
-                "'includeItemList':[" +
-                "{" +
-                "'itemName':'故宮北院參觀券'," +
-                "'itemQuantity':1" +
-                "}," +
-                "{" +
-                "'itemName':'故宮南院參觀券'," +
-                "'itemQuantity':1" +
-                "}" +
-                "]" +
+//                "'includeItemList':[" +
+//                "{" +
+//                "'itemName':'故宮北院參觀券'," +
+//                "'itemQuantity':1" +
+//                "}," +
+//                "{" +
+//                "'itemName':'故宮南院參觀券'," +
+//                "'itemQuantity':1" +
+//                "}" +
+//                "]" +
                 "}," +
                 "'basic':{" +
                 "'appVersion':'0.9'," +
@@ -59,22 +69,34 @@ public class FonpayService {
                 "'longitude':124.25" +
                 "}}";
 
-
         try(OutputStream os = con.getOutputStream()) {
             byte[] input = jsonInputString.getBytes("utf-8");
             os.write(input, 0, input.length);
         }
-        try(BufferedReader br = new BufferedReader(
-                new InputStreamReader(con.getInputStream(), "utf-8"))) {
-            StringBuilder response = new StringBuilder();
-            String responseLine = null;
-            while ((responseLine = br.readLine()) != null) {
-                response.append(responseLine.trim());
+        StringBuffer stringBuffer = new StringBuffer();
+        try{
+            con.connect();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream(), "utf-8"));
+            String output;
+            while((output = bufferedReader.readLine()) != null ){
+                stringBuffer.append(output);
             }
-            System.out.println(response.toString());
+            bufferedReader.close();
+            System.out.println(stringBuffer.toString());
         }
-
-    return new StringBuilder(con.getResponseCode()).toString();
+        catch(Exception e){
+            System.out.println(e);
+        }
+        finally {
+            if (con != null) {
+                try {
+                    con.disconnect();
+                } catch (Exception ex) {
+                    System.out.println("Error");
+                }
+            }
+        }
+    return stringBuffer.toString();
 //        {"result":[],"response":{"success":false,"msg":"訂單號碼重複(#3014-7813273)","debugMsg":"訂單號碼重複,paymentNo=PN1555851600","apiLogId":7813273,"environment":"fonpay_staging_master","errorCode":3014}}
     }
 }

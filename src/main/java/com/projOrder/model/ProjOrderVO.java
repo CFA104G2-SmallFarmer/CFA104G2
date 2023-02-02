@@ -19,6 +19,14 @@ public class ProjOrderVO {
     private Date  order_time;
     private String order_addr;
     private Integer  order_state;
+	//	DEFAULT '0'
+	//0 : 待付款
+	//1 : 待出貨
+	//2 : 運送中
+	//3 : 訂單已完成
+	//4 : 不成立(未處理)
+	//5：不成立(已解決)-逾期未繳款
+
     private Date  order_cancel_time;
     /*0128增加7個欄位*/
     private Integer order_zipcode;
@@ -28,7 +36,9 @@ public class ProjOrderVO {
     private Date order_ship_time;
     private Date order_completion_time;
     private Integer order_cancel_reason;
-    
+
+    private String order_number;
+
 	public Integer getOrder_id() {
 		return order_id;
 	}
@@ -113,6 +123,13 @@ public class ProjOrderVO {
 	public void setOrder_cancel_reason(Integer order_cancel_reason) {
 		this.order_cancel_reason = order_cancel_reason;
 	}
-	
 
+
+	public String getOrder_number() {
+		return order_number;
+	}
+
+	public void setOrder_number(String order_number) {
+		this.order_number = order_number;
+	}
 }

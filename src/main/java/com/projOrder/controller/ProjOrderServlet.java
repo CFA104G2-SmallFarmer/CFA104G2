@@ -18,10 +18,14 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import org.json.*;
 
 import com.core.externalApi.FonpayService;
 
 public class ProjOrderServlet extends HttpServlet {
+
+    FonpayService fonpayService = new FonpayService();
+
     //	862 update_state_to_1_and_then_show_All
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         doPost(req, res);
@@ -1650,6 +1654,8 @@ public class ProjOrderServlet extends HttpServlet {
 
                 String order_pay_str = (req.getParameter("order_pay").trim());
                 Integer order_pay = Integer.parseInt(order_pay_str);
+                String order_number_str = "PO"+System.currentTimeMillis()+"F"+mem_id;
+
 
                 // PO建立
                 ProjOrderVO projOrderVO = new ProjOrderVO();
@@ -1660,6 +1666,7 @@ public class ProjOrderServlet extends HttpServlet {
                 projOrderVO.setOrder_receiver(order_receiver);
                 projOrderVO.setOrder_tel(order_tel);
                 projOrderVO.setOrder_pay(order_pay);
+                projOrderVO.setOrder_number(order_number_str);
 
                 // Send the use back to the form, if there were errors
                 ProjPerkService projPerkSvc3 = new ProjPerkService();
@@ -1678,21 +1685,30 @@ public class ProjOrderServlet extends HttpServlet {
                     return; //程式中斷
                 }
 
-                // 訂單建立前先去呼叫fonpay建單
-                System.out.println(FonpayService.paymentCreateOrder("PN0000001"));
-
-
-
 
                 /***************************2.開始修改資料*****************************************/
                 ProjOrderService projOrderSvc = new ProjOrderService();
                 //控制起驗證完拿到的碎片，new領班，交給領班去組合。
                 //領班用自己的方法去組合將碎片放入一個EmpVO物件，物件再交給工人去施工更新   的動作，然後領班會再回傳一個empVO物件回來
-                ProjOrderVO projOrderVO2 = projOrderSvc.addProjOrder(mem_id, perk_id, order_zipcode, order_addr, order_receiver, order_tel, order_pay);
+                ProjOrderVO projOrderVO2 = projOrderSvc.addProjOrder(mem_id, perk_id, order_zipcode, order_addr, order_receiver, order_tel, order_pay, order_number_str);
 
 
+                // 訂單後再去呼叫fonpay建單，因為沒有欄位可以當PO
+                ProjOrderVO projOrderVO3 = projOrderSvc.getOneProjOrderByOrderNumber(order_number_str);
+                String fonpayPaymentCreateOrderResponse = fonpayService.paymentCreateOrder(projOrderVO3);
+                System.out.println(fonpayPaymentCreateOrderResponse);
 
+                JSONObject j;
+                try {
+                    j = new JSONObject(fonpayPaymentCreateOrderResponse);
+                    Object jsonOb = j.getJSONObject("result").getJSONObject("payment").get("paymentUrl");
+                    System.out.println(jsonOb);
+                }catch(Exception e){
+                    System.err.println("Error: " + e.getMessage());
+                }
 
+                //TODO 剩下步驟
+                //ProjOrderVO projOrderOrderObject = projOrderSvc.getOneProjOrderByOrderNumber()
 
                 //	新增後要更新募資總人數跟募資總額及方案總人數
                 ProjPerkService projPerkSvc = new ProjPerkService();

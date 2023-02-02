@@ -46,7 +46,7 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface {
 //			"SELECT COUNT(*) FROM PROJ_ORDER WHERE PERK_ID=? AND ORDER_STATE !=4;";
 
 	private static final String UPDATE_PERK_TOTAL_COUNT = // 更新目前回饋方案總人數
-			"UPDATE proj_perk SET PERK_TOTAL_COUNT =(SELECT COUNT(*) FROM PROJ_ORDER WHERE PERK_ID=? AND ORDER_STATE !=5) WHERE PERK_ID=?;";
+			"UPDATE proj_perk SET PERK_TOTAL_COUNT =(SELECT COUNT(*) FROM proj_order WHERE PERK_ID=? AND ORDER_STATE !=5) WHERE PERK_ID=?;";
 
 	@Override
 	public void autoUpdatePerkTotalCount(Integer perk_id) {
@@ -92,65 +92,7 @@ public class ProjPerkJDBCDAO implements ProjPerkDAO_interface {
 
 	}
 
-//@Override
-//	public int getPerkTotalCount(Integer perk_id) {
-//	Connection con = null;
-//	PreparedStatement pstmt = null;
-//	ResultSet rs = null;
-//	int result;
-//
-//	try {
-//
-//		Class.forName(driver);
-//		con = DriverManager.getConnection(url, userid, passwd);
-//		pstmt = con.prepareStatement(GET_PERK_TOTAL_COUNT);
-//
-//		pstmt.setInt(1, perk_id);
-//
-//		rs = pstmt.executeQuery();
-//
-//		rs.next(); // 不可遺漏 rs.next(); 移動游標
-//	
-//		result = rs.getInt(1);//欄位索引值
-//		
-//		System.out.println("印出 perk_id:"+perk_id+"的perk_total_count = " + rs.getInt(1));
-//			
-//		// Handle any driver errors
-//	} catch (ClassNotFoundException e) {
-//		throw new RuntimeException("Couldn't load database driver. "
-//				+ e.getMessage());
-//		// Handle any SQL errors
-//	} catch (SQLException se) {
-//		throw new RuntimeException("A database error occured. "
-//				+ se.getMessage());
-//		// Clean up JDBC resources
-//	} finally {
-//		if (rs != null) {
-//			try {
-//				rs.close();
-//			} catch (SQLException se) {
-//				se.printStackTrace(System.err);
-//			}
-//		}
-//		if (pstmt != null) {
-//			try {
-//				pstmt.close();
-//			} catch (SQLException se) {
-//				se.printStackTrace(System.err);
-//			}
-//		}
-//		if (con != null) {
-//			try {
-//				con.close();
-//			} catch (Exception e) {
-//				e.printStackTrace(System.err);
-//			}
-//		}
-//		
-//	}
-//	return result;
-//	
-//}
+
 
 	@Override
 	public void insert(ProjPerkVO projPerkVO) {
