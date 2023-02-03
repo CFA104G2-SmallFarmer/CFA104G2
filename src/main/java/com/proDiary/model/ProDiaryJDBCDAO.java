@@ -18,479 +18,469 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-
-
-
-
 public class ProDiaryJDBCDAO implements ProDiaryDAO_interface {
-	String driver = com.sysconfig.SysConfig.getDriver();
-	String url = com.sysconfig.SysConfig.getUrl();
-	String userid = com.sysconfig.SysConfig.getUserid();
-	String passwd = com.sysconfig.SysConfig.getPasswd();
+    String driver = com.sysconfig.SysConfig.getDriver();
+    String url = com.sysconfig.SysConfig.getUrl();
+    String userid = com.sysconfig.SysConfig.getUserid();
+    String passwd = com.sysconfig.SysConfig.getPasswd();
 
-	private static final String INSERT_STMT = //8個問號//DIR_ID是自增主鍵不用打
-			"INSERT INTO proj_diary (PROJ_ID,DIR_UPLOAD_DATE,DIR_PROCEDURE,DIR_PRODUCT,DIR_EMOJI,DIR_NOTES,DIR_UPLOAD_STATE,DIR_PIC) VALUES (?, ?, ?, ?, ?, ?, ?,  ?)"; 
-	private static final String GET_ALL_SAME_DAY_STMT = // 列出這個專案，某一天的所有日誌
-			"SELECT DIR_ID,PROJ_ID,DIR_UPLOAD_DATE,DIR_PROCEDURE,DIR_PRODUCT,DIR_EMOJI,DIR_NOTES,DIR_UPLOAD_STATE,DIR_PIC FROM proj_diary WHERE PROJ_ID=? and DIR_UPLOAD_DATE=?";
-	private static final String GET_ALL_STMT = //列出這個專案的所有日誌
-			"SELECT DIR_ID,PROJ_ID,DIR_UPLOAD_DATE,DIR_PROCEDURE,DIR_PRODUCT,DIR_EMOJI,DIR_NOTES,DIR_UPLOAD_STATE,DIR_PIC FROM proj_diary WHERE PROJ_ID=? ORDER BY DIR_UPLOAD_DATE";
-//	private static final String GET_ALL_STMT = //列出這個專案的所有未發佈日誌
+    private static final String INSERT_STMT = //8個問號//DIR_ID是自增主鍵不用打
+            "INSERT INTO proj_diary (PROJ_ID,DIR_UPLOAD_DATE,DIR_PROCEDURE,DIR_PRODUCT,DIR_EMOJI,DIR_NOTES,DIR_UPLOAD_STATE,DIR_PIC) VALUES (?, ?, ?, ?, ?, ?, ?,  ?)";
+    private static final String GET_ALL_SAME_DAY_STMT = // 列出這個專案，某一天的所有日誌
+            "SELECT DIR_ID,PROJ_ID,DIR_UPLOAD_DATE,DIR_PROCEDURE,DIR_PRODUCT,DIR_EMOJI,DIR_NOTES,DIR_UPLOAD_STATE,DIR_PIC FROM proj_diary WHERE PROJ_ID=? and DIR_UPLOAD_DATE=?";
+    private static final String GET_ALL_STMT = //列出這個專案的所有日誌
+            "SELECT DIR_ID,PROJ_ID,DIR_UPLOAD_DATE,DIR_PROCEDURE,DIR_PRODUCT,DIR_EMOJI,DIR_NOTES,DIR_UPLOAD_STATE,DIR_PIC FROM proj_diary WHERE PROJ_ID=? ORDER BY DIR_UPLOAD_DATE";
+    //	private static final String GET_ALL_STMT = //列出這個專案的所有未發佈日誌
 //			"SELECT DIR_ID,PROJ_ID,DIR_UPLOAD_DATE,DIR_PROCEDURE,DIR_PRODUCT,DIR_EMOJI,DIR_NOTES,DIR_UPLOAD_STATE,DIR_PIC FROM proj_diary WHERE PROJ_ID=? ORDER BY DIR_UPLOAD_DATE";
-	private static final String GET_ALL_STMT_STATE_1 = //列出這個專案的所有已發佈日誌
-			"SELECT DIR_ID,PROJ_ID,DIR_UPLOAD_DATE,DIR_PROCEDURE,DIR_PRODUCT,DIR_EMOJI,DIR_NOTES,DIR_UPLOAD_STATE,DIR_PIC FROM proj_diary WHERE PROJ_ID=? AND DIR_UPLOAD_STATE =1 ORDER BY DIR_UPLOAD_DATE";
-	
-	//	TODO
+    private static final String GET_ALL_STMT_STATE_1 = //列出這個專案的所有已發佈日誌
+            "SELECT DIR_ID,PROJ_ID,DIR_UPLOAD_DATE,DIR_PROCEDURE,DIR_PRODUCT,DIR_EMOJI,DIR_NOTES,DIR_UPLOAD_STATE,DIR_PIC FROM proj_diary WHERE PROJ_ID=? AND DIR_UPLOAD_STATE =1 ORDER BY DIR_UPLOAD_DATE";
+
+    //	TODO
 //	GET_ALL_STMT要desc排列
-	private static final String GET_ONE_STMT = //找一個日誌
-			"SELECT DIR_ID,PROJ_ID,DIR_UPLOAD_DATE,DIR_PROCEDURE,DIR_PRODUCT,DIR_EMOJI,DIR_NOTES,DIR_UPLOAD_STATE,DIR_PIC FROM proj_diary WHERE DIR_ID=?";
-	private static final String DELETE = 
-			"DELETE FROM proj_diary WHERE DIR_ID=?";
-	private static final String UPDATE = //更新特定項目//8個問號
-			"UPDATE proj_diary SET DIR_UPLOAD_DATE = ?, DIR_PROCEDURE = ?,DIR_PRODUCT = ?,DIR_EMOJI = ?,DIR_NOTES = ?,DIR_UPLOAD_STATE = ?,DIR_PIC= ? WHERE DIR_ID = ?";
-	@Override
-	public void insert(ProDiaryVO proDiaryVO) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
+    private static final String GET_ONE_STMT = //找一個日誌
+            "SELECT DIR_ID,PROJ_ID,DIR_UPLOAD_DATE,DIR_PROCEDURE,DIR_PRODUCT,DIR_EMOJI,DIR_NOTES,DIR_UPLOAD_STATE,DIR_PIC FROM proj_diary WHERE DIR_ID=?";
+    private static final String DELETE =
+            "DELETE FROM proj_diary WHERE DIR_ID=?";
+    private static final String UPDATE = //更新特定項目//8個問號
+            "UPDATE proj_diary SET DIR_UPLOAD_DATE = ?, DIR_PROCEDURE = ?,DIR_PRODUCT = ?,DIR_EMOJI = ?,DIR_NOTES = ?,DIR_UPLOAD_STATE = ?,DIR_PIC= ? WHERE DIR_ID = ?";
 
-		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(INSERT_STMT);
+    @Override
+    public void insert(ProDiaryVO proDiaryVO) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
 
-			pstmt.setInt(1, proDiaryVO.getProj_id());
-			pstmt.setDate(2, proDiaryVO.getDir_upload_date());
-			pstmt.setString(3, proDiaryVO.getDir_procedure());
-			pstmt.setString(4, proDiaryVO.getDir_product());
+        try {
+            Class.forName(driver);
+            con = DriverManager.getConnection(url, userid, passwd);
+            pstmt = con.prepareStatement(INSERT_STMT);
+
+            pstmt.setInt(1, proDiaryVO.getProj_id());
+            pstmt.setDate(2, proDiaryVO.getDir_upload_date());
+            pstmt.setString(3, proDiaryVO.getDir_procedure());
+            pstmt.setString(4, proDiaryVO.getDir_product());
 //			pstmt.setString(5, proDiaryVO.getDir_equipment());
 //			pstmt.setString(6, proDiaryVO.getDir_material());
-			pstmt.setString(5, proDiaryVO.getDir_emoji());
-			pstmt.setString(6, proDiaryVO.getDir_notes());
-			pstmt.setInt(7, proDiaryVO.getDir_upload_state());
-			pstmt.setBytes(8, proDiaryVO.getDir_pic());
+            pstmt.setString(5, proDiaryVO.getDir_emoji());
+            pstmt.setString(6, proDiaryVO.getDir_notes());
+            pstmt.setInt(7, proDiaryVO.getDir_upload_state());
+            pstmt.setBytes(8, proDiaryVO.getDir_pic());
 
-			pstmt.executeUpdate();
+            pstmt.executeUpdate();
 
-			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
-			// Clean up JDBC resources
-		} finally {
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace(System.err);
-				}
-			}
-		}
+            // Handle any driver errors
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Couldn't load database driver. "
+                    + e.getMessage());
+            // Handle any SQL errors
+        } catch (SQLException se) {
+            throw new RuntimeException("A database error occured. "
+                    + se.getMessage());
+            // Clean up JDBC resources
+        } finally {
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (Exception e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+        }
 
-	}
-	@Override
-	public void update(ProDiaryVO proDiaryVO) {
+    }
 
-		Connection con = null;
-		PreparedStatement pstmt = null;
+    @Override
+    public void update(ProDiaryVO proDiaryVO) {
 
-		try {
+        Connection con = null;
+        PreparedStatement pstmt = null;
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(UPDATE);
+        try {
 
-			pstmt.setDate(1, proDiaryVO.getDir_upload_date());
-			pstmt.setString(2, proDiaryVO.getDir_procedure());
-			pstmt.setString(3, proDiaryVO.getDir_product());
+            Class.forName(driver);
+            con = DriverManager.getConnection(url, userid, passwd);
+            pstmt = con.prepareStatement(UPDATE);
+
+            pstmt.setDate(1, proDiaryVO.getDir_upload_date());
+            pstmt.setString(2, proDiaryVO.getDir_procedure());
+            pstmt.setString(3, proDiaryVO.getDir_product());
 //			pstmt.setString(4, proDiaryVO.getDir_equipment());
 //			pstmt.setString(5, proDiaryVO.getDir_material());
-			pstmt.setString(4, proDiaryVO.getDir_emoji());
-			pstmt.setString(5, proDiaryVO.getDir_notes());
-			pstmt.setInt(6, proDiaryVO.getDir_upload_state());
-			pstmt.setBytes(7, proDiaryVO.getDir_pic());
-			pstmt.setInt(8, proDiaryVO.getDir_id());
+            pstmt.setString(4, proDiaryVO.getDir_emoji());
+            pstmt.setString(5, proDiaryVO.getDir_notes());
+            pstmt.setInt(6, proDiaryVO.getDir_upload_state());
+            pstmt.setBytes(7, proDiaryVO.getDir_pic());
+            pstmt.setInt(8, proDiaryVO.getDir_id());
 
-			pstmt.executeUpdate();
+            pstmt.executeUpdate();
 
-			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
-			// Clean up JDBC resources
-		} finally {
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace(System.err);
-				}
-			}
-		}
+            // Handle any driver errors
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Couldn't load database driver. "
+                    + e.getMessage());
+            // Handle any SQL errors
+        } catch (SQLException se) {
+            throw new RuntimeException("A database error occured. "
+                    + se.getMessage());
+            // Clean up JDBC resources
+        } finally {
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (Exception e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+        }
 
-	}
-	@Override
-	public void delete(Integer dir_id) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
+    }
 
-		try {
+    @Override
+    public void delete(Integer dir_id) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(DELETE);
+        try {
 
-			pstmt.setInt(1, dir_id);
+            Class.forName(driver);
+            con = DriverManager.getConnection(url, userid, passwd);
+            pstmt = con.prepareStatement(DELETE);
 
-			pstmt.executeUpdate();
+            pstmt.setInt(1, dir_id);
 
-			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
-			// Clean up JDBC resources
-		} finally {
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace(System.err);
-				}
-			}
-		}
+            pstmt.executeUpdate();
 
-	}
+            // Handle any driver errors
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Couldn't load database driver. "
+                    + e.getMessage());
+            // Handle any SQL errors
+        } catch (SQLException se) {
+            throw new RuntimeException("A database error occured. "
+                    + se.getMessage());
+            // Clean up JDBC resources
+        } finally {
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (Exception e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+        }
 
-	@Override
-	public ProDiaryVO findByPrimaryKey(Integer dir_id) {
-		ProDiaryVO proDiaryVO = null;
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+    }
 
-		try {
+    @Override
+    public ProDiaryVO findByPrimaryKey(Integer dir_id) {
+        ProDiaryVO proDiaryVO = null;
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(GET_ONE_STMT);
+        try {
 
-			pstmt.setInt(1, dir_id);
+            Class.forName(driver);
+            con = DriverManager.getConnection(url, userid, passwd);
+            pstmt = con.prepareStatement(GET_ONE_STMT);
 
-			rs = pstmt.executeQuery();
+            pstmt.setInt(1, dir_id);
 
-			while (rs.next()) {
-				// empVo 也稱為 Domain objects
-				proDiaryVO = new ProDiaryVO();
-				proDiaryVO.setDir_id(rs.getInt("dir_id"));
-				proDiaryVO.setProj_id(rs.getInt("proj_id"));
-				proDiaryVO.setDir_upload_date(rs.getDate("dir_upload_date"));
-				proDiaryVO.setDir_procedure(rs.getString("dir_procedure"));
-				proDiaryVO.setDir_product(rs.getString("dir_product"));
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                // empVo 也稱為 Domain objects
+                proDiaryVO = new ProDiaryVO();
+                proDiaryVO.setDir_id(rs.getInt("dir_id"));
+                proDiaryVO.setProj_id(rs.getInt("proj_id"));
+                proDiaryVO.setDir_upload_date(rs.getDate("dir_upload_date"));
+                proDiaryVO.setDir_procedure(rs.getString("dir_procedure"));
+                proDiaryVO.setDir_product(rs.getString("dir_product"));
 //				proDiaryVO.setDir_equipment(rs.getString("dir_equipment"));
 //				proDiaryVO.setDir_material(rs.getString("dir_material"));
-				proDiaryVO.setDir_emoji(rs.getString("dir_emoji"));
-				proDiaryVO.setDir_notes(rs.getString("dir_notes"));
-				proDiaryVO.setDir_upload_state(rs.getInt("dir_upload_state"));
-				proDiaryVO.setDir_pic(rs.getBytes("dir_pic"));
-			}
+                proDiaryVO.setDir_emoji(rs.getString("dir_emoji"));
+                proDiaryVO.setDir_notes(rs.getString("dir_notes"));
+                proDiaryVO.setDir_upload_state(rs.getInt("dir_upload_state"));
+                proDiaryVO.setDir_pic(rs.getBytes("dir_pic"));
+            }
 
-			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
-			// Clean up JDBC resources
-		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace(System.err);
-				}
-			}
-		}
-		return proDiaryVO;
-	}
+            // Handle any driver errors
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Couldn't load database driver. "
+                    + e.getMessage());
+            // Handle any SQL errors
+        } catch (SQLException se) {
+            throw new RuntimeException("A database error occured. "
+                    + se.getMessage());
+            // Clean up JDBC resources
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (Exception e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+        }
+        return proDiaryVO;
+    }
 
-	@Override
-	public List<ProDiaryVO> getAllSameDay(Integer proj_id, Date dir_upload_date) {
-		List<ProDiaryVO> list = new ArrayList<ProDiaryVO>();
-		ProDiaryVO proDiaryVO = null;
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+    @Override
+    public List<ProDiaryVO> getAllSameDay(Integer proj_id, Date dir_upload_date) {
+        List<ProDiaryVO> list = new ArrayList<ProDiaryVO>();
+        ProDiaryVO proDiaryVO = null;
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
 
-		try {
-		
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(GET_ALL_SAME_DAY_STMT);
-			/*=====列出這個專案，某一天的所有日誌======*/
-			pstmt.setInt(1, proj_id);
-			pstmt.setDate(2, dir_upload_date);
-			/*=============================*/
-			rs = pstmt.executeQuery();
+        try {
 
-			while (rs.next()) {
-				// proDiaryVO 也稱為 Domain objects
-				proDiaryVO = new ProDiaryVO();
-				proDiaryVO.setDir_id(rs.getInt("dir_id"));
-				proDiaryVO.setProj_id(rs.getInt("proj_id"));
-				proDiaryVO.setDir_upload_date(rs.getDate("dir_upload_date"));
-				proDiaryVO.setDir_procedure(rs.getString("dir_procedure"));
-				proDiaryVO.setDir_product(rs.getString("dir_product"));
+            Class.forName(driver);
+            con = DriverManager.getConnection(url, userid, passwd);
+            pstmt = con.prepareStatement(GET_ALL_SAME_DAY_STMT);
+            /*=====列出這個專案，某一天的所有日誌======*/
+            pstmt.setInt(1, proj_id);
+            pstmt.setDate(2, dir_upload_date);
+            /*=============================*/
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                // proDiaryVO 也稱為 Domain objects
+                proDiaryVO = new ProDiaryVO();
+                proDiaryVO.setDir_id(rs.getInt("dir_id"));
+                proDiaryVO.setProj_id(rs.getInt("proj_id"));
+                proDiaryVO.setDir_upload_date(rs.getDate("dir_upload_date"));
+                proDiaryVO.setDir_procedure(rs.getString("dir_procedure"));
+                proDiaryVO.setDir_product(rs.getString("dir_product"));
 //				proDiaryVO.setDir_equipment(rs.getString("dir_equipment"));
 //				proDiaryVO.setDir_material(rs.getString("dir_material"));
-				proDiaryVO.setDir_emoji(rs.getString("dir_emoji"));
-				proDiaryVO.setDir_notes(rs.getString("dir_notes"));
-				proDiaryVO.setDir_upload_state(rs.getInt("dir_upload_state"));
-				proDiaryVO.setDir_pic(rs.getBytes("dir_pic"));
-				list.add(proDiaryVO); // Store the row in the list
-			}
+                proDiaryVO.setDir_emoji(rs.getString("dir_emoji"));
+                proDiaryVO.setDir_notes(rs.getString("dir_notes"));
+                proDiaryVO.setDir_upload_state(rs.getInt("dir_upload_state"));
+                proDiaryVO.setDir_pic(rs.getBytes("dir_pic"));
+                list.add(proDiaryVO); // Store the row in the list
+            }
 
-			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
-			// Clean up JDBC resources
-		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace(System.err);
-				}
-			}
-		}
-		return list;
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	@Override
-	public List<ProDiaryVO> getAllByState1(Integer proj_id) {
-	
-			List<ProDiaryVO> list = new ArrayList<ProDiaryVO>();
-			ProDiaryVO proDiaryVO = null;
-			Connection con = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
+            // Handle any driver errors
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Couldn't load database driver. "
+                    + e.getMessage());
+            // Handle any SQL errors
+        } catch (SQLException se) {
+            throw new RuntimeException("A database error occured. "
+                    + se.getMessage());
+            // Clean up JDBC resources
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (Exception e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+        }
+        return list;
+    }
 
-			try {
-			
 
-				Class.forName(driver);
-				con = DriverManager.getConnection(url, userid, passwd);
-				pstmt = con.prepareStatement(GET_ALL_STMT_STATE_1);
-				/*=====列出這個專案的所有日誌======*/
-				pstmt.setInt(1, proj_id);
-				/*=============================*/
-				
-				rs = pstmt.executeQuery();
+    @Override
+    public List<ProDiaryVO> getAllByState1(Integer proj_id) {
 
-				while (rs.next()) {
-					// proDiaryVO 也稱為 Domain objects
-					proDiaryVO = new ProDiaryVO();
-					proDiaryVO.setDir_id(rs.getInt("dir_id"));
-					proDiaryVO.setProj_id(rs.getInt("proj_id"));
-					proDiaryVO.setDir_upload_date(rs.getDate("dir_upload_date"));
-					proDiaryVO.setDir_procedure(rs.getString("dir_procedure"));
-					proDiaryVO.setDir_product(rs.getString("dir_product"));
+        List<ProDiaryVO> list = new ArrayList<ProDiaryVO>();
+        ProDiaryVO proDiaryVO = null;
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+
+
+            Class.forName(driver);
+            con = DriverManager.getConnection(url, userid, passwd);
+            pstmt = con.prepareStatement(GET_ALL_STMT_STATE_1);
+            /*=====列出這個專案的所有日誌======*/
+            pstmt.setInt(1, proj_id);
+            /*=============================*/
+
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                // proDiaryVO 也稱為 Domain objects
+                proDiaryVO = new ProDiaryVO();
+                proDiaryVO.setDir_id(rs.getInt("dir_id"));
+                proDiaryVO.setProj_id(rs.getInt("proj_id"));
+                proDiaryVO.setDir_upload_date(rs.getDate("dir_upload_date"));
+                proDiaryVO.setDir_procedure(rs.getString("dir_procedure"));
+                proDiaryVO.setDir_product(rs.getString("dir_product"));
 //					proDiaryVO.setDir_equipment(rs.getString("dir_equipment"));
 //					proDiaryVO.setDir_material(rs.getString("dir_material"));
-					proDiaryVO.setDir_emoji(rs.getString("dir_emoji"));
-					proDiaryVO.setDir_notes(rs.getString("dir_notes"));
-					proDiaryVO.setDir_upload_state(rs.getInt("dir_upload_state"));
-					proDiaryVO.setDir_pic(rs.getBytes("dir_pic"));
-					list.add(proDiaryVO); // Store the row in the list
-				}
+                proDiaryVO.setDir_emoji(rs.getString("dir_emoji"));
+                proDiaryVO.setDir_notes(rs.getString("dir_notes"));
+                proDiaryVO.setDir_upload_state(rs.getInt("dir_upload_state"));
+                proDiaryVO.setDir_pic(rs.getBytes("dir_pic"));
+                list.add(proDiaryVO); // Store the row in the list
+            }
 
-				// Handle any driver errors
-			} catch (ClassNotFoundException e) {
-				throw new RuntimeException("Couldn't load database driver. "
-						+ e.getMessage());
-				// Handle any SQL errors
-			} catch (SQLException se) {
-				throw new RuntimeException("A database error occured. "
-						+ se.getMessage());
-				// Clean up JDBC resources
-			} finally {
-				if (rs != null) {
-					try {
-						rs.close();
-					} catch (SQLException se) {
-						se.printStackTrace(System.err);
-					}
-				}
-				if (pstmt != null) {
-					try {
-						pstmt.close();
-					} catch (SQLException se) {
-						se.printStackTrace(System.err);
-					}
-				}
-				if (con != null) {
-					try {
-						con.close();
-					} catch (Exception e) {
-						e.printStackTrace(System.err);
-					}
-				}
-			}
-			return list;
-		}
-		
-		
-	@Override
-	public List<ProDiaryVO> getAll(Integer proj_id) {
-		List<ProDiaryVO> list = new ArrayList<ProDiaryVO>();
-		ProDiaryVO proDiaryVO = null;
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+            // Handle any driver errors
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Couldn't load database driver. "
+                    + e.getMessage());
+            // Handle any SQL errors
+        } catch (SQLException se) {
+            throw new RuntimeException("A database error occured. "
+                    + se.getMessage());
+            // Clean up JDBC resources
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (Exception e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+        }
+        return list;
+    }
 
-		try {
-		
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(GET_ALL_STMT);
-			/*=====列出這個專案的所有日誌======*/
-			pstmt.setInt(1, proj_id);
-			/*=============================*/
-			
-			rs = pstmt.executeQuery();
+    @Override
+    public List<ProDiaryVO> getAll(Integer proj_id) {
+        List<ProDiaryVO> list = new ArrayList<ProDiaryVO>();
+        ProDiaryVO proDiaryVO = null;
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
 
-			while (rs.next()) {
-				// proDiaryVO 也稱為 Domain objects
-				proDiaryVO = new ProDiaryVO();
-				proDiaryVO.setDir_id(rs.getInt("dir_id"));
-				proDiaryVO.setProj_id(rs.getInt("proj_id"));
-				proDiaryVO.setDir_upload_date(rs.getDate("dir_upload_date"));
-				proDiaryVO.setDir_procedure(rs.getString("dir_procedure"));
-				proDiaryVO.setDir_product(rs.getString("dir_product"));
+        try {
+
+
+            Class.forName(driver);
+            con = DriverManager.getConnection(url, userid, passwd);
+            pstmt = con.prepareStatement(GET_ALL_STMT);
+            /*=====列出這個專案的所有日誌======*/
+            pstmt.setInt(1, proj_id);
+            /*=============================*/
+
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                // proDiaryVO 也稱為 Domain objects
+                proDiaryVO = new ProDiaryVO();
+                proDiaryVO.setDir_id(rs.getInt("dir_id"));
+                proDiaryVO.setProj_id(rs.getInt("proj_id"));
+                proDiaryVO.setDir_upload_date(rs.getDate("dir_upload_date"));
+                proDiaryVO.setDir_procedure(rs.getString("dir_procedure"));
+                proDiaryVO.setDir_product(rs.getString("dir_product"));
 //				proDiaryVO.setDir_equipment(rs.getString("dir_equipment"));
 //				proDiaryVO.setDir_material(rs.getString("dir_material"));
-				proDiaryVO.setDir_emoji(rs.getString("dir_emoji"));
-				proDiaryVO.setDir_notes(rs.getString("dir_notes"));
-				proDiaryVO.setDir_upload_state(rs.getInt("dir_upload_state"));
-				proDiaryVO.setDir_pic(rs.getBytes("dir_pic"));
-				list.add(proDiaryVO); // Store the row in the list
-			}
+                proDiaryVO.setDir_emoji(rs.getString("dir_emoji"));
+                proDiaryVO.setDir_notes(rs.getString("dir_notes"));
+                proDiaryVO.setDir_upload_state(rs.getInt("dir_upload_state"));
+                proDiaryVO.setDir_pic(rs.getBytes("dir_pic"));
+                list.add(proDiaryVO); // Store the row in the list
+            }
 
-			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
-			// Clean up JDBC resources
-		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace(System.err);
-				}
-			}
-		}
-		return list;
-	}
-	
-	public static void main(String[] args) {
+            // Handle any driver errors
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Couldn't load database driver. "
+                    + e.getMessage());
+            // Handle any SQL errors
+        } catch (SQLException se) {
+            throw new RuntimeException("A database error occured. "
+                    + se.getMessage());
+            // Clean up JDBC resources
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (Exception e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+        }
+        return list;
+    }
 
-		ProDiaryJDBCDAO dao = new ProDiaryJDBCDAO();
-		/*=====================================================*/
+    public static void main(String[] args) {
+
+        ProDiaryJDBCDAO dao = new ProDiaryJDBCDAO();
+        /*=====================================================*/
 //		// 新增
 //		ProDiaryVO proDiaryVO2 = new ProDiaryVO();
 //		proDiaryVO2.setProj_id(1001);
@@ -513,10 +503,10 @@ public class ProDiaryJDBCDAO implements ProDiaryDAO_interface {
 //		}
 //		dao.insert(proDiaryVO2);
 //		System.out.println("成功");
-		
-		/*=====================================================*/
-		// 修改
-	
+
+        /*=====================================================*/
+        // 修改
+
 //		ProDiaryVO proDiaryVO2 = new ProDiaryVO();
 //		
 //
@@ -541,37 +531,37 @@ public class ProDiaryJDBCDAO implements ProDiaryDAO_interface {
 //
 //		dao.update(proDiaryVO2);
 //		System.out.println("更新成功");
-		/*=====================================================*/
+        /*=====================================================*/
 
-		// 刪除
+        // 刪除
 //		int x =5;
 //		dao.delete(x);
 //		System.out.println("刪除dir_id="+x+"成功");
-		
-		/*=====================================================*/
 
-		// 查詢getone
+        /*=====================================================*/
+
+        // 查詢getone
 //		System.out.print("....,");
-		ProDiaryVO proDiaryVO2 = dao.findByPrimaryKey(1);
-		System.out.print(proDiaryVO2.getDir_id() + ",");
-		System.out.print(proDiaryVO2.getProj_id() + ",");
-		System.out.print(proDiaryVO2.getDir_upload_date() + ",");
-		System.out.print(proDiaryVO2.getDir_procedure() + ",");
-		System.out.print(proDiaryVO2.getDir_product() + ",");
+        ProDiaryVO proDiaryVO2 = dao.findByPrimaryKey(1);
+        System.out.print(proDiaryVO2.getDir_id() + ",");
+        System.out.print(proDiaryVO2.getProj_id() + ",");
+        System.out.print(proDiaryVO2.getDir_upload_date() + ",");
+        System.out.print(proDiaryVO2.getDir_procedure() + ",");
+        System.out.print(proDiaryVO2.getDir_product() + ",");
 //		System.out.print(proDiaryVO2.getDir_equipment() + ",");
 //		System.out.print(proDiaryVO2.getDir_material() + ",");
-		System.out.print(proDiaryVO2.getDir_emoji() + ",");
-		System.out.print(proDiaryVO2.getDir_notes() + ",");
-		System.out.print(proDiaryVO2.getDir_upload_state() + ",");
-		System.out.print(proDiaryVO2.getDir_pic() + ",");
-		System.out.println("---------------------");
+        System.out.print(proDiaryVO2.getDir_emoji() + ",");
+        System.out.print(proDiaryVO2.getDir_notes() + ",");
+        System.out.print(proDiaryVO2.getDir_upload_state() + ",");
+        System.out.print(proDiaryVO2.getDir_pic() + ",");
+        System.out.println("---------------------");
 
-		/*=====================================================*/
+        /*=====================================================*/
 //		// 查詢getAllSameDay
-		/*=====列出這個專案，某一天的所有日誌======*/
+        /*=====列出這個專案，某一天的所有日誌======*/
 //		pstmt.setInt(1, proj_id);
 //		pstmt.setDate(2, dir_upload_date);
-		/*=============================*///2022-01-01 00:00:00
+        /*=============================*///2022-01-01 00:00:00
 //		Date spec_date = java.sql.Date.valueOf("2022-01-01");
 //		List<ProDiaryVO> list = dao.getAllSameDay(1001,spec_date);
 //		for (ProDiaryVO proDiaryVO2 : list) {
@@ -589,14 +579,14 @@ public class ProDiaryJDBCDAO implements ProDiaryDAO_interface {
 //		System.out.println();
 //		System.out.println("------------");
 //	}
-		
-		
-		/*=====================================================*/
-		// 查詢getall
-		//public List<ProDiaryVO> getAll(Integer proj_id)
-		/*=====列出這個專案的所有日誌======*/
+
+
+        /*=====================================================*/
+        // 查詢getall
+        //public List<ProDiaryVO> getAll(Integer proj_id)
+        /*=====列出這個專案的所有日誌======*/
 //		pstmt.setInt(1, proj_id);
-		/*=============================*/
+        /*=============================*/
 //		List<ProDiaryVO> list = dao.getAll(1001);
 //		for (ProDiaryVO proDiaryVO2 : list) {
 //		System.out.print(proDiaryVO2.getDir_id() + ",");
@@ -613,18 +603,19 @@ public class ProDiaryJDBCDAO implements ProDiaryDAO_interface {
 //		System.out.println();
 //		System.out.println("------------");
 //	}
-		/*=====================================================*/
-		
-	
-}
-	// 使用byte[]方式
-	public static byte[] getPictureByteArray(String path) throws IOException {
-		FileInputStream fis = new FileInputStream(path);
-		byte[] buffer = new byte[fis.available()];//長度，資料流多少bytes
-		fis.read(buffer);//讀進byte陣列裡
-		fis.close();
-		return buffer; //回傳byte[]
-	}
+        /*=====================================================*/
+
+
+    }
+
+    // 使用byte[]方式
+    public static byte[] getPictureByteArray(String path) throws IOException {
+        FileInputStream fis = new FileInputStream(path);
+        byte[] buffer = new byte[fis.available()];//長度，資料流多少bytes
+        fis.read(buffer);//讀進byte陣列裡
+        fis.close();
+        return buffer; //回傳byte[]
+    }
 }
 
 	

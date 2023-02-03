@@ -124,7 +124,6 @@ public class ProjOrderVO {
 		this.order_cancel_reason = order_cancel_reason;
 	}
 
-
 	public String getOrder_number() {
 		return order_number;
 	}

@@ -110,49 +110,4 @@ public class ProDiaryService {
 		return groupMap;
 	}
 
-
-	
-//	Map<String, List<ProDiaryVO>> prodMap= proDiaryList.stream().collect(Collectors.groupingBy(item -> {
-//	    if(item.getNum() < 3) {
-//	        return "3";
-//	    }else {
-//	        return "other";
-//	    }
-//	}));
-	
-//	public static void main(String[] args) {
-//		ProDiaryJDBCDAO dao = new ProDiaryJDBCDAO();
-//		List<ProDiaryVO> proDiaryList = dao.getAll(1001);
-//		Map<Date, List<ProDiaryVO>> groupMap = new HashMap<>();
-//
-//		// Collect CO Executives
-//		groupMap = proDiaryList.stream().collect(Collectors.groupingBy(ProDiaryVO::getDir_upload_date));
-//
-//		System.out.println("\n== ProDiaryVOs by dir_upload_state ==");
-//		groupMap.forEach((k, v) -> {
-//			System.out.println("\ndir_upload_state: " + k);
-//			System.out.println(v);
-////			v.forEach(Employee::printSummary);
-//		});
-//	}
-//	public static void main(String[] args) {
-//	ProDiaryJDBCDAO dao = new ProDiaryJDBCDAO();
-//	List<ProDiaryVO> proDiaryList = dao.getAllByState1(1004);
-//	Map<Integer, List<ProDiaryVO>> groupMap = new HashMap<>();
-//
-//	// Collect CO Executives
-//	groupMap = proDiaryList.stream().collect(Collectors.groupingBy(ProDiaryVO::getDir_upload_state));
-//
-//	System.out.println("\n== ProDiaryVOs by dir_upload_state ==");
-//	groupMap.forEach((k, v) -> {
-//		System.out.println("\ndir_upload_state: " + k);
-//		System.out.println(v);
-////		v.forEach(Employee::printSummary);
-//	});
-//}
-	
-
-	
-
-
 }

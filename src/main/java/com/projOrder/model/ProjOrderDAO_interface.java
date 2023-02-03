@@ -19,17 +19,13 @@ public interface ProjOrderDAO_interface {
 // 查看單筆訂單的方法還是留著，有時間可做
 //    TODO 需因應欄位增加改寫
     public ProjOrderVO findByPrimaryKey(Integer order_id);
-    
-    
-    
+
 // 列出會員的所有訂單
     public List<ProjOrderVO> getAllMemOrder(Integer mem_id);
-    
-    
+
 // 列出小農的所有訂單
     public List<ProjOrderVO> getAllFmemOrder(Integer f_mem_id);
-    
-    
+
 // 可能管理員需要列出資料庫的所有訂單，先留著
     public List<ProjOrderVO> getAll();
 

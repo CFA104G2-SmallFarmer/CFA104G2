@@ -43,11 +43,6 @@ public class ProjPicServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action"); // 表單有用hidden name="action" value="getOne_For_Display"
 
-//		System.out.println("pic enter action get");
-
-//		System.out.println(req);
-//		System.out.println(action);
-
 		// 這個方法用不到
 		if ("getOne_For_Display".equals(action)) {
 
@@ -451,34 +446,6 @@ public class ProjPicServlet extends HttpServlet {
 				} catch (Exception e) {
 					errorMsgs.add("專案編號格式不正確");
 				}
-//				// Send the use back to the form, if there were errors
-//				if (!errorMsgs.isEmpty()) {
-//					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listOneProjByFmem.jsp");
-//					failureView.forward(req, res);
-//					return;// 程式中斷
-//				}
-
-//				String str2 = req.getParameter("f_mem_id");
-//				System.out.println(str2);
-//				if (str2 == null || (str2.trim()).length() == 0) {
-//					System.out.println(str2);
-//					errorMsgs.add("請輸入小農編號");
-//					System.out.println(str2);
-//				}
-//				// Send the use back to the form, if there were errors
-//				if (!errorMsgs.isEmpty()) {
-//					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listOneProjByFmem.jsp");
-//					failureView.forward(req, res);
-//					return;// 程式中斷
-//				}
-
-//				Integer f_mem_id = null;
-//				try {
-//					f_mem_id = new Integer(str2);
-//				} catch (Exception e) {
-//					errorMsgs.add("小農編號格式不正確");
-//				}
-				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listOneProjByFmem.jsp");
 					failureView.forward(req, res);
@@ -488,13 +455,6 @@ public class ProjPicServlet extends HttpServlet {
 				/*************************** 2.開始查詢資料 *****************************************/
 				ProjectService projectSvc = new ProjectService();
 				ProjectVO projectVO = projectSvc.getOneProject(proj_id);
-
-//		ProjPerkService projPerkSvc = new ProjPerkService();
-//		List<ProjPerkVO> projPerkVO = projPerkSvc.getAll(proj_id);
-//		
-//		for(int i=0; i<projPerkVO.size(); i++) {
-//			System.out.println(projPerkVO.get(i));
-//		}
 
 				if (projectVO == null) {
 					errorMsgs.add("查無資料");
@@ -532,12 +492,7 @@ public class ProjPicServlet extends HttpServlet {
 			}
 		}
 		
-		
-		
-		
-		
-		
-		
+
 		/* ======================衧霈寫的insert============================= */
 		if ("insertFromUpdate".equals(action)) { // 來自addEmp.jsp的請求
 
@@ -622,13 +577,6 @@ public class ProjPicServlet extends HttpServlet {
 			}
 		}
 		/* ======================衧霈寫的insert============================= */
-		
-		
-		
-		
-		
-		
-		
 		
 	}
 

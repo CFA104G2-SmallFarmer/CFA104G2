@@ -113,12 +113,6 @@ public class ProjPerkServlet extends HttpServlet {
 					errorMsgs.add("請輸入專案編號");
 					System.out.println(str);
 				}
-//				// Send the use back to the form, if there were errors
-//				if (!errorMsgs.isEmpty()) {
-//					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listOneProjByFmem.jsp");
-//					failureView.forward(req, res);
-//					return;// 程式中斷
-//				}
 
 				Integer proj_id = null;
 				try {
@@ -126,12 +120,7 @@ public class ProjPerkServlet extends HttpServlet {
 				} catch (Exception e) {
 					errorMsgs.add("專案編號格式不正確");
 				}
-//				// Send the use back to the form, if there were errors
-//				if (!errorMsgs.isEmpty()) {
-//					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listOneProjByFmem.jsp");
-//					failureView.forward(req, res);
-//					return;// 程式中斷
-//				}
+
 
 				String str2 = req.getParameter("f_mem_id");
 				System.out.println(str2);
@@ -140,12 +129,7 @@ public class ProjPerkServlet extends HttpServlet {
 					errorMsgs.add("請輸入小農編號");
 					System.out.println(str2);
 				}
-//				// Send the use back to the form, if there were errors
-//				if (!errorMsgs.isEmpty()) {
-//					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/project/listOneProjByFmem.jsp");
-//					failureView.forward(req, res);
-//					return;// 程式中斷
-//				}
+
 
 				Integer f_mem_id = null;
 				try {
@@ -163,13 +147,6 @@ public class ProjPerkServlet extends HttpServlet {
 				/*************************** 2.開始查詢資料 *****************************************/
 				ProjectService projectSvc = new ProjectService();
 				ProjectVO projectVO = projectSvc.getOneProject(proj_id);
-
-//		ProjPerkService projPerkSvc = new ProjPerkService();
-//		List<ProjPerkVO> projPerkVO = projPerkSvc.getAll(proj_id);
-//		
-//		for(int i=0; i<projPerkVO.size(); i++) {
-//			System.out.println(projPerkVO.get(i));
-//		}
 
 				if (projectVO == null) {
 					errorMsgs.add("查無資料");
@@ -246,9 +223,9 @@ public class ProjPerkServlet extends HttpServlet {
 //				perk_intro=perk_intro.replace(">", "<br>");
 //				perk_intro=perk_intro.replace("\"", "<br>");
 //				perk_intro=perk_intro.replace("\'", "<br>");
-				
-				
-				
+
+
+
 				
 				// ---------------金額驗證----------------//
 				Integer perk_fund = null;

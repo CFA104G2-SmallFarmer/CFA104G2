@@ -22,8 +22,6 @@ public class ProjectVO {
 	    private Integer mem_report_count;
 	    private Integer  proj_pay;
 	    private String base64Image;
-	    
-	    
 		public String getBase64Image() {
 			return base64Image;
 		}
@@ -132,22 +130,4 @@ public class ProjectVO {
 		public void setProj_pay(Integer proj_pay) {
 			this.proj_pay = proj_pay;
 		}
-	    
-	    
-	    
-	    
-	   
-	   
-	   
-	    
-	    
-	    
-	   
-	    
-	   
-	    
-	    
-	   
-
-	    
 }
