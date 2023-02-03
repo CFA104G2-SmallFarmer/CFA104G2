@@ -133,19 +133,19 @@
                 <td>${announcementVO.announce_title}</td>
                 <td>${announcementVO.announce_content}</td>
                 <td width="65">
-                  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/announcement/announcement.do" style="margin-bottom: 0px;">
+                  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/announcement/announcement.do" style="margin-bottom: 0;">
                    <input type="submit" value="詳情">
                    <input type="hidden" name="announce_id"  value="${announcementVO.announce_id}">
                    <input type="hidden" name="action" value="getOne_For_Display"></FORM>
                  </td>
                  <td width="65">
-                  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/announcement/announcement.do" style="margin-bottom: 0px;">
+                  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/announcement/announcement.do" style="margin-bottom: 0;">
                    <input type="submit" value="修改">
                    <input type="hidden" name="announce_id"  value="${announcementVO.announce_id}">
                    <input type="hidden" name="action" value="getOne_For_Update"></FORM>
                  </td>
                  <td width="65">
-                  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/announcement/announcement.do" style="margin-bottom: 0px;">
+                  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/announcement/announcement.do" style="margin-bottom: 0;">
                    <input type="submit" value="刪除">
                    <input type="hidden" name="announce_id"  value="${announcementVO.announce_id}">
                    <input type="hidden" name="action" value="delete"></FORM>

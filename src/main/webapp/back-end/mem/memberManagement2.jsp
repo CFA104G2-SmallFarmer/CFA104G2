@@ -863,7 +863,7 @@ table tbody tr:last-child td:last-child {
                     /*<![CDATA[*/
                     .about-wrap h3 {
                         margin-top: 1em;
-                        margin-right: 0em;
+                        margin-right: 0;
                         margin-bottom: 0.1em;
                         font-size: 1.25em;
                         line-height: 1.3em;

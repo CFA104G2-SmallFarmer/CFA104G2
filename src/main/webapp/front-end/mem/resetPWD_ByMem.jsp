@@ -30,7 +30,7 @@ MemVO memVO = (MemVO) request.getAttribute("memVO");
 <style>
 .header-wrapper{
 height:120px;
-margin-bottom:0px;
+margin-bottom:0;
 margin-top:10px;
 }
 

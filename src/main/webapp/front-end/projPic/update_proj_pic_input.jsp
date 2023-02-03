@@ -87,7 +87,7 @@ request.setAttribute("eight", new Integer[]{1, 2, 3, 4, 5, 6, 7, 8});
 	color: #717d34;
 	text-decoration: none;
 	padding-left: 1em;
-	padding-right: 0em;
+	padding-right: 0;
 	padding-top: 0.4em;
 }
 
@@ -113,7 +113,7 @@ request.setAttribute("eight", new Integer[]{1, 2, 3, 4, 5, 6, 7, 8});
 @media ( max-width : 767px) {
 	.menu {
 		/*隱藏選單開始*/
-		max-height: 0px;
+		max-height: 0;
 		overflow: hidden;
 		/*隱藏選單結束*/
 		transition: max-height 2.3s;
@@ -135,8 +135,8 @@ request.setAttribute("eight", new Integer[]{1, 2, 3, 4, 5, 6, 7, 8});
 	}
 	.menu li a {
 		transition: all 0.2s;
-		padding-left: 0em;
-		padding-right: 0em;
+		padding-left: 0;
+		padding-right: 0;
 		padding-top: 0.7em;
 		padding-bottom: 0.7em;
 	}
@@ -297,7 +297,7 @@ request.setAttribute("eight", new Integer[]{1, 2, 3, 4, 5, 6, 7, 8});
 							<div class="cf">
 
 								<div class="for_all_img" style="position: relative;">
-									<div style="position: absolute; right: 0%; top: 0;">
+									<div style="position: absolute; right: 0; top: 0;">
 
 										<div style="display: inline-block;"></div>
 

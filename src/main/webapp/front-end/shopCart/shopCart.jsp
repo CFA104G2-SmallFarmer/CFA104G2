@@ -122,8 +122,8 @@ ShopCartVO shopCartVO = (ShopCartVO) request.getAttribute("shopCartVO"); //EmpSe
 }
 /**定義過度動畫*/
 @-webkit-keyframes mymove {
-        0% {background-position: 0% 0%;}
-        100% {background-position: 100% 0%;}
+        0% {background-position: 0 0;}
+        100% {background-position: 100% 0;}
 }
 	
 .border-img{
@@ -228,7 +228,7 @@ ShopCartVO shopCartVO = (ShopCartVO) request.getAttribute("shopCartVO"); //EmpSe
 
 <!--               減號鍵 -->
               <td class="up">
- 			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/shopCart/shopCart.do" style="margin-bottom: 0px;">
+ 			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/shopCart/shopCart.do" style="margin-bottom: 0;">
                 <button class="btn btn-sm color-btn  btn-minus" type="submit" style="background-color:#dfdcb3">
                   <i class="fa fa-minus"></i>
                 </button>

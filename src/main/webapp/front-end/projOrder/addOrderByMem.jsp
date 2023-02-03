@@ -77,7 +77,7 @@
         <div class="w-100 ph3 mb4 mb0">
             <div class="flex mb5 f6 gutter3">
                 <div class="w-40-l w-100 ph3">
-                    <div style="margin-bottom: 0px" class="pa3 ba bw1 b--inherit round-s light-gray mb4 db  ">
+                    <div style="margin-bottom: 0" class="pa3 ba bw1 b--inherit round-s light-gray mb4 db  ">
 
                         <div width="100%" class="mb2 round-s"
                              style="background-image: url(&#39;data:image/jpg;base64,${projPerkVO.base64Image}&#39;)"></div>
@@ -97,7 +97,7 @@
                                 【${projPerkVO.perk_abbr_name}】 <br>${projPerkVO.perk_intro}
                             </p>
                             <br>
-                            <p style="margin-block-start:0px">
+                            <p style="margin-block-start:0">
                                 寄送地區：${projPerkVO.perk_ship_area}
                             </p>
                         </div>
@@ -134,7 +134,7 @@
                     <!--  FORM開始 -->
                     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/projOrder/projOrder.do" name="form1">
                         <div>
-                            <p style="line-height:0px">
+                            <p style="line-height:0">
                                 <%-- 錯誤表列 --%>
                                 <c:if test="${not empty errorMsgs}">
                                 <font style="color:red">請修正以下錯誤:</font>
@@ -279,7 +279,7 @@
 <script src="<%=request.getContextPath()%>/front-end/projOrder/addOrderByMem_css/back-7b8325ae78ca7c794fdc8c2ff6c2ef5676fc24748e3a262866e67978e98c4561.js"
         type="text/javascript"></script>
 <div id="fb-root" class=" fb_reset">
-    <div style="position: absolute; top: -10000px; width: 0px; height: 0px;">
+    <div style="position: absolute; top: -10000px; width: 0; height: 0;">
         <div></div>
     </div>
 </div>

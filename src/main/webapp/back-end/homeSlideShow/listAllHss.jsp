@@ -134,14 +134,14 @@
               <td>上架時間：${homeSlideShowVO.hss_on_shelf}</td>
               <td>下架時間：${homeSlideShowVO.hss_off_shelf}</td>
               <td width="60">
-                <form method="post" action="<%=request.getContextPath()%>/back-end/homeSlideShow/homeSlideShow.do" style="margin-bottom: 0px;">
+                <form method="post" action="<%=request.getContextPath()%>/back-end/homeSlideShow/homeSlideShow.do" style="margin-bottom: 0;">
                   <input type="submit" value="修改">
                   <input type="hidden" name="hss_id"  value="${homeSlideShowVO.hss_id}">
                   <input type="hidden" name="action" value="getOne_For_Update">
                 </form>
               </td>
               <td width="60">
-                <form method="post" action="<%=request.getContextPath()%>/back-end/homeSlideShow/homeSlideShow.do" style="margin-bottom: 0px;">
+                <form method="post" action="<%=request.getContextPath()%>/back-end/homeSlideShow/homeSlideShow.do" style="margin-bottom: 0;">
 			     <input type="submit" value="刪除">
 			     <input type="hidden" name="hss_id"  value="${homeSlideShowVO.hss_id}">
 			     <input type="hidden" name="action" value="delete"></form>

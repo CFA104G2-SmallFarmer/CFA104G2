@@ -58,16 +58,16 @@
               </ul>
               <div>
               <a href="#" style="text-decoration:none">
-                <i class="fab fa-twitter" aria-hidden="true" style="padding: 0px 5px 0px 5px; font-size: 25px;"></i>
+                <i class="fab fa-twitter" aria-hidden="true" style="padding: 0 5px 0 5px; font-size: 25px;"></i>
               </a>
               <a href="#" style="text-decoration:none">
-                <i class="fab fa-facebook" aria-hidden="true" style="padding: 0px 5px 0px 5px; font-size: 25px;"></i>
+                <i class="fab fa-facebook" aria-hidden="true" style="padding: 0 5px 0 5px; font-size: 25px;"></i>
               </a>
               <a href="#" style="text-decoration:none">
-                <i class="fab fa-instagram" aria-hidden="true" style="padding: 0px 5px 0px 5px; font-size: 25px;"></i>
+                <i class="fab fa-instagram" aria-hidden="true" style="padding: 0 5px 0 5px; font-size: 25px;"></i>
               </a>
               <a href="#" style="text-decoration:none">
-                <i class="fab fa-google" aria-hidden="true" style="padding: 0px 5px 0px 5px; font-size: 25px;"></i>
+                <i class="fab fa-google" aria-hidden="true" style="padding: 0 5px 0 5px; font-size: 25px;"></i>
               </a>
             </div>
               <p class="text-h5 mt-4">© 2022 SmallFarm</p>

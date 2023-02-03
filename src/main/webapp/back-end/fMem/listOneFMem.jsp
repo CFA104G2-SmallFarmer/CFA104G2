@@ -318,7 +318,7 @@
 																<div data-v-883305fa="" class="order-list-filter-item shopee-select is-show">
 																	<div data-v-883305fa="" class="shopee-select">
 																		<select data-v-2449cb06="" tabindex="0" class="shopee-selector shopee-selector--normal shopee-select__options"
-																		name="acc_state" style="background: #eff9ec 0px 0px; color: #ffffff; font-size: 14px;padding:0;width:88px; height:32px; color:rgb(128, 140, 153);"><!-- 名字在這 -->
+																		name="acc_state" style="background: #eff9ec 0 0; color: #ffffff; font-size: 14px;padding:0;width:88px; height:32px; color:rgb(128, 140, 153);"><!-- 名字在這 -->
 																			<option class="shopee-option" value="0">未驗證</option>
 																			<option class="shopee-option" value="1" <c:if test="${fMemVO.acc_state == 1 || fMemVO2.acc_state == 1}">selected</c:if>>已驗證</option>
 																			<option class="shopee-option" value="2" <c:if test="${fMemVO.acc_state == 2 || fMemVO2.acc_state == 2}">selected</c:if>>停權</option>
@@ -330,7 +330,7 @@
 																<div data-v-883305fa="" class="order-list-filter-item shopee-select is-show">
 																	<div data-v-883305fa="" class="shopee-select">
 																		<select data-v-2449cb06="" tabindex="0" class="shopee-selector shopee-selector--normal shopee-select__options"
-																		name="certi_state" style="background: #eff9ec 0px 0px; color: #ffffff; font-size: 14px;padding:0;width:88px; height:32px; color:rgb(128, 140, 153);"><!-- 名字在這 -->
+																		name="certi_state" style="background: #eff9ec 0 0; color: #ffffff; font-size: 14px;padding:0;width:88px; height:32px; color:rgb(128, 140, 153);"><!-- 名字在這 -->
 																			<option class="shopee-option" value="0">無認證</option>
 																			<option class="shopee-option" value="1" <c:if test="${fMemVO.certi_state == 1 || fMemVO2.certi_state == 1}">selected</c:if>>有機認證</option>
 																			<option class="shopee-option" value="2" <c:if test="${fMemVO.certi_state == 2 || fMemVO2.certi_state == 2}">selected</c:if>>友善環境認證</option>

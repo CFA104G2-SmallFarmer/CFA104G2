@@ -149,7 +149,7 @@ pageContext.setAttribute("list",list);
 										<%-- 【${projPerkVO.perk_abbr_name}】 <br>NT$${projPerkVO.perk_fund} --%>
 									</p>
 									<br>
-									 <p style="margin-block-start:0px">
+									 <p style="margin-block-start:0">
                     寄送地區：${projPerkVO.perk_ship_area}
                   </p>
 								</div>
@@ -161,7 +161,7 @@ pageContext.setAttribute("list",list);
 								   	 <a class="buya"
 									href="${pageContext.request.contextPath}/projPerk/projPerk.do?proj_id=${projectVO.proj_id}&mem_id=${memVO.mem_id}&perk_id=${projPerkVO.perk_id}&action=go_to_addOrderByMem">
 									<div
-										style="color: #8f7e5d; font-size: 16px; border-radius: 0px; text-align: center; border: solid #aaba8b 1.5px; padding: 4px;"
+										style="color: #8f7e5d; font-size: 16px; border-radius: 0; text-align: center; border: solid #aaba8b 1.5px; padding: 4px;"
 										class="w-100 ph3 ph0-l flex-none self-start buyy">
 										<strong>認購此專案</strong>
 									</div>
@@ -206,7 +206,7 @@ pageContext.setAttribute("list",list);
 		
 	<div id="fb-root" class=" fb_reset">
 		<div
-			style="position: absolute; top: -10000px; width: 0px; height: 0px;">
+			style="position: absolute; top: -10000px; width: 0; height: 0;">
 			<div></div>
 		</div>
 	</div>

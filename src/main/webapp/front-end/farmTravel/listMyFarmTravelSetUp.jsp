@@ -50,7 +50,7 @@
         }
         .farmTravelItem {
             width: 100%;
-            padding: 0px;
+            padding: 0;
         }
         .itemTitle{
             text-align: left;
@@ -66,14 +66,14 @@
         }
         .farmTravelInfo{
             background-color: #f4f0e6;
-            padding: 0px;
+            padding: 0;
         }
         .btnRow{
             width: 100%;
         }
         .formBtn{
             margin: 5px 0;
-            padding: 0px;
+            padding: 0;
         }
         .orderNo{
             background-color: #eeeeee;

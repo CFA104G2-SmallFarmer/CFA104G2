@@ -96,8 +96,8 @@ a{
 }
 /**定義過度動畫*/
 @-webkit-keyframes mymove {
-        0% {background-position: 0% 0%;}
-        100% {background-position: 100% 0%;}
+        0% {background-position: 0 0;}
+        100% {background-position: 100% 0;}
 }
 
 /*     /////////////////購物車/////////// */
@@ -175,7 +175,7 @@ a{
 </div>
 					
 <!--                                     <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a> -->
-                                    <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/shopCart/shopCart.do" style="margin-bottom: 0px;">
+                                    <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/shopCart/shopCart.do" style="margin-bottom: 0;">
 <%-- 			    					<input type="hidden" name="mem_id" value="${shopProductVO.mem_id}"> --%>
 			    					<input type="hidden" name="mem_id" value="<%=mem_id %>">
 			    					<input type="hidden" name="f_mem_id" value="${shopProductVO.f_mem_id}">

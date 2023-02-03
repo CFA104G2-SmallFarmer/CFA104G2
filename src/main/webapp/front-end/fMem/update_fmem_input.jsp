@@ -807,7 +807,7 @@ invisible.style.display = "";
 												</div>
 												<div class="_3BlbUs">
 													<div class="w4 pl3 js-postcode">
-														<div class="_1iNZU3" style="padding: 0px 0 30px 0;">
+														<div class="_1iNZU3" style="padding: 0 0 30px 0;">
 															<label class="b _2PfA-y" for="order_postcode">郵遞區號</label>
 															<div class="_2_JugQ">
 																<div class="_2w5iZe">

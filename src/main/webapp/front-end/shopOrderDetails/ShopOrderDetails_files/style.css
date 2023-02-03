@@ -33,7 +33,7 @@ a:focus {
 	vertical-align: middle;
 	zoom: 1;
 	border: 0;
-	padding: 0px 20px;
+	padding: 0 20px;
 	text-decoration: none;
 	text-align: center;
 	height: 32px;
@@ -46,9 +46,9 @@ a:focus {
 .button.disabled:active,
 input.button:disabled,
 button.button:disabled {
-	-webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
-	-moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
-	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
 	opacity: 0.8;
 	background: #EEE;
@@ -655,7 +655,7 @@ button.button:disabled {
 	display: none;
 	position: absolute;
 	top: 100%;
-	right: 0px;
+	right: 0;
 	z-index: 1000;
 	width: 400px;
 	padding-top: 15px;
@@ -1372,19 +1372,19 @@ button.button:disabled {
 	left: 0;
 	right: 0;
 	margin: 0.8em 10px;
-	padding: 0px;
+	padding: 0;
 	text-align: left;
 }
 
 .label img {
-	margin: 0px;
+	margin: 0;
 	vertical-align: middle;
 }
 
 .label i {
 	display: inline-block;
 	vertical-align: middle;
-	margin: 0px;
+	margin: 0;
 	padding: 3px 7px 2px;
 	font-size: 12px;
 	font-style: normal;
@@ -1394,7 +1394,7 @@ button.button:disabled {
 }
 
 .list_label img {
-	margin: 0px;
+	margin: 0;
 	vertical-align: middle;
 	max-width: 35%;
 }
@@ -1419,8 +1419,8 @@ button.button:disabled {
 	content: "";
 	position: absolute;
 	z-index: 3;
-	top: 0px;
-	left: 0px;
+	top: 0;
+	left: 0;
 	right: 0;
 	bottom: 0;
 	background: url(../images/_soldout.png?20190920) center center no-repeat;
@@ -1927,14 +1927,14 @@ button.button:disabled {
 
 .proTable .faa-plus {
 	width: 22px;
-	background: url(../images/cart-add.jpg) -22px 0px no-repeat;
+	background: url(../images/cart-add.jpg) -22px 0 no-repeat;
 	height: 31px;
 }
 
 .proTable .faa-minus {
 	width: 22px;
 	height: 31px;
-	background: url(../images/cart-add.jpg) 0px 0px no-repeat;
+	background: url(../images/cart-add.jpg) 0 0 no-repeat;
 }
 
 #qty {
@@ -2541,7 +2541,7 @@ button.button:disabled {
 	padding-bottom: 16px;
 	color: #242424;
 	font-size: 16px;
-	margin: 10px 20px 0px 20px;
+	margin: 10px 20px 0 20px;
 }
 
 .saleTop .saleAddBtn {
@@ -3188,7 +3188,7 @@ button.button:disabled {
 	margin: 0 auto;
 	margin-top: 20px;
 	margin-bottom: 40px;
-	box-shadow: #ECECEC 0px 1px 3px;
+	box-shadow: #ECECEC 0 1px 3px;
 }
 
 .coupon_wrap h4 {
@@ -3230,9 +3230,9 @@ button.button:disabled {
 	font-family: "微軟正黑體", Helvetica, sans-serif;
 	-webkit-transition: all 0.1s;
 	-moz-transition: all 0.1s;
-	-webkit-box-shadow: 0px 5px 0px #811D27;
-	-moz-box-shadow: 0px 5px 0px #811D27;
-	box-shadow: 0px 5px 0px #811D27;
+	-webkit-box-shadow: 0 5px 0 #811D27;
+	-moz-box-shadow: 0 5px 0 #811D27;
+	box-shadow: 0 5px 0 #811D27;
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;
 	border-radius: 8px;
@@ -3240,9 +3240,9 @@ button.button:disabled {
 
 .CouponBtn:hover {
 	background: #991818;
-	-webkit-box-shadow: 0px 2px 0px #811D27;
-	-moz-box-shadow: 0px 2px 0px #811D27;
-	box-shadow: 0px 2px 0px #811D27;
+	-webkit-box-shadow: 0 2px 0 #811D27;
+	-moz-box-shadow: 0 2px 0 #811D27;
+	box-shadow: 0 2px 0 #811D27;
 }
 
 .CouponBtn_no {

@@ -221,9 +221,9 @@
 
 	i.arrow-left:before,
 	i.arrow-left:after {
-	    -webkit-transform-origin: 0% 50%;
+	    -webkit-transform-origin: 0 50%;
 	    -moz-transform-origin: 0% 50%;
-	    transform-origin: 0% 50%;
+	    transform-origin: 0 50%;
 	}
 
 	i.arrow-right:before,
@@ -360,16 +360,16 @@
 
     .row .box .pic .mask {
     	position: absolute;
-    	top: 0px;
-    	left: 0px;
+    	top: 0;
+    	left: 0;
     	opacity: 0;
     }
 
     .row .box .pic .label-mask{
     	width: 100%;
     	position: absolute;
-    	top: 0px;
-    	left: 0px;
+    	top: 0;
+    	left: 0;
     	opacity: 1;
     }
 
@@ -768,7 +768,7 @@
 		    width: 100%;
 		    height: 180px;
 		    top: 50%;
-		    left: 0px;
+		    left: 0;
 		    margin: -90px 0 0 0;
 		    z-index: 2;
 		    text-align: center;
@@ -849,7 +849,7 @@
 		    width: 100%;
 		    height: 150px;
 		    top: 50%;
-		    left: 0px;
+		    left: 0;
 		    margin: -60px 0 0 0;
 		    z-index: 2;
 		    text-align: center;
@@ -857,8 +857,8 @@
 
 		.box .btn {
 			width: 80%;
-			left: 0px;
-			right: 0px;
+			left: 0;
+			right: 0;
 			margin: 0 auto;
 		}
 

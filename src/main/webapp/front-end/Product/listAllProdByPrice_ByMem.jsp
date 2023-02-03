@@ -99,8 +99,8 @@ a{
 }
 /**定義過度動畫*/
 @-webkit-keyframes mymove {
-        0% {background-position: 0% 0%;}
-        100% {background-position: 100% 0%;}
+        0% {background-position: 0 0;}
+        100% {background-position: 100% 0;}
 }
 
 /*     /////////////////購物車/////////// */
@@ -125,14 +125,14 @@ a{
                    <h5 class="col-lg-7 h-auto mb-40"><font size="5">類別搜尋</font></h5><br>
                 
                 <div class="bg-light p-4 mb-30">
-                 <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/Product/shop.jsp" style="margin-bottom: 0px;">
+                 <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/Product/shop.jsp" style="margin-bottom: 0;">
                         <div class="custom-control  d-flex align-items-center justify-content-between mb-3 ">
                            <button style='font-size:20px' class="btn-sm btn-warning" type="submit"><i class='fas fa-leaf'></i> 全部 </button>
                             <input type="hidden"  name="prod_id">
                              <input  type="hidden" name="action">
                         </div>
                     </FORM>
-                    <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/Product/product.do" style="margin-bottom: 0px;">
+                    <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/Product/product.do" style="margin-bottom: 0;">
                         <div class="custom-control  d-flex align-items-center justify-content-between mb-3">
                        <button style='font-size:20px' class="btn-sm btn-success" type="submit"><i class='fas fa-leaf'></i> 蔬菜 </button>
                             <input type="hidden"  value="2"  name="prod_type_id">
@@ -141,7 +141,7 @@ a{
                         </div>
                     </FORM>
                     
-                    <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/Product/product.do" style="margin-bottom: 0px;">
+                    <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/Product/product.do" style="margin-bottom: 0;">
                        
                         <div class="custom-control  d-flex align-items-center justify-content-between mb-3">
                             <button style='font-size:20px' class="btn-sm btn-danger"  type="submit"><i class='fas fa-leaf'></i> 水果 </button>
@@ -155,7 +155,7 @@ a{
                 <!-- Color Start -->
                 <h5 class="section-title position-relative text-uppercase mb-3" ><font size="5">價格搜尋</font></h5><br>
                 <div class="bg-light p-4 mb-30">
-                    <form METHOD="post" name="form3" ACTION="<%=request.getContextPath()%>/front-end/Product/product.do" style="margin-bottom: 0px;">
+                    <form METHOD="post" name="form3" ACTION="<%=request.getContextPath()%>/front-end/Product/product.do" style="margin-bottom: 0;">
                         <div ><br>
                             <input onClick="document.form3.submit()"  type="radio" id="color-1" name="price" checked >
                             <label for="color-1"><font size="4">$0 - $50</font></label>
@@ -165,7 +165,7 @@ a{
                         </div>
                          </form>
                          
-                      <form METHOD="post" name="form4" ACTION="<%=request.getContextPath()%>/front-end/Product/product.do" style="margin-bottom: 0px;">  
+                      <form METHOD="post" name="form4" ACTION="<%=request.getContextPath()%>/front-end/Product/product.do" style="margin-bottom: 0;">
                         <div ><br>
                             <input  onClick="document.form4.submit()" type="radio" id="color-2" name="price" >
                             <label  for="color-2"><font size="4">$50 - $100</font></label>
@@ -176,7 +176,7 @@ a{
                         </div>
                          </form>
                          
-                      <form METHOD="post" name="form5" ACTION="<%=request.getContextPath()%>/front-end/Product/product.do" style="margin-bottom: 0px;">  
+                      <form METHOD="post" name="form5" ACTION="<%=request.getContextPath()%>/front-end/Product/product.do" style="margin-bottom: 0;">
                         <div><br>
                             <input onClick="document.form5.submit()" type="radio" id="color-3" name="price" >
                             <label  for="color-3"><font size="4">$100 - $200</font></label>
@@ -186,7 +186,7 @@ a{
                         </div>
                          </form>
                          
-                      <form METHOD="post" name="form6" ACTION="<%=request.getContextPath()%>/front-end/Product/product.do" style="margin-bottom: 0px;">  
+                      <form METHOD="post" name="form6" ACTION="<%=request.getContextPath()%>/front-end/Product/product.do" style="margin-bottom: 0;">
                         <div><br>
                             <input onClick="document.form6.submit()" type="radio"  id="color-4" name="price" >
                             <label  for="color-4"><font size="4">$200 - $300</font></label>
@@ -196,7 +196,7 @@ a{
                         </div>
                         </form>
                         
-                      <form METHOD="post" name="form7" ACTION="<%=request.getContextPath()%>/front-end/Product/product.do" style="margin-bottom: 0px;">  
+                      <form METHOD="post" name="form7" ACTION="<%=request.getContextPath()%>/front-end/Product/product.do" style="margin-bottom: 0;">
                         <div><br>
                             <input onClick="document.form7.submit()" type="radio"  id="color-5" name="price" >
                             <label  for="color-5"><font size="4">$300 - $500</font></label>
@@ -269,7 +269,7 @@ a{
 <!--                   購物車小圖 -->
 					
 					
-                                    <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/shopCart/shopCart.do" style="margin-bottom: 0px;">
+                                    <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/shopCart/shopCart.do" style="margin-bottom: 0;">
 			    					<input type="hidden" name="mem_id" value="<%=mem_id %>">
 			    					<input type="hidden" name="f_mem_id" value="${shopProductVO.f_mem_id}">
 			     					<input type="hidden" name="prod_id" value="${shopProductVO.prod_id}">	

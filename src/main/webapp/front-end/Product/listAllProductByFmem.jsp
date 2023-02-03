@@ -156,7 +156,7 @@ table{
 			     </FORM>
 			</td>
 			<td class="align-middle">
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/Product/product.do" style="margin-bottom: 0px;">
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/Product/product.do" style="margin-bottom: 0;">
 			  <button  class="btn-sm btn-danger" type="submit" style="font-size:16px"  onclick="javascript:return del()"><i class="material-icons" style="font-size:16px">clear</i> 刪除 </button>
 			    
    					 <p id="demo"></p>

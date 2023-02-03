@@ -311,7 +311,7 @@
 
               <li style="padding: 0;">
 					<div class="flip1">
-                      <a href="<%=request.getContextPath()%>/front-end/article/listAllArticle.jsp" style="padding:3px 16px 0px 16px;">小農論壇</a>
+                      <a href="<%=request.getContextPath()%>/front-end/article/listAllArticle.jsp" style="padding:3px 16px 0 16px;">小農論壇</a>
                       
                       <!-- <div class="dropdown-menu toggle1" style="position:absolute; top:30px;">
                         <a class="dropdown-item" href="#" >最新消息</a>
@@ -322,12 +322,12 @@
               </li>
 			  <li style="padding: 0;">
 					<div class="flip2">
-                      <a href="<%=request.getContextPath()%>/front-end/Product/shop.jsp" style="padding:3px 16px 0px 16px;">小農商城</a>
+                      <a href="<%=request.getContextPath()%>/front-end/Product/shop.jsp" style="padding:3px 16px 0 16px;">小農商城</a>
                       </div> 
               </li>              
               <li style="padding: 0;">
 					<div class="flip3">
-                      <a href="<%=request.getContextPath()%>/front-end/farmTravel/listAllFarmTravelByMem.jsp" style="padding:3px 16px 0px 16px;">農場旅遊</a>
+                      <a href="<%=request.getContextPath()%>/front-end/farmTravel/listAllFarmTravelByMem.jsp" style="padding:3px 16px 0 16px;">農場旅遊</a>
                       
                     <!--   <div class="dropdown-menu toggle3" style="position:absolute; top:30px;">
                         <a class="dropdown-item" href="#" >Action</a>
@@ -339,7 +339,7 @@
 
               <li style="padding: 0;">
 					<div class="flip4">
-                      <a href="<%=request.getContextPath()%>/front-end/project/listAllProjByMem.jsp" style="padding:3px 16px 0px 16px;">農產認養</a>
+                      <a href="<%=request.getContextPath()%>/front-end/project/listAllProjByMem.jsp" style="padding:3px 16px 0 16px;">農產認養</a>
                       
                      <!--  <div class="dropdown-menu toggle4" style="position:absolute; top:30px;">
                         <a class="dropdown-item" href="https://www.facebook.com/BuyDirectlyFromFarmers" >Action</a>

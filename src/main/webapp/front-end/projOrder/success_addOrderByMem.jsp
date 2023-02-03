@@ -38,11 +38,11 @@
 </head>
 
 <body class="intent-mouse">
-<header style="height: 80px">
-    <jsp:include page="/front-end/home/header_for_Proj_Mem.jsp"/>
-</header>
-<header style="padding-bottom: 5px"
-        class="relative z-2 bb pv2 ph3 ph0-l b--near-white"></header>
+    <header style="height: 80px">
+        <jsp:include page="/front-end/home/header_for_Proj_Mem.jsp"/>
+    </header>
+    <header style="padding-bottom: 5px"
+            class="relative z-2 bb pv2 ph3 ph0-l b--near-white"></header>
 
     <div class="container"></div>
     <div class="bt b--light-gray bb">

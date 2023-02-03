@@ -200,23 +200,23 @@ pageContext.setAttribute("memVO", memVO);
 
               <li style="padding: 0;">
 					<div class="flip1">
-                      <a href="#" style="padding:3px 16px 0px 16px;">關於本站</a>
+                      <a href="#" style="padding:3px 16px 0 16px;">關於本站</a>
                     </div>
               </li>
 			  <li style="padding: 0;">
 					<div class="flip2">
-                      <a href="#" style="padding:3px 16px 0px 16px;">小農商城</a>
+                      <a href="#" style="padding:3px 16px 0 16px;">小農商城</a>
                     </div>  
               </li>              
               <li style="padding: 0;">
 					<div class="flip3">
-                      <a href="#" style="padding:3px 16px 0px 16px;">農場旅遊</a>
+                      <a href="#" style="padding:3px 16px 0 16px;">農場旅遊</a>
                     </div>
               </li>
 
               <li style="padding: 0;">
 					<div class="flip4">
-                      <a href="#" style="padding:3px 16px 0px 16px;">農產認養</a>
+                      <a href="#" style="padding:3px 16px 0 16px;">農產認養</a>
                     </div>
               </li>
 

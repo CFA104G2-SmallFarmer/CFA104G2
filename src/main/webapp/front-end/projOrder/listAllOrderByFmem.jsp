@@ -198,7 +198,7 @@ padding_top:10px;
     color: #717d34;
     text-decoration: none;
     padding-left: 1em;
-    padding-right: 0em;
+    padding-right: 0;
     padding-top: 0.4em;
 
 }
@@ -226,7 +226,7 @@ padding_top:10px;
 @media (max-width: 767px) {
     .menu {
         /*隱藏選單開始*/
-        max-height: 0px;
+        max-height: 0;
         overflow: hidden;
         /*隱藏選單結束*/
         transition: max-height 2.3s;
@@ -253,8 +253,8 @@ padding_top:10px;
 
     .menu li a {
         transition: all 0.2s;
-        padding-left: 0em;
-        padding-right: 0em;
+        padding-left: 0;
+        padding-right: 0;
         padding-top: 0.7em;
         padding-bottom: 0.7em;
     }
@@ -318,7 +318,7 @@ margin-top:20px;
     color: #717d34;
     text-decoration: none;
     padding-left: 1em;
-    padding-right: 0em;
+    padding-right: 0;
     padding-top:0.9em;
 
 } 
@@ -346,7 +346,7 @@ margin-top:20px;
 @media (max-width: 767px) {
     .menu {
         /*隱藏選單開始*/
-        max-height: 0px;
+        max-height: 0;
         overflow: hidden;
         /*隱藏選單結束*/
         transition: max-height 2.3s;
@@ -373,8 +373,8 @@ margin-top:20px;
 
     .menu li a {
         transition: all 0.2s;
-        padding-left: 0em;
-        padding-right: 0em;
+        padding-left: 0;
+        padding-right: 0;
         padding-top: 0.7em;
         padding-bottom: 0.7em;
     }

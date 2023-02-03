@@ -30,7 +30,7 @@
 <style>
 .header-wrapper{
 height:120px;
-margin-bottom:0px;
+margin-bottom:0;
 margin-top:10px;
 }
 /* bookstrap */
@@ -47,8 +47,8 @@ margin-top:10px;
 }
 /**定義過度動畫*/
 @-webkit-keyframes mymove {
-        0% {background-position: 0% 0%;}
-        100% {background-position: 100% 0%;}
+        0% {background-position: 0 0;}
+        100% {background-position: 100% 0;}
 }
 </style>
 

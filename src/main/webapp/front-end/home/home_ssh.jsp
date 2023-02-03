@@ -960,7 +960,7 @@ rotate(
           <div class="title">
             <span class="block-titlefont WStdsong-B">人氣很旺的</span>
             <h5 style="line-height: 30px;margin-top: 16px;">看看其他朋友在關注什麼</h5>
-            <h5 style="line-height: 30px;margin-top: 0px;">還有團隊票選好物</h5>
+            <h5 style="line-height: 30px;margin-top: 0;">還有團隊票選好物</h5>
           </div>
 
 
@@ -1088,7 +1088,7 @@ rotate(
           <div class="title">
             <span class="block-titlefont WStdsong-B">人氣很旺的</span>
             <h5 style="line-height: 30px;margin-top: 16px;">看看其他朋友在關注什麼</h5>
-            <h5 style="line-height: 30px;margin-top: 0px;">還有團隊票選好物</h5>
+            <h5 style="line-height: 30px;margin-top: 0;">還有團隊票選好物</h5>
           </div>
 
 
@@ -1216,7 +1216,7 @@ rotate(
           <div class="title">
             <span class="block-titlefont WStdsong-B">人氣很旺的</span>
             <h5 style="line-height: 30px;margin-top: 16px;">看看其他朋友在關注什麼</h5>
-            <h5 style="line-height: 30px;margin-top: 0px;">還有團隊票選好物</h5>
+            <h5 style="line-height: 30px;margin-top: 0;">還有團隊票選好物</h5>
           </div>
 
 

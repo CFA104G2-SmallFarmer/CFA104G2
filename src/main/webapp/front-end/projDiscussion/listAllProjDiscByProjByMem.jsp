@@ -188,7 +188,7 @@ ProjectVO projectVO=projectSvc2.getOneProject(1001);
 
 <div id="fb-root" class=" fb_reset">
     <div
-            style="position: absolute; top: -10000px; width: 0px; height: 0px;">
+            style="position: absolute; top: -10000px; width: 0; height: 0;">
         <div></div>
     </div>
 </div>

@@ -64,8 +64,8 @@
 }
 /**定義過度動畫*/
 @-webkit-keyframes mymove {
-        0% {background-position: 0% 0%;}
-        100% {background-position: 100% 0%;}
+        0% {background-position: 0 0;}
+        100% {background-position: 100% 0;}
 }
 </style>
 

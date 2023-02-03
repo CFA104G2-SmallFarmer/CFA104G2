@@ -1041,7 +1041,7 @@ print {
     margin-left: 50%;
     transform: translateX(-50%);
     animation: scaleX .08s ease-in 1;
-    transform-origin: 50% 0%
+    transform-origin: 50% 0
 }
 
 .popover-content.left {
@@ -1059,7 +1059,7 @@ print {
     margin-top: -100%;
     transform: translateY(-50%);
     animation: scaleY .08s ease-in 1;
-    transform-origin: 0% 50%
+    transform-origin: 0 50%
 }
 
 .mv-child-0>:first-child {
@@ -1162,7 +1162,7 @@ print {
         padding: .5em;
         transform: translate(0%, 0);
         top: 100%;
-        left: 0%;
+        left: 0;
         margin-top: .3em
     }
 }
@@ -5374,7 +5374,7 @@ print {
     }
 
     .mr3-ns {
-        margin-right: 0rem
+        margin-right: 0
     }
 
     .mr4-ns {

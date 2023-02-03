@@ -43,7 +43,7 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
 
 							<!-- <img style="display:inline-box" src="/logo/透明LOGO有字有框.png" alt="ok" width=13% height=10%> -->
 						</div>
-						<svg class="v-mid ml2" style="height: 20px; width: 0px;"
+						<svg class="v-mid ml2" style="height: 20px; width: 0;"
 							viewBox="0 0 64.08 28.95" xmlns="http://www.w3.org/2000/svg">
               <title>我家門前有塊地</title>
               <!-- <path

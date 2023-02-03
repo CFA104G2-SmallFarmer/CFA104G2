@@ -653,7 +653,7 @@
             <div class="title">
                 <span class="block-titlefont WStdsong-B">小農商城</span>
                 <h5 style="line-height: 30px;margin-top: 16px;">看看其他朋友在關注什麼</h5>
-                <h5 style="line-height: 30px;margin-top: 0px;">優質商品任你選</h5>
+                <h5 style="line-height: 30px;margin-top: 0;">優質商品任你選</h5>
             </div>
 
 
@@ -728,7 +728,7 @@
             <div class="title">
                 <span class="block-titlefont WStdsong-B">農場旅遊</span>
                 <h5 style="line-height: 30px;margin-top: 16px;">看看其他朋友在關注什麼</h5>
-                <h5 style="line-height: 30px;margin-top: 0px;">還有優質好行程</h5>
+                <h5 style="line-height: 30px;margin-top: 0;">還有優質好行程</h5>
             </div>
 
 
@@ -805,7 +805,7 @@
             <div class="title">
                 <span class="block-titlefont WStdsong-B">農產認養</span>
                 <h5 style="line-height: 30px;margin-top: 16px;">看看其他朋友在關注什麼</h5>
-                <h5 style="line-height: 30px;margin-top: 0px;">還有熱門好物</h5>
+                <h5 style="line-height: 30px;margin-top: 0;">還有熱門好物</h5>
             </div>
 
 

@@ -599,8 +599,8 @@ strong {
   width: 30px;
   height: 30px;
   position: absolute;
-  top: 0px;
-  right: 0px;
+  top: 0;
+  right: 0;
   cursor: pointer;
   z-index: 10;
   background: #6abf72;
@@ -662,8 +662,8 @@ strong {
   width: 30px;
   height: 30px;
   position: absolute;
-  top: 0px;
-  right: 0px;
+  top: 0;
+  right: 0;
   cursor: pointer;
   z-index: 10;
   background: #c6dcc8;
@@ -767,8 +767,8 @@ strong {
   width: 30px;
   height: 30px;
   position: absolute;
-  top: 0px;
-  right: 0px;
+  top: 0;
+  right: 0;
   cursor: pointer;
   z-index: 10;
   background: #6abf72;
@@ -820,7 +820,7 @@ strong {
   -moz-border-radius: 6px;
   border-radius: 6px;
   cursor: pointer;
-  margin: 15px auto 0px auto;
+  margin: 15px auto 0 auto;
   /*font modify*/
   font-size: 18px;
   color: #fff;
@@ -840,7 +840,7 @@ strong {
   color: #da3450;
   display: none;
   position: absolute;
-  bottom: 0px;
+  bottom: 0;
   padding-bottom: 8px;
   padding-left: 20px;
   background: url(../image/error_icon.png) no-repeat;
@@ -1024,7 +1024,7 @@ strong {
   #footer .container .info li .line-btn {
     width: 49%;
     height: 100%;
-    margin-left: 0px;
+    margin-left: 0;
   }
 
   #footer .container .info li .fb-btn:hover,
@@ -1149,7 +1149,7 @@ strong {
     top: 55%;
     left: 10%;
     padding: 40px 4%;
-    margin: -100px 0 0 0px;
+    margin: -100px 0 0 0;
     letter-spacing: 1px;
     line-height: 18px;
     display: none;
@@ -5952,7 +5952,7 @@ button.swiper-pagination-bullet {
 #sub_icon header {
   position: fixed;
   top: 60%;
-  right: 0%;
+  right: 0;
   height: 100px;
   width: 100px;
   pointer-events: none;
@@ -5987,7 +5987,7 @@ button.swiper-pagination-bullet {
 }
 
 #sub_icon header.active .title {
-  font-size: 0px;
+  font-size: 0;
   -webkit-transform: translate(-30px, -85px);
   -moz-transform: translate(-30px, -85px);
   -ms-transform: translate(-30px, -85px);
@@ -6025,7 +6025,7 @@ button.swiper-pagination-bullet {
   transition: .5s all ease .2s;
   /* box-shadow: 0 -8px 12px 1px rgba(0, 0, 0, 0.15); */
   background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/111167/arrow-down.svg") no-repeat 17px 9px transparent;
-  padding: 0px;
+  padding: 0;
 }
 
 #sub_icon header .cta-ctr {
@@ -6063,8 +6063,8 @@ button.swiper-pagination-bullet {
   padding: 30px;
   position: absolute;
   top: -20px;
-  right: 0px;
-  bottom: 0px;
+  right: 0;
+  bottom: 0;
   left: -10px;
   background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/111167/arrow-down.svg") no-repeat 12px 17px transparent;
   -webkit-transform: rotate(0deg);
@@ -6119,7 +6119,7 @@ button.swiper-pagination-bullet {
 
 .content-ctr .main-content-ctr {
   position: relative;
-  min-height: 0%;
+  min-height: 0;
   transition: .3s height ease;
   overflow: hidden;
 }
@@ -6494,14 +6494,14 @@ button.swiper-pagination-bullet {
 }
 
 .modal {
-  padding: 0px !important;
+  padding: 0 !important;
 }
 
 .modal-header {
   background-color: #2a8a65 !important;
   color: #fff;
   padding: 10px;
-  border-radius: 8px 8px 0px 0px;
+  border-radius: 8px 8px 0 0;
 }
 
 .modal-body {

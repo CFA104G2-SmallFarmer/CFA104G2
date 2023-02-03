@@ -38,7 +38,7 @@
             color: black;
             text-align: center;
             border-radius: 10px;
-            box-shadow: 0px 0px 10px 0px #f0f3e6;
+            box-shadow: 0 0 10px 0 #f0f3e6;
             width: 50%;
             margin: 20px auto;
         }

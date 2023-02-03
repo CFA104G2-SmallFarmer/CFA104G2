@@ -20,7 +20,7 @@ aside {
   width : 300px; 
   height: 1200px;
   background: #b9d4b3;
-  margin : 0px;
+  margin : 0;
   position: relative;
   float:left;
 }
@@ -44,7 +44,7 @@ aside {
 #slide1 {
   clear:both;
   width:100%;
-  height:0px;
+  height:0;
   overflow: hidden;
   text-align: center;
   transition: height .4s ease;
@@ -52,7 +52,7 @@ aside {
 #slide2 {
   clear:both;
   width:100%;
-  height:0px;
+  height:0;
   overflow: hidden;
   text-align: center;
   transition: height .4s ease;
@@ -60,7 +60,7 @@ aside {
 #slide3 {
   clear:both;
   width:100%;
-  height:0px;
+  height:0;
   overflow: hidden;
   text-align: center;
   transition: height .4s ease;
@@ -68,7 +68,7 @@ aside {
 #slide4 {
   clear:both;
   width:100%;
-  height:0px;
+  height:0;
   overflow: hidden;
   text-align: center;
   transition: height .4s ease;
@@ -76,7 +76,7 @@ aside {
 
 .show li {padding : 10px; list-style-type: none;}
 
-.touch {position: absolute; opacity: 0; height: 0px;}    
+.touch {position: absolute; opacity: 0; height: 0;}
 
 #touch1:checked + #slide1 {height: 100px;} 
 #touch2:checked + #slide2 {height: 100px;} 

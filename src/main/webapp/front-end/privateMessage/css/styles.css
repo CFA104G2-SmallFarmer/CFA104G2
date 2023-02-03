@@ -1,6 +1,6 @@
 * {
 	margin: auto;
-	padding: 0px;
+	padding: 0;
 }
 
 html, body {
@@ -30,7 +30,7 @@ html, body {
 }
 
 .input-area input {
-	margin: 0.5em 0em 0.5em 0.5em;
+	margin: 0.5em 0 0.5em 0.5em;
 }
 
 .text-field {
