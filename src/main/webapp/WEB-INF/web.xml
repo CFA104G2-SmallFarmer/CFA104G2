@@ -205,6 +205,17 @@
 		<servlet-name>ProjOrderServlet</servlet-name>
 		<url-pattern>/projOrder/projOrder.do</url-pattern>
 	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>PaidConfirmServlet</servlet-name>
+		<servlet-class>com.projOrder.controller.PaidConfirmServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PaidConfirmServlet</servlet-name>
+		<url-pattern>/projOrder/paidConfirm.do/*</url-pattern>
+	</servlet-mapping>
+
 	<servlet>
 		<servlet-name>ProjPerkServlet</servlet-name>
 		<servlet-class>com.projPerk.controller.ProjPerkServlet</servlet-class>

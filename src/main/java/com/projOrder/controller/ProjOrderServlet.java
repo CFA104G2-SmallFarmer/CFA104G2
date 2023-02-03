@@ -581,8 +581,6 @@ public class ProjOrderServlet extends HttpServlet {
 
 
 
-
-
         /*=== Fmem ================ＳＴＡＲＴ=====查詢區專用按紐==，按完會回到查詢頁面=============================*/
         /*************我增加的部分，按按鈕改變訂單狀態變成 1 待出貨* START  ****************/
         if ("update_state_to_1".equals(action)) { // 來自update_emp_input.jsp的請求
@@ -977,11 +975,6 @@ public class ProjOrderServlet extends HttpServlet {
         }
         /*************我增加的部分，按按鈕改變訂單狀態變成5：不成立(已解決)，END  *****************/
         /*=== Fmem ================ＥＮＤ=====查詢區專用按紐==，按完會回到searchOrderByFmem.jsp查詢頁面=============================*/
-
-
-
-
-
 
 
 
@@ -1692,37 +1685,37 @@ public class ProjOrderServlet extends HttpServlet {
                 //領班用自己的方法去組合將碎片放入一個EmpVO物件，物件再交給工人去施工更新   的動作，然後領班會再回傳一個empVO物件回來
                 ProjOrderVO projOrderVO2 = projOrderSvc.addProjOrder(mem_id, perk_id, order_zipcode, order_addr, order_receiver, order_tel, order_pay, order_number_str);
 
-
-                // 訂單後再去呼叫fonpay建單，因為沒有欄位可以當PO
-                ProjOrderVO projOrderVO3 = projOrderSvc.getOneProjOrderByOrderNumber(order_number_str);
-                String fonpayPaymentCreateOrderResponse = fonpayService.paymentCreateOrder(projOrderVO3);
-                System.out.println(fonpayPaymentCreateOrderResponse);
-
-                JSONObject j;
-                try {
-                    j = new JSONObject(fonpayPaymentCreateOrderResponse);
-                    Object jsonOb = j.getJSONObject("result").getJSONObject("payment").get("paymentUrl");
-                    System.out.println(jsonOb);
-                }catch(Exception e){
-                    System.err.println("Error: " + e.getMessage());
-                }
-
-                //TODO 剩下步驟
-                //ProjOrderVO projOrderOrderObject = projOrderSvc.getOneProjOrderByOrderNumber()
-
                 //	新增後要更新募資總人數跟募資總額及方案總人數
                 ProjPerkService projPerkSvc = new ProjPerkService();
                 projPerkSvc.autoUpdateTotalCountAFund(perk_id);
                 System.out.println("PERK_TOTAL_COUNT、PROJ_TOTAL_FUND及PROJ_TOTAL_COUNT更新成功");
 
+                //TODO
+                // 訂單建立後再去呼叫fonpay建單病倒項金流頁面(paymentUrl)，fonpay若停機，則回傳金流暫停服務，並刪單。
+                ProjOrderVO projOrderVO3 = projOrderSvc.getOneProjOrderByOrderNumber(order_number_str);
+                String fonpayPaymentCreateOrderResponse = fonpayService.paymentCreateOrder(projOrderVO3);
+//                System.out.println(fonpayPaymentCreateOrderResponse);
+                JSONObject j = new JSONObject(fonpayPaymentCreateOrderResponse);
+                Object jsonOb = j.getJSONObject("result").getJSONObject("payment").get("paymentUrl");
+//              System.out.println(jsonOb);
+                String paymentUrl = jsonOb.toString();
+
+                if (paymentUrl == null || paymentUrl.trim().length() == 0) { //錯誤回去
+                    errorMsgs.add("金流暫停服務");
+                    projOrderSvc.deleteProjOrder(projOrderVO3.getOrder_id());//刪單
+                    req.setAttribute("projOrderVO", projOrderVO);
+                    RequestDispatcher failureView = req.getRequestDispatcher("/front-end/projOrder/addOrderByMem.jsp");
+                    failureView.forward(req, res);
+                    return; //程式中斷
+                }
+
 
                 /***************************3.新增完成,準備轉交(Send the Success view)***********/
-                /**備註：為了測試，MemVO暫時用req帶過去*******/
-                //				req.setAttribute("memVO",memVO3);
-                req.setAttribute("projectVO", projectVO3);
-                String url = "/front-end/projOrder/success_addOrderByMem.jsp";
-                RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
-                successView.forward(req, res);
+//                req.setAttribute("projectVO", projectVO3);
+//                String url = "/front-end/projOrder/success_addOrderByMem.jsp";
+//                RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+//                successView.forward(req, res);
+                res.sendRedirect(paymentUrl);//直接送去Fonpay，讓fonpay送去信用卡付款
 
                 /***************************其他可能的錯誤處理**********************************/
             } catch (Exception e) {
@@ -1734,14 +1727,10 @@ public class ProjOrderServlet extends HttpServlet {
 
 
         if ("logout_By_Proj".equals(action)) { // 來自addEmp.jsp的請求
-
             List<String> errorMsgs = new LinkedList<String>();
-            // Store this set in the request scope, in case we need to
-            // send the ErrorPage view.
             req.setAttribute("errorMsgs", errorMsgs);
 
             try {
-
                 // 取得session，若session為null，不建立新的session
                 HttpSession session = req.getSession(false);
 
@@ -1759,6 +1748,43 @@ public class ProjOrderServlet extends HttpServlet {
             successView.forward(req, res);
 
         }
+
+        if ("paymentTransactionSyncTrigger".equals(action)) {
+            System.out.println("↓↓收到豐趣金流的狀態同步通知↓↓");
+//            TODO 回傳success
+//            def inputStr = IOUtils.toString(req.getInputStream());
+//            log.info("${inputStr}");
+
+
+//            ProjOrderService projOrderSvc = new ProjOrderService();
+//            ProjOrderVO paymentInstance = projOrderSvc.getOneProjOrderByOrderNumber(params.order_number_str);
+//
+
+//            if(paymentInstance != null){
+//                String result = fonpayService.processPushPaymentSettingDetailCallback(paymentInstance.paymentSettingDetail,inputStr);
+//                if(result != null){
+//                    render ("SUCCESS");
+//                }else{
+//                    res.setStatus(403);
+//                    res.sendRedirect("/front-end/errorPAge/error403.jsp");
+//                }
+//            }
+//            else
+//                returnForbidden();
+//
+//
+//            res.sendRedirect("www.google.com");
+
+            res.setStatus(403);
+            res.sendRedirect("/front-end/errorPage/error403.jsp");
+
+        }
+
+        if ("paidConfirm".equals(action)) {
+            System.out.println("paidConfirm");
+            res.sendRedirect("/front-end/projOrder/success_addOrderByMem.jsp");
+        }
+
     }
 }
 

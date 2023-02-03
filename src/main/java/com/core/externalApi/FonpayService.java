@@ -43,20 +43,10 @@ public class FonpayService {
                 "'request':{" +
                 "'paymentNo':"+projOrderVO.getOrder_number()+"," +
                 "'totalPrice':"+ projOrderService.getOrder_price(projOrderVO)+"," +
-                "'paymentDueDate':"+"20241212000000," + //TODO 改時間
+                "'paymentDueDate':"+"20230330235959," + //TODO 改時間
                 "'itemName':"+projOrderService.getPerk_name(projOrderVO)+"," +
-                "'callbackUrl':'https://test-platform.wecometw.com/fonpay/payment/1'," +
-                "'redirectUrl':'https://test-fonticket.fonticket.com/callback/paidConfirm/1'," +
-//                "'includeItemList':[" +
-//                "{" +
-//                "'itemName':'故宮北院參觀券'," +
-//                "'itemQuantity':1" +
-//                "}," +
-//                "{" +
-//                "'itemName':'故宮南院參觀券'," +
-//                "'itemQuantity':1" +
-//                "}" +
-//                "]" +
+                "'callbackUrl':'http://localhost:8080/CFA104G2/projOrder/projOrder.do?action=paymentTransactionSyncTrigger&=" +projOrderVO.getOrder_number()+"',"+
+                "'redirectUrl':'http://localhost:8080/CFA104G2/projOrder/paidConfirm.do/" +projOrderVO.getOrder_number()+"',"+
                 "}," +
                 "'basic':{" +
                 "'appVersion':'0.9'," +
