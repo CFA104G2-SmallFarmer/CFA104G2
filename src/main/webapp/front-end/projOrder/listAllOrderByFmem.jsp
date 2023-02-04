@@ -75,7 +75,7 @@ pageContext.setAttribute("rowNumber", rowNumber);
 
 <%
 request.setAttribute("order_state_arr", new String[]{"待付款","待出貨","運送中","已完成","不成立<br>(未處理)","不成立<br>(已解決)"});
-request.setAttribute("proj_pay_arr", new String[]{"信用卡","銀行轉帳"});
+request.setAttribute("proj_pay_arr", new String[]{"","信用卡","銀行轉帳"});
 request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買家取消","小農取消","專案募資失敗"});
 %>
 

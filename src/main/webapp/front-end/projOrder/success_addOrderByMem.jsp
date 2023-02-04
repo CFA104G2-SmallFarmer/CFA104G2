@@ -1,14 +1,12 @@
 <%@page import="com.mem.model.MemVO" %>
 <%@page import="com.mem.model.MemService" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.*" %>
 <%@ page import="com.project.model.*" %>
 <%@ page import="com.projPerk.model.*" %>
 <%@ page import="com.projOrder.model.*" %>
-<%@ page
-        import="java.time.LocalDate,java.sql.Timestamp,java.util.Vector" %>
+<%@ page import="java.time.LocalDate,java.sql.Timestamp,java.util.Vector" %>
 
 <%
     ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");

@@ -25,7 +25,7 @@
 
 <%
 request.setAttribute("order_state_arr", new String[]{"待付款","待出貨","運送中","已完成","已取消"});
-request.setAttribute("order_pay_arr", new String[]{"信用卡","銀行轉帳"});
+request.setAttribute("order_pay_arr", new String[]{"","信用卡","銀行轉帳"});
 %>
 
 <!-- join要用的usebean -->

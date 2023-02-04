@@ -1452,7 +1452,8 @@ public class ProjOrderServlet extends HttpServlet {
         }
         /*************我增加的部分，按按鈕改變訂單狀態變成 4 : 不成立(未處理)，END  *****************/
 
-        /*************我增加的部分，按按鈕改變訂單狀態變成5：不成立(已解決)* START  ****************/
+
+        /*************我增加的部分，按按鈕改變訂單狀態變成5：不成立(已解決)* START (確認退款鈕)  ****************/
         if ("update_state_to_5_and_then_show_All".equals(action)) { // 來自update_emp_input.jsp的請求
 
             List<String> errorMsgs = new LinkedList<String>();
@@ -1470,7 +1471,6 @@ public class ProjOrderServlet extends HttpServlet {
                 } else if (membership.equals("buyer")) {
                     mem_id = mem_id.trim();
                 }
-
 
                 Integer order_zipcode = new Integer(req.getParameter("order_zipcode").trim());
                 String order_addr = (req.getParameter("order_addr").trim());
@@ -1526,29 +1526,21 @@ public class ProjOrderServlet extends HttpServlet {
 
                 /***************************2.開始修改資料*****************************************/
                 ProjOrderService projOrderSvc = new ProjOrderService();
-                //控制起驗證完拿到的碎片，new領班，交給領班去組合。
-                //領班用自己的方法去組合將碎片放入一個EmpVO物件，物件再交給工人去施工更新   的動作，然後領班會再回傳一個empVO物件回來
                 ProjOrderVO projOrderVO2 = projOrderSvc.updateProjOrder(order_zipcode, order_addr, order_receiver, order_tel, order_state, order_ship_time, order_completion_time, order_cancel_time, order_cancel_reason, order_id);
-
 
 //				新增後要更新募資總人數跟募資總額及方案總人數
                 ProjPerkService projPerkSvc = new ProjPerkService();
                 projPerkSvc.autoUpdateTotalCountAFund(perk_id);
                 System.out.println("PERK_TOTAL_COUNT、PROJ_TOTAL_FUND及PROJ_TOTAL_COUNT更新成功");
 
-
                 /***************************3.修改完成,準備轉交(Send the Success view)*************/
                 List<ProjOrderVO> projOrderVO3 = null;
-                System.out.println(membership);
-                System.out.println(mem_id);
-                System.out.println(f_mem_id);
                 if (membership.equals("seller")) {
                     Integer f_mem_id1 = new Integer(req.getParameter("f_mem_id"));
                     projOrderVO3 = projOrderSvc.getAllFmemOrder(f_mem_id1);
                 } else if (membership.equals("buyer")) {
                     Integer mem_id1 = new Integer(req.getParameter("mem_id"));
                     projOrderVO3 = projOrderSvc.getAllMemOrder(mem_id1);
-
                 }
 
                 req.setAttribute("projOrderVO", projOrderVO3); // 資料庫update成功後,正確的的empVO物件,存入req
