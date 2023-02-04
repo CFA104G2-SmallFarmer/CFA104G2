@@ -1780,10 +1780,10 @@ public class ProjOrderServlet extends HttpServlet {
 
         }
 
-        if ("paidConfirm".equals(action)) {
-            System.out.println("paidConfirm");
-            res.sendRedirect("/front-end/projOrder/success_addOrderByMem.jsp");
-        }
+//        if ("paidConfirm".equals(action)) {
+//            System.out.println("paidConfirm");
+//            res.sendRedirect("/front-end/projOrder/success_addOrderByMem.jsp");
+//        }
 
     }
 }

@@ -23,8 +23,8 @@ Integer mem_id = MemVO.getMem_id();
 
 <%
 ProjOrderService projOrderSvc = new ProjOrderService();
-List<ProjOrderVO> projOrderVO = projOrderSvc.getAllMemOrder(mem_id);  
-pageContext.setAttribute("list",projOrderVO); 
+List<ProjOrderVO> projOrderVO = projOrderSvc.getAllMemOrder(mem_id);
+pageContext.setAttribute("list",projOrderVO);
 %>
 
 <!-- 領班 -->
@@ -40,18 +40,6 @@ request.setAttribute("order_state_arr", new String[]{"待付款","待出貨","�
 request.setAttribute("proj_pay_arr", new String[]{"信用卡","銀行轉帳"});
 request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買家取消","小農取消","專案募資失敗"});
 %>
-
-<!-- 我的筆記 join -->
-<!-- project物件：(projectSvc.getOneProject(projPerkSvc.getOneProjPerk(projOrderVO.perk_id).proj_id)) -->
-
-<%--專案名稱： ${projectSvc.getOneProject(projPerkSvc.getOneProjPerk(projOrderVO.perk_id).proj_id).proj_name} --%>
-
-<%-- ${projPerkSvc.getOneProjPerk(projOrderVO.perk_id).proj_id} --%>
-
-<%-- 方案金額：${projPerkSvc.getOneProjPerk(projOrderVO.perk_id).perk_fund} --%>
-<%-- 方案簡稱：${projPerkSvc.getOneProjPerk(projOrderVO.perk_id).perk_abbr_name} --%>
-<%--   農場名稱：${fMemSvc.getOnefMem(projectSvc.getOneProject(projPerkSvc.getOneProjPerk(projOrderVO.perk_id).proj_id).f_mem_id).f_mem_fname} --%>
-
 
 
 <!DOCTYPE html>
@@ -73,12 +61,12 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
   <style>
   span ,p ,a{
   text-decoration:none;
-  
-  
+
+
   }
-  
-  
-  
+
+
+
     .ct-item-product-info {
       font-family: sans-serif;
       color: #7b7b7b;
@@ -126,7 +114,7 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
       <br>
     }
   </style>
-  
+
 </head>
 <body class=" route-index route-portal-sale route-portal-sale-order route-portal-sale-order">
 
@@ -134,7 +122,7 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
          <jsp:include page="/front-end/home/header_for_Proj_Mem.jsp" />
 </header>
 
-  
+
   <div class="app-container">
     <div class="page-content-wrapper">
       <div data-v-6de0ecc3="" class="portal-sale-root">
@@ -155,31 +143,6 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
                           <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">全部</span>
                           </div>
                         </div>
-                        <!-- <div class="shopee-tabs__nav-tab" style="white-space: normal;">
-                          <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">尚未付款</span>
-                          </div>
-                        </div>
-                        <div class="shopee-tabs__nav-tab" style="white-space: normal;">
-                          <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">待出貨</span>
-                          </div>
-                        </div>
-                        <div class="shopee-tabs__nav-tab" style="white-space: normal;">
-                          <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">運送中</span>
-                          </div>
-                        </div>
-                        <div class="shopee-tabs__nav-tab" style="white-space: normal;">
-                          <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">已完成</span>
-                          </div>
-                        </div>
-                        <div class="shopee-tabs__nav-tab" style="white-space: normal;">
-                          <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">不成立(未處理)</span>
-                          </div>
-                        </div>
-                        <div class="shopee-tabs__nav-tab" style="white-space: normal;">
-                          <div data-v-ddf12cca="" class="tab-label"><span data-v-ddf12cca="">不成立(已解決)</span>
-                          </div>
-                        </div> -->
-
                       </div>
                       <div class="shopee-tabs__ink-bar" style="width: 60px; transform: translateX(0px);"></div>
                     </div>
@@ -208,11 +171,7 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
 		</c:forEach>
 	</ul>
 </c:if>
-<%--                     <%=projOrderVO==null%> --%>
-<%--                     <%=projPerkVO==null%> --%>
-<%--                     <%=projectVO==null%> --%>
-                    <!---->
-                  
+
 
                   </div>
                 </div>
@@ -236,18 +195,14 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
 
                   <div data-v-1eaa89e5="" data-v-a414b804="" class="order-list-body"><a data-v-1eaa89e5=""
                       target="_blank" class="order-item">
-                      
-                     <%--  <%@ include file="page1.file" %>  --%>
-<%--                       <c:forEach var="projOrderVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>"> --%>
-                       
-                       
-                        
-                       
+
+
+
                        <c:forEach var="projOrderVO" items="${list}">
-                  
+
 
                       <!-- 這邊是開始 -->
-                      
+
                       <div data-v-1eaa89e5="" class="order-title">
                         <div data-v-1eaa89e5="" class="title-prefix">
                           <div data-v-78a21620="" data-v-1eaa89e5="" class="user-header user-view-item simple-nofollow">
@@ -304,12 +259,12 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
 										${projPerkSvc.getOneProjPerk(projOrderVO.perk_id).perk_fund}
                                 </div>
                                 <div data-v-1274329c="" class="payment-method" style="font-size: 16px;">
-                                
+
                                 <c:set var="pay_num" scope="request" value="${projOrderVO.order_pay}"/>
-                           
-                                  
+
+
                                 ${proj_pay_arr[pay_num]}
-                                                                         
+
                                 </div>
                               </div>
                               <div data-v-1274329c="" class=" item-total">
@@ -323,13 +278,10 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
                               <div data-v-1274329c="" class="item-total">
                                 <div data-v-1274329c="" class="price">
                                 <c:set var="num" scope="request" value="${projOrderVO.order_state}"/>
-                            
-<%--                                   <% int num = projOrderVO.getOrder_state(); %> --%>
-                                  
-<%--                                   <%= ((String[])request.getAttribute("order_state_arr"))[num] %> --%>
-                                  
+
+
                                 ${order_state_arr[num]}
-                              
+
 
                                 </div>
                                 <div data-v-1274329c="" class="payment-method">
@@ -341,7 +293,7 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
                                     訂單時間：<br>${projOrderVO.order_time}
                                   </span>
                                   <br>
-                                  
+
                                 <c:choose>
 							    <c:when test="${empty projOrderVO.order_ship_time}">
 							    </c:when>
@@ -351,7 +303,7 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
                                   </span>
                                   <br>
 							    </c:otherwise>
-								</c:choose>   
+								</c:choose>
 
                                 <c:choose>
 							    <c:when test="${empty projOrderVO.order_completion_time}">
@@ -362,8 +314,8 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
                                   </span>
                                   <br>
 							    </c:otherwise>
-								</c:choose>   
-                                                               
+								</c:choose>
+
 							    <c:choose>
 							    <c:when test="${projOrderVO.order_cancel_reason ==0}">
 							    </c:when>
@@ -375,20 +327,14 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
 <%-- 							       ${projOrderVO.order_cancel_reason} --%>
 							    </c:otherwise>
 								</c:choose>
-                                                                   
+
                                     <c:set var="y" scope="request" value="${projOrderVO.order_cancel_reason}"/>
-                                                           
+
                                 ${cancel_reason_arr[y]}
                                 <script>console.log(${y})</script>
                                 <script>console.log(typeof(${y}))</script>
-                                
-<%--                                    ${projOrderVO.order_cancel_reason}  --%>
-                                  
-<%--                                   <% int y = projOrderVO.getOrder_cancel_reason(); %>  --%>
-                                  
-<%--                                   <%= ((String[])request.getAttribute("cancel_reason_arr"))[y] %> --%>
 
-                          
+
                                 </div>
                                 <div data-v-1274329c="" class="tracking-number-wrapper">
                                   <div data-v-1274329c="" class="lable">
@@ -396,69 +342,37 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
                                 </div>
                               </div>
                               <div data-v-1274329c="" class="item-action">
-                              
-<%--                               <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/projOrder/projOrder.do">		 			   --%>
-<%-- 			    				<input type="hidden" name="order_id"  value="${projOrderVO.order_id}">	 --%>
-<!-- 			     				<input type="hidden" name="action" value="delete"> -->
-<!-- 			  				   </FORM> -->
-                            
+
+
                               <c:choose>
     							<c:when test="${projOrderVO.order_state ==0}">
-    							<%--   會員不需確認收款按鈕 	--%>
-   							 <%-- 
-    							
-    							<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/projOrder/projOrder.do">	
-    							<input type="hidden" name="order_id"  value="${projOrderVO.order_id}">	
-    							<input type="hidden" name="order_zipcode"  value="${projOrderVO.order_zipcode}">	
-    							<input type="hidden" name="order_addr"  value="${projOrderVO.order_addr}">	
-    							
-    							<input type="hidden" name="order_receiver"  value="${projOrderVO.order_receiver}">	
-    							<input type="hidden" name="order_tel"  value="${projOrderVO.order_tel}">	
-    							<input type="hidden" name="order_state"  value="${projOrderVO.order_state}">	
-    							<input type="hidden" name="order_ship_time"  value="${projOrderVO.order_ship_time}">	
+
+                                <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/projOrder/projOrder.do">
+                             <input type="hidden" name="order_id"  value="${projOrderVO.order_id}">
+    							<input type="hidden" name="order_zipcode"  value="${projOrderVO.order_zipcode}">
+    							<input type="hidden" name="order_addr"  value="${projOrderVO.order_addr}">
+    							<input type="hidden" name="order_receiver"  value="${projOrderVO.order_receiver}">
+    							<input type="hidden" name="order_tel"  value="${projOrderVO.order_tel}">
+    							<input type="hidden" name="order_state"  value="${projOrderVO.order_state}">
+    							<input type="hidden" name="order_ship_time"  value="${projOrderVO.order_ship_time}">
     							<input type="hidden" name="order_completion_time"  value="${projOrderVO.order_completion_time}">
-    							<input type="hidden" name="order_cancel_time"  value="${projOrderVO.order_cancel_time}">		 			  
-			    				<input type="hidden" name="order_cancel_reason"  value="${projOrderVO.order_cancel_reason}">	
-			     				<input type="hidden" name="action" value="update_state_to_1_and_then_show_All">
-    							
-    							<input type="hidden" name="mem_id" value="${projOrderVO.mem_id}">
-    							<input type="hidden" name="membership" value="buyer">
-    							
-    							
-    							<button data-v-4325ccd1=""
-                                    class="shopee-button shopee-button--normal" type="submit"><span>
-                                      確認收款
-                                    </span></button>
-                                 </FORM>
-                                     <br>
-                                 --%>
-                                     
-                                <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/projOrder/projOrder.do">	
-                             <input type="hidden" name="order_id"  value="${projOrderVO.order_id}">	
-    							<input type="hidden" name="order_zipcode"  value="${projOrderVO.order_zipcode}">	
-    							<input type="hidden" name="order_addr"  value="${projOrderVO.order_addr}">	
-    							<input type="hidden" name="order_receiver"  value="${projOrderVO.order_receiver}">	
-    							<input type="hidden" name="order_tel"  value="${projOrderVO.order_tel}">	
-    							<input type="hidden" name="order_state"  value="${projOrderVO.order_state}">	
-    							<input type="hidden" name="order_ship_time"  value="${projOrderVO.order_ship_time}">	
-    							<input type="hidden" name="order_completion_time"  value="${projOrderVO.order_completion_time}">
-    							<input type="hidden" name="order_cancel_time"  value="${projOrderVO.order_cancel_time}">		 			  
-			    				<input type="hidden" name="order_cancel_reason"  value="${projOrderVO.order_cancel_reason}">	
-			     				<input type="hidden" name="action" value="update_state_to_4_and_then_show_All">	 			  
-			
+    							<input type="hidden" name="order_cancel_time"  value="${projOrderVO.order_cancel_time}">
+			    				<input type="hidden" name="order_cancel_reason"  value="${projOrderVO.order_cancel_reason}">
+			     				<input type="hidden" name="action" value="update_state_to_4_and_then_show_All">
+
 			    				<input type="hidden" name="mem_id" value="${projOrderVO.mem_id}">
     							<input type="hidden" name="membership" value="buyer">
-			
-                                  <button data-v-4325ccd1="" 
+
+                                  <button data-v-4325ccd1=""
                                     class="shopee-button shopee-button--normal" type="submit"><span>
                                       取消訂單
                                     </span>
-                                  </button> 
+                                  </button>
                                   </FORM>
-                                  
-                                 
+
+
 								<!-- 收件地址按鈕 -->
-								
+
 								<!-- 先取值 -->
 								<fmt:formatDate var="mydate"
 									value="${projectSvc.getOneProject(projPerkSvc.getOneProjPerk(projOrderVO.perk_id).proj_id).expected_end_date}"
@@ -473,14 +387,14 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
 								<fmt:formatNumber var="dayleft"
 									value="${interval/1000/60/60/24}" pattern="#0" />
 								<!-- 算完取條件判斷後呈現 -->
-								<span > 
+								<span >
 								<c:set
 									var="prefix" value="還剩" /> <c:set var="suffix" value="天" />
 								   <c:choose>
 									<c:when test="${interval>=0}">
 											
 									<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/projOrder/projOrder.do">	
- 											<input type="hidden" name="order_id"  value="${projOrderVO.order_id}">	
+ 											<input type="hidden" name="order_id"  value="${projOrderVO.order_id}">
     										<input type="hidden" name="mem_id" value="${projOrderVO.mem_id}">
 											<input type="hidden" name="action" value="getOne_For_Update_ByMem">	 
 				                       <button data-v-4325ccd1="" class="shopee-button shopee-button--normal" type="submit">
@@ -497,64 +411,30 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
    							 
    							 
    							 <c:when test="${projOrderVO.order_state ==1}">
-   							 <%--   會員不需已出貨按鈕 	--%>
-   							 <%--   
-   							  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/projOrder/projOrder.do">	
-                              <input type="hidden" name="order_id"  value="${projOrderVO.order_id}">	
-    							<input type="hidden" name="order_zipcode"  value="${projOrderVO.order_zipcode}">	
-    							<input type="hidden" name="order_addr"  value="${projOrderVO.order_addr}">	
-    							<input type="hidden" name="order_receiver"  value="${projOrderVO.order_receiver}">	
-    							<input type="hidden" name="order_tel"  value="${projOrderVO.order_tel}">	
-    							<input type="hidden" name="order_state"  value="${projOrderVO.order_state}">	
-    							<input type="hidden" name="order_ship_time"  value="${projOrderVO.order_ship_time}">	
-    							<input type="hidden" name="order_completion_time"  value="${projOrderVO.order_completion_time}">
-    							<input type="hidden" name="order_cancel_time"  value="${projOrderVO.order_cancel_time}">		 			  
-			    				<input type="hidden" name="order_cancel_reason"  value="${projOrderVO.order_cancel_reason}">	
-			     				<input type="hidden" name="action" value="update_state_to_3_and_then_show_All">	 			  
-			
-						    	<input type="hidden" name="mem_id" value="${projOrderVO.mem_id}">
-    							<input type="hidden" name="membership" value="buyer">
-			
-			
-                                  <button data-v-4325ccd1="" 
-                                    class="shopee-button shopee-button--normal" type="submit"><span>
-                                      已出貨
-                                    </span>
-                                  </button> 
-                                  </FORM>
-                                  <br>
-                                  --%>
-                                    
-                                    
+
                                     
                                     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/projOrder/projOrder.do">	
-                               <input type="hidden" name="order_id"  value="${projOrderVO.order_id}">	
-    							<input type="hidden" name="order_zipcode"  value="${projOrderVO.order_zipcode}">	
-    							<input type="hidden" name="order_addr"  value="${projOrderVO.order_addr}">	
-    							<input type="hidden" name="order_receiver"  value="${projOrderVO.order_receiver}">	
-    							<input type="hidden" name="order_tel"  value="${projOrderVO.order_tel}">	
-    							<input type="hidden" name="order_state"  value="${projOrderVO.order_state}">	
-    							<input type="hidden" name="order_ship_time"  value="${projOrderVO.order_ship_time}">	
+                               <input type="hidden" name="order_id"  value="${projOrderVO.order_id}">
+    							<input type="hidden" name="order_zipcode"  value="${projOrderVO.order_zipcode}">
+    							<input type="hidden" name="order_addr"  value="${projOrderVO.order_addr}">
+    							<input type="hidden" name="order_receiver"  value="${projOrderVO.order_receiver}">
+    							<input type="hidden" name="order_tel"  value="${projOrderVO.order_tel}">
+    							<input type="hidden" name="order_state"  value="${projOrderVO.order_state}">
+    							<input type="hidden" name="order_ship_time"  value="${projOrderVO.order_ship_time}">
     							<input type="hidden" name="order_completion_time"  value="${projOrderVO.order_completion_time}">
-    							<input type="hidden" name="order_cancel_time"  value="${projOrderVO.order_cancel_time}">		 			  
-			    				<input type="hidden" name="order_cancel_reason"  value="${projOrderVO.order_cancel_reason}">	
+    							<input type="hidden" name="order_cancel_time"  value="${projOrderVO.order_cancel_time}">
+			    				<input type="hidden" name="order_cancel_reason"  value="${projOrderVO.order_cancel_reason}">
 			     				<input type="hidden" name="action" value="update_state_to_4_and_then_show_All">	 			  
-			
 								<input type="hidden" name="mem_id" value="${projOrderVO.mem_id}">
     							<input type="hidden" name="membership" value="buyer">
 			
-			
-			
-                                  <button data-v-4325ccd1="" 
+                                  <button data-v-4325ccd1=""
                                     class="shopee-button shopee-button--normal" type="submit"><span>
                                       取消訂單
                                     </span>
                                   </button> 
                                   </FORM>
-                                  
-                                  
-                                  								<!-- 收件地址按鈕 -->
-								
+                               <!-- 收件地址按鈕 -->
 								<!-- 先取值 -->
 								<fmt:formatDate var="mydate"
 									value="${projectSvc.getOneProject(projPerkSvc.getOneProjPerk(projOrderVO.perk_id).proj_id).expected_end_date}"
@@ -569,14 +449,14 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
 								<fmt:formatNumber var="dayleft"
 									value="${interval/1000/60/60/24}" pattern="#0" />
 								<!-- 算完取條件判斷後呈現 -->
-								<span > 
+								<span >
 								<c:set
 									var="prefix" value="還剩" /> <c:set var="suffix" value="天" />
 								   <c:choose>
 									<c:when test="${interval>=0}">
 											
 									<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/projOrder/projOrder.do">	
- 											<input type="hidden" name="order_id"  value="${projOrderVO.order_id}">	
+ 											<input type="hidden" name="order_id"  value="${projOrderVO.order_id}">
     										<input type="hidden" name="mem_id" value="${projOrderVO.mem_id}">
 											<input type="hidden" name="action" value="getOne_For_Update_ByMem">	 
 				                       <button data-v-4325ccd1="" class="shopee-button shopee-button--normal" type="submit">
@@ -586,37 +466,14 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
 									</c:when>
 									<c:otherwise></c:otherwise>
 									</c:choose>
-                                  
-                                  
-                                  
-                                  
-                                  
-                                  
    							 </c:when>
     							<c:when test="${projOrderVO.order_state ==2}">
-    							<%-- 
-    							    <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/projOrder/projOrder.do">	
-                              <input type="hidden" name="order_id"  value="${projOrderVO.order_id}">	
-    							<input type="hidden" name="order_zipcode"  value="${projOrderVO.order_zipcode}">	
-    							<input type="hidden" name="order_addr"  value="${projOrderVO.order_addr}">	
-    							<input type="hidden" name="order_receiver"  value="${projOrderVO.order_receiver}">	
-    							<input type="hidden" name="order_tel"  value="${projOrderVO.order_tel}">	
-    							<input type="hidden" name="order_state"  value="${projOrderVO.order_state}">	
-    							<input type="hidden" name="order_ship_time"  value="${projOrderVO.order_ship_time}">	
-    							<input type="hidden" name="order_completion_time"  value="${projOrderVO.order_completion_time}">
-    							<input type="hidden" name="order_cancel_time"  value="${projOrderVO.order_cancel_time}">		 			  
-			    				<input type="hidden" name="order_cancel_reason"  value="${projOrderVO.order_cancel_reason}">	
-			     				<input type="hidden" name="action" value="update_state_to_3_and_then_show_All">	 			  
-			
-								<input type="hidden" name="mem_id" value="${projOrderVO.mem_id}">
-    							<input type="hidden" name="membership" value="buyer">
-								--%>
-			
-                                  <button data-v-4325ccd1="" 
+
+                                  <button data-v-4325ccd1=""
                                     class="shopee-button shopee-button--normal" disabled><span>
                                       物流運送中
                                     </span>
-                                  </button> 
+                                  </button>
                                   </FORM>
    							 </c:when>
    							 
@@ -626,28 +483,11 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
 
 		  	
 							<c:when test="${projOrderVO.order_state ==4}">
-    						<%-- 
-    								  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/projOrder/projOrder.do">	
-                            <input type="hidden" name="order_id"  value="${projOrderVO.order_id}">	
-    							<input type="hidden" name="order_zipcode"  value="${projOrderVO.order_zipcode}">	
-    							<input type="hidden" name="order_addr"  value="${projOrderVO.order_addr}">	
-    							<input type="hidden" name="order_receiver"  value="${projOrderVO.order_receiver}">	
-    							<input type="hidden" name="order_tel"  value="${projOrderVO.order_tel}">	
-    							<input type="hidden" name="order_state"  value="${projOrderVO.order_state}">	
-    							<input type="hidden" name="order_ship_time"  value="${projOrderVO.order_ship_time}">	
-    							<input type="hidden" name="order_completion_time"  value="${projOrderVO.order_completion_time}">
-    							<input type="hidden" name="order_cancel_time"  value="${projOrderVO.order_cancel_time}">		 			  
-			    				<input type="hidden" name="order_cancel_reason"  value="${projOrderVO.order_cancel_reason}">	
-			     				<input type="hidden" name="action" value="update_state_to_5_and_then_show_All">	 			  
-			
-								<input type="hidden" name="mem_id" value="${projOrderVO.mem_id}">
-    							<input type="hidden" name="membership" value="buyer">
-							--%>
-                                  <button data-v-4325ccd1="" 
+                                  <button data-v-4325ccd1=""
                                     class="shopee-button shopee-button--normal" disabled><span>
                                       退款處理中
                                     </span>
-                                  </button> 
+                                  </button>
                                   </FORM>
    							 </c:when>
    						 							 
@@ -657,25 +497,6 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
   						  
   					  		</c:otherwise>
 							</c:choose>
-                                 <!-- <button data-v-4325ccd1="" type="button"
-                                    class="shopee-button shopee-button--normal"><span>
-                                      確認收款
-                                    </span></button>
-                                  <button data-v-4325ccd1="" type="button"
-                                    class="shopee-button shopee-button--normal"><span>
-                                      已出貨
-                                    </span></button>
-                                  <button data-v-4325ccd1="" type="button"
-                                    class="shopee-button shopee-button--normal"><span>
-                                      完成訂單
-                                    </span></button>
-                                  <br>
-
-                                  <button data-v-4325ccd1="" type="button"
-                                    class="shopee-button shopee-button--normal"><span>
-                                      取消訂單
-                                    </span>
-                                  </button>  -->
                               </div>
                             </div>
                           </div>
@@ -707,30 +528,13 @@ request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買
   </div>
   </div>
   <!-- Code injected by live-server -->
-  <script type="text/javascript">
-    document.oncontextmenu = null;
-    document.onselectstart = null;
-    document.ondragstart = null;
-    document.onmousedown = null;
-    document.body.oncontextmenu = null;
-    document.body.onselectstart = null;
-    document.body.ondragstart = null;
-    document.body.onmousedown = null;
-    document.body.oncut = null;
-    document.body.oncopy = null;
-    document.body.onpaste = null;
-  </script>
-<%--   <footer>
-        <jsp:include page="/footer/footer.jsp" />
-</footer> --%>
-  
+
   <footer>
-   <%--      <jsp:include page="/footer/footer.jsp" /> --%>
-   
+
    <div style="width:100%;height:150px">
    </div>
 </footer>
-  
+
 </body>
 
 </html>

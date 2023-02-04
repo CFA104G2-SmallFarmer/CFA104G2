@@ -6,18 +6,19 @@
 <%@ page import="java.util.*" %>
 <%@ page import="com.project.model.*" %>
 <%@ page import="com.projPerk.model.*" %>
+<%@ page import="com.projOrder.model.*" %>
 <%@ page
         import="java.time.LocalDate,java.sql.Timestamp,java.util.Vector" %>
 
 <%
     ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
+    ProjOrderVO projOrderVO = (ProjOrderVO) request.getAttribute("projOrderVO");
     MemVO memVO = (MemVO) session.getAttribute("memVO");
 %>
 
 
 <jsp:useBean id="projectSvc" scope="page" class="com.project.model.ProjectService"/>
 <jsp:useBean id="fmemSvc" scope="page" class="com.fMem.model.FMemService"/>
-
 
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
@@ -71,10 +72,23 @@
     <div class="container mv4">
         <div>
             <div style="margin: auto; box-sizing:content-box;display:block;border: solid #aaba8b 2px;padding: 15px;margin: 7px;">
-                <h1 style="color:#717d34"><strong>&nbsp;&nbsp;認養成功！</strong></h1><br>
-                如需修改訂單收件資料、查看訂單明細，請至會員中心的「認養訂單管理」。<br>
-                <button style="margin-right:10px;float: right;">瀏覽全部認養專案</button>
-                <button style="margin-right:10px;float: right;">前往查看訂單明細</button>
+                <h1 style="color:#717d34"><strong>&nbsp;&nbsp;認養成功！</strong></h1>
+                如需修改訂單收件資料、查看訂單明細，請至會員中心的「認養訂單管理」。
+                <br>
+                <br>
+                <div>
+<%--                    暫時移除，因為好像不需要了--%>
+<%--                    <button class="button" style="margin-right:10px;float: right;" type="button" href="<%=request.getContextPath()%>/front-end/projOrder/listAllOrderByMem.jsp">--%>
+<%--                        瀏覽全部認養專案--%>
+<%--                    </button>--%>
+                <FORM id="list-all-order" METHOD="post" ACTION="<%=request.getContextPath()%>/projOrder/projOrder.do">
+                    <input type="hidden" name="order_id" value="${projOrderVO.order_id}">
+                    <input type="hidden" name="mem_id" value="${projOrderVO.mem_id}">
+                    <input type="hidden" name="action" value="getOne_For_Update_ByMem">
+                    <button class="button" form="list-all-order" style="margin-right:10px;float: right;" value="Submit">前往查看訂單明細</button>
+                </FORM>
+                <br>
+                </div>
                 <br>
             </div>
         </div>
@@ -116,20 +130,6 @@
         } else {
             console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
         }
-    </script>
-
-    <script type="text/javascript">
-        document.oncontextmenu = null;
-        document.onselectstart = null;
-        document.ondragstart = null;
-        document.onmousedown = null;
-        document.body.oncontextmenu = null;
-        document.body.onselectstart = null;
-        document.body.ondragstart = null;
-        document.body.onmousedown = null;
-        document.body.oncut = null;
-        document.body.oncopy = null;
-        document.body.onpaste = null;
     </script>
 
     <footer>

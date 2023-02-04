@@ -533,20 +533,7 @@ request.setAttribute("order_pay_arr", new String[]{"信用卡","銀行轉帳"});
   </div>
   </div>
   <!-- Code injected by live-server -->
-  <script type="text/javascript">
-    document.oncontextmenu = null;
-    document.onselectstart = null;
-    document.ondragstart = null;
-    document.onmousedown = null;
-    document.body.oncontextmenu = null;
-    document.body.onselectstart = null;
-    document.body.ondragstart = null;
-    document.body.onmousedown = null;
-    document.body.oncut = null;
-    document.body.oncopy = null;
-    document.body.onpaste = null;
-  </script>
-  
+
 </body>
   <jsp:include page="/front-end/home/footer.jsp" flush="true"/>
 

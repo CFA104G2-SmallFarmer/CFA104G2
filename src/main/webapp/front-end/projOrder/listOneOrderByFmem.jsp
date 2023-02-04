@@ -844,19 +844,7 @@ margin-top:20px;
   </div>
   </div>
   <!-- Code injected by live-server -->
-  <script type="text/javascript">
-    document.oncontextmenu = null;
-    document.onselectstart = null;
-    document.ondragstart = null;
-    document.onmousedown = null;
-    document.body.oncontextmenu = null;
-    document.body.onselectstart = null;
-    document.body.ondragstart = null;
-    document.body.onmousedown = null;
-    document.body.oncut = null;
-    document.body.oncopy = null;
-    document.body.onpaste = null;
-  </script>
+
   
 <%--   <footer>
         <jsp:include page="/footer/footer.jsp" />

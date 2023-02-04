@@ -384,18 +384,5 @@ pageContext.setAttribute("memVO", memVO);
 	}
 </script>
     
-    <script type="text/javascript">
-            document.oncontextmenu = null;
-            document.onselectstart = null;
-            document.ondragstart = null;
-            document.onmousedown = null;
-            document.body.oncontextmenu = null;
-            document.body.onselectstart = null;
-            document.body.ondragstart = null;
-            document.body.onmousedown = null;
-            document.body.oncut = null;
-            document.body.oncopy = null;
-            document.body.onpaste = null;
-        </script>
 
       </body></html>

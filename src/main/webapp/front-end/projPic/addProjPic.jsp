@@ -406,19 +406,7 @@ ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO");
   </div>
   <div id="draggable-live-region" aria-relevant="additions" aria-atomic="true" aria-live="assertive" role="log"
     style="position: fixed; width: 1px; height: 1px; top: -1px; overflow: hidden;"></div>
-  <script type="text/javascript">
-    document.oncontextmenu = null;
-    document.onselectstart = null;
-    document.ondragstart = null;
-    document.onmousedown = null;
-    document.body.oncontextmenu = null;
-    document.body.onselectstart = null;
-    document.body.ondragstart = null;
-    document.body.onmousedown = null;
-    document.body.oncut = null;
-    document.body.oncopy = null;
-    document.body.onpaste = null;
-  </script>
+
   
     <footer>
          <jsp:include page="/front-end/home/footer_for_Proj_Fmem.jsp" />

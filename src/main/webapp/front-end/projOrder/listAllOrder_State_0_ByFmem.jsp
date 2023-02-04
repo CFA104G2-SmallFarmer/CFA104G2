@@ -34,42 +34,10 @@ pageContext.setAttribute("list", list);
 %>
 
 
-	
-<!--     String f_mem_id = request.getParameter("f_mem_id"); -->
-<!-- 	String membership= "seller"; -->
 
-
-<!-- 用傳list<某物件>的方式寫，讓servlet那邊先做完projOrderSvc.getAllFmemOrder(Integer f_mem_id) -->
-
-
-
-
-<!-- 領班 -->
 <jsp:useBean id="projectSvc" scope="page" class="com.project.model.ProjectService" />
 <jsp:useBean id="projPerkSvc" scope="page" class="com.projPerk.model.ProjPerkService" />
 <jsp:useBean id="memSvc" scope="page" class="com.mem.model.MemService" />
-
-<!-- 我的筆記 join -->
-<!-- project物件：(projectSvc.getOneProject(projPerkSvc.getOneProjPerk(projOrderVO.perk_id).proj_id)) -->
-
-<%--專案名稱： ${projectSvc.getOneProject(projPerkSvc.getOneProjPerk(projOrderVO.perk_id).proj_id).proj_name} --%>
-
-<%-- ${projPerkSvc.getOneProjPerk(projOrderVO.perk_id).proj_id} --%>
-
-<%-- 方案金額：${projPerkSvc.getOneProjPerk(projOrderVO.perk_id).perk_fund} --%>
-<%-- 方案簡稱：${projPerkSvc.getOneProjPerk(projOrderVO.perk_id).perk_abbr_name} --%>
-
-<%-- 會員姓名：${memSvc.getOneMem(projOrderVO.mem_id).mem_name} --%>
-
-
-
-
-
-<%-- <% --%>
-<!-- //  ProjPerkService projPerkSvc = new ProjPerkService(); -->
-<!-- //     List<ProjPerkVO> list1 = projPerkSvc.getAll(projOrderVO.getPerk_id()); -->
-<!-- //   pageContext.setAttribute("list",list1);	 -->
-<%-- %> --%>
 
 
 <%
@@ -77,19 +45,6 @@ request.setAttribute("order_state_arr", new String[]{"待付款","待出貨","�
 request.setAttribute("proj_pay_arr", new String[]{"信用卡","銀行轉帳"});
 request.setAttribute("cancel_reason_arr", new String[]{"","逾期未付款","買家取消","小農取消","專案募資失敗"});
 %>
-
-
-<%-- <% --%>
-<!-- // ProjOrderVO projOrderVO = (ProjOrderVO) request.getAttribute("projOrderVO"); //EmpServlet.java(Concroller), 存入req的empVO物件 -->
-<%-- %> --%>
-<%-- <% --%>
-<!-- // ProjPerkVO projPerkVO = (ProjPerkVO) request.getAttribute("projPerkVO"); //EmpServlet.java(Concroller), 存入req的empVO物件 -->
-<%-- %> --%>
-
-<%-- <% --%>
-<!-- // ProjectVO projectVO = (ProjectVO) request.getAttribute("projectVO"); //EmpServlet.java(Concroller), 存入req的empVO物件 -->
-<%-- %> --%>
-
 
 <!DOCTYPE html>
 <html class="TW" style="overflow: scroll;">
@@ -405,7 +360,7 @@ margin-top:20px;
 <header>
 
          <%--  <jsp:include page="/front-end/home/header_for_Proj_Fmem.jsp" />  --%>
-         
+
 </header>
 <header>
 <script>
@@ -445,13 +400,6 @@ margin-top:20px;
 </header>
 <div style="border:solid 2px lightgray"></div>
 
-<%--                     <%=projOrderVO==null%> --%>
-<%--                     <%=projPerkVO==null%> --%>
-<%--                     <%=projectVO==null%> --%>
-                    
-<%--                     <%=projOrderVO.getOrder_id()%> --%>
-<%--                        <%=projPerkVO.getPerk_abbr_name()%> --%>
-<%--                     <%=projectVO.getProj_name()%> --%>
   <div class="app-container">
     <div class="page-content-wrapper">
       <div data-v-6de0ecc3="" class="portal-sale-root">
@@ -581,12 +529,7 @@ margin-top:20px;
                     <div data-v-acb72a84="" class="title">
                        <c:set var="num" scope="request" value="${param.order_state}"/>
                     
-                            
-<%--                                   <% int num = projOrderVO.getOrder_state(); %> --%>
-                                  
-<%--                                   <%= ((String[])request.getAttribute("order_state_arr"))[num] %> --%>
-                                 
-                              
+
 <h1 style="float:left;font-size:30px"><strong>待付款</strong></h1><br>
 
 
@@ -601,10 +544,7 @@ margin-top:20px;
 		</c:forEach>
 	</ul>
 </c:if>
-<%--                     <%=projOrderVO==null%> --%>
-<%--                     <%=projPerkVO==null%> --%>
-<%--                     <%=projectVO==null%> --%>
-                    <!---->
+
                   
 
                   </div>
@@ -717,13 +657,8 @@ margin-top:20px;
                               <div data-v-1274329c="" class="item-total">
                                 <div data-v-1274329c="" class="price">
                                 <c:set var="num" scope="request" value="${projOrderVO.order_state}"/>
-                            
-<%--                                   <% int num = projOrderVO.getOrder_state(); %> --%>
-                                  
-<%--                                   <%= ((String[])request.getAttribute("order_state_arr"))[num] %> --%>
-                                  
+
                                 ${order_state_arr[num]}
-                              
 
                                 </div>
                                 <div data-v-1274329c="" class="payment-method">
@@ -774,15 +709,6 @@ margin-top:20px;
                                     <c:set var="y" scope="request" value="${projOrderVO.order_cancel_reason}"/>
                                                            
                                 ${cancel_reason_arr[y]}
-                                
-<!--                                 <script>console.log(${y})</script> -->
-<!--                                 <script>console.log(typeof(${y}))</script> -->
-                                
-<%--                                    ${projOrderVO.order_cancel_reason}  --%>
-                                  
-<%--                                   <% int y = projOrderVO.getOrder_cancel_reason(); %>  --%>
-                                  
-<%--                                   <%= ((String[])request.getAttribute("cancel_reason_arr"))[y] %> --%>
 
                           
                                 </div>
@@ -792,12 +718,6 @@ margin-top:20px;
                                 </div>
                               </div>
                               <div data-v-1274329c="" class="item-action">
-                              
-<%--                               <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/projOrder/projOrder.do">		 			   --%>
-<%-- 			    				<input type="hidden" name="order_id"  value="${projOrderVO.order_id}">	 --%>
-<!-- 			     				<input type="hidden" name="action" value="delete"> -->
-<!-- 			  				   </FORM> -->
-                            
                               <c:choose>
     							<c:when test="${projOrderVO.order_state ==0}">
     							<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/projOrder/projOrder.do">	
@@ -959,25 +879,6 @@ margin-top:20px;
   						  
   					  		</c:otherwise>
 							</c:choose>
-                                 <!-- <button data-v-4325ccd1="" type="button"
-                                    class="shopee-button shopee-button--normal"><span>
-                                      確認收款
-                                    </span></button>
-                                  <button data-v-4325ccd1="" type="button"
-                                    class="shopee-button shopee-button--normal"><span>
-                                      已出貨
-                                    </span></button>
-                                  <button data-v-4325ccd1="" type="button"
-                                    class="shopee-button shopee-button--normal"><span>
-                                      完成訂單
-                                    </span></button>
-                                  <br>
-
-                                  <button data-v-4325ccd1="" type="button"
-                                    class="shopee-button shopee-button--normal"><span>
-                                      取消訂單
-                                    </span>
-                                  </button>  -->
                               </div>
                             </div>
                           </div>
@@ -1010,19 +911,6 @@ margin-top:20px;
   </div>
   </div>
   <!-- Code injected by live-server -->
-  <script type="text/javascript">
-    document.oncontextmenu = null;
-    document.onselectstart = null;
-    document.ondragstart = null;
-    document.onmousedown = null;
-    document.body.oncontextmenu = null;
-    document.body.onselectstart = null;
-    document.body.ondragstart = null;
-    document.body.onmousedown = null;
-    document.body.oncut = null;
-    document.body.oncopy = null;
-    document.body.onpaste = null;
-  </script>
   <footer>
    <%--      <jsp:include page="/footer/footer.jsp" /> --%>
    

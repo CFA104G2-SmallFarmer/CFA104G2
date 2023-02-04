@@ -39,6 +39,8 @@ public class PaidConfirmServlet extends HttpServlet{
         // 沒有ORM，自己寫，從order找到project，下了3條sql，浪費時間
         ProjOrderService projOrderSvc = new ProjOrderService();
         ProjOrderVO projOrderVO = projOrderSvc.getOneProjOrderByOrderNumber(paymentNumber);
+        req.setAttribute("projOrderVO", projOrderVO);
+
         ProjPerkService projPerkSvc = new ProjPerkService();
         ProjPerkVO projPerkVO = projPerkSvc.getOneProjPerk(projOrderVO.getPerk_id());
         ProjectService projectSvc = new ProjectService();
