@@ -6,11 +6,10 @@ public class ShopCartlistVO implements java.io.Serializable{
 	private Integer prod_id;
 	private Integer cartlist_qty;
 	private Integer cartlist_unit_price;
-	
-	//建構子1.空的2.有待參數的
+
 	public ShopCartlistVO() {
 		super();
-		
+
 	}
 	public ShopCartlistVO(Integer mem_id, Integer prod_id, Integer cartlist_qty, Integer cartlist_unit_price) {
 		super();
@@ -19,8 +18,8 @@ public class ShopCartlistVO implements java.io.Serializable{
 		this.cartlist_qty = cartlist_qty;
 		this.cartlist_unit_price = cartlist_unit_price;
 	}
-	
-	//get、set
+
+	//get嚙畿set
 	public Integer getMem_id() {
 		return mem_id;
 	}
@@ -50,6 +49,6 @@ public class ShopCartlistVO implements java.io.Serializable{
 	public void setCartlist_unit_price(Integer cartlist_unit_price) {
 		this.cartlist_unit_price = cartlist_unit_price;
 	}
-	
-	
+
+
 }

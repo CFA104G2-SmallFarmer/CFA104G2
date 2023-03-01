@@ -7,10 +7,10 @@ COPY *.java /app/
 COPY ./src /app/src
 
 # Compile the Java files and create a WAR file
-RUN find /app/src -type f -name "*.java" > /app/sources.txt && \
-    mkdir -p /app/classes && \
-    javac -d /app/classes @/app/sources.txt && \
-    jar -cvf /app/myapp.war -C /app/classes .
+RUN find /app/src -type f -name "*.java" > /app/sources.txt
+RUN mkdir -p /app/classes
+RUN javac -encoding UTF-8 -d /app/classes @/app/sources.txt
+RUN jar -cvf /app/myapp.war -C /app/classes .
 
 # Set the default command to start your application
 CMD ["java", "-jar", "MyApp.war"]
