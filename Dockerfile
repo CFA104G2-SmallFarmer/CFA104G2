@@ -3,12 +3,13 @@ FROM openjdk:8-jdk AS build
 # Copy your application files to the container
 COPY *.java /app/
 
-# Compile your application
-WORKDIR /app/
-RUN javac *.java
+# Copy the Java files to the container
+COPY ./src /app/src
 
-# Create the WAR file
-RUN jar cvf MyApp.war *.class
+# Compile the Java files and create a WAR file
+RUN mkdir -p /app/classes && \
+    javac -d /app/classes /app/src/**/*.java && \
+    jar -cvf /app/myapp.war -C /app/classes .
 
 # Set the default command to start your application
 CMD ["java", "-jar", "MyApp.war"]
@@ -16,7 +17,7 @@ CMD ["java", "-jar", "MyApp.war"]
 FROM tomcat:9.0-jdk8-openjdk
 
 # Copy your WAR file to the container
-COPY --from=build /home/app/MyApp.war /usr/local/tomcat/webapps/
+COPY --from=build /app/MyApp.war /usr/local/tomcat/webapps/
 
 # run
 CMD ["/usr/local/tomcat/bin/catalina.sh","run"]
@@ -53,4 +54,6 @@ CMD ["/usr/local/tomcat/bin/catalina.sh","run"]
 
 
 #I need to create a war file by docker, also, I don't use maven and gradle, I want to use the tool in jdk, such as javac and jar.
-#And if I want to use the image with tomcat, such as "tomcat:9.0-jdk8-openjdk", how shoule I write the Dockerfile?
+#And if I want to use the image with tomcat, such as "tomcat:9.0-jdk8-openjdk".
+#By the way, please take consider the point that my java files are in different directories during you making the war file.
+#Write me a Dockerfile please?
