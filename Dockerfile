@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk
+FROM openjdk:8-jdk AS build
 
 # Copy your application files to the container
 COPY *.java /app/
@@ -16,7 +16,7 @@ CMD ["java", "-jar", "MyApp.war"]
 FROM tomcat:9.0-jdk8-openjdk
 
 # Copy your WAR file to the container
-COPY MyApp.war /usr/local/tomcat/webapps/
+COPY --from=build /home/app/MyApp.war /usr/local/tomcat/webapps/
 
 # run
 CMD ["/usr/local/tomcat/bin/catalina.sh","run"]
