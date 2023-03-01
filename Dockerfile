@@ -5,20 +5,21 @@ COPY *.java /app/
 
 # Copy the Java files to the container
 COPY ./src /app/src
+COPY ./lib /app/lib
 
 # Compile the Java files and create a WAR file
 RUN find /app/src -type f -name "*.java" > /app/sources.txt
 RUN mkdir -p /app/classes
-RUN javac -encoding UTF-8 -d /app/classes @/app/sources.txt
+RUN javac -classpath /app/lib/\* -d /app/classes @/app/sources.txt
 RUN jar -cvf /app/myapp.war -C /app/classes .
 
-# Set the default command to start your application
-CMD ["java", "-jar", "MyApp.war"]
+## Set the default command to start your application
+#CMD ["java", "-jar", "myapp.war"]
 
 FROM tomcat:9.0-jdk8-openjdk
 
 # Copy your WAR file to the container
-COPY --from=build /app/MyApp.war /usr/local/tomcat/webapps/
+COPY --from=build /app/myapp.war /usr/local/tomcat/webapps/
 
 # run
 CMD ["/usr/local/tomcat/bin/catalina.sh","run"]
