@@ -1,11 +1,11 @@
 FROM openjdk:8-jdk
 
 # Copy your application files to the container
-COPY MyApp.java /app/
+COPY *.java /app/
 
 # Compile your application
 WORKDIR /app/
-RUN javac MyApp.java
+RUN javac *.java
 
 # Create the WAR file
 RUN jar cvf MyApp.war *.class
