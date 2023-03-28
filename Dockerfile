@@ -2,7 +2,7 @@
 FROM maven:3.8.5-openjdk-8-slim AS build
 COPY src /home/app/src
 COPY pom.xml /home/app
-RUN mvn -X -f -o /home/app/pom.xml clean package
+RUN mvn --debug --file /home/app/pom.xml clean package
 #CMD ["sleep", "infinity"] # for debug
 
 FROM tomcat:9.0-jdk8-openjdk
