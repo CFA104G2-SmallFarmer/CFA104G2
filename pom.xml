@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>smallfarmer</groupId>
-    <artifactId>CFA104G2</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <groupId>CFA104G2</groupId>
+    <artifactId>smallfarmer</artifactId>
+    <version>production</version>
 
     <packaging>war</packaging>
 
