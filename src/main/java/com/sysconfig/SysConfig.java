@@ -3,12 +3,15 @@ package com.sysconfig;
 public class SysConfig {
 
     final static String driver = "com.mysql.cj.jdbc.Driver";
-    final static String url = "jdbc:mysql://localhost:3306/cfa104g2?serverTimezone=Asia/Taipei";
-    final static String userid = "serveruser";
-    final static String passwd = "53434976";
-    final static String fonpayApiKey = "111111";
-    final static String fonpayApiSecret = "111111";
-    final static String fonpayApiMerchantCode = "111111";
+    final static String url = System.getenv("url");
+//    final static String url = "jdbc:mysql://localhost:3306/cfa104g2?serverTimezone=Asia/Taipei";
+    final static String userid = System.getenv("userid");
+//    final static String userid = "serveruser";
+    final static String passwd = System.getenv("passwd");
+//    final static String passwd = "53434976";
+    final static String fonpayApiKey = System.getenv("fonpayApiKey");
+    final static String fonpayApiSecret = System.getenv("fonpayApiSecret");
+    final static String fonpayApiMerchantCode = System.getenv("fonpayApiMerchantCode");
 
     public static String getDriver() {
         return driver;
